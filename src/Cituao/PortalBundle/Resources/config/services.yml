@@ -1,0 +1,7 @@
+parameters:
+#    cituao_portal.example.class: Cituao\PortalBundle\Example
+
+services:
+#    cituao_portal.example:
+#        class: %cituao_portal.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

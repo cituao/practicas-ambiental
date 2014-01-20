@@ -1,0 +1,8 @@
+# Ruta para la acción de login de de los usuarios del frontend
+usuario_login:
+    pattern:   /login
+    defaults:  { _controller: CituaoUsuarioBundle:Default:login }
+
+# Ruta para la acción que comprueba el login del frontend
+usuario_login_check:
+    pattern:   /login_check

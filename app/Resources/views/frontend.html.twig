@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('/practicas/web/css/comun.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block body %}
+	<header>
+		
+		<div>
+		<a href="{{ path('cituao_portal_homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="UAO"></a>
+		</div>
+		<div>		
+		<nav>
+		    <ul>
+		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Universidad" }}</a></li>
+		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Programa" }}</a></li>
+		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Facultades" }}</a></li>
+		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Admisiones" }}</a></li>
+		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Investigacion" }}</a></li>
+		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Educacion continua" }}</a></li>
+		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Servicios" }}</a></li>
+		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Vida Universitaria" }}</a></li>
+			</ul>
+		</nav>
+		</div>
+		</header>
+	
+	{% block anuncio %}{% endblock %}
+
+	<section>
+	{% block seccion %}
+		<article>
+			<h2>Articulo 1</h2>
+		</article>
+
+		<article>
+			<h2>Articulo 2</h2>
+		</article>
+	{% endblock %}
+
+	</section>
+
+	<aside>
+		{% block aside %}
+		
+		<section id="login">
+		   {{ render_esi(controller('CituaoUsuarioBundle:Default:cajaLogin')) }} 
+		</section>
+		    
+	
+		{% endblock %}
+	</aside>
+
+		<footer>
+		    &copy; {{ 'now'|date('Y') }} - CuponJ
+		    <a href="{{ path('usuario_login') }}">{{ "Ayuda" }}</a>
+		    <a href="{{ path('cituao_portal_homepage') }}">{{ "Contacto" }}</a>
+		    <a href="{{ path('cituao_portal_homepage') }}">{{ "Privacidad" }}</a>
+		    <a href="{{ path('cituao_portal_homepage') }}">{{ "Sobre nosotros" }}</a>
+		</footer>
+
+
+{% endblock %}

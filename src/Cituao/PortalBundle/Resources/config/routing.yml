@@ -1,0 +1,3 @@
+cituao_portal_homepage:
+    pattern:  /
+    defaults: { _controller: CituaoPortalBundle:Default:index }

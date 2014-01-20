@@ -1,0 +1,7 @@
+parameters:
+#    cituao_usuario.example.class: Cituao\UsuarioBundle\Example
+
+services:
+#    cituao_usuario.example:
+#        class: %cituao_usuario.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,25 @@
+Cituao\UsuarioBundle\Entity\Usuario:
+    type: entity
+    table: null
+    repositoryClass: Cituao\UsuarioBundle\Entity\UsuarioRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        username:
+            type: string
+            length: '25'
+        salt:
+            type: string
+            length: '32'
+        password:
+            type: string
+            length: '64'
+        email:
+            type: string
+            length: '60'
+        isActive:
+            type: boolean
+    lifecycleCallbacks: {  }

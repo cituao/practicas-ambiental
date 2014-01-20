@@ -1,0 +1,9 @@
+cituao_usuario:
+    resource: "@CituaoUsuarioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cituao_portal:
+    resource: "@CituaoPortalBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

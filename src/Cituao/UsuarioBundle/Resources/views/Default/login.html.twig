@@ -1,0 +1,37 @@
+{# src/Cituao/UsuarioBundle/Resources/views/Security/login.html.twig #}
+{% extends '::frontend.html.twig' %}
+
+{% block seccion %}
+	<section id = "login">
+
+		{% if error %}
+		    <div id = "error">
+			<h2>Error:</h2>
+			<h4>{{ error.message }}</h4>
+			{{ bandera }}
+			</div>
+		{% endif %}
+
+
+		<h2>Accede a tu cuenta</h1>
+
+		<form action="{{ path('usuario_login_check') }}" method="post">
+			<label for="username">Usuario:</label>
+			<input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="_password" />
+
+			{#
+			If you want to control the URL the user
+			is redirected to on success (more details below)
+			<input type="hidden" name="_target_path" value="/account" />
+			#}
+
+			<button type="submit">Login</button>
+		</form>
+	</section>
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
