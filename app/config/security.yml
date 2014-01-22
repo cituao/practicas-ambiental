@@ -49,7 +49,7 @@ security:
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/usuario/*, roles: ROLE_USUARIO }
-        - { path: ^/coordinador/*,        roles: ROLE_COORDINADOR }
+        - { path: ^/coordinador/*,        roles: ROLE_ADMIN }
         - { path: ^/practicante/*,         roles: ROLE_PRACTICANTE }
         - { path: ^/asesora/*,         roles: ROLE_ASESORA }
         - { path: ^/asesore/*,         roles: ROLE_ASESORE }

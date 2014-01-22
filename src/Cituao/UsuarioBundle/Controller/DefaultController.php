@@ -2,6 +2,8 @@
 
 namespace Cituao\UsuarioBundle\Controller;
 
+//namespace Cituao\CoordBundle\Resources;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -10,22 +12,6 @@ class DefaultController extends Controller
 {
     public function loginAction()
     {
-	/*	
-	$request = $this->getRequest();
-        $session = $request->getSession();
-
-        // get the login error if there is one
-        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
-            $error = $request->attributes->get(
-                SecurityContext::AUTHENTICATION_ERROR
-            );
-		$b = "1";
-        } else {
-            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
-            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
-		$b = "2";        
-	}*/
-
         $peticion = $this->getRequest();
         $sesion = $peticion->getSession();
 
@@ -33,17 +19,7 @@ class DefaultController extends Controller
             SecurityContext::AUTHENTICATION_ERROR,
             $sesion->get(SecurityContext::AUTHENTICATION_ERROR)
         );
-	
-	if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
 
-            return $this->render('CituaoCoordBundle:Default:coord.html.twig', array());
-
-        }elseif ($this->get('security.context')->isGranted('ROLE_EMPRESA')) {            
-
-            return $this->render('CituaoUsuarioBundle:Default:login.html.twig', array());
-	}
-	
-	
         return $this->render(
             'CituaoUsuarioBundle:Default:login.html.twig',
             array(
@@ -53,7 +29,6 @@ class DefaultController extends Controller
 		
             )
         );
-   
     }
 
     public function cajaLoginAction($id = '')
