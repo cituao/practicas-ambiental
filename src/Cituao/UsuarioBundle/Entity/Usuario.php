@@ -49,9 +49,6 @@ class Usuario implements AdvancedUserInterface, \Serializable
      */
     private $isActive;
 
-
-    // ...
-
     /**
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      *
@@ -62,9 +59,6 @@ class Usuario implements AdvancedUserInterface, \Serializable
     {
         $this->roles = new ArrayCollection();
     }
-
-
-
 
     /**
      * Get id

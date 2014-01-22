@@ -19,6 +19,7 @@ class UsuarioRepository extends EntityRepository implements UserProviderInterfac
 {
 public function loadUserByUsername($username)
     {
+		
         $q = $this
             ->createQueryBuilder('u')
             ->select('u, r')
@@ -37,9 +38,11 @@ public function loadUserByUsername($username)
                 'Unable to find an active admin AcmeUserBundle:User object identified by "%s".',
                 $username
             );
+			
+			
             throw new UsernameNotFoundException($message, 0, $e);
         }
-
+		
         return $user;
     }
 

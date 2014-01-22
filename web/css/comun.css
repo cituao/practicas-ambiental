@@ -25,11 +25,11 @@ body {
 
 ul {
     margin-left: 1em;
-    padding-left: 1em;
+    padding-left: 1px;
 }
 
 ul li, ol li {
-    margin-top: .5em;
+    margin-top: 2px;
 }
 
 dl dt {
@@ -177,7 +177,9 @@ form label + ul li + li {
 /* ===========================================================================
    Enlaces
    ======================================================================== */
-a         { color: #2200C1; }
+#alogo a {color: 0}
+
+   a         { color: #2200C1; }
 a:visited { color: #2200C1; }
 a:hover   { color: #C06 !important; }
 a:active  { position: relative; top: 1px; }
@@ -266,7 +268,7 @@ footer {
    Cabecera y menú de navegación
    ======================================================================== */
 article {
-    background: #CCCCFF;
+    background: #f2f2f2;
     color: #FFF;
     border-bottom: 1px solid #CCC;
     height: 180px;
@@ -293,7 +295,7 @@ header {
     position: relative;
 }
 header a, header a:visited {
-    border-bottom: 1px solid;
+    /*border-bottom: 1px solid;*/
     text-decoration: none;
 }
 header a:hover {
@@ -314,22 +316,35 @@ header h1 a {
     text-decoration: none;
 }
 
+nav{
+width:100%;
+height:50px;
+}
+
 nav ul {
     list-style: none;
     position: relative;
-    /*left: 200px;
-    right: 20px;*/
-}
+	width:80%;
+/*
+    left: 200px;
+    right: 20px;
+*/
+	}
+
 nav ul li {
     float: left;
-    line-height: 0px;
+	 margin-left: 20px;
+    /*
+	line-height: 0px;
     margin: 0;
-    padding-left: 0.5em;
+	width:12.5%;*/
 }
+
 nav ul li a {
     color: #FFF !important;
-    font-size: 18px;
+    font-size: 14px;
 }
+
 
 /* ===========================================================================
    Zona lateral
@@ -441,7 +456,9 @@ ul.paginador li.actual {
 }
 
 #error {
-	background-color: #7CDCDC;	
-
+	background-color: #99CCFF;	
 }
 
+div h4 {
+	font:11px arial,sans-serif;
+}

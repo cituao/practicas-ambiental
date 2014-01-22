@@ -27,13 +27,11 @@ class Role implements RoleInterface
     /**
      * @ORM\Column(name="name", type="string", length=30)
      */
-
     private $name;
 
     /**
      * @ORM\Column(name="role", type="string", length=20, unique=true)
      */
-
     private $role;
 
     /**
@@ -41,12 +39,11 @@ class Role implements RoleInterface
      */
     private $users;
 
-   public function __construct()
+
+	public function __construct()
     {
         $this->users = new ArrayCollection();
     }
-
-
     /**
      * Get id
      *
