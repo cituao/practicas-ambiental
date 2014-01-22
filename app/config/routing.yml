@@ -1,3 +1,7 @@
+cituao_coord:
+    resource: "@CituaoCoordBundle/Resources/config/routing.yml"
+    prefix:   /
+
 cituao_usuario:
     resource: "@CituaoUsuarioBundle/Resources/config/routing.yml"
     prefix:   /
@@ -5,5 +9,3 @@ cituao_usuario:
 cituao_portal:
     resource: "@CituaoPortalBundle/Resources/config/routing.yml"
     prefix:   /
-
-

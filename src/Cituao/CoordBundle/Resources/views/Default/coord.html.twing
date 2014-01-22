@@ -1,0 +1,5 @@
+{% extends '::frontend.html.twig' %}
+
+{% block seccion %}
+Pagina del coordinador
+{% endblock %}

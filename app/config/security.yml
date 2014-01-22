@@ -40,8 +40,8 @@ security:
                 check_path: usuario_login_check
                 login_path: usuario_login
             logout:
-                path:   _demo_logout
-                target: _demo
+                path:   /logout
+                target: /
             anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"

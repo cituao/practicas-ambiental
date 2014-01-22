@@ -376,6 +376,12 @@ aside section {
     
 }
 
+section.ppal {
+	background: #C8C8C8;
+	height:300px;
+} 	
+
+
 /* ===========================================================================
    Caja de login
    ======================================================================== */
@@ -462,3 +468,5 @@ ul.paginador li.actual {
 div h4 {
 	font:11px arial,sans-serif;
 }
+
+

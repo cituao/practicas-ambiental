@@ -1,3 +1,10 @@
 cituao_portal_homepage:
     pattern:  /
     defaults: { _controller: CituaoPortalBundle:Default:index }
+
+login:
+    path:     /login
+    defaults: { _controller: CituaoPortalBundle:Default:login }
+
+login_check:
+    path: /login_check

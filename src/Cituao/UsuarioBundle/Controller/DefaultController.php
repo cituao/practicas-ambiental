@@ -34,15 +34,23 @@ class DefaultController extends Controller
             $sesion->get(SecurityContext::AUTHENTICATION_ERROR)
         );
 	
-	$b = "q";
+	if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
 
+            return $this->render('CituaoCoordBundle:Default:coord.html.twig', array());
+
+        }elseif ($this->get('security.context')->isGranted('ROLE_EMPRESA')) {            
+
+            return $this->render('CituaoUsuarioBundle:Default:login.html.twig', array());
+	}
+	
+	
         return $this->render(
             'CituaoUsuarioBundle:Default:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
-                'error'         => $error,
-		'bandera'	=> $b
+                'error'         => $error
+		
             )
         );
    

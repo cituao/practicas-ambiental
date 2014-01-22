@@ -1,0 +1,3 @@
+cituao_coord_homepage:
+    pattern:  /coordinador
+    defaults: { _controller: CituaoCoordBundle:Default:index }

@@ -1,0 +1,7 @@
+parameters:
+#    cituao_coord.example.class: Cituao\CoordBundle\Example
+
+services:
+#    cituao_coord.example:
+#        class: %cituao_coord.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
