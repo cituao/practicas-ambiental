@@ -39,6 +39,7 @@ security:
             form_login:
                 check_path: usuario_login_check
                 login_path: usuario_login
+                success_handler: access_listener
             logout:
                 path:   /logout
                 target: /
