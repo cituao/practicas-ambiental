@@ -7,29 +7,31 @@
 
 {% block body %}
 	<header>
-		
-		<div>
-		<a id = "alogo" href="{{ path('cituao_portal_homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="UAO"></a>
+		<div id = "grad1">
+			<a id = "alogo" href="{{ path('cituao_portal_homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="UAO"></a>
 		</div>
-		<div>		
-		<nav>
-		    <ul>
-		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Universidad" }}</a></li>
-		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Programa" }}</a></li>
-		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Facultades" }}</a></li>
-		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Admisiones" }}</a></li>
-		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Investigacion" }}</a></li>
-		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Educacion continua" }}</a></li>
-		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Servicios" }}</a></li>
-		        <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Vida Universitaria" }}</a></li>
-			</ul>
-		</nav>
+		
+		<div id = "divnav">		
+			<nav>
+				<ul>
+					{% block nav %}
+				    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Universidad" }}</a></li>
+				    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Programa" }}</a></li>
+				    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Facultades" }}</a></li>
+				    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Admisiones" }}</a></li>
+				    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Investigacion" }}</a></li>
+				    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Educacion continua" }}</a></li>
+				    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Servicios" }}</a></li>
+				    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Vida Universitaria" }}</a></li>
+					{% endblock %}
+				</ul>
+			</nav>
 		</div>
 		</header>
 	
 	{% block anuncio %}{% endblock %}
 
-	<section id = "ppal">
+	<section class = "secppal">
 	{% block seccion %}
 		<article>
 			<h2>Articulo 1</h2>

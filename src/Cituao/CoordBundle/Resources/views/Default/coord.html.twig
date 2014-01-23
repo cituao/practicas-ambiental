@@ -1,15 +1,26 @@
 {% extends '::frontend.html.twig' %}
 
+
+{% block nav %}
+	<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Home" }}</a></li>
+    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis practicantes" }}</a></li>
+    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores académicos" }}</a></li>
+    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores externos" }}</a></li>
+	<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Matricular" }}</a></li>
+    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Configuraciones" }}</a></li>
+    <li><a href="{{ path('logout') }}">{{ "Salir" }}</a></li>
+{% endblock %}
+
 {% block seccion %}
-Pagina del coordinador
+	Pagina del coordinador sd
 {% endblock %}
 
 {% block aside %}
-
-    <a href="{{path('logout')}}">Logout</a>
-</div>
-		</article>
-
-
+	<div id = "divopciones">
+		<h3>Buenos días!</h3>
+    	<h3>Admin</h3>
+		<h3>Su última conexión fue el 01/01/2014</h3>
+		<h3>A las 9:00am</h3>
+	</div>
 {% endblock %}
 
