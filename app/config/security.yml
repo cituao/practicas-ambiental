@@ -39,20 +39,23 @@ security:
             form_login:
                 check_path: usuario_login_check
                 login_path: usuario_login
-                success_handler: access_listener
+                
             logout:
                 path:   /logout
                 target: /
-            anonymous: ~
+            anonymous: true
+            provider:       in_memory
             #http_basic:
             #    realm: "Secured Demo Area"
 
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/usuario/*, roles: ROLE_USUARIO }
         - { path: ^/coordinador/*,        roles: ROLE_ADMIN }
         - { path: ^/practicante/*,         roles: ROLE_PRACTICANTE }
         - { path: ^/asesora/*,         roles: ROLE_ASESORA }
         - { path: ^/asesore/*,         roles: ROLE_ASESORE }
+      
 
 

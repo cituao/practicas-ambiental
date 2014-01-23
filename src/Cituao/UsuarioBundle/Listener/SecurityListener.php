@@ -1,33 +1,53 @@
 <?php
 namespace Cituao\UsuarioBundle\Listener;
 
+use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Routing\Router;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+
 class SecurityListener
 {
-    protected $router;
-    protected $security;
-    protected $dispatcher;
+    protected $router=null;
+    protected $context=null;
+    
 
-    public function __construct(Router $router, SecurityContext $security, EventDispatcher $dispatcher)
+    public function __construct(SecurityContext $context, Router $router)
     {
         $this->router = $router;
-        $this->security = $security;
-        $this->dispatcher = $dispatcher;
+        $this->context = $context;
+        
+	
     }
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
-        $this->dispatcher->addListener(KernelEvents::RESPONSE, array($this, 'onKernelResponse'));
-    }
+		$token = $event->getAuthenticationToken();
+        
+ 
+	}
 
     public function onKernelResponse(FilterResponseEvent $event)
     {
-        if ($this->security->isGranted('ROLE_ADMIN')) {
-            $response = new RedirectResponse($this->router->generate('coordinador'));
-        } else ($this->security->isGranted('ROLE_USER')) {
-            $response = new RedirectResponse($this->router->generate('cituao_portal_homepage'));
-        } 
-		
+		/*
+		$sw=0;
 
-        $event->setResponse($response);
-    }
+	    if ($this->context->isGranted('ROLE_ADMIN')) {
+			$portada = $this->router->generate('cituao_coord_homepage');
+			$sw=1;
+	    } else {
+			if ($this->context->isGranted('ROLE_USER')){
+				$portada = $this->router->generate('cituao_portal_homepage');
+				$sw=1;
+	    	}
+		}
+		if ($sw==1){
+	    $event->setResponse(new RedirectResponse($portada));
+	    $event->stopPropagation();
+		}*/
+
+	}
 }
