@@ -1,3 +1,7 @@
 cituao_coord_homepage:
     pattern:  /coordinador
     defaults: { _controller: CituaoCoordBundle:Default:index }
+
+cituao_coord_practicantes:
+    pattern:  /coordinador/practicantes
+    defaults: { _controller: CituaoCoordBundle:Default:practicantes }

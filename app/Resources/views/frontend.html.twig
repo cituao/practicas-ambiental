@@ -8,7 +8,7 @@
 {% block body %}
 	<header>
 		<div id = "grad1">
-			<a id = "alogo" href="{{ path('cituao_portal_homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="UAO"></a>
+			<a id = "alogo" href={{ path('cituao_portal_uao') }}><img src="{{ asset('images/logo.png') }}" alt="UAO"></a>
 		</div>
 		
 		<div id = "divnav">		
@@ -56,7 +56,7 @@
 	</aside>
 
 		<footer>
-		    &copy; {{ 'now'|date('Y') }} - CuponJ
+		    &copy; {{ 'now'|date('Y') }} - APPWeb Prácticas profesionales - Centro de Innovación TIC -UAO
 		    <a href="{{ path('usuario_login') }}">{{ "Ayuda" }}</a>
 		    <a href="{{ path('cituao_portal_homepage') }}">{{ "Contacto" }}</a>
 		    <a href="{{ path('cituao_portal_homepage') }}">{{ "Privacidad" }}</a>

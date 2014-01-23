@@ -1,0 +1,83 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block nav %}
+	<li><a href="{{ path('cituao_coord_homepage') }}">{{ "Home" }}</a></li>
+    <li><a href="{{ path('cituao_coord_practicantes') }}">{{ "Mis practicantes" }}</a></li>
+    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores académicos" }}</a></li>
+    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores externos" }}</a></li>
+	<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis centros de prácticas" }}</a></li>
+	<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Matricular" }}</a></li>
+    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Configuraciones" }}</a></li>
+    <li><a href="{{ path('logout') }}">{{ "Salir" }}</a></li>
+{% endblock %}
+
+{% block seccion %}
+	<div>
+	<table id = "customers">
+	<tbody>
+		<tr>
+			<th>#</th>
+			<th>CODIGO</th>
+			<th>APELLIDOS</th>
+			<th>NOMBRES</th>
+			<th>ASIGNATURA</th>
+			<th>CEDULA</th>
+		</tr>
+		<tr class = "alt">
+			<td>1</th>
+			<td>2076424</td>
+			<td>LLORENTE GARCIA</td>
+			<td>STHEPHANY</td>
+			<td>CS05</td>
+			<td>1130603598</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>2077011</td>
+			<td>ROSALES LLANOS</td>
+			<td>LESLY JOHANNA</td>
+			<td>CS05</td>
+			<td>1144031416</td>
+		</tr>
+
+	
+		<tr class = "alt">
+			<td>3</td>
+			<td>2090497</td>
+			<td>SALAZAR GIL</td>
+			<td>ANDRES FELIPE</td>
+			<td>CS05</td>
+			<td>1143838906</td>
+		</tr>
+			
+		<tr>
+			<td>4</td>
+			<td>2090156</td>
+			<td>CERON BRAVO</td>
+			<td>ESTEFANYA</td>
+			<td>CS05</td>
+			<td>1144047084</td>
+		</tr>
+
+		<tr  class = "alt">
+			<td>5</td>
+			<td>2090181</td>
+			<td>VARGAS CARDONA</td>
+			<td>STEFANIA</td>
+			<td>CS05</td>
+			<td>1144149330</td>
+		</tr>
+		
+		
+		</tbody>
+	</table>
+	</div>
+{% endblock %}
+
+{% block aside %}
+	<div id = "divopciones">
+		<h3>Buenos días Admin!Su última conexión fue el 01/01/2014 a las 9:00am</h3>
+	</div>
+{% endblock %}
+

@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('CituaoCoordBundle:Default:coord.html.twig');
     }
+	
+	public function practicantesAction(){
+		
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig');
+	}
 }

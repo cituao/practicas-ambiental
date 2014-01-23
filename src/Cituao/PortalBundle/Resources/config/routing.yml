@@ -8,3 +8,7 @@ login:
 
 login_check:
     path: /login_check
+
+cituao_portal_uao:
+    pattern:  /
+    defaults: { _controller: CituaoPortalBundle:Default:palla }
