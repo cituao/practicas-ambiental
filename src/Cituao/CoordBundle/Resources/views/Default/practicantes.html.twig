@@ -22,7 +22,7 @@
 			<th>APELLIDOS</th>
 			<th>NOMBRES</th>
 			<th>ASIGNATURA</th>
-			<th>CEDULA</th>
+			<th>CEDULA</th>              
 		</tr>
 		<tr class = "alt">
 			<td>1</th>
@@ -30,7 +30,7 @@
 			<td>LLORENTE GARCIA</td>
 			<td>STHEPHANY</td>
 			<td>CS05</td>
-			<td>1130603598</td>
+			<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.cedula }) }}">{{ practicante.cedula }} </a></td>
 		</tr>
 		<tr>
 			<td>2</td>
