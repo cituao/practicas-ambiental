@@ -14,17 +14,21 @@ class DefaultController extends Controller
 	public function practicantesAction(){
 		
 		$practicante = array("nombres"=>"JESUS ALBERTO", "apellidos" => "MARQUEZ ACEVEDO", "cedula" => "12502219");
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', $practicante);
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig');
 	}
 	
 	
 	public function practicanteAction(){
 		
-		$practicante = array("nombres"=>"JESUS ALBERTO", "apellidos" => "MARQUEZ ACEVEDO", "cedula" => "12502219");
 		
-		
-		
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', $practicante);
+		return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array("cedula"=>"12502219"));
 	}
 
+	public function cronogramaAction(){
+		
+		
+		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array("cedula"=>"12502219"));
+	}
+	
+	
 }

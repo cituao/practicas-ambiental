@@ -30,7 +30,7 @@
 			<td>LLORENTE GARCIA</td>
 			<td>STHEPHANY</td>
 			<td>CS05</td>
-			<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.cedula }) }}">{{ practicante.cedula }} </a></td>
+			<td><a href="{{ path('cituao_coord_practicante', { 'codigo': '12502219'}) }}"> 12502219 </a></td>
 		</tr>
 		<tr>
 			<td>2</td>
@@ -76,8 +76,13 @@
 {% endblock %}
 
 {% block aside %}
-	<div id = "divopciones">
-		<h3>Buenos días Admin!Su última conexión fue el 01/01/2014 a las 9:00am</h3>
-	</div>
+		<section>
+			<div id = "barratitulo">
+				<h2>Datos de sección</h1>
+			</div>
+			<div>
+				<h3>Buenos días Admin!Su última conexión fue el 01/01/2014 a las 9:00am</h3>
+			</div>
+		</section>
 {% endblock %}
 

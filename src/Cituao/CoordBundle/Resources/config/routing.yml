@@ -8,4 +8,8 @@ cituao_coord_practicantes:
 
 cituao_coord_practicante:
     pattern:  /coordinador/practicante/{codigo}
-    defaults: { _controller: CituaoCoordBundle:Default:practicante }
+    defaults: { _controller: CituaoCoordBundle:Default:practicante, codigo: '12502219' }
+
+cituao_coord_cronograma:
+    pattern:  /coordinador/cronograma/{codigo}
+    defaults: { _controller: CituaoCoordBundle:Default:cronograma, codigo: '12502219' }
