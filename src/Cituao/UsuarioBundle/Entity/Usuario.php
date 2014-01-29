@@ -11,12 +11,12 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 /**
  * Cituao\UsuarioBundle\Entity\Usuario
  *
- * @ORM\Table(name="Usuario")
+ * @ORM\Table(name="usuario")
  * @ORM\Entity(repositoryClass="Cituao\UsuarioBundle\Entity\UsuarioRepository")
  */
 class Usuario implements AdvancedUserInterface, \Serializable
 {
-	/**
+     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,8 +24,8 @@ class Usuario implements AdvancedUserInterface, \Serializable
 
     private $id;
 
-    /**
-     * @var string
+     /**
+     * @ORM\Column(type="string", length=25, unique=true)
      */
     private $username;
 
@@ -35,17 +35,19 @@ class Usuario implements AdvancedUserInterface, \Serializable
     private $salt;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
 
+
     /**
-     * @var string
+     * @ORM\Column(type="string", length=60, unique=true)
      */
     private $email;
 
+
     /**
-     * @var boolean
+     * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
 

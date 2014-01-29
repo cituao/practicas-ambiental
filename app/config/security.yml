@@ -1,10 +1,10 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-        #Cituao\UsuarioBundle\Entity\Usuario:
-        #    algorithm:        sha1
-        #    encode_as_base64: false
-        #    iterations:       1
+        #Symfony\Component\Security\Core\User\User: plaintext
+        Cituao\UsuarioBundle\Entity\Usuario:
+            algorithm:        sha1
+            encode_as_base64: false
+            iterations:       1
 
 
     role_hierarchy:
@@ -12,46 +12,31 @@ security:
         ROLE_ASESORA:     ROLE_USER
         ROLE_ASESORE:     ROLE_USER
         ROLE_ADMIN:       [ROLE_PRACTICANTE, ROLE_ASESORA, ROLE_ASESORE, ROLE_PRACTICANTE]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
+        
     providers:
-        #administrators:
-        #   entity: { class: CituaoUsuarioBundle:Usuario }
-
-        in_memory:
-            memory:
-                users:
-                    ryan:  { password: ryanpass, roles: 'ROLE_USER' }
-                    admin: { password: admin, roles: 'ROLE_ADMIN' }
-
-
+        administrators:
+           entity: {class: Cituao\UsuarioBundle\Entity\Usuario, property: username }                  
+ 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
 
         secured_area:
             pattern:    ^/
             form_login:
                 check_path: usuario_login_check
                 login_path: usuario_login
+                #success_handler: access_listener
                 
             logout:
                 path:   /logout
                 target: /
             anonymous: true
-            provider:       in_memory
-            #http_basic:
-            #    realm: "Secured Demo Area"
+            provider:       administrators
+            
+
 
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/usuario/*, roles: ROLE_USUARIO }
         - { path: ^/coordinador/*,        roles: ROLE_ADMIN }
         - { path: ^/practicante/*,         roles: ROLE_PRACTICANTE }
         - { path: ^/asesora/*,         roles: ROLE_ASESORA }

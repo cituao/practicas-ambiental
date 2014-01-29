@@ -2,7 +2,6 @@
 
 namespace Cituao\UsuarioBundle\Entity;
 
-
 use Symfony\Component\Security\Core\Role\RoleInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 
 /**
- * @ORM\Table(name="Roles")
+ * @ORM\Table(name="roles")
  * @ORM\Entity()
  */
 class Role implements RoleInterface
