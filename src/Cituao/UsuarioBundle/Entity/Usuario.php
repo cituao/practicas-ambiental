@@ -4,6 +4,7 @@ namespace Cituao\UsuarioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Usuario
  */
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 /**
  * Cituao\UsuarioBundle\Entity\Usuario
  *
- * @ORM\Table(name="usuario")
+ * @ORM\Table(name="Usuario")
  * @ORM\Entity(repositoryClass="Cituao\UsuarioBundle\Entity\UsuarioRepository")
  */
 class Usuario implements AdvancedUserInterface, \Serializable
@@ -21,7 +22,6 @@ class Usuario implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-
     private $id;
 
      /**
@@ -29,13 +29,13 @@ class Usuario implements AdvancedUserInterface, \Serializable
      */
     private $username;
 
-    /**
-     * @var string
+     /**
+     * @ORM\Column(name="salt", type="string", length=255)
      */
     private $salt;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
@@ -105,7 +105,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
     {
         $this->salt = $salt;
     
-        return $this;
+        return;
     }
 
     /**
@@ -213,7 +213,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
         ) = unserialize($serialized);
     }
 
-/**
+	/**
      * @inheritDoc
      */
     public function eraseCredentials()

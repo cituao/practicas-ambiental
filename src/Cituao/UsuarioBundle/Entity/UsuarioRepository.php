@@ -25,7 +25,7 @@ public function loadUserByUsername($username)
             ->select('u, r')
             ->leftJoin('u.roles', 'r')
             ->where('u.username = :username OR u.email = :email')
-            ->setParameter('username', $username)
+            ->setParameter('username', $username)	
             ->setParameter('email', $username)
             ->getQuery();
 

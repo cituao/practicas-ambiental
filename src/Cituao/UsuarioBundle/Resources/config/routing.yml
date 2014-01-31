@@ -6,3 +6,8 @@ usuario_login:
 # Ruta para la acción que comprueba el login del frontend
 usuario_login_check:
     pattern:   /login_check
+
+# Ruta para el registro de usuarios
+usuario_registro:
+    pattern: /coordinador/registrar
+    defaults:  { _controller: CituaoUsuarioBundle:Default:registro }

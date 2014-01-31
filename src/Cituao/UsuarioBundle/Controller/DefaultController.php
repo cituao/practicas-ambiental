@@ -2,11 +2,12 @@
 
 namespace Cituao\UsuarioBundle\Controller;
 
-//namespace Cituao\CoordBundle\Resources;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
+use Cituao\UsuarioBundle\Entity\Usuario;
+use Cituao\UsuarioBundle\Form\Type\UsuarioType;
+
 
 class DefaultController extends Controller
 {
@@ -43,6 +44,55 @@ class DefaultController extends Controller
     }
 
 
+    /**
+     * Muestra el formulario para que se registren los nuevos usuarios. Además
+     * se encarga de procesar la información y de guardar la información en la base de datos
+     */
+    public function registroAction()
+    {
+        $peticion = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+
+        $usuario = new Usuario();
+        
+
+        $formulario = $this->createForm(new UsuarioType(), $usuario);
+
+        $formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+            // Completar las propiedades que el usuario no rellena en el formulario
+            $usuario->setSalt(md5(time()));
+
+            $encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+            $passwordCodificado = $encoder->encodePassword(
+                $usuario->getPassword(),
+                $usuario->getSalt()
+            );
+            $usuario->setPassword($passwordCodificado);
+			$usuario->setIsActive(false);
+            // Guardar el nuevo usuario en la base de datos
+            $em->persist($usuario);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Cupon'
+            );
+
+	    /*
+            // Loguear al usuario automáticamente
+            $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
+            $this->container->get('security.context')->setToken($token);
+	    */
+
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+
+        return $this->render('CituaoCoordBundle:Default:registro.html.twig', array(
+            'formulario' => $formulario->createView()
+        ));
+    }
 
 
 }
