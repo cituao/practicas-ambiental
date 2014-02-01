@@ -26,13 +26,12 @@ security:
                 login_path: usuario_login
                 #success_handler: access_listener
                 
-            logout:
-                path:   /logout
-                target: /
+  
             anonymous: true
             provider:       administrators
             
-
+            logout:
+                path:       usuario_logout
 
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

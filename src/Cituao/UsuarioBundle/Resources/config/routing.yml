@@ -11,3 +11,7 @@ usuario_login_check:
 usuario_registro:
     pattern: /coordinador/registrar
     defaults:  { _controller: CituaoUsuarioBundle:Default:registro }
+
+# Ruta para la acción de logout de los usuarios del frontend extranet
+usuario_logout:
+    pattern:   /logout
