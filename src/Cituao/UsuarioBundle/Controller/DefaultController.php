@@ -70,14 +70,14 @@ class DefaultController extends Controller
                 $usuario->getSalt()
             );
             $usuario->setPassword($passwordCodificado);
-			$usuario->setIsActive(false);
+			
             // Guardar el nuevo usuario en la base de datos
             $em->persist($usuario);
             $em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
             $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Cupon'
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
 
 	    /*
