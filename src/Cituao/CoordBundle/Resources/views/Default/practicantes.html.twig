@@ -24,52 +24,25 @@
 			<th>ASIGNATURA</th>
 			<th>CEDULA</th>              
 		</tr>
-		<tr class = "alt">
-			<td>1</th>
-			<td>2076424</td>
-			<td>LLORENTE GARCIA</td>
-			<td>STHEPHANY</td>
-			<td>CS05</td>
-			<td><a href="{{ path('cituao_coord_practicante', { 'codigo': '12502219'}) }}"> 12502219 </a></td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>2077011</td>
-			<td>ROSALES LLANOS</td>
-			<td>LESLY JOHANNA</td>
-			<td>CS05</td>
-			<td>1144031416</td>
-		</tr>
 
-	
-		<tr class = "alt">
-			<td>3</td>
-			<td>2090497</td>
-			<td>SALAZAR GIL</td>
-			<td>ANDRES FELIPE</td>
-			<td>CS05</td>
-			<td>1143838906</td>
-		</tr>
-			
-		<tr>
-			<td>4</td>
-			<td>2090156</td>
-			<td>CERON BRAVO</td>
-			<td>ESTEFANYA</td>
-			<td>CS05</td>
-			<td>1144047084</td>
-		</tr>
+		{% set sw = false %}
+		{% for practicante in listaPracticantes %}
+			{% if sw == false %}
+				<tr>
+				{% set sw = true %}
+			{% else %}
+				<tr class = "alt">
+				{% set sw = false %}
+			{% endif %}
 
-		<tr  class = "alt">
-			<td>5</td>
-			<td>2090181</td>
-			<td>VARGAS CARDONA</td>
-			<td>STEFANIA</td>
-			<td>CS05</td>
-			<td>1144149330</td>
-		</tr>
-		
-		
+				<td>1</th>
+				<td>{{ practicante.codigo }}</td>
+				<td>{{ practicante.apellidos }}</td>
+				<td>{{ practicante.nombres }}</td>
+				<td>{{ practicante.asignatura }}</td>
+				<td><a href="{{ path('cituao_coord_practicante', { 'codigo': '{{ practicante.cedula }}'}) }}"> {{ practicante.cedula }} </a></td>
+			</tr>
+		{% endfor %}
 		</tbody>
 	</table>
 	</div>

@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block seccion %}
-Formulario de estudiante: {{cedula}}
+Formulario de estudiante: {{ practicante.cedula }}
 
 <form action="/cupon/web/app_dev.php/es/usuario/perfil" method="post" >
     <div>
@@ -21,7 +21,7 @@ Formulario de estudiante: {{cedula}}
 	
     <div>
         <label for="frontend_usuario_dni" class="required">CODIGO</label>
-        <input type="text" id="frontend_usuario_dni" name="frontend_usuario[dni]" required="required" maxlength="9"    class="corto" value="2076424" />
+        <input type="text" id="frontend_usuario_dni" name="frontend_usuario[dni]" required="required" maxlength="9"    class="corto" value="{{ practicante.cedula }}" />
     </div>
 	
     <div>
