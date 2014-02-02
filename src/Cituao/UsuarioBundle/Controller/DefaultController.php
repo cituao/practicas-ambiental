@@ -21,6 +21,12 @@ class DefaultController extends Controller
             $sesion->get(SecurityContext::AUTHENTICATION_ERROR)
         );
 
+
+
+		if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        	return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+    	}
+
         return $this->render(
             'CituaoUsuarioBundle:Default:login.html.twig',
             array(

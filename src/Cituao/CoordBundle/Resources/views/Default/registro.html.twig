@@ -1,58 +1,34 @@
-{% extends '::frontend.html.twig' %}
-
-
-{% block nav %}
-	<li><a href="{{ path('cituao_coord_homepage') }}">{{ "Home" }}</a></li>
-    <li><a href="{{ path('cituao_coord_practicantes') }}">{{ "Mis practicantes" }}</a></li>
-    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores académicos" }}</a></li>
-    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores externos" }}</a></li>
-	<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis centros de prácticas" }}</a></li>
-	<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Matricular" }}</a></li>
-    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Configuraciones" }}</a></li>
-    <li><a href="{{ path('logout') }}">{{ "Salir" }}</a></li>
-{% endblock %}
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
 
 {% block seccion %}
+	<form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
+	    <div>
+	    {{ form_errors(formulario) }}
 
-<form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
-    <div>
-    {{ form_errors(formulario) }}
+	    <div>
+		{{ form_row(formulario.username) }}
+	    </div>
 
-    <div>
-        {{ form_row(formulario.username) }}
-    </div>
+	    <div>
+		{{ form_label(formulario.email) }}
+		{{ form_errors(formulario.email) }}
+		{{ form_widget(formulario.email, { 'attr': { 'class': 'largo' } }) }}
+	    </div>
 
-    <div>
-        {{ form_label(formulario.email) }}
-        {{ form_errors(formulario.email) }}
-        {{ form_widget(formulario.email, { 'attr': { 'class': 'largo' } }) }}
-    </div>
+	    <div>
+		{{ form_errors(formulario.password) }}
+		{{ form_widget(formulario.password) }}
 
-    <div>
-        {{ form_errors(formulario.password) }}
-        {{ form_widget(formulario.password) }}
-
-        <p class="ayuda">Escribe dos veces la misma contraseña.</p>
-    </div>
-
+		<p class="ayuda">Escribe dos veces la misma contraseña.</p>
+	    </div>
 
 
-    {{ form_rest(formulario) }}
 
-    <input class="boton" type="submit" value="Registrarme" />
+	    {{ form_rest(formulario) }}
 
-    </div>
-</form>	
-{% endblock %}
+	    <input class="boton" type="submit" value="Registrarme" />
 
-{% block aside %}
-	<section>
-		<div id = "barratitulo">
-			<h2>Datos de sección</h1>
-		</div>
-		<div>
-			<h3>Buenos días Admin!Su última conexión fue el 01/01/2014 a las 9:00am</h3>
-		</div>
-	</section>
+	    </div>
+	</form>	
 {% endblock %}
 

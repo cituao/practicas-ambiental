@@ -8,10 +8,8 @@ security:
 
 
     role_hierarchy:
-        ROLE_PRACTICANTE: ROLE_USER
-        ROLE_ASESORA:     ROLE_USER
-        ROLE_ASESORE:     ROLE_USER
-        ROLE_ADMIN:       [ROLE_PRACTICANTE, ROLE_ASESORA, ROLE_ASESORE, ROLE_PRACTICANTE]
+        ROLE_COORDINA:     ROLE_USER
+        ROLE_ADMIN:        ROLE_COORDINA
         
     providers:
         administrators:
@@ -24,7 +22,7 @@ security:
             form_login:
                 check_path: usuario_login_check
                 login_path: usuario_login
-                #success_handler: access_listener
+                #success_handler: login_listener
                 
   
             anonymous: true
@@ -35,7 +33,7 @@ security:
 
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/coordinador/*,        roles: ROLE_ADMIN }
         - { path: ^/practicante/*,         roles: ROLE_PRACTICANTE }
         - { path: ^/asesora/*,         roles: ROLE_ASESORA }

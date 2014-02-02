@@ -30,6 +30,10 @@ class DefaultController extends Controller
 		
 		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array("cedula"=>"12502219"));
 	}
+
+	public function cargarEstudiantesAction(){
+		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig');
+	} 
 	
 	
 }
