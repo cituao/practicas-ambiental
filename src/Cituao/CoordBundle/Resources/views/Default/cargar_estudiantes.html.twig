@@ -1,0 +1,16 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block seccion %}
+	Cargar coordinador
+
+
+        <form action="file.php" method="post" enctype="multipart/form-data">
+
+            <input type="file" name="archivo" id="archivo"></input>
+
+            <input type="submit" value="Subir archivo"></input>
+
+        </form>
+{% endblock %}
+
+
