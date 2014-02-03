@@ -264,4 +264,27 @@ class Usuario implements AdvancedUserInterface, \Serializable
     {
         return $this->isActive;
     }
+
+    /**
+     * Add roles
+     *
+     * @param \Cituao\UsuarioBundle\Entity\Role $roles
+     * @return Usuario
+     */
+    public function addRole(\Cituao\UsuarioBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \Cituao\UsuarioBundle\Entity\Role $roles
+     */
+    public function removeRole(\Cituao\UsuarioBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
 }

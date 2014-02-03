@@ -2,7 +2,9 @@
 
 namespace Cituao\CoordBundle\Controller;
 
+use Cituao\CoordBundle\Entity\Document;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -32,8 +34,45 @@ class DefaultController extends Controller
 	}
 
 	public function cargarEstudiantesAction(){
-		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig');
+		
 	} 
-	
-	
+
+	public function uploadAction(Request $request)
+	{
+		$document = new Document();
+		$form = $this->createFormBuilder($document)
+		    ->add('name')
+		    ->add('file')
+		    ->getForm();
+
+		$form->handleRequest($request);
+
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+
+			$document->upload();
+
+		    $em->persist($document);
+		    $em->flush();
+
+			$archivo= $document->getAbsolutePath();		
+		    $filas = file($archivo);
+			$i=0;
+			$numero_fila= count($filas);	
+
+			
+			while($i < $numero_fila -1){
+				$row = $filas[$i];
+				$sql = explode(",",$row);
+				$listaEstudiantes[$i] =  array("id"=> $sql[0], "nombre"=>$sql[1], "apellidos"=>$sql[2], "profesion" => $sql[3], 	
+														"edad" => $sql[4], "ciudad" => $sql[5] );
+				$i++;
+			}
+			return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+		} 
+
+		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig', array('form' => $form->createView()));
+		
+
+	}
 }

@@ -16,5 +16,5 @@ cituao_coord_cronograma:
 
 cituao_coord_cargar_estudiantes:
     pattern:  /coordinador/cargarestudiantes
-    defaults: { _controller: CituaoCoordBundle:Default:cargarEstudiantes }
+    defaults: { _controller: CituaoCoordBundle:Default:upload }
 

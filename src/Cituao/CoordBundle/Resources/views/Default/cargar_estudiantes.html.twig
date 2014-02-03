@@ -3,14 +3,10 @@
 {% block seccion %}
 	Cargar coordinador
 
+	<form action= {{ path('cituao_coord_cargar_estudiantes') }} method="post" {{ form_enctype(form) }}>
+		{{ form_widget(form) }}
 
-        <form action="file.php" method="post" enctype="multipart/form-data">
-
-            <input type="file" name="archivo" id="archivo"></input>
-
-            <input type="submit" value="Subir archivo"></input>
-
-        </form>
+		<input type="submit" value="Subir CSV" />
+	</form>
 {% endblock %}
-
 

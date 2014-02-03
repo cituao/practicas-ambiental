@@ -1,0 +1,9 @@
+# src/Cituao/CoordBundle/Resources/config/validation.yml
+Cituao\CoordBundle\Entity\Document:
+    properties:
+        file:
+            - File:
+                maxSize: 2024k
+                mimeTypes: [text/plain]
+                mimeTypesMessage: Por favor suba un CSV válido
+                uploadErrorMessage: El archivo no puede ser cargado

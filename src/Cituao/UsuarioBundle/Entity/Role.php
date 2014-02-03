@@ -98,4 +98,37 @@ class Role implements RoleInterface
     {
         return $this->role;
     }
+
+    /**
+     * Add users
+     *
+     * @param \Cituao\UsuarioBundle\Entity\Usuario $users
+     * @return Role
+     */
+    public function addUser(\Cituao\UsuarioBundle\Entity\Usuario $users)
+    {
+        $this->users[] = $users;
+    
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Cituao\UsuarioBundle\Entity\Usuario $users
+     */
+    public function removeUser(\Cituao\UsuarioBundle\Entity\Usuario $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }
