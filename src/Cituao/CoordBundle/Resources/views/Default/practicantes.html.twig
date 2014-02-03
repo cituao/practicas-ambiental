@@ -27,8 +27,8 @@
 				<td>{{ practicante.codigo }}</td>
 				<td>{{ practicante.apellidos }}</td>
 				<td>{{ practicante.nombres }}</td>
-				<td>{{ practicante.asignatura }}</td>
-				<td><a href="{{ path('cituao_coord_practicante', { 'codigo': '{{ practicante.cedula }}'}) }}"> {{ practicante.cedula }} </a></td>
+				<td>{{ practicante.ci }}</td>
+				<td><a href="{{ path('cituao_coord_practicante', { 'codigo': '{{ practicante.ci }}'}) }}"> {{ practicante.ci }} </a></td>
 			</tr>
 		{% endfor %}
 		</tbody>

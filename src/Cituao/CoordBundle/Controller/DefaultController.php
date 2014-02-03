@@ -5,6 +5,7 @@ namespace Cituao\CoordBundle\Controller;
 use Cituao\CoordBundle\Entity\Document;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Cituao\CoordBundle\Entity\Practicante;
 
 class DefaultController extends Controller
 {
@@ -17,6 +18,12 @@ class DefaultController extends Controller
 		
 		$listaPracticantes = array( array("asignatura"=>"CS05", "codigo"=>"73456", "nombres"=>"JESUS ALBERTO", "apellidos" => "MARQUEZ ACEVEDO", 												"cedula" => "12502219"),
 									array("asignatura"=>"CS05", "codigo"=>"34234", "nombres"=>"DAVID ALEJANDRO", "apellidos" => "MARQUEZ OLASCOAGA", 												"cedula" => "1123789"));
+
+		
+		$listaPracticantes = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->findAll();
+		
+		
+
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes));
 	}
 	
@@ -63,11 +70,45 @@ class DefaultController extends Controller
 			
 			while($i < $numero_fila -1){
 				$row = $filas[$i];
-				$sql = explode(",",$row);
-				$listaEstudiantes[$i] =  array("id"=> $sql[0], "nombre"=>$sql[1], "apellidos"=>$sql[2], "profesion" => $sql[3], 	
-														"edad" => $sql[4], "ciudad" => $sql[5] );
+				$sql = explode(";",$row);
+				$listaEstudiantes[$i] =  array("codigo"=> $sql[0], "apellidos"=>$sql[1], "nombres"=>$sql[2], "ci" => $sql[3], 	
+														"fecha" => $sql[4], "emailInstitucional" => $sql[5] );
 				$i++;
 			}
+
+
+			$i=0;				
+			$sad=" "; 
+
+		
+			
+			while($i < $numero_fila -1){
+				$practicante = new Practicante();
+				//viene del archivo .csv	
+				$practicante->setCodigo($listaEstudiantes[$i]['codigo']);
+				$practicante->setNombres($listaEstudiantes[$i]['nombres']);
+				$practicante->setApellidos($listaEstudiantes[$i]['apellidos']);
+				$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
+				$practicante->setCi($listaEstudiantes[$i]['ci']);
+
+				
+				
+				$practicante->setFechaMatriculacion(new \DateTime("2011-04-25 15:34:18"));
+
+
+				$practicante->setTelefonoMovil($sad);
+				$practicante->setModalidad($sad);
+				$practicante->setFoto($sad);
+				$practicante->setTipo($sad);
+				$practicante->setEmailPersonal($sad);
+				$practicante->setEstado($sad);
+	
+				$em->persist($practicante);
+				$em->flush();
+				$i++;
+			}
+
+
 			return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 		} 
 
