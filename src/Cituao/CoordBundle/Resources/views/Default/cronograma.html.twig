@@ -1,15 +1,5 @@
-{% extends '::frontend.html.twig' %}
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block nav %}
-	<li><a href="{{ path('cituao_coord_homepage') }}">{{ "Home" }}</a></li>
-    <li><a href="{{ path('cituao_coord_practicantes') }}">{{ "Mis practicantes" }}</a></li>
-    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores académicos" }}</a></li>
-    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores externos" }}</a></li>
-	<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis centros de prácticas" }}</a></li>
-	<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Matricular" }}</a></li>
-    <li><a href="{{ path('cituao_portal_homepage') }}">{{ "Configuraciones" }}</a></li>
-    <li><a href="{{ path('logout') }}">{{ "Salir" }}</a></li>
-{% endblock %}
 
 {% block seccion %}
 CODIGO HASH: {{cedula}}
@@ -195,35 +185,7 @@ CODIGO HASH: {{cedula}}
     </div>
 </form>
 
-
-
-
 {% endblock %}
 
 
 
-{% block aside %}
-		<section>
-			<div id = "barratitulo">
-				<h2>Datos de sección</h1>
-			</div>
-			<div>
-				<h3>Buenos días Admin!Su última conexión fue el 01/01/2014 a las 9:00am</h3>
-			</div>
-		</section>
-		
-		
-		<section>
-			<div id = "barratitulo">
-				<h2>Opciones</h1>
-			</div>
-			<div>
-				<a href="{{ path('logout') }}">Cronograma de actividades</a>
-				<a href="{{ path('logout') }}">Enviar correo</a>
-			</div>
-		</section>
-{% endblock %}
-
-{% block pie %}
-	s
-{% endblock %}

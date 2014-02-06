@@ -1,0 +1,12 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block seccion %}
+	Cargar coordinador
+
+	<form action= {{ path('cituao_coord_cargar_estudiantes') }} method="post" {{ form_enctype(form) }}>
+		{{ form_widget(form) }}
+
+		<input type="submit" value="Subir CSV" />
+	</form>
+{% endblock %}
+

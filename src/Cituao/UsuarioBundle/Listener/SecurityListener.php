@@ -19,43 +19,46 @@ class SecurityListener
     {
         $this->router = $router;
         $this->context = $context;
-        
-	
     }
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
-		$token = $event->getAuthenticationToken();
-        
- 
+		/*$token = $event->getAuthenticationToken();*/
+		//$this->dispatcher->addListener(KernelEvents::RESPONSE, array($this,'onKernelResponse'));  
+  
 	}
 
     public function onKernelResponse(FilterResponseEvent $event)
     {
-		
-		$sw = 0;
-
-	    if ($this->context->isGranted('ROLE_ADMIN')) {
+		   
+		if ($this->context->isGranted('ROLE_ADMIN')) {
 			$portada = $this->router->generate('cituao_coord_homepage');
-			$sw = 1;		    
-			
-			
 	    } else {
-			if ($this->context->isGranted('ROLE_USER')){
+			if ($this->context->isGranted('ROLE_COORDINA')){
+				$portada = $this->router->generate('cituao_coord_homepage');
+	    	} else {
 				$portada = $this->router->generate('cituao_portal_homepage');
-				$sw=1;
+			}
+		}
 				
-	    	} /*else {
-				$portada = $this->router->generate('cituao_portal_homepage');
-				$sw=1;
-			}*/
-		}
+		$event->stopPropagation(); 
 		
-		if ($sw == 1) {
-			$event->setResponse(new RedirectResponse($portada));
-		    $event->stopPropagation();
-		
+		/*		
+		if ($this->context->isGranted('ROLE_ADMIN')){
+			$event->stopPropagation();  
+			$response = new RedirectResponse($this->router->generate('cituao_coord_homepage'));
+			  
+		} else if ($this->context->isGranted('ROLE_COORDINA')){  
+			$event->stopPropagation();
+			$response = new RedirectResponse($this->router->generate('cituao_coord_homepage'));  
+		}  else{
+			$event->stopPropagation();
+			$response = new RedirectResponse($this->router->generate('cituao_portal_homepage')); 
 		}
+		$event->setResponse($response);  */
+		  
+
+
 	}
 	
 }
