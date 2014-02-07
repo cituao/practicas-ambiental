@@ -22,7 +22,7 @@ security:
             form_login:
                 check_path: usuario_login_check
                 login_path: usuario_login
-                #success_handler: login_listener
+                #success_handler: authentication_handler
                 
   
             anonymous: true

@@ -6,6 +6,7 @@ use Cituao\CoordBundle\Entity\Document;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Cituao\CoordBundle\Entity\Practicante;
+use \DateTime;
 
 class DefaultController extends Controller
 {
@@ -81,7 +82,7 @@ class DefaultController extends Controller
 			$sad=" "; 
 
 		
-			
+		
 			while($i < $numero_fila -1){
 				$practicante = new Practicante();
 				//viene del archivo .csv	
@@ -91,9 +92,16 @@ class DefaultController extends Controller
 				$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
 				$practicante->setCi($listaEstudiantes[$i]['ci']);
 
+				$fecha = $listaEstudiantes[$i]['fecha'];
+				$separa = explode("/",$fecha);
+				$dia = $separa[0];
+				$mes = $separa[1];
+				$ano = $separa[2];
 				
-				
-				$practicante->setFechaMatriculacion(new \DateTime("2011-04-25 15:34:18"));
+				$f = new \DateTime();
+				$f->setDate($ano,$mes,$dia);
+
+				$practicante->setFechaMatriculacion($f);
 
 
 				$practicante->setTelefonoMovil($sad);
