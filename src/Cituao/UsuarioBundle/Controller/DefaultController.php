@@ -22,9 +22,10 @@ class DefaultController extends Controller
         );
 
 
-
+		
 		if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-        	return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        	return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+			//return $this->redirect($this->generateUrl('cituao_coord_homepage'));
     	}
 
         return $this->render(

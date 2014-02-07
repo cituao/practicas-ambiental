@@ -1,19 +1,21 @@
 {% extends '::frontend.html.twig' %}
+{% block seccion %}
+{% if is_granted('ROLE_ADMIN') %} {# el usuario está logueado #}
+	
+	
+	<p>Conectado como : {{ app.user.username }}</p>
+    <a href="{{ path('usuario_logout') }}">{{ "Cerrar sesión" | trans }}</a>
+	
 
-	{% block seccion %}
-		
+{% else %} {# el usuario todavía no ha hecho login #}
+	
 		<article>
-			
 				<h2>This is the title of a blog post</h2>
-			
-			
 		</article>
 		
 		<article>
 			<h2>Articulo 1</h2>
 		</article>
-		
-		
-	{% endblock %}
-
-
+	
+{% endif %}
+{% endblock %}
