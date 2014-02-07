@@ -11,10 +11,7 @@ security:
         ROLE_COORDINA:     ROLE_USER
         ROLE_ADMIN:        ROLE_COORDINA
         
-    providers:
-        administrators:
-           entity: {class: Cituao\UsuarioBundle\Entity\Usuario, property: username }                  
- 
+
     firewalls:
 
         secured_area:
@@ -26,18 +23,21 @@ security:
                 
   
             anonymous: true
-            provider:       administrators
+            provider:       usuarios
             
             logout:
                 path:       usuario_logout
 
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/coordinador/*,        roles: ROLE_ADMIN }
         - { path: ^/practicante/*,         roles: ROLE_PRACTICANTE }
         - { path: ^/asesora/*,         roles: ROLE_ASESORA }
         - { path: ^/asesore/*,         roles: ROLE_ASESORE }
       
-
+    providers:
+        usuarios:
+           entity: {class: Cituao\UsuarioBundle\Entity\Usuario, property: username }                  
+ 
 
