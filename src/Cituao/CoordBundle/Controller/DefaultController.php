@@ -45,6 +45,7 @@ class DefaultController extends Controller
 		
 	} 
 
+	//SE ENCARGA DE LANZAR UN FORMULARIO PARA LA SUBIDA DEL ARCHIVO TXT CON ESTUDIANTES PARA IR A PRACTICAS PROFESIONALES
 	public function uploadAction(Request $request)
 	{
 		$document = new Document();
@@ -58,13 +59,15 @@ class DefaultController extends Controller
 		if ($form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
 
+			//se copia el archivo al directorio del servidor			
 			$document->upload();
 
 		    $em->persist($document);
 		    $em->flush();
 
 			$archivo= $document->getAbsolutePath();		
-		    $filas = file($archivo);
+			//bajamos el archivo a una matriz para procesar registro a registro y bajarlo a base de datos		    
+			$filas = file($archivo);
 			$i=0;
 			$numero_fila= count($filas);	
 
@@ -76,13 +79,8 @@ class DefaultController extends Controller
 														"fecha" => $sql[4], "emailInstitucional" => $sql[5] );
 				$i++;
 			}
-
-
 			$i=0;				
-			$sad=" "; 
-
-		
-		
+			sad = "";	
 			while($i < $numero_fila -1){
 				$practicante = new Practicante();
 				//viene del archivo .csv	
@@ -92,6 +90,7 @@ class DefaultController extends Controller
 				$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
 				$practicante->setCi($listaEstudiantes[$i]['ci']);
 
+				//convertimos la fecha a un objeto Date				
 				$fecha = $listaEstudiantes[$i]['fecha'];
 				$separa = explode("/",$fecha);
 				$dia = $separa[0];
