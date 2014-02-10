@@ -17,7 +17,7 @@ class UsuarioType extends AbstractType
             'invalid_message' => 'Las dos contraseñas deben coincidir',
             'first_options'   => array('label' => 'Contraseña'),
             'second_options'  => array('label' => 'Repite Contraseña'),
-            'required'        => false
+            'required'        => true
         ))
 
         ->add('email', 'email',  array('label' => 'Correo electrónico', 'attr' => array(

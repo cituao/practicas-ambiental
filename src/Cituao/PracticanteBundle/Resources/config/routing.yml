@@ -1,0 +1,8 @@
+cituao_practicante_homepage:
+    pattern:  /practicante
+    defaults: { _controller: CituaoPracticanteBundle:Default:index }
+
+cituao_practicante_mihojadevida:
+    pattern:  /practicante/mihojadevida
+    defaults: { _controller: CituaoPracticanteBundle:Default:hojadevida }
+

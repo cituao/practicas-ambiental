@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
 	<link href="{{ asset('css/comun.css') }}" rel="stylesheet" />
+
 {% endblock %}
 
 
@@ -10,7 +11,6 @@
 		<div id = "grad1">
 			<a id = "alogo" href={{ path('cituao_portal_uao') }}><img src="{{ asset('images/logo.png') }}" alt="UAO"></a>
 		</div>
-		
 		<div id = "divnav">		
 			<nav>
 				<ul>
@@ -32,26 +32,20 @@
 	{% block anuncio %}{% endblock %}
 
 	<section class = "secppal">
-	{% block seccion %}
-		<article>
-			<h2>Articulo 1</h2>
-		</article>
+		{% block seccion %}
+			<article>
+				<h2>Articulo 1</h2>
+			</article>
 
-		<article>
-			<h2>Articulo 2</h2>
-		</article>
-	{% endblock %}
-
+			<article>
+				<h2>Articulo 2</h2>
+			</article>
+		{% endblock %}
 	</section>
 
 	<aside>
 		{% block aside %}
-		
-		
 		{{ render_esi(controller('CituaoUsuarioBundle:Default:cajaLogin')) }} 
-		
-		    
-	
 		{% endblock %}
 	</aside>
 

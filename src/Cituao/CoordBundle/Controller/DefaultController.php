@@ -5,7 +5,10 @@ namespace Cituao\CoordBundle\Controller;
 use Cituao\CoordBundle\Entity\Document;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContext;
 use Cituao\CoordBundle\Entity\Practicante;
+use Cituao\UsuarioBundle\Entity\Usuario;
+use \DateTime;
 
 class DefaultController extends Controller
 {
@@ -44,6 +47,7 @@ class DefaultController extends Controller
 		
 	} 
 
+	//SE ENCARGA DE LANZAR UN FORMULARIO PARA LA SUBIDA DEL ARCHIVO TXT CON ESTUDIANTES PARA IR A PRACTICAS PROFESIONALES
 	public function uploadAction(Request $request)
 	{
 		$document = new Document();
@@ -55,15 +59,18 @@ class DefaultController extends Controller
 		$form->handleRequest($request);
 
 		if ($form->isValid()) {
+			//levantar servicios de doctrine base de datos
 			$em = $this->getDoctrine()->getManager();
 
+			//se copia el archivo al directorio del servidor			
 			$document->upload();
 
 		    $em->persist($document);
 		    $em->flush();
 
 			$archivo= $document->getAbsolutePath();		
-		    $filas = file($archivo);
+			//bajamos el archivo a una matriz para procesar registro a registro y bajarlo a base de datos		    
+			$filas = file($archivo);
 			$i=0;
 			$numero_fila= count($filas);	
 
@@ -75,25 +82,47 @@ class DefaultController extends Controller
 														"fecha" => $sql[4], "emailInstitucional" => $sql[5] );
 				$i++;
 			}
-
-
 			$i=0;				
-			$sad=" "; 
-
-		
-			
+			$sad = "";	
 			while($i < $numero_fila -1){
+				//creamos una instancia Practicante para descargar datos del CSV y guardar en la base de datos
 				$practicante = new Practicante();
+				//creamos una instancia de usuario para darle entrada a los practicantes como usuarios en el sistema
+				$usuario = new Usuario();
+				
 				//viene del archivo .csv	
+				//cargamos todos los atributos al practicante
 				$practicante->setCodigo($listaEstudiantes[$i]['codigo']);
 				$practicante->setNombres($listaEstudiantes[$i]['nombres']);
 				$practicante->setApellidos($listaEstudiantes[$i]['apellidos']);
 				$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
 				$practicante->setCi($listaEstudiantes[$i]['ci']);
 
+				//cargamos todos los atributos al usuario
+				$usuario->setUsername($listaEstudiantes[$i]['ci']);
+				$usuario->setPassword($listaEstudiantes[$i]['codigo']);
+				$usuario->setSalt(md5(time()));
 				
+				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+                $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+				$usuario->setPassword($passwordCodificado);
+				$usuario->setEmail($listaEstudiantes[$i]['emailInstitucional']);
 				
-				$practicante->setFechaMatriculacion(new \DateTime("2011-04-25 15:34:18"));
+				 $em->persist($usuario);
+                 $em->flush();
+
+				
+				//convertimos la fecha a un objeto Date				
+				$fecha = $listaEstudiantes[$i]['fecha'];
+				$separa = explode("/",$fecha);
+				$dia = $separa[0];
+				$mes = $separa[1];
+				$ano = $separa[2];
+				
+				$f = new \DateTime();
+				$f->setDate($ano,$mes,$dia);
+
+				$practicante->setFechaMatriculacion($f);
 
 
 				$practicante->setTelefonoMovil($sad);
@@ -107,13 +136,8 @@ class DefaultController extends Controller
 				$em->flush();
 				$i++;
 			}
-
-
 			return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 		} 
-
 		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig', array('form' => $form->createView()));
-		
-
 	}
 }

@@ -1,0 +1,9 @@
+# Cituao/UsuarioBundle/Resources/config/validation.yml
+Cituao\UsuarioBundle\Entity\Task:
+    properties:
+        username:
+            - NotBlank: ~
+        password:
+            - NotBlank: ~
+        email:
+            - Email: El email {{ value }} no es válido!    

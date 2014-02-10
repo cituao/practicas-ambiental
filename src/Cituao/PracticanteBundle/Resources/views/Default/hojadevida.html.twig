@@ -1,0 +1,62 @@
+{% extends 'CituaoPracticanteBundle::layout.html.twig' %}
+
+
+{% block seccion %}
+	<form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
+	    <div>
+	    {{ form_errors(formulario) }}
+
+	    <div>
+		{{ form_row(formulario.codigo) }}
+	    </div>
+
+	    <div>
+		{{ form_row(formulario.apellidos) }}
+	    </div>
+
+
+	    <div>
+		{{ form_row(formulario.nombres) }}
+	    </div>
+
+
+	    <div>
+		{{ form_row(formulario.ci) }}
+	    </div>
+
+
+	    <div>
+		{{ form_row(formulario.modalidad) }}
+	    </div>
+
+	    <div>
+		{{ form_row(formulario.tipo) }}
+	    </div>
+
+
+	    <div>
+		{{ form_label(formulario.emailInstitucional) }}
+		{{ form_errors(formulario.emailInstitucional) }}
+		{{ form_widget(formulario.emailInstitucional, { 'attr': { 'class': 'largo' } }) }}
+	    </div>
+
+
+	    <div>
+		{{ form_label(formulario.emailPersonal) }}
+		{{ form_errors(formulario.emailPersonal) }}
+		{{ form_widget(formulario.emailPersonal, { 'attr': { 'class': 'largo' } }) }}
+	    </div>
+
+
+	    <div>
+		{{ form_row(formulario.telefonoMovil) }}
+	    </div>
+
+
+	    {{ form_rest(formulario) }}
+
+	    <input class="boton" type="submit" value="Guardar" />
+
+	    </div>
+	</form>	
+{% endblock %}

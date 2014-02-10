@@ -5,5 +5,5 @@ Cituao\CoordBundle\Entity\Document:
             - File:
                 maxSize: 2024k
                 mimeTypes: [text/plain]
-                mimeTypesMessage: Por favor suba un CSV válido
-                uploadErrorMessage: El archivo no puede ser cargado
+                mimeTypesMessage: Por favor suba un TXT válido
+                uploadErrorMessage: El archivo no puede ser cargado!

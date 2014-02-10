@@ -15,14 +15,12 @@
 			<nav>
 				<ul>
 				{% block nav %}
-					<li><a href="{{ path('cituao_coord_homepage') }}">{{ "Home" }}</a></li>
-					<li><a href="{{ path('cituao_coord_practicantes') }}">{{ "Mis practicantes" }}</a></li>
-					<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores académicos" }}</a></li>
-					<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores externos" }}</a></li>
-					<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis centros de prácticas" }}</a></li>
-					<li><a href="{{ path('cituao_coord_cargar_estudiantes') }}">{{ "Cargar estudiantes" }}</a></li>
-					<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Configuraciones" }}</a></li>
-					<li><a href="{{ path('logout') }}">{{ "Salir" }}</a></li>
+					<li><a href="{{ path('cituao_practicante_homepage') }}">{{ "Home" }}</a></li>
+					<li><a href="{{ path('cituao_practicante_mihojadevida') }}">{{ "Mi hoja de vida " }}</a></li>
+					<li><a href="{{ path('cituao_practicante_homepage') }}">{{ "Su asesor externo" }}</a></li>
+					<li><a href="{{ path('cituao_practicante_homepage') }}">{{ "Mis asesorías" }}</a></li>
+					<li><a href="{{ path('cituao_practicante_homepage') }}">{{ "Mis conceptos-compromisos" }}</a></li>
+     				<li><a href="{{ path('logout') }}">{{ "Cerrar sessión" }}</a></li>
 				{% endblock %}
 				</ul>
 			</nav>
