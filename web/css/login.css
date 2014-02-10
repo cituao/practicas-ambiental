@@ -1,0 +1,213 @@
+html, body{
+	font-size: 16px;
+	background-color: #fafbf6;
+	font-family: helveticaN;
+
+}
+
+h1{		font-family: helveticaNBold;	}
+
+h2{		font-family: helveticaN;	}
+
+p{		font-family: helveticaN;	}
+
+
+
+#wrapper{
+	
+	width: 100%;
+	border-top: 3px solid #af0000;
+}
+
+#loginWrapper{
+
+	float: right;
+	background-color: #af0000;
+	width: 41.6%; /* 500px*/
+	max-width: 500px;
+	height: 100%;
+}
+
+#loginContainer{
+
+	max-width: 360px;
+	width: 75%;
+	height: 100%;
+	margin: 0 auto;
+	/*border: 1px solid #000;*/
+	background: url(../svg/carneBack.svg);
+	background-repeat:no-repeat;
+	background-size: 100%;
+
+}
+#formWrapper{
+	margin: 0 auto;
+	padding-top:128%; /*470px*/
+	width: 65%; /*240px*/
+	/*border: 1px solid #000; */
+
+
+
+}
+#formWrapper h2{
+	width: 29.1%;
+
+	font-size: 1.875em;
+	color: #3f3f3f;
+	margin-left:33.3%;
+}
+
+input[type="text"], input[type="password"]
+{
+width:90%;
+margin-left:5%; /*12px*/
+margin-top: 10%; /*30px*/
+height: 38px;
+border: #9c9c9c solid 1px;
+background-color: #fff;
+color:#242424;
+font-size: 1.12em;
+padding-left: 25%;
+}
+
+input[type="text"]:focus, input[type="password"]:focus
+{
+	outline: none;
+
+border: #af0000 solid 1px;
+
+
+}
+
+input[type="password"]{ font-size: 1.8em;}
+
+input[type="submit"]
+{
+width:90%;
+margin-left:5%; /*12px*/
+margin-top: 11%; /*33px*/
+height: 38px;
+background-color: #100f0f;
+color:#fff;
+font-size: 1.0em;
+border: none;
+}
+input[type="submit"]:hover, input[type="submit"]:active{
+	cursor: pointer;
+	background-color: #af0000;
+	color: #fff;
+	font-size: 1.1em;
+}
+
+
+
+#userNameIcon , #passwordIcon{
+	position: absolute;
+	top: 30%;
+	left: 6%;
+	width: 22%;
+}
+
+/*.userNameIconPath:hover {
+    fill:#af0000;
+}*/
+
+header{
+width: 90%;
+//max-width: 1200px;
+/*border: 1px solid #000;*/
+height: 100px;
+margin:0 auto;
+margin-top: 0.5%;
+margin-left: 5%;
+}
+
+header img{
+	width: 200px;
+	float: left;
+}
+
+#headerTitle{
+	/*border: 1px solid #000;*/
+	max-width: 240px;
+	float: left;
+	margin-top: 2%;
+	font-size: 0.75em; /*12px*/
+}
+
+#headerTitle h1{
+font-size: 1.6em; /*19px*/
+}
+
+#headerTitle h2{
+font-size: 1.2em;
+margin-top: 2%;
+color: #5b5b5b;
+}
+
+#infoWrapper{
+	
+	margin-top:5%;
+	margin-left: 11%;
+	/*border: 1px solid #000;*/
+	max-width: 845px;
+	width: 48%; /*450px*/
+	
+	height: 70%;
+}
+
+h2#title{
+font-size: 1.875em;
+width: 73%;
+max-width: 450px;
+color: #100f0f;
+line-height: 110%;
+margin-left: 13%; /*110px*/
+margin-top: 1%;
+}
+span{
+	font-family: helveticaNBold;
+}
+
+p#text{
+	color:#000;
+	font-size: 16px;
+	margin-top: 3%;
+	margin-left: 13%; /*110px*/
+	width: 78.6%; /*600px*/
+	max-width: 600px; 
+	line-height: 130%;
+}
+
+#vidContainer{
+ position: relative;
+ width: 79%; /*580PX */
+ max-width: 580px; 
+ margin-top: 4%;
+ margin-left: 13%;
+
+}
+video{
+	margin-top: 1%;
+	
+}
+
+video:hover{
+	cursor:pointer;
+}
+ #playB{
+ 	width: 20%;
+ 	height: 33%;
+ 	
+position: absolute;
+background-image: url('../img/playButton.png');
+background-repeat:no-repeat;
+background-size:100%;
+top:0;
+left:38%;
+top:37%;
+ }
+ #playB:hover {
+ 	cursor:pointer;
+ 	background-image: url('../img/playButtonh.png');
+ }
