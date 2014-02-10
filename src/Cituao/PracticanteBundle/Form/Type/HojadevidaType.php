@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UsuarioType extends AbstractType
+class HojadevidaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -17,17 +17,16 @@ class UsuarioType extends AbstractType
 		->add('ci','text', array('label' => 'Cedula de Identidad','read_only'=>'true'))
 		->add('modalidad','choice', array('label' => 'Modalidad', 'choices'=> array('aud'=>'Audio', 'vis'=>'Visual', 'imp'=>'Impreso'),'multiple'=>true))
 		->add('tipo','choice', array('label' => 'Tipo', 'choices'=> array('nac'=>'Nacional', 'int'=>'Internacional')))
-        ->add('emailInstitucional', 'email',  array('label' => 'Email institucional', 'read_only' => 'true'));
-        ->add('emailPersonal', 'email',  array('label' => 'Email personal', 'attr' => array(
-            'placeholder' => 'usuario@servidor')));
-		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'))
-		->add('foto','text', array('label' => 'Teléfono móvil'))
+        ->add('emailInstitucional', 'email',  array('label' => 'Email institucional', 'read_only' => 'true'))
+        ->add('emailPersonal', 'email',  array('label' => 'Email personal', 'attr' => array('placeholder' => 'usuario@servidor')))
+		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'));
+		
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Cituao\UsuarioBundle\Entity\Usuario'
+            'data_class' => 'Cituao\CoordBundle\Entity\Practicante'
         ));
     }
 
