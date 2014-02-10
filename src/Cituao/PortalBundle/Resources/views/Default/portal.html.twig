@@ -29,9 +29,14 @@
 
 
 {% block body %}
+
+
     <div id="wrapper">
     	<div id="loginWrapper">
-    		<div id="loginContainer">
+			{% if error %}
+			<div id="headerError"> <h2>{{ error.message }}</h2></div>
+			{% endif %} 
+	   		<div id="loginContainer">
     			<div id="formWrapper">
     				<h2>Login</h2>
     					<form action="{{ path('usuario_login_check') }}" method="post">

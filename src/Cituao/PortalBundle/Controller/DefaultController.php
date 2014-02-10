@@ -10,11 +10,15 @@ class DefaultController extends Controller
     {
 
 		if ($this->get('security.context')->isGranted('ROLE_COORDINADOR')) {
-        	//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
-			return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        	return $this->redirect($this->generateUrl('cituao_coord_homepage'));
     	}
+		else{
+			if ($this->get('security.context')->isGranted('ROLE_PRACTICANTE')) {
+				return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+			}
+		}
 
-        return $this->render('CituaoPortalBundle:Default:portal.html.twig');
+        return $this->render('CituaoPortalBundle:Default:portal.html.twig', array("error"=>array("message"=>"")));
     }
 
     public function palla()

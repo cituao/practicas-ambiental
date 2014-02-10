@@ -135,6 +135,21 @@ header img{
 	font-size: 0.75em; /*12px*/
 }
 
+#headerError{
+	/*border: 1px solid #000;*/
+	max-width: 240px;
+	float: left;
+	margin-top: 2%;
+	font-size: 0.75em; /*12px*/
+}
+
+#headerError h2 {
+font-size: 1.2em;
+margin-top: 2%;
+font-family: "Arial";
+color: #FFF;
+}
+
 #headerTitle h1{
 font-size: 1.6em; /*19px*/
 }

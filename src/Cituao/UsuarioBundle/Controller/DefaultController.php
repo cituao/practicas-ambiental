@@ -20,18 +20,12 @@ class DefaultController extends Controller
             SecurityContext::AUTHENTICATION_ERROR,
             $sesion->get(SecurityContext::AUTHENTICATION_ERROR)
         );
-		
-
-		
-		
-		
         return $this->render(
-            'CituaoUsuarioBundle:Default:login.html.twig',
+            'CituaoPortalBundle:Default:portal.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
                 'error'         => $error
-		
             )
         );
     }
