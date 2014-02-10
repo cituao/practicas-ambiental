@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Cituao\CoordBundle\Entity\Practicante;
 use Cituao\UsuarioBundle\Entity\Usuario;
+use Cituao\CoordBundle\Form\Type\PracticanteType;
 use \DateTime;
 
 class DefaultController extends Controller
@@ -18,23 +19,43 @@ class DefaultController extends Controller
     }
 	
 	public function practicantesAction(){
-		
-		$listaPracticantes = array( array("asignatura"=>"CS05", "codigo"=>"73456", "nombres"=>"JESUS ALBERTO", "apellidos" => "MARQUEZ ACEVEDO", 												"cedula" => "12502219"),
-									array("asignatura"=>"CS05", "codigo"=>"34234", "nombres"=>"DAVID ALEJANDRO", "apellidos" => "MARQUEZ OLASCOAGA", 												"cedula" => "1123789"));
-
-		
+	
 		$listaPracticantes = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->findAll();
-		
-		
-
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes));
 	}
 	
 	
-	public function practicanteAction(){
+	public function practicanteAction($ci){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
 		
-		$practicante = array("nombres"=>"JESUS ALBERTO", "apellidos" => "MARQUEZ ACEVEDO", "cedula" => "12502219");
-		return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('practicante'=>$practicante));
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('ci' => $ci));
+		
+		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
+		
+        $formulario = $this->createForm(new PracticanteType(), $practicante);
+        
+		$formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+			
+            // Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($practicante);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+            );
+
+
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+		
+        return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView() ));
+		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 	}
 
 	public function cronogramaAction(){

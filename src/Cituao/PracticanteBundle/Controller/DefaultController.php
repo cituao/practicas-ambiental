@@ -22,8 +22,10 @@ class DefaultController extends Controller
 		$peticion = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
 
-        $practicante = new Practicante();
-        
+        //$practicante = new Practicante();
+		
+        $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('ci' => $usuario->getUsername()));
 
         $formulario = $this->createForm(new HojadevidaType(), $practicante);
 
