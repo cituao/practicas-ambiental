@@ -50,10 +50,7 @@ class DefaultController extends Controller
     {
         $peticion = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
-
         $usuario = new Usuario();
-        
-
         $formulario = $this->createForm(new UsuarioType(), $usuario);
 
         $formulario->handleRequest($peticion);

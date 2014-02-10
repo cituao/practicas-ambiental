@@ -5,7 +5,9 @@ namespace Cituao\CoordBundle\Controller;
 use Cituao\CoordBundle\Entity\Document;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContext;
 use Cituao\CoordBundle\Entity\Practicante;
+use Cituao\UsuarioBundle\Entity\Usuario;
 use \DateTime;
 
 class DefaultController extends Controller
@@ -57,6 +59,7 @@ class DefaultController extends Controller
 		$form->handleRequest($request);
 
 		if ($form->isValid()) {
+			//levantar servicios de doctrine base de datos
 			$em = $this->getDoctrine()->getManager();
 
 			//se copia el archivo al directorio del servidor			
@@ -82,14 +85,33 @@ class DefaultController extends Controller
 			$i=0;				
 			$sad = "";	
 			while($i < $numero_fila -1){
+				//creamos una instancia Practicante para descargar datos del CSV y guardar en la base de datos
 				$practicante = new Practicante();
+				//creamos una instancia de usuario para darle entrada a los practicantes como usuarios en el sistema
+				$usuario = new Usuario();
+				
 				//viene del archivo .csv	
+				//cargamos todos los atributos al practicante
 				$practicante->setCodigo($listaEstudiantes[$i]['codigo']);
 				$practicante->setNombres($listaEstudiantes[$i]['nombres']);
 				$practicante->setApellidos($listaEstudiantes[$i]['apellidos']);
 				$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
 				$practicante->setCi($listaEstudiantes[$i]['ci']);
 
+				//cargamos todos los atributos al usuario
+				$usuario->setUsername($listaEstudiantes[$i]['ci']);
+				$usuario->setPassword($listaEstudiantes[$i]['codigo']);
+				$usuario->setSalt(md5(time()));
+				
+				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+                $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+				$usuario->setPassword($passwordCodificado);
+				$usuario->setEmail($listaEstudiantes[$i]['emailInstitucional']);
+				
+				 $em->persist($usuario);
+                 $em->flush();
+
+				
 				//convertimos la fecha a un objeto Date				
 				$fecha = $listaEstudiantes[$i]['fecha'];
 				$separa = explode("/",$fecha);

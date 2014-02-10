@@ -68,11 +68,11 @@ $("#flip").click(function(){
 				// al cuarto mes
 				$("#fecha_visita2").text(fecha_asesoria5);
 
-				alert($.datepicker.formatDate("dd-mm-yy", fecha_inicio, inst.settings));
+				//alert($.datepicker.formatDate("dd-mm-yy", fecha_inicio, inst.settings));
 				//iniciamos nuevamente a la fecha de inicio para calcular nuevas fechas				
 				
 				fecha_pivote.setDate(fecha_pivote.getDate() - 183); //fecha fin de proceso
-				alert($.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings));	
+				//alert($.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings));	
 				//colocar fechas de informes cuali cuanti
 				//fecha de entrega informe cuali cuanti #1 al mes 1/2 de iniciado el proceso
 				fecha_pivote.setDate(fecha_pivote.getDate() + 45); //sumamos el mes y medio
