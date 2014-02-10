@@ -80,7 +80,7 @@ class DefaultController extends Controller
 				$i++;
 			}
 			$i=0;				
-			sad = "";	
+			$sad = "";	
 			while($i < $numero_fila -1){
 				$practicante = new Practicante();
 				//viene del archivo .csv	
@@ -114,13 +114,8 @@ class DefaultController extends Controller
 				$em->flush();
 				$i++;
 			}
-
-
 			return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 		} 
-
 		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig', array('form' => $form->createView()));
-		
-
 	}
 }

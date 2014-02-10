@@ -1,0 +1,7 @@
+parameters:
+#    cituao_practicante.example.class: Cituao\PracticanteBundle\Example
+
+services:
+#    cituao_practicante.example:
+#        class: %cituao_practicante.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

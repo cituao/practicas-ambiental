@@ -8,6 +8,12 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+
+		if ($this->get('security.context')->isGranted('ROLE_COORDINADOR')) {
+        	//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+			return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+    	}
+
         return $this->render('CituaoPortalBundle:Default:portal.html.twig');
     }
 

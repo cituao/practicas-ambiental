@@ -1,0 +1,68 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/comun.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block body %}
+	<header>
+		<div id = "grad1">
+			<a id = "alogo" href={{ path('cituao_portal_uao') }}><img src="{{ asset('images/logo.png') }}" alt="UAO"></a>
+		</div>
+		
+		<div id = "divnav">		
+			<nav>
+				<ul>
+				{% block nav %}
+					<li><a href="{{ path('cituao_practicante_homepage') }}">{{ "Home" }}</a></li>
+					<li><a href="{{ path('cituao_practicante_mihojadevida') }}">{{ "Mi hoja de vida " }}</a></li>
+					<li><a href="{{ path('cituao_practicante_homepage') }}">{{ "Su asesor externo" }}</a></li>
+					<li><a href="{{ path('cituao_practicante_homepage') }}">{{ "Mis asesorías" }}</a></li>
+					<li><a href="{{ path('cituao_practicante_homepage') }}">{{ "Mis conceptos-compromisos" }}</a></li>
+     				<li><a href="{{ path('logout') }}">{{ "Cerrar sessión" }}</a></li>
+				{% endblock %}
+				</ul>
+			</nav>
+		</div>
+		</header>
+	
+	{% block anuncio %}{% endblock %}
+
+	<section class = "secppal">
+	{% block seccion %}
+		<article>
+			<h2>Articulo 1</h2>
+		</article>
+
+		<article>
+			<h2>Articulo 2</h2>
+		</article>
+	{% endblock %}
+
+	</section>
+
+	<aside>
+
+
+	
+		<section>
+			<div id = "barratitulo">
+				<h2>Datos de sección</h2>
+			</div>
+			<div>
+				<h3>Buenos días Admin!Su última conexión fue el 01/01/2014 a las 9:00am</h3>
+			</div>
+		</section>
+	
+	{% block aside %}
+
+	{% endblock %}
+
+
+	</aside>
+
+	{% block pie %}
+	{% endblock %}
+
+{% endblock %}

@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Cituao\PortalBundle\CituaoPortalBundle(),
             new Cituao\UsuarioBundle\CituaoUsuarioBundle(),
             new Cituao\CoordBundle\CituaoCoordBundle(),
+            new Cituao\PracticanteBundle\CituaoPracticanteBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
