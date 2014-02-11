@@ -1,70 +1,66 @@
 {% extends '::base.html.twig' %}
 
+{% block title %} Panel Principal::: Prácticas Profesionales UAO{% endblock %}
+
+
 {% block stylesheets %}
-	<link href="{{ asset('css/comun.css') }}" rel="stylesheet" />
+	   <link href="{{ asset('css/comun.css') }}" rel="stylesheet" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/mainPanel.css') }}" />
+
+		
+		<style>
+			@font-face
+			{
+			font-family: helveticaN;
+			src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Lt.otf') }}'),
+			url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.woff') }}'),
+			url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.eot') }}');
+
+
+			}
+			@font-face
+			{
+			font-family: helveticaNBold;
+			src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Md.otf') }}');
+			}
+
+		</style>
 {% endblock %}
 
 
 {% block body %}
-	<header>
-		<div id = "grad1">
-			<a id = "alogo" href={{ path('cituao_portal_uao') }}><img src="{{ asset('images/logo.png') }}" alt="UAO"></a>
-		</div>
-		
-		<div id = "divnav">		
-			<nav>
-				<ul>
-				{% block nav %}
-					<li><a href="{{ path('cituao_coord_homepage') }}">{{ "Home" }}</a></li>
-					<li><a href="{{ path('cituao_coord_practicantes') }}">{{ "Mis practicantes" }}</a></li>
-					<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores académicos" }}</a></li>
-					<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis asesores externos" }}</a></li>
-					<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Mis centros de prácticas" }}</a></li>
-					<li><a href="{{ path('cituao_coord_cargar_estudiantes') }}">{{ "Cargar estudiantes" }}</a></li>
-					<li><a href="{{ path('cituao_portal_homepage') }}">{{ "Configuraciones" }}</a></li>
-					<li><a href="{{ path('logout') }}">{{ "Cerrar sección" }}</a></li>
-				{% endblock %}
-				</ul>
-			</nav>
-		</div>
-		</header>
-	
-	{% block anuncio %}{% endblock %}
-
-	<section class = "secppal">
-	{% block seccion %}
-		<article>
-			<h2>Articulo 1</h2>
-		</article>
-
-		<article>
-			<h2>Articulo 2</h2>
-		</article>
-	{% endblock %}
-
-	</section>
-
-	<aside>
-
 
 	
-		<section>
-			<div id = "barratitulo">
-				<h2>Datos de sección</h2>
-			</div>
-			<div>
-				<h3>Buenos días Admin!Su última conexión fue el 01/01/2014 a las 9:00am</h3>
-			</div>
-		</section>
-	
-	{% block aside %}
+    	<div id="wrapper">
+    		<div id="header">
+    			<img src="{{ asset('img/headerLogo.png') }}" >
+    			<div id="headerTitle">
+	    			<h1>Prácticas profesionales</h1>
+	    			<h2>Facultad de comunicaciones</h2>
+	    			<a href="{{ path('cituao_coord_homepage') }}" id="homeButton">Panel Principal</a>
+    			</div>
+    			<a href="{{ path('logout') }}" id="cerrarButton">Cerrar Sesión</a>
 
-	{% endblock %}
+    		</div><!-- cierra header -->
+			
+			{% block infowrapper  %}
 
+					{% endblock %}
+			
+    		
 
-	</aside>
-
-	{% block pie %}
-	{% endblock %}
 
 {% endblock %}
+
+
+		{% block javascripts %}
+		
+		 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
+   
+		<script src="script/FitText.js-master/jquery.fittext.js"></script>
+
+		{% endblock %}
+
+

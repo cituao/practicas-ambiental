@@ -1,7 +1,37 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block seccion %}
-	Ambiente COORDINADOR
-{% endblock %}
+{% block infowrapper  %}
+			<div id="infoWrapper">
+    			<h2 id="titlee">
+    				PANEL<span>PRINCIPAL<span>
+    			</h2>
+    			<div id="buttonsContainer">	
+						<a href="{{ path('cituao_coord_practicantes') }}" class="button" id="practicantes"> 
+    						<h2>PRACTICANTES</h2>
+    						<img id="practicanteIcon" src="{{ asset('img/practicanteIcon.png') }}">
+    					</a>
+    					<a href="{{ path('cituao_coord_cargar_estudiantes') }}" class="button"  id="anadir">
+    						<h2><span>AÑADIR</span> PRACTICANTES</h2>
+    						<img id="anadirIcon" src="{{ asset('img/anadirIcon.png') }}">
+    					</a>
+    					<a href="" class="button"  id="asesoresExternos">
+    						<h2>ASESORES<span> EXTERNOS</span></h2>
+    						<img id="externoIcon" src="{{ asset('img/externoIcon.png') }}">
+    					</a>
+    					<a href="" class="button"  id="asesoresInternos">
+    						<h2>ASESORES<span> INTERNOS</span></h2>
+    						<img id="internoIcon" src="{{ asset('img/internoIcon.png') }}">
+    					</a>
+    					<a href="" class="button"  id="configuracion">
+    						<h2>CONFIGURACIÓN</h2>
+    						<img id="configIcon" src="{{ asset('img/configIcon.png') }}">
+    					</a>
+    					<a href="" class="button"  id="centroPractica">
+    						<h2>CENTRO<span> DE </span>PRÁCTICA</h2>
+    						<img id="centroIcon" src="{{ asset('img/centroIcon.png') }}">
+    					</a>
+    			</div>
+			</div><!-- infowrapper -->
 
-
+	</div><!-- wrapper -->
+	{% endblock %}

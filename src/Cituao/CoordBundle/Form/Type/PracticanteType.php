@@ -11,10 +11,10 @@ class PracticanteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-	    ->add('codigo','text', array('label' => 'Codigo','read_only'=>'true'))
+	    ->add('codigo','text', array('label' => 'Código','read_only'=>'true'))
         ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))
-		->add('ci','text', array('label' => 'Cedula de Identidad','read_only'=>'true'))
+		->add('ci','text', array('label' => 'Cédula de identidad','read_only'=>'true'))
         ->add('emailInstitucional', 'email',  array('label' => 'Email institucional', 'read_only' => 'true'))
         ->add('emailPersonal', 'email',  array('label' => 'Email personal',  'attr' => array('placeholder' => 'usuario@servidor'), 'read_only'=>'true' ))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil' ,'read_only'=>'true'))

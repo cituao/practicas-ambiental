@@ -1,44 +1,37 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
+{% block infowrapper  %}
+	<div id="infoWrapper">
 
-{% block seccion %}
-	<form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
-	    <div>{{ form_errors(formulario) }}</div>	
-		
-	    <div>
-		{{ form_row(formulario.codigo) }}
-	    </div>
+		<form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
+				<div>{{ form_errors(formulario) }}</div>	
+				
+				<div>{{ form_row(formulario.codigo) }}</div>
 
-	    <div>
-		{{ form_row(formulario.apellidos) }}
-	    </div>
+				<div>{{ form_row(formulario.apellidos) }}</div>
 
-	    <div>
-		{{ form_row(formulario.nombres) }}
-	    </div>
+				<div>{{ form_row(formulario.nombres) }}</div>
 
 
-	    <div>
-		{{ form_row(formulario.ci) }}
-	    </div>
+				<div>{{ form_row(formulario.ci) }}</div>
 
-	    <div>
-		{{ form_row(formulario.emailInstitucional) }}
-		</div>
+				<div>{{ form_row(formulario.emailInstitucional) }}	</div>
 
-	    <div>
-		{{ form_row(formulario.emailPersonal) }}
-		</div>
-		
-	    <div>
-		{{ form_row(formulario.telefonoMovil) }}
-	    </div>
-	    
-	    <input class="boton" type="submit" value="Guardar" />
+				<div>{{ form_row(formulario.emailPersonal) }}	</div>
+				
+				<div>{{ form_row(formulario.telefonoMovil) }}</div>
+				
+				<input class="boton" type="submit" value="Guardar" />
+				
+		</form>
 
-	    </div>
-	</form>		
+		 <div id = "opciones">
+				<a href="{{ path('cituao_coord_cronograma') }}">Cronograma de actividades</a>
+				<a href="{{ path('logout') }}">Enviar correo</a>
+		 </div>
+
 	
+	</div>
 {% endblock %}
 
 {% block aside %}
