@@ -18,3 +18,7 @@ cituao_coord_cargar_estudiantes:
     pattern:  /coordinador/cargarestudiantes
     defaults: { _controller: CituaoCoordBundle:Default:upload }
 
+cituao_coord_asesores:
+    pattern:  /coordinador/asesores
+    defaults: { _controller: CituaoCoordBundle:Default:asesores }
+

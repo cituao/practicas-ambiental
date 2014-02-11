@@ -1,3 +1,7 @@
+cituao_externo:
+    resource: "@CituaoExternoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 cituao_practicante:
     resource: "@CituaoPracticanteBundle/Resources/config/routing.yml"
     prefix:   /

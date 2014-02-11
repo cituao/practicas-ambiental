@@ -1,0 +1,44 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block seccion %}
+	<div>
+	<table id = "customers">
+	<tbody>
+		<tr>
+			<th>#</th>
+			<th>pIC</th>
+			<th>CEDULA</th>
+			<th>NOMBRES</th>
+			<th>APELLIDOS</th>
+			<th>TELEFONO</th>
+	
+		</tr>
+		
+		{% set id = 1 %}
+		{% set sw = false %}
+		{% for asesor in listaAsesores %}
+			{% if sw == false %}
+				<tr>
+				{% set sw = true %}
+			{% else %}
+				<tr class = "alt">
+				{% set sw = false %}
+			{% endif %}
+
+				<td>{{ id }}</th>
+				
+				<td><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Pulpit rock" width="68" height="68"></td>
+				<td>{{ asesor.ci }}</td>
+				<td>{{ asesor.nombres }}</td>
+				<td>{{ asesor.apellidos }}</td>
+				<td>{{ asesor.telefono }}</td>				
+
+				<td><a href="{{ path('cituao_coord_asesor', { 'ci': asesor.ci}) }}"> {{ asesor.ci }} </a></td>
+			</tr>
+			{% set id = id + 1 %}
+		{% endfor %}
+		</tbody>
+	</table>
+	</div>
+{% endblock %}
+

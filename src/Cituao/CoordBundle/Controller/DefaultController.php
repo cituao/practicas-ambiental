@@ -18,6 +18,9 @@ class DefaultController extends Controller
         return $this->render('CituaoCoordBundle:Default:coord.html.twig');
     }
 	
+	/********************************************************/
+	//Listar los practicantes registrados en la base de datos
+	/********************************************************/	
 	public function practicantesAction(){
 	
 		$listaPracticantes = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->findAll();
@@ -161,4 +164,22 @@ class DefaultController extends Controller
 		} 
 		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig', array('form' => $form->createView()));
 	}
+
+	/*************************************/
+	//Listar todos los asesores externos		
+	/*************************************/
+
+	public function asesoresAction(){
+		$repository = $this->getDoctrine()->getRepository('ExternoBundle:Product');
+
+		$listaAsesores = $repository->findAll();
+		
+		if (!$product) {
+	        throw $this->createNotFoundException(
+	            'No hay asesores externos registrados en la base de datos');
+	    }
+
+		return $this->render('CituaoCoordBundle:Default:externos.html.twig', array('listaAsesores' => $listaAsesores));
+	} 
+
 }

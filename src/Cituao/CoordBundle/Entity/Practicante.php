@@ -41,12 +41,12 @@ class Practicante
     private $nombres;
 
      /**
-     * @ORM\Column(type="string", length=12)
+     * @ORM\Column(type="string", length=12, unique=true)
      */
     private $ci;
 
     /**
-     * @ORM\Column(type="datetime", unique=true)
+     * @ORM\Column(type="datetime")
      */
     private $fechaMatriculacion;
 
