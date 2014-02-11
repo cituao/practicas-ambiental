@@ -11,8 +11,8 @@ cituao_coord_practicante:
     defaults: { _controller: CituaoCoordBundle:Default:practicante }
 
 cituao_coord_cronograma:
-    pattern:  /coordinador/cronograma/{codigo}
-    defaults: { _controller: CituaoCoordBundle:Default:cronograma, codigo: '12502219' }
+    pattern:  /coordinador/cronograma/{ci}
+    defaults: { _controller: CituaoCoordBundle:Default:cronograma }
 
 cituao_coord_cargar_estudiantes:
     pattern:  /coordinador/cargarestudiantes

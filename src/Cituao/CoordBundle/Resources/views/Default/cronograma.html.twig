@@ -11,7 +11,10 @@
 	<script src="{{ asset('js/date.js') }}"></script>
 {% endblock %}
 
-{% block seccion %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+
 
 
 <form action="/cupon/web/app_dev.php/es/usuario/perfil" method="post" >
@@ -21,7 +24,7 @@
 	
     <div>
         <label for="frontend_usuario_dni" class="required">CODIGO</label>
-		<label for="frontend_usuario_dni" class="required">2076424</label>	
+		<label for="frontend_usuario_dni" class="required">{{ cedula.ci }}</label>	
     </div>
 	
     <div>
@@ -274,6 +277,7 @@
 
     </div>
 </form>
+</div>
 
 {% endblock %}
 

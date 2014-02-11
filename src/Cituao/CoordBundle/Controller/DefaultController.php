@@ -57,14 +57,14 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
 		
-        return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView() ));
+        return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
 		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 	}
 
-	public function cronogramaAction(){
+	public function cronogramaAction($ci){
 		
 		
-		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array("cedula"=>"12502219"));
+		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array("cedula"=>$ci));
 	}
 
 	public function cargarEstudiantesAction(){
