@@ -22,3 +22,11 @@ cituao_coord_asesores:
     pattern:  /coordinador/asesores
     defaults: { _controller: CituaoCoordBundle:Default:asesores }
 
+cituao_coord_registrarexterno:
+    pattern:  /coordinador/registrarexterno
+    defaults: { _controller: CituaoCoordBundle:Default:registrarexterno }
+
+cituao_coord_externo:
+    pattern:  /coordinador/externo/{ci}
+    defaults: { _controller: CituaoCoordBundle:Default:externo }
+

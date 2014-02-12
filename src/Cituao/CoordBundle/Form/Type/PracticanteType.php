@@ -1,5 +1,5 @@
 <?php
-// src/Cituao/CoordinadorBundle/Form/Type/HojadevidaType.php
+// src/Cituao/CoordBundle/Form/Type/HojadevidaType.php
 namespace Cituao\CoordBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;

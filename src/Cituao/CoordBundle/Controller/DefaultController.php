@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Cituao\CoordBundle\Entity\Practicante;
 use Cituao\UsuarioBundle\Entity\Usuario;
+use Cituao\ExternoBundle\Entity\Externo;
 use Cituao\CoordBundle\Form\Type\PracticanteType;
+use Cituao\ExternoBundle\Form\Type\ExternoType;
 use \DateTime;
 
 class DefaultController extends Controller
@@ -183,16 +185,97 @@ class DefaultController extends Controller
 	//Listar todos los asesores externos		
 	/*************************************/
 	public function asesoresAction(){
-		$repository = $this->getDoctrine()->getRepository('ExternoBundle:Product');
+		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 
 		$listaAsesores = $repository->findAll();
 		
-		if (!$product) {
-	        throw $this->createNotFoundException(
-	            'No hay asesores externos registrados en la base de datos');
-	    }
+		
+		if (!$listaAsesores) {
+			$msgerr = array('descripcion'=>'No hay asesores externos registrados!','id'=>'1');
+	    }else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
 
-		return $this->render('CituaoCoordBundle:Default:externos.html.twig', array('listaAsesores' => $listaAsesores));
+		return $this->render('CituaoCoordBundle:Default:externos.html.twig', array('listaAsesores' => $listaAsesores, 'msgerr' => $msgerr));
 	} 
+
+
+	/*********************************************/
+	//Muestra y registra un asesor externo
+	/*********************************************/	
+	public function registrarexternoAction()
+	{
+
+		$peticion = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+
+		$externo = new Externo();
+
+        $formulario = $this->createForm(new ExternoType(), $externo);
+
+        $formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+            // Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($externo);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+            );
+
+	    /*
+            // Loguear al usuario automáticamente
+            $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
+            $this->container->get('security.context')->setToken($token);
+	    */
+
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+
+        return $this->render('CituaoCoordBundle:Default:externo.html.twig', array(
+            'formulario' => $formulario->createView()
+        ));
+	}
+
+
+	/********************************************************/
+	//Muestra un asesor externo registrado en la base de datos
+	/********************************************************/		
+	public function externoAction($ci){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
+		$externo = $repository->findOneBy(array('ci' => $ci));
+		
+		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
+		
+        $formulario = $this->createForm(new ExternoType(), $externo);
+        
+		$formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+			
+            // Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($externo);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+            );
+
+
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+		
+        return $this->render('CituaoCoordBundle:Default:externo.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
+		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+	}
+
+
 
 }

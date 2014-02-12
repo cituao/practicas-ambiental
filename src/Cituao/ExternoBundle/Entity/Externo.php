@@ -5,7 +5,7 @@ namespace Cituao\ExternoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Cituao\ExternodBundle\Entity\Externo
+ * Cituao\ExternoBundle\Entity\Externo
  *
  * @ORM\Table(name="Externo")
  * @ORM\Entity(repositoryClass="Cituao\ExternoBundle\Entity\ExternoRepository")

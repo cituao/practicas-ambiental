@@ -7,3 +7,10 @@ Cituao\CoordBundle\Entity\Document:
                 mimeTypes: [text/plain]
                 mimeTypesMessage: Por favor suba un TXT válido
                 uploadErrorMessage: El archivo no puede ser cargado!
+
+Cituao\CoordBundle\Entity\Externo:
+    properties:
+        ci:
+            - NotBlank: ~
+        nombres:
+            - NotBlank: ~
