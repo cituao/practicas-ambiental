@@ -13,6 +13,9 @@ use \DateTime;
 
 class DefaultController extends Controller
 {
+	/********************************************************/
+	//home del coordinador
+	/********************************************************/	
     public function indexAction()
     {
         return $this->render('CituaoCoordBundle:Default:coord.html.twig');
@@ -26,8 +29,10 @@ class DefaultController extends Controller
 		$listaPracticantes = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->findAll();
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes));
 	}
-	
-	
+
+	/********************************************************/
+	//Muestra un practicante registrado en la base de datos
+	/********************************************************/		
 	public function practicanteAction($ci){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
@@ -61,17 +66,26 @@ class DefaultController extends Controller
 		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 	}
 
+	/********************************************************/
+	//Muestra el cronograma de actividades del practicante 
+	/********************************************************/		
 	public function cronogramaAction($ci){
+		$practicante = array('practicante'=>array('ci'=>$ci));
+
 		
-		
-		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array("cedula"=>$ci));
+		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', $practicante);
 	}
 
+	/********************************************************/
+	//por implementar
+	/********************************************************/		
 	public function cargarEstudiantesAction(){
 		
 	} 
 
+	/********************************************************/
 	//SE ENCARGA DE LANZAR UN FORMULARIO PARA LA SUBIDA DEL ARCHIVO TXT CON ESTUDIANTES PARA IR A PRACTICAS PROFESIONALES
+	/********************************************************/	
 	public function uploadAction(Request $request)
 	{
 		$document = new Document();
@@ -168,7 +182,6 @@ class DefaultController extends Controller
 	/*************************************/
 	//Listar todos los asesores externos		
 	/*************************************/
-
 	public function asesoresAction(){
 		$repository = $this->getDoctrine()->getRepository('ExternoBundle:Product');
 
