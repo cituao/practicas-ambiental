@@ -30,9 +30,26 @@ class DefaultController extends Controller
 	//Listar los practicantes registrados en la base de datos
 	/********************************************************/	
 	public function practicantesAction(){
-	
+	/*
 		$listaPracticantes = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->findAll();
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes));
+		*/
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+
+		$listaPracticantes = $repository->findAll();
+		
+		
+		if (!$listaPracticantes) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+	    }else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		
+		
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
+		
+		
 	}
 
 	/********************************************************/

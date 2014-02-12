@@ -3,6 +3,9 @@
 
 {% block infowrapper  %}
 			<div id="infoWrapper">
+		{% if msgerr.id == '1' %}
+			<div>{{ msgerr.descripcion }} </div>		
+		{% else %}
 
 
 	<div>
@@ -45,6 +48,6 @@
 	</div>
 
 	</div>
-	
+	{% endif %}
 	{% endblock %}
 
