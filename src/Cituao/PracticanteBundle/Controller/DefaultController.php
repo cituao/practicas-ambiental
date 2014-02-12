@@ -33,7 +33,7 @@ class DefaultController extends Controller
 
         if ($formulario->isValid()) {
             // Completar las propiedades que el usuario no rellena en el formulario
-            $em->persist($usuario);
+            $em->persist($practicante);
             $em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
@@ -47,7 +47,7 @@ class DefaultController extends Controller
             $this->container->get('security.context')->setToken($token);
 	    */
 
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
         }
 
         return $this->render('CituaoPracticanteBundle:Default:hojadevida.html.twig', array(
