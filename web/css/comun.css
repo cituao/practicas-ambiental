@@ -567,37 +567,43 @@ Cajas desplegables
 ===============================================================================
 */
 
-#panel1 {
+#panel {
 	padding:5px;
 	text-align:center;
 	background-color:#fff;
-	border:solid 1px #A80000;
+	border:solid 1px #fff;
 	display:none;
 	
 }
 
-#flip1 {
-	padding:10px;
-	text-align:center;
-	background-color:#A80000;
-	border:solid 1px #c3c3c3;
-	color: #fff;
-}
 
 
-#panel,#flip
-{
+#flip {
 padding:5px;
 text-align:center;
-background-color:#e5eecc;
-border:solid 1px #c3c3c3;
-}
-#panel
-{
-padding:50px;
-display:none;
+background-color:#A80000;
+border:solid 1px #A80000;
+color: #fff;
 }
 
 
+#barra{
+padding-top:40px;
+padding-bottom:25px;
+padding-right:50px;
+padding-left:50px;
+}
 
+
+#opButton {
+font-size: 1.2em;
+margin-top: 0;
+color: #5b5b5b;
+float: left;
+font-size: 12px;
+font-family: Helvetica;
+text-decoration: none;
+font-weight: bold;
+color: #af0000;
+}
 

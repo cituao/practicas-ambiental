@@ -30,3 +30,19 @@ cituao_coord_externo:
     pattern:  /coordinador/externo/{ci}
     defaults: { _controller: CituaoCoordBundle:Default:externo }
 
+cituao_coord_academicos:
+    pattern:  /coordinador/academicos
+    defaults: { _controller: CituaoCoordBundle:Default:academicos }
+
+cituao_coord_registraracademico:
+    pattern:  /coordinador/registraracademico
+    defaults: { _controller: CituaoCoordBundle:Default:registraracademico }
+
+cituao_coord_academico:
+    pattern:  /coordinador/academico/{ci}
+    defaults: { _controller: CituaoCoordBundle:Default:academico }
+
+
+
+
+

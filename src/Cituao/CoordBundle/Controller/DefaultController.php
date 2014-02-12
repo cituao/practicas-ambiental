@@ -11,6 +11,9 @@ use Cituao\UsuarioBundle\Entity\Usuario;
 use Cituao\ExternoBundle\Entity\Externo;
 use Cituao\CoordBundle\Form\Type\PracticanteType;
 use Cituao\ExternoBundle\Form\Type\ExternoType;
+use Cituao\AcademicoBundle\Entity\Academico;
+use Cituao\AcademicoBundle\Form\Type\AcademicoType;
+
 use \DateTime;
 
 class DefaultController extends Controller
@@ -241,7 +244,7 @@ class DefaultController extends Controller
 
 
 	/********************************************************/
-	//Muestra un asesor externo registrado en la base de datos
+	//Muestra y modifica un asesor externo registrado en la base de datos
 	/********************************************************/		
 	public function externoAction($ci){
 		$peticion = $this->getRequest();
@@ -276,6 +279,99 @@ class DefaultController extends Controller
 		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 	}
 
+	/*************************************/
+	//Listar todos los asesores ACADEMICOS		
+	/*************************************/
+	public function academicosAction(){
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+
+		$listaAcademicos = $repository->findAll();
+		
+		
+		if (!$listaAcademicos) {
+			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
+	    }else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+
+		return $this->render('CituaoCoordBundle:Default:academicos.html.twig', array('listaAcademicos' => $listaAcademicos, 'msgerr' => $msgerr));
+	} 
+
+
+	/*********************************************/
+	//registra un asesor academico
+	/*********************************************/	
+	public function registraracademicoAction()
+	{
+
+		$peticion = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+
+		$academico = new Academico();
+
+        $formulario = $this->createForm(new AcademicoType(), $academico);
+
+        $formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+            // Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($academico);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+            );
+
+	    /*
+            // Loguear al usuario automáticamente
+            $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
+            $this->container->get('security.context')->setToken($token);
+	    */
+
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+
+        return $this->render('CituaoCoordBundle:Default:academico.html.twig', array(
+            'formulario' => $formulario->createView()
+        ));
+	}
+
+	/********************************************************/
+	//Muestra y modifica un asesor externo registrado en la base de datos
+	/********************************************************/		
+	public function academicoAction($ci){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $ci));
+		
+		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
+		
+        $formulario = $this->createForm(new AcademicoType(), $academico);
+        
+		$formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+			
+            // Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($academico);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+            );
+
+
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+		
+        return $this->render('CituaoCoordBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico ));
+		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+	}
 
 
 }

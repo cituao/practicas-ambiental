@@ -14,7 +14,7 @@
 			<th>CODIGO</th>
 			<th>APELLIDOS</th>
 			<th>NOMBRES</th>
-			<th>CEDULA DE IDENTIDAD</th>
+			<th>Acción</th>
 	
 		</tr>
 		
@@ -36,7 +36,7 @@
 				<td>{{ practicante.apellidos }}</td>
 				<td>{{ practicante.nombres }}</td>
 				
-				<td><a href="{{ path('cituao_coord_practicante', { 'ci': practicante.ci}) }}"> {{ practicante.ci }} </a></td>
+				<td><a href="{{ path('cituao_coord_practicante', { 'ci': practicante.ci}) }}"> Ver </a></td>
 			</tr>
 			{% set id = id + 1 %}
 		{% endfor %}
