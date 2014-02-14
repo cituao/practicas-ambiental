@@ -156,11 +156,13 @@ public function getAbsolutePath()
 
 		// move takes the target directory and then the
 		// target filename to move to
+		
+		$nombre = "est_uao_2001";
 		$this->getFile()->move(
 		    $this->getUploadRootDir(),
-		    $this->getFile()->getClientOriginalName()
+		    $nombre   //$this->getFile()->getClientOriginalName()
 		);
-
+		
 		// set the path property to the filename where you've saved the file
 		$this->path = $this->getFile()->getClientOriginalName();
 

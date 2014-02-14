@@ -41,8 +41,3 @@ cituao_coord_registraracademico:
 cituao_coord_academico:
     pattern:  /coordinador/academico/{ci}
     defaults: { _controller: CituaoCoordBundle:Default:academico }
-
-
-
-
-

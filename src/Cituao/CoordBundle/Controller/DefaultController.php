@@ -112,7 +112,6 @@ class DefaultController extends Controller
 	{
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
-		    ->add('name')
 		    ->add('file')
 		    ->getForm();
 
@@ -134,7 +133,7 @@ class DefaultController extends Controller
 			$i=0;
 			$numero_fila= count($filas);	
 
-			
+			//procesamos la matriz separando los campos por medio del separador putno y coma
 			while($i < $numero_fila -1){
 				$row = $filas[$i];
 				$sql = explode(";",$row);
@@ -142,6 +141,8 @@ class DefaultController extends Controller
 														"fecha" => $sql[4], "emailInstitucional" => $sql[5] );
 				$i++;
 			}
+			
+			//procesamos la matriz  fila a fila creando practicantes y usuarios
 			$i=0;				
 			$sad = "";	
 			while($i < $numero_fila -1){
@@ -159,8 +160,8 @@ class DefaultController extends Controller
 				$practicante->setCi($listaEstudiantes[$i]['ci']);
 
 				//cargamos todos los atributos al usuario
-				$usuario->setUsername($listaEstudiantes[$i]['ci']);
-				$usuario->setPassword($listaEstudiantes[$i]['codigo']);
+				$usuario->setUsername($listaEstudiantes[$i]['codigo']) ;
+				$usuario->setPassword($listaEstudiantes[$i]['ci']);
 				$usuario->setSalt(md5(time()));
 				
 				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
@@ -184,7 +185,7 @@ class DefaultController extends Controller
 
 				$practicante->setFechaMatriculacion($f);
 
-
+				//cargamos los demas datos
 				$practicante->setTelefonoMovil($sad);
 				$practicante->setModalidad($sad);
 				$practicante->setFoto($sad);
@@ -198,7 +199,10 @@ class DefaultController extends Controller
 			}
 			return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 		} 
-		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig', array('form' => $form->createView()));
+		
+		$msgerr = array('id'=>'0', 'descripcion'=>' ');
+		
+		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr  ));
 	}
 
 	/*************************************/
