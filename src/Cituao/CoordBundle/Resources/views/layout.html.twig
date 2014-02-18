@@ -39,7 +39,8 @@
 	    			<h2>Facultad de comunicaciones</h2>
 	    			<a href="{{ path('cituao_coord_homepage') }}" id="homeButton">Panel Principal</a>
     			</div>
-    			<a href="{{ path('logout') }}" id="cerrarButton">Cerrar Sesión</a>
+				
+    			<a href="{{ path('logout') }}" id="cerrarButton">Cerrar Sesión [Usuario:{{ app.user.username }}]</a>
     		</div><!-- cierra header -->
 			
 			{% block infowrapper  %}

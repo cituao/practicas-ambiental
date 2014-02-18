@@ -18,8 +18,8 @@ class PracticanteType extends AbstractType
 		->add('nombres','text', array('label' => 'Nombres'))
         ->add('emailInstitucional', 'email',  array('label' => 'Email institucional' ,  'attr' => array('placeholder' => 'usuario@servidor')))
         ->add('emailPersonal', 'email',  array('label' => 'Email personal',  'attr' => array('placeholder' => 'usuario@servidor')))
-		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'));
-
+		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'))
+		->add('area','entity', array('class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
 
 		//->add('ci','text', array('label' => 'Cédula de identidad','read_only'=>'true'))
 		}

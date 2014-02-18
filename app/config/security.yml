@@ -1,6 +1,6 @@
 # app/config/security.yml
 security:
-    
+
     role_hierarchy:
         ROLE_COORDINADOR:       ROLE_USER
         ROLE_PRACTICANTE:       ROLE_USER

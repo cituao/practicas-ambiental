@@ -46,8 +46,6 @@ class Practicante
      */
     private $tipo;
 
-
-
     /**
      * @ORM\Column(type="datetime")
      */
@@ -161,7 +159,7 @@ class Practicante
 
 	/**
 	* @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Entity\Area", inversedBy="practicantes")
-	* @ORM\JoinColumn(name="id_area", referencedColumnName = "id") 
+	* @ORM\JoinColumn(name="area", referencedColumnName = "id") 
 	**/	
 	protected $area;
 

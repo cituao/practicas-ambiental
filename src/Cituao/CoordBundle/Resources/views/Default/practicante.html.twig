@@ -7,12 +7,14 @@
 				<div>{{ form_errors(formulario) }}</div>	
 				
 				<div><img border="0" src="{{ asset('uploads/fotos/users.jpg') }}" alt="Pulpit rock" width="68" height="68"></div>
+				
+				<div>{{ form_row(formulario.file) }}</div>
+				
 				<div>{{ form_row(formulario.codigo) }}</div>
 
 				<div>{{ form_row(formulario.apellidos) }}</div>
 
 				<div>{{ form_row(formulario.nombres) }}</div>
-
 
 				<div>{{ form_row(formulario.ci) }}</div>
 
@@ -22,6 +24,8 @@
 				
 				<div>{{ form_row(formulario.telefonoMovil) }}</div>
 				
+				<div>{{ form_row(formulario.area) }}</div>
+				
 				<input class="boton" type="submit" value="Guardar" />
 				
 		</form>
@@ -29,7 +33,7 @@
 		
 		
 		 <div id = "opciones">
-				<a href="{{ path('cituao_coord_cronograma' , { 'ci': practicante.ci}) }}" id = "opButton"><img id="practicanteIcon" src="{{ asset('img/calendar.jpg') }}"></a>
+				<a href="{{ path('cituao_coord_cronograma' , { 'codigo': practicante.codigo}) }}" id = "opButton"><img id="practicanteIcon" src="{{ asset('img/calendar.jpg') }}"></a>
 				
 		 </div>
 

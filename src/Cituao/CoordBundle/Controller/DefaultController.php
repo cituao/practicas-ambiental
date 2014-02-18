@@ -68,7 +68,25 @@ class DefaultController extends Controller
 
         if ($formulario->isValid()) {
 			
-            // Completar las propiedades que el usuario no rellena en el formulario
+            
+				$practicante->setFechaAsesoria1($f);
+				$practicante->setFechaAsesoria2($f);
+				$practicante->setFechaAsesoria3($f);
+				$practicante->setFechaAsesoria4($f);
+				$practicante->setFechaAsesoria5($f);
+				$practicante->setFechaAsesoria6($f);
+				$practicante->setFechaAsesoria7($f);
+				$practicante->setFechaVisitaP($f);
+				$practicante->setFechaVisita1($f);
+				$practicante->setFechaVisita2($f);
+				$practicante->setFechaInformeGestion1($f);
+				$practicante->setFechaInformeGestion2($f);
+				$practicante->setFechaInformeGestion3($f);
+				$practicante->setFechaInformeFinal($f);
+
+			
+			
+			// Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);
             $em->flush();
 
@@ -88,48 +106,20 @@ class DefaultController extends Controller
 	/********************************************************/
 	//Muestra un practicante registrado en la base de datos
 	/********************************************************/		
-	public function practicanteAction($ci){
+	public function practicanteAction($codigo){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
-
 		
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $ci));
+		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 		
 		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
 		
         $formulario = $this->createForm(new PracticanteType(), $practicante);
-        
 		$formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
-				$f = new \DateTime();
-				
-				$f->setDate(date('Y-m-d H:i:s'));
-				$area = new Area();
-				$practicante->setArea($area);
-				$practicante->setTipo($sad);
-				$practicante->setEmailPersonal($sad);
-				$practicante->setEstado($sad);
-
-				$practicante->setFechaAsesoria1($f);
-				$practicante->setFechaAsesoria2($f);
-				$practicante->setFechaAsesoria3($f);
-				$practicante->setFechaAsesoria4($f);
-				$practicante->setFechaAsesoria5($f);
-				$practicante->setFechaAsesoria6($f);
-				$practicante->setFechaAsesoria7($f);
-				$practicante->setFechaVisitaP($f);
-				$practicante->setFechaVisita1($f);
-				$practicante->setFechaVisita2($f);
-				$practicante->setFechaInformeGestion1($f);
-				$practicante->setFechaInformeGestion2($f);
-				$practicante->setFechaInformeGestion3($f);
-				$practicante->setFechaInformeFinal($f);
-			
 				$practicante->upload();				
-				$practicante->setPath();
-
             // Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);
             $em->flush();
@@ -138,20 +128,16 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-
-
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
-		
         return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
-		
 	}
 
 	/********************************************************/
 	//Muestra el cronograma de actividades del practicante 
 	/********************************************************/		
-	public function cronogramaAction($ci){
-		$practicante = array('practicante'=>array('ci'=>$ci));
+	public function cronogramaAction($codigo){
+		$practicante = array('practicante'=>array('codigo'=>$codigo));
 
 		
 		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', $practicante);

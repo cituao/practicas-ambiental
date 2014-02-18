@@ -41,7 +41,7 @@
 						<td>{{ practicante.apellidos }}</td>
 						<td>{{ practicante.nombres }}</td>
 				
-						<td><a href="{{ path('cituao_coord_practicante', { 'ci': practicante.ci}) }}"> Ver </a></td>
+						<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"> Ver </a></td>
 					</tr>
 					{% set id = id + 1 %}
 				{% endfor %}

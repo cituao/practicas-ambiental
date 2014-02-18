@@ -7,7 +7,7 @@ cituao_coord_practicantes:
     defaults: { _controller: CituaoCoordBundle:Default:practicantes }
 
 cituao_coord_practicante:
-    pattern:  /coordinador/practicante/{ci}
+    pattern:  /coordinador/practicante/{codigo}
     defaults: { _controller: CituaoCoordBundle:Default:practicante }
 
 cituao_coord_registrar_practicante:
@@ -15,7 +15,7 @@ cituao_coord_registrar_practicante:
     defaults: { _controller: CituaoCoordBundle:Default:registrarPracticante }
 
 cituao_coord_cronograma:
-    pattern:  /coordinador/cronograma/{ci}
+    pattern:  /coordinador/cronograma/{codigo}
     defaults: { _controller: CituaoCoordBundle:Default:cronograma }
 
 cituao_coord_cargar_estudiantes:
