@@ -1,0 +1,69 @@
+Cituao\AcademicoBundle\Entity\Practicante:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        codigo:
+            type: string
+            length: '50'
+            unique: true
+        ci:
+            type: string
+            length: '12'
+        apellidos:
+            type: string
+            length: '50'
+        nombres:
+            type: string
+            length: '50'
+        apellidos:
+            type: string
+            length: '50'
+        tipo:
+            type: string
+            length: '3'
+        emailInstitucional:
+            type: string
+            length: '50'
+        emailPersonal:
+            type: string
+            length: '50'
+        telefonoMovil:
+            type: string
+            length: '50'
+        estado:
+            type: string
+            length: '1'
+        fechaAsesoria1:
+            type: datetime
+        fechaAsesoria2:
+            type: datetime
+        fechaAsesoria3:
+            type: datetime
+        fechaAsesoria4:
+            type: datetime
+        fechaAsesoria5:
+            type: datetime
+        fechaAsesoria6:
+            type: datetime
+        fechaAsesoria7:
+            type: datetime
+        fechaVisitaP:
+            type: datetime
+        fechaVisita1:
+            type: datetime
+        fechaVisita2:
+            type: datetime
+        fechainformeGestion1:
+            type: datetime
+        fechainformeGestion2:
+            type: datetime
+        fechainformeGestion3:
+            type: datetime
+        fechainformeFinal:
+            type: datetime
+    lifecycleCallbacks: {  }

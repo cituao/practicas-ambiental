@@ -4,13 +4,9 @@ namespace Cituao\CoordBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Practicante
- */
 
 /**
- * Cituao\CoordBundle\Entity\Practicante
- *
+ *  
  * @ORM\Table(name="Practicante")
  * @ORM\Entity(repositoryClass="Cituao\CoordBundle\Entity\UserRepository")
  */
@@ -159,6 +155,14 @@ class Practicante
      * @ORM\Column(type="datetime")
      */
     private $fechainformeFinal;
+
+
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Entity\Area", inversedBy="practicantes")
+	* @ORM\JoinColumn(name="id_area", referencedColumnName = "id") 
+	**/	
+	protected $area;
+
 
     /**
      * Get id
@@ -813,4 +817,27 @@ class Practicante
     {
         return $this->fechainformeFinal;
     }
+
+	/**
+     * Set area
+     *
+     * @param Cituao\CoordBundle\Entity\Tipo $area
+     */
+    public function setTipo(\Cituao\CoordBundle\Entity\Area $area)
+    {
+        $this->area = $area;
+    }
+
+    /**
+     * Get area
+     *
+     * @return Cituao\CoordBundle\Entity\Area
+     */
+    public function getArea()
+    {
+        return $this->area;
+    }
+
+
+
 }
