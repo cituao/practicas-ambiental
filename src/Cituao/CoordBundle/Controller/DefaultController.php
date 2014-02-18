@@ -113,8 +113,7 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 		
-		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
-		
+				
         $formulario = $this->createForm(new PracticanteType(), $practicante);
 		$formulario->handleRequest($peticion);
 
