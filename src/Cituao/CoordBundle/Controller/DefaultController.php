@@ -13,6 +13,7 @@ use Cituao\CoordBundle\Form\Type\PracticanteType;
 use Cituao\ExternoBundle\Form\Type\ExternoType;
 use Cituao\AcademicoBundle\Entity\Academico;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
+use Cituao\CoordBundle\Entity\Area;
 
 use \DateTime;
 
@@ -53,17 +54,13 @@ class DefaultController extends Controller
 	}
 
 	/********************************************************/
-	//Muestra un practicante registrado en la base de datos
+	//Muestra formulario para registrar un nuevo practicante en la base de datos
 	/********************************************************/		
-	public function practicanteAction($ci){
+	public function registrarPracticanteAction(){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 
-		
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $ci));
-		
-		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
+		$practicante = new Practicante();
 		
         $formulario = $this->createForm(new PracticanteType(), $practicante);
         
@@ -84,8 +81,70 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
 		
+        return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView()));
+	}
+
+
+	/********************************************************/
+	//Muestra un practicante registrado en la base de datos
+	/********************************************************/		
+	public function practicanteAction($ci){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('ci' => $ci));
+		
+		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
+		
+        $formulario = $this->createForm(new PracticanteType(), $practicante);
+        
+		$formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+				$f = new \DateTime();
+				
+				$f->setDate(date('Y-m-d H:i:s'));
+				$area = new Area();
+				$practicante->setArea($area);
+				$practicante->setTipo($sad);
+				$practicante->setEmailPersonal($sad);
+				$practicante->setEstado($sad);
+
+				$practicante->setFechaAsesoria1($f);
+				$practicante->setFechaAsesoria2($f);
+				$practicante->setFechaAsesoria3($f);
+				$practicante->setFechaAsesoria4($f);
+				$practicante->setFechaAsesoria5($f);
+				$practicante->setFechaAsesoria6($f);
+				$practicante->setFechaAsesoria7($f);
+				$practicante->setFechaVisitaP($f);
+				$practicante->setFechaVisita1($f);
+				$practicante->setFechaVisita2($f);
+				$practicante->setFechaInformeGestion1($f);
+				$practicante->setFechaInformeGestion2($f);
+				$practicante->setFechaInformeGestion3($f);
+				$practicante->setFechaInformeFinal($f);
+			
+				$practicante->upload();				
+				$practicante->setPath();
+
+            // Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($practicante);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+            );
+
+
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+		
         return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
-		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+		
 	}
 
 	/********************************************************/
@@ -113,6 +172,7 @@ class DefaultController extends Controller
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
 		    ->add('file')
+			->add('name')
 		    ->getForm();
 
 		$form->handleRequest($request);
@@ -187,12 +247,26 @@ class DefaultController extends Controller
 
 				//cargamos los demas datos
 				$practicante->setTelefonoMovil($sad);
-				$practicante->setModalidad($sad);
-				$practicante->setFoto($sad);
+				$area = new Area();
+				$practicante->setArea($area);
 				$practicante->setTipo($sad);
 				$practicante->setEmailPersonal($sad);
 				$practicante->setEstado($sad);
-	
+
+				$practicante->setFechaAsesoria1($f);
+				$practicante->setFechaAsesoria2($f);
+				$practicante->setFechaAsesoria3($f);
+				$practicante->setFechaAsesoria4($f);
+				$practicante->setFechaAsesoria5($f);
+				$practicante->setFechaAsesoria6($f);
+				$practicante->setFechaAsesoria7($f);
+				$practicante->setFechaVisitaP($f);
+				$practicante->setFechaVisita1($f);
+				$practicante->setFechaVisita2($f);
+				$practicante->setFechaInformeGestion1($f);
+				$practicante->setFechaInformeGestion2($f);
+				$practicante->setFechaInformeGestion3($f);
+				$practicante->setFechaInformeFinal($f);
 				$em->persist($practicante);
 				$em->flush();
 				$i++;

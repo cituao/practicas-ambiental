@@ -2,52 +2,54 @@
 
 
 {% block infowrapper  %}
-			<div id="infoWrapper">
-		{% if msgerr.id == '1' %}
-			<div>{{ msgerr.descripcion }} </div>		
-		{% else %}
+	<div id="infoWrapper">
+		<div>
+			<a href="{{ path('cituao_coord_registrar_practicante') }}"> + Registrar practicante </a>	
+		</div>
+	{% if msgerr.id == '1' %}
+		<div id = "error">{{ msgerr.descripcion }} </div>		
+	{% else %}
 
-
-	<div>
-	<table id = "customers">
-	<tbody>
-		<tr>
-			<th>#</th>
-			<th>pIC</th>
-			<th>CODIGO</th>
-			<th>APELLIDOS</th>
-			<th>NOMBRES</th>
-			<th>Acción</th>
-	
-		</tr>
-		
-		{% set id = 1 %}
-		{% set sw = false %}
-		{% for practicante in listaPracticantes %}
-			{% if sw == false %}
+		<div>
+			<table id = "customers">
+			<tbody>
 				<tr>
-				{% set sw = true %}
-			{% else %}
-				<tr class = "alt">
+					<th>#</th>
+					<th>pIC</th>
+					<th>CODIGO</th>
+					<th>APELLIDOS</th>
+					<th>NOMBRES</th>
+					<th>Acción</th>
+	
+				</tr>
+		
+				{% set id = 1 %}
 				{% set sw = false %}
-			{% endif %}
+				{% for practicante in listaPracticantes %}
+					{% if sw == false %}
+						<tr>
+						{% set sw = true %}
+					{% else %}
+						<tr class = "alt">
+						{% set sw = false %}
+					{% endif %}
 
-				<td>{{ id }}</th>
+						<td>{{ id }}</th>
 				
-				<td><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Pulpit rock" width="68" height="68"></td>
-				<td>{{ practicante.codigo }}</td>
-				<td>{{ practicante.apellidos }}</td>
-				<td>{{ practicante.nombres }}</td>
+						<td><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Pulpit rock" width="68" height="68"></td>
+						<td>{{ practicante.codigo }}</td>
+						<td>{{ practicante.apellidos }}</td>
+						<td>{{ practicante.nombres }}</td>
 				
-				<td><a href="{{ path('cituao_coord_practicante', { 'ci': practicante.ci}) }}"> Ver </a></td>
-			</tr>
-			{% set id = id + 1 %}
-		{% endfor %}
-		</tbody>
-	</table>
-	</div>
-
-	</div>
+						<td><a href="{{ path('cituao_coord_practicante', { 'ci': practicante.ci}) }}"> Ver </a></td>
+					</tr>
+					{% set id = id + 1 %}
+				{% endfor %}
+				</tbody>
+			</table>
+			</div>
+		</div>
 	{% endif %}
-	{% endblock %}
+	</div> <!-- cierra info wrapper-->
+{% endblock %}
 

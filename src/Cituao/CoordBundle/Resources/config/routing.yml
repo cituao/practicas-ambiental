@@ -10,6 +10,10 @@ cituao_coord_practicante:
     pattern:  /coordinador/practicante/{ci}
     defaults: { _controller: CituaoCoordBundle:Default:practicante }
 
+cituao_coord_registrar_practicante:
+    pattern:  /coordinador/registrarpracticante
+    defaults: { _controller: CituaoCoordBundle:Default:registrarPracticante }
+
 cituao_coord_cronograma:
     pattern:  /coordinador/cronograma/{ci}
     defaults: { _controller: CituaoCoordBundle:Default:cronograma }

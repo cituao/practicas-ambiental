@@ -1,5 +1,5 @@
 <?php
-// src/Cituao/CoordBundle/Form/Type/HojadevidaType.php
+// src/Cituao/CoordBundle/Form/Type/PracticanteType.php
 namespace Cituao\CoordBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -11,19 +11,17 @@ class PracticanteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-	    ->add('codigo','text', array('label' => 'Código','read_only'=>'true'))
-        ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
-		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))
-		->add('ci','text', array('label' => 'Cédula de identidad','read_only'=>'true'))
-        ->add('emailInstitucional', 'email',  array('label' => 'Email institucional', 'read_only' => 'true'))
-        ->add('emailPersonal', 'email',  array('label' => 'Email personal',  'attr' => array('placeholder' => 'usuario@servidor'), 'read_only'=>'true' ))
-		->add('telefonoMovil','text', array('label' => 'Teléfono móvil' ,'read_only'=>'true'))
-		->add('tipo','text', array('label' => 'Teléfono móvil' ,'read_only'=>'true'));
-		
+		->add('file')
+		->add('ci','text', array('label' => 'Cédula de identidad'))	    
+		->add('codigo','text', array('label' => 'Código'))
+        ->add('apellidos','text', array('label' => 'Apellidos'))
+		->add('nombres','text', array('label' => 'Nombres'))
+        ->add('emailInstitucional', 'email',  array('label' => 'Email institucional' ,  'attr' => array('placeholder' => 'usuario@servidor')))
+        ->add('emailPersonal', 'email',  array('label' => 'Email personal',  'attr' => array('placeholder' => 'usuario@servidor')))
+		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'));
 
-		//->add('modalidad','choice', array('label' => 'Modalidad', 'choices'=> array('aud'=>'Audio', 'vis'=>'Visual', 'imp'=>'Impreso'),'multiple'=>true));*/
-		//->add('tipo','choice', array('label' => 'Tipo', 'choices'=> array('nac'=>'Nacional', 'int'=>'Internacional')))
 
+		//->add('ci','text', array('label' => 'Cédula de identidad','read_only'=>'true'))
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

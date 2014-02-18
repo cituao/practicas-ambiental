@@ -2,6 +2,8 @@
 namespace Cituao\CoordBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  *  
@@ -39,6 +41,13 @@ class Practicante
      */
     private $ci;
 
+     /**
+     * @ORM\Column(type="string", length=3)
+     */
+    private $tipo;
+
+
+
     /**
      * @ORM\Column(type="datetime")
      */
@@ -63,11 +72,6 @@ class Practicante
      * @ORM\Column(type="string", length=3)
      */
     private $modalidad;
-
-     /**
-     * @ORM\Column(type="string", length=3)
-     */
-    private $tipo;
 
      /**
      * @ORM\Column(type="string", length=2)
@@ -144,12 +148,45 @@ class Practicante
      */
     private $fechaInformeFinal;
 
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $path;
+
+
+	/**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
 
 	/**
 	* @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Entity\Area", inversedBy="practicantes")
 	* @ORM\JoinColumn(name="id_area", referencedColumnName = "id") 
 	**/	
 	protected $area;
+
+
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
 
 
     /**
@@ -207,6 +244,31 @@ class Practicante
     {
         return $this->apellidos;
     }
+
+
+   /**
+     * Set tipo
+     *
+     * @param string $tipo
+     * @return Practicante
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
 
     /**
      * Set nombres
@@ -599,103 +661,13 @@ class Practicante
      * @return \DateTime 
      */
     public function getFechaVisita2()
+
     {
         return $this->fechaVisita2;
     }
 
-    /**
-     * Set fechainformeGestion1
-     *
-     * @param \DateTime $fechainformeGestion1
-     * @return Practicante
-     */
-    public function setFechainformeGestion1($fechainformeGestion1)
-    {
-        $this->fechainformeGestion1 = $fechainformeGestion1;
-    
-        return $this;
-    }
 
-    /**
-     * Get fechainformeGestion1
-     *
-     * @return \DateTime 
-     */
-    public function getFechainformeGestion1()
-    {
-        return $this->fechainformeGestion1;
-    }
-
-    /**
-     * Set fechainformeGestion2
-     *
-     * @param \DateTime $fechainformeGestion2
-     * @return Practicante
-     */
-    public function setFechainformeGestion2($fechainformeGestion2)
-    {
-        $this->fechainformeGestion2 = $fechainformeGestion2;
-    
-        return $this;
-    }
-
-    /**
-     * Get fechainformeGestion2
-     *
-     * @return \DateTime 
-     */
-    public function getFechainformeGestion2()
-    {
-        return $this->fechainformeGestion2;
-    }
-
-    /**
-     * Set fechainformeGestion3
-     *
-     * @param \DateTime $fechainformeGestion3
-     * @return Practicante
-     */
-    public function setFechainformeGestion3($fechainformeGestion3)
-    {
-        $this->fechainformeGestion3 = $fechainformeGestion3;
-    
-        return $this;
-    }
-
-    /**
-     * Get fechainformeGestion3
-     *
-     * @return \DateTime 
-     */
-    public function getFechainformeGestion3()
-    {
-        return $this->fechainformeGestion3;
-    }
-
-    /**
-     * Set fechainformeFinal
-     *
-     * @param \DateTime $fechainformeFinal
-     * @return Practicante
-     */
-    public function setFechainformeFinal($fechainformeFinal)
-    {
-        $this->fechainformeFinal = $fechainformeFinal;
-    
-        return $this;
-    }
-
-    /**
-     * Get fechainformeFinal
-     *
-     * @return \DateTime 
-     */
-    public function getFechainformeFinal()
-    {
-        return $this->fechainformeFinal;
-    }
-
-	/**
+ 	/**
      * Set area
      *
      * @param Cituao\CoordBundle\Entity\Area $area
@@ -705,6 +677,8 @@ class Practicante
         $this->area = $area;
     }
 
+
+  
     /**
      * Get area
      *
@@ -714,5 +688,180 @@ class Practicante
     {
         return $this->area;
     }
+
+
+    /**
+     * Set fechaInformeGestion1
+     *
+     * @param \DateTime $fechaInformeGestion1
+     * @return Practicante
+     */
+    public function setFechaInformeGestion1($fechaInformeGestion1)
+    {
+        $this->fechaInformeGestion1 = $fechaInformeGestion1;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaInformeGestion1
+     *
+     * @return \DateTime 
+     */
+    public function getFechaInformeGestion1()
+    {
+        return $this->fechaInformeGestion1;
+    }
+
+    /**
+     * Set fechaInformeGestion2
+     *
+     * @param \DateTime $fechaInformeGestion2
+     * @return Practicante
+     */
+    public function setFechaInformeGestion2($fechaInformeGestion2)
+    {
+        $this->fechaInformeGestion2 = $fechaInformeGestion2;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaInformeGestion2
+     *
+     * @return \DateTime 
+     */
+    public function getFechaInformeGestion2()
+    {
+        return $this->fechaInformeGestion2;
+    }
+
+    /**
+     * Set fechaInformeGestion3
+     *
+     * @param \DateTime $fechaInformeGestion3
+     * @return Practicante
+     */
+    public function setFechaInformeGestion3($fechaInformeGestion3)
+    {
+        $this->fechaInformeGestion3 = $fechaInformeGestion3;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaInformeGestion3
+     *
+     * @return \DateTime 
+     */
+    public function getFechaInformeGestion3()
+    {
+        return $this->fechaInformeGestion3;
+    }
+
+    /**
+     * Set fechaInformeFinal
+     *
+     * @param \DateTime $fechaInformeFinal
+     * @return Practicante
+     */
+    public function setFechaInformeFinal($fechaInformeFinal)
+    {
+        $this->fechaInformeFinal = $fechaInformeFinal;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaInformeFinal
+     *
+     * @return \DateTime 
+     */
+    public function getFechaInformeFinal()
+    {
+        return $this->fechaInformeFinal;
+    }
+
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Document
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+
+
+public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/documents';
+    }
+
+
+	public function upload()
+	{
+	 // the file property can be empty if the field is not required
+		if (null === $this->getFile()) {
+		    return;
+		}
+
+		// use the original file name here but you should
+		// sanitize it at least to avoid any security issues
+
+		// move takes the target directory and then the
+		// target filename to move to
+		
+		$nombre = $this->ci;
+		$this->getFile()->move(
+		    $this->getUploadRootDir(),
+		    $nombre   //$this->getFile()->getClientOriginalName()
+		);
+		
+		// set the path property to the filename where you've saved the file
+		//$this->path = $this->getFile()->getClientOriginalName();
+		$this->path = $nombre;
+		// clean up the file property as you won't need it anymore
+		$this->file = null;	
+	}
+
 
 }

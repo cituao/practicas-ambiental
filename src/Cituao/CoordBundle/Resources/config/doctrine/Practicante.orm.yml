@@ -63,4 +63,8 @@ Cituao\CoordBundle\Entity\Practicante:
             type: datetime
         fechaInformeFinal:
             type: datetime
+        path:
+            type: string
+            length: '30'
+
     lifecycleCallbacks: {  }

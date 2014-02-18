@@ -1,0 +1,31 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
+			<div>{{ form_errors(formulario) }}</div>	
+			
+			<div>{{ form_row(formulario.file) }}</div>
+			<div>{{ form_row(formulario.codigo) }}</div>
+			<div>{{ form_row(formulario.apellidos) }}</div>
+			<div>{{ form_row(formulario.nombres) }}</div>
+			<div>{{ form_row(formulario.ci) }}</div>
+			<div>{{ form_row(formulario.emailInstitucional) }}	</div>
+			<div>{{ form_row(formulario.emailPersonal) }}	</div>
+			<div>{{ form_row(formulario.telefonoMovil) }}</div>
+			<input class="boton" type="submit" value="Guardar" />
+		</form>
+	</div> <!-- cierra infoWrapper -->
+{% endblock %}
+
+{% block aside %}
+	<section>
+		<div id = "barratitulo">
+			<h2>Opciones</h2>
+		</div>
+		<div>
+			<a href="{{ path('cituao_coord_cronograma') }}">Cronograma de actividades</a>
+			<a href="{{ path('logout') }}">Enviar correo</a>
+		</div>
+	</section>
+{% endblock %}

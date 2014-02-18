@@ -31,8 +31,6 @@
 
 
 {% block body %}
-
-	
     	<div id="wrapper">
     		<div id="header">
     			<img src="{{ asset('img/headerLogo.png') }}" >
@@ -42,25 +40,18 @@
 	    			<a href="{{ path('cituao_coord_homepage') }}" id="homeButton">Panel Principal</a>
     			</div>
     			<a href="{{ path('logout') }}" id="cerrarButton">Cerrar Sesión</a>
-
     		</div><!-- cierra header -->
 			
 			{% block infowrapper  %}
 
-					{% endblock %}
-			
-    		
-
-
+			{% endblock %}
+		</div> <!-- cierra wrapper -->
 {% endblock %}
 
 
-		{% block javascripts %}
-		
-		 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
-   
-		<script src="script/FitText.js-master/jquery.fittext.js"></script>
-
-		{% endblock %}
+{% block javascripts %}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
+	<script src="script/FitText.js-master/jquery.fittext.js"></script>
+{% endblock %}
 
 
