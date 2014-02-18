@@ -2,13 +2,13 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
-
+		
 		<form action="{{ path('cituao_coord_practicante' , { 'codigo': practicante.codigo}) }}" method="post" {{ form_enctype(formulario) }}>
 				<div>{{ form_errors(formulario) }}</div>	
 				
 				<div><img border="0" src="{{ asset('uploads/fotos/users.jpg') }}" alt="Pulpit rock" width="68" height="68"></div>
 				
-				
+				<div>{{ form_row(formulario.file) }}</div>
 				
 				<div>{{ form_row(formulario.codigo) }}</div>
 

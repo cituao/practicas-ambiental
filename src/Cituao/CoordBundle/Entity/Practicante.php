@@ -831,7 +831,7 @@ public function getAbsolutePath()
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads/documents';
+        return 'uploads/fotos';
     }
 
 
@@ -848,15 +848,18 @@ public function getAbsolutePath()
 		// move takes the target directory and then the
 		// target filename to move to
 		
-		$nombre = $this->ci;
+		$nombre = $this->codigo.'.png';
 		$this->getFile()->move(
 		    $this->getUploadRootDir(),
-		    $this->getFile()->getClientOriginalName()
+		    $nombre
 		);
+		//$this->getFile()->getClientOriginalName()
+		
+		
 		
 		// set the path property to the filename where you've saved the file
-		$this->path = $this->getFile()->getClientOriginalName();
-		//$this->path = $nombre;
+		//$this->path = $this->getFile()->getClientOriginalName();
+		$this->path = $nombre;
 		// clean up the file property as you won't need it anymore
 		$this->file = null;	
 	}
