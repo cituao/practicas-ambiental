@@ -851,12 +851,12 @@ public function getAbsolutePath()
 		$nombre = $this->ci;
 		$this->getFile()->move(
 		    $this->getUploadRootDir(),
-		    $nombre   //$this->getFile()->getClientOriginalName()
+		    $this->getFile()->getClientOriginalName()
 		);
 		
 		// set the path property to the filename where you've saved the file
-		//$this->path = $this->getFile()->getClientOriginalName();
-		$this->path = $nombre;
+		$this->path = $this->getFile()->getClientOriginalName();
+		//$this->path = $nombre;
 		// clean up the file property as you won't need it anymore
 		$this->file = null;	
 	}

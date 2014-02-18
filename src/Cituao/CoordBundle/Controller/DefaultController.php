@@ -119,7 +119,7 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
-				$practicante->upload();				
+				//$practicante->upload();				
             // Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);
             $em->flush();

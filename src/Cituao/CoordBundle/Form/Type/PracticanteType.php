@@ -11,7 +11,7 @@ class PracticanteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		->add('file')
+		
 		->add('ci','text', array('label' => 'Cédula de identidad'))	    
 		->add('codigo','text', array('label' => 'Código'))
         ->add('apellidos','text', array('label' => 'Apellidos'))
@@ -21,7 +21,7 @@ class PracticanteType extends AbstractType
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'))
 		->add('area','entity', array('class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
 
-		//->add('ci','text', array('label' => 'Cédula de identidad','read_only'=>'true'))
+		//->add('ci','text', array('label' => 'Cédula de identidad','read_only'=>'true'))    ->add('file')
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
