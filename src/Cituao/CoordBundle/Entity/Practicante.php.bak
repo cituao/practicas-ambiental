@@ -1,7 +1,9 @@
 <?php
+
 namespace Cituao\CoordBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  *  
@@ -112,6 +114,16 @@ class Practicante
     /**
      * @ORM\Column(type="datetime")
      */
+    private $fechainformeAvance1;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $fechainformeAvance2;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private $fechaVisitaP;
 
     /**
@@ -127,22 +139,22 @@ class Practicante
     /**
      * @ORM\Column(type="datetime")
      */
-    private $fechaInformeGestion1;
+    private $fechainformeGestion1;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $fechaInformeGestion2;
+    private $fechainformeGestion2;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $fechaInformeGestion3;
+    private $fechainformeGestion3;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $fechaInformeFinal;
+    private $fechainformeFinal;
 
 
 	/**
@@ -346,7 +358,51 @@ class Practicante
         return $this->telefonoMovil;
     }
 
+    /**
+     * Set modalidad
+     *
+     * @param string $modalidad
+     * @return Practicante
+     */
+    public function setModalidad($modalidad)
+    {
+        $this->modalidad = $modalidad;
+    
+        return $this;
+    }
 
+    /**
+     * Get modalidad
+     *
+     * @return string 
+     */
+    public function getModalidad()
+    {
+        return $this->modalidad;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param string $tipo
+     * @return Practicante
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
 
     /**
      * Set estado
@@ -371,6 +427,28 @@ class Practicante
         return $this->estado;
     }
 
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     * @return Practicante
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+    
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string 
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
 
     /**
      * Set fechaAsesoria1
@@ -533,6 +611,51 @@ class Practicante
         return $this->fechaAsesoria7;
     }
 
+    /**
+     * Set fechainformeAvance1
+     *
+     * @param \DateTime $fechainformeAvance1
+     * @return Practicante
+     */
+    public function setFechainformeAvance1($fechainformeAvance1)
+    {
+        $this->fechainformeAvance1 = $fechainformeAvance1;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechainformeAvance1
+     *
+     * @return \DateTime 
+     */
+    public function getFechainformeAvance1()
+    {
+        return $this->fechainformeAvance1;
+    }
+
+    /**
+     * Set fechainformeAvance2
+     *
+     * @param \DateTime $fechainformeAvance2
+     * @return Practicante
+     */
+    public function setFechainformeAvance2($fechainformeAvance2)
+    {
+        $this->fechainformeAvance2 = $fechainformeAvance2;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechainformeAvance2
+     *
+     * @return \DateTime 
+     */
+    public function getFechainformeAvance2()
+    {
+        return $this->fechainformeAvance2;
+    }
 
     /**
      * Set fechaVisitaP
@@ -698,9 +821,9 @@ class Practicante
 	/**
      * Set area
      *
-     * @param Cituao\CoordBundle\Entity\Area $area
+     * @param Cituao\CoordBundle\Entity\Tipo $area
      */
-    public function setArea(\Cituao\CoordBundle\Entity\Area $area)
+    public function setTipo(\Cituao\CoordBundle\Entity\Area $area)
     {
         $this->area = $area;
     }
@@ -714,5 +837,7 @@ class Practicante
     {
         return $this->area;
     }
+
+
 
 }

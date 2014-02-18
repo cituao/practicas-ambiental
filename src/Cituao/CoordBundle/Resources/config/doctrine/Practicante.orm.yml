@@ -9,23 +9,21 @@ Cituao\CoordBundle\Entity\Practicante:
                 strategy: AUTO
         codigo:
             type: string
-            length: '50'
-            unique: true
+            length: '20'
         ci:
             type: string
-            length: '12'
+            length: '15'
         apellidos:
             type: string
             length: '50'
         nombres:
             type: string
             length: '50'
-        apellidos:
-            type: string
-            length: '50'
         tipo:
             type: string
             length: '3'
+        area:
+            type: integer
         emailInstitucional:
             type: string
             length: '50'
@@ -36,8 +34,7 @@ Cituao\CoordBundle\Entity\Practicante:
             type: string
             length: '50'
         estado:
-            type: string
-            length: '1'
+            type: boolean
         fechaAsesoria1:
             type: datetime
         fechaAsesoria2:
@@ -58,12 +55,12 @@ Cituao\CoordBundle\Entity\Practicante:
             type: datetime
         fechaVisita2:
             type: datetime
-        fechainformeGestion1:
+        fechaInformeGestion1:
             type: datetime
-        fechainformeGestion2:
+        fechaInformeGestion2:
             type: datetime
-        fechainformeGestion3:
+        fechaInformeGestion3:
             type: datetime
-        fechainformeFinal:
+        fechaInformeFinal:
             type: datetime
     lifecycleCallbacks: {  }
