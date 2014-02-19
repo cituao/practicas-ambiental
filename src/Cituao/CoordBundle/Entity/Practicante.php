@@ -47,7 +47,7 @@ class Practicante
     private $tipo;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaMatriculacion;
 
@@ -77,72 +77,72 @@ class Practicante
     private $estado;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaAsesoria1;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaAsesoria2;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaAsesoria3;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaAsesoria4;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaAsesoria5;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaAsesoria6;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaAsesoria7;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaVisitaP;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaVisita1;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaVisita2;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaInformeGestion1;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaInformeGestion2;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaInformeGestion3;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fechaInformeFinal;
 
@@ -314,28 +314,7 @@ class Practicante
         return $this->ci;
     }
 
-    /**
-     * Set fechaMatriculacion
-     *
-     * @param \DateTime $fechaMatriculacion
-     * @return Practicante
-     */
-    public function setFechaMatriculacion($fechaMatriculacion)
-    {
-        $this->fechaMatriculacion = $fechaMatriculacion;
-    
-        return $this;
-    }
 
-    /**
-     * Get fechaMatriculacion
-     *
-     * @return \DateTime 
-     */
-    public function getFechaMatriculacion()
-    {
-        return $this->fechaMatriculacion;
-    }
 
     /**
      * Set emailInstitucional
@@ -435,7 +414,7 @@ class Practicante
     /**
      * Set fechaAsesoria1
      *
-     * @param \DateTime $fechaAsesoria1
+     * @param \date $fechaAsesoria1
      * @return Practicante
      */
     public function setFechaAsesoria1($fechaAsesoria1)
@@ -448,7 +427,7 @@ class Practicante
     /**
      * Get fechaAsesoria1
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaAsesoria1()
     {
@@ -458,7 +437,7 @@ class Practicante
     /**
      * Set fechaAsesoria2
      *
-     * @param \DateTime $fechaAsesoria2
+     * @param \date $fechaAsesoria2
      * @return Practicante
      */
     public function setFechaAsesoria2($fechaAsesoria2)
@@ -471,7 +450,7 @@ class Practicante
     /**
      * Get fechaAsesoria2
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaAsesoria2()
     {
@@ -481,7 +460,7 @@ class Practicante
     /**
      * Set fechaAsesoria3
      *
-     * @param \DateTime $fechaAsesoria3
+     * @param \date $fechaAsesoria3
      * @return Practicante
      */
     public function setFechaAsesoria3($fechaAsesoria3)
@@ -494,7 +473,7 @@ class Practicante
     /**
      * Get fechaAsesoria3
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaAsesoria3()
     {
@@ -504,7 +483,7 @@ class Practicante
     /**
      * Set fechaAsesoria4
      *
-     * @param \DateTime $fechaAsesoria4
+     * @param \date $fechaAsesoria4
      * @return Practicante
      */
     public function setFechaAsesoria4($fechaAsesoria4)
@@ -517,7 +496,7 @@ class Practicante
     /**
      * Get fechaAsesoria4
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaAsesoria4()
     {
@@ -527,7 +506,7 @@ class Practicante
     /**
      * Set fechaAsesoria5
      *
-     * @param \DateTime $fechaAsesoria5
+     * @param \date $fechaAsesoria5
      * @return Practicante
      */
     public function setFechaAsesoria5($fechaAsesoria5)
@@ -540,7 +519,7 @@ class Practicante
     /**
      * Get fechaAsesoria5
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaAsesoria5()
     {
@@ -550,7 +529,7 @@ class Practicante
     /**
      * Set fechaAsesoria6
      *
-     * @param \DateTime $fechaAsesoria6
+     * @param \date $fechaAsesoria6
      * @return Practicante
      */
     public function setFechaAsesoria6($fechaAsesoria6)
@@ -563,7 +542,7 @@ class Practicante
     /**
      * Get fechaAsesoria6
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaAsesoria6()
     {
@@ -573,7 +552,7 @@ class Practicante
     /**
      * Set fechaAsesoria7
      *
-     * @param \DateTime $fechaAsesoria7
+     * @param \date $fechaAsesoria7
      * @return Practicante
      */
     public function setFechaAsesoria7($fechaAsesoria7)
@@ -586,7 +565,7 @@ class Practicante
     /**
      * Get fechaAsesoria7
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaAsesoria7()
     {
@@ -597,7 +576,7 @@ class Practicante
     /**
      * Set fechaVisitaP
      *
-     * @param \DateTime $fechaVisitaP
+     * @param \date $fechaVisitaP
      * @return Practicante
      */
     public function setFechaVisitaP($fechaVisitaP)
@@ -610,7 +589,7 @@ class Practicante
     /**
      * Get fechaVisitaP
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaVisitaP()
     {
@@ -620,7 +599,7 @@ class Practicante
     /**
      * Set fechaVisita1
      *
-     * @param \DateTime $fechaVisita1
+     * @param \date $fechaVisita1
      * @return Practicante
      */
     public function setFechaVisita1($fechaVisita1)
@@ -633,7 +612,7 @@ class Practicante
     /**
      * Get fechaVisita1
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaVisita1()
     {
@@ -643,7 +622,7 @@ class Practicante
     /**
      * Set fechaVisita2
      *
-     * @param \DateTime $fechaVisita2
+     * @param \date $fechaVisita2
      * @return Practicante
      */
     public function setFechaVisita2($fechaVisita2)
@@ -656,13 +635,36 @@ class Practicante
     /**
      * Get fechaVisita2
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaVisita2()
-
     {
         return $this->fechaVisita2;
     }
+
+    /**
+     * Set fechaMatriculacion
+     *
+     * @param \date $fechaMatriculacion
+     * @return Practicante
+     */
+    public function setfechaMatriculacion($fecha)
+    {
+        $this->fechaMatriculacion = $fecha;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaMatriculacion
+     *
+     * @return \date 
+     */
+    public function getfechaMatriculacion()
+    {
+        return $this->fechaMatriculacion;
+    }
+
 
 
  	/**
@@ -691,7 +693,7 @@ class Practicante
     /**
      * Set fechaInformeGestion1
      *
-     * @param \DateTime $fechaInformeGestion1
+     * @param \date $fechaInformeGestion1
      * @return Practicante
      */
     public function setFechaInformeGestion1($fechaInformeGestion1)
@@ -704,7 +706,7 @@ class Practicante
     /**
      * Get fechaInformeGestion1
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaInformeGestion1()
     {
@@ -714,7 +716,7 @@ class Practicante
     /**
      * Set fechaInformeGestion2
      *
-     * @param \DateTime $fechaInformeGestion2
+     * @param \date $fechaInformeGestion2
      * @return Practicante
      */
     public function setFechaInformeGestion2($fechaInformeGestion2)
@@ -727,7 +729,7 @@ class Practicante
     /**
      * Get fechaInformeGestion2
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaInformeGestion2()
     {
@@ -737,7 +739,7 @@ class Practicante
     /**
      * Set fechaInformeGestion3
      *
-     * @param \DateTime $fechaInformeGestion3
+     * @param \date $fechaInformeGestion3
      * @return Practicante
      */
     public function setFechaInformeGestion3($fechaInformeGestion3)
@@ -750,7 +752,7 @@ class Practicante
     /**
      * Get fechaInformeGestion3
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaInformeGestion3()
     {
@@ -760,7 +762,7 @@ class Practicante
     /**
      * Set fechaInformeFinal
      *
-     * @param \DateTime $fechaInformeFinal
+     * @param \date $fechaInformeFinal
      * @return Practicante
      */
     public function setFechaInformeFinal($fechaInformeFinal)
@@ -773,7 +775,7 @@ class Practicante
     /**
      * Get fechaInformeFinal
      *
-     * @return \DateTime 
+     * @return \date 
      */
     public function getFechaInformeFinal()
     {
@@ -848,7 +850,8 @@ public function getAbsolutePath()
 		// move takes the target directory and then the
 		// target filename to move to
 		
-		$nombre = $this->codigo.'.png';
+		//asignamos el codigo uao a la foto
+		$nombre = $this->codigo.'.png'; 
 		$this->getFile()->move(
 		    $this->getUploadRootDir(),
 		    $nombre

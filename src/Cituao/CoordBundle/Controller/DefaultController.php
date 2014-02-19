@@ -53,39 +53,37 @@ class DefaultController extends Controller
 		
 	}
 
-	/********************************************************/
+	/***************************************************************************/
 	//Muestra formulario para registrar un nuevo practicante en la base de datos
-	/********************************************************/		
+	/***************************************************************************/		
 	public function registrarPracticanteAction(){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
-
 		$practicante = new Practicante();
-		
         $formulario = $this->createForm(new PracticanteType(), $practicante);
-        
 		$formulario->handleRequest($peticion);
-
         if ($formulario->isValid()) {
 			
-            
-				$practicante->setFechaAsesoria1($f);
-				$practicante->setFechaAsesoria2($f);
-				$practicante->setFechaAsesoria3($f);
-				$practicante->setFechaAsesoria4($f);
-				$practicante->setFechaAsesoria5($f);
-				$practicante->setFechaAsesoria6($f);
-				$practicante->setFechaAsesoria7($f);
-				$practicante->setFechaVisitaP($f);
-				$practicante->setFechaVisita1($f);
-				$practicante->setFechaVisita2($f);
-				$practicante->setFechaInformeGestion1($f);
-				$practicante->setFechaInformeGestion2($f);
-				$practicante->setFechaInformeGestion3($f);
-				$practicante->setFechaInformeFinal($f);
+			
+			$f = $practicante->getFechaMatriculacion();
+			 
+			$practicante->setFechaAsesoria1($f);
+			$practicante->setFechaAsesoria2($f);
+			$practicante->setFechaAsesoria3($f);
+			$practicante->setFechaAsesoria4($f);
+			$practicante->setFechaAsesoria5($f);
+			$practicante->setFechaAsesoria6($f);
+			$practicante->setFechaAsesoria7($f);
+			$practicante->setFechaVisitaP($f);
+			$practicante->setFechaVisita1($f);
+			$practicante->setFechaVisita2($f);
+			$practicante->setFechaInformeGestion1($f);
+			$practicante->setFechaInformeGestion2($f);
+			$practicante->setFechaInformeGestion3($f);
+			$practicante->setFechaInformeFinal($f);
+			$practicante->setPath('user.jpeg');
 
-			
-			
+		
 			// Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);
             $em->flush();
@@ -94,11 +92,8 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-
-
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
-		
         return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView()));
 	}
 
@@ -252,6 +247,7 @@ class DefaultController extends Controller
 				$practicante->setFechaInformeGestion2($f);
 				$practicante->setFechaInformeGestion3($f);
 				$practicante->setFechaInformeFinal($f);
+				$practicante->setPath('user.jpeg');
 				$em->persist($practicante);
 				$em->flush();
 				$i++;

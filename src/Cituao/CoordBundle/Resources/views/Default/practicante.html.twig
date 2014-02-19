@@ -2,49 +2,31 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
-		
 		<form action="{{ path('cituao_coord_practicante' , { 'codigo': practicante.codigo}) }}" method="post" {{ form_enctype(formulario) }}>
 				<div>{{ form_errors(formulario) }}</div>	
-				
 				<div><img border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="114" height="144"></div>
-				
 				<div>{{ form_row(formulario.file) }}</div>
-				
 				<div>{{ form_row(formulario.codigo) }}</div>
-
 				<div>{{ form_row(formulario.apellidos) }}</div>
-
 				<div>{{ form_row(formulario.nombres) }}</div>
-
 				<div>{{ form_row(formulario.ci) }}</div>
-
 				<div>{{ form_row(formulario.emailInstitucional) }}	</div>
-
 				<div>{{ form_row(formulario.emailPersonal) }}	</div>
-				
 				<div>{{ form_row(formulario.telefonoMovil) }}</div>
-				
 				<div>{{ form_row(formulario.area) }}</div>
-				
-				
 				{{ form_rest(formulario) }}
 				<input class="boton" type="submit" value="Guardar" />
-				
 		</form>
-
 		
-		
-		 <div id = "opciones">
+		<div id = "opciones">
 				<a href="{{ path('cituao_coord_cronograma' , { 'codigo': practicante.codigo}) }}" id = "opButton"><img id="practicanteIcon" src="{{ asset('img/calendar.jpg') }}"></a>
-				
-		 </div>
+		</div>
 
 	
 	</div>
 {% endblock %}
 
 {% block aside %}
-
 		<section>
 			<div id = "barratitulo">
 				<h2>Opciones</h2>

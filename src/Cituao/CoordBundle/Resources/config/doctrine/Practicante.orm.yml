@@ -35,34 +35,36 @@ Cituao\CoordBundle\Entity\Practicante:
             length: '50'
         estado:
             type: boolean
+        fechaMatriculacion:
+            type: date
         fechaAsesoria1:
-            type: datetime
+            type: date
         fechaAsesoria2:
-            type: datetime
+            type: date
         fechaAsesoria3:
-            type: datetime
+            type: date
         fechaAsesoria4:
-            type: datetime
+            type: date
         fechaAsesoria5:
-            type: datetime
+            type: date
         fechaAsesoria6:
-            type: datetime
+            type: date
         fechaAsesoria7:
-            type: datetime
+            type: date
         fechaVisitaP:
-            type: datetime
+            type: date
         fechaVisita1:
-            type: datetime
+            type: date
         fechaVisita2:
-            type: datetime
+            type: date
         fechaInformeGestion1:
-            type: datetime
+            type: date
         fechaInformeGestion2:
-            type: datetime
+            type: date
         fechaInformeGestion3:
-            type: datetime
+            type: date
         fechaInformeFinal:
-            type: datetime
+            type: date
         path:
             type: string
             length: '30'

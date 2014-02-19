@@ -2,17 +2,20 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
-		<form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
+		<form action="{{ path('cituao_coord_registrar_practicante') }}" method="post" {{ form_enctype(formulario) }}>
 			<div>{{ form_errors(formulario) }}</div>	
-			
+			<div><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Foto estudiante" width="114" height="144"></div>
+			<div>{{ form_row(formulario.ci) }}</div>			
 			<div>{{ form_row(formulario.file) }}</div>
 			<div>{{ form_row(formulario.codigo) }}</div>
 			<div>{{ form_row(formulario.apellidos) }}</div>
 			<div>{{ form_row(formulario.nombres) }}</div>
-			<div>{{ form_row(formulario.ci) }}</div>
 			<div>{{ form_row(formulario.emailInstitucional) }}	</div>
 			<div>{{ form_row(formulario.emailPersonal) }}	</div>
 			<div>{{ form_row(formulario.telefonoMovil) }}</div>
+			<div>{{ form_row(formulario.area) }}</div>
+			{{ form_rest(formulario) }}
+
 			<input class="boton" type="submit" value="Guardar" />
 		</form>
 	</div> <!-- cierra infoWrapper -->
