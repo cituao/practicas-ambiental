@@ -63,8 +63,6 @@ class DefaultController extends Controller
         $formulario = $this->createForm(new PracticanteType(), $practicante);
 		$formulario->handleRequest($peticion);
         if ($formulario->isValid()) {
-			
-			
 			$f = $practicante->getFechaMatriculacion();
 			 
 			$practicante->setFechaAsesoria1($f);
@@ -82,7 +80,6 @@ class DefaultController extends Controller
 			$practicante->setFechaInformeGestion3($f);
 			$practicante->setFechaInformeFinal($f);
 			$practicante->setPath('user.jpeg');
-
 		
 			// Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);
@@ -449,5 +446,19 @@ class DefaultController extends Controller
 		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 	}
 
-
+	/********************************************************/
+	//Listar los centros de practicas registrados en la base de datos
+	/********************************************************/	
+	public function centrosAction(){
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+		$listaCentros = $repository->findAll();
+		
+		if (!$listaCentros) {
+			$msgerr = array('descripcion'=>'No hay centos de prácticas registrados!','id'=>'1');
+	    }else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		return $this->render('CituaoCoordBundle:Default:centros.html.twig', array('listaCentros' => $listaCentros, 'msgerr' => $msgerr));
+	}
 }

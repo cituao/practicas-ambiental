@@ -3,7 +3,7 @@
 {% block infowrapper  %}
 	<div id="infoWrapper">
 		<div>
-			<a href="{{ path('cituao_coord_registrar_practicante') }}"> + Registrar practicante </a>	
+			<a href="{{ path('cituao_coord_registrar_practicante') }}"> + Registrar centros de practica </a>	
 		</div>
 	{% if msgerr.id == '1' %}
 		<div id = "error">{{ msgerr.descripcion }} </div>		
@@ -14,17 +14,15 @@
 			<tbody>
 				<tr>
 					<th>#</th>
-					<th>pIC</th>
-					<th>CODIGO</th>
-					<th>APELLIDOS</th>
-					<th>NOMBRES</th>
-					<th>Acción</th>
-	
+					<th>CENTRO DE PRACTICA</th>
+					<th>DIRECCION</th>
+					<th>TELEFONO</th>
+					<th>EXTENSION</th>
 				</tr>
 		
 				{% set id = 1 %}
 				{% set sw = false %}
-				{% for practicante in listaPracticantes %}
+				{% for centro in listaCentros %}
 					{% if sw == false %}
 						<tr>
 						{% set sw = true %}
@@ -35,12 +33,12 @@
 
 						<td>{{ id }}</th>
 				
-						<td><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Pulpit rock" width="68" height="68"></td>
-						<td>{{ practicante.codigo }}</td>
-						<td>{{ practicante.apellidos }}</td>
-						<td>{{ practicante.nombres }}</td>
+						
+						<td>{{ centro.nombre }}</td>
+						<td>{{ centro.direccion }}</td>
+						<td>{{ centro.telefono }}</td>
 				
-						<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"> Ver </a></td>
+						<td><a href="{{ path('cituao_coord_centro', { 'codigo': centro.id}) }}"> Ver </a></td>
 					</tr>
 					{% set id = id + 1 %}
 				{% endfor %}
