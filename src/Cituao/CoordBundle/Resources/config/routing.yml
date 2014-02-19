@@ -8,13 +8,53 @@ cituao_coord_practicantes:
 
 cituao_coord_practicante:
     pattern:  /coordinador/practicante/{codigo}
-    defaults: { _controller: CituaoCoordBundle:Default:practicante, codigo: '12502219' }
+    defaults: { _controller: CituaoCoordBundle:Default:practicante }
+
+cituao_coord_registrar_practicante:
+    pattern:  /coordinador/registrarpracticante
+    defaults: { _controller: CituaoCoordBundle:Default:registrarPracticante }
 
 cituao_coord_cronograma:
     pattern:  /coordinador/cronograma/{codigo}
-    defaults: { _controller: CituaoCoordBundle:Default:cronograma, codigo: '12502219' }
+    defaults: { _controller: CituaoCoordBundle:Default:cronograma }
 
 cituao_coord_cargar_estudiantes:
     pattern:  /coordinador/cargarestudiantes
     defaults: { _controller: CituaoCoordBundle:Default:upload }
+
+cituao_coord_asesores:
+    pattern:  /coordinador/asesores
+    defaults: { _controller: CituaoCoordBundle:Default:asesores }
+
+cituao_coord_registrarexterno:
+    pattern:  /coordinador/registrarexterno
+    defaults: { _controller: CituaoCoordBundle:Default:registrarexterno }
+
+cituao_coord_externo:
+    pattern:  /coordinador/externo/{ci}
+    defaults: { _controller: CituaoCoordBundle:Default:externo }
+
+cituao_coord_academicos:
+    pattern:  /coordinador/academicos
+    defaults: { _controller: CituaoCoordBundle:Default:academicos }
+
+cituao_coord_registraracademico:
+    pattern:  /coordinador/registraracademico
+    defaults: { _controller: CituaoCoordBundle:Default:registraracademico }
+
+cituao_coord_academico:
+    pattern:  /coordinador/academico/{ci}
+    defaults: { _controller: CituaoCoordBundle:Default:academico }
+
+cituao_coord_centros:
+    pattern:  /coordinador/centros
+    defaults: { _controller: CituaoCoordBundle:Default:centros }
+
+cituao_coord_registrarcentro:
+    pattern:  /coordinador/registrarcentro
+    defaults: { _controller: CituaoCoordBundle:Default:registrarCentro }
+
+cituao_coord_centro:
+    pattern:  /coordinador/centro/{codigo}
+    defaults: { _controller: CituaoCoordBundle:Default:centro }
 

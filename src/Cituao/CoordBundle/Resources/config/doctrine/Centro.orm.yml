@@ -1,0 +1,22 @@
+Cituao\CoordBundle\Entity\Centro:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: '100'
+        direccion:
+            type: string
+            length: '255'
+        telefono:
+            type: string
+            length: '30'
+        extension:
+            type: string
+            length: '10'
+    lifecycleCallbacks: {  }

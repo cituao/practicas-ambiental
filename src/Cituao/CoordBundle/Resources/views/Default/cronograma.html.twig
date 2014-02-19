@@ -11,8 +11,11 @@
 	<script src="{{ asset('js/date.js') }}"></script>
 {% endblock %}
 
-{% block seccion %}
-CODIGO HASH: {{cedula}}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+
+
 
 <form action="/cupon/web/app_dev.php/es/usuario/perfil" method="post" >
     <div>
@@ -21,7 +24,7 @@ CODIGO HASH: {{cedula}}
 	
     <div>
         <label for="frontend_usuario_dni" class="required">CODIGO</label>
-		<label for="frontend_usuario_dni" class="required">2076424</label>	
+		<label for="frontend_usuario_dni" class="required">{{ practicante.codigo }}</label>	
     </div>
 	
     <div>
@@ -68,7 +71,7 @@ CODIGO HASH: {{cedula}}
     </div>
 	<div>
 		<label for="frontend_usuario_fecha" class="required">Fecha de finalización:</label>
-		<input type="text" id="fecha_finalizacion" name="frontend_usuario[apellidos]" required="required" maxlength="255" class="largo" 		value="" />		
+		<input type="text" id="fecha_finalizacion" name="frontend_usuario[apellidos]" required="required" maxlength="30"  		value="" />		
 		
 		  
 		
@@ -80,7 +83,7 @@ CODIGO HASH: {{cedula}}
 	<div id = "flip">
 		<label class="titulo1">CRONOGRAMA DE ASESORIAS</label>
 	</div>
-	<div id = "pane">
+	<div id = "panel">
 		<table id = "customers">
 		<tbody>
 			<tr>
@@ -136,12 +139,12 @@ CODIGO HASH: {{cedula}}
 		</table>
 	</div>
 	
-	<div id = "flip2">
+	<div>
 		<label class="required">ENTREGA DE INFORMES DE AVANCE (ASESOR ACADEMICO))</label>
 	</div>
 
 	
-	<div id = "panel2">
+	<div>
 		<table id = "customers">
 		<tbody>
 			<tr>
@@ -274,6 +277,7 @@ CODIGO HASH: {{cedula}}
 
     </div>
 </form>
+</div>
 
 {% endblock %}
 

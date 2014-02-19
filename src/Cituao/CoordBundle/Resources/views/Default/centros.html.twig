@@ -1,0 +1,52 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<div>
+			<a href="{{ path('cituao_coord_registrarcentro') }}"> + Registrar centros de practica </a>	
+		</div>
+	{% if msgerr.id == '1' %}
+		<div id = "error">{{ msgerr.descripcion }} </div>		
+	{% else %}
+
+		<div>
+			<table id = "customers">
+			<tbody>
+				<tr>
+					<th>#</th>
+					<th>CENTRO DE PRACTICA</th>
+					<th>DIRECCION</th>
+					<th>TELEFONO</th>
+					<th>EXTENSION</th>
+				</tr>
+		
+				{% set id = 1 %}
+				{% set sw = false %}
+				{% for centro in listaCentros %}
+					{% if sw == false %}
+						<tr>
+						{% set sw = true %}
+					{% else %}
+						<tr class = "alt">
+						{% set sw = false %}
+					{% endif %}
+
+						<td>{{ id }}</th>
+				
+						
+						<td>{{ centro.nombre }}</td>
+						<td>{{ centro.direccion }}</td>
+						<td>{{ centro.telefono }}</td>
+				
+						<td><a href="{{ path('cituao_coord_centro', { 'codigo': centro.id}) }}"> Ver </a></td>
+					</tr>
+					{% set id = id + 1 %}
+				{% endfor %}
+				</tbody>
+			</table>
+			</div>
+		</div>
+	{% endif %}
+	</div> <!-- cierra info wrapper-->
+{% endblock %}
+

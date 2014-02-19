@@ -1,0 +1,72 @@
+Cituao\CoordBundle\Entity\Practicante:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        codigo:
+            type: string
+            length: '20'
+        ci:
+            type: string
+            length: '15'
+        apellidos:
+            type: string
+            length: '50'
+        nombres:
+            type: string
+            length: '50'
+        tipo:
+            type: string
+            length: '3'
+        area:
+            type: integer
+        emailInstitucional:
+            type: string
+            length: '50'
+        emailPersonal:
+            type: string
+            length: '50'
+        telefonoMovil:
+            type: string
+            length: '50'
+        estado:
+            type: boolean
+        fechaMatriculacion:
+            type: date
+        fechaAsesoria1:
+            type: date
+        fechaAsesoria2:
+            type: date
+        fechaAsesoria3:
+            type: date
+        fechaAsesoria4:
+            type: date
+        fechaAsesoria5:
+            type: date
+        fechaAsesoria6:
+            type: date
+        fechaAsesoria7:
+            type: date
+        fechaVisitaP:
+            type: date
+        fechaVisita1:
+            type: date
+        fechaVisita2:
+            type: date
+        fechaInformeGestion1:
+            type: date
+        fechaInformeGestion2:
+            type: date
+        fechaInformeGestion3:
+            type: date
+        fechaInformeFinal:
+            type: date
+        path:
+            type: string
+            length: '30'
+
+    lifecycleCallbacks: {  }

@@ -1,0 +1,56 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+
+			<div>
+				<h3 id="titlee">
+    				Ingresando nuevo asesor académico 
+    			</h3>
+ 			</div>
+	
+
+	<form action="{{ path('cituao_coord_registraracademico') }}" method="post" {{ form_enctype(formulario) }}>
+	    <div>
+	    {{ form_errors(formulario) }}
+		</div>
+
+	    <div>
+		{{ form_row(formulario.ci) }}
+	    </div>
+
+
+	    <div>
+		{{ form_row(formulario.nombres) }}
+	    </div>
+
+	    <div>
+		{{ form_row(formulario.apellidos) }}
+	    </div>
+
+
+
+
+	    <div>
+		{{ form_row(formulario.telefonoMovil) }}
+	    </div>
+
+	    <div>
+		{{ form_row(formulario.telefonoFijo) }}
+	    </div>
+
+
+	    <div>
+		{{ form_row(formulario.email) }}
+	    </div>
+
+
+	    {{ form_rest(formulario) }}
+
+	    <input class="boton" type="submit" value="Guardar" />
+
+	    </div>
+	</form>	
+</div>
+{% endblock %}

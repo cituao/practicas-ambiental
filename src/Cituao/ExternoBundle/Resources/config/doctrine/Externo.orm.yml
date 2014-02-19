@@ -1,0 +1,28 @@
+Cituao\ExternoBundle\Entity\Externo:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombres:
+            type: string
+            length: '50'
+        apellidos:
+            type: string
+            length: '50'
+        ci:
+            type: string
+            length: '12'
+        telefonoMovil:
+            type: string
+            length: '15'
+        telefonoFijo:
+            type: string
+            length: '15'
+        email:
+            type: string
+            length: '50'
+    lifecycleCallbacks: {  }

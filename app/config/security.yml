@@ -1,6 +1,6 @@
 # app/config/security.yml
 security:
-    
+
     role_hierarchy:
         ROLE_COORDINADOR:       ROLE_USER
         ROLE_PRACTICANTE:       ROLE_USER
@@ -30,7 +30,7 @@ security:
                 users:
                     coordinador:  { password: 1234, roles: 'ROLE_COORDINADOR' }
                     admin: { password: 12, roles: 'ROLE_ADMIN' }
-                    practicante: { password: 1234, roles: 'ROLE_PRACTICANTE' }
+                    1113036709: { password: 1234, roles: 'ROLE_PRACTICANTE' }
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
         Cituao\UsuarioBundle\Entity\Usuario:

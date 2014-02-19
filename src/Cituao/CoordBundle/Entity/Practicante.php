@@ -1,16 +1,12 @@
 <?php
-
 namespace Cituao\CoordBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Practicante
- */
-
-/**
- * Cituao\CoordBundle\Entity\Practicante
- *
+ *  
  * @ORM\Table(name="Practicante")
  * @ORM\Entity(repositoryClass="Cituao\CoordBundle\Entity\UserRepository")
  */
@@ -41,12 +37,17 @@ class Practicante
     private $nombres;
 
      /**
-     * @ORM\Column(type="string", length=12)
+     * @ORM\Column(type="string", length=12, unique=true)
      */
     private $ci;
 
+     /**
+     * @ORM\Column(type="string", length=3)
+     */
+    private $tipo;
+
     /**
-     * @ORM\Column(type="datetime", unique=true)
+     * @ORM\Column(type="date")
      */
     private $fechaMatriculacion;
 
@@ -71,19 +72,120 @@ class Practicante
     private $modalidad;
 
      /**
-     * @ORM\Column(type="string", length=3)
-     */
-    private $tipo;
-
-     /**
      * @ORM\Column(type="string", length=2)
      */
     private $estado;
 
-     /**
-     * @ORM\Column(type="blob")
+    /**
+     * @ORM\Column(type="date")
      */
-    private $foto;
+    private $fechaAsesoria1;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaAsesoria2;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaAsesoria3;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaAsesoria4;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaAsesoria5;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaAsesoria6;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaAsesoria7;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaVisitaP;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaVisita1;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaVisita2;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaInformeGestion1;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaInformeGestion2;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaInformeGestion3;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaInformeFinal;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $path;
+
+
+	/**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
+
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Entity\Area", inversedBy="practicantes")
+	* @ORM\JoinColumn(name="area", referencedColumnName = "id") 
+	**/	
+	protected $area;
+
+
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+
 
     /**
      * Get id
@@ -141,6 +243,31 @@ class Practicante
         return $this->apellidos;
     }
 
+
+   /**
+     * Set tipo
+     *
+     * @param string $tipo
+     * @return Practicante
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+
     /**
      * Set nombres
      *
@@ -187,28 +314,7 @@ class Practicante
         return $this->ci;
     }
 
-    /**
-     * Set fechaMatriculacion
-     *
-     * @param \DateTime $fechaMatriculacion
-     * @return Practicante
-     */
-    public function setFechaMatriculacion($fechaMatriculacion)
-    {
-        $this->fechaMatriculacion = $fechaMatriculacion;
-    
-        return $this;
-    }
 
-    /**
-     * Get fechaMatriculacion
-     *
-     * @return \DateTime 
-     */
-    public function getFechaMatriculacion()
-    {
-        return $this->fechaMatriculacion;
-    }
 
     /**
      * Set emailInstitucional
@@ -279,51 +385,7 @@ class Practicante
         return $this->telefonoMovil;
     }
 
-    /**
-     * Set modalidad
-     *
-     * @param string $modalidad
-     * @return Practicante
-     */
-    public function setModalidad($modalidad)
-    {
-        $this->modalidad = $modalidad;
-    
-        return $this;
-    }
 
-    /**
-     * Get modalidad
-     *
-     * @return string 
-     */
-    public function getModalidad()
-    {
-        return $this->modalidad;
-    }
-
-    /**
-     * Set tipo
-     *
-     * @param string $tipo
-     * @return Practicante
-     */
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-    
-        return $this;
-    }
-
-    /**
-     * Get tipo
-     *
-     * @return string 
-     */
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
 
     /**
      * Set estado
@@ -348,26 +410,462 @@ class Practicante
         return $this->estado;
     }
 
+
     /**
-     * Set foto
+     * Set fechaAsesoria1
      *
-     * @param string $foto
+     * @param \date $fechaAsesoria1
      * @return Practicante
      */
-    public function setFoto($foto)
+    public function setFechaAsesoria1($fechaAsesoria1)
     {
-        $this->foto = $foto;
+        $this->fechaAsesoria1 = $fechaAsesoria1;
     
         return $this;
     }
 
     /**
-     * Get foto
+     * Get fechaAsesoria1
+     *
+     * @return \date 
+     */
+    public function getFechaAsesoria1()
+    {
+        return $this->fechaAsesoria1;
+    }
+
+    /**
+     * Set fechaAsesoria2
+     *
+     * @param \date $fechaAsesoria2
+     * @return Practicante
+     */
+    public function setFechaAsesoria2($fechaAsesoria2)
+    {
+        $this->fechaAsesoria2 = $fechaAsesoria2;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaAsesoria2
+     *
+     * @return \date 
+     */
+    public function getFechaAsesoria2()
+    {
+        return $this->fechaAsesoria2;
+    }
+
+    /**
+     * Set fechaAsesoria3
+     *
+     * @param \date $fechaAsesoria3
+     * @return Practicante
+     */
+    public function setFechaAsesoria3($fechaAsesoria3)
+    {
+        $this->fechaAsesoria3 = $fechaAsesoria3;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaAsesoria3
+     *
+     * @return \date 
+     */
+    public function getFechaAsesoria3()
+    {
+        return $this->fechaAsesoria3;
+    }
+
+    /**
+     * Set fechaAsesoria4
+     *
+     * @param \date $fechaAsesoria4
+     * @return Practicante
+     */
+    public function setFechaAsesoria4($fechaAsesoria4)
+    {
+        $this->fechaAsesoria4 = $fechaAsesoria4;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaAsesoria4
+     *
+     * @return \date 
+     */
+    public function getFechaAsesoria4()
+    {
+        return $this->fechaAsesoria4;
+    }
+
+    /**
+     * Set fechaAsesoria5
+     *
+     * @param \date $fechaAsesoria5
+     * @return Practicante
+     */
+    public function setFechaAsesoria5($fechaAsesoria5)
+    {
+        $this->fechaAsesoria5 = $fechaAsesoria5;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaAsesoria5
+     *
+     * @return \date 
+     */
+    public function getFechaAsesoria5()
+    {
+        return $this->fechaAsesoria5;
+    }
+
+    /**
+     * Set fechaAsesoria6
+     *
+     * @param \date $fechaAsesoria6
+     * @return Practicante
+     */
+    public function setFechaAsesoria6($fechaAsesoria6)
+    {
+        $this->fechaAsesoria6 = $fechaAsesoria6;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaAsesoria6
+     *
+     * @return \date 
+     */
+    public function getFechaAsesoria6()
+    {
+        return $this->fechaAsesoria6;
+    }
+
+    /**
+     * Set fechaAsesoria7
+     *
+     * @param \date $fechaAsesoria7
+     * @return Practicante
+     */
+    public function setFechaAsesoria7($fechaAsesoria7)
+    {
+        $this->fechaAsesoria7 = $fechaAsesoria7;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaAsesoria7
+     *
+     * @return \date 
+     */
+    public function getFechaAsesoria7()
+    {
+        return $this->fechaAsesoria7;
+    }
+
+
+    /**
+     * Set fechaVisitaP
+     *
+     * @param \date $fechaVisitaP
+     * @return Practicante
+     */
+    public function setFechaVisitaP($fechaVisitaP)
+    {
+        $this->fechaVisitaP = $fechaVisitaP;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaVisitaP
+     *
+     * @return \date 
+     */
+    public function getFechaVisitaP()
+    {
+        return $this->fechaVisitaP;
+    }
+
+    /**
+     * Set fechaVisita1
+     *
+     * @param \date $fechaVisita1
+     * @return Practicante
+     */
+    public function setFechaVisita1($fechaVisita1)
+    {
+        $this->fechaVisita1 = $fechaVisita1;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaVisita1
+     *
+     * @return \date 
+     */
+    public function getFechaVisita1()
+    {
+        return $this->fechaVisita1;
+    }
+
+    /**
+     * Set fechaVisita2
+     *
+     * @param \date $fechaVisita2
+     * @return Practicante
+     */
+    public function setFechaVisita2($fechaVisita2)
+    {
+        $this->fechaVisita2 = $fechaVisita2;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaVisita2
+     *
+     * @return \date 
+     */
+    public function getFechaVisita2()
+    {
+        return $this->fechaVisita2;
+    }
+
+    /**
+     * Set fechaMatriculacion
+     *
+     * @param \date $fechaMatriculacion
+     * @return Practicante
+     */
+    public function setfechaMatriculacion($fecha)
+    {
+        $this->fechaMatriculacion = $fecha;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaMatriculacion
+     *
+     * @return \date 
+     */
+    public function getfechaMatriculacion()
+    {
+        return $this->fechaMatriculacion;
+    }
+
+
+
+ 	/**
+     * Set area
+     *
+     * @param Cituao\CoordBundle\Entity\Area $area
+     */
+    public function setArea(\Cituao\CoordBundle\Entity\Area $area)
+    {
+        $this->area = $area;
+    }
+
+
+  
+    /**
+     * Get area
+     *
+     * @return Cituao\CoordBundle\Entity\Area
+     */
+    public function getArea()
+    {
+        return $this->area;
+    }
+
+
+    /**
+     * Set fechaInformeGestion1
+     *
+     * @param \date $fechaInformeGestion1
+     * @return Practicante
+     */
+    public function setFechaInformeGestion1($fechaInformeGestion1)
+    {
+        $this->fechaInformeGestion1 = $fechaInformeGestion1;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaInformeGestion1
+     *
+     * @return \date 
+     */
+    public function getFechaInformeGestion1()
+    {
+        return $this->fechaInformeGestion1;
+    }
+
+    /**
+     * Set fechaInformeGestion2
+     *
+     * @param \date $fechaInformeGestion2
+     * @return Practicante
+     */
+    public function setFechaInformeGestion2($fechaInformeGestion2)
+    {
+        $this->fechaInformeGestion2 = $fechaInformeGestion2;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaInformeGestion2
+     *
+     * @return \date 
+     */
+    public function getFechaInformeGestion2()
+    {
+        return $this->fechaInformeGestion2;
+    }
+
+    /**
+     * Set fechaInformeGestion3
+     *
+     * @param \date $fechaInformeGestion3
+     * @return Practicante
+     */
+    public function setFechaInformeGestion3($fechaInformeGestion3)
+    {
+        $this->fechaInformeGestion3 = $fechaInformeGestion3;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaInformeGestion3
+     *
+     * @return \date 
+     */
+    public function getFechaInformeGestion3()
+    {
+        return $this->fechaInformeGestion3;
+    }
+
+    /**
+     * Set fechaInformeFinal
+     *
+     * @param \date $fechaInformeFinal
+     * @return Practicante
+     */
+    public function setFechaInformeFinal($fechaInformeFinal)
+    {
+        $this->fechaInformeFinal = $fechaInformeFinal;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaInformeFinal
+     *
+     * @return \date 
+     */
+    public function getFechaInformeFinal()
+    {
+        return $this->fechaInformeFinal;
+    }
+
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Document
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    
+        return $this;
+    }
+
+    /**
+     * Get path
      *
      * @return string 
      */
-    public function getFoto()
+    public function getPath()
     {
-        return $this->foto;
+        return $this->path;
     }
+
+
+
+public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/fotos';
+    }
+
+
+	public function upload()
+	{
+	 // the file property can be empty if the field is not required
+		if (null === $this->getFile()) {
+		    return;
+		}
+
+		// use the original file name here but you should
+		// sanitize it at least to avoid any security issues
+
+		// move takes the target directory and then the
+		// target filename to move to
+		
+		//asignamos el codigo uao a la foto
+		$nombre = $this->codigo.'.png'; 
+		$this->getFile()->move(
+		    $this->getUploadRootDir(),
+		    $nombre
+		);
+		//$this->getFile()->getClientOriginalName()
+		
+		
+		
+		// set the path property to the filename where you've saved the file
+		//$this->path = $this->getFile()->getClientOriginalName();
+		$this->path = $nombre;
+		// clean up the file property as you won't need it anymore
+		$this->file = null;	
+	}
+
+
 }

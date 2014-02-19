@@ -7,3 +7,43 @@ Cituao\CoordBundle\Entity\Document:
                 mimeTypes: [text/plain]
                 mimeTypesMessage: Por favor suba un TXT válido
                 uploadErrorMessage: El archivo no puede ser cargado!
+
+Cituao\CoordBundle\Entity\Externo:
+    properties:
+        ci:
+            - NotBlank: ~
+        nombres:
+            - NotBlank: ~
+            
+Cituao\CoordBundle\Entity\Practicante:
+ properties:
+ codigo:
+ - NotBlank: ~
+ - Type:
+ type: integer
+ message: El valor no es un codigo valido
+ ci:
+ - NotBlank: ~
+ - Type:
+ type: integer
+ message: El valor no es una cédula válida 
+ apellidos:
+ - NotBlank: ~
+ - Type:
+ type: string
+ message: El valor no es un apellido válido
+ nombres:
+ - NotBlank: ~
+ - Type:
+ type: string
+ message: El valor no es un nombre válido
+ emailInstitucional:
+ - Email:
+ message: El valor no es un correo válido
+ checkMX: true
+ file:
+ - File:
+ maxSize: 2024k
+ mimeTypes: [image/png]
+ mimeTypesMessage: Por favor suba una archivo fotográfico tipo PNG válido!
+ uploadErrorMessage: El archivo no puede ser cargado!
