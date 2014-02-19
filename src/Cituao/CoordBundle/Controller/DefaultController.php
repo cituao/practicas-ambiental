@@ -14,6 +14,8 @@ use Cituao\ExternoBundle\Form\Type\ExternoType;
 use Cituao\AcademicoBundle\Entity\Academico;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
 use Cituao\CoordBundle\Entity\Area;
+use Cituao\CoordBundle\Entity\Centro;
+use Cituao\CoordBundle\Form\Type\CentroType;
 
 use \DateTime;
 
@@ -461,4 +463,64 @@ class DefaultController extends Controller
 		}
 		return $this->render('CituaoCoordBundle:Default:centros.html.twig', array('listaCentros' => $listaCentros, 'msgerr' => $msgerr));
 	}
+
+	/***************************************************************************/
+	//Muestra formulario para registrar un nuevo centro de practicas en la base de datos
+	/***************************************************************************/		
+	public function registrarCentroAction(){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+		$centro = new Centro();
+        $formulario = $this->createForm(new CentroType(), $centro);
+		$formulario->handleRequest($peticion);
+        if ($formulario->isValid()) {
+		
+			// Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($centro);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+            );
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+        return $this->render('CituaoCoordBundle:Default:registrarcentro.html.twig', array('formulario' => $formulario->createView()));
+	}
+
+	/********************************************************/
+	//Muestra y modifica un centro de practica registrado en la base de datos
+	/********************************************************/		
+	public function centroAction($codigo){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+		$centro = $repository->findOneBy(array('id' => $codigo));
+		
+        $formulario = $this->createForm(new CentroType(), $centro);
+        
+		$formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+			
+            // Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($centro);
+            $em->flush();
+
+            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            $this->get('session')->getFlashBag()->add('info',
+                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+            );
+
+
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+		
+        return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro ));
+		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+	}
+
+
 }

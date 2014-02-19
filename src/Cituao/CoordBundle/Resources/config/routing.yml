@@ -49,3 +49,12 @@ cituao_coord_academico:
 cituao_coord_centros:
     pattern:  /coordinador/centros
     defaults: { _controller: CituaoCoordBundle:Default:centros }
+
+cituao_coord_registrarcentro:
+    pattern:  /coordinador/registrarcentro
+    defaults: { _controller: CituaoCoordBundle:Default:registrarCentro }
+
+cituao_coord_centro:
+    pattern:  /coordinador/centro/{codigo}
+    defaults: { _controller: CituaoCoordBundle:Default:centro }
+

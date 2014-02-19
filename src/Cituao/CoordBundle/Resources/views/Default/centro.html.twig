@@ -1,0 +1,17 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+
+	<form action="{{ path('cituao_coord_registrarcentro') }}" method="post" {{ form_enctype(formulario) }}>
+	    <div>{{ form_errors(formulario) }}</div>
+	    <div>{{ form_row(formulario.nombre) }}</div>
+	    <div>{{ form_row(formulario.direccion) }}</div>
+	    <div>{{ form_row(formulario.telefono) }}</div>
+	    <div>{{ form_row(formulario.extension) }}</div>
+	    {{ form_rest(formulario) }}
+	    <input class="boton" type="submit" value="Guardar" />
+	</form>	
+</div>
+{% endblock %}
