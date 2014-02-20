@@ -3,24 +3,22 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
+		<div id = "menuop">
+			<ul>
+			<li><a href="{{ path('cituao_coord_registrarexterno') }}"  id = "homeButton"> Registrar un nuevo asesor externo </a></li>
+			</ul>
+		</div>
 
 		{% if msgerr.id == '1' %}
 			<div>{{ msgerr.descripcion }} </div>		
 		{% else %}
-					
-				
-			<div>
+			<div id = "subinfowrapper">
+			<div> <h3 id="titlee">	Tus Asesores externos </h3> </div>
+			
 			<table id = "customers">
 			<tbody>
 				<tr>
-					<th>#</th>
-					<th>pIC</th>
-					<th>CEDULA</th>
-					<th>NOMBRES</th>
-					<th>APELLIDOS</th>
-					<th>TELEFONO</th>
-					<th>Acción</th>
-	
+				<th>#</th>	<th>pIC</th> <th>CEDULA</th> <th>NOMBRES</th> <th>APELLIDOS</th> <th>TELEFONO</th>	<th>Acción</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -43,21 +41,13 @@
 						<td>{{ asesor.telefonoMovil }}</td>				
 
 						<td><a href="{{ path('cituao_coord_externo', { 'ci': asesor.ci}) }}"> Modificar </a></td>
-					</tr>
+						</tr>
 					{% set id = id + 1 %}
 				{% endfor %}
-				</tbody>
+			</tbody>
 			</table>
-		</div>
-
+			</div>
 		{% endif %}
-		
-		<div id = "barra">
-			<a href="{{ path('cituao_coord_registrarexterno') }}"> Registrar asesor externo </a>			
-		</div>
-
-		
-
 </div>
 {% endblock %}
 

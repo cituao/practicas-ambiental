@@ -3,26 +3,22 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
+		<div id = "menuop">
+			<ul>
+			<li><a href="{{ path('cituao_coord_registraracademico') }}" id = "homeButton">Registrar un nuevo asesor académico </a></li>
+			</ul>
+		</div>
 
 		{% if msgerr.id == '1' %}
 			<div>{{ msgerr.descripcion }} </div>		
 		{% else %}
-			<div>
-				<h3 id="titlee">
-    				Asesores académicos 
-    			</h3>
- 			</div>
+			<div id = "subinfowrapper">
+			<div> <h3 id="titlee">	Tus Asesores académicos </h3> </div>
 			
 			<table id = "customers">
-			<tbody>
+				<tbody>
 				<tr>
-					<th>#</th>
-					<th>pIC</th>
-					<th>CEDULA</th>
-					<th>NOMBRES</th>
-					<th>APELLIDOS</th>
-					<th>TELEFONO</th>
-					<th>Acción</th>
+					<th>#</th> <th>pIC</th>	<th>CEDULA</th>	<th>NOMBRES</th> <th>APELLIDOS</th>	<th>TELEFONO</th> <th>Acción</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -50,15 +46,9 @@
 				{% endfor %}
 				</tbody>
 			</table>
-
+			</div>
 
 		{% endif %}
-		
-		<div id = "barra">
-			<a href="{{ path('cituao_coord_registraracademico') }}" id = "opButton">+ Nuevo asesor académico </a>
-						
-		</div>
-
 </div>
 {% endblock %}
 
