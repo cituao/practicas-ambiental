@@ -1,0 +1,279 @@
+
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	
+	
+	<script src="{{ asset('js/date.js') }}"></script>
+{% endblock %}
+
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+
+
+
+<form action="/cupon/web/app_dev.php/es/usuario/perfil" method="post" >
+    <div>
+    <div class="errors">
+    </div>
+	
+	
+    <div>
+        <div>
+			<label for="frontend_usuario_nombre" class="required">NOMBRE</label>
+			<label for="frontend_usuario_nombre" class="required">LLORENTE GARCIA</label>
+		</div>
+    </div>
+
+    <div>
+        <div>
+			<label for="frontend_usuario_nombre" class="required">APELLIDO</label>
+			<label for="frontend_usuario_nombre" class="required">STHEFANY</label>
+		</div>
+    </div>
+
+    <div>
+        <div>
+			<label for="frontend_usuario_ciudad" class="required">CENTRO DE PRACTICAS</label>
+			<select id="frontend_usuario_ciudad" name="frontend_usuario[ciudad]" required="required">
+				<option value="">Selecciona un centro de prácticas</option>
+				<option value="11">Centro 1</option>
+				<option value="23">Centro 2</option>
+				<option value="2">Centro 3</option>
+			</select>
+		</div>
+		    
+	</div>
+	
+	<div>
+        <label for="frontend_usuario_apellidos" class="required">ASESOR EXTERNO</label>
+        <input type="text" id="frontend_usuario_apellidos" name="frontend_usuario[apellidos]" required="required" maxlength="255" class="largo" value="DOLANTE GARPEZ" />
+    </div>
+
+	<div>
+        <label for="frontend_usuario_apellidos" class="required">ASESOR ACADEMICO</label>
+        <input type="text" id="frontend_usuario_apellidos" name="frontend_usuario[apellidos]" required="required" maxlength="255" class="largo" value="MARTINEZ PATRICIA" />
+    </div>
+
+    <div>
+		<label for="frontend_usuario_fecha" class="required">Fecha de iniciación:</label>  
+		<input type="text" id="datepicker" />
+		
+    </div>
+	<div>
+		<label for="frontend_usuario_fecha" class="required">Fecha de finalización:</label>
+		<input type="text" id="fecha_finalizacion" name="frontend_usuario[apellidos]" required="required" maxlength="30"  		value="" />		
+		
+		  
+		
+	</div>
+	
+    <div>
+	</div>
+	
+	<div id = "flip">
+		<label class="titulo1">CRONOGRAMA DE ASESORIAS</label>
+	</div>
+	<div id = "panel">
+		<table id = "customers">
+		<tbody>
+			<tr>
+				<th>#</th>
+				<th>TIPO</th>
+				<th>FECHA LIMITE</th>
+				<th>ENTREGADO</th>
+			</tr>
+			<tr class = "alt">
+				<td>1</th>
+				<td>ASESORIA 1</td>
+				<td id ="fecha_asesoria1">-</td>
+				<td>-</td>
+			</tr>
+
+			<tr>
+				<td>2</td>
+				<td>ASESORIA 2</td>
+				<td id ="fecha_asesoria2">-</td>
+				<td>-</td>
+			</tr>
+			<tr class = "alt">
+				<td>3</th>
+				<td>ASESORIA 3</td>
+				<td id ="fecha_asesoria3">-</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>ASESORIA 4</td>
+				<td id ="fecha_asesoria4">-</td>
+				<td>-</td>
+			</tr>		
+			<tr class = "alt">
+				<td>5</th>
+				<td>ASESORIA 5</td>
+				<td id ="fecha_asesoria5">-</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>ASESORIA 6</td>
+				<td id ="fecha_asesoria6">-</td>
+				<td>-</td>
+			</tr>				
+			<tr>
+				<td>7</td>
+				<td>ASESORIA 7</td>
+				<td id ="fecha_asesoria7">-</td>
+				<td>-</td>
+			</tr>				
+			</tbody>
+		</table>
+	</div>
+	
+	<div>
+		<label class="required">ENTREGA DE INFORMES DE AVANCE (ASESOR ACADEMICO))</label>
+	</div>
+
+	
+	<div>
+		<table id = "customers">
+		<tbody>
+			<tr>
+				<th>#</th>
+				<th>TIPO</th>
+				<th>FECHA LIMITE</th>
+				<th>ENTREGADO</th>
+			</tr>
+			<tr class = "alt">
+				<td>1</th>
+				<td>INFORME DE AVANCE 1</td>
+				<td id = "fecha_avance1">-</td>
+				<td>-</td>
+			</tr>
+
+			<tr>
+				<td>2</td>
+				<td>INFORME DE AVANCE 2</td>
+				<td id = "fecha_avance2">-</td>
+				<td>-</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>	
+
+	<div id = "flip3">
+		<label class="required">VISITAS Y EVALUACIONES ASESOR ACADEMICO</label>
+	</div>
+	<div id = "panel3">
+	<table id = "customers">
+	<tbody>
+		<tr>
+			<th>#</th>
+			<th>TIPO</th>
+			<th>FECHA LIMITE</th>
+			<th>ENTREGADO</th>
+		</tr>
+		<tr class = "alt">
+			<td>1</th>
+			<td>VISITA (PRESENTACION)</td>
+			<td id = "fecha_visitap">-</td>
+			<td>-</td>
+		</tr>
+
+		<tr>
+			<td>2</td>
+			<td>VISITA 1</td>
+			<td id = "fecha_visita1">-</td>
+			<td>-</td>
+		</tr>
+
+		
+		<tr class = "alt">
+			<td>3</th>
+			<td>VISITA 2</td>
+			<td id = "fecha_visita2">-</td>
+			<td>-</td>
+		</tr>
+		</tbody>
+	</table>
+	</div>	
+
+
+	<div>
+		<label class="required">ENTREGA DE INFORMES DE GESTION CUALI CUANTI</label>
+	</div>
+	<div>
+	<table id = "customers">
+	<tbody>
+		<tr>
+			<th>#</th>
+			<th>TIPO</th>
+			<th>FECHA LIMITE</th>
+			<th>ENTREGADO</th>
+		</tr>
+		<tr class = "alt">
+			<td>1</th>
+			<td>INFORME DE GESTION CUALICUANTI 1</td>
+			<td id = "fecha_cuali1">-</td>
+			<td>-</td>
+		</tr>
+
+		<tr>
+			<td>2</td>
+			<td>INFORME DE GESTION CUALICUANTI 2</td>
+			<td id = "fecha_cuali2">-</td>
+			<td>-</td>
+		</tr>
+
+		
+		<tr class = "alt">
+			<td>3</th>
+			<td>INFORME DE GESTION CUALICUANTI 3</td>
+			<td id = "fecha_cuali3">-</td>
+			<td>-</td>
+		</tr>
+		</tbody>
+	</table>
+	</div>	
+
+	<div>
+		<label class="required">ENTREGA DE INFORME FINAL</label>
+	</div>
+	<div>
+	<table id = "customers">
+	<tbody>
+		<tr>
+			<th>#</th>
+			<th>TIPO</th>
+			<th>FECHA LIMITE</th>
+			<th>ENTREGADO</th>
+		</tr>
+		<tr class = "alt">
+			<td>1</th>
+			<td>INFORME FINAL</td>
+			<td id = "fecha_final">-</td>
+			<td>-</td>
+		</tr>
+
+		</tbody>
+	</table>
+	</div>	
+
+
+
+	
+
+    <input type="hidden" id="frontend_usuario__token" name="frontend_usuario[_token]" value="e360204e66ae2710c6aed07cf62bdcefb7adad7b" />
+    <input class="boton" type="submit" value="Guardar cambios" />
+
+    </div>
+</form>
+</div>
+
+{% endblock %}
+

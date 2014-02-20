@@ -1,6 +1,6 @@
 <?php
 // src/Cituao/CoordBundle/Form/Type/CronogramaType.php
-namespace Cituao\PracticanteBundle\Form\Type;
+namespace Cituao\CoordBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,9 +11,28 @@ class CronogramaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-	    
-        ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
+	    ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))
+		->add('fechaMatriculacion', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		
+		//->add('fechaAsesoria2','text',  array('label' => 'Apellidos', 'read_only'=>'true'))
+		->add('fechaAsesoria1', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria2', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria3', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria4', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria5', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria6', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria7', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		
+		->add('fechaVisitaP', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaVisita1', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaVisita2', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		
+		->add('fechaInformeGestion1', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaInformeGestion2', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaInformeGestion3', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		
+		->add('fechaInformeFinal', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'));
 		
 		
 		
