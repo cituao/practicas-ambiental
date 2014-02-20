@@ -57,7 +57,7 @@ class Area
      * @return Area
      */
     public function setArea($area)
-    {
+    {	
         $this->area = $area;
     
         return $this;

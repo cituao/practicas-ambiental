@@ -34,6 +34,10 @@ class Centro
      */
     private $extension;
 
+    /**
+	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Practicante", mappedBy = "centro")	
+	**/
+	protected $practicantes;
 
     /**
      * Get id

@@ -163,6 +163,11 @@ class Practicante
 	**/	
 	protected $area;
 
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Entity\Centro", inversedBy="practicantes")
+	* @ORM\JoinColumn(name="centro", referencedColumnName = "id") 
+	**/	
+	protected $centro;
 
 
     /**
@@ -665,8 +670,6 @@ class Practicante
         return $this->fechaMatriculacion;
     }
 
-
-
  	/**
      * Set area
      *
@@ -677,8 +680,6 @@ class Practicante
         $this->area = $area;
     }
 
-
-  
     /**
      * Get area
      *
@@ -688,6 +689,28 @@ class Practicante
     {
         return $this->area;
     }
+
+
+ 	/**
+     * Set area
+     *
+     * @param Cituao\CoordBundle\Entity\Centro $centro
+     */
+    public function setCentro(\Cituao\CoordBundle\Entity\Centro $centro)
+    {
+        $this->centro = $centro;
+    }
+
+    /**
+     * Get centro
+     *
+     * @return Cituao\CoordBundle\Entity\Centro
+     */
+    public function getCentro()
+    {
+        return $this->centro;
+    }
+
 
 
     /**

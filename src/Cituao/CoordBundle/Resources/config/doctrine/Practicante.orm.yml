@@ -24,6 +24,8 @@ Cituao\CoordBundle\Entity\Practicante:
             length: '3'
         area:
             type: integer
+        centro:
+            type: integer
         emailInstitucional:
             type: string
             length: '50'
