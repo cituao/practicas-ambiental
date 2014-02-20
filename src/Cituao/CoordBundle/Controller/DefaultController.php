@@ -283,14 +283,10 @@ class DefaultController extends Controller
 	/*********************************************/	
 	public function registrarexternoAction()
 	{
-
 		$peticion = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
-
 		$externo = new Externo();
-
         $formulario = $this->createForm(new ExternoType(), $externo);
-
         $formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
@@ -302,17 +298,10 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-
-	    /*
-            // Loguear al usuario automáticamente
-            $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
-            $this->container->get('security.context')->setToken($token);
-	    */
-
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
 
-        return $this->render('CituaoCoordBundle:Default:externo.html.twig', array(
+        return $this->render('CituaoCoordBundle:Default:registrarexterno.html.twig', array(
             'formulario' => $formulario->createView()
         ));
 	}
@@ -324,13 +313,9 @@ class DefaultController extends Controller
 	public function externoAction($ci){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
-
 		
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externo = $repository->findOneBy(array('ci' => $ci));
-		
-		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
-		
         $formulario = $this->createForm(new ExternoType(), $externo);
         
 		$formulario->handleRequest($peticion);
@@ -345,13 +330,10 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-
-
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
-		
         return $this->render('CituaoCoordBundle:Default:externo.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
-		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+		
 	}
 
 	/*************************************/
@@ -378,14 +360,10 @@ class DefaultController extends Controller
 	/*********************************************/	
 	public function registraracademicoAction()
 	{
-
 		$peticion = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
-
 		$academico = new Academico();
-
         $formulario = $this->createForm(new AcademicoType(), $academico);
-
         $formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
@@ -397,17 +375,10 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-
-	    /*
-            // Loguear al usuario automáticamente
-            $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
-            $this->container->get('security.context')->setToken($token);
-	    */
-
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
 
-        return $this->render('CituaoCoordBundle:Default:academico.html.twig', array(
+        return $this->render('CituaoCoordBundle:Default:registraracademico.html.twig', array(
             'formulario' => $formulario->createView()
         ));
 	}
@@ -418,19 +389,14 @@ class DefaultController extends Controller
 	public function academicoAction($ci){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
-
 		
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 		
-		//$practicante = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->find($codigo);
-		
         $formulario = $this->createForm(new AcademicoType(), $academico);
-        
 		$formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
-			
             // Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($academico);
             $em->flush();
@@ -439,13 +405,11 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-
-
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
 		
         return $this->render('CituaoCoordBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico ));
-		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+		
 	}
 
 	/********************************************************/
@@ -520,7 +484,13 @@ class DefaultController extends Controller
 		
         return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro ));
 		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+			/*
+		        // Loguear al usuario automáticamente
+		        $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
+		        $this->container->get('security.context')->setToken($token);
+			*/
+
 	}
-
-
 }
+
+

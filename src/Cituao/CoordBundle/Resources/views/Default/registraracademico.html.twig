@@ -4,11 +4,11 @@
 	<div id="infoWrapper">
 			<div>
 				<h3 id="titlee">
-    				Datos del asesor académico 
+    				Ingresando nuevo asesor académico!
     			</h3>
  			</div>
 
-	<form action="{{ path('cituao_coord_academico', { 'ci': academico.ci }) }}" method="post" {{ form_enctype(formulario) }}>
+	<form action="{{ path('cituao_coord_registraracademico') }}" method="post" {{ form_enctype(formulario) }}>
 	    <div>	{{ form_errors(formulario) }}	</div>
 	    <div>	{{ form_row(formulario.ci) }}   </div>
 	    <div>	{{ form_row(formulario.nombres) }}   </div>

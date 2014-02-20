@@ -4,7 +4,7 @@
 {% block infowrapper  %}
 	<div id="infoWrapper">
 
-	<form action="{{ path('cituao_coord_registrarcentro') }}" method="post" {{ form_enctype(formulario) }}>
+	<form action="{{ path('cituao_coord_centro' , { 'codigo': centro.id}) }}" method="post" {{ form_enctype(formulario) }}>
 	    <div>{{ form_errors(formulario) }}</div>
 	    <div>{{ form_row(formulario.nombre) }}</div>
 	    <div>{{ form_row(formulario.direccion) }}</div>
