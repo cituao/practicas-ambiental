@@ -50,6 +50,11 @@ class Externo
      */
     private $email;
 
+    /**
+	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Practicante", mappedBy = "externo")	
+	**/
+	protected $practicantes;
+
 
     /**
      * Get id

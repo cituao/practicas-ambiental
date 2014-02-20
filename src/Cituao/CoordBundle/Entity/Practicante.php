@@ -170,6 +170,19 @@ class Practicante
 	protected $centro;
 
 
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\AcademicoBundle\Entity\Academico", inversedBy="practicantes")
+	* @ORM\JoinColumn(name="academico", referencedColumnName = "id") 
+	**/	
+	protected $academico;
+
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\ExternoBundle\Entity\Externo", inversedBy="practicantes")
+	* @ORM\JoinColumn(name="externo", referencedColumnName = "id") 
+	**/	
+	protected $externo;
+
+
     /**
      * Sets file.
      *
@@ -690,7 +703,6 @@ class Practicante
         return $this->area;
     }
 
-
  	/**
      * Set area
      *
@@ -711,7 +723,44 @@ class Practicante
         return $this->centro;
     }
 
+ 	/**
+     * Set academico
+     *
+     * @param Cituao\AcademicoBundle\Entity\Academico $academico
+     */
+    public function setAcademico(\Cituao\AcademicoBundle\Entity\Academico $academico)
+    {
+        $this->academico = $academico;
+    }
 
+    /**
+     * Get academico
+     *
+     * @return Cituao\AcademicoBundle\Entity\Academico
+     */
+    public function getAcademico()
+    {
+        return $this->academico;
+    }
+ 	/**
+     * Set externo
+     *
+     * @param Cituao\ExternoBundle\Entity\Academico $academico
+     */
+    public function setExterno(\Cituao\ExternoBundle\Entity\Externo $externo)
+    {
+        $this->externo = $externo;
+    }
+
+    /**
+     * Get externo
+     *
+     * @return Cituao\CoordExterno\Entity\Externo
+     */
+    public function getExterno()
+    {
+        return $this->externo;
+    }
 
     /**
      * Set fechaInformeGestion1

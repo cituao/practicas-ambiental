@@ -51,6 +51,11 @@ class Academico
      */
     private $email;
 
+    /**
+	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Practicante", mappedBy = "academico")	
+	**/
+	protected $practicantes;
+
 
     /**
      * Get id

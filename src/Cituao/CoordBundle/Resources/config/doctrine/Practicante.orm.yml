@@ -26,6 +26,10 @@ Cituao\CoordBundle\Entity\Practicante:
             type: integer
         centro:
             type: integer
+        academico:
+            type: integer
+        externo:
+            type: integer
         emailInstitucional:
             type: string
             length: '50'
