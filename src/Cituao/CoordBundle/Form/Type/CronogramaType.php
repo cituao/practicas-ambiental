@@ -13,6 +13,8 @@ class CronogramaType extends AbstractType
         $builder
 	    ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))
+		->add('centro','entity', array('class' => 'CituaoCoordBundle:Centro' , 'property'=>'centro', 'empty_value' => 'Seleccione un centro de prácticas'))
+		
 		->add('fechaMatriculacion', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		
 		//->add('fechaAsesoria2','text',  array('label' => 'Apellidos', 'read_only'=>'true'))

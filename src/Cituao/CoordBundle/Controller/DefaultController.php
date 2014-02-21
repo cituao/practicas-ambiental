@@ -133,6 +133,14 @@ class DefaultController extends Controller
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+		$centros = $repository->findAll();
+		
+		if (!$centros) {
+			throw $this->createNotFoundException('No hay centros de prácticas registrados!');
+		}
+		
+		
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 				
