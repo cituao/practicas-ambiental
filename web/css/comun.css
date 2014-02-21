@@ -43,10 +43,13 @@ dl dd {
     margin-left: .5em;
 }
 
+/*
 h1 { font-size: 21px; margin-top: 0; font-style:normal}
 h2 { font-size: 18px; margin-top: 0; font-style:normal}
 h3 { font-size: 12px; margin-top: 0; font-style:normal}
 h4 { font-size: 6px; margin-top: 0; font-style:normal}
+*/
+
 
 p {
     margin: 0 0 1em;

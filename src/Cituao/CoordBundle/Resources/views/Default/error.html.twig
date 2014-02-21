@@ -1,13 +1,21 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block title %}Página no encontrada{% endblock %}
+{% block title %}Error en Prácticas profesionales{% endblock %}
 
 {% block infowrapper  %} 
-     <h1>Lo sentimos, no encontramos la página que buscas</h1>
-     <h2>Puede que la dirección esté mal escrita o que la página que buscas ya no esté disponible</h2>
-	 <h3> {{ exception.codigo}} </h3>
-	 <h3> {{ exception.message }} </h3>
-	 
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="{{ path('cituao_coord_registrar_practicante') }}" id = "homeButton">Registrar un nuevo participante</a></li>
+			</ul>
+		</div>
+		
+		<div id = "subinfowrapper">
+		
+			
+			 <h2> {{ exception.codigo}} </h3>
+			 <h2> {{ exception.message }} </h3>
+		</div>
 
 {% endblock %}
 
