@@ -14,7 +14,8 @@ class CronogramaType extends AbstractType
 	    ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))
 		->add('fechaMatriculacion', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		
+		->add('centro','entity', array('class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre'))	
+				
 		//->add('fechaAsesoria2','text',  array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('fechaAsesoria1', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		->add('fechaAsesoria2', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
