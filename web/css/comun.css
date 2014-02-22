@@ -29,10 +29,23 @@ body {
 ul {
     margin-left: 1em;
     padding-left: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-right: 1px;
+	height:40px;
+	float: left;
 }
 
 ul li, ol li {
-    margin-top: 2px;
+    margin-top: 5px;
+    padding-left: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 3px;
+	height:15px;
+	width:150px;
+	float:left;
+	
 }
 
 dl dt {
@@ -43,36 +56,10 @@ dl dd {
     margin-left: .5em;
 }
 
-/*
-h1 { font-size: 21px; margin-top: 0; font-style:normal}
-h2 { font-size: 18px; margin-top: 0; font-style:normal}
-h3 { font-size: 12px; margin-top: 0; font-style:normal}
-h4 { font-size: 6px; margin-top: 0; font-style:normal}
-*/
-
 
 p {
     margin: 0 0 1em;
 }
-
-#grad1
-{
-height:150px;
-background: -webkit-linear-gradient(left, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Safari */
-background: -o-linear-gradient(right, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Opera 11.1 to 12.0 */
-background: -moz-linear-gradient(right, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Firefox 3.6 to 15 */
-background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); /* Standard syntax (must be last) */
-}
-
-
-
-
-/*
-img {
-    outline: 3px solid #E6E2DF;
-}*/
-
-
 
 
 span.si { color: #060; }
@@ -91,10 +78,13 @@ h1 span { color: #AAA; }
 #menuop{
 	display: block;
 	width: 100%;
-	height:40px;
-	background:#fff;
-	margin-top:4%;
-	margin-left:4%;
+	height: 13%;
+	margin-top:1%;
+	margin-left:1%;
+	background-color: #f3f3f3;
+	padding: 1px;
+	border-top: 3px solid #af0000;
+	border-bottom: 1px solid rgba (0,0,0,0.15);
 }
 
 #subinfowrapper{
@@ -595,3 +585,30 @@ div #error {
 	padding-left:5px;
 
 }
+
+a.baropcion{
+	width: 120px;
+	height: 20px;
+	background: #e0001a;
+	float: left;
+	margin-top: 0.1%;
+	margin-right: 0.1%;
+	text-decoration: none;
+	/*position: relative;*/
+	font-family: Helvetica;
+	font-size: 12px;
+	color:#fff;
+	font-weight: bold;
+	padding-top:28px;
+	padding-bottom:5px;
+	padding-right:5px;
+	padding-left:5px;
+
+
+}
+
+a.baropcion:hover{
+	opacity:0.5;
+}
+
+
