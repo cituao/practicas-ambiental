@@ -1,0 +1,21 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block title %}Error en Prácticas profesionales{% endblock %}
+
+{% block infowrapper  %} 
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="{{ path('cituao_coord_registrar_practicante') }}" id = "homeButton">Registrar un nuevo participante</a></li>
+			</ul>
+		</div>
+		
+		<div id = "subinfowrapper">
+		
+			
+			 <h2> {{ exception.codigo}} </h3>
+			 <h2> {{ exception.message }} </h3>
+		</div>
+
+{% endblock %}
+

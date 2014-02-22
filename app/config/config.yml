@@ -64,3 +64,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+services:
+    kernel.listener.CituaoExcepcionListener:
+        class: Cituao\CoordBundle\Listener\CituaoExceptionListener
+        arguments: [@templating, @kernel]
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception,  method: onKernelException }
+
+    
