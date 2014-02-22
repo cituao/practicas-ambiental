@@ -2,6 +2,14 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
+		<h2 id = "titlee">Practicantes</h2>
+		<div id = "menuop">
+			<ul>
+			<li><a href="{{ path('cituao_coord_cronograma' , { 'codigo': practicante.codigo}) }}" class = "baropcion">Calendario</a></li>
+			<li><a href="{{ path('cituao_coord_registrar_practicante') }}" class = "baropcion">Buscar</a></li>
+			</ul>
+		</div>
+
 		<form action="{{ path('cituao_coord_practicante' , { 'codigo': practicante.codigo}) }}" method="post" {{ form_enctype(formulario) }}>
 				<div>{{ form_errors(formulario) }}</div>	
 				<div><img border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="114" height="144"></div>
@@ -17,23 +25,7 @@
 				{{ form_rest(formulario) }}
 				<input class="boton" type="submit" value="Guardar" />
 		</form>
-		
-		<div id = "opciones">
-				<a href="{{ path('cituao_coord_cronograma' , { 'codigo': practicante.codigo}) }}" id = "opButton"><img id="practicanteIcon" src="{{ asset('img/calendar.jpg') }}"></a>
-		</div>
-
 	
 	</div>
 {% endblock %}
 
-{% block aside %}
-		<section>
-			<div id = "barratitulo">
-				<h2>Opciones</h2>
-			</div>
-			<div>
-				<a href="{{ path('cituao_coord_cronograma') }}">Cronograma de actividades</a>
-				<a href="{{ path('logout') }}">Enviar correo</a>
-			</div>
-		</section>
-{% endblock %}
