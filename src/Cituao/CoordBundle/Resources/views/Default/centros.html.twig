@@ -2,8 +2,12 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
+		<h2 id = "titlee">Centros de práctica</h2>
 		<div id = "menuop">
-			<a href="{{ path('cituao_coord_registrarcentro') }}" id = "homeButton">  Registrar un nuevo centro de práctica </a>	
+			<ul>
+			<li><a href="{{ path('cituao_coord_registrarcentro') }}" class = "baropcion">Nuevo</a></li>
+			<li><a href="" class = "baropcion">Buscar</a></li>
+			</ul>
 		</div>
 	{% if msgerr.id == '1' %}
 		<div id = "error">{{ msgerr.descripcion }} </div>		

@@ -2,6 +2,13 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
+		<h2 id = "titlee">Registrando un nuevo centro de práctica</h2>
+		<div id = "menuop">
+			<ul>
+			<li><a href="" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
 		<form action="{{ path('cituao_coord_registrarcentro') }}" method="post" {{ form_enctype(formulario) }}>
 			<div>{{ form_errors(formulario) }}</div>	
 			
