@@ -35,6 +35,11 @@ class Area
 	protected $practicantes;
 
 
+	public function __construct()
+    {
+        $this->practicantes = new ArrayCollection();
+    }
+	
 	public function __toString()
 	{
     	return strval($this->id);

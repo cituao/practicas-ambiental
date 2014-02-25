@@ -67,6 +67,11 @@ class Externo
 	protected $practicantes;
 
 
+	public function __construct()
+    {
+        $this->practicantes = new ArrayCollection();
+    }
+	
     /**
      * Get id
      *

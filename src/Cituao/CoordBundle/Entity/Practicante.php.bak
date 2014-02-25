@@ -159,9 +159,16 @@ class Practicante
 
 	/**
 	* @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Entity\Area", inversedBy="practicantes")
-	* @ORM\JoinColumn(name="id_area", referencedColumnName = "id") 
+	* @ORM\JoinColumn(name="area", referencedColumnName = "id") 
 	**/	
 	protected $area;
+	
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Entity\Centro", inversedBy="practicantes")
+	* @ORM\JoinColumn(name="centro", referencedColumnName = "id") 
+	**/	
+	protected $centro;
+	
 
 
     /**

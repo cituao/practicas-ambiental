@@ -40,11 +40,17 @@ class Centro
 	protected $practicantes;
 
     /**
-	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Externo", mappedBy = "asesores")	
+	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Externo", mappedBy = "centro")	
 	**/
 	protected $externos;
-
 	
+	
+	public function __construct()
+    {
+        $this->practicantes = new ArrayCollection();
+		$this->externos = new ArrayCollection();
+    }
+ 	
 	public function __toString()
 	{
     	return strval($this->id);
