@@ -14,12 +14,10 @@
 			<div>{{ msgerr.descripcion }} </div>		
 		{% else %}
 			<div id = "subinfowrapper">
-			<div> <h3 id="titlee">	Tus Asesores externos </h3> </div>
-			
 			<table id = "customers">
 			<tbody>
 				<tr>
-				<th>#</th>	<th>pIC</th> <th>CEDULA</th> <th>NOMBRES</th> <th>APELLIDOS</th> <th>TELEFONO</th>	<th>Acción</th>
+				<th>#</th> <th>CEDULA</th> <th>NOMBRES</th> <th>APELLIDOS</th> <th>CENTRO DE PRACTICA</th> <th>CARGO</th><th>TELEFONO FIJO</th><th>TELEFONO MOVIL</th><th>EMAIL</th><th>ACCION</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -34,12 +32,14 @@
 					{% endif %}
 
 						<td>{{ id }}</th>
-				
-						<td><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Pulpit rock" width="68" height="68"></td>
 						<td>{{ asesor.ci }}</td>
 						<td>{{ asesor.nombres }}</td>
 						<td>{{ asesor.apellidos }}</td>
-						<td>{{ asesor.telefonoMovil }}</td>				
+						<td>{{ asesor.centro }}</td>
+						<td>{{ asesor.cargo }} </td>
+						<td>{{ asesor.telefonoFijo }}</td>
+						<td>{{ asesor.telefonoMovil }}</td>
+						<td>{{ asesor.email }}</td>
 
 						<td><a href="{{ path('cituao_coord_externo', { 'ci': asesor.ci}) }}"> Modificar </a></td>
 						</tr>

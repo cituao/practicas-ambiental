@@ -25,4 +25,9 @@ Cituao\ExternoBundle\Entity\Externo:
         email:
             type: string
             length: '50'
+        cargo:
+            type: string
+            length: '30'    
+        centro:
+            type: integer
     lifecycleCallbacks: {  }

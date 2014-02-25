@@ -39,6 +39,11 @@ class Centro
 	**/
 	protected $practicantes;
 
+    /**
+	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Externo", mappedBy = "asesores")	
+	**/
+	protected $externos;
+
 	
 	public function __toString()
 	{

@@ -50,6 +50,17 @@ class Externo
      */
     private $email;
 
+     /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $cargo;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Centro", inversedBy="externos")
+	 * JoinColumn(name="centro", referencedColumnName="id")
+     */
+    private $centro;
+
     /**
 	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Practicante", mappedBy = "externo")	
 	**/

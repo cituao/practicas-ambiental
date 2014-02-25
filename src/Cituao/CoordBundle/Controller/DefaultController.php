@@ -291,9 +291,7 @@ class DefaultController extends Controller
 	/*************************************/
 	public function asesoresAction(){
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
-
 		$listaAsesores = $repository->findAll();
-		
 		
 		if (!$listaAsesores) {
 			$msgerr = array('descripcion'=>'No hay asesores externos registrados!','id'=>'1');
