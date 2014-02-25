@@ -19,12 +19,15 @@
 			<tbody>
 				<tr>
 					<th>#</th>
-					<th>pIC</th>
+					<th>FOTO</th>
 					<th>CODIGO</th>
+					<th>CEDULA</th>
 					<th>APELLIDOS</th>
 					<th>NOMBRES</th>
-					<th>Acción</th>
-	
+					<th>EMAIL INSTITUCIONAL</th>
+					<th>EMAIL PERSONAL</th>
+					<th>TELEFONO MOVIL</th>
+					<th></th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -39,13 +42,15 @@
 					{% endif %}
 
 						<td>{{ id }}</th>
-				
 						<td><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Pulpit rock" width="68" height="68"></td>
 						<td>{{ practicante.codigo }}</td>
+						<td>{{ practicante.ci }}</td>
 						<td>{{ practicante.apellidos }}</td>
 						<td>{{ practicante.nombres }}</td>
-				
-						<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"> Ver </a></td>
+						<td>{{ practicante.emailInstitucional }}</td>
+						<td>{{ practicante.emailPersonal }}</td>
+						<td>{{ practicante.telefonoMovil }}</td>
+						<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"> Ver y modificar</a></td>
 					</tr>
 					{% set id = id + 1 %}
 				{% endfor %}
