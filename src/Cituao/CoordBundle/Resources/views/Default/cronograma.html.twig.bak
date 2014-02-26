@@ -48,7 +48,7 @@
 			</select>
 		</div>
 		    
-	</div>
+	</div>	
 	
 	<div>
         <label for="frontend_usuario_apellidos" class="required">ASESOR EXTERNO</label>

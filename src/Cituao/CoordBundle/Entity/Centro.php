@@ -36,6 +36,17 @@ class Centro
     private $extension;
 
     /**
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var string
+     */
+    private $url;
+
+
+    /**
 	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Practicante", mappedBy = "centro")	
 	**/
 	protected $practicantes;
@@ -158,4 +169,52 @@ class Centro
     {
         return $this->extension;
     }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Centro
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Centro
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+
 }

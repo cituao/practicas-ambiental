@@ -11,10 +11,12 @@ class CentroType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		->add('nombre','text', array('label' => 'Nombre', 'max_length' => '50'))	    
+		->add('nombre','text', array('label' => 'Nombre del centro de práctica', 'max_length' => '50'))	    
 		->add('direccion','textarea', array('label' => 'Dirección', 'max_length' => '255'))
-        ->add('telefono','text', array('label' => 'Telefono'))
-		->add('extension','text', array('label' => 'Extension'));
+        ->add('telefono','text', array('label' => 'Teléfono'))
+		->add('extension','text', array('label' => 'Extensión'))
+		->add('email','text', array('label' => 'Email'))
+		->add('url','text', array('label' => 'Direccion web'));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

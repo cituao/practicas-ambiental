@@ -13,8 +13,6 @@
 		<div id = "error">{{ msgerr.descripcion }} </div>		
 	{% else %}
 		<div id = "subinfowrapper">
-			<div> <h3 id="titlee">	Tus centros de prácticas</h3> </div>
-
 		<div>
 			<table id = "customers">
 			<tbody>
@@ -24,6 +22,8 @@
 					<th>DIRECCION</th>
 					<th>TELEFONO</th>
 					<th>EXTENSION</th>
+					<th>EMAIL</th>
+					<th>DIRECCION WEB</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -40,7 +40,10 @@
 						<td>{{ centro.nombre }}</td>
 						<td>{{ centro.direccion }}</td>
 						<td>{{ centro.telefono }}</td>
-						<td><a href="{{ path('cituao_coord_centro', { 'codigo': centro.id}) }}"> Ver </a></td>
+						<td>{{ centro.extension }}</td>
+						<td>{{ centro.email }}</td>
+						<td>{{ centro.url }}</td>
+						<td><a href="{{ path('cituao_coord_centro', { 'codigo': centro.id}) }}"> Ver y modificar </a></td>
 					</tr>
 					{% set id = id + 1 %}
 				{% endfor %}
