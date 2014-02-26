@@ -3,6 +3,7 @@
 namespace Cituao\ExternoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Cituao\ExternoBundle\Entity\Externo
@@ -92,7 +93,7 @@ class Externo
     {
         $this->nombres = $nombres;
     
-        return $this;
+        return;
     }
 
     /**
@@ -115,7 +116,7 @@ class Externo
     {
         $this->apellidos = $apellidos;
     
-        return $this;
+        return;
     }
 
     /**
@@ -138,7 +139,7 @@ class Externo
     {
         $this->ci = $ci;
     
-        return $this;
+        return;
     }
 
     /**
@@ -161,7 +162,7 @@ class Externo
     {
         $this->telefonoMovil = $telefonoMovil;
     
-        return $this;
+        return;
     }
 
     /**
@@ -184,7 +185,7 @@ class Externo
     {
         $this->telefonoFijo = $telefonoFijo;
     
-        return $this;
+        return;
     }
 
     /**
@@ -207,7 +208,7 @@ class Externo
     {
         $this->email = $email;
     
-        return $this;
+        return;
     }
 
     /**
@@ -219,4 +220,51 @@ class Externo
     {
         return $this->email;
     }
+
+    /**
+     * Set centro
+     *
+     * @param string $centro
+     * @return Externo
+     */
+    public function setCentro($centro)
+    {
+        $this->centro = $centro;
+    
+        return;
+    }
+
+    /**
+     * Get centro
+     *
+     * @return string 
+     */
+    public function getCentro()
+    {
+        return $this->centro;
+    }
+
+    /**
+     * Set cargo
+     *
+     * @param string $cargo
+     * @return Externo
+     */
+    public function setCargo($cargo)
+    {
+        $this->cargo = $cargo;
+    
+        return;
+    }
+
+    /**
+     * Get cargo
+     *
+     * @return string 
+     */
+    public function getCargo()
+    {
+        return $this->cargo;
+    }
+
 }
