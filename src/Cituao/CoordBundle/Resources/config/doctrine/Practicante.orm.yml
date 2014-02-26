@@ -43,6 +43,8 @@ Cituao\CoordBundle\Entity\Practicante:
             type: boolean
         fechaMatriculacion:
             type: date
+        fechaIniciacion:
+            type: date        
         fechaAsesoria1:
             type: date
         fechaAsesoria2:

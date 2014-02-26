@@ -51,6 +51,11 @@ class Practicante
      */
     private $fechaMatriculacion;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechaIniciacion;
+
      /**
      * @ORM\Column(type="string", length=50)
      */
@@ -427,6 +432,30 @@ class Practicante
     {
         return $this->estado;
     }
+
+    /**
+     * Set fechaIniciacion
+     *
+     * @param \date $fechaIniciacion
+     * @return Practicante
+     */
+    public function setFechaIniciacion($fechaIniciacion)
+    {
+        $this->fechaIniciacion = $fechaIniciacion;
+    
+        return;
+    }
+
+    /**
+     * Get fechaIniciacion
+     *
+     * @return \date 
+     */
+    public function getFechaIniciacion()
+    {
+        return $this->fechaIniciacion;
+    }
+
 
 
     /**

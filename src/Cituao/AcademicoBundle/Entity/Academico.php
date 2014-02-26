@@ -66,7 +66,7 @@ public function __construct()
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer 	
      */
     public function getId()
     {
