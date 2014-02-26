@@ -16,9 +16,9 @@ class CronogramaType extends AbstractType
 		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'empty_value' => 'Seleccione un centro de prácticas'))
 		->add('externo','entity', array('label' => 'Asesor externo','class' => 'CituaoExternoBundle:Externo' , 'property'=>'nombres', 'empty_value' => 'Seleccione un asesor externo'))
 		->add('academico','entity', array('label' => 'Asesor académico','class' => 'CituaoAcademicoBundle:Academico' , 'property'=>'nombres', 'empty_value' => 'Seleccione un asesor académico'))
-		->add('fechaIniciacion', 'date', array('widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-				
-		//->add('fechaAsesoria2','text',  array('label' => 'Apellidos', 'read_only'=>'true'))
+		
+		->add('fechaIniciacion', 'date', array('label' => 'Fecha de iniciación','widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))				
+		
 		->add('fechaAsesoria1', 'date', array('label' => 'Fecha de asesoría #1','widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		->add('fechaAsesoria2', 'date', array('label' => 'Fecha de asesoría #2','widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		->add('fechaAsesoria3', 'date', array('label' => 'Fecha de asesoría #3','widget' => 'text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
