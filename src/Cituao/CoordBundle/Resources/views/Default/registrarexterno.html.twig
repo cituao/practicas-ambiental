@@ -2,23 +2,24 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
-			<div>
-				<h3 id="titlee">
-    				Ingresando nuevo asesor externo!
-    			</h3>
- 			</div>
-
-	<form action="{{ path('cituao_coord_registrarexterno') }}" method="post" {{ form_enctype(formulario) }}>
-	    <div>	{{ form_errors(formulario) }}	</div>
-	    <div>	{{ form_row(formulario.ci) }}   </div>
-	    <div>	{{ form_row(formulario.nombres) }}   </div>
-	    <div>	{{ form_row(formulario.apellidos) }}  </div>
-	    <div>	{{ form_row(formulario.telefonoMovil) }}   </div>
-	    <div>	{{ form_row(formulario.telefonoFijo) }}   </div>
-	    <div>	{{ form_row(formulario.email) }}   </div>
-	    {{ form_rest(formulario) }}
-	    <input class="boton" type="submit" value="Guardar" />
-	    </div>
-	</form>	
+		<h2 id = "titlee">Nuevo asesor externo</h2>
+		<div id = "menuop">
+		</div>
+		<div id = "subinfowrapper">
+			<form action="{{ path('cituao_coord_registrarexterno') }}" method="post" {{ form_enctype(formulario) }}>
+				<div>	{{ form_errors(formulario) }}	</div>
+				<div>	{{ form_row(formulario.ci) }}   </div>
+				<div>	{{ form_row(formulario.nombres) }}   </div>
+				<div>	{{ form_row(formulario.apellidos) }}  </div>
+				<div>	{{ form_row(formulario.telefonoMovil) }}   </div>
+				<div>	{{ form_row(formulario.telefonoFijo) }}   </div>
+				<div>	{{ form_row(formulario.email) }}   </div>
+				<div>	{{ form_row(formulario.centro) }}   </div>
+				<div>	{{ form_row(formulario.cargo) }}   </div>
+				{{ form_rest(formulario) }}
+				<input class="boton" type="submit" value="Guardar" />
+				</div>
+			</form>	
+		</div>
 	</div>
 {% endblock %}

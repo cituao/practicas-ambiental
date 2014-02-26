@@ -16,12 +16,9 @@ class ExternoType extends AbstractType
         ->add('apellidos','text', array('label' => 'Apellidos:', 'required' => true))
         ->add('email', 'email',  array('label' => 'Email:',  'attr' => array('placeholder' => 'usuario@servidor'), 'required' => true ))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil:', 'required' => true))
-		->add('telefonoFijo','text', array('label' => 'Teléfono fijo:'));
-		
-
-		//->add('modalidad','choice', array('label' => 'Modalidad', 'choices'=> array('aud'=>'Audio', 'vis'=>'Visual', 'imp'=>'Impreso'),'multiple'=>true));*/
-		//->add('tipo','choice', array('label' => 'Tipo', 'choices'=> array('nac'=>'Nacional', 'int'=>'Internacional')))
-
+		->add('telefonoFijo','text', array('label' => 'Teléfono fijo:'))
+		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'empty_value' => 'Seleccione un centro de prácticas'))		
+		->add('cargo','text', array('label' => 'Cargo:', 'required' => true));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
