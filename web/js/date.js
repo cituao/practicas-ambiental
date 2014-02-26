@@ -38,12 +38,12 @@ $(function() {
 			var fecha_finalizacion = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
 
 			//colocar las fechas de asesorias en la tabla
-			$("#fecha_asesoria1").text(fecha_asesoria1);
-			$("#fecha_asesoria2").text(fecha_asesoria2);
-			$("#fecha_asesoria3").text(fecha_asesoria3);
-			$("#fecha_asesoria4").text(fecha_asesoria4);
+			$("#hojadevida_fechaAsesoria1").text(fecha_asesoria1);
+			$("#hojadevida_fechaAsesoria2").text(fecha_asesoria2);
+			$("#hojadevida_fechaAsesoria3").text(fecha_asesoria3);
+			$("#hojadevida_fechaAsesoria4").text(fecha_asesoria4);
 			$("#fecha_asesoria5").text(fecha_asesoria5);
-			$("#fecha_asesoria6").text(fecha_asesoria6);
+			$("#hojadevida_fechaAsesoria6").text(fecha_asesoria6);
 			$("#fecha_asesoria7").text(fecha_asesoria7);
 			$("#fecha_finalizacion").val(fecha_finalizacion);
 
