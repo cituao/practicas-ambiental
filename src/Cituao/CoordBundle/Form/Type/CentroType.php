@@ -12,7 +12,7 @@ class CentroType extends AbstractType
     {
         $builder
 		->add('nombre','text', array('label' => 'Nombre del centro de práctica', 'max_length' => '50'))	    
-		->add('direccion','textarea', array('label' => 'Dirección', 'max_length' => '255' ,  'attr' => array('placeholder' => 'Ingrese la dirección del centro de práctica')))
+		->add('direccion','textarea', array('label' => 'Dirección', 'max_length' => '255' ,  'attr' => array('placeholder' => 'Ingrese la dirección del centro de práctica', 'cols' => '5', 'rows' => '5')))
         ->add('telefono','text', array('label' => 'Teléfono' ,  'attr' => array('placeholder' => 'Ingrese el número telefónico')))
 		->add('extension','text', array('label' => 'Extensión' ,  'attr' => array('placeholder' => 'Ingrese extensiones')))
 		->add('email','text', array('label' => 'Email' ,  'attr' => array('placeholder' => 'Ingrese el email')))

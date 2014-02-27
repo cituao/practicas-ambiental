@@ -10,16 +10,32 @@
 			
 			</ul>
 		</div>
+		
+		
+		
+		
 	<form action="{{ path('cituao_coord_centro' , { 'codigo': centro.id}) }}" method="post" {{ form_enctype(formulario) }}>
-	    <div>{{ form_errors(formulario) }}</div>
-	    <div>{{ form_row(formulario.nombre) }}</div>
+	    {{ form_start(formulario) }}
+		<div>{{ form_errors(formulario) }}</div>
+		<div>
+			{{ form_label(formulario.nombre) }}
+			{{ form_errors(formulario.nombre) }}
+			
+			{{ form_widget(formulario.nombre, {'attr': {'class':'textolargo'}} ) }}
+			
+		</div>
 	    <div>{{ form_row(formulario.direccion) }}</div>
 	    <div>{{ form_row(formulario.telefono) }}</div>
 	    <div>{{ form_row(formulario.extension) }}</div>
 		<div>{{ form_row(formulario.email) }}</div>
 		<div>{{ form_row(formulario.url) }}</div>
-	    {{ form_rest(formulario) }}
+	    {{ form_end(formulario) }}
 	    <input class="boton" type="submit" value="Guardar" />
 	</form>	
+	
+	
+	
+	
+	
 </div>
 {% endblock %}
