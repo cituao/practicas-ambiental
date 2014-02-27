@@ -189,7 +189,7 @@ class DefaultController extends Controller
 			$document->upload();
 
 		    $em->persist($document);
-		    $em->flush();
+		    //$em->flush();
 
 			$archivo= $document->getAbsolutePath();		
 			//bajamos el archivo a una matriz para procesar registro a registro y bajarlo a base de datos		    
@@ -234,10 +234,8 @@ class DefaultController extends Controller
 				$usuario->setEmail($listaEstudiantes[$i]['emailInstitucional']);
 				
 				 $em->persist($usuario);
-                 $em->flush();
 
-				
-				//convertimos la fecha a un objeto Date				
+				 //convertimos la fecha de matricula a un objeto Date				
 				$fecha = $listaEstudiantes[$i]['fecha'];
 				$separa = explode("/",$fecha);
 				$dia = $separa[0];
@@ -250,29 +248,11 @@ class DefaultController extends Controller
 				$practicante->setFechaMatriculacion($f);
 
 				//cargamos los demas datos
-				$practicante->setTelefonoMovil($sad);
+				//$practicante->setTelefonoMovil($sad);
 				$area = new Area();
 				$practicante->setArea($area);
-				
-				
-				$practicante->setTipo($sad);
-				$practicante->setEmailPersonal($sad);
-				$practicante->setEstado($sad);
+				$practicante->setEstado(false);
 
-				$practicante->setFechaAsesoria1($f);
-				$practicante->setFechaAsesoria2($f);
-				$practicante->setFechaAsesoria3($f);
-				$practicante->setFechaAsesoria4($f);
-				$practicante->setFechaAsesoria5($f);
-				$practicante->setFechaAsesoria6($f);
-				$practicante->setFechaAsesoria7($f);
-				$practicante->setFechaVisitaP($f);
-				$practicante->setFechaVisita1($f);
-				$practicante->setFechaVisita2($f);
-				$practicante->setFechaInformeGestion1($f);
-				$practicante->setFechaInformeGestion2($f);
-				$practicante->setFechaInformeGestion3($f);
-				$practicante->setFechaInformeFinal($f);
 				$practicante->setPath('user.jpeg');
 				$em->persist($practicante);
 				$em->flush();

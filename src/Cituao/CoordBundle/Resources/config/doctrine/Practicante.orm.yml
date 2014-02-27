@@ -10,9 +10,11 @@ Cituao\CoordBundle\Entity\Practicante:
         codigo:
             type: string
             length: '20'
+            unique: true
         ci:
             type: string
             length: '15'
+            unique: true
         apellidos:
             type: string
             length: '50'
@@ -22,57 +24,80 @@ Cituao\CoordBundle\Entity\Practicante:
         tipo:
             type: string
             length: '3'
+            nullable: true
         area:
             type: integer
+            nullable: true
         centro:
             type: integer
+            nullable: true
         academico:
             type: integer
+            nullable: true
         externo:
             type: integer
+            nullable: true
         emailInstitucional:
             type: string
             length: '50'
+            nullable: true
         emailPersonal:
             type: string
             length: '50'
+            nullable: true
         telefonoMovil:
             type: string
             length: '50'
+            nullable: true
         estado:
             type: boolean
         fechaMatriculacion:
             type: date
         fechaIniciacion:
-            type: date        
+            type: date
+            nullable: true 
         fechaAsesoria1:
             type: date
+            nullable: true
         fechaAsesoria2:
             type: date
+            nullable: true
         fechaAsesoria3:
             type: date
+            nullable: true
         fechaAsesoria4:
             type: date
+            nullable: true
         fechaAsesoria5:
             type: date
+            nullable: true
         fechaAsesoria6:
             type: date
+            nullable: true
         fechaAsesoria7:
             type: date
+            nullable: true
         fechaVisitaP:
             type: date
+            nullable: true
         fechaVisita1:
             type: date
+            nullable: true
         fechaVisita2:
             type: date
+            nullable: true
         fechaInformeGestion1:
             type: date
+            nullable: true
         fechaInformeGestion2:
             type: date
+            nullable: true
         fechaInformeGestion3:
             type: date
+            nullable: true
         fechaInformeFinal:
             type: date
+            nullable: true
         path:
             type: string
             length: '30'
