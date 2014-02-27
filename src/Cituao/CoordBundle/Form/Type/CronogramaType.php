@@ -37,12 +37,6 @@ class CronogramaType extends AbstractType
 		
 		->add('fechaInformeFinal', 'date', array('widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'));
 		
-		
-		
-		//->add('ci','text', array('label' => 'Cedula de Identidad','read_only'=>'true'))
-		//->add('codigo','text', array('label' => 'Codigo' , 'read_only'=>'true'))		
-		//->add('modalidad','choice', array('label' => 'Modalidad', 'choices'=> array('aud'=>'Audio', 'vis'=>'Visual', 'imp'=>'Impreso'),'multiple'=>true))
-		//->add('tipo','choice', array('label' => 'Tipo', 'choices'=> array('nac'=>'Nacional', 'int'=>'Internacional')))
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -54,6 +48,6 @@ class CronogramaType extends AbstractType
 
     public function getName()
     {
-        return 'hojadevida';
+        return 'cronograma';
     }
 }

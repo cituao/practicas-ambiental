@@ -20,7 +20,7 @@ class PracticanteType extends AbstractType
         ->add('emailPersonal', 'email',  array('label' => 'Email personal',  'attr' => array('placeholder' => 'usuario@servidor')))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'))
-		->add('fechaMatriculacion', 'date', array('input' => 'datetime', 'widget' => 'choice'))
+		->add('fechaMatriculacion', 'date', array('label' => 'Fecha de matrícula', 'input' => 'datetime', 'widget' => 'choice'))
 		->add('area','entity', array('class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
 
 		//->add('ci','text', array('label' => 'Cédula de identidad','read_only'=>'true'))    

@@ -1,12 +1,12 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block stylesheets %}
-	{{ parent() }}
-
-	<link rel="stylesheet" type="text/css" media="all" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-	<script src="{{ asset('js/date.js') }}"></script>
+{% block javascripts %}
+	<meta charset="utf-8">
+	 <title>jQuery UI Datepicker - Default functionality</title>
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+	 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	 <script src="{{ asset('js/date.js') }}"></script>
 {% endblock %}
 
 
@@ -31,8 +31,10 @@
 				<div>{{ form_row(formulario.externo) }}</div>
 				<div>{{ form_row(formulario.academico) }}</div>
 				
-				<div> <input type="text" id="datepicker" /> </div>
+				
+				
 				<div>{{ form_row(formulario.fechaIniciacion) }}</div>
+				
 				<div>{{ form_row(formulario.fechaAsesoria1) }}</div>
 				<div>{{ form_row(formulario.fechaAsesoria2) }}</div>
 				<div>{{ form_row(formulario.fechaAsesoria3) }}</div>
@@ -57,6 +59,10 @@
 				<input class="boton" type="submit" value="Guardar" />
 		</form>
 	
+		
+		
+		
+		
 		
 	</div>
 
