@@ -3,19 +3,19 @@
 {% block title %}Error en Prácticas profesionales{% endblock %}
 
 {% block infowrapper  %} 
-
+	<div id="infoWrapper">
+		<h2 id = "titlee">Centros de práctica</h2>
 		<div id = "menuop">
 			<ul>
-			<li><a href="{{ path('cituao_coord_registrar_practicante') }}" id = "homeButton">Registrar un nuevo participante</a></li>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
 			</ul>
 		</div>
-		
 		<div id = "subinfowrapper">
-		
-			
-			 <h2> {{ exception.codigo}} </h3>
-			 <h2> {{ exception.message }} </h3>
+			<div>
+				 <h2> {{ exception.codigo}} </h3>
+				 <h2> {{ exception.message }} </h3>
+			</div>
 		</div>
-
+	</div>
 {% endblock %}
 

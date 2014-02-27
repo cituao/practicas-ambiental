@@ -12,14 +12,13 @@ class PracticanteType extends AbstractType
     {
         $builder
 		->add('file')
-		->add('ci','text', array('label' => 'Cédula de identidad'))	    
-		->add('codigo','text', array('label' => 'Código'))
-        ->add('apellidos','text', array('label' => 'Apellidos'))
-		->add('nombres','text', array('label' => 'Nombres'))
+		->add('ci','text', array('label' => 'Cédula de identidad' ,  'attr' => array('placeholder' => 'Ingrese cédula de identidad')))	    
+		->add('codigo','text', array('label' => 'Código' ,  'attr' => array('placeholder' => 'Ingrese código del estudiante')))
+        ->add('apellidos','text', array('label' => 'Apellidos' ,  'attr' => array('placeholder' => 'Ingrese apellidos')))
+		->add('nombres','text', array('label' => 'Nombres' ,  'attr' => array('placeholder' => 'Ingrese nombres del partipante')))
         ->add('emailInstitucional', 'email',  array('label' => 'Email institucional' ,  'attr' => array('placeholder' => 'usuario@servidor')))
         ->add('emailPersonal', 'email',  array('label' => 'Email personal',  'attr' => array('placeholder' => 'usuario@servidor')))
-		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'))
-		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'))
+		->add('telefonoMovil','text', array('label' => 'Teléfono móvil' ,  'attr' => array('placeholder' => 'Ingrese el número telefónico móvil ')))
 		->add('fechaMatriculacion', 'date', array('label' => 'Fecha de matrícula', 'input' => 'datetime', 'widget' => 'choice', 'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día') ))
 		->add('area','entity', array('class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
 

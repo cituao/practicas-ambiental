@@ -19,11 +19,14 @@ Cituao\CoordBundle\Entity\Centro:
         extension:
             type: string
             length: '10'
+            nullable: true
         email:
             type: string
             length: '50'
+            nullable: true
         url:
             type: string
             length: '50'
+            nullable: true
 
     lifecycleCallbacks: {  }

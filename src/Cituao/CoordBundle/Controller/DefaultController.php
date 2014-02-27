@@ -141,6 +141,8 @@ class DefaultController extends Controller
 		}
 		
 		
+		
+		
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 				
