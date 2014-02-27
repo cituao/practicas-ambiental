@@ -33,26 +33,15 @@ class DefaultController extends Controller
 	//Listar los practicantes registrados en la base de datos
 	/********************************************************/	
 	public function practicantesAction(){
-	/*
-		$listaPracticantes = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante')->findAll();
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes));
-		*/
-		
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-
 		$listaPracticantes = $repository->findAll();
-		
 		
 		if (!$listaPracticantes) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
 	    }else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		
-		
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
-		
-		
 	}
 
 	/***************************************************************************/
@@ -67,20 +56,6 @@ class DefaultController extends Controller
         if ($formulario->isValid()) {
 			$f = $practicante->getFechaMatriculacion();
 			 
-			$practicante->setFechaAsesoria1($f);
-			$practicante->setFechaAsesoria2($f);
-			$practicante->setFechaAsesoria3($f);
-			$practicante->setFechaAsesoria4($f);
-			$practicante->setFechaAsesoria5($f);
-			$practicante->setFechaAsesoria6($f);
-			$practicante->setFechaAsesoria7($f);
-			$practicante->setFechaVisitaP($f);
-			$practicante->setFechaVisita1($f);
-			$practicante->setFechaVisita2($f);
-			$practicante->setFechaInformeGestion1($f);
-			$practicante->setFechaInformeGestion2($f);
-			$practicante->setFechaInformeGestion3($f);
-			$practicante->setFechaInformeFinal($f);
 			$practicante->setPath('user.jpeg');
 		
 			// Completar las propiedades que el usuario no rellena en el formulario
@@ -137,11 +112,24 @@ class DefaultController extends Controller
 		$centros = $repository->findAll();
 		
 		if (!$centros) {
-			throw $this->createNotFoundException('No hay centros de prácticas registrados!');
+			throw $this->createNotFoundException('Para crear un cronograma debe haber centros de práctica registrados!');
 		}
 		
+		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
+		$externos = $repository->findAll();
 		
+		if (!$externos) {
+			throw $this->createNotFoundException('Para operar con un cronograma debe haber un asesor externo registrado! Registre el asesor externo!');
+		}
 		
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academicos = $repository->findAll();
+
+		if (!$academicos) {
+			throw $this->createNotFoundException('Para operar con un cronograma debe haber un asesor académico registrado! Registre el asesor académico!');
+		}
+
+
 		
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
@@ -290,7 +278,14 @@ class DefaultController extends Controller
 	/*********************************************/	
 	public function registrarexternoAction()
 	{
-		$peticion = $this->getRequest();
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+		$centros = $repository->findAll();
+		
+		if (!$centros) {
+			throw $this->createNotFoundException('Para crear un nuevo asesor externo debe haber centros de práctica registrados!');
+		}
+
+    	$peticion = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
 		$externo = new Externo();
         $formulario = $this->createForm(new ExternoType(), $externo);
@@ -428,7 +423,7 @@ class DefaultController extends Controller
 		$listaCentros = $repository->findAll();
 		
 		if (!$listaCentros) {
-			$msgerr = array('descripcion'=>'No hay centos de prácticas registrados!','id'=>'1');
+			$msgerr = array('descripcion'=>'No hay centros de prácticas registrados!','id'=>'1');
 	    }else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}

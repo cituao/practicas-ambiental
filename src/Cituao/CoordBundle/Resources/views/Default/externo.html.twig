@@ -2,6 +2,15 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
+		<h2 id="titlee">Datos del asesor externo </h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+	
 	<form action="{{ path('cituao_coord_externo'  , { 'ci': externo.ci }) }}" method="post" {{ form_enctype(formulario) }}>
 	    <div>
 			{{ form_errors(formulario) }}

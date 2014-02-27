@@ -4,21 +4,24 @@
 	<div id="infoWrapper">
 		<h2 id = "titlee">Nuevo asesor académico</h2>
 		<div id = "menuop">
+			<ul>
+				<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		
 		</div>
 		<div id = "subinfowrapper">
-
-		<form action="{{ path('cituao_coord_registraracademico') }}" method="post" {{ form_enctype(formulario) }}>
-			<div>	{{ form_errors(formulario) }}	</div>
-			<div>	{{ form_row(formulario.ci) }}   </div>
-			<div>	{{ form_row(formulario.nombres) }}   </div>
-			<div>	{{ form_row(formulario.apellidos) }}  </div>
-			<div>	{{ form_row(formulario.telefonoMovil) }}   </div>
-			<div>	{{ form_row(formulario.telefonoFijo) }}   </div>
-			<div>	{{ form_row(formulario.email) }}   </div>
-			{{ form_rest(formulario) }}
-			<input class="boton" type="submit" value="Guardar" />
-			</div>
-		</form>	
+			<form action="{{ path('cituao_coord_registraracademico') }}" method="post" {{ form_enctype(formulario) }}>
+				<div>	{{ form_errors(formulario) }}	</div>
+				<div>	{{ form_row(formulario.ci) }}   </div>
+				<div>	{{ form_row(formulario.nombres) }}   </div>
+				<div>	{{ form_row(formulario.apellidos) }}  </div>
+				<div>	{{ form_row(formulario.telefonoMovil) }}   </div>
+				<div>	{{ form_row(formulario.telefonoFijo) }}   </div>
+				<div>	{{ form_row(formulario.email) }}   </div>
+				{{ form_rest(formulario) }}
+				<input class="boton" type="submit" value="Guardar" />
+				</div>
+			</form>	
 		</div>	
 	</div>
 {% endblock %}

@@ -11,7 +11,11 @@
 		</div>
 
 	{% if msgerr.id == '1' %}
-		<div id = "error">{{ msgerr.descripcion }} </div>		
+		<div id = "error">
+		<h3 id = "title">
+		{{ msgerr.descripcion }}
+		</h3>
+		</div>		
 	{% else %}
 
 		<div id = "subinfowrapper">
