@@ -135,6 +135,10 @@ class Externo
         return $this->apellidos;
     }
 
+	/**
+	 *
+	 * nombre completo para los select 
+	 */
 	public function getNombreCompleto(){
 
 		return sprintf('%s %s',$this->nombres, $this->apellidos);
