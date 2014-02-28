@@ -14,7 +14,7 @@ class CronogramaType extends AbstractType
 	    ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))
 		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'empty_value' => 'Seleccione un centro de prácticas'))
-		->add('externo','entity', array('label' => 'Asesor externo','class' => 'CituaoExternoBundle:Externo' , 'property'=>'nombres', 'empty_value' => 'Seleccione un asesor externo'))
+		->add('externo','entity', array('label' => 'Asesor externo','class' => 'CituaoExternoBundle:Externo' , 'property'=>'NombreCompleto', 'empty_value' => 'Seleccione un asesor externo'))
 		->add('academico','entity', array('label' => 'Asesor académico','class' => 'CituaoAcademicoBundle:Academico' , 'property'=>'nombres', 'empty_value' => 'Seleccione un asesor académico'))
 		
 		->add('fechaIniciacion', 'date', array('label' => 'Fecha de iniciación','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))				

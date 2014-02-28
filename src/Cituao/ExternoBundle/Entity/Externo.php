@@ -73,6 +73,12 @@ class Externo
         $this->practicantes = new ArrayCollection();
     }
 	
+
+	public function __toString(){
+
+		return sprintf('%s %s',$this->nombres, $this->apellidos);
+
+	}
     /**
      * Get id
      *
@@ -128,6 +134,11 @@ class Externo
     {
         return $this->apellidos;
     }
+
+	public function getNombreCompleto(){
+
+		return sprintf('%s %s',$this->nombres, $this->apellidos);
+	}
 
     /**
      * Set ci
