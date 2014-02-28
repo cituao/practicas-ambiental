@@ -5,13 +5,18 @@ namespace Cituao\CoordBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * Centro
+
+ /**
+ *  
+ * @ORM\Table(name="Centro")
+ * @ORM\Entity(repositoryClass="Cituao\CoordBundle\Entity\CoordRepository")
  */
 class Centro
 {
-    /**
-     * @var integer
+     /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -52,7 +57,7 @@ class Centro
 	protected $practicantes;
 
     /**
-	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Externo", mappedBy = "centro")	
+	* @ORM\OneToMany(targetEntity="Cituao\ExternoBundle\Externo", mappedBy = "centro")	
 	**/
 	protected $externos;
 	
@@ -215,6 +220,9 @@ class Centro
     {
         return $this->url;
     }
-
-
+	
+	public function getExternos(){
+		return $this->externos;
+	
+	}
 }

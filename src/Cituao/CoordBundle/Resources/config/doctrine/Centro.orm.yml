@@ -28,5 +28,8 @@ Cituao\CoordBundle\Entity\Centro:
             type: string
             length: '50'
             nullable: true
-
+    oneToMany:
+        externos:
+            targetEntity: Cituao\ExternoBundle\Entity\Externo
+            mappedBy: centro
     lifecycleCallbacks: {  }

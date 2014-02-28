@@ -14,6 +14,15 @@
 			<div>
 				 <h3 id = "title"> {{ exception.codigo}} </h3>
 				 <h3 id = "title"> {{ exception.message }} </h3>
+				 {% if externos %}
+				 {% for externo in externos %}
+					<h3>{{ externo.ci }} {{ externo.nombres }}</h3>
+				 {% endfor %}
+				 {% else %}
+					<h3>no se puede</h3>
+				 {% endif %}
+
+				 
 			</div>
 		</div>
 	</div>

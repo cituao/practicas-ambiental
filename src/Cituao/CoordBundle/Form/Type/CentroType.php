@@ -17,6 +17,8 @@ class CentroType extends AbstractType
 		->add('extension','text', array('label' => 'Extensión' ,  'attr' => array('placeholder' => 'Ingrese extensiones')))
 		->add('email','text', array('label' => 'Email' ,  'attr' => array('placeholder' => 'Ingrese el email')))
 		->add('url','text', array('label' => 'Direccion web',  'attr' => array('placeholder' => 'Ingrese la dirección web')));
+		//->add('externos', 'entity', array('label' => 'Asesores externos', 'class' => 'CituaoCoordBundle:Centro', 'property' => 'Externos'));
+		//no podemos listar aca los asesores externos porque es un formulario para registrar un centro de practica
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

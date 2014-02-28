@@ -1,6 +1,7 @@
 Cituao\ExternoBundle\Entity\Externo:
     type: entity
     table: null
+
     fields:
         id:
             type: integer
@@ -28,6 +29,12 @@ Cituao\ExternoBundle\Entity\Externo:
         cargo:
             type: string
             length: '30'    
+    manyToOne:
         centro:
-            type: integer
-    lifecycleCallbacks: {  }
+            targetEntity: Cituao\CoordBundle\Entity\Centro
+            inversedBy: externos
+            joinColumn:
+                name: centro
+                referencedColumnName: id
+
+lifecycleCallbacks: {  }

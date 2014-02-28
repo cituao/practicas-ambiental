@@ -418,7 +418,6 @@ class DefaultController extends Controller
 	//Listar los centros de practicas registrados en la base de datos
 	/********************************************************/	
 	public function centrosAction(){
-		
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 		$listaCentros = $repository->findAll();
 		
@@ -461,14 +460,14 @@ class DefaultController extends Controller
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 
-		
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 		$centro = $repository->findOneBy(array('id' => $codigo));
+        $externos=$centro->getExternos();
 		
-        $formulario = $this->createForm(new CentroType(), $centro);
-        
+		$formulario = $this->createForm(new CentroType(), $centro);
 		$formulario->handleRequest($peticion);
 
+		
         if ($formulario->isValid()) {
 			
             // Completar las propiedades que el usuario no rellena en el formulario
@@ -485,6 +484,7 @@ class DefaultController extends Controller
         }
 		
         return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro ));
+		
 		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
 			/*
 		        // Loguear al usuario automáticamente
@@ -500,20 +500,37 @@ class DefaultController extends Controller
 	seleccionado en el select 
 	**************************************************/
 	public function obtenerexternosporcentroAction(){
-		$request = $this->getRequest();
-		$codigo_id = $request->request->get('cod_centro');
-
+		//*$request = $this->getRequest();
+		//$codigo_id = $request->request->get('cod_centro');
+		/*
+		$codigo_id = 1;
+		
 		$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery('SELECT u.ci, u.nombres FROM CituaoExternoBundle:Externo u WHERE u.id = :cod_id ORDER BY u.nombres')->setParameter('cod_id',$codigo_id); 
 		
-		$usuarios = $query->getResult();
-	
-
+		$externos = $query->getResult();
+		*/
+		
+		$em = $this->getDoctrine()->getManager();
+		$codigo = 1;
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+		$centro = $repository->findOneBy(array('id' => $codigo));
+        $externos=$centro->getExternos();
+		
+		if(!$externos){
+			$exception = array('codigo' => '999', 'message' => 'no hay registros');
+		}
+		else{
+			$exception = array('codigo' => '000', 'message' => 'si hay registros');
+		}
+		return $this->render('CituaoCoordBundle:Default:error.html.twig', array('externos' => $externos, 'exception' => $exception ));
+		/*
 		$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
 		JsonEncoder()));
 		$json = $serializer->serialize($usuarios, 'json');
 				
 		return new Response($json);
+		*/
 	}
 
 }
