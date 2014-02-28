@@ -27,7 +27,7 @@
 				
 				<div>{{ form_row(formulario.apellidos) }}</div>
 				<div>{{ form_row(formulario.nombres) }}</div>
-				<div>{{ form_row(formulario.centro) }}</div>
+				<div data-path = "{{ path('cituao_coord_obtener_externos') }}">{{ form_row(formulario.centro) }}</div>
 				<div>{{ form_row(formulario.externo) }}</div>
 				<div>{{ form_row(formulario.academico) }}</div>
 				
@@ -58,14 +58,7 @@
 				{{ form_rest(formulario) }}
 				<input class="boton" type="submit" value="Guardar" />
 		</form>
-	
-		
-		
-		
-		
-		
 	</div>
-
 {% endblock %}
 
 

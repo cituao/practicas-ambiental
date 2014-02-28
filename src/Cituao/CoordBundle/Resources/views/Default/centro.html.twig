@@ -17,18 +17,34 @@
 	<form action="{{ path('cituao_coord_centro' , { 'codigo': centro.id}) }}" method="post" {{ form_enctype(formulario) }}>
 	    {{ form_start(formulario) }}
 		<div>{{ form_errors(formulario) }}</div>
+		
 		<div>
 			{{ form_label(formulario.nombre) }}
 			{{ form_errors(formulario.nombre) }}
-			
-			{{ form_widget(formulario.nombre, {'attr': {'class':'textolargo'}} ) }}
-			
+			{{ form_widget(formulario.nombre, {'attr': {'class':'largo'}} ) }}
 		</div>
+		
 	    <div>{{ form_row(formulario.direccion) }}</div>
-	    <div>{{ form_row(formulario.telefono) }}</div>
-	    <div>{{ form_row(formulario.extension) }}</div>
-		<div>{{ form_row(formulario.email) }}</div>
-		<div>{{ form_row(formulario.url) }}</div>
+	    <div>
+			{{ form_label(formulario.telefono) }}
+			{{ form_errors(formulario.telefono) }}
+			{{ form_widget(formulario.telefono, {'attr': {'class':'corto'}} ) }}
+		</div>
+	    <div>
+			{{ form_label(formulario.extension) }}
+			{{ form_errors(formulario.extension) }}
+			{{ form_widget(formulario.extension, {'attr': {'class':'corto'}} ) }}
+		</div>
+		<div>
+			{{ form_label(formulario.email) }}
+			{{ form_errors(formulario.email) }}
+			{{ form_widget(formulario.email, {'attr': {'class':'mediano'}} ) }}
+		</div>
+		<div>
+			{{ form_label(formulario.url) }}
+			{{ form_errors(formulario.url) }}
+			{{ form_widget(formulario.url, {'attr': {'class':'mediano'}} ) }}
+		</div>
 	    {{ form_end(formulario) }}
 	    <input class="boton" type="submit" value="Guardar" />
 	</form>	

@@ -98,6 +98,36 @@ $(function() {
 
 				}
 			}); //date picker
+
+
+		$("#cronograma_centro").change(function(){
+				var codigo = "";
+	
+				codigo = this.value;
+				alert(codigo);
+				
+				var ruta = $("#cronograma_centro").attr("data-path");
+				alert(ruta);
+					$.ajax({url: ruta,
+						type: "POST",
+						data: { "cod_centro" : codigo },
+						success:function(data){
+							alert(data);
+							console.log(data);
+
+							var obj = eval ("(" + data + ")");
+							console.log(obj);
+
+							var html = '';
+							var len = obj.length;
+							for (var i = 0; i< len; i++) {
+								html += '<option value="' + obj[i].id + '">' + obj[i].username + '</option>';
+								//alert(data[i].username);
+							}
+							$('#tipos').append(html);
+					}});
+		});
+
 		}); // document.ready
 }); 
 

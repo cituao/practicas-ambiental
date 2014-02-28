@@ -153,7 +153,7 @@ padding: 3px 7px 2px 7px;
 /* ===========================================================================
    Formularios
    ======================================================================== */
-form > div > div {
+form > div {
     clear: both;
     border-bottom: 1px solid #CCC;
     padding: 0.5em .5em;
@@ -163,21 +163,22 @@ form label {
     font-weight: bold;
     width: 100px;
 	font-family:Tahoma;
-	font-size:14px;
+	font-size:16px;
 }
 
-form > div > div > label {
+form > div > label {
     display: inline-block;
     font-weight: bold;
     width: 20%;
 	font-family:Tahoma;
-	font-size:14px;
+	font-size:16px;
 
 }
 
 form textarea {
     padding: 2px;
     margin-bottom: 2em;
+
 }
 
 form input {
@@ -191,7 +192,7 @@ form input {
 
 
 form textarea {
-    height: 200px;
+    height: 50px;
     width: 500px;
 }
 form textarea.mediana {
@@ -217,7 +218,10 @@ form input[type="submit"] {
     margin: 1em 0;
 }
 form input.largo {
-    width: 500px;
+    width: 300px;
+}
+form input.mediano {
+    width: 200px;
 }
 form input.corto {
     width: 100px;

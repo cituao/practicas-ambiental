@@ -493,6 +493,29 @@ class DefaultController extends Controller
 			*/
 
 	}
+	
+	/*************************************************
+	funcion que recibe la peticion ajax por jquery	y	 
+	retorno un json los asesores externos del centro de practicas
+	seleccionado en el select 
+	**************************************************/
+	public function obtenerexternosporcentroAction(){
+		$request = $this->getRequest();
+		$codigo_id = $request->request->get('cod_centro');
+
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery('SELECT u.id, u.username FROM AcmeUserBundle:User u ORDER BY u.username'); 
+		
+		$usuarios = $query->getResult();
+	
+
+		$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
+		JsonEncoder()));
+		$json = $serializer->serialize($usuarios, 'json');
+				
+		return new Response($json);
+	}
+
 }
 
 
