@@ -504,7 +504,7 @@ class DefaultController extends Controller
 		$codigo_id = $request->request->get('cod_centro');
 
 		$em = $this->getDoctrine()->getManager();
-		$query = $em->createQuery('SELECT u.id, u.username FROM AcmeUserBundle:User u ORDER BY u.username'); 
+		$query = $em->createQuery('SELECT u.ci, u.nombres FROM CituaoExternoBundle:Externo u WHERE u.id = :cod_id ORDER BY u.nombres')->setParameter('cod_id',$codigo_id); 
 		
 		$usuarios = $query->getResult();
 	
