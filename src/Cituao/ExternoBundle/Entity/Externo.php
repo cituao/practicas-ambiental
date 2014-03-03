@@ -4,6 +4,7 @@ namespace Cituao\ExternoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cituao\ExternoBundle\Entity\Externo
@@ -23,36 +24,43 @@ class Externo
 
      /**
      * @ORM\Column(type="string", length=50)
-     */
+	 * @Assert\NotBlank(message="Este dato es obligatorio")
+	*/
     private $nombres;
 
      /**
      * @ORM\Column(type="string", length=50)
-     */
+     * @Assert\NotBlank(message="Este dato es obligatorio")
+	 */
     private $apellidos;
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
-     */
+     * @Assert\NotBlank(message="Este dato es obligatorio")
+	 */
     private $ci;
 
      /**
      * @ORM\Column(type="string", length=15)
-     */
+	*  @Assert\NotBlank(message="Este dato es obligatorio")
+    */
     private $telefonoMovil;
 
      /**
      * @ORM\Column(type="string", length=15)
+	 @Assert\NotBlank(message="Este dato es obligatorio")
      */
     private $telefonoFijo;
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\Email(message="Este dato es obligatorio")
      */
     private $email;
 
      /**
      * @ORM\Column(type="string", length=30)
+	 *	@Assert\NotBlank(message="Este dato es obligatorio")
      */
     private $cargo;
 

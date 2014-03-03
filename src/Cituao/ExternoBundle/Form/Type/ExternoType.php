@@ -24,8 +24,11 @@ class ExternoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Cituao\ExternoBundle\Entity\Externo'
+            'data_class' => 'Cituao\ExternoBundle\Entity\Externo', 'cascade_validation' => true
         ));
+		
+
+		
     }
 
     public function getName()

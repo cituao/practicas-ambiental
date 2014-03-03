@@ -12,19 +12,43 @@
 
 	
 	<form action="{{ path('cituao_coord_externo'  , { 'ci': externo.ci }) }}" method="post" {{ form_enctype(formulario) }}>
-	    <div>
+	    
 			{{ form_errors(formulario) }}
-			<div>	{{ form_row(formulario.ci) }}  </div>
-			<div>   {{ form_row(formulario.nombres) }}   </div>
-			<div>	{{ form_row(formulario.apellidos) }}  </div>
-			<div>	{{ form_row(formulario.telefonoMovil) }}   </div>
-			<div>	{{ form_row(formulario.telefonoFijo) }}    </div>
-			<div>	{{ form_row(formulario.email) }}   </div>
+			<div>	
+				{{ form_label(formulario.ci) }}
+				{{ form_widget(formulario.ci, {'attr': {'class':'corto'}} ) }}
+				{{ form_errors(formulario.ci) }}
+			</div>
+			<div>   
+				{{ form_label(formulario.nombres) }}
+				{{ form_widget(formulario.nombres, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.nombres) }}
+			</div>
+			<div>	
+				{{ form_label(formulario.apellidos) }}
+				{{ form_widget(formulario.apellidos, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.apellidos) }}
+			</div>
+			<div>	
+				{{ form_label(formulario.telefonoMovil) }}
+				{{ form_widget(formulario.telefonoMovil, {'attr': {'class':'corto'}} ) }}
+				{{ form_errors(formulario.telefonoMovil) }}
+			</div>
+			<div>	
+				{{ form_label(formulario.telefonoFijo) }}
+				{{ form_widget(formulario.telefonoFijo, {'attr': {'class':'corto'}} ) }}
+				{{ form_errors(formulario.telefonoFijo) }}
+			</div>
+			<div>
+				{{ form_label(formulario.email) }}
+				{{ form_widget(formulario.email, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.email) }}
+			</div>
 
 			{{ form_rest(formulario) }}
 
 			<input class="boton" type="submit" value="Guardar" />
-	    </div>
+	    
 	</form>	
 	</div>
 {% endblock %}

@@ -6,6 +6,7 @@ use Cituao\CoordBundle\Entity\Document;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\HttpFoundation\Response;
 use Cituao\CoordBundle\Entity\Practicante;
 use Cituao\UsuarioBundle\Entity\Usuario;
 use Cituao\ExternoBundle\Entity\Externo;
@@ -18,6 +19,12 @@ use Cituao\CoordBundle\Entity\Centro;
 use Cituao\CoordBundle\Form\Type\CentroType;
 use Cituao\CoordBundle\Form\Type\CronogramaType;
 use \DateTime;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+
+
+
 
 class DefaultController extends Controller
 {
@@ -500,22 +507,17 @@ class DefaultController extends Controller
 	seleccionado en el select 
 	**************************************************/
 	public function obtenerexternosporcentroAction(){
-		//*$request = $this->getRequest();
-		//$codigo_id = $request->request->get('cod_centro');
-		/*
-		$codigo_id = 1;
+		$request = $this->getRequest();
+		$codigo_id = $request->request->get('cod_centro');
+		
+		//$codigo_id = 2;
 		
 		$em = $this->getDoctrine()->getManager();
-		$query = $em->createQuery('SELECT u.ci, u.nombres FROM CituaoExternoBundle:Externo u WHERE u.id = :cod_id ORDER BY u.nombres')->setParameter('cod_id',$codigo_id); 
+		$query = $em->createQuery('SELECT e.ci, e.nombres FROM CituaoExternoBundle:Externo e WHERE e.centro = :cod_id ORDER BY e.nombres')->setParameter('cod_id',$codigo_id); 
 		
 		$externos = $query->getResult();
-		*/
 		
-		$em = $this->getDoctrine()->getManager();
-		$codigo = 1;
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
-		$centro = $repository->findOneBy(array('id' => $codigo));
-        $externos=$centro->getExternos();
+		
 		
 		if(!$externos){
 			$exception = array('codigo' => '999', 'message' => 'no hay registros');
@@ -523,14 +525,14 @@ class DefaultController extends Controller
 		else{
 			$exception = array('codigo' => '000', 'message' => 'si hay registros');
 		}
-		return $this->render('CituaoCoordBundle:Default:error.html.twig', array('externos' => $externos, 'exception' => $exception ));
-		/*
+		//return $this->render('CituaoCoordBundle:Default:prueba.html.twig', array('externos' => $externos, 'exception' => $exception ));
+		
 		$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
 		JsonEncoder()));
-		$json = $serializer->serialize($usuarios, 'json');
+		$json = $serializer->serialize($externos, 'json');
 				
 		return new Response($json);
-		*/
+	
 	}
 
 }
