@@ -169,9 +169,42 @@ form label {
 form > div > label {
     display: inline-block;
     font-weight: bold;
-    width: 20%;
+    width: 10%;
 	font-family:Tahoma;
 	font-size:16px;
+
+}
+
+form > div > div.fecha{
+    /* border-bottom: 1px solid #CCC; */
+    padding: 0.5em .5em;
+	float:left;
+}
+
+form > div.contenedor_fecha {
+    clear: both;
+    border-bottom: 1px solid #CCC;
+    padding: 0.5em 1.5em 0.5em 0.5em;
+	display:block;
+	height:100px;
+}
+
+form > div.contenedor_fecha1 {
+    clear: both;
+    border-bottom: 1px solid #CCC;
+    padding: 0.5em 1.5em 0.5em 0.5em;
+	display:block;
+	height:50px;
+}
+
+
+div.fecha label{
+    display: inline-block;
+    font-weight: bold;
+    width: 40%;
+	font-family:Tahoma;
+	font-size:12px;
+
 
 }
 
