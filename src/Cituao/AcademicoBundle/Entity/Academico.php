@@ -4,6 +4,7 @@ namespace Cituao\AcademicoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -24,31 +25,37 @@ class Academico
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\NotBlank(message="Este dato es necesario")
      */
     private $nombres;
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\NotBlank(message="Este dato es necesario")
      */
     private $apellidos;
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
+	 * @Assert\NotBlank(message="Este dato es necesario")
      */
     private $ci;
 
      /**
      * @ORM\Column(type="string", length=15)
+	 * @Assert\NotBlank(message="Este dato es necesario")
      */
     private $telefonoMovil;
 
      /**
      * @ORM\Column(type="string", length=15)
+	 * @Assert\NotBlank(message="Este dato es necesario")
      */
     private $telefonoFijo;
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\NotBlank(message="Este dato es necesario")
      */
     private $email;
 

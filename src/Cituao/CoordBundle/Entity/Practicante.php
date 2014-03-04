@@ -4,6 +4,7 @@ namespace Cituao\CoordBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use \DateTime;
 
 /**
  *  
@@ -22,48 +23,54 @@ class Practicante
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
+	 * @Assert\NotBlank(message="El código del practicante es obligatorio")
      */
     private $codigo;
 
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\NotBlank(message="El apellido es obligatorio")
      */
    private $apellidos;
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\NotBlank(message="El nombre es obligatorio")
      */
     private $nombres;
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
+	 * @Assert\NotBlank(message="La cédula de identidad es obligatorio")
      */
     private $ci;
 
      /**
      * @ORM\Column(type="string", length=3)
-     */
+	 */
     private $tipo;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="La fecha de matriculación es obligatoria")
      */
     private $fechaMatriculacion;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="La fecha de iniciación es obligatoria")
      */
     private $fechaIniciacion;
 
      /**
      * @ORM\Column(type="string", length=50)
-     */
+	 */
     private $emailInstitucional;
 
      /**
      * @ORM\Column(type="string", length=50)
-     */
+	 */
     private $emailPersonal;
 
      /**
@@ -83,71 +90,85 @@ class Practicante
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaAsesoria1;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaAsesoria2;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaAsesoria3;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaAsesoria4;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaAsesoria5;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaAsesoria6;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaAsesoria7;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaVisitaP;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaVisita1;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaVisita2;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaInformeGestion1;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaInformeGestion2;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaInformeGestion3;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date()(message="Este dato es obligatorio")
      */
     private $fechaInformeFinal;
 

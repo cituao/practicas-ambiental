@@ -31,12 +31,6 @@ Cituao\CoordBundle\Entity\Practicante:
         centro:
             type: integer
             nullable: true
-        academico:
-            type: integer
-            nullable: true
-        externo:
-            type: integer
-            nullable: true
         emailInstitucional:
             type: string
             length: '50'
@@ -101,5 +95,17 @@ Cituao\CoordBundle\Entity\Practicante:
         path:
             type: string
             length: '30'
-
+    manyToOne:
+        externo:
+            targetEntity: Cituao\ExternoBundle\Entity\Externo
+            inversedBy: practicantes
+            joinColumn:
+                name: externo
+                referencedColumnName: id
+        academico:
+            targetEntity: Cituao\AcademicoBundle\Entity\Academico
+            inversedBy: practicantes
+            joinColumn:
+                name: academico
+                referencedColumnName: id
     lifecycleCallbacks: {  }

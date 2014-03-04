@@ -27,7 +27,7 @@ class AcademicoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Cituao\AcademicoBundle\Entity\Academico'
+            'data_class' => 'Cituao\AcademicoBundle\Entity\Academico', 'cascade_validation' => true
         ));
     }
 

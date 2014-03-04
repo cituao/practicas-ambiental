@@ -122,9 +122,9 @@ $(function() {
 							var html = '<option value selected="selected">Seleccione un asesor externo</option>'
 							var len = obj.length;
 							for (var i = 0; i< len; i++) {
-								html += '<option value="' + obj[i].ci + '">' + obj[i].nombres + ' ' + obj[i].apellidos + '</option>';
+								html += '<option value="' + obj[i].id + '">' + obj[i].nombres + ' ' + obj[i].apellidos + '</option>';
 							}
-							alert(html);
+							//alert(html);
 							$('#cronograma_externo')
 								.find('option')
 								.remove()
