@@ -511,14 +511,10 @@ class DefaultController extends Controller
 		$codigo_id = $request->request->get('cod_centro');
 		
 		//$codigo_id = 2;
-		
 		$em = $this->getDoctrine()->getManager();
-		$query = $em->createQuery('SELECT e.ci, e.nombres FROM CituaoExternoBundle:Externo e WHERE e.centro = :cod_id ORDER BY e.nombres')->setParameter('cod_id',$codigo_id); 
+		$query = $em->createQuery('SELECT e.ci, e.nombres, e.apellidos FROM CituaoExternoBundle:Externo e WHERE e.centro = :cod_id ORDER BY e.nombres')->setParameter('cod_id',$codigo_id); 
 		
 		$externos = $query->getResult();
-		
-		
-		
 		if(!$externos){
 			$exception = array('codigo' => '999', 'message' => 'no hay registros');
 		}

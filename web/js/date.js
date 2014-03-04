@@ -119,13 +119,17 @@ $(function() {
 							//console.log(obj);
 
 							var html = '';
+							var html = '<option value selected="selected">Seleccione un asesor externo</option>'
 							var len = obj.length;
 							for (var i = 0; i< len; i++) {
-								html += '<option value="' + obj[i].ci + '">' + obj[i].nombres + '</option>';
-								//alert(data[i].username);
+								html += '<option value="' + obj[i].ci + '">' + obj[i].nombres + ' ' + obj[i].apellidos + '</option>';
 							}
 							alert(html);
-							$('#cronograma_externo').append(html);
+							$('#cronograma_externo')
+								.find('option')
+								.remove()
+								.end()
+								.append(html);
 							
 					}});
 		});
