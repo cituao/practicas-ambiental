@@ -25,4 +25,8 @@ Cituao\AcademicoBundle\Entity\Academico:
         email:
             type: string
             length: '50'
+    oneToMany:
+        practicantes:
+            targetEntity: Cituao\CoordBundle\Entity\Practicante
+            mappedBy: academico
     lifecycleCallbacks: {  }

@@ -229,8 +229,6 @@ class Practicante
         return $this->file;
     }
 
-
-
     /**
      * Get id
      *

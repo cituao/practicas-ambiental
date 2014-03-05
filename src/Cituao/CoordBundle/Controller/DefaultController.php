@@ -156,12 +156,7 @@ class DefaultController extends Controller
         return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
 	}
 
-	/********************************************************/
-	//por implementar
-	/********************************************************/		
-	public function cargarEstudiantesAction(){
-		
-	} 
+	
 
 	/********************************************************/
 	//SE ENCARGA DE LANZAR UN FORMULARIO PARA LA SUBIDA DEL ARCHIVO TXT CON ESTUDIANTES PARA IR A PRACTICAS PROFESIONALES

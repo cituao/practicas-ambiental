@@ -1,18 +1,18 @@
 Cituao\ExternoBundle\Entity\Externo:
-    properties:
-        ci:
-            - NotBlank: ~
-        nombres :
-            - NotBlank: ~
-        apellidos:
-            - NotBlank: ~
-         telefonoMovil:
-            - NotBlank: ~
-         telefonoFijo:
-            - NotBlank: ~
-         email:
-              - Email
-                    message: El correo no es válido
-                    checkMX: true
-          cargo:
-            - NotBlank
+properties:
+ci:
+- NotBlank: ~
+nombres:
+- NotBlank: ~
+apellidos:
+- NotBlank: ~
+telefonoMovil:
+- NotBlank: ~
+telefonoFijo:
+- NotBlank: ~
+email:
+- Email
+message: El correo no es válido
+checkMX: true
+cargo:
+- NotBlank

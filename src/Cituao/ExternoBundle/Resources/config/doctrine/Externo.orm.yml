@@ -36,5 +36,8 @@ Cituao\ExternoBundle\Entity\Externo:
             joinColumn:
                 name: centro
                 referencedColumnName: id
-
+    oneToMany:
+        practicantes:
+            targetEntity: Cituao\CoordBundle\Entity\Practicante
+            mappedBy: externo
 lifecycleCallbacks: {  }

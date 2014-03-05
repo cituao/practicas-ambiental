@@ -41,7 +41,7 @@ Cituao\CoordBundle\Entity\Practicante:
             nullable: true
         telefonoMovil:
             type: string
-            length: '50'
+            length: '15'
             nullable: true
         estado:
             type: boolean
