@@ -53,13 +53,12 @@ class Practicante
 
     /**
      * @ORM\Column(type="date")
-	 * @Assert\Date()(message="La fecha de matriculación es obligatoria")
-     */
+	 * @Assert\NotBlank(message= "La fecha de matriculación es  necesaria")
+	 */
     private $fechaMatriculacion;
 
     /**
      * @ORM\Column(type="date")
-	 * @Assert\Date()(message="La fecha de iniciación es obligatoria")
      */
     private $fechaIniciacion;
 

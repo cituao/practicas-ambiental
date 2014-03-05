@@ -13,13 +13,13 @@
 	
 		<form action="{{ path('cituao_coord_registrar_practicante') }}" method="post" {{ form_enctype(formulario) }}>
 			<div>{{ form_errors(formulario) }}</div>	
-			<div><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Foto estudiante" width="114" height="144"></div>
+			<div><img id = "foto" border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Foto estudiante" width="114" height="144"></div>
 			<div>{{ form_row(formulario.file) }}</div>
 			
 			<div>	
 				{{ form_label(formulario.ci) }}
 				{{ form_errors(formulario.ci) }}
-				{{ form_widget(formulario.ci, {'attr': {'class':'mediano'}} ) }}
+				{{ form_widget(formulario.ci, {'attr': {'class':'corto'}} ) }}
 			</div>
 
 			<div>	

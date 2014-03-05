@@ -62,8 +62,9 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
         if ($formulario->isValid()) {
 			
-			 
-			$practicante->setPath('user.jpeg');
+			$practicante->setEstado("0"); 
+			if ($practicante->getFile() == NULL) 
+				$practicante->setPath('user.jpeg');
 		
 			// Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);
