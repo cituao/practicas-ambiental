@@ -24,8 +24,6 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 
-
-
 class DefaultController extends Controller
 {
 	/********************************************************/
@@ -60,9 +58,11 @@ class DefaultController extends Controller
 		$practicante = new Practicante();
         $formulario = $this->createForm(new PracticanteType(), $practicante);
 		$formulario->handleRequest($peticion);
+		
         if ($formulario->isValid()) {
 			
-			$practicante->setEstado("0"); 
+			$practicante->setEstado("0");  //es practicante sin cronograma
+			//si subio no subio foto  le carga la foto generica
 			if ($practicante->getFile() == NULL) 
 				$practicante->setPath('user.jpeg');
 		
@@ -370,6 +370,9 @@ class DefaultController extends Controller
         $formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
+		
+			if ($academico->getFile() == NULL)  $academico->setPath('user.jpeg');
+			
             // Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($academico);
             $em->flush();
@@ -401,6 +404,7 @@ class DefaultController extends Controller
 
         if ($formulario->isValid()) {
             // Completar las propiedades que el usuario no rellena en el formulario
+			//if ($academico->getFile() == NULL)  $academico->setPath('user.jpeg');
             $em->persist($academico);
             $em->flush();
 

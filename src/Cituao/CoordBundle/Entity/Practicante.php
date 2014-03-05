@@ -176,7 +176,6 @@ class Practicante
      */
     private $path;
 
-
 	/**
      * @Assert\File(maxSize="6000000")
      */

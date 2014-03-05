@@ -19,12 +19,23 @@ Cituao\AcademicoBundle\Entity\Academico:
         telefonoMovil:
             type: string
             length: '15'
+            nullable: true
         telefonoFijo:
             type: string
             length: '15'
+            nullable: true
         email:
             type: string
             length: '50'
+            nullable: true
+        perfil:
+            type: text
+            length: '500'
+            nullable: true
+        path:
+            type: string
+            length: '30'
+            nullable: true
     oneToMany:
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
