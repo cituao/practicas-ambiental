@@ -60,7 +60,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
     public function __construct()
     {
         $this->roles = new ArrayCollection();
-	$this->isActive = true;
+		$this->isActive = true;
     }
 
     /**

@@ -9,8 +9,10 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Response;
 use Cituao\CoordBundle\Entity\Practicante;
 use Cituao\UsuarioBundle\Entity\Usuario;
+use Cituao\UsuarioBundle\Entity\Role;
 use Cituao\ExternoBundle\Entity\Externo;
 use Cituao\CoordBundle\Form\Type\PracticanteType;
+use Cituao\CoordBundle\Form\Type\CoordinadorType;
 use Cituao\ExternoBundle\Form\Type\ExternoType;
 use Cituao\AcademicoBundle\Entity\Academico;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
@@ -527,6 +529,46 @@ class DefaultController extends Controller
 				
 		return new Response($json);
 	
+	}
+
+	public function configuracionAction(){
+		$msgerr = array('descripcion'=>'','id'=>'0');
+		return $this->render('CituaoCoordBundle:Default:configuracion.html.twig', array('msgerr' => $msgerr));	
+	}
+
+	public function registrarcoordinadorAction(){
+		$peticion = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+		$usuario = new Usuario();
+        $formulario = $this->createForm(new CoordinadorType(), $usuario);
+        $formulario->handleRequest($peticion);
+
+		$codigo = 1;		
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
+		$role = $repository->findOneBy(array('id' => $codigo));
+
+        if ($formulario->isValid()) {
+			$usuario->setSalt(md5(time()));
+			
+			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$usuario->setPassword($passwordCodificado);
+			
+    		$usuario->addRole($role);
+        
+			// Completar las propiedades que el usuario no rellena en el formulario
+            $em->persist($usuario);
+            $em->flush();
+
+            
+            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+        }
+
+        return $this->render('CituaoCoordBundle:Default:registrarcoordinador.html.twig', array(
+            'formulario' => $formulario->createView()
+        ));
+
+
 	}
 
 }

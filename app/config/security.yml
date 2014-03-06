@@ -16,7 +16,7 @@ security:
             logout:
                 path:       usuario_logout
             
-            provider:       in_memory 
+            provider:       usuarios
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
@@ -31,8 +31,12 @@ security:
                     coordinador:  { password: 1234, roles: 'ROLE_COORDINADOR' }
                     admin: { password: 12, roles: 'ROLE_ADMIN' }
                     1113036709: { password: 1234, roles: 'ROLE_PRACTICANTE' }
+
+        usuarios:
+            entity: { class: Cituao\UsuarioBundle\Entity\Usuario, property: username }
+
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        #Symfony\Component\Security\Core\User\User: plaintext
         Cituao\UsuarioBundle\Entity\Usuario:
             algorithm:        sha1
             encode_as_base64: false

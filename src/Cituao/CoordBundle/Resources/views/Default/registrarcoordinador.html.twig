@@ -1,0 +1,23 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id = "titlee">Registrando un nuevo centro de práctica</h2>
+		<div id = "menuop">
+			<ul>
+			<li><a href="" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+		<form action="{{ path('cituao_coord_registrar_coordinador') }}" method="post" {{ form_enctype(formulario) }}>
+			<div>{{ form_errors(formulario) }}</div>	
+			
+			<div>{{ form_row(formulario.username) }}</div>			
+			<div>{{ form_row(formulario.password) }}</div>
+			{{ form_rest(formulario) }}
+
+			<input class="boton" type="submit" value="Guardar" />
+		</form>
+	</div> <!-- cierra infoWrapper -->
+{% endblock %}
+

@@ -62,4 +62,11 @@ cituao_coord_centro:
     pattern:  /coordinador/centro/{codigo}
     defaults: { _controller: CituaoCoordBundle:Default:centro }
 
+cituao_coord_configuracion:
+    pattern:  /coordinador/configuracion
+    defaults: { _controller: CituaoCoordBundle:Default:configuracion }
+
+cituao_coord_registrar_coordinador:
+    pattern:  /coordinador/registrarcoordinador
+    defaults: { _controller: CituaoCoordBundle:Default:registrarcoordinador }
 
