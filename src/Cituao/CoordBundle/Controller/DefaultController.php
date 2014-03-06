@@ -85,6 +85,7 @@ class DefaultController extends Controller
 			$usuario->setSalt(md5(time()));
 			$usuario->addRole($role); //cargamos el rol al coordinador
 
+			//codificamos el password			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
             $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
@@ -122,10 +123,6 @@ class DefaultController extends Controller
             $em->persist($practicante);
             $em->flush();
 
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
         return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
@@ -325,6 +322,27 @@ class DefaultController extends Controller
         if ($formulario->isValid()) {
             // Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($externo);
+
+			//los roles fueron cargados de forma manual en la base de datos
+			//buscamos una instancia role tipo coordinador 
+			$codigo = 5; //5 codigo corresponde a coordinador		
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
+			$role = $repository->findOneBy(array('id' => $codigo));
+
+			$usuario = new Usuario();
+			//cargamos todos los atributos al usuario
+			$usuario->setUsername($externo->getCi());
+			$usuario->setPassword($externo->getCi());
+			$usuario->setSalt(md5(time()));
+			$usuario->addRole($role); //cargamos el rol al coordinador
+
+			//codificamos el password			
+			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$usuario->setPassword($passwordCodificado);
+     		 $em->persist($usuario);
+
+
             $em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
@@ -497,11 +515,9 @@ class DefaultController extends Controller
 
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 		$centro = $repository->findOneBy(array('id' => $codigo));
-        $externos=$centro->getExternos();
 		
 		$formulario = $this->createForm(new CentroType(), $centro);
 		$formulario->handleRequest($peticion);
-
 		
         if ($formulario->isValid()) {
 			
@@ -509,24 +525,10 @@ class DefaultController extends Controller
             $em->persist($centro);
             $em->flush();
 
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
-
-
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
 		
         return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro ));
-		
-		//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
-			/*
-		        // Loguear al usuario automáticamente
-		        $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
-		        $this->container->get('security.context')->setToken($token);
-			*/
-
 	}
 	
 	/*************************************************

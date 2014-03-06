@@ -24,49 +24,49 @@ class Externo
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\NotBlank(message="Este dato es obligatorio")
+	 * @Assert\NotBlank(message="El nombre es obligatorio")
 	*/
     private $nombres;
 
      /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank(message="Este dato es obligatorio")
+     * @Assert\NotBlank(message="El apellido es obligatorio")
 	 */
     private $apellidos;
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
-     * @Assert\NotBlank(message="Este dato es obligatorio")
+     * @Assert\NotBlank(message="La ci obligatorio")
 	 */
     private $ci;
 
-     /**
-     * @ORM\Column(type="string", length=15)
-	*  @Assert\NotBlank(message="Este dato es obligatorio")
+    /**
+    * @ORM\Column(type="string", length=15)
     */
     private $telefonoMovil;
 
      /**
      * @ORM\Column(type="string", length=15)
-	 @Assert\NotBlank(message="Este dato es obligatorio")
      */
     private $telefonoFijo;
 
      /**
      * @ORM\Column(type="string", length=50)
 	 * @Assert\Email(message="Este dato es obligatorio")
+	 * @Assert\NotBlank(message="El email es obligatorio")
      */
     private $email;
 
      /**
      * @ORM\Column(type="string", length=30)
-	 *	@Assert\NotBlank(message="Este dato es obligatorio")
+	 *	@Assert\NotBlank(message="El cargo es obligatorio")
      */
     private $cargo;
 
      /**
      * @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Centro", inversedBy="externos")
 	 * JoinColumn(name="centro", referencedColumnName="id")
+	 * @Assert\NotBlank(message="El centro es obligatorio")
      */
     private $centro;
 

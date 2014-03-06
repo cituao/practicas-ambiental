@@ -12,13 +12,45 @@
 		<div id = "subinfowrapper">
 			<form action="{{ path('cituao_coord_registrarexterno') }}" method="post" {{ form_enctype(formulario) }}>
 				<div>	{{ form_errors(formulario) }}	</div>
-				<div>	{{ form_row(formulario.ci) }}   </div>
-				<div>	{{ form_row(formulario.nombres) }}   </div>
-				<div>	{{ form_row(formulario.apellidos) }}  </div>
-				<div>	{{ form_row(formulario.telefonoMovil) }}   </div>
-				<div>	{{ form_row(formulario.telefonoFijo) }}   </div>
-				<div>	{{ form_row(formulario.email) }}   </div>
+
+				<div>
+					{{ form_label(formulario.ci) }}
+					{{ form_errors(formulario.ci) }}
+					{{ form_widget(formulario.ci, {'attr': {'class':'corto'}} ) }}
+				</div>
+
+				<div>
+					{{ form_label(formulario.nombres) }}
+					{{ form_errors(formulario.nombres) }}
+					{{ form_widget(formulario.nombres, {'attr': {'class':'mediano'}} ) }}
+				</div>
+
+				<div>
+					{{ form_label(formulario.apellidos) }}
+					{{ form_errors(formulario.apellidos) }}
+					{{ form_widget(formulario.apellidos, {'attr': {'class':'mediano'}} ) }}
+				</div>
+
+				<div>
+					{{ form_label(formulario.telefonoMovil) }}
+					{{ form_errors(formulario.telefonoMovil) }}
+					{{ form_widget(formulario.telefonoMovil, {'attr': {'class':'mediano'}} ) }}
+				</div>
+
+				<div>
+					{{ form_label(formulario.telefonoFijo) }}
+					{{ form_errors(formulario.telefonoFijo) }}
+					{{ form_widget(formulario.telefonoFijo, {'attr': {'class':'mediano'}} ) }}
+				</div>
+
+				<div>
+					{{ form_label(formulario.email) }}
+					{{ form_errors(formulario.email) }}
+					{{ form_widget(formulario.email, {'attr': {'class':'mediano'}} ) }}
+				</div>
+
 				<div>	{{ form_row(formulario.centro) }}   </div>
+
 				<div>	{{ form_row(formulario.cargo) }}   </div>
 				{{ form_rest(formulario) }}
 				<input class="boton" type="submit" value="Guardar" />

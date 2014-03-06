@@ -12,7 +12,7 @@
 		</div>
 		
 	<form action="{{ path('cituao_coord_centro' , { 'codigo': centro.id}) }}" method="post" {{ form_enctype(formulario) }}>
-	    {{ form_start(formulario) }}
+	    
 		<div>{{ form_errors(formulario) }}</div>
 		
 		<div>
@@ -25,7 +25,7 @@
 	    <div>
 			{{ form_label(formulario.telefono) }}
 			{{ form_errors(formulario.telefono) }}
-			{{ form_widget(formulario.telefono, {'attr': {'class':'corto'}} ) }}
+			{{ form_widget(formulario.telefono, {'attr': {'class':'mediano'}} ) }}
 		</div>
 	    <div>
 			{{ form_label(formulario.extension) }}
@@ -42,7 +42,7 @@
 			{{ form_errors(formulario.url) }}
 			{{ form_widget(formulario.url, {'attr': {'class':'mediano'}} ) }}
 		</div>
-	    {{ form_end(formulario) }}
+	    {{ form_rest(formulario) }}
 	    <input class="boton" type="submit" value="Guardar" />
 	</form>	
 </div>
