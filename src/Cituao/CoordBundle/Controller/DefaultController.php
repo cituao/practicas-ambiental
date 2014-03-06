@@ -70,6 +70,26 @@ class DefaultController extends Controller
 		
 			// Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);
+
+
+			//los roles fueron cargados de forma manual en la base de datos
+			//buscamos una instancia role tipo practicante 
+			$codigo = 2; //2 corresponde a practicante		
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
+			$role = $repository->findOneBy(array('id' => $codigo));
+
+			$usuario = new Usuario();
+			//cargamos todos los atributos al usuario
+			$usuario->setUsername($practicante->getCodigo());
+			$usuario->setPassword($practicante->getCi());
+			$usuario->setSalt(md5(time()));
+			$usuario->addRole($role); //cargamos el rol al coordinador
+
+			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$usuario->setPassword($passwordCodificado);
+     		 $em->persist($usuario);
+
             $em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
@@ -198,7 +218,14 @@ class DefaultController extends Controller
 														"fecha" => $sql[4], "emailInstitucional" => $sql[5] );
 				$i++;
 			}
-			
+		
+
+			//los roles fueron cargados de forma manual en la base de datos
+			//buscamos una instancia role tipo practicante 
+			$codigo = 2; //1 corresponde a coordinador		
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
+			$role = $repository->findOneBy(array('id' => $codigo));
+
 			//procesamos la matriz  fila a fila creando practicantes y usuarios
 			$i=0;				
 			$sad = "";	
@@ -220,7 +247,8 @@ class DefaultController extends Controller
 				$usuario->setUsername($listaEstudiantes[$i]['codigo']) ;
 				$usuario->setPassword($listaEstudiantes[$i]['ci']);
 				$usuario->setSalt(md5(time()));
-				
+				$usuario->addRole($role); //cargamos el rol al coordinador
+
 				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
                 $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 				$usuario->setPassword($passwordCodificado);
@@ -542,19 +570,22 @@ class DefaultController extends Controller
 		$usuario = new Usuario();
         $formulario = $this->createForm(new CoordinadorType(), $usuario);
         $formulario->handleRequest($peticion);
-
-		$codigo = 1;		
+		
+		//los roles fueron cargados de forma manual en la base de datos
+		//buscamos una instancia role tipo coordinador 
+		$codigo = 1; //codigo corresponde a coordinador		
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
 		$role = $repository->findOneBy(array('id' => $codigo));
 
         if ($formulario->isValid()) {
+			
 			$usuario->setSalt(md5(time()));
 			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
             $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
 			
-    		$usuario->addRole($role);
+    		$usuario->addRole($role); //cargamos el rol al coordinador
         
 			// Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($usuario);
