@@ -355,7 +355,7 @@ public function getAbsolutePath()
 		// target filename to move to
 		
 		//asignamos el codigo uao a la foto
-		$nombre = $this->codigo.'.png'; 
+		$nombre = $this->ci.'.png'; 
 		$this->getFile()->move(
 		    $this->getUploadRootDir(),
 		    $nombre

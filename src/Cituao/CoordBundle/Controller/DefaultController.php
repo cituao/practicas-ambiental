@@ -321,6 +321,7 @@ class DefaultController extends Controller
 
         if ($formulario->isValid()) {
             // Completar las propiedades que el usuario no rellena en el formulario
+			
             $em->persist($externo);
 
 			//los roles fueron cargados de forma manual en la base de datos
@@ -344,11 +345,6 @@ class DefaultController extends Controller
 
 
             $em->flush();
-
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
 
@@ -418,8 +414,8 @@ class DefaultController extends Controller
         $formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
-		
-			if ($academico->getFile() == NULL)  $academico->setPath('user.jpeg');
+			$academico->upload();	
+			
 			
             // Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($academico);
@@ -432,8 +428,8 @@ class DefaultController extends Controller
 
 			$usuario = new Usuario();
 			//cargamos todos los atributos al usuario
-			$usuario->setUsername($externo->getCi());
-			$usuario->setPassword($externo->getCi());
+			$usuario->setUsername($academico->getCi());
+			$usuario->setPassword($academico->getCi());
 			$usuario->setSalt(md5(time()));
 			$usuario->addRole($role); //cargamos el rol al coordinador
 
@@ -471,6 +467,7 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
+			$academico->upload();
             // Completar las propiedades que el usuario no rellena en el formulario
 			//if ($academico->getFile() == NULL)  $academico->setPath('user.jpeg');
             $em->persist($academico);
