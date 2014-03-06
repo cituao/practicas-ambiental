@@ -32,6 +32,10 @@ Cituao\AcademicoBundle\Entity\Academico:
             type: text
             length: '500'
             nullable: true
+        categoria:
+            type: string
+            length: '1'
+            nullable: true
         path:
             type: string
             length: '30'

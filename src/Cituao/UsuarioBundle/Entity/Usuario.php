@@ -39,13 +39,6 @@ class Usuario implements AdvancedUserInterface, \Serializable
      */
     private $password;
 
-
-    /**
-     * @ORM\Column(type="string", length=60, unique=true)
-     */
-    private $email;
-
-
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
@@ -142,28 +135,6 @@ class Usuario implements AdvancedUserInterface, \Serializable
         return $this->password;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return Usuario
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
 
     /**
      * Set isActive

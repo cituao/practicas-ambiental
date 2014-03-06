@@ -68,6 +68,11 @@ class Academico
     private $perfil;
 
 	/**
+	* @ORM\Column(type="string", length=1)
+	*/
+	private $categoria;
+	
+	/**
      * @Assert\File(maxSize="6000000")
      */
     private $file;	
@@ -265,6 +270,30 @@ public function __construct()
         return $this->perfil;
     }
 
+    /**
+     * Set categoria
+     *
+     * @param string $categoria
+     * @return Academico
+     */
+    public function setCategoria($categoria)
+    {
+        $this->categoria = $categoria;
+    
+        return;
+    }
+
+    /**
+     * Get categoria
+     *
+     * @return string 
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }	
+	
+	
     /**
      * Sets file.
      *
