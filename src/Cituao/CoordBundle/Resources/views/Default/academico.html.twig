@@ -53,6 +53,12 @@
 				{{ form_widget(formulario.perfil, {'attr': {'class':'mediano'}} ) }}
 		</div>
 
+		<div>	
+				{{ form_label(formulario.categoria) }}
+				{{ form_errors(formulario.categoria) }}
+				{{ form_widget(formulario.categoria) }}
+		</div>
+
 	   
 	    {{ form_rest(formulario) }}
 	    <input class="boton" type="submit" value="Guardar" />
