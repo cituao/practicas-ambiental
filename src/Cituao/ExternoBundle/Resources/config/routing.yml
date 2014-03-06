@@ -1,3 +1,4 @@
 cituao_externo_homepage:
-    pattern:  /hello/{name}
+    pattern:  /externo
     defaults: { _controller: CituaoExternoBundle:Default:index }
+

@@ -15,7 +15,12 @@ class DefaultController extends Controller
 		else{
 			if ($this->get('security.context')->isGranted('ROLE_PRACTICANTE')) {
 				return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+			}else{
+				if ($this->get('security.context')->isGranted('ROLE_ASESOR_EXT')) {
+					return $this->redirect($this->generateUrl('cituao_externo_homepage'));
+				}
 			}
+					
 		}
 
         return $this->render('CituaoPortalBundle:Default:portal.html.twig', array("error"=>array("message"=>"")));

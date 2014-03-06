@@ -23,6 +23,7 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/coordinador/*, roles: ROLE_COORDINADOR }
         - { path: ^/practicante/*, roles: ROLE_PRACTICANTE }
+        - { path: ^/externo/*, roles: ROLE_ASESOR_EXT } 
 
     providers:
         in_memory:
