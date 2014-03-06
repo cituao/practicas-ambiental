@@ -4,6 +4,7 @@ namespace Cituao\CoordBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
  /**
@@ -22,22 +23,25 @@ class Centro
 
     /**
      * @var string
+	 * @Assert\NotBlank(message="El nombre es obligatorio")
      */
     private $nombre;
 
     /**
      * @var string
+	 * @Assert\NotBlank(message="La direccion es obligatorio")
      */
     private $direccion;
 
     /**
      * @var string
+	 * @Assert\NotBlank(message="El teléfono es obligatorio")
      */
     private $telefono;
 
     /**
      * @var string
-     */
+	 */
     private $extension;
 
     /**
