@@ -62,7 +62,7 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 		
         if ($formulario->isValid()) {
-			
+			$practicante->upload();	
 			$practicante->setEstado("0");  //es practicante sin cronograma
 			//si subio no subio foto  le carga la foto generica
 			if ($practicante->getFile() == NULL) 
@@ -423,6 +423,26 @@ class DefaultController extends Controller
 			
             // Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($academico);
+
+			//los roles fueron cargados de forma manual en la base de datos
+			//buscamos una instancia role tipo coordinador 
+			$codigo = 6; //6 codigo corresponde a coordinador		
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
+			$role = $repository->findOneBy(array('id' => $codigo));
+
+			$usuario = new Usuario();
+			//cargamos todos los atributos al usuario
+			$usuario->setUsername($externo->getCi());
+			$usuario->setPassword($externo->getCi());
+			$usuario->setSalt(md5(time()));
+			$usuario->addRole($role); //cargamos el rol al coordinador
+
+			//codificamos el password			
+			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$usuario->setPassword($passwordCodificado);
+     		 $em->persist($usuario);
+
             $em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
