@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} Panel Principal::: Práctica Profesional UAO{% endblock %}
+
+{% block stylesheets %}
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/mainPanel.css') }}" />
+		<link href="{{ asset('css/comun.css') }}" rel="stylesheet" />
+		<link rel="agregar-participante" href="{{ asset('images/agregar_participante.png') }} 
+		<style>
+			@font-face
+			{
+			font-family: helveticaN;
+			src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Lt.otf') }}'),
+			url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.woff') }}'),
+			url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.eot') }}');
+
+
+			}
+			@font-face
+			{
+			font-family: helveticaNBold;
+			src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Md.otf') }}');
+			}
+
+		</style>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
+	<script src="{{ asset('script/FitText.js-master/jquery.fittext.js') }}"></script>
+{% endblock %}
+
+
+
+{% block body %}
+    	<div id="wrapper">
+    		<div id="header">
+    			<img src="{{ asset('img/headerLogo.png') }}" >
+    			<div id="headerTitle">
+	    			<h1>Práctica Profesional</h1>
+	    			<h2>Facultad de Comunicación Social</h2>
+	    			<a href="{{ path('cituao_coord_homepage') }}" id="homeButton">Panel Principal</a>
+    			</div>
+    			<a href="{{ path('logout') }}" id="cerrarButton">Cerrar Sesión [Usuario:{{ app.user.username }}]</a>
+    		</div>
+			{% block infowrapper  %}
+			{% endblock %}
+		</div> 
+{% endblock %}
