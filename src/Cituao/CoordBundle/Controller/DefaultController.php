@@ -219,7 +219,7 @@ class DefaultController extends Controller
 
 			//los roles fueron cargados de forma manual en la base de datos
 			//buscamos una instancia role tipo practicante 
-			$codigo = 2; //1 corresponde a coordinador		
+			$codigo = 2; //1 corresponde a practicantes		
 			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
 			$role = $repository->findOneBy(array('id' => $codigo));
 
@@ -326,7 +326,7 @@ class DefaultController extends Controller
 
 			//los roles fueron cargados de forma manual en la base de datos
 			//buscamos una instancia role tipo coordinador 
-			$codigo = 5; //5 codigo corresponde a coordinador		
+			$codigo = 3; //3 codigo corresponde a coordinador		
 			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
 			$role = $repository->findOneBy(array('id' => $codigo));
 
@@ -422,7 +422,7 @@ class DefaultController extends Controller
 
 			//los roles fueron cargados de forma manual en la base de datos
 			//buscamos una instancia role tipo coordinador 
-			$codigo = 6; //6 codigo corresponde a coordinador		
+			$codigo = 4; //4 codigo corresponde a coordinador		
 			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
 			$role = $repository->findOneBy(array('id' => $codigo));
 
