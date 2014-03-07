@@ -193,6 +193,7 @@ form > div > div.fecha{
     /* border-bottom: 1px solid #CCC; */
     padding: 0.5em .5em;
 	float:left;
+	width: 130px;
 }
 
 form > div.contenedor_fecha {
@@ -200,7 +201,7 @@ form > div.contenedor_fecha {
     border-bottom: 1px solid #CCC;
     padding: 0.5em 1.5em 0.5em 0.5em;
 	display:block;
-	height:100px;
+	height:60px;
 }
 
 form > div.contenedor_fecha1 {
@@ -208,14 +209,14 @@ form > div.contenedor_fecha1 {
     border-bottom: 1px solid #CCC;
     padding: 0.5em 1.5em 0.5em 0.5em;
 	display:block;
-	height:50px;
+	height:60px;
 }
 
 
 div.fecha label{
     display: inline-block;
     font-weight: bold;
-    width: 40%;
+    width: 80%;
 	font-family:Tahoma;
 	font-size:12px;
 

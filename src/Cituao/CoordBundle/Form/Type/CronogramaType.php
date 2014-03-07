@@ -19,23 +19,23 @@ class CronogramaType extends AbstractType
 		
 		->add('fechaIniciacion', 'date', array('label' => 'Fecha de iniciación','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))				
 		
-		->add('fechaAsesoria1', 'date', array('label' => 'Fecha de asesoría #1','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaAsesoria2', 'date', array('label' => 'Fecha de asesoría #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaAsesoria3', 'date', array('label' => 'Fecha de asesoría #3','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaAsesoria4', 'date', array('label' => 'Fecha de asesoría #4','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaAsesoria5', 'date', array('label' => 'Fecha de asesoría #5','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaAsesoria6', 'date', array('label' => 'Fecha de asesoría #6','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaAsesoria7', 'date', array('label' => 'Fecha de asesoría #7','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria1', 'date', array('label' => 'Asesoría #1','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria2', 'date', array('label' => 'Asesoría #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria3', 'date', array('label' => 'Asesoría #3','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria4', 'date', array('label' => 'Asesoría #4','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria5', 'date', array('label' => 'Asesoría #5','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria6', 'date', array('label' => 'Asesoría #6','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaAsesoria7', 'date', array('label' => 'Asesoría #7','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		
-		->add('fechaVisitaP', 'date', array('label' => 'Fecha de primera visita', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaVisita1', 'date', array('label' => 'Fecha de Evaluación #1','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaVisita2', 'date', array('label' => 'Fecha de Evaluacion #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaVisitaP', 'date', array('label' => 'Primera visita', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaVisita1', 'date', array('label' => 'Evaluación #1','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaVisita2', 'date', array('label' => 'Evaluación #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		
-		->add('fechaInformeGestion1', 'date', array('label' => 'Fecha de Informe de Gestión #1', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaInformeGestion2', 'date', array('label' => 'Fecha de Informe de Gestión #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaInformeGestion3', 'date', array('label' => 'Fecha de Informe de Gestión #3', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaInformeGestion1', 'date', array('label' => 'Informe de Gestión #1', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaInformeGestion2', 'date', array('label' => 'Informe de Gestión #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaInformeGestion3', 'date', array('label' => 'Informe de Gestión #3', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		
-		->add('fechaInformeFinal', 'date', array('label' => 'Fecha de Informe Final', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'));
+		->add('fechaInformeFinal', 'date', array('label' => 'Informe Final', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'));
 		
     }
 
