@@ -11,20 +11,13 @@ class AcademicoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		->add('file')
-		->add('ci','text', array('label' => 'Cédula de identidad:','required' => true))	    
-		->add('nombres','text', array('label' => 'Nombres:', 'required' => true))
-        ->add('apellidos','text', array('label' => 'Apellidos:', 'required' => true))
+		->add('ci','text', array('label' => 'Cédula de identidad:','read_only' => true))	    
+		->add('nombres','text', array('label' => 'Nombres:', 'read_only' => true))
+        ->add('apellidos','text', array('label' => 'Apellidos:', 'read_only' => true))
         ->add('email', 'email',  array('label' => 'Email:',  'attr' => array('placeholder' => 'usuario@servidor'), 'required' => true ))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil:', 'required' => true))
 		->add('telefonoFijo','text', array('label' => 'Teléfono fijo:'))
-		->add('perfil','textarea', array('label' => 'Perfil', 'max_length' => '500' ,  'attr' => array('placeholder' => 'Ingrese el perfil del asesor', 'cols' => '5', 'rows' => '5')))
-		->add('categoria', 'choice', array('label' => 'Categoría', 'choices'=> array('a' => 'A', 'b' => 'B', 'c' => 'C', 'd' => 'D')))	
-		->add('declaracion', 'checkbox', array('label' => 'Declaración de Renta', 'required' => false));
-
-		//->add('modalidad','choice', array('label' => 'Modalidad', 'choices'=> array('aud'=>'Audio', 'vis'=>'Visual', 'imp'=>'Impreso'),'multiple'=>true));*/
-		//->add('tipo','choice', array('label' => 'Tipo', 'choices'=> array('nac'=>'Nacional', 'int'=>'Internacional')))
-
+		->add('perfil','textarea', array('label' => 'Perfil', 'max_length' => '500' , 'read_only' => true, 'attr' => array('cols' => '5', 'rows' => '5')));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -24,6 +24,7 @@ security:
         - { path: ^/coordinador/*, roles: ROLE_COORDINADOR }
         - { path: ^/practicante/*, roles: ROLE_PRACTICANTE }
         - { path: ^/externo/*, roles: ROLE_ASESOR_EXT } 
+        - { path: ^/academico/*, roles: ROLE_ASESOR_ACA } 
 
     providers:
         in_memory:
