@@ -42,7 +42,7 @@ display: block;
 
 #headerTitle{
 	/*border: 1px solid #000;*/
-	max-width: 240px;
+	max-width: 340px;
 	float: left;
 	margin-top: 1.5%;
 	font-size: 0.75em; /*12px*/
@@ -65,24 +65,29 @@ color: #FFF;
 }
 
 #headerTitle h1{
-font-size: 1.6em; /*19px*/
+font-size: 1.8em; /*19px*/
 height: 20px;
 }
 
 #headerTitle h2{
-font-size: 1.2em;
+font-size: 1.6em;
 color: #5b5b5b;
-height: 30px;
+height: 20px;
 }
 
+#headerTitle h3{
+font-size: 1.2em;
+color: #5b5b5b;
+height: 15px;
+}
 
 
 #homeButton{
 font-size: 1.2em;
-margin-top: 0;
+margin-top: 15px;
 color: #5b5b5b;
 float: left;
-font-size: 12px;
+font-size: 14px;
 font-family: Helvetica;
 text-decoration: none;
 font-weight: bold;
