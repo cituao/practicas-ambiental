@@ -30,31 +30,32 @@ $(function() {
 					//fecha para la primera asesoría tiempo estimado 7 días despues de iniciar el cronograma
 					fecha_pivote.setDate(fecha_pivote.getDate() + 7);
 					var fecha_asesoria1 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
-					//calcular la asesoría #2 tiempo estimado 21
-					fecha_pivote.setDate(fecha_pivote.getDate() + 21); //un mes 
+					//calcular la asesoría #2 tiempo estimado 15
+					fecha_pivote.setDate(fecha_pivote.getDate() + 15); //un mes 
 					var fecha_asesoria2 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
-					//calcular la asesoría #3 tiempo estimado 30 días    
-					fecha_pivote.setDate(fecha_pivote.getDate() + 30); //dos meses
+					//calcular la asesoría #3 tiempo estimado 20 días    
+					fecha_pivote.setDate(fecha_pivote.getDate() + 20); //dos meses
 					var fecha_asesoria3 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
-					//calcular la asesoría #4 tiempo estimado 30 días    
-					fecha_pivote.setDate(fecha_pivote.getDate() + 30); //tres meses
+					//calcular la asesoría #4 tiempo estimado 25 días    
+					fecha_pivote.setDate(fecha_pivote.getDate() + 25); //tres meses
 					var fecha_asesoria4 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
-					//calcular la asesoría #5 tiempo estimado 30 días    
-					fecha_pivote.setDate(fecha_pivote.getDate() + 30); //cuatro meses
+					//calcular la asesoría #5 tiempo estimado 25 días    
+					fecha_pivote.setDate(fecha_pivote.getDate() + 25); //cuatro meses
 					var fecha_asesoria5 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
-					//calcular la asesoría #6 tiempo estimado 30 días	 
-					fecha_pivote.setDate(fecha_pivote.getDate() + 30); //cinco meses
+					//calcular la asesoría #6 tiempo estimado 25 días	 
+					fecha_pivote.setDate(fecha_pivote.getDate() + 25); //cinco meses
 					var fecha_asesoria6 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
-					//calcular la asesoría #7 tiempo estimado 30 días
-					fecha_pivote.setDate(fecha_pivote.getDate() + 30); //seis meses
+					//calcular la asesoría #7 tiempo estimado 25 días
+					fecha_pivote.setDate(fecha_pivote.getDate() + 25); //seis meses
 					var fecha_asesoria7 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
 
-					//calcular la asesoría #7 tiempo estimado 5 días
-					fecha_pivote.setDate(fecha_pivote.getDate() + 5); //fecha fin de proceso
-					var fecha_finalizacion = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
+					//calcular la fecha de finalizacion 30 dias antes del proceso
+					//a 8 días de diferencia
+					fecha_pivote.setDate(fecha_pivote.getDate() + 8); //fecha fin de proceso
+					var fecha_informe_final = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
 						
 					
-					//colocar las fechas de asesorias en la tabla
+					//colocar las fechas de asesorias para los practicantes
 					$("#cronograma_fechaAsesoria1").val(fecha_asesoria1);
 					$("#cronograma_fechaAsesoria2").val(fecha_asesoria2);
 					$("#cronograma_fechaAsesoria3").val(fecha_asesoria3);
@@ -62,48 +63,74 @@ $(function() {
 					$("#cronograma_fechaAsesoria5").val(fecha_asesoria5);
 					$("#cronograma_fechaAsesoria6").val(fecha_asesoria6);
 					$("#cronograma_fechaAsesoria7").val(fecha_asesoria7);
-					$("#cronograma_fechaInformeFinal").val(fecha_finalizacion);
+					$("#cronograma_fechaInformeFinal").val(fecha_informe_final);
+					
+					//colocar las fechas para el asesor academico
+					$("#crono_aca_asesoria1").val(fecha_asesoria1);
+					$("#crono_aca_asesoria2").val(fecha_asesoria2);
+					$("#crono_aca_asesoria3").val(fecha_asesoria3);
+					$("#crono_aca_asesoria4").val(fecha_asesoria4);
+					$("#crono_aca_asesoria5").val(fecha_asesoria5);
+					$("#crono_aca_asesoria6").val(fecha_asesoria6);
+					$("#crono_aca_asesoria7").val(fecha_asesoria7);
+					$("#crono_aca_evaluacionfinal").val(fecha_informe_final);
 
-					$("#crono_aca_evaluacionfinal").val(fecha_finalizacion);
-					$("#crono_ext_acta").val(fecha_finalizacion);	
-					//colocar las fechas de visitas
-					//visita de presentacion a los 7 dias de iniciar el cronograma
+					
+					
+					//calcular  fechas para la visita y evaluacion #1
+					//devolvemos la fecha a su inicio han pasado 150 
+					fecha_pivote.setDate(fecha_pivote.getDate() - 150);
+					// la fecha de evaluacion 1 es 60 días despues de iniciar proceso
+					fecha_pivote.setDate(fecha_pivote.getDate() + 60);
+					var fecha_evaluacion1 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
+					// la fecha de evaluacion 2 es 120 días despues de iniciar proceso
+					fecha_pivote.setDate(fecha_pivote.getDate() + 60);
+					var fecha_evaluacion2 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
+					
+
+					//colocar las fechas de visitas practicantes
 					$("#cronograma_fechaVisitaP").val(fecha_asesoria1);
-					// al segundo mes 
-					$("#cronograma_fechaVisita1").val(fecha_asesoria3);
-					// al cuarto mes
-					$("#cronograma_fechaVisita2").val(fecha_asesoria5);
+					$("#cronograma_fechaVisita1").val(fecha_evaluacion1);
+					$("#cronograma_fechaVisita2").val(fecha_evaluacion2);
 
-					//alert($.datepicker.formatDate("dd-mm-yy", fecha_inicio, inst.settings));
-					//iniciamos nuevamente a la fecha de inicio para calcular nuevas fechas				
-					
-					fecha_pivote.setDate(fecha_pivote.getDate() - 183); //fecha fin de proceso
-					//alert($.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings));	
-					//colocar fechas de informes cuali cuanti
-					//fecha de entrega informe cuali cuanti #1 al mes 1/2 de iniciado el proceso
-					fecha_pivote.setDate(fecha_pivote.getDate() + 45); //sumamos el mes y medio
-					var fecha_finalizacion = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);	
-					$("#cronograma_fechaInformeGestion1").val(fecha_finalizacion);
-					//fecha de entrega informe cuali cuanti #2 a los 3 meses de iniciado el proceso
-					fecha_pivote.setDate(fecha_pivote.getDate() + 45); //sumamos el mes y medio
-					var fecha_finalizacion = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);	
-					$("#cronograma_fechaInformeGestion2").val(fecha_finalizacion);
-					//fecha de entrega informe cuali cuanti #2 a los 3 meses de iniciado el proceso
-					fecha_pivote.setDate(fecha_pivote.getDate() + 45); //sumamos el mes y medio
-					var fecha_finalizacion = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);	
-					$("#cronograma_fechaInformeGestion3").val(fecha_finalizacion);
-						
-					//fecha de entrega del informe final
-
-					//fechas para el asesor externo
-					$("#crono_aca_evaluacion1").val(fecha_asesoria3);
-					$("#crono_aca_evaluacion2").val(fecha_asesoria5);	
+					//colocar las fechas para el asesor academico
+					$("#crono_aca_evaluacion1").val(fecha_evaluacion1);
+					$("#crono_aca_evaluacion2").val(fecha_evaluacion2);	
 					
 					//fechas para el asesor externo
-					$("#crono_ext_evaluacion1").val(fecha_asesoria3);
-					$("#crono_ext_evaluacion2").val(fecha_asesoria5);	
+					$("#crono_ext_evaluacion1").val(fecha_evaluacion1);
+					$("#crono_ext_evaluacion2").val(fecha_evaluacion2);	
 					
 					
+					//calcular  fechas para informes de gestión cualicuanti
+					//devolvemos la fecha a su inicio han pasado 120 
+					fecha_pivote.setDate(fecha_pivote.getDate() - 120);
+					// la fecha de gestión 1 es 45 días despues de iniciar proceso
+					fecha_pivote.setDate(fecha_pivote.getDate() + 45);
+					var fecha_gestion1 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
+					// la fecha de gestión 2 es 120 días despues de iniciar proceso
+					fecha_pivote.setDate(fecha_pivote.getDate() + 45);
+					var fecha_gestion2 = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
+					// la fecha de gestión 2 es 120 días despues de iniciar proceso
+					fecha_pivote.setDate(fecha_pivote.getDate() + 45);
+					var fecha_gestion3= $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
+					
+					
+					$("#cronograma_fechaInformeGestion1").val(fecha_gestion1);
+					$("#cronograma_fechaInformeGestion2").val(fecha_gestion2);
+					$("#cronograma_fechaInformeGestion3").val(fecha_gestion3);
+					
+					
+					//calcular la fecha de acta de finalización para el asesor externo
+					//devolvemos la fecha 135 días 
+
+					fecha_pivote.setDate(fecha_pivote.getDate() - 135);
+					// la fecha de gestión 1 es 45 días despues de iniciar proceso
+					fecha_pivote.setDate(fecha_pivote.getDate() + 176);
+					var fecha_acta = $.datepicker.formatDate("dd-mm-yy", fecha_pivote, inst.settings);
+					
+					$("#crono_ext_acta").val(fecha_acta);	
+
 
 				}
 			}); //date picker
