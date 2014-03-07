@@ -36,6 +36,9 @@ Cituao\AcademicoBundle\Entity\Academico:
             type: string
             length: '1'
             nullable: true
+        declaracion:
+            type: boolean
+            nullable: true
         path:
             type: string
             length: '30'

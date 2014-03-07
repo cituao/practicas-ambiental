@@ -73,6 +73,11 @@ class Academico
 	private $categoria;
 	
 	/**
+	* @ORM\Column(type="boolean")
+	*/
+	private $declaracion;
+
+	/**
      * @Assert\File(maxSize="6000000")
      */
     private $file;	
@@ -284,6 +289,29 @@ public function __construct()
     }
 
     /**
+     * Get declaracion
+     *
+     * @return boolean 
+     */
+    public function getDeclaracion()
+    {
+        return $this->declaracion;
+    }	
+	
+    /**
+     * Set declaracion
+     *
+     * @param boolean $declaracion
+     * @return Academico
+     */
+    public function setDeclaracion($declaracion)
+    {
+        $this->declaracion = $declaracion;
+    
+        return;
+    }
+
+    /**
      * Get categoria
      *
      * @return string 
@@ -292,8 +320,8 @@ public function __construct()
     {
         return $this->categoria;
     }	
-	
-	
+
+
     /**
      * Sets file.
      *
