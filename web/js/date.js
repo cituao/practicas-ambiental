@@ -64,7 +64,8 @@ $(function() {
 					$("#cronograma_fechaAsesoria7").val(fecha_asesoria7);
 					$("#cronograma_fechaInformeFinal").val(fecha_finalizacion);
 
-					
+					$("#crono_aca_evaluacionfinal").val(fecha_finalizacion);
+					$("#crono_ext_acta").val(fecha_finalizacion);	
 					//colocar las fechas de visitas
 					//visita de presentacion a los 7 dias de iniciar el cronograma
 					$("#cronograma_fechaVisitaP").val(fecha_asesoria1);
@@ -93,7 +94,15 @@ $(function() {
 					$("#cronograma_fechaInformeGestion3").val(fecha_finalizacion);
 						
 					//fecha de entrega del informe final
-								
+
+					//fechas para el asesor externo
+					$("#crono_aca_evaluacion1").val(fecha_asesoria3);
+					$("#crono_aca_evaluacion2").val(fecha_asesoria5);	
+					
+					//fechas para el asesor externo
+					$("#crono_ext_evaluacion1").val(fecha_asesoria3);
+					$("#crono_ext_evaluacion2").val(fecha_asesoria5);	
+					
 					
 
 				}

@@ -28,14 +28,14 @@ class CronogramaType extends AbstractType
 		->add('fechaAsesoria7', 'date', array('label' => 'Fecha de asesoría #7','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		
 		->add('fechaVisitaP', 'date', array('label' => 'Fecha de primera visita', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaVisita1', 'date', array('label' => 'Fecha de visita #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaVisita2', 'date', array('label' => 'Fecha de asesoría #3','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaVisita1', 'date', array('label' => 'Fecha de Evaluación #1','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaVisita2', 'date', array('label' => 'Fecha de Evaluacion #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		
-		->add('fechaInformeGestion1', 'date', array('widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaInformeGestion2', 'date', array('widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
-		->add('fechaInformeGestion3', 'date', array('widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaInformeGestion1', 'date', array('label' => 'Fecha de Informe de Gestión #1', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaInformeGestion2', 'date', array('label' => 'Fecha de Informe de Gestión #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
+		->add('fechaInformeGestion3', 'date', array('label' => 'Fecha de Informe de Gestión #3', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		
-		->add('fechaInformeFinal', 'date', array('widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'));
+		->add('fechaInformeFinal', 'date', array('label' => 'Fecha de Informe Final', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'));
 		
     }
 

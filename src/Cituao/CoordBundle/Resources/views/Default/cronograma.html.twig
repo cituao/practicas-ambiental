@@ -12,15 +12,13 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
-
 		<h2 id = "titlee">Cronograma del practicante</h2>
 		<div id = "menuop">
 			<ul>
 			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
 			</ul>
 		</div>
-
-		
+	
 		<form action="{{ path('cituao_coord_cronograma' , { 'codigo': practicante.codigo}) }}" method="post" {{ form_enctype(formulario) }}>
 				<div>{{ form_errors(formulario) }}</div>	
 
@@ -39,11 +37,7 @@
 
 				<div id = "ruta" data-path = "{{ path('cituao_coord_obtener_externos') }}">{{ form_row(formulario.centro) }}</div>
 				
-				
 				<div>{{ form_row(formulario.externo) }}</div>
-				
-				
-				
 				<div>{{ form_row(formulario.academico) }}</div>
 
 				<div>
@@ -52,97 +46,174 @@
 					{{ form_errors(formulario.fechaIniciacion) }}
 				</div>
 
-
-				
+				<div class="titulo">CRONOGRAMA PRACTICANTE</div>
 				<div class="contenedor_fecha">
-				
-				<div class = "fecha">
-					{{ form_label(formulario.fechaAsesoria1) }}
-					{{ form_widget(formulario.fechaAsesoria1, {'attr': {'class':'corto'}} ) }}
-					{{ form_errors(formulario.fechaAsesoria1) }}
-				</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaAsesoria1) }}
+						{{ form_widget(formulario.fechaAsesoria1, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaAsesoria1) }}
+					</div>
 
-				<div class = "fecha">
-					{{ form_label(formulario.fechaAsesoria2) }}
-					{{ form_widget(formulario.fechaAsesoria2, {'attr': {'class':'corto'}} ) }}
-					{{ form_errors(formulario.fechaAsesoria2) }}
-				</div>
-				<div class = "fecha">
-					{{ form_label(formulario.fechaAsesoria3) }}
-					{{ form_widget(formulario.fechaAsesoria3, {'attr': {'class':'corto'}} ) }}
-					{{ form_errors(formulario.fechaAsesoria3) }}
-				</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaAsesoria2) }}
+						{{ form_widget(formulario.fechaAsesoria2, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaAsesoria2) }}
+					</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaAsesoria3) }}
+						{{ form_widget(formulario.fechaAsesoria3, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaAsesoria3) }}
+					</div>
 
-				<div class = "fecha">
-					{{ form_label(formulario.fechaAsesoria4) }}
-					{{ form_widget(formulario.fechaAsesoria4, {'attr': {'class':'corto'}} ) }}
-					{{ form_errors(formulario.fechaAsesoria4) }}
-				</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaAsesoria4) }}
+						{{ form_widget(formulario.fechaAsesoria4, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaAsesoria4) }}
+					</div>
 
-				<div class = "fecha">
-					{{ form_label(formulario.fechaAsesoria5) }}
-					{{ form_widget(formulario.fechaAsesoria5, {'attr': {'class':'corto'}} ) }}
-					{{ form_errors(formulario.fechaAsesoria5) }}
-				</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaAsesoria5) }}
+						{{ form_widget(formulario.fechaAsesoria5, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaAsesoria5) }}
+					</div>
 
-				<div class = "fecha">
-					{{ form_label(formulario.fechaAsesoria6) }}
-					{{ form_widget(formulario.fechaAsesoria6, {'attr': {'class':'corto'}} ) }}
-					{{ form_errors(formulario.fechaAsesoria6) }}
-				</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaAsesoria6) }}
+						{{ form_widget(formulario.fechaAsesoria6, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaAsesoria6) }}
+					</div>
 
-				<div class = "fecha">
-					{{ form_label(formulario.fechaAsesoria7) }}
-					{{ form_widget(formulario.fechaAsesoria7, {'attr': {'class':'corto'}} ) }}
-					{{ form_errors(formulario.fechaAsesoria7) }}
-				</div>
-				</div>
-				
-				<div class="contenedor_fecha1">
-						<div class = "fecha">
-							{{ form_label(formulario.fechaVisitaP) }}
-							{{ form_widget(formulario.fechaVisitaP, {'attr': {'class':'corto'}} ) }}
-							{{ form_errors(formulario.fechaVisitaP) }}
-						</div>
-						<div class = "fecha">
-							{{ form_label(formulario.fechaVisita1) }}
-							{{ form_widget(formulario.fechaVisita1, {'attr': {'class':'corto'}} ) }}
-							{{ form_errors(formulario.fechaVisita1) }}
-						</div>
-						<div  class = "fecha">
-							{{ form_label(formulario.fechaVisita2) }}
-							{{ form_widget(formulario.fechaVisita2, {'attr': {'class':'corto'}} ) }}
-							{{ form_errors(formulario.fechaVisita2) }}
-						</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaAsesoria7) }}
+						{{ form_widget(formulario.fechaAsesoria7, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaAsesoria7) }}
+					</div>
 				</div>
 				
 				<div class="contenedor_fecha1">
-						<div  class = "fecha">
-							{{ form_label(formulario.fechaInformeGestion1) }}
-							{{ form_widget(formulario.fechaInformeGestion1, {'attr': {'class':'corto'}} ) }}
-							{{ form_errors(formulario.fechaInformeGestion1) }}
-						</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaVisitaP) }}
+						{{ form_widget(formulario.fechaVisitaP, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaVisitaP) }}
+					</div>
+					<div class = "fecha">
+						{{ form_label(formulario.fechaVisita1) }}
+						{{ form_widget(formulario.fechaVisita1, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaVisita1) }}
+					</div>
+					<div  class = "fecha">
+						{{ form_label(formulario.fechaVisita2) }}
+						{{ form_widget(formulario.fechaVisita2, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaVisita2) }}
+					</div>
+				</div>
+				
+				<div class="contenedor_fecha1">
+					<div  class = "fecha">
+						{{ form_label(formulario.fechaInformeGestion1) }}
+						{{ form_widget(formulario.fechaInformeGestion1, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaInformeGestion1) }}
+					</div>
 
-						<div  class = "fecha">
-							{{ form_label(formulario.fechaInformeGestion2) }}
-							{{ form_widget(formulario.fechaInformeGestion2, {'attr': {'class':'corto'}} ) }}
-							{{ form_errors(formulario.fechaInformeGestion2) }}
-						</div>
+					<div  class = "fecha">
+						{{ form_label(formulario.fechaInformeGestion2) }}
+						{{ form_widget(formulario.fechaInformeGestion2, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaInformeGestion2) }}
+					</div>
 
-						<div  class = "fecha">
-							{{ form_label(formulario.fechaInformeGestion3) }}
-							{{ form_widget(formulario.fechaInformeGestion3, {'attr': {'class':'corto'}} ) }}
-							{{ form_errors(formulario.fechaInformeGestion3) }}
-						</div>
+					<div  class = "fecha">
+						{{ form_label(formulario.fechaInformeGestion3) }}
+						{{ form_widget(formulario.fechaInformeGestion3, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaInformeGestion3) }}
+					</div>
 				</div>
 				
 				<div class = "contenedor_fecha1">
-				<div  class = "fecha">
-					{{ form_label(formulario.fechaInformeFinal) }}
-					{{ form_widget(formulario.fechaInformeFinal, {'attr': {'class':'corto'}} ) }}
-					{{ form_errors(formulario.fechaInformeFinal) }}
+					<div  class = "fecha">
+						{{ form_label(formulario.fechaInformeFinal) }}
+						{{ form_widget(formulario.fechaInformeFinal, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.fechaInformeFinal) }}
+					</div>
 				</div>
+				
+				<div class="titulo">CRONOGRAMA ASESOR ACADEMICO</div>
+
+
+				<div class = "contenedor_fecha">
+					<div  class = "fecha">
+						<label>Fecha asesoria #1</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria1">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Fecha asesoria #2</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria2">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Fecha aesoria #3</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria3">
+					</div>
+					<div  class = "fecha">
+						<label>Fecha asesoria #4</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria4">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Fecha asesoria #5</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria5">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Fecha aesoria #6</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria6">
+					</div>
+
+					<div  class = "fecha">
+						<label>Fecha aesoria #7</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria7">
+					</div>
+
+
 				</div>
+
+
+				<div class = "contenedor_fecha1">
+					<div  class = "fecha">
+						<label>Fecha evaluacion #1</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion1">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Fecha evaluacion #2</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion2">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Fecha evaluacion final</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacionfinal">
+					</div>
+				</div>
+
+				<div class="titulo">CRONOGRAMA ASESOR EXTERNO</div>
+				<div class = "contenedor_fecha1">
+					<div  class = "fecha">
+						<label>Fecha evaluacion #1</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion1">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Fecha evaluacion #2</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion2">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Fecha Acta de conformidad</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_acta">
+					</div>
+
+				</div>
+
 				{{ form_rest(formulario) }}
 				<input class="boton" type="submit" value="Guardar" />
 		</form>
