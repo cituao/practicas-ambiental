@@ -1,3 +1,7 @@
 cituao_academico_homepage:
     pattern:  /academico
     defaults: { _controller: CituaoAcademicoBundle:Default:index }
+
+cituao_academico_actualizar:
+    pattern:  /academico/actualizar
+    defaults: { _controller: CituaoAcademicoBundle:Default:actualizar }

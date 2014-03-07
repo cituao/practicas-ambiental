@@ -15,7 +15,7 @@ use Cituao\CoordBundle\Form\Type\PracticanteType;
 use Cituao\CoordBundle\Form\Type\CoordinadorType;
 use Cituao\ExternoBundle\Form\Type\ExternoType;
 use Cituao\AcademicoBundle\Entity\Academico;
-use Cituao\AcademicoBundle\Form\Type\AcademicoType;
+use Cituao\CoordBundle\Form\Type\AcademicoType;
 use Cituao\CoordBundle\Entity\Area;
 use Cituao\CoordBundle\Entity\Centro;
 use Cituao\CoordBundle\Form\Type\CentroType;
