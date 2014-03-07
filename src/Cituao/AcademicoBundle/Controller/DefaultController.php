@@ -47,4 +47,20 @@ class DefaultController extends Controller
 		
 	}	
 	
+		/********************************************************/
+	//Listar los practicantes del asesor academico
+	/********************************************************/	
+	public function practicantesAction(){
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$listaPracticantes = $repository->findAll();
+		
+		if (!$listaPracticantes) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+	    }else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
+	}
+	
+	
 }
