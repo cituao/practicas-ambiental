@@ -135,31 +135,33 @@ class DefaultController extends Controller
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		
+		//prerequisitos para establecer un cronograma dede existir centros de prácticas registrados
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 		$centros = $repository->findAll();
-		
 		if (!$centros) {
 			throw $this->createNotFoundException('Para crear un cronograma debe haber centros de práctica registrados!');
 		}
-		
+
+		//prerequisitos para establecer un cronograma debe existir asesores externos
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externos = $repository->findAll();
-		
 		if (!$externos) {
 			throw $this->createNotFoundException('Para operar con un cronograma debe haber un asesor externo registrado! Registre el asesor externo!');
 		}
 		
+		//prerequisitos para establecer un cronograma debe existir asesores académicos
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academicos = $repository->findAll();
-
 		if (!$academicos) {
 			throw $this->createNotFoundException('Para operar con un cronograma debe haber un asesor académico registrado! Registre el asesor académico!');
 		}
 		
+		//base de datos
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 				
-        $formulario = $this->createForm(new CronogramaType(), $practicante);
+        //creamos instacia formulario para el conograma
+		$formulario = $this->createForm(new CronogramaType(), $practicante);
 		$formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
