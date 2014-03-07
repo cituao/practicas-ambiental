@@ -24,7 +24,8 @@ class DefaultController extends Controller
 	public function actualizarAction(){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
-		$ci = "3429942";
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
 		
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
