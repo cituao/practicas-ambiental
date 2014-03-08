@@ -23,7 +23,7 @@ class Practicante
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
-	 * @Assert\NotBlank(message="El código del practicante es obligatorio")
+     * @Assert\NotBlank(message="El apellido es obligatorio")
      */
     private $codigo;
 
@@ -64,11 +64,13 @@ class Practicante
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\Email(message = "No es un email valido")
 	 */
     private $emailInstitucional;
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\Email(message = "No es un email valido")
 	 */
     private $emailPersonal;
 
