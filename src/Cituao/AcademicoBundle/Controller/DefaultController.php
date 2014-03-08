@@ -67,5 +67,7 @@ class DefaultController extends Controller
 		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
 	}
 	
-	
+	public function cronogramaAction($codigo){
+		return;
+	}
 }

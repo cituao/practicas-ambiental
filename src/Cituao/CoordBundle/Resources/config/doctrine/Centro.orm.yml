@@ -32,4 +32,7 @@ Cituao\CoordBundle\Entity\Centro:
         externos:
             targetEntity: Cituao\ExternoBundle\Entity\Externo
             mappedBy: centro
+        practicantes:
+            targetEntity: Cituao\CoordBundle\Entity\Practicante
+            mappedBy: centro
     lifecycleCallbacks: {  }

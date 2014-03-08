@@ -142,54 +142,72 @@
 				<div class = "contenedor_fecha">
 					<div  class = "fecha">
 						<label>Asesoría #1</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria1">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria1" value = "{{ practicante.fechaAsesoria1|date('d-m-Y') }}">
 					</div>
 				
 					<div  class = "fecha">
 						<label>Asesoría #2</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria2">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria2" value = "{{ practicante.fechaAsesoria2|date('d-m-Y') }}">
 					</div>
 				
 					<div  class = "fecha">
 						<label>Asesoría #3</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria3">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria3" value = "{{ practicante.fechaAsesoria3|date('d-m-Y') }}">
 					</div>
 					<div  class = "fecha">
 						<label>Asesoría #4</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria4">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria4" value = "{{ practicante.fechaAsesoria4|date('d-m-Y') }}">
 					</div>
 				
 					<div  class = "fecha">
 						<label>Asesoría #5</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria5">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria5" value = "{{ practicante.fechaAsesoria5|date('d-m-Y') }}">
 					</div>
 				
 					<div  class = "fecha">
 						<label>Asesoría #6</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria6">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria6" value = "{{ practicante.fechaAsesoria6|date('d-m-Y') }}">
 					</div>
 
 					<div  class = "fecha">
 						<label>Asesoría #7</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria7">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria7" value = "{{ practicante.fechaAsesoria7|date('d-m-Y') }}">
 					</div>
 				</div>
 
 
 				<div class = "contenedor_fecha1">
 					<div  class = "fecha">
+						<label>Informe de gestión #1</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_gestion1" value = "{{ practicante.fechaInformeGestion1|date('d-m-Y') }}">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Informe de gestión #2</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_gestion2" value = "{{ practicante.fechaInformeGestion2|date('d-m-Y') }}">
+					</div>
+				
+					<div  class = "fecha">
+						<label>Informe de gestión #3</label>
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_gestion3" value = "{{ practicante.fechaInformeGestion3|date('d-m-Y') }}">
+					</div>
+
+				</div>
+
+				<div class = "contenedor_fecha1">
+					<div  class = "fecha">
 						<label>Evaluación #1</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion1">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion1" value = "{{ practicante.fechaVisita1|date('d-m-Y') }}">
 					</div>
 				
 					<div  class = "fecha">
 						<label>Evaluación #2</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion2">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion2" value = "{{ practicante.fechaVisita2|date('d-m-Y') }}">
 					</div>
 				
 					<div  class = "fecha">
 						<label>Evaluación final</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacionfinal">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacionfinal" value = "{{ practicante.fechaInformeFinal|date('d-m-Y') }}">
 					</div>
 				</div>
 
@@ -197,12 +215,12 @@
 				<div class = "contenedor_fecha1">
 					<div  class = "fecha">
 						<label>Evaluación #1</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion1">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion1" value = "{{ practicante.fechaVisita1|date('d-m-Y') }}">
 					</div>
 				
 					<div  class = "fecha">
 						<label>Evaluación #2</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion2">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion2" value = "{{ practicante.fechaVisita2|date('d-m-Y') }}">
 					</div>
 				
 					<div  class = "fecha">

@@ -9,3 +9,7 @@ cituao_academico_actualizar:
 cituao_academico_practicantes:
     pattern:  /academico/practicantes
     defaults: { _controller: CituaoAcademicoBundle:Default:practicantes }
+
+cituao_academico_cronograma:
+    pattern:  /academico/cronograma/{codigo}
+    defaults: { _controller: CituaoAcademicoBundle:Default:cronograma }

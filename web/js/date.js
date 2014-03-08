@@ -120,6 +120,10 @@ $(function() {
 					$("#cronograma_fechaInformeGestion2").val(fecha_gestion2);
 					$("#cronograma_fechaInformeGestion3").val(fecha_gestion3);
 					
+					$("#crono_aca_gestion1").val(fecha_gestion1);
+					$("#crono_aca_gestion2").val(fecha_gestion2);
+					$("#crono_aca_gestion3").val(fecha_gestion3);
+
 					
 					//calcular la fecha de acta de finalización para el asesor externo
 					//devolvemos la fecha 135 días 
