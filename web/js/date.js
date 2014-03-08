@@ -64,7 +64,10 @@ $(function() {
 					$("#cronograma_fechaAsesoria6").val(fecha_asesoria6);
 					$("#cronograma_fechaAsesoria7").val(fecha_asesoria7);
 					$("#cronograma_fechaInformeFinal").val(fecha_informe_final);
-					
+					if ($("#crono_pra_proyecto").length){
+						$("#crono_pra_proyecto").val(fecha_informe_final);
+					}
+
 					//colocar las fechas para el asesor academico
 					$("#crono_aca_asesoria1").val(fecha_asesoria1);
 					$("#crono_aca_asesoria2").val(fecha_asesoria2);
@@ -75,8 +78,6 @@ $(function() {
 					$("#crono_aca_asesoria7").val(fecha_asesoria7);
 					$("#crono_aca_evaluacionfinal").val(fecha_informe_final);
 
-					
-					
 					//calcular  fechas para la visita y evaluacion #1
 					//devolvemos la fecha a su inicio han pasado 150 
 					fecha_pivote.setDate(fecha_pivote.getDate() - 150);

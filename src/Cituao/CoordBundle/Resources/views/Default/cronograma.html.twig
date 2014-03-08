@@ -134,6 +134,14 @@
 						{{ form_widget(formulario.fechaInformeFinal, {'attr': {'class':'corto'}} ) }}
 						{{ form_errors(formulario.fechaInformeFinal) }}
 					</div>
+					{% if practicante.area == 1 %}					
+						<div  class = "fecha">
+							<label>Entrega de proyecto</label>
+							<input type = "text" class = "corto" readonly = "readonly" id = "crono_pra_proyecto" >
+						</div>
+					{% endif %}
+					
+					
 				</div>
 				
 				<div class="titulo">CRONOGRAMA ASESOR ACADEMICO</div>
