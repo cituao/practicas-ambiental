@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Cituao\AcademicoBundle\Entity\Academico
@@ -87,12 +87,11 @@ class Academico
 	**/
 	protected $practicantes;
 
-public function __construct()
+	public function __construct()
     {
         
 		$this->practicantes = new ArrayCollection();
     }
-	
 	
     /**
      * Get id
@@ -411,7 +410,12 @@ public function getAbsolutePath()
 		// move takes the target directory and then the
 		// target filename to move to
 		
-		//asignamos el codigo uao a la foto
+		/*if ($this->getPath() == $this->ci.'.png'){
+			$fs = new Filesystem();
+			$fs->remove($this->getUploadRootDir().'/'.$this->ci.'.png');
+		} */	
+		
+		//asignamos la ci a la foto
 		$nombre = $this->ci.'.png'; 
 		$this->getFile()->move(
 		    $this->getUploadRootDir(),

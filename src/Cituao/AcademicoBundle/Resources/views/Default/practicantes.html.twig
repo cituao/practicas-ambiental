@@ -1,11 +1,11 @@
-{% extends 'CituaoCoordBundle::layout.html.twig' %}
+{% extends 'CituaoAcademicoBundle::layout.html.twig' %}
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
-		<h2 id = "titlee">Practicantes</h2>
+		<h2 id = "titlee">Mis Practicantes</h2>
 		<div id = "menuop">
 			<ul>
-			<li><a href="{{ path('cituao_coord_registrar_practicante') }}" class = "baropcion">Nuevo</a></li>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
 			<li><a href="" class = "baropcion">Buscar</a></li>
 			</ul>
 		</div>
@@ -42,7 +42,7 @@
 					{% endif %}
 
 						<td>{{ id }}</th>
-						<td><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="68" height="68"></td>
+						<td><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Pulpit rock" width="68" height="68"></td>
 						<td>{{ practicante.codigo }}</td>
 						<td>{{ practicante.ci }}</td>
 						<td>{{ practicante.apellidos }}</td>

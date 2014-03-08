@@ -5,3 +5,7 @@ cituao_academico_homepage:
 cituao_academico_actualizar:
     pattern:  /academico/actualizar
     defaults: { _controller: CituaoAcademicoBundle:Default:actualizar }
+
+cituao_academico_practicantes:
+    pattern:  /academico/practicantes
+    defaults: { _controller: CituaoAcademicoBundle:Default:practicantes }

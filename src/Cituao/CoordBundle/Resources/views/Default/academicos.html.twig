@@ -34,8 +34,7 @@
 					{% endif %}
 
 						<td>{{ id }}</th>
-				
-						<td><img border="0" src="{{ asset('uploads/fotos/user.jpeg') }}" alt="Pulpit rock" width="68" height="68"></td>
+						<td><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  asesor.path) }}" alt="Pulpit rock" width="68" height="68"></td>
 						<td>{{ asesor.ci }}</td>
 						<td>{{ asesor.nombres }}</td>
 						<td>{{ asesor.apellidos }}</td>
