@@ -28,9 +28,6 @@ Cituao\CoordBundle\Entity\Practicante:
         area:
             type: integer
             nullable: true
-        centro:
-            type: integer
-            nullable: true
         emailInstitucional:
             type: string
             length: '50'
@@ -107,5 +104,11 @@ Cituao\CoordBundle\Entity\Practicante:
             inversedBy: practicantes
             joinColumn:
                 name: academico
+                referencedColumnName: id
+        centro:
+            targetEntity: Cituao\CoordBundle\Entity\Centro
+            inversedBy: practicantes
+            joinColumn:
+                name: centro
                 referencedColumnName: id
     lifecycleCallbacks: {  }
