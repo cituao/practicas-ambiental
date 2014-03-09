@@ -15,6 +15,7 @@ use Cituao\CoordBundle\Form\Type\PracticanteType;
 use Cituao\CoordBundle\Form\Type\CoordinadorType;
 use Cituao\ExternoBundle\Form\Type\ExternoType;
 use Cituao\AcademicoBundle\Entity\Academico;
+use Cituao\AcademicoBundle\Entity\Cronograma;
 use Cituao\CoordBundle\Form\Type\AcademicoType;
 use Cituao\CoordBundle\Entity\Area;
 use Cituao\CoordBundle\Entity\Centro;
@@ -170,26 +171,38 @@ class DefaultController extends Controller
             $em->persist($practicante);
 
 			//buscamos al academico para cargarle el cronograma
-			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
-			$academico = $repository->find($practicante->getAcademico()->getId());
+			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Cronograma');
+			$cronograma = $repository->find($practicante->getAcademico()->getId());
 
+
+			$query = $em->createQuery(
+		            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+			$query->setParameter('id_aca',$practicante->getAcademico()->getId());
+			$query->setParameter('id_pra',$practicante->getId());
+			$cronograma = $query->getResult();
+
+			if (!$cronograma){
+				$cronograma = new Cronograma();
+				$cronograma->setPracticante($practicante->getId());
+				$cronograma->setAcademico($practicante->getAcademico()->getId());
+			}
 			//cargamos las fechas	
-			$academico->setFechaAsesoria1($practicante->getFechaAsesoria1());
-			$academico->setFechaAsesoria2($practicante->getFechaAsesoria2());
-			$academico->setFechaAsesoria3($practicante->getFechaAsesoria3());
-			$academico->setFechaAsesoria4($practicante->getFechaAsesoria4());
-			$academico->setFechaAsesoria5($practicante->getFechaAsesoria5());
-			$academico->setFechaAsesoria6($practicante->getFechaAsesoria6());
-			$academico->setFechaAsesoria7($practicante->getFechaAsesoria7());
-			$academico->setFechaVisitaP($practicante->getFechaVisitaP());
-			$academico->setFechaVisita1($practicante->getFechaVisita1());
-			$academico->setFechaVisita2($practicante->getFechaVisita2());
-			$academico->setFechaInformeGestion1($practicante->getFechaInformeGestion1());
-			$academico->setFechaInformeGestion2($practicante->getFechaInformeGestion2());
-			$academico->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
-			$academico->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
+			$cronograma->setFechaAsesoria1($practicante->getFechaAsesoria1());
+			$cronograma->setFechaAsesoria2($practicante->getFechaAsesoria2());
+			$cronograma->setFechaAsesoria3($practicante->getFechaAsesoria3());
+			$cronograma->setFechaAsesoria4($practicante->getFechaAsesoria4());
+			$cronograma->setFechaAsesoria5($practicante->getFechaAsesoria5());
+			$cronograma->setFechaAsesoria6($practicante->getFechaAsesoria6());
+			$cronograma->setFechaAsesoria7($practicante->getFechaAsesoria7());
+			$cronograma->setFechaVisitaP($practicante->getFechaVisitaP());
+			$cronograma->setFechaEvaluacion1($practicante->getFechaVisita1());
+			$cronograma->setFechaEvaluacion2($practicante->getFechaVisita2());
+			$cronograma->setFechaInformeGestion1($practicante->getFechaInformeGestion1());
+			$cronograma->setFechaInformeGestion2($practicante->getFechaInformeGestion2());
+			$cronograma->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
+			$cronograma->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
 			
-			$em->persist($academico);
+			$em->persist($cronograma);
             $em->flush();
 
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));

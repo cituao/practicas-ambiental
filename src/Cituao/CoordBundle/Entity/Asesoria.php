@@ -449,4 +449,27 @@ class Asesoria
     {
         return $this->docPracticante7;
     }
+
+    /**
+     * Set academico
+     *
+     * @param integer $academico
+     * @return Asesoria
+     */
+    public function setAcademico($academico)
+    {
+        $this->academico = $academico;
+    
+        return $this;
+    }
+
+    /**
+     * Get academico
+     *
+     * @return integer 
+     */
+    public function getAcademico()
+    {
+        return $this->academico;
+    }
 }

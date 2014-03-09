@@ -1,0 +1,85 @@
+Cituao\AcademicoBundle\Entity\Cronograma:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        practicante:
+            type: integer
+            unique: true
+        academico:
+            type: integer
+        fechaAsesoria1:
+            type: date
+        fechaAsesoria2:
+            type: date
+        fechaAsesoria3:
+            type: date
+        fechaAsesoria4:
+            type: date
+        fechaAsesoria5:
+            type: date
+        fechaAsesoria6:
+            type: date
+        fechaAsesoria7:
+            type: date
+        fechaVisitaP:
+            type: date
+        fechaEvaluacion1:
+            type: date
+        fechaEvaluacion2:
+            type: date
+        fechaInformeGestion1:
+            type: date
+        fechaInformeGestion2:
+            type: date
+        fechaInformeGestion3:
+            type: date
+        fechaEvaluacionFinal:
+            type: date
+        listoAsesoria1:
+            type: boolean
+            nullable: true
+        listoAsesoria2:
+            type: boolean
+            nullable: true
+        listoAsesoria3:
+            type: boolean
+            nullable: true
+        listoAsesoria4:
+            type: boolean
+            nullable: true
+        listoAsesoria5:
+            type: boolean
+            nullable: true 
+        listoAsesoria6:
+            type: boolean
+            nullable: true
+        listoAsesoria7:
+            type: boolean
+            nullable: true
+        listoVisitaP:
+            type: boolean
+            nullable: true
+        listoEvaluacion1:
+            type: boolean
+            nullable: true
+        listoEvaluacion2:
+            type: boolean
+            nullable: true
+        listoGestion1:
+            type: boolean
+            nullable: true
+        listoGestion2:
+            type: boolean
+            nullable: true
+        listoGestion3:
+            type: boolean
+            nullable: true
+        listoEvaluacionFinal:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

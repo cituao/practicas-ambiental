@@ -65,8 +65,6 @@ class DefaultController extends Controller
 ;
         $numeroPracticantes=$query->getSingleScalarResult();
 
-		 
-
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$listaPracticantes = $repository->findByacademico($academico->getId());
 		$datos = array('numeroPracticantes' => $numeroPracticantes); 
