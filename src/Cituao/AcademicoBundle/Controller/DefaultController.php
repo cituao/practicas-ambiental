@@ -87,7 +87,7 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$cronograma = $repository->findOneByCi($ci);
 		
-		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig');
+		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('cronograma' => $cronograma ));
 		
 		
 	}

@@ -167,67 +167,67 @@ class Academico
     private $listoAsesoria1;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
      */
     private $listoAsesoria2;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
      */
     private $listoAsesoria3;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
      */
     private $listoAsesoria4;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
      */
     private $listoAsesoria5;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
      */
     private $listoAsesoria6;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
      */
     private $listoAsesoria7;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
     */
     private $listoVisitaP;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
     */
     private $listoVisita1;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
     */
     private $listoVisita2;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
     */
     private $listoInformeGestion1;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
     */
     private $listoInformeGestion2;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
     */
     private $listoInformeGestion3;
 
     /**
-     * @ORM\Column(type:"boolean")
+     * @ORM\Column(type="boolean")
     */
     private $listoEvaluacionFinal;
 

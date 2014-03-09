@@ -129,7 +129,7 @@ class DefaultController extends Controller
 	}
 
 	/********************************************************/
-	//Muestra el cronograma de actividades del practicante 
+	//Muestra y guarda cronograma de actividades del practicante 
 	/********************************************************/		
 	public function cronogramaAction($codigo){
 		$peticion = $this->getRequest();
@@ -164,15 +164,34 @@ class DefaultController extends Controller
 		$formulario = $this->createForm(new CronogramaType(), $practicante);
 		$formulario->handleRequest($peticion);
 
-        if ($formulario->isValid()) {
+		// si los datos son validos guardamos cronograma para los actores        
+		if ($formulario->isValid()) {
 			// Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);
+
+			//buscamos al academico para cargarle el cronograma
+			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+			$academico = $repository->find($practicante->getAcademico()->getId());
+
+			//cargamos las fechas	
+			$academico->setFechaAsesoria1($practicante->getFechaAsesoria1());
+			$academico->setFechaAsesoria2($practicante->getFechaAsesoria2());
+			$academico->setFechaAsesoria3($practicante->getFechaAsesoria3());
+			$academico->setFechaAsesoria4($practicante->getFechaAsesoria4());
+			$academico->setFechaAsesoria5($practicante->getFechaAsesoria5());
+			$academico->setFechaAsesoria6($practicante->getFechaAsesoria6());
+			$academico->setFechaAsesoria7($practicante->getFechaAsesoria7());
+			$academico->setFechaVisitaP($practicante->getFechaVisitaP());
+			$academico->setFechaVisita1($practicante->getFechaVisita1());
+			$academico->setFechaVisita2($practicante->getFechaVisita2());
+			$academico->setFechaInformeGestion1($practicante->getFechaInformeGestion1());
+			$academico->setFechaInformeGestion2($practicante->getFechaInformeGestion2());
+			$academico->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
+			$academico->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
+			
+			$em->persist($academico);
             $em->flush();
 
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
         return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
@@ -586,11 +605,17 @@ class DefaultController extends Controller
 	
 	}
 
+	/****************************************************
+	/ Presenta una interfaz para crear cuentas de coordinador
+	*****************************************************/
 	public function configuracionAction(){
 		$msgerr = array('descripcion'=>'','id'=>'0');
 		return $this->render('CituaoCoordBundle:Default:configuracion.html.twig', array('msgerr' => $msgerr));	
 	}
 
+	/*****************************************************
+	* Para guardar los datos de un coordinador
+	******************************************************/
 	public function registrarcoordinadorAction(){
 		$peticion = $this->getRequest();
         $em = $this->getDoctrine()->getManager();

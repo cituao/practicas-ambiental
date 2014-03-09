@@ -85,7 +85,7 @@ h1 span { color: #AAA; }
 #menuop{
 	display: block;
 	width: 100%;
-	height: 10%;
+	height: 15%;
 	margin-top:1%;
 	margin-left:1%;
 	background-color: #f3f3f3;
@@ -97,7 +97,7 @@ h1 span { color: #AAA; }
 #subinfowrapper{
 	margin-top:2%;
 	margin-left:4%;
-	width: 100%;
+	width: 100%;	
 	height:100%;
 }
 
@@ -429,18 +429,6 @@ header h1 a {
 }
 
 
-/* ===========================================================================
-   Zona lateral
-   ======================================================================== */
-
-/* ===========================================================================
-   Caja de login
-   ======================================================================== */
-
-/* ===========================================================================
-   Pie de página
-   ======================================================================== */
-
 #error {
 	background-color: #99CCFF;	
 }
@@ -562,4 +550,37 @@ a.baropcion:hover{
 	opacity:0.5;
 }
 
+
+
+/*********************************************************************************/
+#tablaCronograma{
+	border-collapse: collapse;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	width:100%;
+}
+#tablaCronograma table,th,td
+{
+border:1px solid black;
+}
+
+#tablaCronograma th 
+{
+font-size:0.8em;
+text-align:center;
+padding-top:5px;
+padding-bottom:4px;
+background-color:#B00000;
+color:#ffffff;
+}
+
+#tablaCronograma td {
+	text-align: center;
+}
+#tablaCronograma tr{
+	height: 15px;
+}
+
+#tablaCronograma.colActividad{
+	width: 15px;
+}
 

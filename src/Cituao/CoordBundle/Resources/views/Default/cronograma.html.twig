@@ -137,7 +137,7 @@
 					{% if practicante.area == 1 %}					
 						<div  class = "fecha">
 							<label>Entrega de proyecto</label>
-							<input type = "text" class = "corto" readonly = "readonly" id = "crono_pra_proyecto" >
+							<input type = "text" class = "corto" readonly = "readonly" id = "crono_pra_proyecto" value = "{{ practicante.fechaInformeFinal|date("m/d/Y") }}">
 						</div>
 					{% endif %}
 					
