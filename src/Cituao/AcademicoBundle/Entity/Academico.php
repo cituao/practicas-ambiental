@@ -12,7 +12,7 @@ use Symfony\Component\Filesystem\Filesystem;
  * Cituao\AcademicoBundle\Entity\Academico
  *
  * @ORM\Table(name="Academico")
- * @ORM\Entity(repositoryClass="Cituao\AcademicoBundle\Entity\ExternoRepository")
+ * @ORM\Entity(repositoryClass="Cituao\AcademicoBundle\Entity\AcademicoRepository")
  */
 class Academico
 {
