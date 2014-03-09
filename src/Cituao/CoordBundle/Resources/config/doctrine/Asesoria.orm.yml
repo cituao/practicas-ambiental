@@ -1,0 +1,70 @@
+Cituao\CoordBundle\Entity\Asesoria:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        practicante:
+            type: integer
+        academico:
+            type: integer
+        docAsesor1:
+            type: text
+            length: '1000'
+            nullable: true
+        docPracticante1:
+            type: text
+            length: '1000'
+            nullable: true
+        docAsesor2:
+            type: text
+            length: '1000'
+            nullable: true
+        docPracticante2:
+            type: text
+            length: '1000'
+            nullable: true
+        docAsesor3:
+            type: text
+            length: '1000'
+            nullable: true
+        docPracticante3:
+            type: text
+            length: '1000'
+            nullable: true
+        docAsesor4:
+            type: text
+            length: '1000'
+            nullable: true
+        docPracticante4:
+            type: text
+            length: '1000'
+            nullable: true
+        docAsesor5:
+            type: text
+            length: '1000'
+            nullable: true
+        docPracticante5:
+            type: text
+            length: '1000'
+            nullable: true
+        docAsesor6:
+            type: text
+            length: '1000'
+            nullable: true
+        docPracticante6:
+            type: text
+            length: '1000'
+            nullable: true
+        docAsesor7:
+            type: text
+            length: '1000'
+            nullable: true
+        docPracticante7:
+            type: text
+            length: '1000'
+            nullable: true
+    lifecycleCallbacks: {  }

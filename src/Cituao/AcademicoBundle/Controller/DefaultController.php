@@ -47,7 +47,7 @@ class DefaultController extends Controller
 		
 	}	
 	
-		/********************************************************/
+	//*******************************************************/
 	//Listar los practicantes del asesor academico
 	/********************************************************/	
 	public function practicantesAction(){
@@ -79,7 +79,16 @@ class DefaultController extends Controller
 		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'datos' => $datos));
 	}
 	
-	public function cronogramaAction($codigo){
-		return;
+
+	//*******************************************************/
+	//Cronograma
+	/********************************************************/	
+	public function cronogramaAction($ci){
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$cronograma = $repository->findOneByCi($ci);
+		
+		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig');
+		
+		
 	}
 }

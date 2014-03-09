@@ -46,7 +46,7 @@
 						<td>{{ practicante.emailInstitucional }}</td>
 						<td>{{ practicante.emailPersonal }}</td>
 						<td>{{ practicante.telefonoMovil }}</td>
-						<td><a href="{{ path('cituao_academico_cronograma', { 'codigo': practicante.codigo}) }}"><img border=”0″ src={{ asset('img/cronograma.png') }} width=”68″ height=”68″></a></td>
+						<td><a href="{{ path('cituao_academico_cronograma', { 'ci': practicante.ci}) }}"><img border=”0″ src={{ asset('img/cronograma.png') }} width=”68″ height=”68″></a></td>
 
 					</tr>
 					{% set id = id + 1 %}

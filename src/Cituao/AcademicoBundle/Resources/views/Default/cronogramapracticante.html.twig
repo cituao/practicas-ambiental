@@ -1,0 +1,23 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block javascripts %}
+	<meta charset="utf-8">
+	 <title>jQuery UI Datepicker - Default functionality</title>
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+	 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	 <script src="{{ asset('js/date.js') }}"></script>
+{% endblock %}
+
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id = "titlee">Cronograma del practicante</h2>
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+	
+{% endblock %}
+
