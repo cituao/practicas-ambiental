@@ -1,5 +1,6 @@
 Cituao\AcademicoBundle\Entity\Academico:
     type: entity
+    repositoryClass: Cituao\AcademicoBundle\Entity\AcademicoRepository
     table: null
     fields:
         id:

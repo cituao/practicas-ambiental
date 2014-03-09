@@ -708,28 +708,6 @@ class Practicante
         return $this->fechaVisita2;
     }
 
-    /**
-     * Set fechaMatriculacion
-     *
-     * @param \date $fechaMatriculacion
-     * @return Practicante
-     */
-    public function setfechaMatriculacion($fecha)
-    {
-        $this->fechaMatriculacion = $fecha;
-    
-        return $this;
-    }
-
-    /**
-     * Get fechaMatriculacion
-     *
-     * @return \date 
-     */
-    public function getfechaMatriculacion()
-    {
-        return $this->fechaMatriculacion;
-    }
 
  	/**
      * Set area
@@ -988,4 +966,27 @@ public function getAbsolutePath()
 	}
 
 
+
+    /**
+     * Set fechaMatriculacion
+     *
+     * @param \DateTime $fechaMatriculacion
+     * @return Practicante
+     */
+    public function setFechaMatriculacion($fechaMatriculacion)
+    {
+        $this->fechaMatriculacion = $fechaMatriculacion;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaMatriculacion
+     *
+     * @return \DateTime 
+     */
+    public function getFechaMatriculacion()
+    {
+        return $this->fechaMatriculacion;
+    }
 }

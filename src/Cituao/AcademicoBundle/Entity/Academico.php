@@ -432,4 +432,37 @@ public function getAbsolutePath()
 		$this->file = null;	
 	}
 	
+
+    /**
+     * Add practicantes
+     *
+     * @param \Cituao\CoordBundle\Entity\Practicante $practicantes
+     * @return Academico
+     */
+    public function addPracticante(\Cituao\CoordBundle\Entity\Practicante $practicantes)
+    {
+        $this->practicantes[] = $practicantes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove practicantes
+     *
+     * @param \Cituao\CoordBundle\Entity\Practicante $practicantes
+     */
+    public function removePracticante(\Cituao\CoordBundle\Entity\Practicante $practicantes)
+    {
+        $this->practicantes->removeElement($practicantes);
+    }
+
+    /**
+     * Get practicantes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPracticantes()
+    {
+        return $this->practicantes;
+    }
 }

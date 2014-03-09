@@ -229,4 +229,60 @@ class Centro
 		return $this->externos;
 	
 	}
+
+    /**
+     * Add externos
+     *
+     * @param \Cituao\ExternoBundle\Entity\Externo $externos
+     * @return Centro
+     */
+    public function addExterno(\Cituao\ExternoBundle\Entity\Externo $externos)
+    {
+        $this->externos[] = $externos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove externos
+     *
+     * @param \Cituao\ExternoBundle\Entity\Externo $externos
+     */
+    public function removeExterno(\Cituao\ExternoBundle\Entity\Externo $externos)
+    {
+        $this->externos->removeElement($externos);
+    }
+
+    /**
+     * Add practicantes
+     *
+     * @param \Cituao\CoordBundle\Entity\Practicante $practicantes
+     * @return Centro
+     */
+    public function addPracticante(\Cituao\CoordBundle\Entity\Practicante $practicantes)
+    {
+        $this->practicantes[] = $practicantes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove practicantes
+     *
+     * @param \Cituao\CoordBundle\Entity\Practicante $practicantes
+     */
+    public function removePracticante(\Cituao\CoordBundle\Entity\Practicante $practicantes)
+    {
+        $this->practicantes->removeElement($practicantes);
+    }
+
+    /**
+     * Get practicantes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPracticantes()
+    {
+        return $this->practicantes;
+    }
 }

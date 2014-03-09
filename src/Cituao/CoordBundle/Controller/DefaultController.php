@@ -400,6 +400,12 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 
+		$c=0;
+		foreach ($listaAcademicos as $aca){
+			
+			$p = $aca->getPracticantes();
+			$c = $c + $p->count();
+		}
 		return $this->render('CituaoCoordBundle:Default:academicos.html.twig', array('listaAcademicos' => $listaAcademicos, 'msgerr' => $msgerr));
 	} 
 

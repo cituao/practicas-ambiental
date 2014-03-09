@@ -27,6 +27,7 @@
 					<th>EMAIL INSTITUCIONAL</th>
 					<th>EMAIL PERSONAL</th>
 					<th>TELEFONO MOVIL</th>
+					
 					<th></th>
 				</tr>
 		
@@ -50,6 +51,7 @@
 						<td>{{ practicante.emailInstitucional }}</td>
 						<td>{{ practicante.emailPersonal }}</td>
 						<td>{{ practicante.telefonoMovil }}</td>
+						
 						<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"> Ver y modificar</a></td>
 					</tr>
 					{% set id = id + 1 %}

@@ -19,7 +19,7 @@
 			<table id = "customers">
 				<tbody>
 				<tr>
-					<th>#</th> <th>FOTO</th>	<th>CEDULA</th>	<th>NOMBRES</th> <th>APELLIDOS</th>	<th>TELEFONO</th> <th>Email</th> <th>Acción</th>
+					<th>#</th> <th>FOTO</th>	<th>CEDULA</th>	<th>NOMBRES</th> <th>APELLIDOS</th>	<th>TELEFONO</th> <th>Email</th> <th># PRACTICANTES</th><th>Acción</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -40,6 +40,7 @@
 						<td>{{ asesor.apellidos }}</td>
 						<td>{{ asesor.telefonoMovil }}</td>				
 						<td>{{ asesor.email }}</td>	
+						<td>{{ asesor.practicantes.count }}</td>
 						<td><a href="{{ path('cituao_coord_academico', { 'ci': asesor.ci}) }}" id = "opButton"> Ver y modificar </a></td>
 					</tr>
 					{% set id = id + 1 %}
