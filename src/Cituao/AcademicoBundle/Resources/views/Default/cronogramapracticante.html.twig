@@ -10,15 +10,22 @@
 {% endblock %}
 
 
+
+
+
 {% block infowrapper  %}
+	{% for c in cronograma %}
+	
 	<div id="infoWrapper">
-		<h2 id = "titlee">Cronograma del practicante</h2>
+		<h2 id = "titlee">Cronograma con el practicante {{ c.practicante }}</h2>
 		<div id = "menuop">
 			<ul>
 			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
 			</ul>
 		</div>
 		<div id = "subinfowrapper"> 
+
+
 			<table id = "tablaCronograma">
 			  <tr>
 				<th>ACTIVIDAD</th>
@@ -28,84 +35,84 @@
 			
 			  <tr>
 				<td>Asesoría #1</td>
-				<td>12/03/2014</td>
+				<td>{{ c.fechaAsesoria1|date("d/m/Y") }}</td>
 				<td>ENTREGADO</td>
 
 			  </tr>
 			  <tr>
 				<td>Asesoría #2</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaAsesoria2|date("d/m/Y") }}</td>
 				<td>ENTREGADO</td>
 			  </tr>
 
 			  <tr>
 				<td>Asesoría #3</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaAsesoria3|date("d/m/Y") }}</td>
 				<td>ENTREGADO</td>
 			  </tr>
 
 			  <tr>
 				<td>Asesoría #4</td>
-				<td>12/03/2014</td>
+				<td>{{ c.fechaAsesoria4|date("d/m/Y") }}</td>
 				<td>POR ENTREGAR</td>
 			  </tr>
 			  <tr>
 				<td>Asesoría #5</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaAsesoria5|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Asesoría #6</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaAsesoria6|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Asesoría #7</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaAsesoria7|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Visita presentacion</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaVisitaP|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Evaluación #1</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaEvaluacion1|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Evaluación #2</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaEvaluacion2|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Informe de gestión #1</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaInformeGestion1|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Informe de gestión #2</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaInformeGestion2|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Informe de gestión #3</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaInformeGestion3|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
 			  <tr>
 				<td>Evaluación final</td>
-				<td>23/03/2014</td>
+				<td>{{ c.fechaEvaluacionFinal|date("d/m/Y") }}</td>
 				<td>AUN FALTA</td>
 			  </tr>
 
@@ -114,5 +121,6 @@
 	</div>	
 		
 	</div>
+{% endfor %}
 {% endblock %}
 

@@ -81,9 +81,22 @@ class DefaultController extends Controller
 	//*******************************************************/
 	//Cronograma
 	/********************************************************/	
-	public function cronogramaAction($ci){
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$cronograma = $repository->findOneByCi($ci);
+	public function cronogramaAction($id){
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $ci));
+		
+		
+		
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery(
+	            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+		$query->setParameter('id_aca',$academico->getId());
+		$query->setParameter('id_pra',$id);
+		$cronograma = $query->getResult();
+
+		
 		
 		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('cronograma' => $cronograma ));
 		

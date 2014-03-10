@@ -11,5 +11,5 @@ cituao_academico_practicantes:
     defaults: { _controller: CituaoAcademicoBundle:Default:practicantes }
 
 cituao_academico_cronograma:
-    pattern:  /academico/cronograma/{ci}
+    pattern:  /academico/cronograma/{id}
     defaults: { _controller: CituaoAcademicoBundle:Default:cronograma }
