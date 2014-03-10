@@ -14,13 +14,18 @@
 	
 	
 	<div id="infoWrapper">
-		<h2 id = "titlee">Cronograma con el practicante {{ p.nombres }}  {{ p.apellidos }}</h2>
+		<h2 id = "titlee">Cronograma con el practicante</h2>
 		<div id = "menuop">
 			<ul>
 			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
 			</ul>
 		</div>
 		<div id = "subinfowrapper"> 
+			<div class = "datos">
+			<h3>Practicante:  {{ p.nombres }}  {{ p.apellidos }}</h3>
+			<h3>Centro de práctica: {{ p.centro.nombre }}</h3>
+			<h3>Asesor externo: {{ p.externo.nombres }} {{ p.externo.apellidos }}</h3>
+			</div>
 			<table id = "tablaCronograma">
 			  <tr>
 				<th>ACTIVIDAD</th>

@@ -25,7 +25,7 @@
 					<th>EMAIL INSTITUCIONAL</th>
 					<th>EMAIL PERSONAL</th>
 					<th>TELEFONO MOVIL</th>
-					<th></th>
+					<th>ACCION</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -40,13 +40,13 @@
 					{% endif %}
 
 						<td>{{ id }}</th>
-						<td><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="68" height="68"></td>
+						<td><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Foto" width="68" height="68"></td>
 						<td>{{ practicante.nombres }}</td>						
 						<td>{{ practicante.apellidos }}</td>
 						<td>{{ practicante.emailInstitucional }}</td>
 						<td>{{ practicante.emailPersonal }}</td>
 						<td>{{ practicante.telefonoMovil }}</td>
-						<td><a href="{{ path('cituao_academico_cronograma', { 'id': practicante.id}) }}"><img border=”0″ src={{ asset('img/cronograma.png') }} width=”68″ height=”68″></a></td>
+						<td><a href="{{ path('cituao_academico_cronograma', { 'id': practicante.id}) }}">Ver cronograma</a></td>
 
 					</tr>
 					{% set id = id + 1 %}

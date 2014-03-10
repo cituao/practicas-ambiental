@@ -116,7 +116,7 @@ color: #ff0000;
 
 #infoWrapper{
 	
-	margin-top:4%;
+	margin-top:2%;
 	margin-left: 11%;
 	/*border: 1px solid #000;*/
 	max-width: 1100px;
@@ -126,7 +126,7 @@ color: #ff0000;
 }
 
 h2#titlee{
-font-size: 1.875em;
+font-size: 1.6em;
 width: 73%;
 max-width: 450px;
 color: #100f0f;

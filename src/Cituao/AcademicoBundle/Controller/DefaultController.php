@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Cituao\AcademicoBundle\Entity\Academico;
 use Cituao\CoordBundle\Entity\Asesoria;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
-
+use Cituao\AcademicoBundle\Form\Type\AsesoriaType;
 
 class DefaultController extends Controller
 {
@@ -104,18 +104,15 @@ class DefaultController extends Controller
 
 	public function registrarAsesoriaAction($id, $numase){
 		$peticion = $this->getRequest();
+
 		$asesoria = new Asesoria();
+		$formularioTipoAsesoria = new AsesoriaType();
+		$formularioTipoAsesoria->setNumeroAsesoria($numase);
+		$formulario = $this->createForm($formularioTipoAsesoria, $asesoria);
+		
+		$formulario->handleRequest($peticion);
 
-		$form = $this->createFormBuilder($asesoria)
-			->add('academico', 'integer')
-			->add('practicante', 'integer');
-			->add('asesoria', 'text')
-			->getForm();		
-
-
-		$form->handleRequest($peticion);
-
-		if ($form->isValid()) {
+		if ($formulario->isValid()) {
 			// perform some action, such as saving the task to the database
 
 			return $this->redirect($this->generateUrl('cituao_home_academico'));
