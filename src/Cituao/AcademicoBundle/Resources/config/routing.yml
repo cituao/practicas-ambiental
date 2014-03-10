@@ -17,3 +17,7 @@ cituao_academico_cronograma:
 cituao_academico_registrar_asesoria:
     path:  /academico/entregarasesoria/practicante={id}&asesoria={numase}
     defaults: { _controller: CituaoAcademicoBundle:Default:registrarAsesoria }
+
+cituao_academico_consultar_asesoria:
+    path:  /academico/consultarasesoria/practicante={id}&asesoria={numase}
+    defaults: { _controller: CituaoAcademicoBundle:Default:consultarAsesoria }

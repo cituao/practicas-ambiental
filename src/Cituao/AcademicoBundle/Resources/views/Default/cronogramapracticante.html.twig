@@ -39,7 +39,7 @@
 				<td  class = "colFecha">{{ c.fechaAsesoria1|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria1 == true %}
 					<td  class = "colEstado">ENTREGADO</td>
-					<td>Ver</td> 
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria1 > date() %}
 					<td  class = "colEstado">AUN FALTA</td>
 					<td>-</td>
@@ -54,13 +54,13 @@
 				<td>{{ c.fechaAsesoria2|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria2 == true %}
 					<td>ENTREGADO</td>
-					<td>Ver</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 2}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria2 > date() %}
 					<td>AUN FALTA</td>
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 2}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>
@@ -70,13 +70,13 @@
 				<td>{{ c.fechaAsesoria3|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria3 == true %}
 					<td>ENTREGADO</td>
-					<td>Ver</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 3}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria3 > date() %}
 					<td>AUN FALTA</td>
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 3}) }}">Entregar</a></td>
 				{% endif %}
 			  </tr>
 
@@ -85,13 +85,13 @@
 				<td>{{ c.fechaAsesoria4|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria4 == true %}
 					<td>ENTREGADO</td>
-					<td>Ver</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 4}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria4 > date() %}
 					<td>AUN FALTA</td>
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 4}) }}">Entregar</a></td>
 				{% endif %}
 			  </tr>
 			  <tr>
@@ -99,13 +99,13 @@
 				<td>{{ c.fechaAsesoria5|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria5 == true %}
 					<td>ENTREGADO</td>
-					<td>Ver</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 5}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria5 > date() %}
 					<td>AUN FALTA</td>
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 5}) }}">Entregar</a></td>
 				{% endif %}
 			  </tr>
 
@@ -114,14 +114,14 @@
 				<td>{{ c.fechaAsesoria6|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria6 == true %}
 					<td>ENTREGADO</td>
-					<td>Ver</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 6}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria6 > date() %}
 					<td>AUN FALTA</td>
 			
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 6}) }}">Entregar</a></td>
 				{% endif %}
 				
 			  </tr>
@@ -131,13 +131,13 @@
 				<td>{{ c.fechaAsesoria7|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria7 == true %}
 					<td>ENTREGADO</td>
-					<td>Ver</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 7}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria7 > date() %}
 					<td>AUN FALTA</td>
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 7}) }}">Entregar</a></td>
 				{% endif %}
 				
 			  </tr>
@@ -153,7 +153,7 @@
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
 				{% endif %}
 				
 			  </tr>
@@ -169,7 +169,7 @@
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
 				{% endif %}
 				
 			  </tr>
@@ -185,7 +185,7 @@
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>	
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>	
 				{% endif %}
 
 			  </tr>
@@ -201,7 +201,7 @@
 					<td>-</td>	
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>
@@ -217,7 +217,7 @@
 					<td>-</td>	
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>
@@ -233,7 +233,7 @@
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>
@@ -249,7 +249,7 @@
 					<td>-</td>
 				{% else %}
 					<td>NO ENTREGADO</td>
-					<td>Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
 				{% endif %}
 				
 			  </tr>

@@ -79,9 +79,9 @@ class DefaultController extends Controller
 	}
 	
 
-	//*******************************************************/
-	//Cronograma
-	/********************************************************/	
+	//*****************************************************************/
+	//Mostrar el cronograma comun entre practicante y academico
+	/******************************************************************/	
 	public function cronogramaAction($id){
 		$user = $this->get('security.context')->getToken()->getUser();
 		$ci =  $user->getUsername();
@@ -107,11 +107,24 @@ class DefaultController extends Controller
 	// Parametros: id identificador del practicante
 	//                       numase numero de asesoría a registrar 1,2,...,7
 	//*******************************************************************************
-	
 	public function registrarAsesoriaAction($id, $numase){
 		$peticion = $this->getRequest();
 
-		$asesoria = new Asesoria();
+		$em = $this->getDoctrine()->getManager();
+		// buscamos el ID del asesor academico
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $ci));
+
+		//buscamos la asesoría
+		$query = $em->createQuery(
+				'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
+		$query->setParameter('id_aca',$academico->getId());
+		$query->setParameter('id_pra',$id);
+		
+		$asesoria = $query->getOneOrNullResult();
+		
 		$formularioTipoAsesoria = new AsesoriaType();
 		//se definio una propiedad para determinar que asesoria se esta registrando ver AsesoriaType
 		$formularioTipoAsesoria->setNumeroAsesoria($numase);
@@ -120,24 +133,85 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-			$em = $this->getDoctrine()->getManager();
-			// perform some action, such as saving the task to the database
-			$user = $this->get('security.context')->getToken()->getUser();
-			$ci =  $user->getUsername();
-			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
-			$academico = $repository->findOneBy(array('ci' => $ci));
 
 			//asignamos los id relacionados con este registro de asesoria
 			$asesoria->setAcademico($academico->getId());
 			$asesoria->setPracticante($id);
-			$em->persist($asesoria);
 			
+			//asignamos como entregada en la tabla cronograma la asesoria
+			$query = $em->createQuery(
+					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+			$query->setParameter('id_aca',$academico->getId());
+			$query->setParameter('id_pra',$id);
+			$cronograma = $query->getOneOrNullResult();
+			
+			switch($numase){
+				case 1: $cronograma->setListoAsesoria1(true);
+					break;
+				case 2: $cronograma->setListoAsesoria2(true);
+					break;
+				case 3: $cronograma->setListoAsesoria3(true);
+					break;
+				case 4: $cronograma->setListoAsesoria4(true);
+					break;
+				case 5: $cronograma->setListoAsesoria5(true);
+					break;
+				case 6: $cronograma->setListoAsesoria6(true);
+					break;
+				case 7: $cronograma->setListoAsesoria7(true);
+					break;
+			}
+		
+			$em->persist($cronograma);
+			$em->persist($asesoria);
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
-		
 		$datos = array('id' => $id, 'numase' => $numase);
-		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+		return $this->render('CituaoAcademicoBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+	}
+	
+	
+	//***************************************************************
+	//mostrar la asesoria solicitada
+	//***************************************************************
+	public function consultarAsesoriaAction($id, $numase) {
+		$peticion = $this->getRequest();
+
+		$em = $this->getDoctrine()->getManager();
+		// buscamos el ID del asesor academico
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $ci));
+
+		//buscamos la asesoría
+		$query = $em->createQuery(
+				'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
+		$query->setParameter('id_aca',$academico->getId());
+		$query->setParameter('id_pra',$id);
 		
+		$asesoria = $query->getOneOrNullResult();	
+
+		//nos traemos la documentacion
+		switch($numase){
+			case 1: $doc = $asesoria->getDocAsesor1();
+				break;
+			case 2: $doc = $asesoria->getDocAsesor2();
+				break;
+			case 3: $doc = $asesoria->getDocAsesor3();
+				break;
+			case 4: $doc = $asesoria->getDocAsesor4();
+				break;
+			case 5: $doc = $asesoria->getDocAsesor5();
+				break;
+			case 6: $doc = $asesoria->getDocAsesor6();
+				break;
+			case 7: $doc = $asesoria->getDocAsesor7();
+				break;
+		}
+
+		$datos = array('id' => $id, 'numase' => $numase, 'doc' => $doc);
+		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('datos' => $datos));
 	}
 }

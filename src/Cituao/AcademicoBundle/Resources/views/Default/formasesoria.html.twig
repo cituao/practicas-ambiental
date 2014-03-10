@@ -1,0 +1,58 @@
+{% extends 'CituaoAcademicoBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Registrando asesoría # {{ datos.numase }}</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+	
+	<form action="{{ path('cituao_academico_registrar_asesoria'  , { 'id': datos.id, 'numase': datos.numase }) }}" method="post" {{ form_enctype(formulario) }}>
+	    
+			{{ form_errors(formulario) }}
+				<div>
+				{% if datos.numase == 1 %}
+					{{ form_label(formulario.docAsesor1) }}
+					{{ form_widget(formulario.docAsesor1) }}
+					{{ form_errors(formulario.docAsesor1) }}
+				{% endif %}
+				{% if datos.numase == 2 %}
+					{{ form_label(formulario.docAsesor2) }}
+					{{ form_widget(formulario.docAsesor2) }}
+					{{ form_errors(formulario.docAsesor2) }}
+				{% endif %}
+				{% if datos.numase == 3 %}
+					{{ form_label(formulario.docAsesor3) }}
+					{{ form_widget(formulario.docAsesor3) }}
+					{{ form_errors(formulario.docAsesor3) }}
+				{% endif %}
+				{% if datos.numase == 4 %}
+					{{ form_label(formulario.docAsesor4) }}
+					{{ form_widget(formulario.docAsesor4) }}
+					{{ form_errors(formulario.docAsesor4) }}
+				{% endif %}
+				{% if datos.numase == 5 %}
+					{{ form_label(formulario.docAsesor5) }}
+					{{ form_widget(formulario.docAsesor5) }}
+					{{ form_errors(formulario.docAsesor5) }}
+				{% endif %}
+				{% if datos.numase == 6 %}
+					{{ form_label(formulario.docAsesor6) }}
+					{{ form_widget(formulario.docAsesor6) }}
+					{{ form_errors(formulario.docAsesor6) }}
+				{% endif %}
+				{% if datos.numase == 7 %}
+					{{ form_label(formulario.docAsesor7) }}
+					{{ form_widget(formulario.docAsesor7) }}
+					{{ form_errors(formulario.docAsesor7) }}
+				{% endif %}
+				</div>
+			{{ form_rest(formulario) }}
+			<input class="boton" type="submit" value="Guardar" />
+	</form>	
+	</div>
+{% endblock %}

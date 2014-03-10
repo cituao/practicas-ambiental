@@ -12,7 +12,7 @@ class AsesoriaType extends AbstractType
 	
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		switch($this->numases){
+		switch($this->numase){
 			case 1:	
 				$builder->add('docAsesor1','textarea', array('label' => 'Documentación:', 'max_length' => '1000', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '150'), 'required' => true ));
 				break;
