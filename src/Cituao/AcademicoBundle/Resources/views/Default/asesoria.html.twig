@@ -1,0 +1,39 @@
+{% extends 'CituaoAcademicoBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Registrando una asesoría </h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+	
+	<form action="{{ path('cituao_academico_registrar_asesoria'  , { 'id': datos.id, 'numase': datos.numase }) }}" method="post" {{ form_enctype(formulario) }}>
+	    
+			{{ form_errors(formulario) }}
+			<div>	
+				{{ form_label(formulario.academico) }}
+				{{ form_widget(formulario.academico, {'attr': {'class':'corto'}} ) }}
+				{{ form_errors(formulario.academico) }}
+			</div>
+			<div>   
+				{{ form_label(formulario.practicante) }}
+				{{ form_widget(formulario.practicante, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.practicante) }}
+			</div>
+			<div>	
+				{{ form_label(formulario.asesoria) }}
+				{{ form_widget(formulario.asesoria, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.asesoria) }}
+			</div>
+
+			{{ form_rest(formulario) }}
+
+			<input class="boton" type="submit" value="Guardar" />
+	    
+	</form>	
+	</div>
+{% endblock %}

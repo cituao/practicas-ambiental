@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Response;
 
 use Cituao\AcademicoBundle\Entity\Academico;
+use Cituao\CoordBundle\Entity\Asesoria;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
 
 
@@ -102,8 +103,26 @@ class DefaultController extends Controller
 	}
 
 	public function registrarAsesoriaAction($id, $numase){
+		$peticion = $this->getRequest();
+		$asesoria = new Asesoria();
+
+		$form = $this->createFormBuilder($asesoria)
+			->add('academico', 'integer')
+			->add('practicante', 'integer');
+			->add('asesoria', 'text')
+			->getForm();		
+
+
+		$form->handleRequest($peticion);
+
+		if ($form->isValid()) {
+			// perform some action, such as saving the task to the database
+
+			return $this->redirect($this->generateUrl('cituao_home_academico'));
+		}
 		
-		return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
+		$datos = array('id' => $id, 'numase' => $numase);
+		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
 		
 	}
 }
