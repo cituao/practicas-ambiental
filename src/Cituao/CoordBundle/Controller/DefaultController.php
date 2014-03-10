@@ -179,7 +179,8 @@ class DefaultController extends Controller
 		            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
 			$query->setParameter('id_aca',$practicante->getAcademico()->getId());
 			$query->setParameter('id_pra',$practicante->getId());
-			$cronograma = $query->getResult();
+			//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
+			$cronograma = $query->getOneOrNullResult();//getSingleResult();
 
 			if (!$cronograma){
 				$cronograma = new Cronograma();
