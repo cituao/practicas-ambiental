@@ -87,19 +87,18 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 		
-		
-		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+
 		$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery(
 	            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
 		$query->setParameter('id_aca',$academico->getId());
 		$query->setParameter('id_pra',$id);
-		$cronograma = $query->getResult();
+		$cronograma = $query->getOneOrNullResult();
 
 		
-		
-		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('cronograma' => $cronograma ));
-		
+		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante ));
 		
 	}
 }

@@ -556,7 +556,7 @@ a.baropcion:hover{
 #tablaCronograma{
 	border-collapse: collapse;
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-	width:100%;
+	
 }
 #tablaCronograma table,th,td
 {
@@ -580,7 +580,15 @@ color:#ffffff;
 	height: 15px;
 }
 
-#tablaCronograma.colActividad{
-	width: 15px;
+.colActividad{
+	width: 5%;
 }
+.colFecha{
+	width: 2%;
+}
+.colEstado{
+	width: 2%;
+}
+
+
 

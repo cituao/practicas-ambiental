@@ -11,10 +11,10 @@
 
 
 {% block infowrapper  %}
-	{% for c in cronograma %}
+	
 	
 	<div id="infoWrapper">
-		<h2 id = "titlee">Cronograma con el practicante {{ c.practicante }}</h2>
+		<h2 id = "titlee">Cronograma con el practicante {{ p.nombres }}  {{ p.apellidos }}</h2>
 		<div id = "menuop">
 			<ul>
 			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
@@ -26,17 +26,21 @@
 				<th>ACTIVIDAD</th>
 				<th>FECHA</th>
 				<th>ESTADO</th>
+				<th>ACCION</th>
 			  </tr>
 			
 			  <tr>
-				<td>Asesoría #1</td>
-				<td>{{ c.fechaAsesoria1|date("d/m/Y") }}</td>
+				<td  class = "colActividad">Asesoría #1</td>
+				<td  class = "colFecha">{{ c.fechaAsesoria1|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria1 == true %}
-					<td>ENTREGADO</td>
+					<td  class = "colEstado">ENTREGADO</td>
+					<td>Ver</td> 
 				{% elseif c.fechaAsesoria1 > date() %}
-					<td>AUN FALTA</td>
+					<td  class = "colEstado">AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td  class = "colEstado">NO ENTREGADO</td>
+					<td  class = "colEstado">Entregar</td>
 				{% endif %}
 
 			  </tr>
@@ -45,10 +49,13 @@
 				<td>{{ c.fechaAsesoria2|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria2 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaAsesoria2 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 
 			  </tr>
@@ -58,10 +65,13 @@
 				<td>{{ c.fechaAsesoria3|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria3 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaAsesoria3 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 			  </tr>
 
@@ -70,10 +80,13 @@
 				<td>{{ c.fechaAsesoria4|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria4 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaAsesoria4 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 			  </tr>
 			  <tr>
@@ -81,10 +94,13 @@
 				<td>{{ c.fechaAsesoria5|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria5 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaAsesoria5 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 			  </tr>
 
@@ -93,10 +109,14 @@
 				<td>{{ c.fechaAsesoria6|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria6 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaAsesoria6 > date() %}
 					<td>AUN FALTA</td>
+			
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 				
 			  </tr>
@@ -106,10 +126,13 @@
 				<td>{{ c.fechaAsesoria7|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria7 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaAsesoria7 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 				
 			  </tr>
@@ -119,10 +142,13 @@
 				<td>{{ c.fechaVisitaP|date("d/m/Y") }}</td>
 				{% if c.listoVisitaP == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaVisitaP > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 				
 			  </tr>
@@ -132,10 +158,13 @@
 				<td>{{ c.fechaEvaluacion1|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacion1 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaEvaluacion1 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 				
 			  </tr>
@@ -145,10 +174,13 @@
 				<td>{{ c.fechaEvaluacion2|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacion2 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaEvaluacion2 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>	
 				{% endif %}
 
 			  </tr>
@@ -158,10 +190,13 @@
 				<td>{{ c.fechaInformeGestion1|date("d/m/Y") }}</td>
 				{% if c.listoGestion1 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaInformeGestion1 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>	
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 
 			  </tr>
@@ -171,10 +206,13 @@
 				<td>{{ c.fechaInformeGestion2|date("d/m/Y") }}</td>
 				{% if c.listoGestion2 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaInformeGestion2 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>	
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 
 			  </tr>
@@ -184,10 +222,13 @@
 				<td>{{ c.fechaInformeGestion3|date("d/m/Y") }}</td>
 				{% if c.listoGestion3 == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaInformeGestion3 > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 
 			  </tr>
@@ -197,10 +238,13 @@
 				<td>{{ c.fechaEvaluacionFinal|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacionFinal == true %}
 					<td>ENTREGADO</td>
+					<td>Ver</td>
 				{% elseif c.fechaEvaluacionFinal > date() %}
 					<td>AUN FALTA</td>
+					<td>-</td>
 				{% else %}
-					<td>POR ENTREGAR</td>
+					<td>NO ENTREGADO</td>
+					<td>Entregar</td>
 				{% endif %}
 				
 			  </tr>
@@ -210,6 +254,6 @@
 	</div>	
 		
 	</div>
-{% endfor %}
+
 {% endblock %}
 
