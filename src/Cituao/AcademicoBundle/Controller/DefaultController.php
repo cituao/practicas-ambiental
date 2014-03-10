@@ -125,6 +125,8 @@ class DefaultController extends Controller
 		
 		$asesoria = $query->getOneOrNullResult();
 		
+		if ($asesoria == NULL) $asesoria = new Asesoria();
+
 		$formularioTipoAsesoria = new AsesoriaType();
 		//se definio una propiedad para determinar que asesoria se esta registrando ver AsesoriaType
 		$formularioTipoAsesoria->setNumeroAsesoria($numase);
@@ -133,7 +135,8 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-
+			
+			
 			//asignamos los id relacionados con este registro de asesoria
 			$asesoria->setAcademico($academico->getId());
 			$asesoria->setPracticante($id);
