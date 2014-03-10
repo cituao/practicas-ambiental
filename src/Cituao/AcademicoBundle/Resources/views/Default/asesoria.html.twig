@@ -2,7 +2,7 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
-		<h2 id="titlee">Registrando una asesoría </h2>
+		<h2 id="titlee">Registrando asesoría # {{ datos.numase }}</h2>
 
 		<div id = "menuop">
 			<ul>
@@ -14,21 +14,13 @@
 	<form action="{{ path('cituao_academico_registrar_asesoria'  , { 'id': datos.id, 'numase': datos.numase }) }}" method="post" {{ form_enctype(formulario) }}>
 	    
 			{{ form_errors(formulario) }}
-			<div>	
-				{{ form_label(formulario.academico) }}
-				{{ form_widget(formulario.academico, {'attr': {'class':'corto'}} ) }}
-				{{ form_errors(formulario.academico) }}
-			</div>
-			<div>   
-				{{ form_label(formulario.practicante) }}
-				{{ form_widget(formulario.practicante, {'attr': {'class':'mediano'}} ) }}
-				{{ form_errors(formulario.practicante) }}
-			</div>
-			<div>	
+				
+				<div>
 				{{ form_label(formulario.docAsesor1) }}
-				{{ form_widget(formulario.docAsesor1, {'attr': {'class':'mediano'}} ) }}
+				{{ form_widget(formulario.docAsesor1) }}
 				{{ form_errors(formulario.docAsesor1) }}
-			</div>
+
+				</div>
 
 			{{ form_rest(formulario) }}
 

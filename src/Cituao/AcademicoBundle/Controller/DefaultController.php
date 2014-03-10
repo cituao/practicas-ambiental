@@ -102,20 +102,38 @@ class DefaultController extends Controller
 		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante ));
 	}
 
+	//******************************************************************************
+	//Función para registrar una asesoría 
+	// Parametros: id identificador del practicante
+	//                       numase numero de asesoría a registrar 1,2,...,7
+	//*******************************************************************************
+	
 	public function registrarAsesoriaAction($id, $numase){
 		$peticion = $this->getRequest();
 
 		$asesoria = new Asesoria();
 		$formularioTipoAsesoria = new AsesoriaType();
+		//se definio una propiedad para determinar que asesoria se esta registrando ver AsesoriaType
 		$formularioTipoAsesoria->setNumeroAsesoria($numase);
 		$formulario = $this->createForm($formularioTipoAsesoria, $asesoria);
 		
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
+			$em = $this->getDoctrine()->getManager();
 			// perform some action, such as saving the task to the database
+			$user = $this->get('security.context')->getToken()->getUser();
+			$ci =  $user->getUsername();
+			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+			$academico = $repository->findOneBy(array('ci' => $ci));
 
-			return $this->redirect($this->generateUrl('cituao_home_academico'));
+			//asignamos los id relacionados con este registro de asesoria
+			$asesoria->setAcademico($academico->getId());
+			$asesoria->setPracticante($id);
+			$em->persist($asesoria);
+			
+			$em->flush();
+			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
 		
 		$datos = array('id' => $id, 'numase' => $numase);
