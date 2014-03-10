@@ -40,7 +40,7 @@
 					<td>-</td>
 				{% else %}
 					<td  class = "colEstado">NO ENTREGADO</td>
-					<td  class = "colEstado">Entregar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>

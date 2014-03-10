@@ -1,15 +1,19 @@
 cituao_academico_homepage:
-    pattern:  /academico
+    path:  /academico
     defaults: { _controller: CituaoAcademicoBundle:Default:index }
 
 cituao_academico_actualizar:
-    pattern:  /academico/actualizar
+    path:  /academico/actualizar
     defaults: { _controller: CituaoAcademicoBundle:Default:actualizar }
 
 cituao_academico_practicantes:
-    pattern:  /academico/practicantes
+    path:  /academico/practicantes
     defaults: { _controller: CituaoAcademicoBundle:Default:practicantes }
 
 cituao_academico_cronograma:
-    pattern:  /academico/cronograma/{id}
+    path:  /academico/cronograma/{id}
     defaults: { _controller: CituaoAcademicoBundle:Default:cronograma }
+
+cituao_academico_registrar_asesoria:
+    path:  /academico/entregarasesoria/practicante={id}&asesoria={numase}
+    defaults: { _controller: CituaoAcademicoBundle:Default:registrarAsesoria }

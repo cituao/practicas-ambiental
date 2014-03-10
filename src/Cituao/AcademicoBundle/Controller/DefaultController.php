@@ -99,6 +99,11 @@ class DefaultController extends Controller
 
 		
 		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante ));
+	}
+
+	public function registrarAsesoriaAction($id, $numase){
+		
+		return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
 		
 	}
 }
