@@ -146,14 +146,14 @@
 				<td>Visita presentacion</td>
 				<td>{{ c.fechaVisitaP|date("d/m/Y") }}</td>
 				{% if c.listoVisitaP == true %}
-					<td>ENTREGADO</td>
-					<td>Ver</td>
+					<td>REALIZADA</td>
+					<td>*</td>
 				{% elseif c.fechaVisitaP > date() %}
 					<td>AUN FALTA</td>
 					<td>-</td>
 				{% else %}
-					<td>NO ENTREGADO</td>
-					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+					<td>NO REALIZADA</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_visitap', { 'id': p.id }) }}">Entregar</a></td>
 				{% endif %}
 				
 			  </tr>

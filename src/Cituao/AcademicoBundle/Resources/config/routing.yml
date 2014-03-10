@@ -21,3 +21,7 @@ cituao_academico_registrar_asesoria:
 cituao_academico_consultar_asesoria:
     path:  /academico/consultarasesoria/practicante={id}&asesoria={numase}
     defaults: { _controller: CituaoAcademicoBundle:Default:consultarAsesoria }
+
+cituao_academico_registrar_visitap:
+    path:  /academico/registrarp/practicante={id}
+    defaults: { _controller: CituaoAcademicoBundle:Default:registrarVisitap }

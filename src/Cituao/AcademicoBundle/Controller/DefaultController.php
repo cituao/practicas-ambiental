@@ -124,7 +124,7 @@ class DefaultController extends Controller
 		$query->setParameter('id_pra',$id);
 		
 		$asesoria = $query->getOneOrNullResult();
-		
+		//si no hay asesoria registrada creamos una instancia
 		if ($asesoria == NULL) $asesoria = new Asesoria();
 
 		$formularioTipoAsesoria = new AsesoriaType();
@@ -135,8 +135,6 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-			
-			
 			//asignamos los id relacionados con este registro de asesoria
 			$asesoria->setAcademico($academico->getId());
 			$asesoria->setPracticante($id);
