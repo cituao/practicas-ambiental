@@ -538,9 +538,15 @@ div .datos{
 	padding-bottom:5px;
 	padding-right:5px;
 	padding-left:5px;
-
-
 }
+
+.datos h2{
+	font-size: 14px;
+	font-family: Helvetica;
+	text-decoration: none;
+	font-weight: bold;
+}
+
 a.baropcion{
 	width: 120px;
 	height: 20px;

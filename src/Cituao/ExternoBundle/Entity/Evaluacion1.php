@@ -125,6 +125,11 @@ class Evaluacion1
     private $va39;
 
     /**
+     * @var boolean
+     */
+    private $aprobado;
+
+    /**
      * @var string
      */
     private $comentarioExterno;
@@ -695,5 +700,28 @@ class Evaluacion1
     public function getComentarioAcademico()
     {
         return $this->comentarioAcademico;
+    }
+
+    /**
+     * Set aprobado
+     *
+     * @param boolean $aprobado
+     * @return Evaluacion1
+     */
+    public function setAprobado($aprobado)
+    {
+        $this->aprobado = $aprobado;
+    
+        return $this;
+    }
+
+    /**
+     * Get aprobado
+     *
+     * @return boolean 
+     */
+    public function getAprobado()
+    {
+        return $this->aprobado;
     }
 }

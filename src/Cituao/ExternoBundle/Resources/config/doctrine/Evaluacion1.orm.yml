@@ -87,10 +87,15 @@ Cituao\ExternoBundle\Entity\Evaluacion1:
             type: string
             length: '15'
             nullable: true
+        aprobado:
+            type: boolean
+            nullable: true
         comentarioExterno:
             type: text
             length: '1000'
+            nullable: true
         comentarioAcademico:
             type: text
             length: '1000'
+            nullable: true
     lifecycleCallbacks: {  }

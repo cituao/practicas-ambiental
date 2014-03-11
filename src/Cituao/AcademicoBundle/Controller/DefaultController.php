@@ -11,6 +11,7 @@ use Cituao\AcademicoBundle\Entity\Academico;
 use Cituao\CoordBundle\Entity\Asesoria;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
 use Cituao\AcademicoBundle\Form\Type\AsesoriaType;
+use Cituao\AcademicoBundle\Form\Type\Evaluacion1Type;
 
 class DefaultController extends Controller
 {
@@ -216,76 +217,62 @@ class DefaultController extends Controller
 		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('datos' => $datos));
 	}
 
-
+	//*************************************************************
+	//Registrar comentario a la evaluacion 1 efectuada por el asesor externo
+	//*************************************************************
 	public function registrarComentarioAction($id, $numeva){
 		
 		$peticion = $this->getRequest();
-
 		$em = $this->getDoctrine()->getManager();
+
 		// buscamos el ID del asesor academico
 		$user = $this->get('security.context')->getToken()->getUser();
 		$ci =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
-
+		
 		//buscamos la evaluacion
 		$query = $em->createQuery(
 				'SELECT a FROM CituaoExternoBundle:Cronogramaexterno a WHERE a.practicante =:id_pra');
 		$query->setParameter('id_pra',$id);
 		
 		$cronograma = $query->getOneOrNullResult();
-		//si no hay asesoria registrada creamos una instancia
-		
-		if ($numeva == 1 && $cronograma->getListoEvaluacion1 == false) || ($numeva == 2 && $cronograma->getListoEvaluacion2() == false)
-				return $this->render('CituaoCoordBundle:Default:index.html.twig');			
+		//DEBE HABER UNA INSTANCIA si no hay ERROR
 
+		if (($numeva == 1 AND $cronograma->getListoEvaluacion1() == false) OR ($numeva == 2 AND $cronograma->getListoEvaluacion2() == false)){
+			
+			throw $this->createNotFoundException('El asesor externo no ha registrado la evaluación!');
 
-		$formularioTipoAsesoria = new AsesoriaType();
-		//se definio una propiedad para determinar que asesoria se esta registrando ver AsesoriaType
-		$formularioTipoAsesoria->setNumeroAsesoria($numase);
-		$formulario = $this->createForm($formularioTipoAsesoria, $asesoria);
+			//return $this->render('CituaoAcademicoBundle:Default:index.html.twig');			
+		}
+
+		//buscamos la evaluacion
+		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
+		$evaluacion1 = $repository->findOneBy(array('practicante' => $id));
+				
+		$formulario = $this->createForm(new Evaluacion1Type(), $evaluacion1);
 		
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-			//asignamos los id relacionados con este registro de asesoria
-			$asesoria->setAcademico($academico->getId());
-			$asesoria->setPracticante($id);
-			
-			//asignamos como entregada en la tabla cronograma la asesoria
+		
+			//asignamos como entregada la evaluación del academico 
 			$query = $em->createQuery(
-					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
-			$query->setParameter('id_aca',$academico->getId());
+					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
 			$query->setParameter('id_pra',$id);
 			$cronograma = $query->getOneOrNullResult();
-			
-			switch($numase){
-				case 1: $cronograma->setListoAsesoria1(true);
-					break;
-				case 2: $cronograma->setListoAsesoria2(true);
-					break;
-				case 3: $cronograma->setListoAsesoria3(true);
-					break;
-				case 4: $cronograma->setListoAsesoria4(true);
-					break;
-				case 5: $cronograma->setListoAsesoria5(true);
-					break;
-				case 6: $cronograma->setListoAsesoria6(true);
-					break;
-				case 7: $cronograma->setListoAsesoria7(true);
-					break;
-			}
 		
+			$cronograma->setListoEvaluacion1(true);
+			
+			$em->persist($evaluacion1);
 			$em->persist($cronograma);
-			$em->persist($asesoria);
+			
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
-		$datos = array('id' => $id, 'numase' => $numase);
-		return $this->render('CituaoAcademicoBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
-
-		return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
-	}
+		$datos = array('id' => $id, 'numeva' => $numeva);
+		return $this->render('CituaoAcademicoBundle:Default:formcomentario1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+}
 
 	//************************************************
 	//Asignamos como realizada la primera visita presentacion

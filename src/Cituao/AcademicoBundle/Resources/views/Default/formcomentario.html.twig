@@ -1,0 +1,61 @@
+{% extends 'CituaoAcademicoBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Registrando comentarios Evaluacion # {{ datos.numase }}</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+	
+	<form action="{{ path('cituao_academico_registrar_asesoria'  , { 'id': datos.id, 'numase': datos.numase }) }}" method="post" {{ form_enctype(formulario) }}>
+	    
+					{{ form_errors(formulario) }}
+				
+					<div>
+					{{ form_label(formulario.proceso) }}
+					{{ form_widget(formulario.proceso) }}
+					{{ form_errors(formulario.proceso) }}
+					</div>
+					<div>
+					{{ form_label(formulario.herramientas) }}
+					{{ form_widget(formulario.herramientas) }}
+					{{ form_errors(formulario.herramientas) }}
+					</div>
+					
+					{{ form_row(formulario.dl21) }}
+					{{ form_row(formulario.dl22) }}
+					{{ form_row(formulario.dl23) }}
+					{{ form_row(formulario.dl24) }}
+					{{ form_row(formulario.dl25) }}
+					{{ form_row(formulario.dl26) }}
+					{{ form_row(formulario.dl27) }}
+					{{ form_row(formulario.dl28) }}
+					{{ form_row(formulario.dl29) }}
+				
+					{{ form_row(formulario.va31) }}
+					{{ form_row(formulario.va32) }}
+					{{ form_row(formulario.va33) }}
+					{{ form_row(formulario.va34) }}
+					{{ form_row(formulario.va35) }}
+					{{ form_row(formulario.va36) }}
+					{{ form_row(formulario.va37) }}
+					{{ form_row(formulario.va38) }}
+					{{ form_row(formulario.va39) }}
+					
+					{{ form_row(formulario.comentarioExterno) }}
+			
+				
+					{{ form_label(formulario.comentarioAcademico) }}
+					{{ form_widget(formulario.comentarioAcademico) }}
+					{{ form_errors(formulario.comentarioAcademico) }}
+		
+				
+			{{ form_rest(formulario) }}
+			<input class="boton" type="submit" value="Guardar" />
+	</form>	
+	</div>
+{% endblock %}
