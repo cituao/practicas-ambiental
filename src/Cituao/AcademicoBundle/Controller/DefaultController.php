@@ -215,4 +215,38 @@ class DefaultController extends Controller
 		$datos = array('id' => $id, 'numase' => $numase, 'doc' => $doc);
 		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('datos' => $datos));
 	}
+
+	
+	public function registrarVisitapAction($id){
+
+		$em = $this->getDoctrine()->getManager();
+		// buscamos el ID del asesor academico
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $ci));
+
+		
+		//asignamos como entregada en la tabla cronograma la asesoria
+		$query = $em->createQuery(
+				'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+		$query->setParameter('id_aca',$academico->getId());
+		$query->setParameter('id_pra',$id);
+		$cronograma = $query->getOneOrNullResult();
+
+
+		$query = $em->createQueryBuilder();
+		$q = $query->update('CituaoAcademicoBundle:Cronograma', 'c')
+					->set('c.listoVisitaP', true)	
+					->where('c.practicante = ?1 AND c.academico = ?2')
+					->setParameter(1, $id)
+					->setParameter(2, $academico->getId())
+					->getQuery();
+
+		$ejecsql = $q->execute();
+
+
+
+
+	}
 }
