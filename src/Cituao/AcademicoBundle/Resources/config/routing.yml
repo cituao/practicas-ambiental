@@ -25,3 +25,7 @@ cituao_academico_consultar_asesoria:
 cituao_academico_registrar_visitap:
     path:  /academico/registrarp/practicante={id}
     defaults: { _controller: CituaoAcademicoBundle:Default:registrarVisitap }
+
+cituao_academico_registrar_comentario:
+    path:  /academico/registrarcomentario/practicante={id}&evaluacion={numeva}
+    defaults: { _controller: CituaoAcademicoBundle:Default:registrarComentario }
