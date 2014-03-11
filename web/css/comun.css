@@ -28,8 +28,12 @@ body {
 
 h3#title {
 font-size: 1.2em;
-color: #5b5b5b;
-height: 30px;
+width: 73%;
+max-width: 450px;
+color: #100f0f;
+line-height: 110%;
+margin-left: 10%; /*110px*/
+margin-top: 1%;
 }
 
 
@@ -223,11 +227,11 @@ div.fecha label{
 
 }
 
+/*
 form textarea {
     padding: 2px;
     margin-bottom: 2em;
-
-}
+}*/
 
 form input {
  padding: 5px;  
@@ -238,11 +242,11 @@ form input {
     background: -moz-linear-gradient(top,  #bcbcbe,  #ffffff); 
 }
 
-
+/*
 form textarea {
     height: 50px;
     width: 500px;
-}
+}*/
 form textarea.mediana {
     height: 100px;
     width: 500px;
@@ -526,12 +530,8 @@ div #error {
 }
 
 
-div .datos{
+div.datos{
 	background-color:#F0F0F0;
-	font-size: 12px;
-	font-family: Helvetica;
-	text-decoration: none;
-	font-weight: bold;
 	color: #0000;
 	height: 40px;
 	padding-top:5px;
@@ -540,10 +540,15 @@ div .datos{
 	padding-left:5px;
 }
 
-.datos h2{
+ h2.datos {
+	font-size: 16px;
+	font-family: Helvetica;
+	font-weight: bold;
+}
+
+ h3.datos {
 	font-size: 14px;
 	font-family: Helvetica;
-	text-decoration: none;
 	font-weight: bold;
 }
 

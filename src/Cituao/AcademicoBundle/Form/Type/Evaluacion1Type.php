@@ -11,8 +11,8 @@ class Evaluacion1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		        ->add('proceso','textarea', array('label' => 'Proceso', 'max_length' => '1000' , 'read_only' => true, 'attr' => array('cols' => '45', 'rows' => '25')))
-				->add('herramientas','textarea', array('label' => 'Herramientas', 'max_length' => '1000' , 'read_only' => true, 'attr' => array('cols' => '45', 'rows' => '25')))
+		        ->add('proceso','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '25')))
+				->add('herramientas','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '25')))
 				->add('dl21', 'text', array('label' => 'Capacidad de gestión', 'read_only' => true))
 				->add('dl22', 'text', array('label' => 'Capacidad de negociacion', 'read_only' => true))	
 				->add('dl23', 'text', array('label' => 'Creatividad', 'read_only' => true))	
@@ -31,9 +31,9 @@ class Evaluacion1Type extends AbstractType
 				->add('va37', 'text', array('label' => 'Presentación personal', 'read_only' => true))	
 				->add('va38', 'text', array('label' => 'Puntualidad', 'read_only' => true))	
 				->add('va39', 'text', array('label' => 'Relaciones interpersonales', 'read_only' => true))
-				->add('comentarioExterno','textarea', array('label' => 'Logros y dificultades. Comentarios adicionales del asesor externo', 'max_length' => '500' , 'read_only' => true, 'attr' => array('cols' => '5', 'rows' => '5')))
+				->add('comentarioExterno','textarea', array('label' => ' ', 'max_length' => '500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('aprobado', 'checkbox', array('label' => 'Aprobado', 'read_only' => true))
-				->add('comentarioAcademico','textarea', array('label' => 'Comentarios del asesor académico ', 'max_length' => '500', 'attr' => array('cols' => '40', 'rows' => '20')));
+				->add('comentarioAcademico','textarea', array('label' => ' ', 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')));
 
 		}
 
