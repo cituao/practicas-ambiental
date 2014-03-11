@@ -216,7 +216,9 @@ class DefaultController extends Controller
 		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('datos' => $datos));
 	}
 
-	
+	//************************************************
+	//Asignamos como realizada la primera visita presentacion
+	//************************************************
 	public function registrarVisitapAction($id){
 
 		$em = $this->getDoctrine()->getManager();
@@ -226,14 +228,7 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 
-		
-		//asignamos como entregada en la tabla cronograma la asesoria
-		$query = $em->createQuery(
-				'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
-		$query->setParameter('id_aca',$academico->getId());
-		$query->setParameter('id_pra',$id);
-		$cronograma = $query->getOneOrNullResult();
-
+		//actualizamos el estado 
 
 		$query = $em->createQueryBuilder();
 		$q = $query->update('CituaoAcademicoBundle:Cronograma', 'c')
@@ -244,9 +239,6 @@ class DefaultController extends Controller
 					->getQuery();
 
 		$ejecsql = $q->execute();
-
-
-
-
+		return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
 	}
 }
