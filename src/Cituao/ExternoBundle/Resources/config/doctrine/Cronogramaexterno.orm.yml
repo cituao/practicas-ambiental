@@ -1,0 +1,31 @@
+Cituao\ExternoBundle\Entity\Cronogramaexterno:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        practicante:
+            type: integer
+            unique: true
+        fechaEvaluacion1:
+            type: date
+            nullable: true
+        fechaEvaluacion2:
+            type: date
+            nullable: true
+        fechaActa:
+            type: date
+            nullable: true
+        listoEvaluacion1:
+            type: boolean
+            nullable: true
+        listoEvaluacion2:
+            type: boolean
+            nullable: true
+        listoActa:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

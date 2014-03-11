@@ -16,6 +16,7 @@ use Cituao\CoordBundle\Form\Type\CoordinadorType;
 use Cituao\ExternoBundle\Form\Type\ExternoType;
 use Cituao\AcademicoBundle\Entity\Academico;
 use Cituao\AcademicoBundle\Entity\Cronograma;
+use Cituao\ExternoBundle\Entity\Cronogramaexterno;
 use Cituao\CoordBundle\Form\Type\AcademicoType;
 use Cituao\CoordBundle\Entity\Area;
 use Cituao\CoordBundle\Entity\Centro;
@@ -174,7 +175,6 @@ class DefaultController extends Controller
 			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Cronograma');
 			$cronograma = $repository->find($practicante->getAcademico()->getId());
 
-
 			$query = $em->createQuery(
 		            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
 			$query->setParameter('id_aca',$practicante->getAcademico()->getId());
@@ -203,8 +203,26 @@ class DefaultController extends Controller
 			$cronograma->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
 			$cronograma->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
 			
-			$em->persist($cronograma);
-            $em->flush();
+			$em->persist($cronograma);			
+			
+			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Cronogramaexterno');
+			$cronogramaexterno = $repository->findByPracticante($practicante->getId());
+				
+			if (!$cronogramaexterno){
+				$cronogramaexterno = new Cronogramaexterno();
+				$cronogramaexterno->setPracticante($practicante->getId());
+			}
+	
+			$cronogramaexterno->setFechaEvaluacion1($practicante->getFechaVisita1());
+			$cronogramaexterno->setFechaEvaluacion2($practicante->getFechaVisita2());
+
+
+			$em->persist($cronogramaexterno);
+            
+			//buscamos el externo para asignarle el cronograma
+
+
+			$em->flush();
 
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
