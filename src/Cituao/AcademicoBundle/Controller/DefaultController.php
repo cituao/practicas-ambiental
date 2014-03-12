@@ -200,23 +200,37 @@ class DefaultController extends Controller
 
 		//nos traemos la documentacion
 		switch($numase){
-			case 1: $doc = $asesoria->getDocAsesor1();
+			case 1: 
+				$docase = $asesoria->getDocAsesor1();
+				$docpra = $asesoria->getDocPracticante1();
 				break;
-			case 2: $doc = $asesoria->getDocAsesor2();
+			case 2: 
+				$docase = $asesoria->getDocAsesor2();
+				$docpra = $asesoria->getDocPracticante2();
 				break;
-			case 3: $doc = $asesoria->getDocAsesor3();
+			case 3: 
+				$docase = $asesoria->getDocAsesor3();
+				$docpra = $asesoria->getDocPracticante3();
 				break;
-			case 4: $doc = $asesoria->getDocAsesor4();
+			case 4: 
+				$docase = $asesoria->getDocAsesor4();
+				$docpra = $asesoria->getDocPracticante4();
 				break;
-			case 5: $doc = $asesoria->getDocAsesor5();
+			case 5: 
+				$docase = $asesoria->getDocAsesor5();
+				$docpra = $asesoria->getDocPracticante5();
 				break;
-			case 6: $doc = $asesoria->getDocAsesor6();
+			case 6: 
+				$docase = $asesoria->getDocAsesor6();
+				$docpra = $asesoria->getDocPracticante6();
 				break;
-			case 7: $doc = $asesoria->getDocAsesor7();
+			case 7: 
+				$docase = $asesoria->getDocAsesor7();
+				$docpra = $asesoria->getDocPracticante7();
 				break;
 		}
 
-		$datos = array('id' => $id, 'numase' => $numase, 'doc' => $doc);
+		$datos = array('id' => $id, 'numase' => $numase, 'docase' => $docase, 'docpra' => $docpra);
 		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('datos' => $datos));
 	}
 
@@ -234,10 +248,18 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 		
+		//buscamos el practicante oara accesar el id del asesor externo
+		$repository = $this->getDoctrine()->getRepository('CituaoPracticanteBundle:Externo');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		
+		$externo = $practicante->getExterno();
+		
+		
 		//buscamos si ya evaluo el asesor externo
 		$query = $em->createQuery(
-				'SELECT a FROM CituaoExternoBundle:Cronogramaexterno a WHERE a.practicante =:id_pra');
+				'SELECT a FROM CituaoExternoBundle:Cronogramaexterno a WHERE a.practicante =:id_pra AND a.externo =:id_ext');
 		$query->setParameter('id_pra',$id);
+		$query->setParameter('id_ext',$externo->getId());
 		
 		$cronograma = $query->getOneOrNullResult();
 		//DEBE HABER UNA INSTANCIA si no hay ERROR

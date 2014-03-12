@@ -14,25 +14,25 @@ class AsesoriaType extends AbstractType
     {
 		switch($this->numase){
 			case 1:	
-				$builder->add('docAsesor1','textarea', array('label' => 'Documentación:', 'max_length' => '1000', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '150'), 'required' => true ));
+				$builder->add('docAsesor1','textarea', array('label' => 'Documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '15'), 'required' => true ));
 				break;
 			case 2:
-				$builder->add('docAsesor2','textarea', array('label' => 'Documentación:', 'max_length' => '1000', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '150'), 'required' => true ));
+				$builder->add('docAsesor2','textarea', array('label' => 'Documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '15'), 'required' => true ));
 				break;
 			case 3:
-				$builder->add('docAsesor3','textarea', array('label' => 'Documentación:', 'max_length' => '1000', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '150'), 'required' => true ));
+				$builder->add('docAsesor3','textarea', array('label' => 'Documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '15'), 'required' => true ));
 				break;
 			case 4:
-				$builder->add('docAsesor4','textarea', array('label' => 'Documentación:', 'max_length' => '1000', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '150'), 'required' => true ));
+				$builder->add('docAsesor4','textarea', array('label' => 'Documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '15'), 'required' => true ));
 				break;
 			case 5:
-				$builder->add('docAsesor5','textarea', array('label' => 'Documentación:', 'max_length' => '1000', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '150'), 'required' => true ));
+				$builder->add('docAsesor5','textarea', array('label' => 'Documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '15'), 'required' => true ));
 				break;
 			case 6:
-				$builder->add('docAsesor6','textarea', array('label' => 'Documentación:', 'max_length' => '1000', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '150'), 'required' => true ));
+				$builder->add('docAsesor6','textarea', array('label' => 'Documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '15'), 'required' => true ));
 				break;
 			case 7:
-				$builder->add('docAsesor7','textarea', array('label' => 'Documentación:', 'max_length' => '1000', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '150'), 'required' => true ));
+				$builder->add('docAsesor7','textarea', array('label' => 'Documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '15'), 'required' => true ));
 				break;
 		}		
 	}

@@ -1,0 +1,90 @@
+{% extends 'CituaoExternoBundle::layout.html.twig' %}
+
+{% block javascripts %}
+	<meta charset="utf-8">
+	 <title>jQuery UI Datepicker - Default functionality</title>
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+	 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	 <script src="{{ asset('js/date.js') }}"></script>
+{% endblock %}
+
+
+{% block infowrapper  %}
+	
+	
+	<div id="infoWrapper">
+		<h2 id = "titlee">Cronograma con el practicante</h2>
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+		<div id = "subinfowrapper"> 
+			<div class = "datos">
+			<h3>Practicante:  {{ p.nombres }}  {{ p.apellidos }}</h3>
+			<h3>Centro de práctica: {{ p.centro.nombre }}</h3>
+			<h3>Asesor externo: {{ p.externo.nombres }} {{ p.externo.apellidos }}</h3>
+			</div>
+			<table id = "tablaCronograma">
+			  <tr>
+				<th>ACTIVIDAD</th>
+				<th>FECHA</th>
+				<th>ESTADO</th>
+				<th>ACCION</th>
+			  </tr>
+			
+
+			  <tr>
+				<td>Evaluación #1</td>
+				<td>{{ c.fechaEvaluacion1|date("d/m/Y") }}</td>
+				{% if c.listoEvaluacion1 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 1}) }}">Ver o Actualizar</a></td>
+				{% elseif c.fechaEvaluacion1 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>
+				{% endif %}
+				
+			  </tr>
+
+			  <tr>
+				<td>Evaluación #2</td>
+				<td>{{ c.fechaEvaluacion2|date("d/m/Y") }}</td>
+				{% if c.listoEvaluacion2 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 2}) }}">Ver o actualizar</a></td>
+				{% elseif c.fechaEvaluacion2 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>	
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Acta de conformidad</td>
+				<td>{{ c.fechaActa|date("d/m/Y") }}</td>
+				{% if c.listoActa == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Ver</td>
+				{% elseif c.fechaActa > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+				{% endif %}
+				
+			  </tr>
+
+			</table>
+	</div>	
+	</div>
+
+{% endblock %}

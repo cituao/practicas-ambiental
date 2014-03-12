@@ -1,0 +1,84 @@
+{% extends 'CituaoExternoBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Registrando Evaluacion # 1</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+		<div id = "subinfowrapper">
+	<form action="{{ path('cituao_externo_registrar_evaluacion'  , { 'id': datos.id, 'numeva': datos.numeva }) }}" method="post" {{ form_enctype(formulario) }}>
+	    
+					{{ form_errors(formulario) }}
+					
+					<div class = "datos">
+					<h2 class = "datos">CARGO Y PLAN DE TRABAJO DE COMUNICACIÓN</h2>
+					<h3 class = "datos">1.1. ¿Cuál es el proceso adelantado por el estudiante para el desarrollo de sus compromisos o actividades?</h3>
+					</div>
+
+					{{ form_label(formulario.proceso) }}
+					{{ form_widget(formulario.proceso) }}
+					{{ form_errors(formulario.proceso) }}
+					
+					
+					<div class = "datos">
+					<h3  class = "datos">1.2  ¿Cuáles son las herramientas  y recursos con que cuenta el practicante para el normal desarrollo de sus actividades?</h3>
+					</div>
+					
+					
+					{{ form_label(formulario.herramientas) }}
+					{{ form_widget(formulario.herramientas) }}
+					{{ form_errors(formulario.herramientas) }}
+					
+
+					<div class = "datos">
+					<h3 class = "datos">2. ¿Cómo evalúa las variables relacionadas con el desempeño laboral?</h3>
+					</div>
+					{{ form_row(formulario.dl21) }}
+					{{ form_row(formulario.dl22) }}
+					{{ form_row(formulario.dl23) }}
+					{{ form_row(formulario.dl24) }}
+					{{ form_row(formulario.dl25) }}
+					{{ form_row(formulario.dl26) }}
+					{{ form_row(formulario.dl27) }}
+					{{ form_row(formulario.dl28) }}
+					{{ form_row(formulario.dl29) }}
+
+					<div class = "datos">
+					<h3 class = "datos">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h3>
+					</div>
+					{{ form_row(formulario.va31) }}
+					{{ form_row(formulario.va32) }}
+					{{ form_row(formulario.va33) }}
+					{{ form_row(formulario.va34) }}
+					{{ form_row(formulario.va35) }}
+					{{ form_row(formulario.va36) }}
+					{{ form_row(formulario.va37) }}
+					{{ form_row(formulario.va38) }}
+					{{ form_row(formulario.va39) }}
+
+					<div class = "datos">
+					<h2 class = "datos">Logros y dificultades. Comentarios adicionales del asesor externo o jefe inmediato:</h2>
+					</div>
+			
+					{{ form_row(formulario.comentarioExterno) }}
+					{{ form_row(formulario.aprobado) }}
+					
+					<div class = "datos">
+					<h2 class = "datos">Comentarios del Asesor Académico:</h2>
+					</div>
+					{{ form_label(formulario.comentarioAcademico) }}
+					{{ form_widget(formulario.comentarioAcademico) }}
+					{{ form_errors(formulario.comentarioAcademico) }}
+		
+				
+			{{ form_rest(formulario) }}
+			<input class="boton" type="submit" value="Guardar" />
+	</form>	
+	</div>
+	</div>
+{% endblock %}

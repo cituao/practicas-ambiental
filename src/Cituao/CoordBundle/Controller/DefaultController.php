@@ -222,12 +222,14 @@ class DefaultController extends Controller
 				$cronogramaexterno = new Cronogramaexterno();
 				$cronogramaexterno->setPracticante($practicante->getId());
 				$cronogramaexterno->setExterno($practicante->getExterno()->getId());
+				$cronogramaexterno->setExterno($practicante->getExterno()->getId());
 			}
 			
 			//asignamos las fechas correspondientes al asesor externo
 			$cronogramaexterno->setFechaEvaluacion1($practicante->getFechaVisita1());
 			$cronogramaexterno->setFechaEvaluacion2($practicante->getFechaVisita2());
 			$cronogramaexterno->setFechaActa($practicante->getFechaInformeFinal());
+			
 
 			$em->persist($cronogramaexterno);
             
