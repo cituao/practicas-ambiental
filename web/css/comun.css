@@ -540,7 +540,50 @@ div.datos{
 	padding-left:5px;
 }
 
- h2.datos {
+div.tituloform{
+	background-color:#fff;
+	height: 40px;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-right:10px;
+	padding-left:10px;
+	vertical-align: middle;
+	text-align: center;
+
+}
+
+div.subtituloform{
+	background-color:#F0F0F0;
+	color: #0000;
+	height: 20px;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-right:5px;
+	padding-left:5px;
+}
+
+
+div.tituloform h2{
+	font-size: 20px;
+	font-family: Helvetica;
+	font-weight: bold;
+}
+
+div.indicador{
+	left: 100px;
+	background-color:#F0F0F0;
+	color: #0000;
+	height: 20px;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-right:5px;
+	padding-left:5px;
+	
+	margin: 10px;
+}
+
+
+h2.datos {
 	font-size: 16px;
 	font-family: Helvetica;
 	font-weight: bold;

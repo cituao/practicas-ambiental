@@ -13,11 +13,11 @@
 	<form action="{{ path('cituao_academico_registrar_cualicuanti'  , { 'id': datos.id, 'numcua': datos.numcua }) }}" method="post" {{ form_enctype(formulario) }}>
 	    
 		{{ form_errors(formulario) }}
-		<div class = "datos">
+		<div class = "tituloform">
 		<h2 class = "datos">INFORME CUANTITATIVO</h2>
 		</div>
 
-		<div class = "datos">
+		<div class = "subtituloform">
 		<h3 class = "datos">Actividad</h3>
 		</div>
 		
@@ -27,32 +27,32 @@
 		{{ form_errors(formulario.actividad1) }}
 		</div>
 		
-		<div class = "datos"><h3  class = "datos">Descripcion</h3></div>
+		<div class = "subtituloform"><h3  class = "datos">Descripcion</h3></div>
 		{{ form_label(formulario.descripcion1) }}
 		{{ form_widget(formulario.descripcion1) }}
 		{{ form_errors(formulario.descripcion1) }}
 
-
+		<div class = "indicador">
 		{{ form_label(formulario.indicador1) }}
 		{{ form_widget(formulario.indicador1) }}
 		{{ form_errors(formulario.indicador1) }}
 
-
 		{{ form_label(formulario.porcentaje1) }}
 		{{ form_widget(formulario.porcentaje1) }}
 		{{ form_errors(formulario.porcentaje1) }}
+		</div>
 
-
-		<div class = "datos"><h3 class = "datos">Actividad</h3></div>
+		<div class = "subtituloform"><h3 class = "datos">Actividad</h3></div>
 		{{ form_label(formulario.actividad2) }}
 		{{ form_widget(formulario.actividad2) }}
 		{{ form_errors(formulario.actividad2) }}
 		
-		<div class = "datos"><h3  class = "datos">Descripcion</h3></div>
+		<div class = "subtituloform"><h3  class = "datos">Descripcion</h3></div>
 		{{ form_label(formulario.descripcion2) }}
 		{{ form_widget(formulario.descripcion2) }}
 		{{ form_errors(formulario.descripcion2) }}
 
+		<div class = "indicador">
 		{{ form_label(formulario.indicador2) }}
 		{{ form_widget(formulario.indicador2) }}
 		{{ form_errors(formulario.indicador2) }}
@@ -60,18 +60,20 @@
 		{{ form_label(formulario.porcentaje2) }}
 		{{ form_widget(formulario.porcentaje2) }}
 		{{ form_errors(formulario.porcentaje2) }}
+		</div>
 
-
-		<div class = "datos"><h3 class = "datos">Actividad</h3></div>
+	
+		<div class = "subtituloform"><h3 class = "datos">Actividad</h3></div>
 		{{ form_label(formulario.actividad3) }}
 		{{ form_widget(formulario.actividad3) }}
 		{{ form_errors(formulario.actividad3) }}
 		
-		<div class = "datos"><h3  class = "datos">Descripcion</h3></div>
+		<div class = "subtituloform"><h3  class = "datos">Descripcion</h3></div>
 		{{ form_label(formulario.descripcion3) }}
 		{{ form_widget(formulario.descripcion3) }}
 		{{ form_errors(formulario.descripcion3) }}
 
+		<div class = "indicador">
 		{{ form_label(formulario.indicador3) }}
 		{{ form_widget(formulario.indicador3) }}
 		{{ form_errors(formulario.indicador3) }}
@@ -79,9 +81,9 @@
 		{{ form_label(formulario.porcentaje3) }}
 		{{ form_widget(formulario.porcentaje3) }}
 		{{ form_errors(formulario.porcentaje3) }}
+		</div>
 
-
-		<div class = "datos">
+		<div class = "tituloform">
 		<h2 class = "datos">INFORME CUALITATIVO</h2>
 		</div>
 
