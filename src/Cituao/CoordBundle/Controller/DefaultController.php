@@ -395,12 +395,15 @@ class DefaultController extends Controller
 			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
 			$role = $repository->findOneBy(array('id' => $codigo));
 
+			if ($role == NULL){
+				throw $this->createNotFoundException('Error: El codigo 3 roles no fue encontrado en la tabla ROLE!');
+			}
 			$usuario = new Usuario();
 			//cargamos todos los atributos al usuario
 			$usuario->setUsername($externo->getCi());
 			$usuario->setPassword($externo->getCi());
 			$usuario->setSalt(md5(time()));
-			$usuario->addRole($role); //cargamos el rol al coordinador
+			$usuario->addRole($role);  //cargamos el rol al coordinador
 
 			//codificamos el password			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);

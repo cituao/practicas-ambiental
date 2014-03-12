@@ -2,3 +2,6 @@ cituao_externo_homepage:
     pattern:  /externo
     defaults: { _controller: CituaoExternoBundle:Default:index }
 
+cituao_externo_practicantes:
+    path:  /externo/practicantes
+    defaults: { _controller: CituaoExternoBundle:Default:practicantes }
