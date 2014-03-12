@@ -8,7 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-		return $this->render('CituaoExternoBundle:Default:externo.html.twig');        
+		return $this->render('CituaoExternoBundle:Default:index.html.twig');        
 		
     }
 }
