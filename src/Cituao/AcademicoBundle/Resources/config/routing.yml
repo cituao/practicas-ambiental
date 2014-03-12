@@ -30,3 +30,7 @@ cituao_academico_registrar_comentario:
     path:  /academico/registrarcomentario/practicante={id}&evaluacion={numeva}
     defaults: { _controller: CituaoAcademicoBundle:Default:registrarComentario }
 
+cituao_academico_registrar_cualicuanti:
+    path:  /academico/registrarcualicuanti/practicante={id}&cuali={numcua}
+    defaults: { _controller: CituaoAcademicoBundle:Default:registrarCualicuanti }
+

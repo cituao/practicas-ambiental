@@ -194,13 +194,13 @@
 				<td>{{ c.fechaInformeGestion1|date("d/m/Y") }}</td>
 				{% if c.listoGestion1 == true %}
 					<td class = "colEstado">ENTREGADO</td>
-					<td class = "colEstado">Ver</td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver</a></td>
 				{% elseif c.fechaInformeGestion1 > date() %}
 					<td class = "colEstado">AUN FALTA</td>
 					<td class = "colEstado">-</td>	
 				{% else %}
 					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>
@@ -210,13 +210,13 @@
 				<td>{{ c.fechaInformeGestion2|date("d/m/Y") }}</td>
 				{% if c.listoGestion2 == true %}
 					<td class = "colEstado">ENTREGADO</td>
-					<td class = "colEstado">Ver</td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver</a></td>
 				{% elseif c.fechaInformeGestion2 > date() %}
 					<td class = "colEstado">AUN FALTA</td>
 					<td class = "colEstado">-</td>	
 				{% else %}
 					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>
@@ -226,13 +226,13 @@
 				<td>{{ c.fechaInformeGestion3|date("d/m/Y") }}</td>
 				{% if c.listoGestion3 == true %}
 					<td class = "colEstado">ENTREGADO</td>
-					<td class = "colEstado">Ver</td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Entregar</a></td>
 				{% elseif c.fechaInformeGestion3 > date() %}
 					<td class = "colEstado">AUN FALTA</td>
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>

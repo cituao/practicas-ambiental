@@ -1,0 +1,61 @@
+Cituao\AcademicoBundle\Entity\Cualicuanti:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        academico:
+            type: integer
+        practicante:
+            type: integer
+        cualicuanti:
+            type: integer
+        actividad1:
+            type: text
+            nullable: true
+        descripcion1:
+            type: text
+            nullable: true
+        indicador1:
+            type: string
+            length: '10'
+            nullable: true
+        porcentaje1:
+            type: string
+            length: '2'
+            nullable: true
+        actividad2:
+            type: text
+            nullable: true
+        descripcion2:
+            type: text
+            nullable: true
+        indicador2:
+            type: string
+            length: '10'
+            nullable: true
+        porcentaje2:
+            type: string
+            length: '2'
+            nullable: true
+        actividad3:
+            type: text
+            nullable: true
+        descripcion3:
+            type: text
+            nullable: true
+        indicador3:
+            type: string
+            length: '10'
+            nullable: true
+        porcentaje3:
+            type: string
+            length: '2'
+            nullable: true
+        informe:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -9,10 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Cituao\AcademicoBundle\Entity\Academico;
 use Cituao\CoordBundle\Entity\Asesoria;
+use Cituao\AcademicoBundle\Entity\Cualicuanti;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
 use Cituao\AcademicoBundle\Form\Type\AsesoriaType;
 use Cituao\AcademicoBundle\Form\Type\Evaluacion1Type;
 use Cituao\AcademicoBundle\Form\Type\Evaluacion2Type;
+use Cituao\AcademicoBundle\Form\Type\CualicuantiType;
 
 class DefaultController extends Controller
 {
@@ -292,6 +294,64 @@ class DefaultController extends Controller
 }
 
 
+	//*************************************************************
+	//Registrar informe cualicuanti 1,2,3  efectuada por el asesor externo
+	//*************************************************************
+	public function registrarCualicuantiAction($id, $numcua){
+		
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		// buscamos el ID del asesor academico
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $ci));
+		
+
+		//buscamos si ya evaluo el asesor externo
+		$query = $em->createQuery(
+				'SELECT a FROM CituaoAcademicoBundle:Cualicuanti a WHERE a.practicante =:id_pra AND a.academico =:id_aca AND a.cualicuanti =:numcua');
+		$query->setParameter('id_pra',$id);
+		$query->setParameter('id_aca',$academico->getId());
+		$query->setParameter('numcua',$numcua);
+		
+		$cualicuanti = $query->getOneOrNullResult();
+
+		if (!$cualicuanti) $cualicuanti = new Cualicuanti();
+
+		$formulario = $this->createForm(new CualicuantiType(), $cualicuanti);		
+		$formulario->handleRequest($peticion);
+		if ($formulario->isValid()) {
+		
+			//asignamos como entregada el informe cualicuantiN del academico 
+			$query = $em->createQuery(
+					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
+			$query->setParameter('id_pra',$id);
+			$cronograma = $query->getOneOrNullResult();
+		
+
+			if ($numcua == 1) 			
+				$cronograma->setListoGestion1(true);
+			elseif ($numcua == 2)
+				$cronograma->setListoGestion2(true);
+			else
+				$cronograma->setListoGestion3(true);
+			
+			$cualicuanti->setPracticante($id);
+			$cualicuanti->setAcademico($academico->getId());
+			$cualicuanti->setCualicuanti($numcua);						
+			
+			$em->persist($cualicuanti);
+			$em->persist($cronograma);
+			
+			$em->flush();
+			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
+		}
+
+		$datos = array('id' => $id, 'numcua' => $numcua);
+			return $this->render('CituaoAcademicoBundle:Default:formcualicuanti.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+}
 
 
 	//************************************************
