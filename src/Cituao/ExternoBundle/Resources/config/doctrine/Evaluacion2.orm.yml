@@ -1,0 +1,110 @@
+Cituao\ExternoBundle\Entity\Evaluacion2:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        externo:
+            type: integer
+        practicante:
+            type: integer
+        cumplido:
+            type: text
+            nullable: true
+        dl21:
+            type: string
+            length: '15'
+            nullable: true
+        dl22:
+            type: string
+            length: '15'
+            nullable: true
+        dl23:
+            type: string
+            length: '15'
+            nullable: true
+        dl24:
+            type: string
+            length: '15'
+            nullable: true
+        dl25:
+            type: string
+            length: '15'
+            nullable: true
+        dl26:
+            type: string
+            length: '15'
+            nullable: true
+        dl27:
+            type: string
+            length: '15'
+            nullable: true
+        dl28:
+            type: string
+            length: '15'
+            nullable: true
+        dl29:
+            type: string
+            length: '15'
+            nullable: true
+        va31:
+            type: string
+            length: '15'
+            nullable: true
+        va32:
+            type: string
+            length: '15'
+            nullable: true
+        va33:
+            type: string
+            length: '15'
+            nullable: true
+        va34:
+            type: string
+            length: '15'
+            nullable: true
+        va35:
+            type: string
+            length: '15'
+            nullable: true
+        va36:
+            type: string
+            length: '15'
+            nullable: true 
+        va37:
+            type: string
+            length: '15'
+            nullable: true
+        va38:
+            type: string
+            length: '15'
+            nullable: true
+        va39:
+            type: string
+            length: '15'
+            nullable: true
+        comentarioExterno:
+            type: text
+            nullable: true
+        aportes:
+            type: text
+            nullable: true
+        proyeccion:
+            type: text
+            nullable: true
+        compromiso:
+            type: text
+            nullable: true
+        apreciacion:
+            type: text
+            nullable: true
+        aprobado:
+            type: boolean
+            nullable: true
+        comentarioAcademico:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

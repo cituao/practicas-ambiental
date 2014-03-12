@@ -12,6 +12,7 @@ use Cituao\CoordBundle\Entity\Asesoria;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
 use Cituao\AcademicoBundle\Form\Type\AsesoriaType;
 use Cituao\AcademicoBundle\Form\Type\Evaluacion1Type;
+use Cituao\AcademicoBundle\Form\Type\Evaluacion2Type;
 
 class DefaultController extends Controller
 {
@@ -231,7 +232,7 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 		
-		//buscamos la evaluacion
+		//buscamos si ya evaluo el asesor externo
 		$query = $em->createQuery(
 				'SELECT a FROM CituaoExternoBundle:Cronogramaexterno a WHERE a.practicante =:id_pra');
 		$query->setParameter('id_pra',$id);
@@ -241,16 +242,24 @@ class DefaultController extends Controller
 
 		if (($numeva == 1 AND $cronograma->getListoEvaluacion1() == false) OR ($numeva == 2 AND $cronograma->getListoEvaluacion2() == false)){
 			
-			throw $this->createNotFoundException('El asesor externo no ha registrado la evaluación!');
-
+			if ($numeva == 1)			
+				throw $this->createNotFoundException('El asesor externo no ha registrado la evaluación #1!');
+			else
+				throw $this->createNotFoundException('El asesor externo no ha registrado la evaluación #2!');
 			//return $this->render('CituaoAcademicoBundle:Default:index.html.twig');			
 		}
 
 		//buscamos la evaluacion
-		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
-		$evaluacion1 = $repository->findOneBy(array('practicante' => $id));
+		if ($numeva == 1){
+			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
+			$evaluacion = $repository->findOneBy(array('practicante' => $id));
+			$formulario = $this->createForm(new Evaluacion1Type(), $evaluacion);		
+		}else{
+			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion2');
+			$evaluacion = $repository->findOneBy(array('practicante' => $id));
+			$formulario = $this->createForm(new Evaluacion2Type(), $evaluacion);
+		}
 				
-		$formulario = $this->createForm(new Evaluacion1Type(), $evaluacion1);
 		
 		$formulario->handleRequest($peticion);
 
@@ -262,17 +271,28 @@ class DefaultController extends Controller
 			$query->setParameter('id_pra',$id);
 			$cronograma = $query->getOneOrNullResult();
 		
-			$cronograma->setListoEvaluacion1(true);
+			if ($numeva == 1) 			
+				$cronograma->setListoEvaluacion1(true);
+			else
+				$cronograma->setListoEvaluacion2(true);
 			
-			$em->persist($evaluacion1);
+			$em->persist($evaluacion);
 			$em->persist($cronograma);
 			
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
+
 		$datos = array('id' => $id, 'numeva' => $numeva);
-		return $this->render('CituaoAcademicoBundle:Default:formcomentario1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+		if ($numeva == 1) 
+			return $this->render('CituaoAcademicoBundle:Default:formcomentario1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+		else
+			return $this->render('CituaoAcademicoBundle:Default:formcomentario2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+			
 }
+
+
+
 
 	//************************************************
 	//Asignamos como realizada la primera visita presentacion

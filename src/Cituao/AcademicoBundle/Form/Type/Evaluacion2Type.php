@@ -6,13 +6,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class Evaluacion1Type extends AbstractType
+class Evaluacion2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		        ->add('proceso','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '25')))
-				->add('herramientas','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '25')))
+		        ->add('cumplido','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('dl21', 'text', array('label' => 'Capacidad de gestión', 'read_only' => true))
 				->add('dl22', 'text', array('label' => 'Capacidad de negociacion', 'read_only' => true))	
 				->add('dl23', 'text', array('label' => 'Creatividad', 'read_only' => true))	
@@ -32,6 +31,11 @@ class Evaluacion1Type extends AbstractType
 				->add('va38', 'text', array('label' => 'Puntualidad', 'read_only' => true))	
 				->add('va39', 'text', array('label' => 'Relaciones interpersonales', 'read_only' => true))
 				->add('comentarioExterno','textarea', array('label' => ' ', 'max_length' => '500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('aportes','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array
+('cols' => '130', 'rows' => '10')))
+				->add('proyeccion','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('compromiso','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('apreciacion','textarea', array('label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('aprobado', 'checkbox', array('label' => 'Aprobado', 'read_only' => true))
 				->add('comentarioAcademico','textarea', array('label' => ' ', 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')));
 
@@ -40,12 +44,12 @@ class Evaluacion1Type extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Cituao\ExternoBundle\Entity\Evaluacion1', 'cascade_validation' => true
+            'data_class' => 'Cituao\ExternoBundle\Entity\Evaluacion2', 'cascade_validation' => true
         ));
     }
 
     public function getName()
     {
-        return 'evaluacion1_academico';
+        return 'evaluacion2_academico';
     }
 }

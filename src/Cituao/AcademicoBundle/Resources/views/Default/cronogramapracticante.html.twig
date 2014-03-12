@@ -162,7 +162,7 @@
 				<td>{{ c.fechaEvaluacion1|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacion1 == true %}
 					<td class = "colEstado">ENTREGADO</td>
-					<td class = "colEstado">Ver</td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver o Actualizar</a></td>
 				{% elseif c.fechaEvaluacion1 > date() %}
 					<td class = "colEstado">AUN FALTA</td>
 					<td class = "colEstado">-</td>
@@ -178,13 +178,13 @@
 				<td>{{ c.fechaEvaluacion2|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacion2 == true %}
 					<td class = "colEstado">ENTREGADO</td>
-					<td class = "colEstado">Ver</td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 2}) }}">Ver o actualizar</a></td>
 				{% elseif c.fechaEvaluacion2 > date() %}
 					<td class = "colEstado">AUN FALTA</td>
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>	
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>	
 				{% endif %}
 
 			  </tr>
