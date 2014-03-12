@@ -233,7 +233,7 @@
 				
 					<div  class = "fecha">
 						<label>Acta de conformidad</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_acta">
+						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_acta" value = "{{ practicante.fechaInformeFinal is empty ? "" : practicante.fechaInformeFinal|date('d-m-Y') }}">
 					</div>
 
 				</div>

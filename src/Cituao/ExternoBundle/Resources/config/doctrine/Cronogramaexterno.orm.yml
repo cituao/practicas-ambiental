@@ -7,6 +7,8 @@ Cituao\ExternoBundle\Entity\Cronogramaexterno:
             id: true
             generator:
                 strategy: AUTO
+        externo:
+            type: integer
         practicante:
             type: integer
             unique: true

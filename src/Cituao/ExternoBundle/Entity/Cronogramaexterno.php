@@ -14,6 +14,7 @@ class Cronogramaexterno
      */
     private $id;
 
+
     /**
      * @var integer
      */
@@ -219,5 +220,33 @@ class Cronogramaexterno
     public function getListoActa()
     {
         return $this->listoActa;
+    }
+    /**
+     * @var integer
+     */
+    private $externo;
+
+
+    /**
+     * Set externo
+     *
+     * @param integer $externo
+     * @return Cronogramaexterno
+     */
+    public function setExterno($externo)
+    {
+        $this->externo = $externo;
+    
+        return $this;
+    }
+
+    /**
+     * Get externo
+     *
+     * @return integer 
+     */
+    public function getExterno()
+    {
+        return $this->externo;
     }
 }

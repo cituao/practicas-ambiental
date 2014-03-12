@@ -169,6 +169,8 @@ class DefaultController extends Controller
 		// si los datos son validos guardamos cronograma para los actores        
 		if ($formulario->isValid()) {
 			// Completar las propiedades que el usuario no rellena en el formulario
+			$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
+
             $em->persist($practicante);
 
 			//buscamos al academico para cargarle el cronograma
@@ -205,17 +207,27 @@ class DefaultController extends Controller
 			
 			$em->persist($cronograma);			
 			
-			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Cronogramaexterno');
-			$cronogramaexterno = $repository->findByPracticante($practicante->getId());
-				
-			if (!$cronogramaexterno){
+			//$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Cronogramaexterno');
+			//$cronogramaexterno = $repository->findByOne(array('practicante' => $practicante->getId())) ;
+			
+			$query = $em->createQuery(
+		            'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra');
+			$query->setParameter('id_pra',$practicante->getId());
+			//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
+			$cronogramaexterno = $query->getOneOrNullResult();//getSingleResult();			
+			
+			//si es la primera vez que se asigna cronograma creamos uns instancia 
+			//y le cargamos los datos indices de practicante y asesor externo relaciones y entidades
+			if ($cronogramaexterno == NULL){
 				$cronogramaexterno = new Cronogramaexterno();
 				$cronogramaexterno->setPracticante($practicante->getId());
+				$cronogramaexterno->setExterno($practicante->getExterno()->getId());
 			}
-	
+			
+			//asignamos las fechas correspondientes al asesor externo
 			$cronogramaexterno->setFechaEvaluacion1($practicante->getFechaVisita1());
 			$cronogramaexterno->setFechaEvaluacion2($practicante->getFechaVisita2());
-
+			$cronogramaexterno->setFechaActa($practicante->getFechaInformeFinal());
 
 			$em->persist($cronogramaexterno);
             
