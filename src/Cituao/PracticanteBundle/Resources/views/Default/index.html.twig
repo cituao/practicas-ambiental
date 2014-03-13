@@ -1,1 +1,33 @@
-Hello {{ name }}!
+{% extends 'CituaoPracticanteBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+			<div id="infoWrapper">
+    			<h2 id="titlee">
+    				PANEL<span>PRINCIPAL PRACTICANTE<span> 
+    			</h2>
+    			<div id="buttonsContainer">	
+						<a href="" class="button" id="practicantes"> 
+    						<h2>MI HOJA DE VIDA</h2>
+    						<img id="practicanteIcon" src="{{ asset('img/practicanteIcon.png') }}">
+    					</a>
+    					<a href="" class="button"  id="asesoresExternos">
+    						<h2>MI ASESOR<span> EXTERNO</span></h2>
+    						<img id="externoIcon" src="{{ asset('img/externoIcon.png') }}">
+    					</a>
+    					<a href="" class="button"  id="asesoresInternos">
+    						<h2>MI ASESOR<span> ACADEMICO</span></h2>
+    						<img id="internoIcon" src="{{ asset('img/internoIcon.png') }}">
+    					</a>
+    					<a href="{{ path("cituao_practicante_cronograma") }}" class="button"  id="configuracion">
+    						<h2>MI CRONOGRAMA</h2>
+    						<img id="configIcon" src="{{ asset('img/configIcon.png') }}">
+    					</a>
+    					<a href="{{ path('cituao_coord_centros') }}" class="button"  id="centroPractica">
+    						<h2>MI CENTRO<span> DE </span>PRÁCTICA</h2>
+    						<img id="centroIcon" src="{{ asset('img/centroIcon.png') }}">
+    					</a>
+    			</div>
+			</div><!-- infowrapper -->
+
+	</div>
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends 'CituaoPracticanteBundle::layout.html.twig' %}
+
+{% block javascripts %}
+	<meta charset="utf-8">
+	 <title>jQuery UI Datepicker - Default functionality</title>
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+	 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	 <script src="{{ asset('js/date.js') }}"></script>
+{% endblock %}
+
+
+{% block infowrapper  %}
+	
+	
+	<div id="infoWrapper">
+		<h2 id = "titlee">Mi cronograma</h2>
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+		<div id = "subinfowrapper"> 
+			<table id = "tablaCronograma">
+			  <tr>
+				<th>ACTIVIDAD</th>
+				<th>FECHA</th>
+				<th>ESTADO</th>
+				<th>ACCION</th>
+			  </tr>
+			
+			  <tr>
+				<td  class = "colActividad">Asesoría #1</td>
+				<td  class = "colFecha">{{ p.fechaAsesoria1|date("d/m/Y") }}</td>
+				{% if p.listoAsesoria1 == true %}
+					<td  class = "colEstado">ENTREGADO</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_practicante_consultar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
+				{% elseif p.fechaAsesoria1 > date() %}
+					<td  class = "colEstado">AUN FALTA</td>
+					<td>-</td>
+				{% else %}
+					<td  class = "colEstado">NO REALIZADA</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+				{% endif %}
+
+			  </tr>
+			  <tr>
+				<td>Asesoría #2</td>
+				<td>{{ p.fechaAsesoria2|date("d/m/Y") }}</td>
+				{% if p.listoAsesoria2 == true %}
+					<td  class = "colEstado">ENTREGADO</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_practicante_consultar_asesoria', { 'id': p.id, 'numase': 2}) }}">Ver</a></td>
+				{% elseif p.fechaAsesoria2 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO REALIZADA</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 2}) }}">Entregar</a></td>
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Asesoría #3</td>
+				<td>{{ p.fechaAsesoria3|date("d/m/Y") }}</td>
+				{% if p.listoAsesoria3 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_consultar_asesoria', { 'id': p.id, 'numase': 3}) }}">Ver</a></td>
+				{% elseif p.fechaAsesoria3 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td>-</td>
+				{% else %}
+					<td class = "colEstado">NO REALIZADA</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 3}) }}">Entregar</a></td>
+				{% endif %}
+			  </tr>
+
+			  <tr>
+				<td>Asesoría #4</td>
+				<td>{{ p.fechaAsesoria4|date("d/m/Y") }}</td>
+				{% if p.listoAsesoria4 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_consultar_asesoria', { 'id': p.id, 'numase': 4}) }}">Ver</a></td>
+				{% elseif p.fechaAsesoria4 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO REALIZADA</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 4}) }}">Entregar</a></td>
+				{% endif %}
+			  </tr>
+			  <tr>
+				<td>Asesoría #5</td>
+				<td>{{ p.fechaAsesoria5|date("d/m/Y") }}</td>
+				{% if p.listoAsesoria5 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_consultar_asesoria', { 'id': p.id, 'numase': 5}) }}">Ver</a></td>
+				{% elseif p.fechaAsesoria5 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO REALIZADA</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 5}) }}">Entregar</a></td>
+				{% endif %}
+			  </tr>
+
+			  <tr>
+				<td>Asesoría #6</td>
+				<td>{{ p.fechaAsesoria6|date("d/m/Y") }}</td>
+				{% if p.listoAsesoria6 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_consultar_asesoria', { 'id': p.id, 'numase': 6}) }}">Ver</a></td>
+				{% elseif p.fechaAsesoria6 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO REALIZADA</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 6}) }}">Entregar</a></td>
+				{% endif %}
+				
+			  </tr>
+
+			  <tr>
+				<td>Asesoría #7</td>
+				<td>{{ p.fechaAsesoria7|date("d/m/Y") }}</td>
+				{% if p.listoAsesoria7 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_consultar_asesoria', { 'id': p.id, 'numase': 7}) }}">Ver</a></td>
+				{% elseif p.fechaAsesoria7 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO REALIZADA</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 7}) }}">Entregar</a></td>
+				{% endif %}
+				
+			  </tr>
+
+			  <tr>
+				<td>Visita presentacion</td>
+				<td>{{ p.fechaVisitaP|date("d/m/Y") }}</td>
+				{% if p.listoVisitaP == true %}
+					<td class = "colEstado">REALIZADA</td>
+					<td class = "colEstado">*</td>
+				{% elseif p.fechaVisitaP > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO REALIZADA</td>
+					<td class = "colEstado">*</td>
+				{% endif %}
+				
+			  </tr>
+
+			  <tr>
+				<td>Evaluación #1</td>
+				<td>{{ p.fechaVisita1|date("d/m/Y") }}</td>
+				{% if p.listoVisita1 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">*</td>
+				{% elseif p.fechaVisita1 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>
+				{% endif %}
+				
+			  </tr>
+
+			  <tr>
+				<td>Evaluación #2</td>
+				<td>{{ p.fechaVisita2|date("d/m/Y") }}</td>
+				{% if p.listoVisita2 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">*</td>
+				{% elseif p.fechaVisita2 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado">*</td>	
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Informe de gestión #1</td>
+				<td>{{ p.fechaInformeGestion1|date("d/m/Y") }}</td>
+				{% if p.listoGestion1 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver</a></td>
+				{% elseif p.fechaInformeGestion1 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>	
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Entregar</a></td>
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Informe de gestión #2</td>
+				<td>{{ p.fechaInformeGestion2|date("d/m/Y") }}</td>
+				{% if p.listoGestion2 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver</a></td>
+				{% elseif p.fechaInformeGestion2 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>	
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Informe de gestión #3</td>
+				<td>{{ p.fechaInformeGestion3|date("d/m/Y") }}</td>
+				{% if p.listoGestion3 == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Entregar</a></td>
+				{% elseif p.fechaInformeGestion3 > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Evaluación final</td>
+				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
+				{% if p.listoInformeFinal == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Ver</td>
+				{% elseif p.fechaInformeFinal > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+				{% endif %}
+				
+			  </tr>
+
+
+			</table>
+	</div>	
+		
+	</div>
+
+{% endblock %}
+

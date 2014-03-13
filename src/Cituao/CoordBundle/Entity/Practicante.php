@@ -989,4 +989,396 @@ public function getAbsolutePath()
     {
         return $this->fechaMatriculacion;
     }
+    /**
+     * @var boolean
+     */
+    private $listoAsesoria1;
+
+    /**
+     * @var boolean
+     */
+    private $listoAsesoria2;
+
+    /**
+     * @var boolean
+     */
+    private $listoAsesoria3;
+
+    /**
+     * @var boolean
+     */
+    private $listoAsesoria4;
+
+    /**
+     * @var boolean
+     */
+    private $listoAsesoria5;
+
+    /**
+     * @var boolean
+     */
+    private $listoAsesoria6;
+
+    /**
+     * @var boolean
+     */
+    private $listoAsesoria7;
+
+    /**
+     * @var boolean
+     */
+    private $listoVisitaP;
+
+    /**
+     * @var boolean
+     */
+    private $listoVisita1;
+
+    /**
+     * @var boolean
+     */
+    private $listoVisita2;
+
+    /**
+     * @var boolean
+     */
+    private $listoGestion1;
+
+    /**
+     * @var boolean
+     */
+    private $listoGestion2;
+
+    /**
+     * @var boolean
+     */
+    private $listoGestion3;
+
+    /**
+     * @var boolean
+     */
+    private $listoInformeFinal;
+
+
+    /**
+     * Set listoAsesoria1
+     *
+     * @param boolean $listoAsesoria1
+     * @return Practicante
+     */
+    public function setListoAsesoria1($listoAsesoria1)
+    {
+        $this->listoAsesoria1 = $listoAsesoria1;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoAsesoria1
+     *
+     * @return boolean 
+     */
+    public function getListoAsesoria1()
+    {
+        return $this->listoAsesoria1;
+    }
+
+    /**
+     * Set listoAsesoria2
+     *
+     * @param boolean $listoAsesoria2
+     * @return Practicante
+     */
+    public function setListoAsesoria2($listoAsesoria2)
+    {
+        $this->listoAsesoria2 = $listoAsesoria2;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoAsesoria2
+     *
+     * @return boolean 
+     */
+    public function getListoAsesoria2()
+    {
+        return $this->listoAsesoria2;
+    }
+
+    /**
+     * Set listoAsesoria3
+     *
+     * @param boolean $listoAsesoria3
+     * @return Practicante
+     */
+    public function setListoAsesoria3($listoAsesoria3)
+    {
+        $this->listoAsesoria3 = $listoAsesoria3;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoAsesoria3
+     *
+     * @return boolean 
+     */
+    public function getListoAsesoria3()
+    {
+        return $this->listoAsesoria3;
+    }
+
+    /**
+     * Set listoAsesoria4
+     *
+     * @param boolean $listoAsesoria4
+     * @return Practicante
+     */
+    public function setListoAsesoria4($listoAsesoria4)
+    {
+        $this->listoAsesoria4 = $listoAsesoria4;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoAsesoria4
+     *
+     * @return boolean 
+     */
+    public function getListoAsesoria4()
+    {
+        return $this->listoAsesoria4;
+    }
+
+    /**
+     * Set listoAsesoria5
+     *
+     * @param boolean $listoAsesoria5
+     * @return Practicante
+     */
+    public function setListoAsesoria5($listoAsesoria5)
+    {
+        $this->listoAsesoria5 = $listoAsesoria5;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoAsesoria5
+     *
+     * @return boolean 
+     */
+    public function getListoAsesoria5()
+    {
+        return $this->listoAsesoria5;
+    }
+
+    /**
+     * Set listoAsesoria6
+     *
+     * @param boolean $listoAsesoria6
+     * @return Practicante
+     */
+    public function setListoAsesoria6($listoAsesoria6)
+    {
+        $this->listoAsesoria6 = $listoAsesoria6;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoAsesoria6
+     *
+     * @return boolean 
+     */
+    public function getListoAsesoria6()
+    {
+        return $this->listoAsesoria6;
+    }
+
+    /**
+     * Set listoAsesoria7
+     *
+     * @param boolean $listoAsesoria7
+     * @return Practicante
+     */
+    public function setListoAsesoria7($listoAsesoria7)
+    {
+        $this->listoAsesoria7 = $listoAsesoria7;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoAsesoria7
+     *
+     * @return boolean 
+     */
+    public function getListoAsesoria7()
+    {
+        return $this->listoAsesoria7;
+    }
+
+    /**
+     * Set listoVisitaP
+     *
+     * @param boolean $listoVisitaP
+     * @return Practicante
+     */
+    public function setListoVisitaP($listoVisitaP)
+    {
+        $this->listoVisitaP = $listoVisitaP;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoVisitaP
+     *
+     * @return boolean 
+     */
+    public function getListoVisitaP()
+    {
+        return $this->listoVisitaP;
+    }
+
+    /**
+     * Set listoVisita1
+     *
+     * @param boolean $listoVisita1
+     * @return Practicante
+     */
+    public function setListoVisita1($listoVisita1)
+    {
+        $this->listoVisita1 = $listoVisita1;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoVisita1
+     *
+     * @return boolean 
+     */
+    public function getListoVisita1()
+    {
+        return $this->listoVisita1;
+    }
+
+    /**
+     * Set listoVisita2
+     *
+     * @param boolean $listoVisita2
+     * @return Practicante
+     */
+    public function setListoVisita2($listoVisita2)
+    {
+        $this->listoVisita2 = $listoVisita2;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoVisita2
+     *
+     * @return boolean 
+     */
+    public function getListoVisita2()
+    {
+        return $this->listoVisita2;
+    }
+
+    /**
+     * Set listoGestion1
+     *
+     * @param boolean $listoGestion1
+     * @return Practicante
+     */
+    public function setListoGestion1($listoGestion1)
+    {
+        $this->listoGestion1 = $listoGestion1;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoGestion1
+     *
+     * @return boolean 
+     */
+    public function getListoGestion1()
+    {
+        return $this->listoGestion1;
+    }
+
+    /**
+     * Set listoGestion2
+     *
+     * @param boolean $listoGestion2
+     * @return Practicante
+     */
+    public function setListoGestion2($listoGestion2)
+    {
+        $this->listoGestion2 = $listoGestion2;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoGestion2
+     *
+     * @return boolean 
+     */
+    public function getListoGestion2()
+    {
+        return $this->listoGestion2;
+    }
+
+    /**
+     * Set listoGestion3
+     *
+     * @param boolean $listoGestion3
+     * @return Practicante
+     */
+    public function setListoGestion3($listoGestion3)
+    {
+        $this->listoGestion3 = $listoGestion3;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoGestion3
+     *
+     * @return boolean 
+     */
+    public function getListoGestion3()
+    {
+        return $this->listoGestion3;
+    }
+
+    /**
+     * Set listoInformeFinal
+     *
+     * @param boolean $listoInformeFinal
+     * @return Practicante
+     */
+    public function setListoInformeFinal($listoInformeFinal)
+    {
+        $this->listoInformeFinal = $listoInformeFinal;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoInformeFinal
+     *
+     * @return boolean 
+     */
+    public function getListoInformeFinal()
+    {
+        return $this->listoInformeFinal;
+    }
 }

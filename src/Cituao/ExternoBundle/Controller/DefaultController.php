@@ -113,12 +113,19 @@ class DefaultController extends Controller
 			$query->setParameter('id_pra',$id);
 			$query->setParameter('id_ext',$externo->getId());
 			$cronograma = $query->getOneOrNullResult();
-		
-			if ($numeva == 1) 			
+
+			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+			$practicante = $repository->findById($id);
+
+			if ($numeva == 1){ 			
 				$cronograma->setListoEvaluacion1(true);
-			else
+				$practicante->setListoVisita1(true);
+			}
+			else{
 				$cronograma->setListoEvaluacion2(true);
-				
+				$practicante->setListoVisita2(true);
+			}				
+
 			$evaluacion->setExterno($externo->getId());
 			$evaluacion->setPracticante($id);
 			

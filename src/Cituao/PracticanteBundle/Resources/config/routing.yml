@@ -1,8 +1,17 @@
 cituao_practicante_homepage:
-    pattern:  /practicante
+    path:  /practicante
     defaults: { _controller: CituaoPracticanteBundle:Default:index }
 
 cituao_practicante_mihojadevida:
-    pattern:  /practicante/mihojadevida
+    path:  /practicante/mihojadevida
     defaults: { _controller: CituaoPracticanteBundle:Default:hojadevida }
+
+cituao_practicante_cronograma:
+    path:  /practicante/cronograma
+    defaults: { _controller: CituaoPracticanteBundle:Default:cronograma }
+
+cituao_practicante_registrar_asesoria:
+    path:  /practicante/registrarasesoria/practicante={id}&asesoria={numase}
+    defaults: { _controller: CituaoPracticanteBundle:Default:registrarAsesoria }
+
 

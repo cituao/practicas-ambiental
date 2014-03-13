@@ -388,8 +388,7 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 
-		//actualizamos el estado 
-
+		//actualizamos el estado para el academico
 		$query = $em->createQueryBuilder();
 		$q = $query->update('CituaoAcademicoBundle:Cronograma', 'c')
 					->set('c.listoVisitaP', true)	
@@ -399,6 +398,17 @@ class DefaultController extends Controller
 					->getQuery();
 
 		$ejecsql = $q->execute();
+
+		//actualizamos el estado para el practicante
+		$q = $query->update('CituaoCoordBundle:Practicante', 'c')
+					->set('c.listoVisitaP', true)	
+					->where('c.practicante = ?1')
+					->setParameter(1, $id)
+					->getQuery();
+
+		$ejecsql = $q->execute();
+
+
 		return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
 	}
 }

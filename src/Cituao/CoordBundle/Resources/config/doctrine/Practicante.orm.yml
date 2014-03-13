@@ -89,6 +89,48 @@ Cituao\CoordBundle\Entity\Practicante:
         fechaInformeFinal:
             type: date
             nullable: true
+        listoAsesoria1:
+            type: boolean
+            nullable: true
+        listoAsesoria2:
+            type: boolean
+            nullable: true
+        listoAsesoria3:
+            type: boolean
+            nullable: true
+        listoAsesoria4:
+            type: boolean
+            nullable: true
+        listoAsesoria5:
+            type: boolean
+            nullable: true
+        listoAsesoria6:
+            type: boolean
+            nullable: true
+        listoAsesoria7:
+            type: boolean
+            nullable: true
+        listoVisitaP:
+            type: boolean
+            nullable: true
+        listoVisita1:
+            type: boolean
+            nullable: true
+        listoVisita2:
+            type: boolean
+            nullable: true
+        listoGestion1:
+            type: boolean
+            nullable: true
+        listoGestion2:
+            type: boolean
+            nullable: true
+        listoGestion3:
+            type: boolean
+            nullable: true
+        listoInformeFinal:
+            type: boolean
+            nullable: true
         path:
             type: string
             length: '30'
