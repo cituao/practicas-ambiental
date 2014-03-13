@@ -1,0 +1,30 @@
+Cituao\PracticanteBundle\Entity\Informefinalpracticante:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        practicante:
+            type: integer
+        comunicacion:
+            type: text
+            nullable: true
+        asesor:
+            type: text
+            nullable: true
+        coordinacion:
+            type: text
+            nullable: true
+        universidad:
+            type: text
+            nullable: true
+        autoreflexion:
+            type: text
+            nullable: true
+        recomendaciones:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -622,7 +622,7 @@ a.baropcion:hover{
 	opacity:0.5;
 }
 
-
+.
 
 /*********************************************************************************/
 #tablaCronograma{
@@ -662,5 +662,8 @@ color:#ffffff;
 	width: 2%;
 }
 
-
+h6{
+font-style:italic;
+font-size:0.7em;
+}
 

@@ -29,3 +29,7 @@ cituao_practicante_ver_asesorexterno:
 cituao_practicante_ver_centro:
     path:  /practicante/mi-centro
     defaults: { _controller: CituaoPracticanteBundle:Default:verCentro }
+
+cituao_practicante_registrar_informefinal:
+    path:  /practicante/mi-informe-final/practicante={id}
+    defaults: { _controller: CituaoPracticanteBundle:Default:registrarInformefinal }

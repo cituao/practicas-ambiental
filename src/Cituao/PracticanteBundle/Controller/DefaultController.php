@@ -8,6 +8,8 @@ use Cituao\PracticanteBundle\Form\Type\HojadevidaType;
 use Cituao\PracticanteBundle\Form\Type\AsesoriaType;
 use Cituao\AcademicoBundle\Entity\Cualicuanti;
 use Cituao\PracticanteBundle\Form\Type\CualicuantiType;
+use Cituao\PracticanteBundle\Entity\Informefinalpracticante;
+use Cituao\PracticanteBundle\Form\Type\InformefinalType;
 
 class DefaultController extends Controller
 {
@@ -248,6 +250,9 @@ class DefaultController extends Controller
 			return $this->render('CituaoPracticanteBundle:Default:formcualicuanti.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
 	}
 	
+	//******************************************************************
+	//Muestra la informacion del asesor academico al practicante
+	//******************************************************************
 	public function verasesorAcademicoAction(){
 		$em = $this->getDoctrine()->getManager();
 
@@ -261,6 +266,9 @@ class DefaultController extends Controller
 		return $this->render('CituaoPracticanteBundle:Default:academico.html.twig', array('academico' => $practicante->getAcademico()));
 	}
 
+	//************************************************************
+	//Muestra la informacion del asesor externo al practicnate
+	//*************************************************************
 	public function verasesorExternoAction(){
 		$em = $this->getDoctrine()->getManager();
 
@@ -274,6 +282,9 @@ class DefaultController extends Controller
 		return $this->render('CituaoPracticanteBundle:Default:externo.html.twig', array('externo' => $practicante->getExterno()));
 	}
 
+	//**************************************************************
+	//Muestra la informacion del centro de practica al estudiante
+	//******************************************************************
 	public function vercentroAction(){
 		$em = $this->getDoctrine()->getManager();
 
@@ -286,4 +297,53 @@ class DefaultController extends Controller
 		
 		return $this->render('CituaoPracticanteBundle:Default:centro.html.twig', array('centro' => $practicante->getCentro()));
 	}
+	
+	//****************************************************
+	// Registra y actualiza el informe final del practicante
+	//****************************************************
+	public function registrarInformefinalAction($id){
+	
+		$usuario = $this->get('security.context')->getToken()->getUser();
+		
+		$peticion = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+
+        $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('ci' => $usuario->getUsername()));
+
+		$query = $em->createQuery(
+				'SELECT i FROM CituaoPracticanteBundle:Informefinalpracticante i WHERE i.practicante =:id_pra ');
+		$query->setParameter('id_pra',$practicante->getId());
+		
+		$informe = $query->getOneOrNullResult();
+		if ($informe == NULL) $informe = new Informefinalpracticante();
+	
+        $formulario = $this->createForm(new InformefinalType(), $informe);
+
+        $formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+            // Completar las propiedades que el usuario no rellena en el formulario
+			$informe->setPracticante($practicante->getId());
+            $practicante->setListoInformefinal(true);
+			$em->persist($informe);
+            $em->flush();
+
+	    /*
+            // Loguear al usuario automáticamente
+            $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
+            $this->container->get('security.context')->setToken($token);
+	    */
+
+            return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+        }
+
+		$datos = array('id' => $id);
+        return $this->render('CituaoPracticanteBundle:Default:forminformefinal.html.twig', array(
+            'formulario' => $formulario->createView(), 'datos' => $datos
+        ));
+
+	}
+	
+	
 }
