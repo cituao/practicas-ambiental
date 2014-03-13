@@ -249,7 +249,7 @@ class DefaultController extends Controller
 		$academico = $repository->findOneBy(array('ci' => $ci));
 		
 		//buscamos el practicante oara accesar el id del asesor externo
-		$repository = $this->getDoctrine()->getRepository('CituaoPracticanteBundle:Externo');
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('id' => $id));
 		
 		$externo = $practicante->getExterno();

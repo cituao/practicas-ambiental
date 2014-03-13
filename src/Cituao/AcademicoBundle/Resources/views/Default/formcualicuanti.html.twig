@@ -14,7 +14,7 @@
 	    
 		{{ form_errors(formulario) }}
 		<div class = "tituloform">
-		<h2 class = "datos">INFORME CUANTITATIVO</h2>
+		<h2 class = "datos">Informe cuantitativo</h2>
 		</div>
 
 		<div class = "subtituloform">
@@ -84,12 +84,22 @@
 		</div>
 
 		<div class = "tituloform">
-		<h2 class = "datos">INFORME CUALITATIVO</h2>
+		<h2 class = "datos">Apreciaciones adicionales</h2>
 		</div>
 
-		{{ form_label(formulario.informe) }}
-		{{ form_widget(formulario.informe) }}
-		{{ form_errors(formulario.informe) }}
+		{{ form_label(formulario.apreciacion) }}
+		{{ form_widget(formulario.apreciacion) }}
+		{{ form_errors(formulario.apreciacion) }}
+
+		<div class = "tituloform">
+		<h2 class = "datos">Tus comentarios</h2>
+		</div>
+
+		{{ form_label(formulario.comentarios) }}
+		{{ form_widget(formulario.comentarios) }}
+		{{ form_errors(formulario.comentarios) }}
+
+
 
 		{{ form_rest(formulario) }}
 		<input class="boton" type="submit" value="Guardar" />
