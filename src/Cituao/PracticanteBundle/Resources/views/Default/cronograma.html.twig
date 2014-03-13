@@ -245,14 +245,26 @@
 					<td class = "colEstado">NO ENTREGADO</td>
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
 				{% endif %}
-				
 			  </tr>
-
+				{% if p.area == 1 %}
+			  <tr>
+				<td>Proyecto</td>
+				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
+				{% if p.listoInformeFinal == true %}
+					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Ver</td>
+				{% elseif p.fechaInformeFinal > date() %}
+					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">-</td>
+				{% else %}
+					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+				{% endif %}
+			  </tr>
+				{% endif %}
 
 			</table>
 	</div>	
-		
 	</div>
-
 {% endblock %}
 

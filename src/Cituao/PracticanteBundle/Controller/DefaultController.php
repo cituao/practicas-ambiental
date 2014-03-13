@@ -286,6 +286,4 @@ class DefaultController extends Controller
 		
 		return $this->render('CituaoPracticanteBundle:Default:centro.html.twig', array('centro' => $practicante->getCentro()));
 	}
-
-	
 }
