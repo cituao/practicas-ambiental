@@ -1,0 +1,40 @@
+{% extends 'CituaoPracticanteBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Mis datos</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+	<form action="" method="post">
+		<div><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  academico.path) }}" alt="Pulpit rock" width="114" height="144"></div>
+		<div>	
+		<label>Asesor:</label>
+		<input type="text" value = "{{ academico.getNombreCompleto }}" readonly>
+		</div>
+		
+		<div>	
+		<label>Teléfono movil:</label>
+		<input type="text" value = "{{ academico.telefonoMovil }}" readonly>
+		</div>
+
+		<div>	
+		<label>Teléfono fijo:</label>
+		<input type="text" value = "{{ academico.telefonoFijo }}" readonly>
+		</div>
+
+		<div>	
+		<label>Email:</label>
+		<input type="text" value = "{{ academico.email }}" readonly>
+		</div>
+
+		<div>	
+		<label>Perfil:</label>
+		<textarea cols="100" rows="5" readonly>{{ academico.perfil }}</textarea>
+		</div>
+	</form>	
+	</div>
+{% endblock %}

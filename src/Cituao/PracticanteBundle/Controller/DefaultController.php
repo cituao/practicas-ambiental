@@ -185,7 +185,6 @@ class DefaultController extends Controller
 	//Registrar informe cualicuanti 1,2,3  efectuada por el asesor externo
 	//*************************************************************
 	public function registrarCualicuantiAction($id, $numcua){
-		
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 
@@ -247,6 +246,19 @@ class DefaultController extends Controller
 
 		$datos = array('id' => $id, 'numcua' => $numcua);
 			return $this->render('CituaoPracticanteBundle:Default:formcualicuanti.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+	}
+	
+	public function verasesorAcademicoAction(){
+		$em = $this->getDoctrine()->getManager();
+
+		// buscamos el ID del asesor academico
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('ci' => $ci));
+	
+		
+		return $this->render('CituaoPracticanteBundle:Default:academico.html.twig', array('academico' => $practicante->getAcademico()));
 	}
 	
 }

@@ -18,7 +18,7 @@ class AcademicoType extends AbstractType
         ->add('email', 'email',  array('label' => 'Email:',  'attr' => array('placeholder' => 'usuario@servidor'), 'required' => true ))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil:', 'required' => true))
 		->add('telefonoFijo','text', array('label' => 'Teléfono fijo:'))
-		->add('perfil','textarea', array('label' => 'Perfil', 'max_length' => '500' ,  'attr' => array('placeholder' => 'Ingrese el perfil del asesor', 'cols' => '5', 'rows' => '5')))
+		->add('perfil','textarea', array('label' => 'Perfil', 'max_length' => '500' ,  'attr' => array('placeholder' => 'Ingrese el perfil del asesor', 'cols' => '80', 'rows' => '5')))
 		->add('categoria', 'choice', array('label' => 'Categoría', 'choices'=> array('a' => 'A', 'b' => 'B', 'c' => 'C', 'd' => 'D')))	
 		->add('declaracion', 'checkbox', array('label' => 'Declaración de Renta', 'required' => false));
 

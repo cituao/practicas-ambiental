@@ -17,3 +17,7 @@ cituao_practicante_registrar_asesoria:
 cituao_practicante_registrar_cualicuanti:
     path:  /practicante/registrarcualicuanti/practicante={id}&cualicuanti={numcua}
     defaults: { _controller: CituaoPracticanteBundle:Default:registrarCualicuanti }
+    
+cituao_practicante_ver_asesoracademico:
+    path:  /practicante/mi-asesor-academico
+    defaults: { _controller: CituaoPracticanteBundle:Default:verasesorAcademico }
