@@ -13,3 +13,7 @@ cituao_externo_cronograma:
 cituao_externo_registrar_evaluacion:
     path:  /externo/registrarcomentario/practicante={id}&evaluacion={numeva}
     defaults: { _controller: CituaoExternoBundle:Default:registrarEvaluacion }
+
+cituao_externo_registrar_conformidad:
+    path:  /externo/registrarconformidad/practicante={id}
+    defaults: { _controller: CituaoExternoBundle:Default:registrarConformidad }

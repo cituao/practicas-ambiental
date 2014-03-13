@@ -143,7 +143,11 @@ class DefaultController extends Controller
 			return $this->render('CituaoExternoBundle:Default:formevaluacion2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
 			
 }
-	
+	public function registrarConformidadAction(){
+
+
+		return $this->render('CituaoExternoBundle:Default:index.html.twig');
+	}
 	
 	
 }

@@ -78,7 +78,7 @@
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_conformidad', { 'id': p.id }) }}">Entregar</a></td>
 				{% endif %}
 				
 			  </tr>
