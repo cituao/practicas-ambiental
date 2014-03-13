@@ -10,6 +10,7 @@ use Cituao\AcademicoBundle\Entity\Cualicuanti;
 use Cituao\PracticanteBundle\Form\Type\CualicuantiType;
 use Cituao\PracticanteBundle\Entity\Informefinalpracticante;
 use Cituao\PracticanteBundle\Form\Type\InformefinalType;
+use Cituao\CoordBundle\Entity\Document;
 
 class DefaultController extends Controller
 {
@@ -302,24 +303,22 @@ class DefaultController extends Controller
 	// Registra y actualiza el informe final del practicante
 	//****************************************************
 	public function registrarInformefinalAction($id){
-	
 		$usuario = $this->get('security.context')->getToken()->getUser();
-		
 		$peticion = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
 
+        $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('ci' => $usuario->getUsername()));
-
+		//buscamos el informe  para actualizar 
 		$query = $em->createQuery(
 				'SELECT i FROM CituaoPracticanteBundle:Informefinalpracticante i WHERE i.practicante =:id_pra ');
 		$query->setParameter('id_pra',$practicante->getId());
 		
 		$informe = $query->getOneOrNullResult();
+		//si no hay informes creamos una instancia de informe final
 		if ($informe == NULL) $informe = new Informefinalpracticante();
 	
         $formulario = $this->createForm(new InformefinalType(), $informe);
-
         $formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
@@ -329,21 +328,44 @@ class DefaultController extends Controller
 			$em->persist($informe);
             $em->flush();
 
-	    /*
-            // Loguear al usuario automáticamente
-            $token = new UsernamePasswordToken($usuario, null, 'frontend', $usuario->getRoles());
-            $this->container->get('security.context')->setToken($token);
-	    */
-
             return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
         }
-
 		$datos = array('id' => $id);
         return $this->render('CituaoPracticanteBundle:Default:forminformefinal.html.twig', array(
             'formulario' => $formulario->createView(), 'datos' => $datos
         ));
-
 	}
 	
+	//******************************************************************
+	//Muestra un formulario para subir el proyecto en formato PDF
+	//*******************************************************************
+	public function subirProyectoAction(){
+	
+		$request = $this->getRequest();
+		
+		$document = new Document();
+		$form = $this->createFormBuilder($document)
+		    ->add('file')
+			->add('name')
+		    ->getForm();
+
+		$form->handleRequest($request);
+
+		if ($form->isValid()) {
+     		//levantar servicios de doctrine base de datos
+			$em = $this->getDoctrine()->getManager();
+
+			//se copia el archivo al directorio del servidor			
+			$document->upload();
+
+		    $em->persist($document);
+
+		
+			return $this->render('CituaoPracticanteBundle:Default:index.html.twig');
+		}		
+		
+		$msgerr = array('id'=>'0', 'descripcion'=>' ');
+		return $this->render('CituaoPracticanteBundle:Default:formsubirproyecto.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr  ));
+	}
 	
 }

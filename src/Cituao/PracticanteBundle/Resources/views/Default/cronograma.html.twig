@@ -250,7 +250,7 @@
 			  <tr>
 				<td>Proyecto</td>
 				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
-				{% if p.listoInformeFinal == true %}
+				{% if p.listoProyecto == true %}
 					<td class = "colEstado">ENTREGADO</td>
 					<td class = "colEstado">Ver</td>
 				{% elseif p.fechaInformeFinal > date() %}
@@ -258,7 +258,7 @@
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_informefinal', { 'id': p.id}) }}">Entregar</a></td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_subir_proyecto') }}">Entregar</a></td>
 				{% endif %}
 			  </tr>
 				{% endif %}

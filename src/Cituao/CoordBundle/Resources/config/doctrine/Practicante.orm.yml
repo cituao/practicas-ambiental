@@ -131,6 +131,13 @@ Cituao\CoordBundle\Entity\Practicante:
         listoInformeFinal:
             type: boolean
             nullable: true
+        listoProyecto:
+            type: boolean
+            nullable: true
+        pathPdf:
+            type: string
+            length: '30'
+            nullable: true
         path:
             type: string
             length: '30'

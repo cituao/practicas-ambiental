@@ -178,6 +178,11 @@ class Practicante
      */
     private $path;
 
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $pathPdf;
+	
 	/**
      * @Assert\File(maxSize="6000000")
      */
@@ -1059,7 +1064,12 @@ public function getAbsolutePath()
      */
     private $listoInformeFinal;
 
+   /**
+     * @var boolean
+     */
+    private $listoProyecto;
 
+	
     /**
      * Set listoAsesoria1
      *
@@ -1380,5 +1390,51 @@ public function getAbsolutePath()
     public function getListoInformeFinal()
     {
         return $this->listoInformeFinal;
+    }
+
+    /**
+     * Set listoProyecto
+     *
+     * @param boolean $listoProyecto
+     * @return Practicante
+     */
+    public function setListoProyecto($listoProyecto)
+    {
+        $this->listoProyecto = $listoProyecto;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoProyecto
+     *
+     * @return boolean 
+     */
+    public function getListoProyecto()
+    {
+        return $this->listoProyecto;
+    }
+
+    /**
+     * Set pathPdf
+     *
+     * @param string $pathPdf
+     * @return Practicante
+     */
+    public function setPathPdf($pathPdf)
+    {
+        $this->pathPdf = $pathPdf;
+    
+        return $this;
+    }
+
+    /**
+     * Get pathPdf
+     *
+     * @return string 
+     */
+    public function getPathPdf()
+    {
+        return $this->pathPdf;
     }
 }

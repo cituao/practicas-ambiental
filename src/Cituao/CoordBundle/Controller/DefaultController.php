@@ -223,26 +223,18 @@ class DefaultController extends Controller
 				$cronogramaexterno->setPracticante($practicante->getId());
 				$cronogramaexterno->setExterno($practicante->getExterno()->getId());
 			}
-			
 			//asignamos las fechas correspondientes al asesor externo
 			$cronogramaexterno->setFechaEvaluacion1($practicante->getFechaVisita1());
 			$cronogramaexterno->setFechaEvaluacion2($practicante->getFechaVisita2());
 			$cronogramaexterno->setFechaActa($practicante->getFechaInformeFinal());
 			
-
 			$em->persist($cronogramaexterno);
-            
-			//buscamos el externo para asignarle el cronograma
-
-
 			$em->flush();
-
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
         return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
 	}
 
-	
 
 	/********************************************************/
 	//SE ENCARGA DE LANZAR UN FORMULARIO PARA LA SUBIDA DEL ARCHIVO TXT CON ESTUDIANTES PARA IR A PRACTICAS PROFESIONALES
