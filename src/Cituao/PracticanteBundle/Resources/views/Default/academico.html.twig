@@ -2,7 +2,7 @@
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
-		<h2 id="titlee">Mis datos</h2>
+		<h2 id="titlee">Tu asesor académico</h2>
 
 		<div id = "menuop">
 			<ul>
@@ -13,7 +13,7 @@
 		<div><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  academico.path) }}" alt="Pulpit rock" width="114" height="144"></div>
 		<div>	
 		<label>Asesor:</label>
-		<input type="text" value = "{{ academico.getNombreCompleto }}" readonly>
+		<input type="text" value = "{{ academico.getNombreCompleto }}" readonly class = "largo">
 		</div>
 		
 		<div>	

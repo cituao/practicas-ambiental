@@ -1,0 +1,40 @@
+{% extends 'CituaoPracticanteBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Tu asesor externo</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+	<form action="" method="post">
+		<div>
+		<label>Asesor:</label>
+		<input type="text" value = "{{ externo.getNombreCompleto }}" readonly class = "largo">
+		</div>
+		
+		<div>	
+		<label>Teléfono movil:</label>
+		<input type="text" value = "{{ externo.telefonoMovil }}" readonly>
+		</div>
+
+		<div>	
+		<label>Teléfono fijo:</label>
+		<input type="text" value = "{{ externo.telefonoFijo }}" readonly>
+		</div>
+
+		<div>	
+		<label>Email:</label>
+		<input type="text" value = "{{ externo.email }}" readonly>
+		</div>
+
+		<div>	
+		<label>Cargo:</label>
+		<input type="text" value = "{{ externo.cargo }}" readonly>
+		</div>
+		
+	</form>	
+	</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'CituaoPracticanteBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Tu centro de práctica</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+	<form action="" method="post">
+		<div>
+		<label>Nombre</label>
+		<input type="text" value = "{{ centro.getNombre }}" readonly class = "largo" >
+		</div>
+		
+		<div>	
+		<label>Dirección:</label>
+		<textarea cols="100" rows="5" readonly>{{ centro.direccion }}</textarea>
+		</div>
+		
+		
+		
+		<div>	
+		<label>Teléfono:</label>
+		<input type="text" value = "{{ centro.telefono }}" readonly>
+		</div>
+
+		<div>	
+		<label>Teléfono fijo:</label>
+		<input type="text" value = "{{ centro.extension }}" readonly>
+		</div>
+
+		<div>	
+		<label>Email:</label>
+		<input type="text" value = "{{ centro.email }}" readonly>
+		</div>
+
+		<div>	
+		<a href=  "{{ centro.email }}" >¡Visita tu centro de práctica!</a>
+		</div>
+		
+	</form>	
+	</div>
+{% endblock %}

@@ -21,3 +21,11 @@ cituao_practicante_registrar_cualicuanti:
 cituao_practicante_ver_asesoracademico:
     path:  /practicante/mi-asesor-academico
     defaults: { _controller: CituaoPracticanteBundle:Default:verasesorAcademico }
+    
+cituao_practicante_ver_asesorexterno:
+    path:  /practicante/mi-asesor-externo
+    defaults: { _controller: CituaoPracticanteBundle:Default:verasesorExterno }
+ 
+cituao_practicante_ver_centro:
+    path:  /practicante/mi-centro
+    defaults: { _controller: CituaoPracticanteBundle:Default:verCentro }
