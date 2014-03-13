@@ -87,7 +87,12 @@ class Cualicuanti
     /**
      * @var string
      */
-    private $informe;
+    private $apreciacion;
+
+    /**
+     * @var string
+     */
+    private $comentarios;
 
 
     /**
@@ -399,33 +404,7 @@ class Cualicuanti
         return $this->porcentaje3;
     }
 
-    /**
-     * Set informe
-     *
-     * @param string $informe
-     * @return Cualicuanti
-     */
-    public function setInforme($informe)
-    {
-        $this->informe = $informe;
-    
-        return $this;
-    }
-
-    /**
-     * Get informe
-     *
-     * @return string 
-     */
-    public function getInforme()
-    {
-        return $this->informe;
-    }
-    /**
-     * @var integer
-     */
     private $cualicuanti;
-
 
     /**
      * Set cualicuanti
@@ -471,5 +450,51 @@ class Cualicuanti
     public function getPorcentaje2()
     {
         return $this->porcentaje2;
+    }
+
+    /**
+     * Set apreciacion
+     *
+     * @param string $apreciacion
+     * @return Cualicuanti
+     */
+    public function setApreciacion($apreciacion)
+    {
+        $this->apreciacion = $apreciacion;
+    
+        return $this;
+    }
+
+    /**
+     * Get apreciacion
+     *
+     * @return string 
+     */
+    public function getApreciacion()
+    {
+        return $this->apreciacion;
+    }
+
+    /**
+     * Set comentarios
+     *
+     * @param string $comentarios
+     * @return Cualicuanti
+     */
+    public function setComentarios($comentarios)
+    {
+        $this->comentarios = $comentarios;
+    
+        return $this;
+    }
+
+    /**
+     * Get comentarios
+     *
+     * @return string 
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
     }
 }

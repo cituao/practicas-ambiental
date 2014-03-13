@@ -55,7 +55,10 @@ Cituao\AcademicoBundle\Entity\Cualicuanti:
             type: string
             length: '2'
             nullable: true
-        informe:
+        apreciacion:
+            type: text
+            nullable: true
+        comentarios:
             type: text
             nullable: true
     lifecycleCallbacks: {  }

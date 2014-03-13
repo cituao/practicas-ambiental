@@ -6,7 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Cituao\CoordBundle\Entity\Practicante; 
 use Cituao\PracticanteBundle\Form\Type\HojadevidaType;
 use Cituao\PracticanteBundle\Form\Type\AsesoriaType;
-
+use Cituao\AcademicoBundle\Entity\Cualicuanti;
+use Cituao\PracticanteBundle\Form\Type\CualicuantiType;
 
 class DefaultController extends Controller
 {
@@ -170,4 +171,73 @@ class DefaultController extends Controller
 		$datos = array('id' => $id, 'numase' => $numase);
 		return $this->render('CituaoPracticanteBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
 	}
+	
+		//*************************************************************
+	//Registrar informe cualicuanti 1,2,3  efectuada por el asesor externo
+	//*************************************************************
+	public function registrarCualicuantiAction($id, $numcua){
+		
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		// buscamos el ID del asesor academico
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('ci' => $ci));
+		
+		//determinamos si ya fue registrado el informe en la base de datos si es positivo es una actualizacion
+		$sw = false;
+		switch($numcua){
+			case 1:
+				if($practicante->getlistoGestion1()) $sw=true;
+			break;
+			case 2:
+				if($practicante->getlistoGestion2()) $sw=true;
+			break;
+			case 3:
+				if($practicante->getlistoGestion3()) $sw=true;
+			break;
+		}
+
+		//si ya fue registrado hacemos una instancia del informe cualicuanti para mostrar en formulario
+		if ($sw) {
+			$query = $em->createQuery(
+					'SELECT a FROM CituaoAcademicoBundle:Cualicuanti a WHERE a.practicante =:id_pra  AND a.cualicuanti =:numcua');
+			$query->setParameter('id_pra',$id);
+			$query->setParameter('numcua',$numcua);
+			$cualicuanti = $query->getOneOrNullResult();
+		}else{
+			//no hay informe cuali cuanti registrado es nuevo por tanto creamos una instancia nueva
+			$cualicuanti = new Cualicuanti();
+			$cualicuanti->setPracticante($id);
+			$cualicuanti->setAcademico($practicante->getAcademico()->getId());
+			$cualicuanti->setCualicuanti($numcua);						
+		}
+		
+		$formulario = $this->createForm(new CualicuantiType(), $cualicuanti);		
+		$formulario->handleRequest($peticion);
+		
+		if ($formulario->isValid()) {
+			switch($numcua){
+				case 1:
+					$practicante->setlistoGestion1(true);
+				break;
+				case 2:
+					$practicante->setlistoGestion2(true);
+				break;
+				case 3:
+					$practicante->setlistoGestion3(true);
+				break;
+			}
+			$em->persist($cualicuanti); //guardamos o actualizamos el informe cuallcuanti
+			$em->persist($practicante); //actualizamos el listo
+			$em->flush();
+			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+		}
+
+		$datos = array('id' => $id, 'numcua' => $numcua);
+			return $this->render('CituaoPracticanteBundle:Default:formcualicuanti.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+	}
+	
 }

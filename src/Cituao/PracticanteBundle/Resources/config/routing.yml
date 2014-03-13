@@ -14,4 +14,6 @@ cituao_practicante_registrar_asesoria:
     path:  /practicante/registrarasesoria/practicante={id}&asesoria={numase}
     defaults: { _controller: CituaoPracticanteBundle:Default:registrarAsesoria }
 
-
+cituao_practicante_registrar_cualicuanti:
+    path:  /practicante/registrarcualicuanti/practicante={id}&cualicuanti={numcua}
+    defaults: { _controller: CituaoPracticanteBundle:Default:registrarCualicuanti }

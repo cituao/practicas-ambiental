@@ -1,0 +1,8 @@
+Cituao\AcademicoBundle\Entity\Cualicuanti:
+ properties:
+ acividad1:
+ - NotBlank: ~
+ - Type:
+ type: text
+ message: El valor no es un codigo valido
+ 
