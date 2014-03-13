@@ -94,7 +94,7 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('ci' => $ci));
 
-		//buscamos la asesoría para ver si el academico ya la registro
+		//buscamos  si el academico ya la registro
 		$query = $em->createQuery(
 				'SELECT a FROM CituaoAcademicoBundle:Cronograma a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
 		$query->setParameter('id_aca',$practicante->getAcademico()->getId());
@@ -132,6 +132,15 @@ class DefaultController extends Controller
 			throw $this->createNotFoundException('El asesor academico aun no ha registrado la asesoría!');
 		}
 
+		
+		//buscamos la asesoría debe haber una registro en la base de datos  porque paso la exceptcion anterior
+		$query = $em->createQuery(
+				'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
+		$query->setParameter('id_aca',$practicante->getAcademico()->getId());
+		$query->setParameter('id_pra',$id);
+		
+		$asesoria = $query->getOneOrNullResult();		
+
 		$formularioTipoAsesoria = new AsesoriaType();
 		//se definio una propiedad para determinar que asesoria se esta registrando ver AsesoriaType
 		$formularioTipoAsesoria->setNumeroAsesoria($numase);
@@ -141,7 +150,7 @@ class DefaultController extends Controller
 
 		if ($formulario->isValid()) {
 			//asignamos los id relacionados con este registro de asesoria
-			$asesoria->setAcademico($academico->getId());
+			$asesoria->setAcademico($practicante->getAcademico()->getId());
 			$asesoria->setPracticante($id);
 			
 			//asignamos como entregada en el cronograma del practicante
