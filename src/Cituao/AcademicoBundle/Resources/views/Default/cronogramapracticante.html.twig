@@ -38,14 +38,14 @@
 				<td  class = "colActividad">Asesoría #1</td>
 				<td  class = "colFecha">{{ c.fechaAsesoria1|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria1 == true %}
-					<td  class = "colEstado">ENTREGADO</td>
+					<td  class = "colEstado">Realizada</td>
 					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria1 > date() %}
-					<td  class = "colEstado">AUN FALTA</td>
+					<td  class = "colEstado">Aun falta!</td>
 					<td>-</td>
 				{% else %}
-					<td  class = "colEstado">NO REALIZADA</td>
-					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+					<td  class = "colEstado">Sin realizar</td>
+					<td  class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Realizar</a></td>
 				{% endif %}
 
 			  </tr>
@@ -53,14 +53,19 @@
 				<td>Asesoría #2</td>
 				<td>{{ c.fechaAsesoria2|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria2 == true %}
-					<td  class = "colEstado">ENTREGADO</td>
+					<td  class = "colEstado">Realizada</td>
 					<td  class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 2}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria2 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO REALIZADA</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 2}) }}">Entregar</a></td>
+					<td class = "colEstado">Sin realizar</td>
+					<td class = "colEstado">
+					{% if c.listoAsesoria1 == true %}
+					<a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 2}) }}">Realizar</a></td>
+					{% else %}
+					Aun falta por Asesoria 1</td>
+					{% endif %}				
 				{% endif %}
 
 			  </tr>
@@ -69,14 +74,19 @@
 				<td>Asesoría #3</td>
 				<td>{{ c.fechaAsesoria3|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria3 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Realizada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 3}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria3 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td>-</td>
 				{% else %}
-					<td class = "colEstado">NO REALIZADA</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 3}) }}">Entregar</a></td>
+					<td class = "colEstado">Sin realizar</td>
+					<td class = "colEstado">
+					{% if c.listoAsesoria2 == true %}
+					<a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 3}) }}">Entregar</a></td>
+					{% else %}
+					Aun falta por asesoría 2</td>				
+					{% endif %}
 				{% endif %}
 			  </tr>
 
@@ -84,28 +94,38 @@
 				<td>Asesoría #4</td>
 				<td>{{ c.fechaAsesoria4|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria4 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Realizada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 4}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria4 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO REALIZADA</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 4}) }}">Entregar</a></td>
+					<td class = "colEstado">Sin realizar</td>
+					<td class = "colEstado">
+					{% if c.listoAsesoria3 == true %}
+					<a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 4}) }}">Entregar</a></td>
+					{% else %}
+					Aun falta por asesoría 3</td>	
+					{% endif %}	
 				{% endif %}
 			  </tr>
 			  <tr>
 				<td>Asesoría #5</td>
 				<td>{{ c.fechaAsesoria5|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria5 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Realizada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 5}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria5 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO REALIZADA</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 5}) }}">Entregar</a></td>
+					<td class = "colEstado">Sin realizar</td>
+					<td class = "colEstado">
+					{% if c.listoAsesoria4 == true %}
+					<a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 5}) }}">Entregar</a></td>
+					{% else %}
+					Aun falta por asesoría 4</td>
+					{% endif %}	
 				{% endif %}
 			  </tr>
 
@@ -113,30 +133,39 @@
 				<td>Asesoría #6</td>
 				<td>{{ c.fechaAsesoria6|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria6 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Realizada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 6}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria6 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO REALIZADA</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 6}) }}">Entregar</a></td>
+					<td class = "colEstado">Sin realizar</td>
+					<td class = "colEstado">
+					{% if c.listoAsesoria5 == true %}
+					<a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 6}) }}">Entregar</a></td>
+					{% else %}
+					Aun falta por asesoría 5</td>				
+					{% endif %}
 				{% endif %}
-				
 			  </tr>
 
 			  <tr>
 				<td>Asesoría #7</td>
 				<td>{{ c.fechaAsesoria7|date("d/m/Y") }}</td>
 				{% if c.listoAsesoria7 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Realizada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_consultar_asesoria', { 'id': p.id, 'numase': 7}) }}">Ver</a></td>
 				{% elseif c.fechaAsesoria7 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO REALIZADA</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 7}) }}">Entregar</a></td>
+					<td class = "colEstado">Sin realizar</td>
+					<td class = "colEstado">
+					{% if c.listoAsesoria6 == true %}
+					<a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 7}) }}">Entregar</a></td>
+					{% else %}
+					Aun falta por asesoría 6</td>
+					{% endif %}				
 				{% endif %}
 				
 			  </tr>
@@ -145,14 +174,14 @@
 				<td>Visita presentacion</td>
 				<td>{{ c.fechaVisitaP|date("d/m/Y") }}</td>
 				{% if c.listoVisitaP == true %}
-					<td class = "colEstado">REALIZADA</td>
+					<td class = "colEstado">Realizada</td>
 					<td class = "colEstado">*</td>
 				{% elseif c.fechaVisitaP > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO REALIZADA</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_visitap', { 'id': p.id }) }}">Entregar</a></td>
+					<td class = "colEstado">Sin realizar</td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_visitap', { 'id': p.id }) }}">Realizar</a></td>
 				{% endif %}
 				
 			  </tr>
@@ -161,13 +190,13 @@
 				<td>Evaluación #1</td>
 				<td>{{ c.fechaEvaluacion1|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacion1 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Entregada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver o Actualizar</a></td>
 				{% elseif c.fechaEvaluacion1 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado">Sin entregar</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>
 				{% endif %}
 				
@@ -177,14 +206,19 @@
 				<td>Evaluación #2</td>
 				<td>{{ c.fechaEvaluacion2|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacion2 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Entregada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 2}) }}">Ver o actualizar</a></td>
 				{% elseif c.fechaEvaluacion2 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>	
+					<td class = "colEstado">Sin entregar</td>
+					<td class = "colEstado">
+					{% if c.listoEvaluacion1 == true %}					
+					<a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>					{% else %}
+					Aun falta por evaluación 1!</td>
+					{% endif %}	
+					
 				{% endif %}
 
 			  </tr>
@@ -193,13 +227,13 @@
 				<td>Informe de gestión #1</td>
 				<td>{{ c.fechaInformeGestion1|date("d/m/Y") }}</td>
 				{% if c.listoGestion1 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Entregado</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver</a></td>
 				{% elseif c.fechaInformeGestion1 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>	
 				{% else %}
-					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado">Sin entregar</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Entregar</a></td>
 				{% endif %}
 
@@ -209,14 +243,18 @@
 				<td>Informe de gestión #2</td>
 				<td>{{ c.fechaInformeGestion2|date("d/m/Y") }}</td>
 				{% if c.listoGestion2 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Entregado</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Ver</a></td>
 				{% elseif c.fechaInformeGestion2 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>	
 				{% else %}
-					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>
+					<td class = "colEstado">Sin entregar</td>
+					<td class = "colEstado">
+					{% if c.listoGestion1 == true %}
+					<a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>					{% else %}
+					Aun falta por Inf.Gestión #1!</td>
+					{% endif %}
 				{% endif %}
 
 			  </tr>
@@ -225,14 +263,19 @@
 				<td>Informe de gestión #3</td>
 				<td>{{ c.fechaInformeGestion3|date("d/m/Y") }}</td>
 				{% if c.listoGestion3 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Entregado</td>
 					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>
 				{% elseif c.fechaInformeGestion3 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO ENTREGADO</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>
+					<td class = "colEstado">Sin entregar</td>
+					<td class = "colEstado">
+					{% if c.listoGestion2 == true %}
+					<a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>					{% else %}
+					Aun falta por Inf.Gestión #2!</td>
+					{% endif %}
+					
 				{% endif %}
 
 			  </tr>
@@ -244,7 +287,7 @@
 					<td class = "colEstado">ENTREGADO</td>
 					<td class = "colEstado">Ver</td>
 				{% elseif c.fechaEvaluacionFinal > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">NO ENTREGADO</td>
