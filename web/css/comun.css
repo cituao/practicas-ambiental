@@ -139,6 +139,7 @@ tr {
 display: table-row;
 vertical-align: inherit;
 border-color: inherit;
+height: 40px;
 }
 
 #customers th {
@@ -149,6 +150,10 @@ padding-bottom: 4px;
 background-color: #A80000;
 color: #fff;
 font-weight:bold;
+
+border:1px solid #fff;
+padding:3px 7px 2px 7px;
+
 }
 
 #customers tr.alt td {
@@ -649,7 +654,7 @@ color:#ffffff;
 	text-align: center;
 }
 #tablaCronograma tr{
-	height: 15px;
+	height: 25px;
 }
 
 .colActividad{
