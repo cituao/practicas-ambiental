@@ -57,6 +57,11 @@ class Academico
      */
     private $email;
 
+     /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $emailInstitucional;
+	
     /**
      * @ORM\Column(type="string", length=30)
      */
@@ -246,11 +251,35 @@ class Academico
      *
      * @return string 
      */
+    public function getEmailInstitucional()
+    {
+        return $this->emailInstitucional;
+    }
+
+	    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Academico
+     */
+    public function setEmailInstitucional($email)
+    {
+        $this->emailInstitucional = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
+	
     /**
      * Set perfil
      *

@@ -46,7 +46,12 @@
 			{{ form_errors(formulario.email) }}
 			{{ form_widget(formulario.email, {'attr': {'class':'mediano'}} ) }}
 	   </div>
-		<div>	
+	    <div>
+			{{ form_label(formulario.emailInstitucional) }}
+			{{ form_errors(formulario.emailInstitucional) }}
+			{{ form_widget(formulario.emailInstitucional, {'attr': {'class':'mediano'}} ) }}
+	   </div>
+	   <div>	
 			{{ form_label(formulario.perfil) }}
 			{{ form_errors(formulario.perfil) }}
 			{{ form_widget(formulario.perfil, {'attr': {'class':'mediano'}} ) }}

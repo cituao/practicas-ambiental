@@ -29,6 +29,10 @@ Cituao\AcademicoBundle\Entity\Academico:
             type: string
             length: '50'
             nullable: true
+        emailInstitucional:
+            type: string
+            length: '50'
+            nullable: true
         perfil:
             type: text
             length: '500'

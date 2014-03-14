@@ -11,8 +11,6 @@
 
 
 {% block infowrapper  %}
-	
-	
 	<div id="infoWrapper">
 		<h2 id = "titlee">Cronograma con el practicante</h2>
 		<div id = "menuop">
@@ -24,14 +22,14 @@
 			<div class = "datos">
 			<h3>Practicante:  {{ p.nombres }}  {{ p.apellidos }}</h3>
 			<h3>Centro de práctica: {{ p.centro.nombre }}</h3>
-			<h3>Asesor externo: {{ p.externo.nombres }} {{ p.externo.apellidos }}</h3>
+			<h3>Asesor académico: {{ p.academico.nombres }} {{ p.academico.apellidos }}</h3>
 			</div>
 			<table id = "tablaCronograma">
 			  <tr>
-				<th>ACTIVIDAD</th>
-				<th>FECHA</th>
-				<th>ESTADO</th>
-				<th>ACCION</th>
+				<th>Mis actividades</th>
+				<th>Fecha</th>
+				<th>Estado</th>
+				<th>Acción</th>
 			  </tr>
 			
 

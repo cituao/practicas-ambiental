@@ -40,6 +40,12 @@
 			{{ form_widget(formulario.telefonoFijo, {'attr': {'class':'corto'}} ) }}
 		</div>
 	    <div>
+			{{ form_label(formulario.emailInstitucional) }}
+			{{ form_errors(formulario.emailInstitucional) }}
+			{{ form_widget(formulario.emailInstitucional, {'attr': {'class':'mediano'}} ) }}
+	   </div>
+
+	    <div>
 			{{ form_label(formulario.email) }}
 			{{ form_errors(formulario.email) }}
 			{{ form_widget(formulario.email, {'attr': {'class':'mediano'}} ) }}

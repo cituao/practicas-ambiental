@@ -14,7 +14,8 @@ class AcademicoType extends AbstractType
 		->add('ci','text', array('label' => 'Cédula de identidad:','read_only' => true))	    
 		->add('nombres','text', array('label' => 'Nombres:', 'read_only' => true))
         ->add('apellidos','text', array('label' => 'Apellidos:', 'read_only' => true))
-        ->add('email', 'email',  array('label' => 'Email:',  'attr' => array('placeholder' => 'usuario@servidor'), 'required' => true ))
+		->add('emailInstitucional', 'email',  array('label' => 'Email institucional:',  'attr' => array('placeholder' => 'usuario@servidor') ))
+        ->add('email', 'email',  array('label' => 'Email personal:',  'attr' => array('placeholder' => 'usuario@servidor') ))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil:', 'required' => true))
 		->add('telefonoFijo','text', array('label' => 'Teléfono fijo:'))
 		->add('perfil','textarea', array('label' => 'Perfil', 'max_length' => '500' , 'read_only' => true, 'attr' => array('cols' => '60', 'rows' => '10')));

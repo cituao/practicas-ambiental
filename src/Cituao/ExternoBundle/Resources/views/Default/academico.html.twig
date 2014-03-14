@@ -1,4 +1,4 @@
-{% extends 'CituaoAcademicoBundle::layout.html.twig' %}
+{% extends 'CituaoExternoBundle::layout.html.twig' %}
 
 {% block infowrapper  %}
 	<div id="infoWrapper">
@@ -10,6 +10,8 @@
 			</ul>
 		</div>
 	<form action="" method="post">
+    	<div><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  academico.path) }}" alt="Pulpit rock" width="114" height="144"></div>
+	
 		<div>
 		<label>Asesor:</label>
 		<input type="text" value = "{{ academico.getNombreCompleto }}" readonly class = "largo">
@@ -26,7 +28,12 @@
 		</div>
 
 		<div>	
-		<label>Email:</label>
+		<label>Email institucional:</label>
+		<input type="text" value = "{{ academico.emailInstitucional }}" readonly>
+		</div>
+
+		<div>	
+		<label>Email personal:</label>
 		<input type="text" value = "{{ academico.email }}" readonly>
 		</div>
 
