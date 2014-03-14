@@ -1,0 +1,23 @@
+Cituao\AcademicoBundle\Entity\Informefinalacademico:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        academico:
+            type: integer
+        practicante:
+            type: integer
+        metodologia:
+            type: text
+            nullable: true 
+        competencia:
+            type: text
+            null: true
+        recomendaciones:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -291,7 +291,12 @@
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin entregar</td>
-					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+					<td class = "colEstado">
+					{% if c.listoGestion3 == true %}					
+					<a href="{{ path('cituao_academico_registrar_informefinal', { 'id': p.id}) }}">Entregar</a></td>
+					{% else %}
+					Aun falta por Inf. Gestion %3!</td>	
+					{% endif %}
 				{% endif %}
 				
 			  </tr>

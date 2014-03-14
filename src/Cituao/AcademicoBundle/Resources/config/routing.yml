@@ -34,3 +34,7 @@ cituao_academico_registrar_cualicuanti:
     path:  /academico/registrarcualicuanti/practicante={id}&cuali={numcua}
     defaults: { _controller: CituaoAcademicoBundle:Default:registrarCualicuanti }
 
+cituao_academico_registrar_informefinal:
+    path:  /academico/registrarinformefinal/practicante={id}
+    defaults: { _controller: CituaoAcademicoBundle:Default:registrarInformafinal }
+

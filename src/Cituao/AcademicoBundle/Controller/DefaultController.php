@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Response;
 
 use Cituao\AcademicoBundle\Entity\Academico;
+use Cituao\AcademicoBundle\Entity\Informefinalacademico;
 use Cituao\CoordBundle\Entity\Asesoria;
 use Cituao\AcademicoBundle\Entity\Cualicuanti;
 use Cituao\AcademicoBundle\Form\Type\AcademicoType;
@@ -15,6 +16,7 @@ use Cituao\AcademicoBundle\Form\Type\AsesoriaType;
 use Cituao\AcademicoBundle\Form\Type\Evaluacion1Type;
 use Cituao\AcademicoBundle\Form\Type\Evaluacion2Type;
 use Cituao\AcademicoBundle\Form\Type\CualicuantiType;
+use Cituao\AcademicoBundle\Form\Type\InformefinalType;
 
 class DefaultController extends Controller
 {
@@ -424,4 +426,47 @@ class DefaultController extends Controller
 
 		return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
 	}
+
+	public function registrarInformafinalAction($id){
+		$usuario = $this->get('security.context')->getToken()->getUser();
+		$peticion = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $usuario->getUsername()));
+		//buscamos el informe  para actualizar 
+		$query = $em->createQuery(
+				'SELECT i FROM CituaoAcademicoBundle:Informefinalacademico i WHERE i.practicante =:id_pra ');
+		$query->setParameter('id_pra',$id);
+		
+		$informe = $query->getOneOrNullResult();
+		//si no hay informes creamos una instancia de informe final
+		if ($informe == NULL) $informe = new Informefinalacademico();
+	
+        $formulario = $this->createForm(new InformefinalType(), $informe);
+        $formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+            // Completar las propiedades que el usuario no rellena en el formulario
+			$informe->setPracticante($practicante->getId());
+			$em->persist($informe);
+
+			$query = $em->createQuery(
+					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$id);
+			$cronograma = $query->getOneOrNullResult();
+			
+			$cronograma->setListoEvaluacionFinal(true);
+			$em->persist($cronograma);
+
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('cituao_academico_homepage'));
+        }
+		$datos = array('id' => $id);
+        return $this->render('CituaoAcademicoBundle:Default:forminformefinal.html.twig', array(
+            'formulario' => $formulario->createView(), 'datos' => $datos
+        ));
+	
+	}	
 }
