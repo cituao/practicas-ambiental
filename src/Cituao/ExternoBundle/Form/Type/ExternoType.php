@@ -11,14 +11,15 @@ class ExternoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		->add('ci','text', array('label' => 'Cédula de identidad:','required' => true))	    
-		->add('nombres','text', array('label' => 'Nombres:', 'required' => true))
-        ->add('apellidos','text', array('label' => 'Apellidos:', 'required' => true))
+		->add('ci','text', array('label' => 'Cédula de identidad:','read_only' => true))	    
+		->add('nombres','text', array('label' => 'Nombres:', 'read_only' => true))
+        ->add('apellidos','text', array('label' => 'Apellidos:', 'read_only' => true))
         ->add('email', 'email',  array('label' => 'Email:',  'attr' => array('placeholder' => 'usuario@servidor'), 'required' => true ))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil:', 'required' => true))
 		->add('telefonoFijo','text', array('label' => 'Teléfono fijo:'))
-		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'empty_value' => 'Seleccione un centro de prácticas'))		
+		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre' ,'disabled' => true))		
 		->add('cargo','text', array('label' => 'Cargo:', 'required' => true));
+		//->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'empty_value' => 'Seleccione un centro de prácticas'))		
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

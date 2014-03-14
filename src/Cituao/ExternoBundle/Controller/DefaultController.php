@@ -8,7 +8,7 @@ use Cituao\ExternoBundle\Entity\Evaluacion1;
 use Cituao\ExternoBundle\Entity\Evaluacion2;
 use Cituao\ExternoBundle\Form\Type\Evaluacion1Type;
 use Cituao\ExternoBundle\Form\Type\Evaluacion2Type;
-
+use Cituao\ExternoBundle\Form\Type\ExternoType;
 
 
 class DefaultController extends Controller
@@ -19,7 +19,34 @@ class DefaultController extends Controller
 		
     }
 
-		//*******************************************************/
+	
+	//*********************************************
+	//Muestra formulario para ver y actualizar datos del asesor externo
+	//*********************************************
+	public function actualizarAction(){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
+		$externo = $repository->findOneBy(array('ci' => $ci));
+		
+        $formulario = $this->createForm(new ExternoType(), $externo);
+		$formulario->handleRequest($peticion);
+
+        if ($formulario->isValid()) {
+            // Completar las propiedades que el usuario no rellena en el formulario
+			//if ($academico->getFile() == NULL)  $academico->setPath('user.jpeg');
+            $em->persist($externo);
+            $em->flush();
+            return $this->redirect($this->generateUrl('cituao_externo_homepage'));
+        }
+		
+        return $this->render('CituaoExternoBundle:Default:formexterno.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
+	}		
+	
+	//*******************************************************/
 	//Listar los practicantes del asesor academico
 	/********************************************************/	
 	public function practicantesAction(){
@@ -144,6 +171,12 @@ class DefaultController extends Controller
 			return $this->render('CituaoExternoBundle:Default:formevaluacion2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
 			
 }
+
+
+
+
+
+
 	public function registrarConformidadAction(){
 
 

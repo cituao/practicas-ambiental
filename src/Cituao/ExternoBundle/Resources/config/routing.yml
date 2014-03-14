@@ -17,3 +17,7 @@ cituao_externo_registrar_evaluacion:
 cituao_externo_registrar_conformidad:
     path:  /externo/registrarconformidad/practicante={id}
     defaults: { _controller: CituaoExternoBundle:Default:registrarConformidad }
+
+cituao_externo_actualizar:
+    path:  /externo/mis-datos
+    defaults: { _controller: CituaoExternoBundle:Default:actualizar }
