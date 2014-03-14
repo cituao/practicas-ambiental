@@ -427,6 +427,9 @@ class DefaultController extends Controller
 		return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
 	}
 
+	//*********************************************************************************************
+	// Muestra un formulario para registrar y actualizar el informe final del asesor academico
+	//**********************************************************************************************
 	public function registrarInformafinalAction($id){
 		$usuario = $this->get('security.context')->getToken()->getUser();
 		$peticion = $this->getRequest();
@@ -481,4 +484,17 @@ class DefaultController extends Controller
 		
 		return $this->render('CituaoAcademicoBundle:Default:externo.html.twig', array('externo' => $externo));
 	}
+	
+	//************************************************************
+	//Muestra la informacion del asesor externo al practicnate
+	//*************************************************************
+	public function vercentroAction($id){
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+		$centro = $repository->findOneById($id);
+	
+		
+		return $this->render('CituaoAcademicoBundle:Default:centro.html.twig', array('centro' => $centro));
+	}
+	
 }

@@ -42,3 +42,6 @@ cituao_academico_verasesorexterno:
     path:  /academico/asesorexterno/externo={id}
     defaults: { _controller: CituaoAcademicoBundle:Default:verasesorExterno }
 
+cituao_academico_vercentro:
+    path:  /academico/centro-de-practica/practica={id}
+    defaults: { _controller: CituaoAcademicoBundle:Default:vercentro }
