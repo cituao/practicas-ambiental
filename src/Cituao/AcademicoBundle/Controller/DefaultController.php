@@ -331,7 +331,20 @@ class DefaultController extends Controller
 		$academico = $repository->findOneBy(array('ci' => $ci));
 		
 
-		//buscamos si ya evaluo el asesor externo
+		//buscamos si ya fue registrado por el practicante para que el asesor academico comente
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneById($id);
+
+		$sw = false;
+		if ($practicante->getListoGestion1() == false && $numcua == 1) $sw=true;
+		if ($practicante->getListoGestion2() == false && $numcua == 2) $sw=true;
+		if ($practicante->getListoGestion3() == false && $numcua == 3) $sw=true;
+
+		if ($sw == true){
+			throw $this->createNotFoundException('El practicante no ha registrado el informe de Gestión!');
+		}
+
+
 		$query = $em->createQuery(
 				'SELECT a FROM CituaoAcademicoBundle:Cualicuanti a WHERE a.practicante =:id_pra AND a.academico =:id_aca AND a.cualicuanti =:numcua');
 		$query->setParameter('id_pra',$id);
