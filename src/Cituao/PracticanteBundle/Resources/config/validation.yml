@@ -1,8 +1,8 @@
-Cituao\AcademicoBundle\Entity\Cualicuanti:
- properties:
- acividad1:
- - NotBlank: ~
- - Type:
- type: text
- message: El valor no es un codigo valido
- 
+Cituao\PracticanteBundle\Entity\Docpdf:
+    properties:
+        file:
+            - File:
+                maxSize: 2024k
+                mimeTypes: [aplication/pdf]
+                mimeTypesMessage: Por favor suba un PDF!
+                uploadErrorMessage: El archivo no puede ser cargado!

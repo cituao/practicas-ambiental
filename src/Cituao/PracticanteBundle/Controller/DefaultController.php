@@ -10,7 +10,7 @@ use Cituao\AcademicoBundle\Entity\Cualicuanti;
 use Cituao\PracticanteBundle\Form\Type\CualicuantiType;
 use Cituao\PracticanteBundle\Entity\Informefinalpracticante;
 use Cituao\PracticanteBundle\Form\Type\InformefinalType;
-use Cituao\CoordBundle\Entity\Document;
+use Cituao\PracticanteBundle\Entity\Docpdf;
 
 class DefaultController extends Controller
 {
@@ -308,7 +308,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $usuario->getUsername()));
+		$practicante = $repository->findOneBy(array('codigo' => $usuario->getUsername()));
 		//buscamos el informe  para actualizar 
 		$query = $em->createQuery(
 				'SELECT i FROM CituaoPracticanteBundle:Informefinalpracticante i WHERE i.practicante =:id_pra ');
@@ -342,11 +342,18 @@ class DefaultController extends Controller
 	public function subirProyectoAction(){
 	
 		$request = $this->getRequest();
+
+		$usuario = $this->get('security.context')->getToken()->getUser();
+		$peticion = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('codigo' => $usuario->getUsername()));
 		
-		$document = new Document();
+		$document = new Docpdf();
 		$form = $this->createFormBuilder($document)
 		    ->add('file')
-			->add('name')
+			//->add('name')
 		    ->getForm();
 
 		$form->handleRequest($request);
@@ -354,13 +361,18 @@ class DefaultController extends Controller
 		if ($form->isValid()) {
      		//levantar servicios de doctrine base de datos
 			$em = $this->getDoctrine()->getManager();
-
+			$document->setPath($practicante->getCodigo().'.pdf' );
+			$practicante->setPathPdf($practicante->getCodigo().'.pdf');
+			$practicante->setListoProyecto(true);
+		
 			//se copia el archivo al directorio del servidor			
 			$document->upload();
 
-		    $em->persist($document);
 
-		
+		    $em->persist($document);
+			$em->persist($practicante);
+
+			$em->flush();
 			return $this->render('CituaoPracticanteBundle:Default:index.html.twig');
 		}		
 		
