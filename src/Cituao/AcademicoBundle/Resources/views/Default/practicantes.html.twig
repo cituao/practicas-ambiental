@@ -50,13 +50,7 @@
 						<td>{{ practicante.telefonoMovil }}</td>
 						<td><a href="{{ path('cituao_academico_verasesorexterno', { 'id': practicante.externo.id}) }}">{{ practicante.externo.nombreCompleto }}</a></td>
 						<td><a href="{{ path('cituao_academico_vercentro', { 'id': practicante.centro.id}) }}">{{ practicante.centro.nombre }}</a></td>
-						<td><a href="{{ path('cituao_academico_cronograma', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" </a></td>
-
-						
-						
-						
-						
-						
+						<td><a href="{{ path('cituao_academico_cronograma', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" ></a></td>
 					</tr>
 					{% set id = id + 1 %}
 				{% endfor %}

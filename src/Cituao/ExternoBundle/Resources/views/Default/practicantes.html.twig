@@ -19,13 +19,14 @@
 			<tbody>
 				<tr>
 					<th>#</th>
-					<th>FOTO</th>
-					<th>NOMBRES</th>
-					<th>APELLIDOS</th>
-					<th>EMAIL INSTITUCIONAL</th>
-					<th>EMAIL PERSONAL</th>
-					<th>TELEFONO MOVIL</th>
-					<th>ACCION</th>
+					<th>Foto</th>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Email institucional</th>
+					<th>Email personal</th>
+					<th>Teléfono móvil</th>
+					<th>Asesor académico</th>
+					<th>Acción</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -46,7 +47,8 @@
 						<td>{{ practicante.emailInstitucional }}</td>
 						<td>{{ practicante.emailPersonal }}</td>
 						<td>{{ practicante.telefonoMovil }}</td>
-						<td><a href="{{ path('cituao_externo_cronograma', { 'id': practicante.id}) }}">Ver cronograma</a></td>
+						<td><a href="{{ path('cituao_externo_verasesoracademico', { 'id': practicante.academico.id}) }}">{{ practicante.academico.nombreCompleto }}</a></td>
+						<td><a href="{{ path('cituao_externo_cronograma', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" ></a></td>
 
 					</tr>
 					{% set id = id + 1 %}

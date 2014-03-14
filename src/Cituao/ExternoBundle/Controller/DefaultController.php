@@ -172,8 +172,14 @@ class DefaultController extends Controller
 			
 }
 
-
-
+	//************************************************************
+	//Muestra la informacion del asesor academico del practicante
+	//*************************************************************
+	public function verasesorAcademicoAction($id){
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneById($id);
+		return $this->render('CituaoExternoBundle:Default:academico.html.twig', array('academico' => $academico));
+	}
 
 
 

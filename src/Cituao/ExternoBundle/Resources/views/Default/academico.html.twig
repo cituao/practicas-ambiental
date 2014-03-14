@@ -1,0 +1,36 @@
+{% extends 'CituaoAcademicoBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Consulta de asesor académico</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+	<form action="" method="post">
+		<div>
+		<label>Asesor:</label>
+		<input type="text" value = "{{ academico.getNombreCompleto }}" readonly class = "largo">
+		</div>
+		
+		<div>	
+		<label>Teléfono movil:</label>
+		<input type="text" value = "{{ academico.telefonoMovil }}" readonly>
+		</div>
+
+		<div>	
+		<label>Teléfono fijo:</label>
+		<input type="text" value = "{{ academico.telefonoFijo }}" readonly>
+		</div>
+
+		<div>	
+		<label>Email:</label>
+		<input type="text" value = "{{ academico.email }}" readonly>
+		</div>
+
+		
+	</form>	
+	</div>
+{% endblock %}
