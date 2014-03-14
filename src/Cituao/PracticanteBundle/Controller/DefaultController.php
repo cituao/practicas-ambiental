@@ -66,9 +66,9 @@ class DefaultController extends Controller
 	//*********************************************
 	public function cronogramaAction(){
 		$user = $this->get('security.context')->getToken()->getUser();
-		$ci =  $user->getUsername();
+		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $ci));
+		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 
 		/*$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery(
@@ -93,9 +93,9 @@ class DefaultController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		// buscamos el practicante
 		$user = $this->get('security.context')->getToken()->getUser();
-		$ci =  $user->getUsername();
+		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $ci));
+		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 
 		//buscamos  si el academico ya la registro
 		$query = $em->createQuery(
@@ -193,9 +193,9 @@ class DefaultController extends Controller
 
 		// buscamos el ID del asesor academico
 		$user = $this->get('security.context')->getToken()->getUser();
-		$ci =  $user->getUsername();
+		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $ci));
+		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 		
 		//determinamos si ya fue registrado el informe en la base de datos si es positivo es una actualizacion
 		$sw = false;
@@ -259,9 +259,9 @@ class DefaultController extends Controller
 
 		// buscamos el ID del asesor academico
 		$user = $this->get('security.context')->getToken()->getUser();
-		$ci =  $user->getUsername();
+		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $ci));
+		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 	
 		
 		return $this->render('CituaoPracticanteBundle:Default:academico.html.twig', array('academico' => $practicante->getAcademico()));
@@ -275,9 +275,9 @@ class DefaultController extends Controller
 
 		// buscamos el ID del asesor academico
 		$user = $this->get('security.context')->getToken()->getUser();
-		$ci =  $user->getUsername();
+		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $ci));
+		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 	
 		
 		return $this->render('CituaoPracticanteBundle:Default:externo.html.twig', array('externo' => $practicante->getExterno()));
@@ -291,9 +291,9 @@ class DefaultController extends Controller
 
 		// buscamos el ID del asesor academico
 		$user = $this->get('security.context')->getToken()->getUser();
-		$ci =  $user->getUsername();
+		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('ci' => $ci));
+		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 	
 		
 		return $this->render('CituaoPracticanteBundle:Default:centro.html.twig', array('centro' => $practicante->getCentro()));
