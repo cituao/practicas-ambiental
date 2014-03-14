@@ -469,4 +469,16 @@ class DefaultController extends Controller
         ));
 	
 	}	
+
+	//************************************************************
+	//Muestra la informacion del asesor externo al practicnate
+	//*************************************************************
+	public function verasesorExternoAction($id){
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
+		$externo = $repository->findOneById($id);
+	
+		
+		return $this->render('CituaoAcademicoBundle:Default:externo.html.twig', array('externo' => $externo));
+	}
 }

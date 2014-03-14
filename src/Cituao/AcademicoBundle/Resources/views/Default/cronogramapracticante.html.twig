@@ -14,7 +14,7 @@
 	
 	
 	<div id="infoWrapper">
-		<h2 id = "titlee">Cronograma con el practicante</h2>
+		<h2 id = "titlee">Mi Cronograma de actividades</h2>
 		<div id = "menuop">
 			<ul>
 			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
@@ -28,10 +28,10 @@
 			</div>
 			<table id = "tablaCronograma">
 			  <tr>
-				<th>ACTIVIDAD</th>
-				<th>FECHA</th>
-				<th>ESTADO</th>
-				<th>ACCION</th>
+				<th>Mis actividades</th>
+				<th>Fechas</th>
+				<th>Estado de la actividad</th>
+				<th>Acción</th>
 			  </tr>
 			
 			  <tr>
@@ -295,7 +295,7 @@
 					{% if c.listoGestion3 == true %}					
 					<a href="{{ path('cituao_academico_registrar_informefinal', { 'id': p.id}) }}">Entregar</a></td>
 					{% else %}
-					Aun falta por Inf. Gestion %3!</td>	
+					Aun falta por Inf. Gestion #3!</td>	
 					{% endif %}
 				{% endif %}
 				

@@ -38,3 +38,7 @@ cituao_academico_registrar_informefinal:
     path:  /academico/registrarinformefinal/practicante={id}
     defaults: { _controller: CituaoAcademicoBundle:Default:registrarInformafinal }
 
+cituao_academico_verasesorexterno:
+    path:  /academico/asesorexterno/externo={id}
+    defaults: { _controller: CituaoAcademicoBundle:Default:verasesorExterno }
+
