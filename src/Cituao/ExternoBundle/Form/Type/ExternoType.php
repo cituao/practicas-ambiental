@@ -17,7 +17,7 @@ class ExternoType extends AbstractType
         ->add('email', 'email',  array('label' => 'Email:',  'attr' => array('placeholder' => 'usuario@servidor'), 'required' => true ))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil:', 'required' => true))
 		->add('telefonoFijo','text', array('label' => 'Teléfono fijo:'))
-		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre' ,'disabled' => true))		
+		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'disabled' => true ))		
 		->add('cargo','text', array('label' => 'Cargo:', 'required' => true));
 		//->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'empty_value' => 'Seleccione un centro de prácticas'))		
 		}

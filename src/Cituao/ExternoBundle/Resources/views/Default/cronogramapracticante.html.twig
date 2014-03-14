@@ -37,13 +37,13 @@
 				<td>Evaluación #1</td>
 				<td>{{ c.fechaEvaluacion1|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacion1 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Entregada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 1}) }}">Ver o Actualizar</a></td>
 				{% elseif c.fechaEvaluacion1 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado">Sin entregar!</td>
 					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>
 				{% endif %}
 				
@@ -53,13 +53,13 @@
 				<td>Evaluación #2</td>
 				<td>{{ c.fechaEvaluacion2|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacion2 == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Entregada</td>
 					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 2}) }}">Ver o actualizar</a></td>
 				{% elseif c.fechaEvaluacion2 > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado">Sin entregar!</td>
 					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>	
 				{% endif %}
 
@@ -69,13 +69,13 @@
 				<td>Acta de conformidad</td>
 				<td>{{ c.fechaActa|date("d/m/Y") }}</td>
 				{% if c.listoActa == true %}
-					<td class = "colEstado">ENTREGADO</td>
+					<td class = "colEstado">Entregada</td>
 					<td class = "colEstado">Ver</td>
 				{% elseif c.fechaActa > date() %}
-					<td class = "colEstado">AUN FALTA</td>
+					<td class = "colEstado">Aun falta</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					<td class = "colEstado">NO ENTREGADO</td>
+					<td class = "colEstado">Sin entregar!</td>
 					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_conformidad', { 'id': p.id }) }}">Entregar</a></td>
 				{% endif %}
 				

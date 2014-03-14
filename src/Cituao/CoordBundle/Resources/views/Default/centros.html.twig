@@ -18,12 +18,12 @@
 			<tbody>
 				<tr>
 					<th>#</th>
-					<th>CENTRO DE PRACTICA</th>
-					<th>DIRECCION</th>
-					<th>TELEFONO</th>
-					<th>EXTENSION</th>
-					<th>EMAIL</th>
-					<th>DIRECCION WEB</th>
+					<th>Centro de práctica</th>
+					<th>Dirección</th>
+					<th>Teléfono</th>
+					<th>Extensión</th>
+					<th>Email</th>
+					<th>Dirección web</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -42,7 +42,7 @@
 						<td>{{ centro.telefono }}</td>
 						<td>{{ centro.extension }}</td>
 						<td>{{ centro.email }}</td>
-						<td><a href ="{{ centro.url }}" target="_blank">{{ centro.url }}</a></td>
+						<td><a href =centro.url target="_blank">{{ centro.url }}</a></td>
 						<td><a href="{{ path('cituao_coord_centro', { 'codigo': centro.id}) }}"> Ver y modificar </a></td>
 					</tr>
 					{% set id = id + 1 %}

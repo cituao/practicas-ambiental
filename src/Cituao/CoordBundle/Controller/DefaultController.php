@@ -13,7 +13,7 @@ use Cituao\UsuarioBundle\Entity\Role;
 use Cituao\ExternoBundle\Entity\Externo;
 use Cituao\CoordBundle\Form\Type\PracticanteType;
 use Cituao\CoordBundle\Form\Type\CoordinadorType;
-use Cituao\ExternoBundle\Form\Type\ExternoType;
+use Cituao\CoordBundle\Form\Type\ExternoType;
 use Cituao\AcademicoBundle\Entity\Academico;
 use Cituao\AcademicoBundle\Entity\Cronograma;
 use Cituao\ExternoBundle\Entity\Cronogramaexterno;
