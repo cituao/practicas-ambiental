@@ -64,11 +64,12 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 		
         if ($formulario->isValid()) {
-			$practicante->upload();	
-			$practicante->setEstado("0");  //es practicante sin cronograma
 			//si subio no subio foto  le carga la foto generica
 			if ($practicante->getFile() == NULL) 
 				$practicante->setPath('user.jpeg');
+
+			$practicante->upload();	
+			$practicante->setEstado("0");  //es practicante sin cronograma
 		
 			// Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($practicante);

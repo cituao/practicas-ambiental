@@ -42,7 +42,7 @@
 						<td>{{ centro.telefono }}</td>
 						<td>{{ centro.extension }}</td>
 						<td>{{ centro.email }}</td>
-						<td>{{ centro.url }}</td>
+						<td><a href ="{{ centro.url }}" target="_blank">{{ centro.url }}</a></td>
 						<td><a href="{{ path('cituao_coord_centro', { 'codigo': centro.id}) }}"> Ver y modificar </a></td>
 					</tr>
 					{% set id = id + 1 %}
