@@ -125,14 +125,27 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 		
-				
+		//buscamos registro de usuario para actualizar username y password
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+		$usuario = $repository->findOneBy(array('username' => $codigo));
+		
         $formulario = $this->createForm(new PracticanteType(), $practicante);
 		$formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
 			$practicante->upload();				
             // Completar las propiedades que el usuario no rellena en el formulario
+			$usuario->setUsername($practicante->getCodigo());
+			$usuario->setPassword($practicante->getCi());
+			$usuario->setSalt(md5(time()));
+			//codificamos el password			
+			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$usuario->setPassword($passwordCodificado);
+	
+	
             $em->persist($practicante);
+			$em->persist($usuario);
             $em->flush();
 
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
