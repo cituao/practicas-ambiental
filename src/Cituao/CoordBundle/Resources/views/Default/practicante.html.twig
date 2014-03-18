@@ -6,7 +6,7 @@
 		<div id = "menuop">
 			<ul>
 			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			<li><a href="{{ path('cituao_coord_cronograma' , { 'codigo': practicante.codigo}) }}" class = "baropcion">Calendario</a></li>
+			<li><a href="{{ path('cituao_coord_cronograma' , { 'codigo': practicante.codigo}) }}" class = "baropcion">Crear cronograma</a></li>
 			
 			</ul>
 		</div>
@@ -15,17 +15,65 @@
 			<div>{{ form_errors(formulario) }}</div>	
 			<div><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="114" height="144"></div>
 			<div>{{ form_row(formulario.file) }}</div>
-			<div>{{ form_row(formulario.codigo) }}</div>
-			<div>{{ form_row(formulario.apellidos) }}</div>
-			<div>{{ form_row(formulario.nombres) }}</div>
-			<div>{{ form_row(formulario.ci) }}</div>
-			<div>{{ form_row(formulario.emailInstitucional) }}	</div>
-			<div>{{ form_row(formulario.emailPersonal) }}	</div>
-			<div>{{ form_row(formulario.telefonoMovil) }}</div>
-			<div>{{ form_row(formulario.area) }}</div>
-			<div>{{ form_row(formulario.fechaMatriculacion) }}</div>
-			{{ form_rest(formulario) }}
-			<input class="boton" type="submit" value="Guardar" />
+
+			<div>	
+				{{ form_label(formulario.ci) }}
+				{{ form_widget(formulario.ci, {'attr': {'class':'corto'}} ) }}
+				{{ form_errors(formulario.ci) }}
+			</div>
+
+			<div>	
+				{{ form_label(formulario.codigo) }}
+				{{ form_widget(formulario.codigo, {'attr': {'class':'corto'}} ) }}
+				{{ form_errors(formulario.codigo) }}
+			</div>
+			
+			<div>	
+				{{ form_label(formulario.nombres) }}
+				{{ form_widget(formulario.nombres, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.nombres) }}
+			</div>
+			
+			<div>	
+				{{ form_label(formulario.apellidos) }}
+				{{ form_widget(formulario.apellidos, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.apellidos) }}
+			</div>
+
+			<div>	
+				{{ form_label(formulario.emailInstitucional) }}
+				{{ form_widget(formulario.emailInstitucional, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.emailInstitucional) }}
+			</div>
+
+			<div>	
+				{{ form_label(formulario.emailPersonal) }}
+				{{ form_widget(formulario.emailPersonal, {'attr': {'class':'mediano'}} ) }}
+				{{ form_errors(formulario.emailPersonal) }}
+			</div>
+
+			<div>	
+				{{ form_label(formulario.telefonoMovil) }}
+				{{ form_widget(formulario.telefonoMovil, {'attr': {'class':'corto'}} ) }}
+				{{ form_errors(formulario.telefonoMovil) }}
+			</div>
+
+			<div>	
+				{{ form_label(formulario.area) }}
+				{{ form_widget(formulario.area) }}
+				{{ form_errors(formulario.area) }}
+			</div>
+
+			<div>	
+				{{ form_label(formulario.fechaMatriculacion) }}
+				{{ form_widget(formulario.fechaMatriculacion) }}
+				{{ form_errors(formulario.fechaMatriculacion) }}
+			</div>
+
+			
+			{{ form_rest(formulario) }}			
+			
+			<input class="boton" type="submit" value="Guardar cambios" />
 		</form>
 	</div>
 {% endblock %}

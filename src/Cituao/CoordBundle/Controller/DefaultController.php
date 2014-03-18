@@ -62,13 +62,25 @@ class DefaultController extends Controller
 		$practicante = new Practicante();
         $formulario = $this->createForm(new PracticanteType(), $practicante);
 		$formulario->handleRequest($peticion);
+	
+		//validamos que no existe la cédula y el código
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$p = $repository->findOneBy(array('codigo' => $practicante->getCodigo()));
+	
+		if ($p != NULL){
+			throw $this->createNotFoundException('¡El código ingresado ya existe!');
+		}else{
+			$p = $repository->findOneBy(array('ci' => $practicante->getCi()));
+			if ($p != NULL)  throw $this->createNotFoundException('¡La cédula de identidad ya existe!');
+		}
 		
         if ($formulario->isValid()) {
-			//si subio no subio foto  le carga la foto generica
-			if ($practicante->getFile() == NULL) 
-				$practicante->setPath('user.jpeg');
+			//si subio no subio foto  le asignamos una foto generica
+			if ($practicante->getFile() == NULL) 	$practicante->setPath('user.jpeg');
 
-			$practicante->upload();	
+			//subimos la foto al servidor
+			$practicante->upload();
+			
 			$practicante->setEstado("0");  //es practicante sin cronograma
 		
 			// Completar las propiedades que el usuario no rellena en el formulario
@@ -92,23 +104,20 @@ class DefaultController extends Controller
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
             $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
+			//guardamos usuario
      		 $em->persist($usuario);
 
             $em->flush();
 
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
             return $this->redirect($this->generateUrl('cituao_coord_homepage'));
         }
         return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView()));
 	}
 
 
-	/********************************************************/
-	//Muestra un practicante registrado en la base de datos
-	/********************************************************/		
+	/**********************************************************************/
+	//Muestra y modifica un practicante registrado en la base de datos
+	/**********************************************************************/		
 	public function practicanteAction($codigo){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();

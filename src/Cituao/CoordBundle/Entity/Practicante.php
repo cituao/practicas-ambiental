@@ -23,26 +23,31 @@ class Practicante
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
-     * @Assert\NotBlank(message="El apellido es obligatorio")
+     * @Assert\NotBlank(message="Es obligatorio!")
+	 * @Assert\Regex(pattern="/^\d+$/", match=true, message="Código inválido!")
+
      */
     private $codigo;
 
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\NotBlank(message="El apellido es obligatorio")
+	 * @Assert\NotBlank(message="Es obligatorio!")
+	 * @Assert\Regex(pattern="/\d/", match=false, message="Apellido inválido!")
      */
    private $apellidos;
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\NotBlank(message="El nombre es obligatorio")
+	 * @Assert\NotBlank(message="Es obligatorio!")
+	 * @Assert\Regex(pattern="/\d/", match=false, message="Nombre inválido!")
      */
     private $nombres;
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
-	 * @Assert\NotBlank(message="La cédula de identidad es obligatorio")
+	 * @Assert\NotBlank(message="Es obligatorio!")
+	 * @Assert\Regex(pattern="/^\d+$/", match=true, message="Cédula inválida!")
      */
     private $ci;
 
@@ -53,7 +58,7 @@ class Practicante
 
     /**
      * @ORM\Column(type="date")
-	 * @Assert\NotBlank(message= "La fecha de matriculación es  necesaria")
+	 * @Assert\NotBlank(message= "Es obligatorio!")
 	 */
     private $fechaMatriculacion;
 
@@ -64,13 +69,13 @@ class Practicante
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\Email(message = "No es un email valido")
+	 * @Assert\Email(message = "Email inválido!")
 	 */
     private $emailInstitucional;
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\Email(message = "No es un email valido")
+	 * @Assert\Email(message = "Email inválido!")
 	 */
     private $emailPersonal;
 
@@ -960,9 +965,6 @@ public function getAbsolutePath()
 		    $nombre
 		);
 		//$this->getFile()->getClientOriginalName()
-		
-		
-		
 		// set the path property to the filename where you've saved the file
 		//$this->path = $this->getFile()->getClientOriginalName();
 		$this->path = $nombre;

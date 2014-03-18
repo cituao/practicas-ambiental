@@ -59,6 +59,34 @@ ul li, ol li {
 	
 }
 
+
+/*para los form error validation*/
+div ul{
+    margin-left: 1em;
+    padding-left: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-right: 1px;
+	height:40px;
+	float: left;
+	font-size: 1.2em;
+
+}
+
+div ul li {
+    margin-top: 5px;
+    padding-left: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 3px;
+	height:15px;
+	width:150px;
+	float:left;
+	font-size: 0.7em;
+	color: #B80000;
+	font-weight: bold;
+}
+
 dl dt {
     font-weight: bold;
 }
