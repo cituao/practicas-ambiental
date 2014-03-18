@@ -11,10 +11,13 @@ Cituao\ExternoBundle\Entity\Evaluacion1:
             type: integer
         practicante:
             type: integer
+            unique: true
         proceso:
             type: text
+            nullable: true
         herramientas:
             type: text
+            nullable: true
         dl21:
             type: string
             length: '15'

@@ -14,13 +14,10 @@ Cituao\ExternoBundle\Entity\Cronogramaexterno:
             unique: true
         fechaEvaluacion1:
             type: date
-            nullable: true
         fechaEvaluacion2:
             type: date
-            nullable: true
         fechaActa:
             type: date
-            nullable: true
         listoEvaluacion1:
             type: boolean
             nullable: true

@@ -20,15 +20,19 @@ Cituao\ExternoBundle\Entity\Externo:
         telefonoMovil:
             type: string
             length: '15'
+            nullable: true
         telefonoFijo:
             type: string
             length: '15'
+            nullable: true
         email:
             type: string
             length: '50'
+            nullable: true
         cargo:
             type: string
-            length: '30'    
+            length: '30'
+            nullable: true
     manyToOne:
         centro:
             targetEntity: Cituao\CoordBundle\Entity\Centro

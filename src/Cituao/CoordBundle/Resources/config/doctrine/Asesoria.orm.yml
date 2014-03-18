@@ -9,6 +9,7 @@ Cituao\CoordBundle\Entity\Asesoria:
                 strategy: AUTO
         practicante:
             type: integer
+            unique: true
         academico:
             type: integer
         docAsesor1:

@@ -11,12 +11,13 @@ Cituao\AcademicoBundle\Entity\Informefinalacademico:
             type: integer
         practicante:
             type: integer
+            unique: true
         metodologia:
             type: text
             nullable: true 
         competencia:
             type: text
-            null: true
+            nullable: true
         recomendaciones:
             type: text
             nullable: true

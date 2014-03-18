@@ -141,6 +141,7 @@ Cituao\CoordBundle\Entity\Practicante:
         path:
             type: string
             length: '30'
+            nullable: true
     manyToOne:
         externo:
             targetEntity: Cituao\ExternoBundle\Entity\Externo

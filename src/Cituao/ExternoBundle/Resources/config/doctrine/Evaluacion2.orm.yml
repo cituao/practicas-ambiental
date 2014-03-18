@@ -11,6 +11,7 @@ Cituao\ExternoBundle\Entity\Evaluacion2:
             type: integer
         practicante:
             type: integer
+            unique: true
         cumplido:
             type: text
             nullable: true
