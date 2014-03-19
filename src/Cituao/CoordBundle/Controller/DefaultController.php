@@ -823,6 +823,39 @@ class DefaultController extends Controller
 		return $this->render('CituaoCoordBundle:Default:visita.html.twig', array('datos' => $datos));
 	}
 
+		//*************************************************************
+	//Registrar comentario a la evaluacion 1 efectuada por el asesor externo
+	//*************************************************************
+	public function consultarEvaluacionAction($id, $numeva){
+		
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		//buscamos el practicante oara accesar el id del asesor externo
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		
+
+		//buscamos la evaluacion
+		if ($numeva == 1){
+			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
+			$evaluacion = $repository->findOneBy(array('practicante' => $id));
+		}else{
+			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion2');
+			$evaluacion = $repository->findOneBy(array('practicante' => $id));
+		}
+
+
+		$datos = array('id' => $id, 'numeva' => $numeva);
+		if ($num_eva == 1)
+			return $this->render('CituaoCoordBundle:Default:evaluacion.html.twig', array('datos' => $datos, 'e' => $evaluacion));
+		else
+			return $this->render('CituaoCoordBundle:Default:evaluacion2.html.twig', array('datos' => $datos, 'e' => $evaluacion));
+		
+			
+	}
+	
+	
 }
 
 

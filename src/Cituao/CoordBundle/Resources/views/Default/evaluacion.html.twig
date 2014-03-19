@@ -1,0 +1,155 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Consulltando evaluacion # 1</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+		<div id = "subinfowrapper">
+	<form action="" method="post">
+	    
+					{{ form_errors(e) }}
+					
+					<div class = "datos">
+					<h2 class = "datos">CARGO Y PLAN DE TRABAJO DE COMUNICACIÓN</h2>
+					<h3 class = "datos">1.1. ¿Cuál es el proceso adelantado por el estudiante para el desarrollo de sus compromisos o actividades?</h3>
+					</div>
+
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.proceso }}</textarea>
+					</div>
+					
+					<div class = "datos">
+					<h3  class = "datos">1.2  ¿Cuáles son las herramientas  y recursos con que cuenta el practicante para el normal desarrollo de sus actividades?</h3>
+					</div>
+					
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.herramientas }}</textarea>
+					</div>
+
+					<div class = "datos">
+					<h3 class = "datos">2. ¿Cómo evalúa las variables relacionadas con el desempeño laboral?</h3>
+					</div>
+					<div>
+					<label>2.1 Capacidad de gestión</label>
+					<input type="submit" value="{{ e.dl21 }}">
+					</div>
+
+					<div>
+					<label>2.2 Capacidad de negociación</label>
+					<input type="submit" value="{{ e.dl22 }}">
+					</div>
+
+					<div>
+					<label>2.3 Creatividad</label>
+					<input type="submit" value="{{ e.dl23 }}">
+					</div>
+
+					<div>
+					<label>2.4 Dominio Conceptual</label>
+					<input type="submit" value="{{ e.dl24 }}">
+					</div>
+
+					<div>
+					<label>2.5 Iniciativa  </label>
+					<input type="submit" value="{{ e.dl25 }}">
+					</div>
+
+					<div>
+					<label>2.6 Organización- Planeación</label>
+					<input type="submit" value="{{ e.dl26 }}">
+					</div>
+
+					<div>
+					<label>2.7 Proactividad</label>
+					<input type="submit" value="{{ e.dl27 }}">
+					</div>
+
+					<div>
+					<label>2.8 Recursividad</label>
+					<input type="submit" value="{{ e.dl28 }}">
+					</div>
+
+					<div>
+					<label>2.9 Responsabilidad</label>
+					<input type="submit" value="{{ e.dl29 }}">
+					</div>
+					
+
+					<div class = "datos">
+					<h3 class = "datos">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h3>
+					</div>
+
+					<div>
+					<label>3.1 Adaptación al rol profesional</label>
+					<input type="submit" value="{{ e.va31 }}">
+					</div>
+
+					<div>
+					<label>3.2 Capacidad para recibir sugerencias</label>
+					<input type="submit" value="{{ e.va32 }}">
+					</div>
+
+					<div>
+					<label>3.3 Capacidad para trabajar bajo presión</label>
+					<input type="submit" value="{{ e.va33 }}">
+					</div>
+
+					<div>
+					<label>3.4 Capacidad para trabajar en equipo</label>
+					<input type="submit" value="{{ e.va34 }}">
+					</div>
+
+					<div>
+					<label>3.5 Comportamiento ético</label>
+					<input type="submit" value="{{ e.va35 }}">
+					</div>
+
+					<div>
+					<label>3.6 Compromiso</label>
+					<input type="submit" value="{{ e.va36 }}">
+					</div>
+
+					<div>
+					<label>3.7 Presentación personal </label>
+					<input type="submit" value="{{ e.va37 }}">
+					</div>
+
+					<div>
+					<label>3.8 Puntualidad</label>
+					<input type="submit" value="{{ e.va38 }}">
+					</div>
+
+					<div>
+					<label>3.9 Relaciones interpersonales </label>
+					<input type="submit" value="{{ e.va39 }}">
+					</div>
+
+					<div class = "datos">
+					<h2 class = "datos">Logros y dificultades. Comentarios adicionales del asesor externo o jefe inmediato:</h2>
+					</div>
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.comentarioExterno }}</textarea>
+					</div>
+
+					
+					<div class = "datos">
+					<h2 class = "datos">Comentarios del Asesor Académico:</h2>
+					</div>
+
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.comentarioAcademico }}</textarea>
+					</div>
+
+				
+			
+			
+	</form>	
+	</div>
+	</div>
+{% endblock %}

@@ -86,8 +86,9 @@
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 2}) }}">Ver</a></td>
 					{% else %}
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">*</td>
-						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado">Ver</td>
 					{% endif %}
@@ -116,8 +117,9 @@
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 3}) }}">Ver</a></td>
 					{% else %}
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">*</td>
-						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado">Ver</td>
 					{% endif %}
@@ -147,8 +149,9 @@
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 4}) }}">Ver</a></td>
 					{% else %}
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">*</td>
-						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado">Ver</td>
 					{% endif %}
@@ -177,10 +180,12 @@
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 5}) }}">Ver</a></td>
 					{% else %}
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">*</td>
-						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado">Ver</td>
+
 					{% endif %}
 				{% endif %}
 
@@ -207,11 +212,12 @@
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 6}) }}">Ver</a></td>
 					{% else %}
-					
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">*</td>
-						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado">Ver</td>
+
 					{% endif %}
 				{% endif %}
 
@@ -237,10 +243,12 @@
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 7}) }}">Ver</a></td>
 					{% else %}
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">*</td>
-						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado">Ver</td>
+
 					{% endif %}
 				{% endif %}
 
@@ -303,7 +311,7 @@
 						<td class = "colEstado">*</td>
 						<td class = "colEstado">*</td>
 						<td class = "colEstado">Sin entregar</td>
-						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>
+						<td class = "colEstado"><a href="{{ path('cituao_coord_consultar_evaluacion', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
 					{% endif %}
 				{% endif %}
 			  </tr>
@@ -338,7 +346,7 @@
 						<td class = "colEstado">*</td>
 						<td class = "colEstado">*</td>
 						<td class = "colEstado">Sin entregar</td>
-						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+						<td class = "colEstado"><a href="{{ path('cituao_coord_consultar_evaluacion', { 'id': p.id, 'numeva': 2}) }}">Ver</a></td>
 					{% endif %}
 				{% endif %}
 
@@ -473,7 +481,7 @@
 					<td  class = "colEstado">*</td>
 					<td  class = "colEstado">*</td>
 				{% else %}
-					{% if c.listoInformeFinal == true %}
+					{% if c.listoEvaluacionFinal == true %}
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado">-</td>
 						<td class = "colEstado">Entregado</td>

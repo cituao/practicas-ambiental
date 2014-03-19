@@ -1,0 +1,193 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Consultando evaluacion # 2</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+		<div id = "subinfowrapper">
+	<form action="" method="post">
+	    
+						<div>
+					<h2>A continuación se le solicita evaluar  el proceso del practicante de acuerdo con los siguientes puntos.</h2>
+					</div>									
+
+					<div class = "datos">
+					<h3 class = "datos">¿En qué medida se han cumplido los objetivos y expectativas propuestos para el trabajo del practicante? Explique por qué</h3>
+					</div>
+
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.cumplido }}</textarea>
+					</div>
+					
+					
+					<div class = "datos">
+					<h3  class = "datos">2. En relación con la Evaluación No. 1 mencione si se han presentado cambios o si hay continuidad en las variables relacionadas con el desempeño laboral.</h3>
+					</div>
+
+					<div>
+					<label>2.1 Capacidad de gestión</label>
+					<input type="submit" value="{{ e.dl21 }}">
+					</div>
+
+					<div>
+					<label>2.2 Capacidad de negociación</label>
+					<input type="submit" value="{{ e.dl22 }}">
+					</div>
+
+					<div>
+					<label>2.3 Creatividad</label>
+					<input type="submit" value="{{ e.dl23 }}">
+					</div>
+
+					<div>
+					<label>2.4 Dominio Conceptual</label>
+					<input type="submit" value="{{ e.dl24 }}">
+					</div>
+
+					<div>
+					<label>2.5 Iniciativa  </label>
+					<input type="submit" value="{{ e.dl25 }}">
+					</div>
+
+					<div>
+					<label>2.6 Organización- Planeación</label>
+					<input type="submit" value="{{ e.dl26 }}">
+					</div>
+
+					<div>
+					<label>2.7 Proactividad</label>
+					<input type="submit" value="{{ e.dl27 }}">
+					</div>
+
+					<div>
+					<label>2.8 Recursividad</label>
+					<input type="submit" value="{{ e.dl28 }}">
+					</div>
+
+					<div>
+					<label>2.9 Responsabilidad</label>
+					<input type="submit" value="{{ e.dl29 }}">
+					</div>
+
+
+					
+					<div class = "datos">
+					<h3 class = "datos">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h3>
+					</div>
+
+					
+					<div>
+					<label>3.1 Adaptación al rol profesional</label>
+					<input type="submit" value="{{ e.va31 }}">
+					</div>
+
+					<div>
+					<label>3.2 Capacidad para recibir sugerencias</label>
+					<input type="submit" value="{{ e.va32 }}">
+					</div>
+
+					<div>
+					<label>3.3 Capacidad para trabajar bajo presión</label>
+					<input type="submit" value="{{ e.va33 }}">
+					</div>
+
+					<div>
+					<label>3.4 Capacidad para trabajar en equipo</label>
+					<input type="submit" value="{{ e.va34 }}">
+					</div>
+
+					<div>
+					<label>3.5 Comportamiento ético</label>
+					<input type="submit" value="{{ e.va35 }}">
+					</div>
+
+					<div>
+					<label>3.6 Compromiso</label>
+					<input type="submit" value="{{ e.va36 }}">
+					</div>
+
+					<div>
+					<label>3.7 Presentación personal </label>
+					<input type="submit" value="{{ e.va37 }}">
+					</div>
+
+					<div>
+					<label>3.8 Puntualidad</label>
+					<input type="submit" value="{{ e.va38 }}">
+					</div>
+
+					<div>
+					<label>3.9 Relaciones interpersonales </label>
+					<input type="submit" value="{{ e.va39 }}">
+					</div>
+
+					
+					
+					
+					
+					
+					<div class = "datos"> <h2 class = "datos">Logros y dificultades. Comentarios adicionales del Asesor Externo o Jefe Inmediato:</h2></div>
+
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.comentarioExterno }}</textarea>
+					</div>
+
+					<div class = "datos">
+					<h2 class = "datos">4. ¿Qué aportes o beneficios le trae a la organización la presencia y trabajo  del practicante?</h2>
+					</div>
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.aportes }}</textarea>
+					</div>
+
+
+					<div class = "datos">
+					<h2 class = "datos">5. ¿Qué proyección tiene para el cargo del practicante?</h2>
+					</div>
+
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.proyeccion }}</textarea>
+					</div>
+
+
+					<div class = "datos">
+					<h2 class = "datos">6. ¿Cuál ha sido el compromiso, disposición y apoyo de la organización al trabajo del practicante?</h2>
+					</div>
+					
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.compromiso }}</textarea>
+					</div>
+
+
+					<div class = "datos">
+					<h2 class = "datos">7. ¿Qué apreciación tiene del Programa de Práctica Profesional desde la Gestión Administrativa y Académica?</h2>
+					</div>
+					
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.compromiso }}</textarea>
+					</div>
+
+					
+					{% if e.aprobado == true %}
+					<input type = "radio" name="resultado" value = "1" checked>Aprobado<br>
+					<input type = "radio" name="resultado" value = "2" >No aprobado<br>
+					{% else %}
+					<input type = "radio" name="resultado" value = "1" checked><br>
+					<input type = "radio" name="resultado" value = "2" checked>No aprobado<br>
+					{% endif %}
+
+					
+					<div class = "datos"> <h2 class = "datos">Comentarios del Asesor Académico:</h2></div>
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.comentarioAcademico }}</textarea>
+					</div>
+			
+	</form>	
+	</div>
+	</div>
+{% endblock %}
