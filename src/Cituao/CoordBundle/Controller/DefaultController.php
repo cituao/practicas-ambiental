@@ -817,9 +817,9 @@ class DefaultController extends Controller
 		$query->setParameter('id_aca',$practicante->getAcademico()->getId());
 		$query->setParameter('id_pra',$id);
 		
-		$asesoria = $query->getOneOrNullResult();	
+		$cronograma = $query->getOneOrNullResult();	
 		
-		$datos = array('id' => $id, 'comentario' => $comentario);
+		$datos = array('id' => $id, 'comentario' => $cronograma->getComentario());
 		return $this->render('CituaoCoordBundle:Default:visita.html.twig', array('datos' => $datos));
 	}
 
