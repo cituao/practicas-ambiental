@@ -1,0 +1,24 @@
+{% extends 'CituaoAcademicoBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Registrando visita de presentación</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+	
+	<form action="{{ path('cituao_academico_registrar_visitap'  , { 'id': datos.id }) }}" method="post" {{ form_enctype(formulario) }}>
+	    
+			{{ form_errors(formulario) }}
+					{{ form_label(formulario.comentario) }}
+					{{ form_widget(formulario.comentario) }}
+					{{ form_errors(formulario.comentario) }}
+			{{ form_rest(formulario) }}
+			<input class="boton" type="submit" value="Guardar" />
+	</form>	
+	</div>
+{% endblock %}

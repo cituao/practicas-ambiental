@@ -17,6 +17,7 @@ use Cituao\AcademicoBundle\Form\Type\Evaluacion1Type;
 use Cituao\AcademicoBundle\Form\Type\Evaluacion2Type;
 use Cituao\AcademicoBundle\Form\Type\CualicuantiType;
 use Cituao\AcademicoBundle\Form\Type\InformefinalType;
+use Cituao\AcademicoBundle\Form\Type\VisitapType;
 
 class DefaultController extends Controller
 {
@@ -395,7 +396,8 @@ class DefaultController extends Controller
 	//Asignamos como realizada la primera visita presentacion
 	//************************************************
 	public function registrarVisitapAction($id){
-
+		
+		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		// buscamos el ID del asesor academico
 		$user = $this->get('security.context')->getToken()->getUser();
@@ -403,8 +405,33 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		
+		
 		//actualizamos el estado para el academico
-		$query = $em->createQueryBuilder();
+		$query = $em->createQuery(
+					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
+			$query->setParameter('id_pra',$id);
+		$cronograma = $query->getOneOrNullResult();
+
+		
+		$formulario = $this->createForm(new VisitapType(), $cronograma);		
+		$formulario->handleRequest($peticion);
+
+		
+		if ($formulario->isValid()) {
+			$cronograma->setListoVisitaP(true);
+			$practicante->setListoVisitaP(true);
+			$em->persist($cronograma);
+			$em->persist($practicante);
+		
+			$em->flush();
+			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
+		}
+		$datos = array('id' => $id);
+		return $this->render('CituaoAcademicoBundle:Default:formvisitap.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+		/*
 		$q = $query->update('CituaoAcademicoBundle:Cronograma', 'c')
 					->set('c.listoVisitaP', true)	
 					->where('c.practicante = ?1 AND c.academico = ?2')
@@ -413,7 +440,7 @@ class DefaultController extends Controller
 					->getQuery();
 
 		$ejecsql = $q->execute();
-
+		
 		//actualizamos el estado para el practicante
 		$q = $query->update('CituaoCoordBundle:Practicante', 'c')
 					->set('c.listoVisitaP', true)	
@@ -422,9 +449,9 @@ class DefaultController extends Controller
 					->getQuery();
 
 		$ejecsql = $q->execute();
+	*/
 
-
-		return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
+		
 	}
 
 	//*********************************************************************************************

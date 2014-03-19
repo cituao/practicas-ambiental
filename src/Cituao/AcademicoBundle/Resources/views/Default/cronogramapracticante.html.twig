@@ -175,7 +175,7 @@
 				<td>{{ c.fechaVisitaP|date("d/m/Y") }}</td>
 				{% if c.listoVisitaP == true %}
 					<td class = "colEstado">Realizada</td>
-					<td class = "colEstado">*</td>
+					<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_visitap', { 'id': p.id }) }}">Ver</a></td>
 				{% elseif c.fechaVisitaP > date() %}
 					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>
