@@ -19,16 +19,16 @@
 			<tbody>
 				<tr>
 					<th>#</th>
-					<th>FOTO</th>
-					<th>CODIGO</th>
-					<th>CEDULA</th>
-					<th>APELLIDOS</th>
-					<th>NOMBRES</th>
-					<th>EMAIL INSTITUCIONAL</th>
-					<th>EMAIL PERSONAL</th>
-					<th>TELEFONO MOVIL</th>
-					
-					<th></th>
+					<th>Foto</th>
+					<th>Código</th>
+					<th>Cédula</th>
+					<th>Apellidos</th>
+					<th>Nombres</th>
+					<th>Email institucional</th>
+					<th>Email personal</th>
+					<th>Tlf</th>
+					<th>Cronograma</th>
+					<th>Actualizar</th>
 				</tr>
 		
 				{% set id = 1 %}
@@ -51,8 +51,13 @@
 						<td>{{ practicante.emailInstitucional }}</td>
 						<td>{{ practicante.emailPersonal }}</td>
 						<td>{{ practicante.telefonoMovil }}</td>
+						{% if practicante.estado == 1 %}
+							<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" ></a></td>
+						{% else %}
+							<td><img src="{{ asset('img/nocrono.png') }}" ></td>
+						{% endif %}
+						<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/ver.png') }}" ></a></td>
 						
-						<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"> Ver y modificar</a></td>
 					</tr>
 					{% set id = id + 1 %}
 				{% endfor %}

@@ -1,0 +1,525 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block javascripts %}
+	<meta charset="utf-8">
+	 <title>jQuery UI Datepicker - Default functionality</title>
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+	 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	 <script src="{{ asset('js/date.js') }}"></script>
+{% endblock %}
+
+
+{% block infowrapper  %}
+	
+	
+	<div id="infoWrapper">
+		<h2 id = "titlee">Cronograma de actividades</h2>
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+		<div id = "subinfowrapper"> 
+			<div class = "datos">
+			<h3>Practicante:  {{ p.nombres }}  {{ p.apellidos }}</h3>
+			<h3>Centro de práctica: {{ p.centro.nombre }}</h3>
+			
+			</div>
+			<table id = "tablaCronograma">
+			  <tr>
+				<th>Actividades</th>
+				<th>Fechas</th>
+				<th>Estado de la actividad</th>
+				<th>Practicante</th>
+				<th>Asesor académico</th>
+				<th>Asesor externo</th>
+				<th>Acción</th>
+			  </tr>
+			
+			  <tr>
+				<td  class = "colActividad">Asesoría #1</td>
+				<td  class = "colFecha">{{ c.fechaAsesoria1|date("d/m/Y") }}</td>
+				{% if c.fechaAsesoria1 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if c.listoAsesoria1 == true %}
+						<td  class = "colEstado">Realizada</td>
+						{% if p.listoAsesoria1 == false %}
+							<td  class = "colEstado">No realizada</td>
+						{% else %}
+							<td  class = "colEstado">Realizada</td>
+						{% endif %}	
+						<td  class = "colEstado">Realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
+					{% else %}
+						<td  class = "colEstado">*</td>
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+			  </tr>
+			  <tr>
+				<td>Asesoría #2</td>
+				<td>{{ c.fechaAsesoria2|date("d/m/Y") }}</td>
+				{% if c.fechaAsesoria2 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+
+					{% if c.listoAsesoria2 == true %}
+						<td  class = "colEstado">Realizada</td>
+						{% if p.listoAsesoria2 == false %}
+							<td  class = "colEstado">No realizada</td>
+						{% else %}
+							<td  class = "colEstado">Realizada</td>
+						{% endif %}	
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 2}) }}">Ver</a></td>
+					{% else %}
+						<td  class = "colEstado">*</td>
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+					
+			  </tr>
+
+			  <tr>
+				<td>Asesoría #3</td>
+				<td>{{ c.fechaAsesoria3|date("d/m/Y") }}</td>
+				{% if c.fechaAsesoria3 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if c.listoAsesoria3 == true %}
+						<td  class = "colEstado">Realizada</td>
+						{% if p.listoAsesoria3 == false %}
+							<td  class = "colEstado">No realizada</td>
+						{% else %}
+							<td  class = "colEstado">Realizada</td>
+						{% endif %}	
+						<td  class = "colEstado">Realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 3}) }}">Ver</a></td>
+					{% else %}
+						<td  class = "colEstado">*</td>
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+
+				</tr>
+
+			  <tr>
+				<td>Asesoría #4</td>
+				<td>{{ c.fechaAsesoria4|date("d/m/Y") }}</td>
+				{% if c.fechaAsesoria4 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+
+					{% if c.listoAsesoria4 == true %}
+						<td  class = "colEstado">Realizada</td>
+						{% if p.listoAsesoria4 == false %}
+							<td  class = "colEstado">No realizada</td>
+						{% else %}
+							<td  class = "colEstado">Realizada</td>
+						{% endif %}	
+						<td  class = "colEstado">Realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 4}) }}">Ver</a></td>
+					{% else %}
+						<td  class = "colEstado">*</td>
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+
+
+				</tr>
+			  <tr>
+				<td>Asesoría #5</td>
+				<td>{{ c.fechaAsesoria5|date("d/m/Y") }}</td>
+				{% if c.fechaAsesoria5 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if c.listoAsesoria5 == true %}
+						<td  class = "colEstado">Realizada</td>
+						{% if p.listoAsesoria5 == false %}
+							<td  class = "colEstado">No realizada</td>
+						{% else %}
+							<td  class = "colEstado">Realizada</td>
+						{% endif %}	
+						<td  class = "colEstado">Realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 5}) }}">Ver</a></td>
+					{% else %}
+						<td  class = "colEstado">*</td>
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Asesoría #6</td>
+				<td>{{ c.fechaAsesoria6|date("d/m/Y") }}</td>
+				{% if c.fechaAsesoria6 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}				
+					{% if c.listoAsesoria6 == true %}
+						<td  class = "colEstado">Realizada</td>
+						{% if p.listoAsesoria6 == false %}
+							<td  class = "colEstado">No realizada</td>
+						{% else %}
+							<td  class = "colEstado">Realizada</td>
+						{% endif %}	
+						<td  class = "colEstado">Realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 6}) }}">Ver</a></td>
+					{% else %}
+					
+						<td  class = "colEstado">*</td>
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Asesoría #7</td>
+				<td>{{ c.fechaAsesoria7|date("d/m/Y") }}</td>
+				{% if c.fechaAsesoria7 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}	
+					{% if c.listoAsesoria7 == true %}
+						<td  class = "colEstado">Realizada</td>
+						{% if p.listoAsesoria7 == false %}
+							<td  class = "colEstado">No realizada</td>
+						{% else %}
+							<td  class = "colEstado">Realizada</td>
+						{% endif %}	
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 7}) }}">Ver</a></td>
+					{% else %}
+						<td  class = "colEstado">*</td>
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+
+				</tr>
+
+			  <tr>
+				<td>Visita presentacion</td>
+				<td>{{ c.fechaVisitaP|date("d/m/Y") }}</td>
+				{% if c.fechaVisitaP > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}	
+					{% if c.listoVisitaP == true %}
+						<td  class = "colEstado">Realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 7}) }}">Ver</a></td>
+					{% else %}
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">No realizada</td>
+						<td  class = "colEstado">-</td>
+						<td  class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+				
+			  </tr>
+
+			  <tr>
+				<td>Evaluación #1</td>
+				<td>{{ p.fechaVisita1|date("d/m/Y") }}</td>
+				{% if e.fechaEvaluacion1 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if e.listoEvaluacion1 == true %}
+						<td class = "colEstado">Realizada!</td>
+						{% if p.listoVisita1 == true %}
+							<td class = "colEstado">Realizo compromisos</td>
+						{% else %}
+							<td class = "colEstado">No se ha comprometido</td>
+						{% endif %}
+						
+						{% if c.listoEvaluacion1 == true %}
+							<td class = "colEstado">Realizo comentarios</td>
+						{% else %}
+							<td class = "colEstado">No ha comentado</td>
+						{% endif %}
+						<td class = "colEstado">Realizado</td>
+						<td class = "colEstado">Ver</td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>
+					{% endif %}
+				{% endif %}
+			  </tr>
+
+			  <tr>
+				<td>Evaluación #2</td>
+				<td>{{ p.fechaVisita2|date("d/m/Y") }}</td>
+				{% if e.fechaEvaluacion2 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if e.listoEvaluacion2 == true %}
+						<td class = "colEstado">Realizada!</td>
+						{% if p.listoVisita2 == true %}
+							<td class = "colEstado">Realizo compromisos</td>
+						{% else %}
+							<td class = "colEstado">No se ha comprometido</td>
+						{% endif %}
+						
+						{% if c.listoEvaluacion2 == true %}
+							<td class = "colEstado">Realizo comentarios</td>
+						{% else %}
+							<td class = "colEstado">No ha comentado</td>
+						{% endif %}
+						<td class = "colEstado">Realizado</td>
+						<td class = "colEstado">Ver</td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+					{% endif %}
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Informe de Gestión Cuali /Cuanti #1</td>
+				<td>{{ p.fechaInformeGestion1|date("d/m/Y") }}</td>
+				{% if p.fechaInformeGestion1 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if p.listoGestion1 == true %}
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">Entregado</td>
+						{% if c.listoGestion1 == true %}
+						<td class = "colEstado">Ha comentado</td>
+						{% else %}
+						<td class = "colEstado">No ha comentado</td>
+						{% endif %}
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Ver</td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+					{% endif %}
+				{% endif %}
+			  </tr>
+
+			  <tr>
+				<td>Informe de Gestión Cuali /Cuanti  #2</td>
+				<td>{{ p.fechaInformeGestion2|date("d/m/Y") }}</td>
+				{% if p.fechaInformeGestion2 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if p.listoGestion2 == true %}
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">Entregado</td>
+						{% if c.listoGestion2 == true %}
+						<td class = "colEstado">Ha comentado</td>
+						{% else %}
+						<td class = "colEstado">No ha comentado</td>
+						{% endif %}
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Ver</td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+					{% endif %}
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Informe de Gestión Cuali /Cuanti  #3</td>
+				<td>{{ p.fechaInformeGestion3|date("d/m/Y") }}</td>
+				{% if p.fechaInformeGestion3 > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if p.listoGestion3 == true %}
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">Entregado</td>
+						{% if c.listoGestion3 == true %}
+						<td class = "colEstado">Ha comentado</td>
+						{% else %}
+						<td class = "colEstado">No ha comentado</td>
+						{% endif %}
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Ver</td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado">*</td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+					{% endif %}
+				{% endif %}
+
+			  </tr>
+
+			  <tr>
+				<td>Evaluación final</td>
+				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
+				{% if p.fechaInformeFinal > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if p.listoInformeFinal == true %}
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Ver</td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+			
+			  </tr>
+
+  			  <tr>
+				<td>Evaluación final (Académico)</td>
+				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
+				{% if p.fechaInformeFinal > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if c.listoInformeFinal == true %}
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Ver</td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+			  </tr>
+
+  			  <tr>
+				<td>Acta de conformidad</td>
+				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
+				{% if e.fechaActa > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if e.listoActa == true %}
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">Ver</td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+			  </tr>
+			  
+
+			</table>
+	</div>	
+		
+	</div>
+
+{% endblock %}
+

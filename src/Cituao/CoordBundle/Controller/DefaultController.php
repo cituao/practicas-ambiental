@@ -714,8 +714,93 @@ class DefaultController extends Controller
             'formulario' => $formulario->createView()
         ));
 
-
 	}
+	
+	//*****************************************************************/
+	//Mostrar el cronograma comun entre practicante y academico
+	/******************************************************************/	
+	public function cronogramapracticanteAction($id){
+		//busco al practicante
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		
+		//busco al academico
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
+
+		//buscamos el cronograma del asesor academico
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery(
+	            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+		$query->setParameter('id_aca',$academico->getId());
+		$query->setParameter('id_pra',$id);
+		$cronograma = $query->getOneOrNullResult();
+
+		//buscamos el cronograma del asesor externo
+		$query = $em->createQuery(
+	            'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.externo =:id_ext AND c.practicante =:id_pra');
+		$query->setParameter('id_ext',$practicante->getExterno()->getId());
+		$query->setParameter('id_pra',$id);
+		$cronogramaexterno = $query->getOneOrNullResult();
+
+		
+		return $this->render('CituaoCoordBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante, 'e' => $cronogramaexterno));
+	}
+	
+		//***************************************************************
+	//mostrar la asesoria solicitada
+	//***************************************************************
+	public function consultarAsesoriaAction($id, $numase) {
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+
+		//buscamos la asesoría
+		$query = $em->createQuery(
+				'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
+		$query->setParameter('id_aca',$practicante->getAcademico()->getId());
+		$query->setParameter('id_pra',$id);
+		
+		$asesoria = $query->getOneOrNullResult();	
+
+		//nos traemos la documentacion
+		switch($numase){
+			case 1: 
+				$docase = $asesoria->getDocAsesor1();
+				$docpra = $asesoria->getDocPracticante1();
+				break;
+			case 2: 
+				$docase = $asesoria->getDocAsesor2();
+				$docpra = $asesoria->getDocPracticante2();
+				break;
+			case 3: 
+				$docase = $asesoria->getDocAsesor3();
+				$docpra = $asesoria->getDocPracticante3();
+				break;
+			case 4: 
+				$docase = $asesoria->getDocAsesor4();
+				$docpra = $asesoria->getDocPracticante4();
+				break;
+			case 5: 
+				$docase = $asesoria->getDocAsesor5();
+				$docpra = $asesoria->getDocPracticante5();
+				break;
+			case 6: 
+				$docase = $asesoria->getDocAsesor6();
+				$docpra = $asesoria->getDocPracticante6();
+				break;
+			case 7: 
+				$docase = $asesoria->getDocAsesor7();
+				$docpra = $asesoria->getDocPracticante7();
+				break;
+		}
+
+		$datos = array('id' => $id, 'numase' => $numase, 'docase' => $docase, 'docpra' => $docpra);
+		return $this->render('CituaoCoordBundle:Default:asesoria.html.twig', array('datos' => $datos));
+	}
+	
 
 }
 

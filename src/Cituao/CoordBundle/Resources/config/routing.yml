@@ -70,3 +70,10 @@ cituao_coord_registrar_coordinador:
     pattern:  /coordinador/registrarcoordinador
     defaults: { _controller: CituaoCoordBundle:Default:registrarcoordinador }
 
+cituao_coord_cronograma_practicante:
+    pattern:  /coordinador/vercronograma/practicante={id}
+    defaults: { _controller: CituaoCoordBundle:Default:cronogramapracticante }
+
+cituao_coord_consultar_asesoria:
+    path:  /coordinador/consultarasesoria/practicante={id}&asesoria={numase}
+    defaults: { _controller: CituaoCoordBundle:Default:consultarAsesoria }
