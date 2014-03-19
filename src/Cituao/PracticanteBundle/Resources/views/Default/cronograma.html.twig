@@ -34,7 +34,7 @@
 				<td  class = "colFecha">{{ p.fechaAsesoria1|date("d/m/Y") }}</td>
 				{% if p.listoAsesoria1 == true %}
 					<td  class = "colEstado">Realizada</td>
-					<td  class = "colEstado"><a href="{{ path('cituao_practicante_consultar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
+					<td  class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
 				{% elseif p.fechaAsesoria1 > date() %}
 					<td  class = "colEstado">Aun no es fecha!</td>
 					<td>-</td>
