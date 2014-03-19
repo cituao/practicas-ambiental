@@ -724,4 +724,32 @@ class Evaluacion1
     {
         return $this->aprobado;
     }
+    /**
+     * @var string
+     */
+    private $compromiso;
+
+
+    /**
+     * Set compromiso
+     *
+     * @param string $compromiso
+     * @return Evaluacion1
+     */
+    public function setCompromiso($compromiso)
+    {
+        $this->compromiso = $compromiso;
+    
+        return $this;
+    }
+
+    /**
+     * Get compromiso
+     *
+     * @return string 
+     */
+    public function getCompromiso()
+    {
+        return $this->compromiso;
+    }
 }

@@ -33,7 +33,8 @@ class Evaluacion1Type extends AbstractType
 				->add('va39', 'choice', array('label' => 'Relaciones interpersonales'  , 'choices'=> array('DEFICIENTE' => 'DEFICIENTE', 'SATISFACTORIO' => 'SATISFACTORIO' , 'BUENO' => 'BUENO')))
 				->add('comentarioExterno','textarea', array('label' => ' ', 'max_length' => '500' , 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('aprobado', 'checkbox', array('label' => 'Aprobado'))
-				->add('comentarioAcademico','textarea', array('label' => ' ' , 'read_only' => true, 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')));
+				->add('comentarioAcademico','textarea', array('label' => ' ' , 'read_only' => true, 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('compromiso','textarea', array('label' => ' ' , 'read_only' => true, 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')));
 
 		}
 

@@ -147,11 +147,11 @@ class DefaultController extends Controller
 
 			if ($numeva == 1){ 			
 				$cronograma->setListoEvaluacion1(true);
-				$practicante->setListoVisita1(true);
+				//$practicante->setListoVisita1(true);
 			}
 			else{
 				$cronograma->setListoEvaluacion2(true);
-				$practicante->setListoVisita2(true);
+				//$practicante->setListoVisita2(true);
 			}				
 
 			$evaluacion->setExterno($externo->getId());

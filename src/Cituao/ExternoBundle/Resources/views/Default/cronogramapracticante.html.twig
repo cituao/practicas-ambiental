@@ -60,7 +60,11 @@
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin entregar!</td>
+					{% if c.listoEvaluacion1 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_evaluacion', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>	
+					{% else %}
+					<td class = "colEstado">Aun falta por Evaluación #1</td>
+					{% endif %}
 				{% endif %}
 
 			  </tr>
@@ -76,7 +80,12 @@
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin entregar!</td>
+					{% if c.listoEvaluacion2 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_conformidad', { 'id': p.id }) }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado">Aun falta por Evaluación #2</td>
+					{% endif %}
+					
 				{% endif %}
 				
 			  </tr>

@@ -101,4 +101,8 @@ Cituao\ExternoBundle\Entity\Evaluacion1:
             type: text
             length: '1000'
             nullable: true
+        compromiso:    
+            type: text
+            lenght: '500'
+            nullable: true
     lifecycleCallbacks: {  }
