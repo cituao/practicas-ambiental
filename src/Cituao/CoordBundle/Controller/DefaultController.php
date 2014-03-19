@@ -801,6 +801,27 @@ class DefaultController extends Controller
 		return $this->render('CituaoCoordBundle:Default:asesoria.html.twig', array('datos' => $datos));
 	}
 	
+	
+	//*********************************************
+	//Muestra el comentario de la visita de presentación
+	//******************************************************
+	public function consultarVisitapAction($id){
+		$em = $this->getDoctrine()->getManager();
+	
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		
+		//buscamos la asesoría
+		$query = $em->createQuery(
+				'SELECT a FROM CituaoAcademicoBundle:Cronograma a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
+		$query->setParameter('id_aca',$practicante->getAcademico()->getId());
+		$query->setParameter('id_pra',$id);
+		
+		$asesoria = $query->getOneOrNullResult();	
+		
+		$datos = array('id' => $id, 'comentario' => $comentario);
+		return $this->render('CituaoCoordBundle:Default:visita.html.twig', array('datos' => $datos));
+	}
 
 }
 

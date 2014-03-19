@@ -1,0 +1,22 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Consultando la visita de presentación</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+	
+	<form action="" method="post">
+		<div>	
+		<label>Asesor:</label>
+		<textarea cols="125" rows="10" readonly>{{ datos.comentario }}</textarea>
+		</div>
+
+	</form>	
+	</div>
+{% endblock %}

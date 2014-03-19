@@ -77,3 +77,7 @@ cituao_coord_cronograma_practicante:
 cituao_coord_consultar_asesoria:
     path:  /coordinador/consultarasesoria/practicante={id}&asesoria={numase}
     defaults: { _controller: CituaoCoordBundle:Default:consultarAsesoria }
+
+cituao_coord_consultar_visitap:
+    path:  /coordinador/consultarvisita/practicante={id}
+    defaults: { _controller: CituaoCoordBundle:Default:consultarVisitap }
