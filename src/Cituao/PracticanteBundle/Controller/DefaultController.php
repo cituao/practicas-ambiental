@@ -10,6 +10,7 @@ use Cituao\AcademicoBundle\Entity\Cualicuanti;
 use Cituao\PracticanteBundle\Form\Type\CualicuantiType;
 use Cituao\PracticanteBundle\Entity\Informefinalpracticante;
 use Cituao\PracticanteBundle\Form\Type\InformefinalType;
+use Cituao\PracticanteBundle\Form\Type\Evaluacion1Type;
 use Cituao\PracticanteBundle\Entity\Docpdf;
 
 class DefaultController extends Controller
@@ -379,5 +380,76 @@ class DefaultController extends Controller
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
 		return $this->render('CituaoPracticanteBundle:Default:formsubirproyecto.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr  ));
 	}
+	
+	//*************************************************************
+	//Registrar comentario a la evaluacion 1 efectuada por el asesor externo
+	//*************************************************************
+	public function registrarCompromisoAction($id, $numeva){
+		
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		// buscamos el ID del asesor academico
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		
+		$externo = $practicante->getExterno();
+	
+		//buscamos si ya evaluo el asesor externo
+		$query = $em->createQuery(
+				'SELECT a FROM CituaoExternoBundle:Cronogramaexterno a WHERE a.practicante =:id_pra AND a.externo =:id_ext');
+		$query->setParameter('id_pra',$id);
+		$query->setParameter('id_ext',$externo->getId());
+		
+		$cronograma = $query->getOneOrNullResult();
+		//DEBE HABER UNA INSTANCIA si no hay ERROR
+
+		if (($numeva == 1 AND $cronograma->getListoEvaluacion1() == false) OR ($numeva == 2 AND $cronograma->getListoEvaluacion2() == false)){
+			
+			if ($numeva == 1)			
+				throw $this->createNotFoundException('El asesor externo no ha registrado la evaluación #1!');
+			else
+				throw $this->createNotFoundException('El asesor externo no ha registrado la evaluación #2!');
+			//return $this->render('CituaoAcademicoBundle:Default:index.html.twig');			
+		}
+
+		//buscamos la evaluacion
+		if ($numeva == 1){
+			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
+			$evaluacion = $repository->findOneBy(array('practicante' => $id));
+			$formulario = $this->createForm(new Evaluacion1Type(), $evaluacion);		
+		}else{
+			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion2');
+			$evaluacion = $repository->findOneBy(array('practicante' => $id));
+			$formulario = $this->createForm(new Evaluacion2Type(), $evaluacion);
+		}
+				
+		
+		$formulario->handleRequest($peticion);
+
+		if ($formulario->isValid()) {
+		
+		
+			if ($numeva == 1) 			
+				$practicante->setListoVisita1(true);
+			else
+				$practicante->setListoVisita2(true);
+			
+			$em->persist($evaluacion);
+			$em->persist($practicante);
+			
+			$em->flush();
+			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+		}
+
+		$datos = array('id' => $id, 'numeva' => $numeva);
+		if ($numeva == 1) 
+			return $this->render('CituaoPracticanteBundle:Default:formcompromiso1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+		else
+			return $this->render('CituaoPracticanteBundle:Default:formcompromiso2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+			
+}	
 	
 }

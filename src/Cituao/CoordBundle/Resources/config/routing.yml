@@ -83,5 +83,5 @@ cituao_coord_consultar_visitap:
     defaults: { _controller: CituaoCoordBundle:Default:consultarVisitap }
 
 cituao_coord_consultar_evaluacion:
-    path:  /coordinador/consultarvisita/practicante={id}&evaluacion={numeva}
+    path:  /coordinador/consultar_evaluacion/practicante={id}&evaluacion={numeva}
     defaults: { _controller: CituaoCoordBundle:Default:consultarEvaluacion }

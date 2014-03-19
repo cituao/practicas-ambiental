@@ -847,7 +847,7 @@ class DefaultController extends Controller
 
 
 		$datos = array('id' => $id, 'numeva' => $numeva);
-		if ($num_eva == 1)
+		if ($numeva == 1)
 			return $this->render('CituaoCoordBundle:Default:evaluacion.html.twig', array('datos' => $datos, 'e' => $evaluacion));
 		else
 			return $this->render('CituaoCoordBundle:Default:evaluacion2.html.twig', array('datos' => $datos, 'e' => $evaluacion));

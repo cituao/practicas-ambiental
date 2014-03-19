@@ -32,47 +32,47 @@
 
 					<div>
 					<label>2.1 Capacidad de gestión</label>
-					<input type="submit" value="{{ e.dl21 }}">
+					<input type="text" value="{{ e.dl21 }} " readonly>
 					</div>
 
 					<div>
 					<label>2.2 Capacidad de negociación</label>
-					<input type="submit" value="{{ e.dl22 }}">
+					<input type="text" value="{{ e.dl22 }} " readonly>
 					</div>
 
 					<div>
 					<label>2.3 Creatividad</label>
-					<input type="submit" value="{{ e.dl23 }}">
+					<input type="text" value="{{ e.dl23 }} " readonly>
 					</div>
 
 					<div>
 					<label>2.4 Dominio Conceptual</label>
-					<input type="submit" value="{{ e.dl24 }}">
+					<input type="text" value="{{ e.dl24 }} " readonly>
 					</div>
 
 					<div>
 					<label>2.5 Iniciativa  </label>
-					<input type="submit" value="{{ e.dl25 }}">
+					<input type="text" value="{{ e.dl25 }} " readonly>
 					</div>
 
 					<div>
 					<label>2.6 Organización- Planeación</label>
-					<input type="submit" value="{{ e.dl26 }}">
+					<input type="text" value="{{ e.dl26 }} " readonly>
 					</div>
 
 					<div>
 					<label>2.7 Proactividad</label>
-					<input type="submit" value="{{ e.dl27 }}">
+					<input type="text" value="{{ e.dl27 }} " readonly>
 					</div>
 
 					<div>
 					<label>2.8 Recursividad</label>
-					<input type="submit" value="{{ e.dl28 }}">
+					<input type="text" value="{{ e.dl28 }} " readonly>
 					</div>
 
 					<div>
 					<label>2.9 Responsabilidad</label>
-					<input type="submit" value="{{ e.dl29 }}">
+					<input type="text" value="{{ e.dl29 }} " readonly>
 					</div>
 
 
@@ -84,56 +84,50 @@
 					
 					<div>
 					<label>3.1 Adaptación al rol profesional</label>
-					<input type="submit" value="{{ e.va31 }}">
+					<input type="text" value="{{ e.va31 }} " readonly>
 					</div>
 
 					<div>
 					<label>3.2 Capacidad para recibir sugerencias</label>
-					<input type="submit" value="{{ e.va32 }}">
+					<input type="text" value="{{ e.va32 }} " readonly>
 					</div>
 
 					<div>
 					<label>3.3 Capacidad para trabajar bajo presión</label>
-					<input type="submit" value="{{ e.va33 }}">
+					<input type="text" value="{{ e.va33 }} " readonly>
 					</div>
 
 					<div>
 					<label>3.4 Capacidad para trabajar en equipo</label>
-					<input type="submit" value="{{ e.va34 }}">
+					<input type="text" value="{{ e.va34 }} " readonly>
 					</div>
 
 					<div>
 					<label>3.5 Comportamiento ético</label>
-					<input type="submit" value="{{ e.va35 }}">
+					<input type="text" value="{{ e.va35 }} " readonly>
 					</div>
 
 					<div>
 					<label>3.6 Compromiso</label>
-					<input type="submit" value="{{ e.va36 }}">
+					<input type="text" value="{{ e.va36 }} " readonly>
 					</div>
 
 					<div>
 					<label>3.7 Presentación personal </label>
-					<input type="submit" value="{{ e.va37 }}">
+					<input type="text" value="{{ e.va37 }} " readonly>
 					</div>
 
 					<div>
 					<label>3.8 Puntualidad</label>
-					<input type="submit" value="{{ e.va38 }}">
+					<input type="text" value="{{ e.va38 }} " readonly>
 					</div>
 
 					<div>
 					<label>3.9 Relaciones interpersonales </label>
-					<input type="submit" value="{{ e.va39 }}">
+					<input type="text" value="{{ e.va39 }} " readonly>
 					</div>
-
-					
-					
-					
-					
-					
+				
 					<div class = "datos"> <h2 class = "datos">Logros y dificultades. Comentarios adicionales del Asesor Externo o Jefe Inmediato:</h2></div>
-
 					<div>	
 					<textarea cols="125" rows="10" readonly>{{ e.comentarioExterno }}</textarea>
 					</div>
@@ -144,7 +138,6 @@
 					<div>	
 					<textarea cols="125" rows="10" readonly>{{ e.aportes }}</textarea>
 					</div>
-
 
 					<div class = "datos">
 					<h2 class = "datos">5. ¿Qué proyección tiene para el cargo del practicante?</h2>
@@ -171,7 +164,6 @@
 					<div>	
 					<textarea cols="125" rows="10" readonly>{{ e.compromiso }}</textarea>
 					</div>
-
 					
 					{% if e.aprobado == true %}
 					<input type = "radio" name="resultado" value = "1" checked>Aprobado<br>
@@ -181,12 +173,17 @@
 					<input type = "radio" name="resultado" value = "2" checked>No aprobado<br>
 					{% endif %}
 
-					
 					<div class = "datos"> <h2 class = "datos">Comentarios del Asesor Académico:</h2></div>
 					<div>	
 					<textarea cols="125" rows="10" readonly>{{ e.comentarioAcademico }}</textarea>
 					</div>
-			
+
+					<div class = "datos"> <h2 class = "datos">Compromisos del estudiante:</h2></div>
+					<div>	
+					<textarea cols="125" rows="10" readonly>{{ e.compromiso }}</textarea>
+					</div>
+
+					
 	</form>	
 	</div>
 	</div>

@@ -157,13 +157,13 @@
 				<td>{{ p.fechaVisita1|date("d/m/Y") }}</td>
 				{% if p.listoVisita1 == true %}
 					<td class = "colEstado">Entregada</td>
-					<td class = "colEstado">*</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_compromiso', { 'id': p.id, 'numeva': 1}) }}">Ver o actualizar</a></td>
 				{% elseif p.fechaVisita1 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin entregar!</td>
-					<td class = "colEstado">*</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_compromiso', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>
 				{% endif %}
 				
 			  </tr>

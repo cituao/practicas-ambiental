@@ -127,7 +127,7 @@ class DefaultController extends Controller
 			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion2');
 			$evaluacion = $repository->findOneBy(array('practicante' => $id));
 			if ($evaluacion == NULL) $evaluacion = new Evaluacion2();
-			$evaluacion = $repository->findOneBy(array('practicante' => $id));
+
 			$formulario = $this->createForm(new Evaluacion2Type(), $evaluacion);
 		}
 

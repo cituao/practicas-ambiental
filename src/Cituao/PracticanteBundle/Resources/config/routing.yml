@@ -38,3 +38,6 @@ cituao_practicante_subir_proyecto:
     path:  /practicante/subir-proyecto
     defaults: { _controller: CituaoPracticanteBundle:Default:subirProyecto }
     
+cituao_practicante_registrar_compromiso:
+    path:  /practicante/registrar-compromiso/practicante={id}&evaluacion={numeva}
+    defaults: { _controller: CituaoPracticanteBundle:Default:registrarCompromiso }
