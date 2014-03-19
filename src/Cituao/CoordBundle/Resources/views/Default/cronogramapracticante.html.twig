@@ -58,6 +58,7 @@
 						<td  class = "colEstado">-</td>
 						<td  class = "colEstado"><a href="{{ path('cituao_coord_consultar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
 					{% else %}
+						<td  class = "colEstado">Sin realizar!</td>
 						<td  class = "colEstado">*</td>
 						<td  class = "colEstado">No realizada</td>
 						<td  class = "colEstado">-</td>
@@ -372,13 +373,13 @@
 						<td class = "colEstado">No ha comentado</td>
 						{% endif %}
 						<td class = "colEstado">-</td>
-						<td class = "colEstado">Ver</td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
 					{% else %}
 						<td class = "colEstado">Sin entregar</td>
 						<td class = "colEstado">Sin entregar</td>
 						<td class = "colEstado">*</td>
 						<td class = "colEstado">*</td>
-						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+						<td class = "colEstado">Ver</td>
 					{% endif %}
 				{% endif %}
 			  </tr>
@@ -402,13 +403,14 @@
 						<td class = "colEstado">No ha comentado</td>
 						{% endif %}
 						<td class = "colEstado">-</td>
-						<td class = "colEstado">Ver</td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+						
 					{% else %}
 						<td class = "colEstado">Sin entregar</td>
 						<td class = "colEstado">Sin entregar</td>
 						<td class = "colEstado">*</td>
 						<td class = "colEstado">*</td>
-						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+						<td class = "colEstado">Ver</td>
 					{% endif %}
 				{% endif %}
 
@@ -433,13 +435,14 @@
 						<td class = "colEstado">No ha comentado</td>
 						{% endif %}
 						<td class = "colEstado">-</td>
-						<td class = "colEstado">Ver</td>
+<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+						
 					{% else %}
 						<td class = "colEstado">Sin entregar</td>
 						<td class = "colEstado">Sin entregar</td>
 						<td class = "colEstado">*</td>
 						<td class = "colEstado">*</td>
-						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Ver</a></td>
+						<td class = "colEstado">Ver</td>
 					{% endif %}
 				{% endif %}
 
