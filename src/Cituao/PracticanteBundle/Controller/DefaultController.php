@@ -361,8 +361,6 @@ class DefaultController extends Controller
 		$form->handleRequest($request);
 
 		if ($form->isValid()) {
-     		//levantar servicios de doctrine base de datos
-			$em = $this->getDoctrine()->getManager();
 			$document->setPath($practicante->getCodigo().'.pdf' );
 			$practicante->setPathPdf($practicante->getCodigo().'.pdf');
 			$practicante->setListoProyecto(true);
@@ -370,8 +368,7 @@ class DefaultController extends Controller
 			//se copia el archivo al directorio del servidor			
 			$document->upload();
 
-
-		    $em->persist($document);
+		    
 			$em->persist($practicante);
 
 			$em->flush();
