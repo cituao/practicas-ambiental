@@ -475,6 +475,35 @@
 			
 			  </tr>
 
+				{% if p.area == 1 %}
+				<td>Proyecto final</td>
+				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
+				{% if p.fechaInformeFinal > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+					<td  class = "colEstado">*</td>
+				{% else %}
+					{% if p.listoProyecto == true %}
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado"><a href="{{ asset('uploads/documents/' ~ p.pathPdf) }}">Ver</a></td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">-</td>
+						<td class = "colEstado">Ver</td>
+					{% endif %}
+				{% endif %}
+
+
+
+				{% endif %}
+
   			  <tr>
 				<td>Evaluación final (Académico)</td>
 				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>

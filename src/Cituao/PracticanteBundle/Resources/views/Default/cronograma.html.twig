@@ -254,13 +254,15 @@
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_informefinal', { 'id': p.id}) }}">Entregar</a></td>
 				{% endif %}
 			  </tr>
-				{% if p.area == 1 %}
+			{% if p.area == 1 %}
 			  <tr>
 				<td>Proyecto</td>
 				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
 				{% if p.listoProyecto == true %}
 					<td class = "colEstado">Entregado</td>
-					<td class = "colEstado">Ver</td>
+					
+					<td class = "colEstado"><a href="{{ asset('uploads/documents/' ~ p.pathPdf) }}">Ver</a></td>
+
 				{% elseif p.fechaInformeFinal > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
 					<td class = "colEstado">-</td>
