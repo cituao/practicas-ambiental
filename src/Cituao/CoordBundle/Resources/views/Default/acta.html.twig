@@ -1,0 +1,104 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Consultando Acta de conformidad del Asesor Externo</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+		<div id = "subinfowrapper">
+	<form action="" method="post">
+		<div class = "tituloform">
+		<h2 class = "datos">ACTA DE CONFORMIDAD</h2>
+		</div>
+
+
+		<div class = "subtituloform">
+		<h3 class = "datos">1. Considera que las actividades –funciones desarrolladas durante el semestre- corresponden a las descritas inicialmente en la carta de compromiso en un:</h3>
+		</div>
+
+		<div>
+		<label>Resultado:</label>
+		<input type="text" value="{{ e.actfun }} " readonly>
+		</div>
+
+		<div class = "subtituloform">
+		<h3  class = "datos">
+		Para evaluar el proceso de práctica y/o pasantía, marque en la escala de 1 a 5, según corresponda a cada ítem:
+		</h3>
+		<h3  class = "datos">
+		2. De las actividades o funciones nuevas o adicionales que se realizaron, el cumplimiento del estudiante fue (marque de 1 a 5): 
+		</h3>
+		</div>
+		<div>		
+		
+		<div>
+		<label>Resultado:</label>
+		<input type="text" value="{{ e.actfunueva }} " readonly>
+		</div>
+	
+		<div class = "subtituloform" style ="height:60px">
+		<h3  class = "datos">
+		3. El proceso de acompañamiento y seguimiento, desde el aporte académico y cumplimiento por parte del asesor académico fue (marque de 1 a 5):
+		 </h3></div>	
+		<div>
+		
+		<div>
+		<label>Resultado:</label>
+		<input type="text" value="{{ e.acompana }} " readonly>
+		</div>
+
+	     <div class = "subtituloform" style ="height:60px">
+		<h3  class = "datos">
+		4. ¿Qué calificación le da al trabajo desarrollado por el estudiante y el aporte que éste le dio a la organización?:
+		 </h3></div>		
+		<div>
+		<label>Resultado en trabajo:</label>
+		<input type="text" value="{{ e.trabajo }} " readonly>
+		</div>	
+		
+		<div>
+		<label>Resultado en aporte:</label>
+		<input type="text" value="{{ e.aporte }} " readonly>
+		</div>	
+		
+		 <div class = "subtituloform" style ="height:60px">
+		<h3  class = "datos">
+		5. Observaciones y sugerencias del centro de práctica (empresa) 
+		 </h3></div>		
+		<div>
+
+		<div>
+		<textarea cols="80" rows="5" readonly>{{ e.observaciones }}</textarea>
+		</div>
+	
+		<div class = "subtituloform" style ="height:60px">
+		<h3  class = "datos">
+		6. Como asesor externo o jefe inmediato, ¿Recibe a satisfacción la práctica y/o pasantía del estudiante?:
+		 </h3></div>	
+
+		<div>
+		<label>Resultado:</label>
+		{% if e.satisfaccion == true %}
+		<input type="text" value="APROBADO" readonly>
+		{% else %}
+		<input type="text" value="NO APROBADO" readonly>
+		{% endif %}
+		</div>	
+
+	     <div class = "subtituloform" style ="height:60px">
+		<h3  class = "datos">
+		En caso negativo ¿qué está pendiente?:
+		 </h3></div>	
+		<div>
+		<textarea cols="80" rows="5" readonly>{{ e.negativo }}</textarea>
+		</div>
+
+	</form>	
+	</div>
+	</div>
+{% endblock %}
