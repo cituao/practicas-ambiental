@@ -16,11 +16,11 @@ class PracticanteType extends AbstractType
 		->add('codigo','text', array('label' => 'Código' ,  'attr' => array('placeholder' => 'Ingrese código del estudiante')))
         ->add('apellidos','text', array('label' => 'Apellidos' , 'attr' => array('placeholder' => 'Ingrese apellidos')))
 		->add('nombres','text', array('label' => 'Nombres' ,  'attr' => array('placeholder' => 'Ingrese nombres del partipante')))
-        ->add('emailInstitucional', 'email',  array('label' => 'Email institucional' , 'attr' => array('placeholder' => 'usuario@servidor')))
-        ->add('emailPersonal', 'email',  array('label' => 'Email personal', 'attr' => array('placeholder' => 'usuario@servidor')))
-		->add('telefonoMovil','text', array('label' => 'Teléfono móvil' , 'attr' => array('placeholder' => 'Ingrese el número telefónico móvil ')))
-		->add('fechaMatriculacion', 'date', array('required' => true, 'label' => 'Fecha de matrícula', 'input' => 'datetime', 'widget' => 'choice', 'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día') ))
-		->add('area','entity', array('class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
+        ->add('emailInstitucional', 'email',  array('required' => false, 'label' => 'Email institucional' , 'attr' => array('placeholder' => 'usuario@servidor')))
+        ->add('emailPersonal', 'email',  array('required' => false, 'label' => 'Email personal', 'attr' => array('placeholder' => 'usuario@servidor')))
+		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil' , 'attr' => array('placeholder' => 'Ingrese el número telefónico móvil ')))
+		->add('fechaMatriculacion', 'date', array('required' => false, 'required' => true, 'label' => 'Fecha de matrícula', 'input' => 'datetime', 'widget' => 'choice', 'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día') ))
+		->add('area','entity', array('required' => false, 'class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

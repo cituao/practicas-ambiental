@@ -26,19 +26,22 @@ class Academico
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\NotBlank(message="El nombre es necesario!")
+	 * @Assert\NotBlank(message="Es obligatorio!")
+	 * @Assert\Regex(pattern="/\d/", match=false, message="Nombre inválido!")
      */
     private $nombres;
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\NotBlank(message="El apellido es necesario")
+	 * @Assert\NotBlank(message="Es obligatorio")
+	 * @Assert\Regex(pattern="/\d/", match=false, message="Apellido inválido!")
      */
     private $apellidos;
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
-	 * @Assert\NotBlank(message="La cédula es necesario")
+	 * @Assert\NotBlank(message="Es obligatorio!")
+	 * @Assert\Regex(pattern="/^\d+$/", match=true, message="Cédula inválida!")
      */
     private $ci;
 
@@ -54,11 +57,13 @@ class Academico
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\Email(message = "Email inválido!")
      */
     private $email;
 
      /**
      * @ORM\Column(type="string", length=50)
+	 * @Assert\Email(message = "Email inválido!")
      */
     private $emailInstitucional;
 	

@@ -74,6 +74,8 @@ class DefaultController extends Controller
 			if ($p != NULL)  throw $this->createNotFoundException('¡La cédula de identidad ya existe!');
 		}
 		
+		
+		
         if ($formulario->isValid()) {
 			//si subio no subio foto  le asignamos una foto generica
 			if ($practicante->getFile() == NULL) 	$practicante->setPath('user.jpeg');
