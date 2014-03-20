@@ -74,7 +74,7 @@
 				<td>{{ c.fechaActa|date("d/m/Y") }}</td>
 				{% if c.listoActa == true %}
 					<td class = "colEstado">Entregada</td>
-					<td class = "colEstado">Ver</td>
+					<td class = "colEstado"><a href="{{ path('cituao_externo_registrar_conformidad', { 'id': p.id }) }}">Ver o Actualizar</a></td>
 				{% elseif c.fechaActa > date() %}
 					<td class = "colEstado">Aun falta</td>
 					<td class = "colEstado">-</td>

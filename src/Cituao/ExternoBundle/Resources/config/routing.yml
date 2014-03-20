@@ -25,3 +25,7 @@ cituao_externo_actualizar:
 cituao_externo_verasesoracademico:
     path:  /externo/asesoracademico/academico={id}
     defaults: { _controller: CituaoExternoBundle:Default:verasesorAcademico }
+
+cituao_externo_registrar_acta:
+    path:  /externo/registrar-acta/practicante={id}
+    defaults: { _controller: CituaoExternoBundle:Default:registrarconformidad }

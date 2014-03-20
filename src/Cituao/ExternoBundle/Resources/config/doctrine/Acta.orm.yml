@@ -1,0 +1,44 @@
+Cituao\ExternoBundle\Entity\Acta:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        externo:
+            type: integer
+        practicante:
+            type: integer
+            unique: true
+        actfun:
+            type: string
+            length: '3'
+            nullable: true
+        actfunueva:
+            type: string
+            length: '1'
+            nullable: true
+        acompana:
+            type: string
+            length: '1'
+            nullable: true
+        trabajo:
+            type: string
+            length: '1'
+            nullable: true
+        aporte:
+            type: string
+            length: '1'
+            nullable: true
+        observaciones:
+            type: text
+            nullable: true
+        satisfaccion:
+            type: boolean
+            nullable: true
+        negativo:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -6,9 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Cituao\ExternoBundle\Entity\Evaluacion1;
 use Cituao\ExternoBundle\Entity\Evaluacion2;
+use Cituao\ExternoBundle\Entity\Acta;
 use Cituao\ExternoBundle\Form\Type\Evaluacion1Type;
 use Cituao\ExternoBundle\Form\Type\Evaluacion2Type;
 use Cituao\ExternoBundle\Form\Type\ExternoType;
+use Cituao\ExternoBundle\Form\Type\ActaType;
 
 
 class DefaultController extends Controller
@@ -181,13 +183,52 @@ class DefaultController extends Controller
 		return $this->render('CituaoExternoBundle:Default:academico.html.twig', array('academico' => $academico));
 	}
 
+		
+	//*******************************************************************
+	//Muestra formulario para registrar el acta de conformidad
+	//*******************************************************************
+	public function registrarConformidadAction($id){
+		$usuario = $this->get('security.context')->getToken()->getUser();
+		$peticion = $this->getRequest();
 
-
-	public function registrarConformidadAction(){
-
-
-		return $this->render('CituaoExternoBundle:Default:index.html.twig');
-	}
+		$em = $this->getDoctrine()->getManager();
+		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
+		$externo = $repository->findOneBy(array('ci' => $usuario->getUsername()));
+		
+		//buscamos el informe  para actualizar 
+		$query = $em->createQuery(
+				'SELECT i FROM CituaoExternoBundle:Acta i WHERE i.practicante =:id_pra ');
+		$query->setParameter('id_pra',$id);
+		
+		$acta = $query->getOneOrNullResult();
+		//si no hay informes creamos una instancia de informe final
+		if ($acta == NULL) $acta = new Acta();
 	
-	
+		$formulario = $this->createForm(new ActaType(), $acta);
+		$formulario->handleRequest($peticion);
+
+		if ($formulario->isValid()) {
+			// Completar las propiedades que el usuario no rellena en el formulario
+			$acta->setPracticante($id);
+			$acta->setExterno($externo->getId());
+			$em->persist($acta);
+
+			$query = $em->createQuery(
+					'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$id);
+			$cronograma = $query->getOneOrNullResult();
+			
+			$cronograma->setListoActa(true);
+			$em->persist($cronograma);
+
+			$em->flush();
+
+			return $this->redirect($this->generateUrl('cituao_externo_homepage'));
+		}
+		$datos = array('id' => $id);
+		return $this->render('CituaoExternoBundle:Default:formacta.html.twig', array(
+			'formulario' => $formulario->createView(), 'datos' => $datos
+		));
+
+	}		
 }
