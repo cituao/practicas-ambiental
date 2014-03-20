@@ -25,7 +25,7 @@ Cituao\AcademicoBundle\Entity\Cualicuanti:
             nullable: true
         porcentaje1:
             type: string
-            length: '2'
+            length: '3'
             nullable: true
         actividad2:
             type: text
@@ -39,7 +39,7 @@ Cituao\AcademicoBundle\Entity\Cualicuanti:
             nullable: true
         porcentaje2:
             type: string
-            length: '2'
+            length: '3'
             nullable: true
         actividad3:
             type: text
@@ -53,7 +53,7 @@ Cituao\AcademicoBundle\Entity\Cualicuanti:
             nullable: true
         porcentaje3:
             type: string
-            length: '2'
+            length: '3'
             nullable: true
         apreciacion:
             type: text
