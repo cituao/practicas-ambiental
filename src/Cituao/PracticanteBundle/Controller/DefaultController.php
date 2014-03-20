@@ -11,6 +11,7 @@ use Cituao\PracticanteBundle\Form\Type\CualicuantiType;
 use Cituao\PracticanteBundle\Entity\Informefinalpracticante;
 use Cituao\PracticanteBundle\Form\Type\InformefinalType;
 use Cituao\PracticanteBundle\Form\Type\Evaluacion1Type;
+use Cituao\PracticanteBundle\Form\Type\Evaluacion2Type;
 use Cituao\PracticanteBundle\Entity\Docpdf;
 
 class DefaultController extends Controller

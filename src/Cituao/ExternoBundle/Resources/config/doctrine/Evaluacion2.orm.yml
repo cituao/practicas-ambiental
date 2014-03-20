@@ -108,4 +108,7 @@ Cituao\ExternoBundle\Entity\Evaluacion2:
         comentarioAcademico:
             type: text
             nullable: true
+        compromisop:
+            type: text
+            nullable: true
     lifecycleCallbacks: {  }

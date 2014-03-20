@@ -173,13 +173,13 @@
 				<td>{{ p.fechaVisita2|date("d/m/Y") }}</td>
 				{% if p.listoVisita2 == true %}
 					<td class = "colEstado">Entregada</td>
-					<td class = "colEstado">*</td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_compromiso', { 'id': p.id, 'numeva': 2}) }}">Ver o actualizar</a></td>
 				{% elseif p.fechaVisita2 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin entregar!</td>
-					<td class = "colEstado">*</td>	
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_compromiso', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>
 				{% endif %}
 
 			  </tr>
@@ -211,7 +211,11 @@
 					<td class = "colEstado">-</td>	
 				{% else %}
 					<td class = "colEstado">Sin entregar!</td>
+					{% if p.listoGestion1 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado">*</td>
+					{% endif%}
 				{% endif %}
 
 			  </tr>
@@ -227,7 +231,11 @@
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin entregar!</td>
+					{% if p.listoGestion2 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>
+					{% else %}
+						<td class = "colEstado">*</td>
+					{% endif %}	
 				{% endif %}
 
 			  </tr>
@@ -258,7 +266,11 @@
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin entregar!</td>
+					{% if p.listoInformeFinal == true %}					
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_subir_proyecto') }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado">*</td>
+					{% endif %}
 				{% endif %}
 			  </tr>
 				{% endif %}

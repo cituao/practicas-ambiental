@@ -808,4 +808,32 @@ class Evaluacion2
     {
         return $this->comentarioAcademico;
     }
+    /**
+     * @var string
+     */
+    private $compromisop;
+
+
+    /**
+     * Set compromisop
+     *
+     * @param string $compromisop
+     * @return Evaluacion2
+     */
+    public function setCompromisop($compromisop)
+    {
+        $this->compromisop = $compromisop;
+    
+        return $this;
+    }
+
+    /**
+     * Get compromisop
+     *
+     * @return string 
+     */
+    public function getCompromisop()
+    {
+        return $this->compromisop;
+    }
 }

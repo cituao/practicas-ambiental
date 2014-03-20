@@ -37,7 +37,7 @@ class Evaluacion2Type extends AbstractType
 				->add('apreciacion','textarea', array('label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('aprobado', 'checkbox', array('label' => 'Aprobado'))
 				->add('comentarioAcademico','textarea', array('label' => ' ', 'read_only' => true, 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('compromiso','textarea', array('label' => ' ', 'read_only' => true, 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')));
+				->add('compromisop','textarea', array('label' => ' ', 'read_only' => true, 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
