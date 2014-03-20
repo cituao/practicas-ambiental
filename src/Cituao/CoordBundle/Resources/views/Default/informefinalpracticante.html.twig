@@ -1,0 +1,91 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Consultando Informe final del Practicante</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+		<div id = "subinfowrapper">
+	<form action="" method="post">
+		<div class = "tituloform">
+		<h2 class = "datos">INFORME FINAL</h2>
+		</div>
+
+		<div class = "subtituloform">
+		<h3 class = "datos">1. COMUNICACIÓN PUBLICITARIA</h3>
+		<h6>Realice una reflexión corta y concreta de la carrera que va a terminar teniendo en cuenta el pensum académico en relación con el desarrollo de su práctica.</h6>
+		</div>
+
+		<div>
+		<textarea cols="125" rows="10" readonly>{{ informe.comunicacion }}</textarea>
+		</div>
+		
+		<div class = "tituloform">
+		<h3 class = "datos">2. PROGRAMA DE PRÁCTICA PROFESIONAL</h3>
+		</div>
+		
+		<div class = "subtituloform" style ="height:160px"><h3  class = "datos">2.1 Asesor académico</h3>
+		<h6>De forma analítica haga una reflexión concreta  acerca del rol que desempeñó su asesor académico en este proceso. Tenga en cuenta la metodología que utilizó, la organización y el trabajo en equipo entre asesor externo, académico y practicante, bibliografía y aporte conceptual,  compromiso con el desarrollo de asesorías y visitas. </h6>
+		<h6>Compromisos del Asesor Académico</h6>
+		<h6>   Lidera y realiza una gestión con calidad, tipificada por el cumplimiento oportuno de los objetivos y metas institucionales y del Programa de Práctica.</h6>
+		<h6>   Presenta al Asesor Externo el perfil profesional del Publicista y su potencial  de desempeño  en la organización.</h6>
+		<h6>   Guía al estudiante en su posicionamiento profesional dentro de la organización y en el planteamiento de las estrategias comunicativas.</h6>
+		<h6>   Para practicantes fuera de Cali y Colombia se comunica vía e-mail, teléfono y fax con el Asesor Externo.</h6>
+		<h6>   Para practicantes de Cali, del Valle y de algunas ciudades de Colombia visita al Asesor Externo  para evaluar  el desempeño profesional del estudiante. </h6>
+		<h6>   Retroalimenta al estudiante de acuerdo con los resultados de la evaluación  hecha por el Asesor Externo.</h6>
+		<h6>   Presenta al Coordinador informes escritos correspondientes a las asesorías realizadas a cada uno de  sus practicantes. Igualmente, si es necesario entrega informes  de casos difíciles para dar soluciones conjuntas por parte del Comité  de Casos.</h6>
+		</div>
+	
+		<div>
+		<textarea cols="125" rows="10" readonly>{{ informe.asesor }}</textarea>
+		</div>
+		
+		<div class = "subtituloform" style ="height:60px"><h3  class = "datos">2.2 Coordinación de Práctica
+		 <h6>De forma analítica haga una reflexión concreta acerca del rol que desempeñó la coordinación de práctica en el proceso. Tenga en cuenta tanto la  gestión administrativa  como la académica del Programa de Práctica y de la coordinadora.</h6>
+		 </h3></div>	
+
+		 <div>
+		<textarea cols="125" rows="10" readonly>{{ informe.coordinacion }}</textarea>
+		</div>
+		
+		<div class = "tituloform">
+		<h3 class = "datos">
+		3.	¿Cómo evalúa el papel que desempeña  la universidad en la etapa de transición hacia la vida laboral? y ¿Cómo se imagina o le gustaría que fuera este acompañamiento por parte de la  universidad en esta etapa?
+		</h3>
+		</div>
+		<div>
+		<textarea cols="125" rows="10" readonly>{{ informe.universidad }}</textarea>
+		</div>
+		
+		<div class = "tituloform">
+		<h3 class = "datos">
+		COMUNICACIÓN PUBLICITARIA  (Autorreflexión)
+		</h3>
+		<h6>Desde su vivencia analicé sus fortalezas y debilidades en términos de competencias profesionales  para desarrollar el cargo que le correspondió.</h6>
+		</div>
+		
+		<div>
+		<textarea cols="125" rows="10" readonly>{{ informe.autoreflexion }}</textarea>
+		</div>
+		
+		<div class = "tituloform">
+		<h3 class = "datos">
+		RECOMENDACIONES
+		</h3>
+		<h6>El estudiante realizará recomendaciones a los nuevos practicantes en relación con su experiencia de práctica. Si tiene algo más para aportar, éste es el espacio para  hacerlo. Gracias.</h6>
+		</div>
+
+		<div>
+		<textarea cols="125" rows="10" readonly>{{ informe.recomendaciones }}</textarea>
+		</div>
+	
+
+	</form>	
+	</div>
+	</div>
+{% endblock %}

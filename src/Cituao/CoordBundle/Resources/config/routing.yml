@@ -95,6 +95,11 @@ cituao_coord_consultar_informefinalacademico:
     defaults: { _controller: CituaoCoordBundle:Default:consultarInformefinalacademico }
 
 cituao_coord_consultar_acta:
-    path:  /coordinador/consultar-acta-/practicante={id}
+    path:  /coordinador/consultar-acta/practicante={id}
     defaults: { _controller: CituaoCoordBundle:Default:consultarActa }
+
+cituao_coord_consultar_informefinalpracticante:
+    path:  /coordinador/consultar-informefinal-practicante/practicante={id}
+    defaults: { _controller: CituaoCoordBundle:Default:consultarInformefinalpracticante }
+
 
