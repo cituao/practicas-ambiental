@@ -472,19 +472,15 @@ class DefaultController extends Controller
 	/*************************************/
 	public function academicosAction(){
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
-
 		$listaAcademicos = $repository->findAll();
-		
 		
 		if (!$listaAcademicos) {
 			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
 	    }else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-
 		$c=0;
 		foreach ($listaAcademicos as $aca){
-			
 			$p = $aca->getPracticantes();
 			$c = $c + $p->count();
 		}
@@ -891,7 +887,9 @@ class DefaultController extends Controller
 			return $this->render('CituaoCoordBundle:Default:cualicuanti.html.twig', array('gestion' => $cualicuanti, 'datos' => $datos));
 	}	
 	
-
+	//**************************************************************
+	//Mostrar el informe final del asesor académico
+	//**************************************************************
 	public function consultarInformefinalacademicoAction($id){
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
@@ -928,6 +926,9 @@ class DefaultController extends Controller
         ));
 	}
 	
+	//**************************************************************
+	//Mostrar el informe final del practicante
+	//**************************************************************
 	public function consultarInformefinalpracticanteAction($id){
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
