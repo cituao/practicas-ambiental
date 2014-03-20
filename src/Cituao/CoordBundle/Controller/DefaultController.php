@@ -890,7 +890,29 @@ class DefaultController extends Controller
 		$datos = array('id' => $id, 'numges' => $numges);
 			return $this->render('CituaoCoordBundle:Default:cualicuanti.html.twig', array('gestion' => $cualicuanti, 'datos' => $datos));
 	}	
+
 	
+
+	public function consultarInformefinalacademicoAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		//buscamos el informe  para actualizar 
+		$query = $em->createQuery(
+				'SELECT i FROM CituaoAcademicoBundle:Informefinalacademico i WHERE i.practicante =:id_pra ');
+		$query->setParameter('id_pra',$id);
+		
+		$informe = $query->getOneOrNullResult();
+		//si no hay informes creamos una instancia de informe final
+	
+		$datos = array('id' => $id);
+        return $this->render('CituaoCoordBundle:Default:informefinalacademico.html.twig', array(
+            'informe' => $informe, 'datos' => $datos
+        ));
+
+	
+
+	}
 }
 
 

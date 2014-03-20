@@ -285,7 +285,7 @@
 				<td>{{ c.fechaEvaluacionFinal|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacionFinal == true %}
 					<td class = "colEstado">Entregado</td>
-					<td class = "colEstado">Ver</td>
+					<td><a href="{{ path('cituao_academico_registrar_informefinal', { 'id': p.id}) }}">Ver o Actualizar</a></td>
 				{% elseif c.fechaEvaluacionFinal > date() %}
 					<td class = "colEstado">Aun falta!</td>
 					<td class = "colEstado">-</td>

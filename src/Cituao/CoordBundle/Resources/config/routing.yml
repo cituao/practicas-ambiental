@@ -90,3 +90,8 @@ cituao_coord_consultar_gestion:
     path:  /coordinador/consultar_gestion/practicante={id}&gestion={numges}
     defaults: { _controller: CituaoCoordBundle:Default:consultarGestion }
 
+cituao_coord_consultar_informefinalacademico:
+    path:  /coordinador/consultar-informefinal-academico/practicante={id}
+    defaults: { _controller: CituaoCoordBundle:Default:consultarInformefinalacademico }
+
+

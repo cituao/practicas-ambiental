@@ -478,7 +478,8 @@ class DefaultController extends Controller
 
         if ($formulario->isValid()) {
             // Completar las propiedades que el usuario no rellena en el formulario
-			$informe->setPracticante($practicante->getId());
+			$informe->setPracticante($id);
+			$informe->setAcademico($academico->getId());
 			$em->persist($informe);
 
 			$query = $em->createQuery(

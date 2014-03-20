@@ -1,0 +1,53 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Consultando Informe final del Asesor Académico</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+		<div id = "subinfowrapper">
+	<form action="" method="post">
+		<div class = "tituloform">
+		<h2 class = "datos">INFORME FINAL</h2>
+		</div>
+
+		<div class = "subtituloform">
+		<h3 class = "datos">1. ¿Qué tipo de asesoría requirió el estudiante del Asesor Académico y de   la Universidad? ¿Cómo fue el  proceso de acompañamiento académico? (explique la metodología que utilizó)</h3>
+		</div>
+
+
+		<div>
+		<textarea cols="125" rows="10" readonly>{{ informe.metodologia }}</textarea>
+		</div>
+				
+
+		
+		<div class = "subtituloform">
+		<h3  class = "datos">
+		2. ¿Considera que el estudiante tiene o no las competencias necesarias para  el trabajo requerido por la 		organización?  Explique el perfil requerido, debilidades y fortalezas del estudiante en relación con las necesidades de la empresa.
+		</h3>
+		</div>
+
+		<div>
+		<textarea cols="125" rows="10" readonly>{{ informe.competencia }}</textarea>
+		</div>
+
+	     <div class = "subtituloform" style ="height:60px">
+		<h3  class = "datos">
+		Recomendaciones generales y comentarios  a la Facultad y al Programa de Práctica (metodología, formatos, evaluación, 			seguimiento, otros)
+		 </h3></div>	
+
+		<div>
+		<textarea cols="125" rows="10" readonly>{{ informe.recomendaciones }}</textarea>
+		</div>
+
+
+	</form>	
+	</div>
+	</div>
+{% endblock %}
