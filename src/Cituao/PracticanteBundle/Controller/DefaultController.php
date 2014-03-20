@@ -186,7 +186,7 @@ class DefaultController extends Controller
 		return $this->render('CituaoPracticanteBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
 	}
 	
-		//*************************************************************
+	//*************************************************************
 	//Registrar informe cualicuanti 1,2,3  efectuada por el asesor externo
 	//*************************************************************
 	public function registrarCualicuantiAction($id, $numcua){

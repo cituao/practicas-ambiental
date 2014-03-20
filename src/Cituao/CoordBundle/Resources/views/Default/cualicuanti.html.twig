@@ -1,0 +1,133 @@
+{% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block infowrapper  %}
+	<div id="infoWrapper">
+		<h2 id="titlee">Consultando Informe de Gestión Cualicuanti # {{ datos.numges }}</h2>
+
+		<div id = "menuop">
+			<ul>
+			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
+			</ul>
+		</div>
+
+		<div id = "subinfowrapper">
+	<form action="" method="post">
+
+
+					<div class = "datos">
+					<h2 class = "datos">ACTIVIDAD</h2>
+					</div>
+
+					<div>
+					<textarea cols="125" rows="10" readonly>{{ gestion.actividad1 }}</textarea>
+					</div>
+				
+					<div class = "datos">
+					<h2 class = "datos">DESCRIPCION</h2>
+					</div>
+
+					<div>
+					<textarea cols="125" rows="10" readonly>{{ gestion.descripcion1 }}</textarea>
+					</div>
+
+					<div>
+					<label>Indicador</label>
+					<input type="text" value="{{ gestion.indicador1 }}" readonly>
+					</div>
+
+
+					<div>
+					<label>Porcentaje</label>
+					<input type="text" value="{{ gestion.porcentaje1 }}" readonly>
+					</div>
+
+
+
+
+
+					<div class = "datos">
+					<h2 class = "datos">ACTIVIDAD</h2>
+					</div>
+
+					<div>
+					<textarea cols="125" rows="10" readonly>{{ gestion.actividad2 }}</textarea>
+					</div>
+				
+					<div class = "datos">
+					<h2 class = "datos">DESCRIPCION</h2>
+					</div>
+
+					<div>
+					<textarea cols="125" rows="10" readonly>{{ gestion.descripcion2 }}</textarea>
+					</div>
+
+					<div>
+					<label>Indicador</label>
+					<input type="text" value="{{ gestion.indicador2 }}" readonly>
+					</div>
+
+
+					<div>
+					<label>Porcentaje</label>
+					<input type="text" value="{{ gestion.porcentaje2 }}" readonly>
+					</div>
+
+
+
+
+					<div class = "datos">
+					<h2 class = "datos">ACTIVIDAD</h2>
+					</div>
+
+					<div>
+					<textarea cols="125" rows="10" readonly>{{ gestion.actividad3 }}</textarea>
+					</div>
+				
+					<div class = "datos">
+					<h2 class = "datos">DESCRIPCION</h2>
+					</div>
+
+					<div>
+					<textarea cols="125" rows="10" readonly>{{ gestion.descripcion3 }}</textarea>
+					</div>
+
+					<div>
+					<label>Indicador</label>
+					<input type="text" value="{{ gestion.indicador3 }}" readonly>
+					</div>
+
+
+					<div>
+					<label>Porcentaje</label>
+					<input type="text" value="{{ gestion.porcentaje3 }}" readonly>
+					</div>
+
+
+
+
+
+
+					<div class = "datos">
+					<h2 class = "datos">APRECIACIONES ADICIONALES</h2>
+					</div>
+
+					<div>
+					<textarea cols="125" rows="10" readonly>{{ gestion.apreciacion }}</textarea>
+					</div>
+
+
+
+					<div class = "datos">
+					<h2 class = "datos">COMENTARIOS ASESOR ACADÉMICO</h2>
+					</div>
+
+					<div>
+					<textarea cols="125" rows="10" readonly>{{ gestion.comentarios }}</textarea>
+					</div>
+
+
+
+	</form>	
+	</div>
+	</div>
+{% endblock %}

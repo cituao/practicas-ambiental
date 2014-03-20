@@ -189,7 +189,7 @@
 				<td>{{ p.fechaInformeGestion1|date("d/m/Y") }}</td>
 				{% if p.listoGestion1 == true %}
 					<td class = "colEstado">Entregado</td>
-					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver</a></td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver o Actualizar</a></td>
 				{% elseif p.fechaInformeGestion1 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
 					<td class = "colEstado">-</td>	
@@ -205,7 +205,7 @@
 				<td>{{ p.fechaInformeGestion2|date("d/m/Y") }}</td>
 				{% if p.listoGestion2 == true %}
 					<td class = "colEstado">Entregado</td>
-					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Ver</a></td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Ver o Actualizar</a></td>
 				{% elseif p.fechaInformeGestion2 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
 					<td class = "colEstado">-</td>	
@@ -225,7 +225,7 @@
 				<td>{{ p.fechaInformeGestion3|date("d/m/Y") }}</td>
 				{% if p.listoGestion3 == true %}
 					<td class = "colEstado">Entregado</td>
-					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>
+					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Ver o Actualizar</a></td>
 				{% elseif p.fechaInformeGestion3 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
 					<td class = "colEstado">-</td>

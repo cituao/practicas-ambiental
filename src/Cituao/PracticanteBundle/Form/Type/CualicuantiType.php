@@ -14,15 +14,15 @@ class CualicuantiType extends AbstractType
 		        ->add('actividad1','textarea', array('label' => ' ', 'max_length' => '600', 'attr' => array('cols' => '130', 'rows' => '5')))
 		        ->add('descripcion1','textarea', array('label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('indicador1', 'choice', array('label' => 'Indicador', 'choices'=> array('completado' => 'Completado', 'proceso' => 'En proceso')))
-				->add('porcentaje1', 'choice', array('label' => 'Porcentaje', 'choices'=> array('25' => '25%', '50' => '50%' , '75' => '75%')))	
+				->add('porcentaje1', 'choice', array('label' => 'Porcentaje', 'choices'=> array('25' => '25%', '50' => '50%' , '75' => '75%', '100' => '100%')))	
 		        ->add('actividad2','textarea', array('label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '5')))
 		        ->add('descripcion2','textarea', array('label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('indicador2', 'choice', array('label' => 'Indicador', 'choices'=> array('completado' => 'Completado', 'proceso' => 'En proceso')))
-				->add('porcentaje2', 'choice', array('label' => 'Porcentaje', 'choices'=> array('25' => '25%', '50' => '50%' , '75' => '75%')))	
+				->add('porcentaje2', 'choice', array('label' => 'Porcentaje', 'choices'=> array('25' => '25%', '50' => '50%' , '75' => '75%', '100' => '100%')))	
 		        ->add('actividad3','textarea', array('label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '5')))
 		        ->add('descripcion3','textarea', array('label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '15')))
 				->add('indicador3', 'choice', array('label' => 'Indicador', 'choices'=> array('completado' => 'Completado', 'proceso' => 'En proceso')))	
-				->add('porcentaje3', 'choice', array('label' => 'Porcentaje', 'choices'=> array('25' => '25%', '50' => '50%' , '75' => '75%')))	
+				->add('porcentaje3', 'choice', array('label' => 'Porcentaje', 'choices'=> array('25' => '25%', '50' => '50%' , '75' => '75%', '100' => '100%')))	
 				->add('apreciacion','textarea', array('label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '15')))
 				->add('comentarios','textarea', array('label' => ' ', 'read_only' => true, 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '15')));
 		}

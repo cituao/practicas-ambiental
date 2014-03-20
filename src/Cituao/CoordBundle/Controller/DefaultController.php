@@ -851,10 +851,45 @@ class DefaultController extends Controller
 			return $this->render('CituaoCoordBundle:Default:evaluacion.html.twig', array('datos' => $datos, 'e' => $evaluacion));
 		else
 			return $this->render('CituaoCoordBundle:Default:evaluacion2.html.twig', array('datos' => $datos, 'e' => $evaluacion));
-		
-			
 	}
-	
+
+	//******************************************************
+	//Mostrar el informe de gestión cuali cuanti sea 1,2,3
+	//******************************************************	
+	public function consultarGestionAction($id, $numges){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+
+		// buscamos el practicante
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		
+		//determinamos si ya fue registrado el informe en la base de datos si es positivo es una actualizacion
+		$sw = false;
+		switch($numges){
+			case 1:
+				if($practicante->getlistoGestion1()) $sw=true;
+			break;
+			case 2:
+				if($practicante->getlistoGestion2()) $sw=true;
+			break;
+			case 3:
+				if($practicante->getlistoGestion3()) $sw=true;
+			break;
+		}
+
+		//si ya fue registrado hacemos una instancia del informe cualicuanti para mostrar en formulario
+		if ($sw) {
+			$query = $em->createQuery(
+					'SELECT a FROM CituaoAcademicoBundle:Cualicuanti a WHERE a.practicante =:id_pra  AND a.cualicuanti =:numcua');
+			$query->setParameter('id_pra',$id);
+			$query->setParameter('numcua',$numges);
+			$cualicuanti = $query->getOneOrNullResult();
+		}
+		
+		$datos = array('id' => $id, 'numges' => $numges);
+			return $this->render('CituaoCoordBundle:Default:cualicuanti.html.twig', array('gestion' => $cualicuanti, 'datos' => $datos));
+	}	
 	
 }
 
