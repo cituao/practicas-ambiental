@@ -74,15 +74,12 @@ class DefaultController extends Controller
 			if ($p != NULL)  throw $this->createNotFoundException('¡La cédula de identidad ya existe!');
 		}
 		
-		
-		
         if ($formulario->isValid()) {
 			//si subio no subio foto  le asignamos una foto generica
 			if ($practicante->getFile() == NULL) 	$practicante->setPath('user.jpeg');
-
 			//subimos la foto al servidor
 			$practicante->upload();
-			
+
 			$practicante->setEstado("0");  //es practicante sin cronograma
 		
 			// Completar las propiedades que el usuario no rellena en el formulario
@@ -111,7 +108,7 @@ class DefaultController extends Controller
 
             $em->flush();
 
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
         }
         return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView()));
 	}
@@ -150,7 +147,7 @@ class DefaultController extends Controller
 			$em->persist($usuario);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
         }
         return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
 	}
@@ -407,7 +404,15 @@ class DefaultController extends Controller
         $formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
-            // Completar las propiedades que el usuario no rellena en el formulario
+			//validamos que no existe la cédula y el código
+			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
+			$e = $repository->findOneBy(array('ci' => $externo->getCi()));
+		
+			if ($e != NULL){
+				throw $this->createNotFoundException('¡La cédula ingresada ya existe!');
+			}
+   
+		   // Completar las propiedades que el usuario no rellena en el formulario
 			
             $em->persist($externo);
 
@@ -435,7 +440,7 @@ class DefaultController extends Controller
 
 
             $em->flush();
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_coord_asesores'));
         }
 
         return $this->render('CituaoCoordBundle:Default:registrarexterno.html.twig', array(
@@ -467,7 +472,7 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_coord_asesores'));
         }
         return $this->render('CituaoCoordBundle:Default:externo.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
 		
@@ -504,10 +509,19 @@ class DefaultController extends Controller
 		$academico = new Academico();
         $formulario = $this->createForm(new AcademicoType(), $academico);
         $formulario->handleRequest($peticion);
-
+		
         if ($formulario->isValid()) {
+
+			//validamos que no existe la cédula y el código
+			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+			$a = $repository->findOneBy(array('ci' => $academico->getCi()));
+		
+			if ($a != NULL){
+				throw $this->createNotFoundException('¡La cédula ingresada ya existe!');
+			}
+
+			if ($academico->getFile() == NULL) 	$academico->setPath('user.jpeg');
 			$academico->upload();	
-			
 			
             // Completar las propiedades que el usuario no rellena en el formulario
             $em->persist($academico);
@@ -537,7 +551,7 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_coord_academicos'));
         }
 
         return $this->render('CituaoCoordBundle:Default:registraracademico.html.twig', array(
@@ -569,7 +583,7 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_coord_academicos'));
         }
 		
         return $this->render('CituaoCoordBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico ));
@@ -610,7 +624,7 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info',
                 '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
             );
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_coord_centros'));
         }
         return $this->render('CituaoCoordBundle:Default:registrarcentro.html.twig', array('formulario' => $formulario->createView()));
 	}
@@ -634,7 +648,7 @@ class DefaultController extends Controller
             $em->persist($centro);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+            return $this->redirect($this->generateUrl('cituao_coord_centros'));
         }
 		
         return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro ));
