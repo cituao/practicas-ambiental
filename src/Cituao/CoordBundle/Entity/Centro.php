@@ -29,13 +29,13 @@ class Centro
 
     /**
      * @var string
-	 * @Assert\NotBlank(message="La direccion es obligatorio")
+	 * @Assert\NotBlank(message="La dirección es obligatoria!")
      */
     private $direccion;
 
     /**
      * @var string
-	 * @Assert\NotBlank(message="El teléfono es obligatorio")
+	 * @Assert\NotBlank(message="El teléfono es obligatorio!")
      */
     private $telefono;
 
@@ -46,6 +46,7 @@ class Centro
 
     /**
      * @var string
+	 * @Assert\Email(message="Email inválido!")
      */
     private $email;
 

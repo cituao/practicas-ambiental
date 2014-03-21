@@ -193,6 +193,10 @@ class DefaultController extends Controller
 
 		// si los datos son validos guardamos cronograma para los actores        
 		if ($formulario->isValid()) {
+			$academico = $practicante->getAcademico();
+			if ($academico->getPracticantes()->count() == 4)
+				throw $this->createNotFoundException('El asesor academico seleccionado ya tiene el máximo de participantes!');
+			
 			// Completar las propiedades que el usuario no rellena en el formulario
 			$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
 

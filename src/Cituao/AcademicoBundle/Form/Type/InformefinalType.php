@@ -11,9 +11,9 @@ class InformefinalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		        ->add('metodologia','textarea', array('label' => ' ', 'max_length' => '2000', 'attr' => array('cols' => '130', 'rows' => '5')))
-		        ->add('competencia','textarea', array('label' => ' ', 'max_length' => '2000' , 'attr' => array('cols' => '130', 'rows' => '10')))
-		        ->add('recomendaciones','textarea', array('label' => ' ', 'max_length' => '2000', 'attr' => array('cols' => '130', 'rows' => '5')));
+		        ->add('metodologia','textarea', array('required' => false, 'label' => ' ', 'max_length' => '2000', 'attr' => array('cols' => '130', 'rows' => '5')))
+		        ->add('competencia','textarea', array('required' => false, 'label' => ' ', 'max_length' => '2000' , 'attr' => array('cols' => '130', 'rows' => '10')))
+		        ->add('recomendaciones','textarea', array('required' => false, 'label' => ' ', 'max_length' => '2000', 'attr' => array('cols' => '130', 'rows' => '5')));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -19,8 +19,8 @@ class PracticanteType extends AbstractType
         ->add('emailInstitucional', 'email',  array('required' => false, 'label' => 'Email institucional' , 'attr' => array('placeholder' => 'usuario@servidor')))
         ->add('emailPersonal', 'email',  array('required' => false, 'label' => 'Email personal', 'attr' => array('placeholder' => 'usuario@servidor')))
 		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil' , 'attr' => array('placeholder' => 'Ingrese el número telefónico móvil ')))
-		->add('fechaMatriculacion', 'date', array('required' => false, 'required' => true, 'label' => 'Fecha de matrícula', 'input' => 'datetime', 'widget' => 'choice', 'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día') ))
-		->add('area','entity', array('required' => false, 'class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
+		->add('fechaMatriculacion', 'date', array('required' => true, 'label' => 'Fecha de matrícula', 'input' => 'datetime', 'widget' => 'choice', 'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día') ))
+		->add('area','entity', array('required' => true, 'class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

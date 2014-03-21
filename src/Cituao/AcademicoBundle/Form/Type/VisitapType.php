@@ -11,7 +11,7 @@ class VisitapType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		        ->add('comentario','textarea', array('label' => 'Comentarios de la actividad:', 'max_length' => '600' ,  'attr' => array('cols' => '130', 'rows' => '10')));
+		        ->add('comentario','textarea', array('required' => false, 'label' => 'Comentarios de la actividad:', 'max_length' => '600' ,  'attr' => array('cols' => '130', 'rows' => '10')));
 
 		}
 

@@ -24,19 +24,22 @@ class Externo
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\NotBlank(message="El nombre es obligatorio")
-	*/
+	 * @Assert\NotBlank(message="Es obligatorio!")
+	 * @Assert\Regex(pattern="/\d/", match=false, message="Nombre inválido!")
+	 */
     private $nombres;
 
      /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank(message="El apellido es obligatorio")
+     * @Assert\NotBlank(message="Es obligatorio!")
+	 * @Assert\Regex(pattern="/\d/", match=false, message="Apellido inválido!")
 	 */
     private $apellidos;
 
      /**
      * @ORM\Column(type="string", length=12, unique=true)
-     * @Assert\NotBlank(message="La ci obligatorio")
+     * @Assert\NotBlank(message="Es obligatorio!")
+     * @Assert\Regex(pattern="/^\d+$/", match=true, message="Cédula inválida!")
 	 */
     private $ci;
 
@@ -52,14 +55,12 @@ class Externo
 
      /**
      * @ORM\Column(type="string", length=50)
-	 * @Assert\Email(message="Este dato es obligatorio")
-	 * @Assert\NotBlank(message="El email es obligatorio")
+	 * @Assert\Email(message="Email inválido!")
      */
     private $email;
 
      /**
      * @ORM\Column(type="string", length=30)
-	 *	@Assert\NotBlank(message="El cargo es obligatorio")
      */
     private $cargo;
 
