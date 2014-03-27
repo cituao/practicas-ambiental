@@ -11,7 +11,7 @@ class Evaluacion2Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		        ->add('cumplido','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '10')))
+		        ->add('cumplido','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('dl21', 'choice', array('required' => false, 'label' => 'Capacidad de gestión' , 'choices'=> array('DEFICIENTE' => 'DEFICIENTE', 'SATISFACTORIO' => 'SATISFACTORIO' , 'BUENO' => 'BUENO')))
 				->add('dl22', 'choice', array('required' => false, 'label' => 'Capacidad de negociacion'   , 'choices'=> array('DEFICIENTE' => 'DEFICIENTE', 'SATISFACTORIO' => 'SATISFACTORIO' , 'BUENO' => 'BUENO')))	
 				->add('dl23', 'choice', array('required' => false, 'label' => 'Creatividad'  , 'choices'=> array('DEFICIENTE' => 'DEFICIENTE', 'SATISFACTORIO' => 'SATISFACTORIO' , 'BUENO' => 'BUENO')))	
@@ -30,14 +30,14 @@ class Evaluacion2Type extends AbstractType
 				->add('va37', 'choice', array('required' => false, 'label' => 'Presentación personal'  , 'choices'=> array('DEFICIENTE' => 'DEFICIENTE', 'SATISFACTORIO' => 'SATISFACTORIO' , 'BUENO' => 'BUENO')))	
 				->add('va38', 'choice', array('required' => false, 'label' => 'Puntualidad'  , 'choices'=> array('DEFICIENTE' => 'DEFICIENTE', 'SATISFACTORIO' => 'SATISFACTORIO' , 'BUENO' => 'BUENO')))	
 				->add('va39', 'choice', array('required' => false, 'label' => 'Relaciones interpersonales'  , 'choices'=> array('DEFICIENTE' => 'DEFICIENTE', 'SATISFACTORIO' => 'SATISFACTORIO' , 'BUENO' => 'BUENO')))
-				->add('comentarioExterno','textarea', array('required' => false, 'label' => ' ', 'max_length' => '500' , 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('aportes','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('proyeccion','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('compromiso','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('apreciacion','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('comentarioExterno','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('aportes','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('proyeccion','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('compromiso','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('apreciacion','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('aprobado', 'checkbox', array('required' => false, 'label' => 'Aprobado'))
-				->add('comentarioAcademico','textarea', array('required' => false, 'label' => ' ', 'read_only' => true, 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('compromisop','textarea', array('required' => false, 'label' => ' ', 'read_only' => true, 'max_length' => '500', 'attr' => array('cols' => '130', 'rows' => '10')));
+				->add('comentarioAcademico','textarea', array('required' => false, 'label' => ' ', 'read_only' => true, 'max_length' => '5500', 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('compromisop','textarea', array('required' => false, 'label' => ' ', 'read_only' => true, 'max_length' => '5500', 'attr' => array('cols' => '130', 'rows' => '10')));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

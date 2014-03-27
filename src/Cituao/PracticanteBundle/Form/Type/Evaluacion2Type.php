@@ -11,7 +11,7 @@ class Evaluacion2Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		        ->add('cumplido','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+		        ->add('cumplido','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('dl21', 'text', array('required' => false, 'label' => 'Capacidad de gestión', 'read_only' => true))
 				->add('dl22', 'text', array('required' => false, 'label' => 'Capacidad de negociacion', 'read_only' => true))	
 				->add('dl23', 'text', array('required' => false, 'label' => 'Creatividad', 'read_only' => true))	
@@ -30,15 +30,15 @@ class Evaluacion2Type extends AbstractType
 				->add('va37', 'text', array('required' => false, 'label' => 'Presentación personal', 'read_only' => true))	
 				->add('va38', 'text', array('required' => false, 'label' => 'Puntualidad', 'read_only' => true))	
 				->add('va39', 'text', array('required' => false, 'label' => 'Relaciones interpersonales', 'read_only' => true))
-				->add('comentarioExterno','textarea', array('required' => false, 'label' => ' ', 'max_length' => '500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('aportes','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array
+				->add('comentarioExterno','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('aportes','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'read_only' => true, 'attr' => array
 ('cols' => '130', 'rows' => '10')))
-				->add('proyeccion','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('compromiso','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('apreciacion','textarea', array('required' => false, 'label' => ' ', 'max_length' => '600' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('proyeccion','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('compromiso','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('apreciacion','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('aprobado', 'checkbox', array('required' => false, 'label' => 'Aprobado', 'read_only' => true))
-				->add('comentarioAcademico','textarea', array('required' => false, 'label' => ' ', 'max_length' => '500', 'read_only' => true,'attr' => array('cols' => '130', 'rows' => '10')))
-				->add('compromisop','textarea', array('required' => false, 'label' => ' ', 'max_length' => '500','attr' => array('cols' => '130', 'rows' => '10')));
+				->add('comentarioAcademico','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500', 'read_only' => true,'attr' => array('cols' => '130', 'rows' => '10')))
+				->add('compromisop','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500','attr' => array('cols' => '130', 'rows' => '10')));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
