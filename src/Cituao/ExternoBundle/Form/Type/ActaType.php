@@ -16,9 +16,9 @@ class ActaType extends AbstractType
 				->add('acompana', 'choice', array('required' => false, 'label' => ' ', 'expanded' => true, 'choices'=> array('1' => '1', '2' => '2' , '2' => '2' , '3' => '3' , '4' => '4' , '5' => '5')))	
 				->add('trabajo', 'choice', array('required' => false, 'label' => 'Trabajo', 'expanded' => true, 'choices'=> array('1' => '1', '2' => '2' , '2' => '2' , '3' => '3' , '4' => '4' , '5' => '5')))	
 				->add('aporte', 'choice', array('required' => false, 'label' => 'Aporte', 'expanded' => true, 'choices'=> array('1' => '1', '2' => '2' , '2' => '2' , '3' => '3' , '4' => '4' , '5' => '5')))	
-				->add('observaciones','textarea', array('required' => false, 'label' => ' ' ,  'max_length' => '600', 'attr' => array('cols' => '80', 'rows' => '3')))
+				->add('observaciones','textarea', array('required' => false, 'label' => ' ' ,  'max_length' => '5500', 'attr' => array('cols' => '80', 'rows' => '3')))
 				->add('satisfaccion', 'checkbox', array('required' => false, 'label' => 'Aprobado'))
-				->add('negativo','textarea', array('required' => false, 'label' => ' ' ,  'max_length' => '600', 'attr' => array('cols' => '80', 'rows' => '3')));
+				->add('negativo','textarea', array('required' => false, 'label' => ' ' ,  'max_length' => '5500', 'attr' => array('cols' => '80', 'rows' => '3')));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -14,32 +14,32 @@ class AsesoriaType extends AbstractType
     {
 		switch($this->numase){
 			case 1:	
-				$builder->add('docAsesor1','textarea', array('required' => false, 'label' => 'Tu asesor académico indica', 'read_only' => true, 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
-				$builder->add('docPracticante1','textarea', array('required' => false, 'label' => 'Tus reflexiones del proceso:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docAsesor1','textarea', array('required' => false, 'label' => 'Tu asesor académico indica', 'read_only' => true, 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docPracticante1','textarea', array('required' => false, 'label' => 'Tus reflexiones del proceso:', 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
 				break;
 			case 2:
-				$builder->add('docAsesor2','textarea', array('required' => false, 'label' => 'Tu asesor académico indica:', 'read_only' => true, 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
-				$builder->add('docPracticante2','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docAsesor2','textarea', array('required' => false, 'label' => 'Tu asesor académico indica:', 'read_only' => true, 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docPracticante2','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
 				break;
 			case 3:
-				$builder->add('docAsesor3','textarea', array('required' => false, 'label' => 'Asesor académico::', 'read_only' => true, 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
-				$builder->add('docPracticante3','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docAsesor3','textarea', array('required' => false, 'label' => 'Asesor académico::', 'read_only' => true, 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docPracticante3','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
 				break;
 			case 4:
-				$builder->add('docAsesor4','textarea', array('required' => false, 'label' => 'Asesor académico:', 'read_only' => true,'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
-				$builder->add('docPracticante4','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docAsesor4','textarea', array('required' => false, 'label' => 'Asesor académico:', 'read_only' => true,'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docPracticante4','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
 				break;
 			case 5:
-				$builder->add('docAsesor5','textarea', array('required' => false, 'label' => 'Asesor académico:', 'read_only' => true, 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
-				$builder->add('docPracticante5','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docAsesor5','textarea', array('required' => false, 'label' => 'Asesor académico:', 'read_only' => true, 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docPracticante5','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
 				break;
 			case 6:
-				$builder->add('docAsesor6','textarea', array('required' => false, 'label' => 'Tu asesor académico indica:', 'read_only' => true, 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
-				$builder->add('docPracticante6','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docAsesor6','textarea', array('required' => false, 'label' => 'Tu asesor académico indica:', 'read_only' => true, 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docPracticante6','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
 				break;
 			case 7:
-				$builder->add('docAsesor7','textarea', array('required' => false, 'label' => 'Tu asesor académico:', 'read_only' => true, 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
-				$builder->add('docPracticante7','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docAsesor7','textarea', array('required' => false, 'label' => 'Tu asesor académico:', 'read_only' => true, 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
+				$builder->add('docPracticante7','textarea', array('required' => false, 'label' => 'Tu documentación:', 'max_length' => '5500', 'attr' => array('placeholder' => 'Escriba sus comentarios sobre el proceso!' , 'cols' => '125', 'rows' => '10'), 'required' => true ));
 				break;
 		}		
 	}

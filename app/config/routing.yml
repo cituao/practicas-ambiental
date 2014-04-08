@@ -21,3 +21,6 @@ cituao_usuario:
 cituao_portal:
     resource: "@CituaoPortalBundle/Resources/config/routing.yml"
     prefix:   /
+
+logout:
+    path:     /logout
