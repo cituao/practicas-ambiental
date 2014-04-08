@@ -2,9 +2,36 @@
 <html>
     <head>
         
-        <title>{% block title %} Prácticas profesionales Facultad de Comunicaciones UAO{% endblock %}</title>
-        {% block stylesheets %} 	{% endblock %}
+        <title>{% block title %}Login ::: Práctica Profesional UAO{% endblock %}</title>
+        {% block stylesheets %} 
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/mainPanel.css') }}" />
+        <link href="{{ asset('css/comun.css') }}" rel="stylesheet" />
+        <link rel="agregar-participante" href="{{ asset('images/agregar_participante.png') }}" />
+        <style>
+            @font-face
+            {
+            font-family: helveticaN;
+            src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Lt.otf') }}'),
+            url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.woff') }}'),
+            url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.eot') }}');
+
+
+            }
+            @font-face
+            {
+            font-family: helveticaNBold;
+            src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Md.otf') }}');
+            }
+
+        </style>
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {% endblock %}
+
     </head>
     <body>
 		

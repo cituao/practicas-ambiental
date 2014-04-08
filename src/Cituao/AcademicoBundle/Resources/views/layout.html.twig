@@ -3,28 +3,8 @@
 {% block title %} Panel Principal::: Práctica Profesional UAO{% endblock %}
 
 {% block stylesheets %}
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/mainPanel.css') }}" />
-		<link href="{{ asset('css/comun.css') }}" rel="stylesheet" />
-		<link rel="agregar-participante" href="{{ asset('images/agregar_participante.png') }} 
-		<style>
-			@font-face
-			{
-			font-family: helveticaN;
-			src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Lt.otf') }}'),
-			url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.woff') }}'),
-			url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.eot') }}');
-
-
-			}
-			@font-face
-			{
-			font-family: helveticaNBold;
-			src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Md.otf') }}');
-			}
-
-		</style>
+	{{ parent() }}	
+	
 {% endblock %}
 
 {% block javascripts %}

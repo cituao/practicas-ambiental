@@ -1,75 +1,45 @@
+
+
 html, body{
 	font-size: 16px;
-	background-color: #fafbf6;
-	font-family: helveticaN;
+	font-family: helveticaN, Open-sans, arial , sans-serif;
 	min-height:100%;
 	height:100%;
 
 
 }
+
+
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
 
-h1{		font-family: helveticaNBold, Helvetica;	}
 
-h2{		font-family: helveticaN, Helvetica;	}
 
-p{		font-family: helveticaN, Helvetica;	}
+h1{		font-family: helveticaNBold, Open-sans, arial , sans-serif;	}
 
-.fontface h1 {
- font: 42px/50px helveticaNBold;
- text-shadow: none;
-}
+h2{		font-family: helveticaN, Open-sans, arial , sans-serif;	}
 
-.fontface h2 {
- font: 42px/50px helveticaN;
- text-shadow: none;
-}
-
-.fontface p {
- font: 42px/50px helveticaN;
- text-shadow: none;
-}
+p{		font-family: helveticaN, Open-sans, arial , sans-serif;	}
 
 
 
 #wrapper{
 	
 	width: 100%;
-	border-top: 3px solid #af0000;
+	/*border: 3px solid #af0000;*/
 	height:100%;
 }
 
-#loginWrapper{
 
-	float: right;
-	background-color: #af0000;
-	width: 41.6%; /* 500px*/
-	max-width: 500px;
-	height: 100%;
-}
-
-#loginContainer{
-	margin: 0 auto !important;
-	display: block;
-
-	max-width: 360px;
-	width: 75%;
-	height: 100%;
-	
-	/*border: 1px solid #000;*/
-	background: url(../img/carneBack.png);
-	background-repeat:no-repeat;
-	background-size: 100%;
-
-}
 #formWrapper{
-	margin: 0 auto;
-	padding-top:128%; /*470px*/
-	width: 65%; /*240px*/
-	/*border: 1px solid #000; */
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	
+	width: 300px;
+	/*border: 1px solid #000;*/
 
 
 
@@ -81,14 +51,20 @@ p{		font-family: helveticaN, Helvetica;	}
 	color: #3f3f3f;
 	margin-left:33.3%;
 }
+form{
+	margin-top: 55px;
+}
 
 input[type="text"], input[type="password"]
 {
-width:63%;
-margin-left:5%; /*12px*/
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+width:190px;
+
 margin-top: 10%; /*30px*/
-height: 38px;
-border: #9c9c9c solid 1px;
+height: 40px;
+border: #242021 solid 1px;
 background-color: #fff;
 color:#242424;
 font-size: 1.12em;
@@ -108,29 +84,31 @@ input[type="password"]{ font-size: 1.8em;}
 
 input[type="submit"]
 {
-width:90%;
-margin-left:5%; /*12px*/
-margin-top: 11%; /*33px*/
+width:150px;
+font-family: helveticaN, Open-sans, arial , sans-serif;
+margin-top: 50px; 
+margin-left: 50px;
 height: 38px;
-background-color: #100f0f;
+background-color: #242021;
 color:#fff;
-font-size: 1.0em;
+font-size: 16px;
 border: none;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
 }
 input[type="submit"]:hover, input[type="submit"]:active{
 	cursor: pointer;
-	background-color: #af0000;
-	color: #fff;
-	font-size: 1.1em;
+	background-color: #e1001a;	
 }
 
 
 
 #userNameIcon , #passwordIcon{
 	position: absolute;
-	top: 30%;
-	left: 6%;
-	width: 22%;
+	top: 32px;
+	left: 15px;
+	
 }
 
 /*.userNameIconPath:hover {
@@ -138,29 +116,57 @@ input[type="submit"]:hover, input[type="submit"]:active{
 }*/
 
 #header{
-width: 90%;
+width: 700px;
 /*max-width: 1200px;*/
 /*border: 1px solid #000;*/
 height: 100px;
 margin:0 auto;
-margin-top: 0.5%;
-margin-left: 5%;
-display: block;
+margin-top: 180px;
+
 
 }
 
-#header img{
-	width: 200px;
+#uaoLogo{
+	width: 230px;
 	float: left;
 }
-
-#headerTitle{
+.logoContainer{
+	width: 230px;
 	/*border: 1px solid #000;*/
-	max-width: 240px;
 	float: left;
-	margin-top: 1.5%;
-	font-size: 0.75em; /*12px*/
+}
 
+.side{
+	width: 430px;
+	/*border: 1px solid #000;*/
+		float: left;
+		color: #fff;
+		margin-left: 20px;
+		margin-top: 20px;
+}
+.side h1{
+	font-size: 17px;
+	font-family: helveticaNBold, Open-sans, arial , sans-serif;
+	padding: 5px;
+	width: 200px;
+	background-color: #242021;
+}
+.side h2{
+	font-size: 16px;
+	font-family: helveticaN , Open-sans, arial , sans-serif;
+	padding: 5px;
+	width: 200px;
+	background-color: #242021;
+	margin-top: 1px;
+}
+
+.side h3{
+	font-size: 16px;
+	font-family: helveticaN, Open-sans, arial , sans-serif;
+	padding: 5px;
+	width: 400px;
+	background-color: #e1001a;
+	margin-top: 1px;
 }
 
 #headerError{
@@ -177,18 +183,6 @@ margin-top: 2%;
 font-family: "Arial";
 color: #FFF;
 }
-
-#headerTitle h1{
-font-size: 1.6em; /*19px*/
-height: 20px;
-}
-
-#headerTitle h2{
-font-size: 1.2em;
-color: #5b5b5b;
-height: 30px;
-}
-
 
 
 #homeButton{
@@ -246,7 +240,7 @@ margin-left: 13%; /*110px*/
 margin-top: 1%;
 }
 span{
-	font-family: helveticaNBold;
+	font-family: helveticaNBold, Open-sans, arial , sans-serif;
 }
 
 p#text{

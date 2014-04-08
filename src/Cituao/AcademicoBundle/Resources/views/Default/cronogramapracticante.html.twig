@@ -22,6 +22,7 @@
 		</div>
 		<div id = "subinfowrapper"> 
 			<div class = "datos">
+				<div><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  p.path) }}" alt="Pulpit rock" width="68" height="68"></div>
 			<h3>Practicante:  {{ p.nombres }}  {{ p.apellidos }}</h3>
 			<h3>Centro de práctica: {{ p.centro.nombre }}</h3>
 			<h3>Asesor externo: {{ p.externo.nombres }} {{ p.externo.apellidos }}</h3>

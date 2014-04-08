@@ -1,5 +1,15 @@
 {% extends 'CituaoPracticanteBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}	
+	<style>
+		input[type=text]{
+			border:none;
+		}
+	</style>
+	
+{% endblock %}
+
 {% block infowrapper  %}
 	<div id="infoWrapper">
 		<h2 id="titlee">Tu asesor externo</h2>
