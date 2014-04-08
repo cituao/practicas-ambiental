@@ -44,8 +44,12 @@
     				<h3>Programa de Comunicación Social-Periodismo[31C204]</h3>
     				
     				 <div id="formWrapper">
+    				 
     					
     					<form action="{{ path('usuario_login_check') }}" method="post">
+    							{% if error %}
+			<div id="headerError"> <h3>{{ error.message }}</h3></div>
+			{% endif %} 
 							<div style="position:relative;"><input onfocus="activateTextField(this.id)" onblur="disableTextField(this.id)" id="usernameField" type="text" name="_username">
 								<img id="userNameIcon" src=" {{ asset('img/userNameIcon.png') }}" />
 							</div>
@@ -62,9 +66,7 @@
 
 
     	<!--<div id="loginWrapper">
-			{% if error %}
-			<div id="headerError"> <h2>{{ error.message }}</h2></div>
-			{% endif %} 
+			
 	   		<div id="loginContainer">
     			
 			</div>

@@ -171,17 +171,23 @@ margin-top: 180px;
 
 #headerError{
 	/*border: 1px solid #000;*/
-	max-width: 240px;
-	float: left;
+	
+	
 	margin-top: 2%;
 	font-size: 0.75em; /*12px*/
+	width: 100%;
 }
 
-#headerError h2 {
+#headerError h3 {
 font-size: 1.2em;
 margin-top: 2%;
 font-family: "Arial";
 color: #FFF;
+clear: both;
+height: 25px;
+padding-top: 15px;
+border-radius: 5px;
+opacity: 0.8;
 }
 
 
