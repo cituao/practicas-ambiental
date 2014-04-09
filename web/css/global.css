@@ -67,10 +67,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 15, globalsass/sass/global.scss */
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 12, globalsass/sass/global.scss */
 html, body {
   overflow-x: hidden;
-  overflow-y: scroll;
   text-rendering: optimizeLegibility !important;
   font-smoothing: antialiased !important;
   -webkit-font-smoothing: antialiased !important;
@@ -86,32 +89,46 @@ html, body {
   font-family: helveticaNBold;
   src: url("../fonts/helvetica/HelveticaNeueLTStd-Md.otf");
 }
-/* line 46, globalsass/sass/global.scss */
+/* line 43, globalsass/sass/global.scss */
 a {
   text-decoration: none;
 }
 
-/* line 50, globalsass/sass/global.scss */
+/* line 47, globalsass/sass/global.scss */
 h1 {
   font-family: helveticaN;
   font-size: 23px;
   color: white;
 }
 
-/* line 57, globalsass/sass/global.scss */
+/* line 54, globalsass/sass/global.scss */
 h2 {
+  color: white;
   font-family: helveticaN;
   font-size: 17px;
 }
 
-/* line 62, globalsass/sass/global.scss */
+/* line 59, globalsass/sass/global.scss */
 h3 {
   font-family: helvetica;
   font-size: 13px;
   margin-top: 2px;
 }
 
-/* line 70, globalsass/sass/global.scss */
+/* line 65, globalsass/sass/global.scss */
+h4 {
+  font-family: helvetica;
+  font-size: 13px;
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+/* line 72, globalsass/sass/global.scss */
+span {
+  font-weight: bold;
+}
+
+/* line 75, globalsass/sass/global.scss */
 #mainHeader {
   width: 100%;
   height: 23px;
@@ -121,12 +138,12 @@ h3 {
   background-color: #242021;
   border-bottom: 1px solid black;
   padding-top: 7px;
-  color: #dadada;
+  color: #b5b5b5;
   min-width: 700px;
-  z-index: 1;
+  z-index: 10;
 }
 
-/* line 83, globalsass/sass/global.scss */
+/* line 88, globalsass/sass/global.scss */
 #secondHeader {
   position: fixed;
   top: 31px;
@@ -138,11 +155,11 @@ h3 {
   padding-top: 6px;
   border-bottom: 1px solid black;
   border-top: 1px solid #353133;
-  color: #dadada;
-  z-index: 1;
+  color: #b5b5b5;
+  z-index: 10;
 }
 
-/* line 98, globalsass/sass/global.scss */
+/* line 103, globalsass/sass/global.scss */
 #cerrarSesionButton {
   width: 120px;
   float: right;
@@ -150,12 +167,12 @@ h3 {
   padding: 0 5px;
 }
 
-/* line 106, globalsass/sass/global.scss */
+/* line 111, globalsass/sass/global.scss */
 #cerrarSesionButton:hover {
   background-color: #72030b;
 }
 
-/* line 110, globalsass/sass/global.scss */
+/* line 115, globalsass/sass/global.scss */
 a#cerrarButtonLink {
   font-family: helveticaNBold;
   font-size: 14px;
@@ -166,11 +183,11 @@ a#cerrarButtonLink {
   float: left;
 }
 
-/* line 121, globalsass/sass/global.scss */
+/* line 126, globalsass/sass/global.scss */
 #sideBar {
   background-color: #242021;
   position: fixed;
-  z-index: 2;
+  z-index: 10;
   top: 31px;
   left: 0;
   width: 210px;
@@ -180,18 +197,18 @@ a#cerrarButtonLink {
   border-top: 1px solid #353133;
   padding-left: 33px;
 }
-/* line 134, globalsass/sass/global.scss */
+/* line 139, globalsass/sass/global.scss */
 #sideBar h1#userName {
   position: absolute;
   top: 30px;
 }
-/* line 140, globalsass/sass/global.scss */
+/* line 145, globalsass/sass/global.scss */
 #sideBar h2#userRole {
   position: absolute;
   top: 60px;
-  color: #dadada;
+  color: #b5b5b5;
 }
-/* line 147, globalsass/sass/global.scss */
+/* line 152, globalsass/sass/global.scss */
 #sideBar #imgContainer {
   position: absolute;
   top: 100px;
@@ -203,16 +220,16 @@ a#cerrarButtonLink {
   -ms-border-radius: 50%;
   border-radius: 50%;
   border: none;
-  border: 1px solid #dadada;
+  border: 1px solid #b5b5b5;
 }
-/* line 157, globalsass/sass/global.scss */
+/* line 162, globalsass/sass/global.scss */
 #sideBar #imgContainer img {
   position: absolute;
   top: -4px;
 }
 
 /*sideBar */
-/* line 165, globalsass/sass/global.scss */
+/* line 170, globalsass/sass/global.scss */
 #menu {
   position: absolute;
   top: 270px;
@@ -220,7 +237,7 @@ a#cerrarButtonLink {
   width: 100%;
   z-index: 3;
 }
-/* line 172, globalsass/sass/global.scss */
+/* line 177, globalsass/sass/global.scss */
 #menu a {
   width: 100%;
   height: 40px;
@@ -230,21 +247,21 @@ a#cerrarButtonLink {
   padding: 5px 0;
   box-shadow: 0px 1px 1px #353133;
 }
-/* line 182, globalsass/sass/global.scss */
+/* line 187, globalsass/sass/global.scss */
 #menu a:first-child {
   border-top: 1px solid black;
 }
-/* line 185, globalsass/sass/global.scss */
+/* line 190, globalsass/sass/global.scss */
 #menu a:hover {
   background-color: #72030b;
 }
-/* line 188, globalsass/sass/global.scss */
+/* line 193, globalsass/sass/global.scss */
 #menu h3 {
   float: left;
   margin-top: 11px;
   text-shadow: 1px 1px 1px black;
 }
-/* line 193, globalsass/sass/global.scss */
+/* line 198, globalsass/sass/global.scss */
 #menu img {
   width: 35px;
   height: 35px;
@@ -252,30 +269,163 @@ a#cerrarButtonLink {
   margin-left: 25px;
   margin-right: 7px;
 }
-/* line 200, globalsass/sass/global.scss */
+/* line 205, globalsass/sass/global.scss */
 #menu .unable {
   color: #3f3a3c;
   box-shadow: none !important;
   text-shadow: none  !important;
 }
-/* line 205, globalsass/sass/global.scss */
+/* line 210, globalsass/sass/global.scss */
 #menu .unable:hover {
   cursor: default;
   background-color: #242021;
   pointer-events: none !important;
 }
-/* line 211, globalsass/sass/global.scss */
+/* line 216, globalsass/sass/global.scss */
 #menu .active {
   background-color: black;
 }
 
-/* line 216, globalsass/sass/global.scss */
+/* line 221, globalsass/sass/global.scss */
 #content {
-  width: 100%;
-  border: 1px solid #000;
+  width: 84.5%;
+  /*border:1px solid #000;*/
   position: absolute;
   top: 60px;
   left: 245px;
-  padding-left: 10px;
+  overflow: hidden;
+}
+
+/* line 230, globalsass/sass/global.scss */
+.button {
+  background-color: #242021;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  padding: 6px 15px;
+  color: white;
+  font-family: helveticaNBold;
+  font-size: 14px;
+  margin: 0 8px;
+}
+
+/* line 243, globalsass/sass/global.scss */
+.button:hover {
+  background-color: #ec1c24;
+}
+
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 11, globalsass/sass/contentStyle.scss */
+#upSection {
+  width: 100%;
+  height: 70px;
+  /*border:1px solid #000;*/
+  padding-top: 25px;
+}
+/* line 17, globalsass/sass/contentStyle.scss */
+#upSection h1 {
+  width: 150px;
+  background-color: #ec1c24;
+  padding: 3px 0px;
+  padding-left: 30px;
+  float: left;
+}
+/* line 27, globalsass/sass/contentStyle.scss */
+#upSection a {
+  float: right;
+}
+/* line 30, globalsass/sass/contentStyle.scss */
+#upSection a img {
+  margin-right: 7px;
+  float: left;
+}
+/* line 34, globalsass/sass/contentStyle.scss */
+#upSection a h4 {
+  float: left;
+  margin-top: 7px;
+}
+
+/* line 43, globalsass/sass/contentStyle.scss */
+#downSection {
+  width: 100%;
+  /*border:1px solid #000;*/
+}
+
+/* line 51, globalsass/sass/contentStyle.scss */
+#practicantesTable {
+  width: 100%;
+  padding-left: 30px;
+}
+/* line 55, globalsass/sass/contentStyle.scss */
+#practicantesTable .tableHead {
+  background-color: #b5b5b5;
+  height: 35px;
+}
+/* line 60, globalsass/sass/contentStyle.scss */
+#practicantesTable .tableItem {
+  margin: 10px 0px;
+  /*border:2px solid $darkGray;*/
+  height: 20px;
+  color: black;
+}
+/* line 68, globalsass/sass/contentStyle.scss */
+#practicantesTable .tableItem:hover {
+  color: white !important;
+}
+/* line 75, globalsass/sass/contentStyle.scss */
+#practicantesTable #w {
+  height: 55px;
+  width: 100%;
+  position: absolute;
+  margin-top: 25px;
+  border-top: 1px solid #b5b5b5;
+  border-bottom: 1px solid #b5b5b5;
+  z-index: 2;
+  pointer-events: none;
+}
+/* line 85, globalsass/sass/contentStyle.scss */
+#practicantesTable #w:hover {
+  background-color: #ec1c24;
+  z-index: 10;
+}
+/* line 91, globalsass/sass/contentStyle.scss */
+#practicantesTable .spacer {
+  height: 20px;
+}
+/* line 95, globalsass/sass/contentStyle.scss */
+#practicantesTable img {
+  position: relative;
+  margin: 0 auto;
+}
+/* line 100, globalsass/sass/contentStyle.scss */
+#practicantesTable #foto {
+  top: -10px;
+}
+/* line 104, globalsass/sass/contentStyle.scss */
+#practicantesTable td {
+  position: relative;
+  font-family: helvetica;
+  font-size: 14px;
+  z-index: 2;
+}
+/* line 115, globalsass/sass/contentStyle.scss */
+#practicantesTable h2 {
+  color: #b5b5b5;
+  margin-left: 30px;
+  font-weight: bold;
+}
+/* line 121, globalsass/sass/contentStyle.scss */
+#practicantesTable #itemImgContainer {
+  width: 100px;
+  height: 100px;
+  border: 3px solid #242021;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
   overflow: hidden;
 }

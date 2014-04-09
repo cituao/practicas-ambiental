@@ -22,7 +22,7 @@
 
 {% block sideBarMenu %}
 <div id="menu">	
-	<a href="{{ path('cituao_coord_practicantes') }}" class="button" id="practicantes"> 
+	<a href="{{ path('cituao_coord_practicantes') }}" class="menubutton" id="practicantes"> 
 		<img id="practicanteIcon" src="{{ asset('img/practicanteIcon.png') }}">
 		<h3>Practicantes</h3>
 		
@@ -32,21 +32,21 @@
 		<h3>Añadir practicantes</h3>
 		
 	</a>-->
-	<a href="{{ path('cituao_coord_asesores') }}" class="button"  id="asesoresExternos">
+	<a href="{{ path('cituao_coord_asesores') }}" class="menubutton"  id="asesoresExternos">
 		<img id="externoIcon" src="{{ asset('img/externoIcon.png') }}">
 		<h3>Asesores externos</h3>
 		
 	</a>
-	<a href="{{ path('cituao_coord_academicos') }}" class="button"  id="asesoresInternos">
+	<a href="{{ path('cituao_coord_academicos') }}" class="menubutton"  id="asesoresInternos">
 		<img id="internoIcon" src="{{ asset('img/internoIcon.png') }}">
 		<h3>Asesores internos</h3>
 		
 	</a>
-	<a href="{{ path('cituao_coord_centros') }}" class="button"  id="centroPractica">
+	<a href="{{ path('cituao_coord_centros') }}" class="menubutton"  id="centroPractica">
 		<img id="centroIcon" src="{{ asset('img/centroIcon.png') }}">
 		<h3>Centros de práctica</h3>	
 	</a>
-	<a href="{{ path('cituao_coord_configuracion') }}" class="button unable"  id="configuracion">
+	<a href="{{ path('cituao_coord_configuracion') }}" class="menubutton unable"  id="configuracion">
 		<img id="configIcon" src="{{ asset('img/configIcon.png') }}">
 		<h3 class="unable">Configuración</h3>
 		
@@ -56,4 +56,11 @@
 
 
 {% endblock  %}
+
+{% block upSection %} 
+    {% endblock %}
+
+    {% block downSection %} 
+    {% endblock %}
+
 
