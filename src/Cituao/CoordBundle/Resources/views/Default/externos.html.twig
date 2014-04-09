@@ -1,5 +1,13 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
+{% block js  %}
+<script>
+$( "#asesoresExternos" ).css("background-color","#000");
+$( "#asesoresExternos img" ).css("opacity","0.4");
+$( "#asesoresExternos h3" ).css("opacity","0.4");
+</script>
+
+{% endblock %}
 
 {% block infowrapper  %}
 	<div id="infoWrapper">

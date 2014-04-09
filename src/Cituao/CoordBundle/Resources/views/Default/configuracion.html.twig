@@ -1,5 +1,15 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
+{% block js  %}
+<script>
+$( "#configuracion" ).css("background-color","#000");
+$( "#configuracion img" ).css("opacity","0.4");
+$( "#configuracion h3" ).css("opacity","0.4");
+</script>
+
+{% endblock %}
+
+
 {% block infowrapper  %}
 	<div id="infoWrapper">
 		<h2 id = "titlee">Centros de práctica</h2>

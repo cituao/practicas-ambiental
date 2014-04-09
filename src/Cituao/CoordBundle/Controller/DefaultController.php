@@ -35,7 +35,15 @@ class DefaultController extends Controller
 	/********************************************************/	
     public function indexAction()
     {
-        return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$listaPracticantes = $repository->findAll();
+		
+		if (!$listaPracticantes) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+	    }else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
     }
 	
 	/********************************************************/

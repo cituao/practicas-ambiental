@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-        <title>{% block title %}Login ::: Práctica Profesional UAO{% endblock %}</title>
-        {% block stylesheets %} 
+<head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/mainPanel.css') }}" />
-        <link href="{{ asset('css/comun.css') }}" rel="stylesheet" />
-        <link rel="agregar-participante" href="{{ asset('images/agregar_participante.png') }}" />
-        <style>
-            @font-face
-            {
-            font-family: helveticaN;
-            src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Lt.otf') }}'),
-            url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.woff') }}'),
-            url('{{ asset('fonts/helvetica/helveticaneueltstd-lt.eot') }}');
+    <title>{% block title %}Login ::: Práctica Profesional UAO{% endblock %}</title>
+    {% block stylesheets %} 
 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/global.css') }}" />
+       <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/mainPanel.css') }}" />
+       <link href="{{ asset('css/comun.css') }}" rel="stylesheet" />-->
+       <link rel="agregar-participante" href="{{ asset('images/agregar_participante.png') }}" />
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
+     
 
-            }
-            @font-face
-            {
-            font-family: helveticaNBold;
-            src: url('{{ asset('fonts/helvetica/HelveticaNeueLTStd-Md.otf') }}');
-            }
+       <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-        </style>
+       {% endblock %}
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+   </head>
+   <body>
 
-        {% endblock %}
+      {% block body %} 	
 
-    </head>
-    <body>
-		
-		{% block javascripts %}		{% endblock %}
+      <div id="mainHeader">
+        <h2 style="float:left; margin-right:78px; margin-left:35px;">Práctica Profesional</h2>
+        <h3 style="float:left;">Facultad de comunicaciones</h3>
 
-		{% block body %} 		{% endblock %}
-    </body>
+        <div style="margin-top:-6px" id="cerrarSesionButton">
+            <img style="float:left;" src="{{ asset('img/cerrarSesionButton.png') }}"/>
+            <a href="{{ path('logout') }}" id="cerrarButtonLink">Cerrar Sesión </a>
+        </div>
+    </div><!-- mainHeader -->
+    <div id="secondHeader">
+       <h3 style="margin-left:15px" >Programa de Comunicación Social-Periodismo[31C204]</h3>
+   </div><!-- secondHeader -->
+
+   <div id="sideBar">
+    <h1 id="userName"> {{ app.user.username }}</h1>
+    <h2 id="userRole">{% if is_granted('ROLE_COORDINADOR') %} Coordinador{% endif %}
+        {% if is_granted('ROLE_ASESOR_EXT') %} Asesor Externo{% endif %}
+        {% if is_granted('ROLE_PRACTICANTE') %} Practicante{% endif %}
+        {% if is_granted('ROLE_ASESOR_ACA') %} Asesor Académico{% endif %}
+    </h2> {% block foto %} {% endblock %}
+    <div id="imgContainer">
+    <img  width="100%" src="{{ asset('img/1.png') }}" onerror="this.src='{{ asset('img/defaultPicture.png') }}'"/>
+    </div>
+    {% block sideBarMenu %} 
+    {% endblock %}
+    
+</div><!-- sideBar -->
+{% block content %} 
+    {% endblock %}
+{% endblock %}
+{% block js %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+
+{% endblock %}
+</body>
+
 </html>

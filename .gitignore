@@ -10,4 +10,10 @@
 /bin/
 /composer.phar
 /web/uploads/*
+/web/css/.sass-cache/
+/web/css/sass/
+/web/css/stylesheets/
+/web/css/globalsass/
+/web/css/ie.css
+/web/css/print.css
 *~

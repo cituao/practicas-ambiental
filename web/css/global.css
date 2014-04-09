@@ -1,0 +1,281 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 15, globalsass/sass/global.scss */
+html, body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-rendering: optimizeLegibility !important;
+  font-smoothing: antialiased !important;
+  -webkit-font-smoothing: antialiased !important;
+  min-width: 700px;
+  height: 100%;
+}
+
+@font-face {
+  font-family: helveticaN;
+  src: url("../fonts/helvetica/helveticaneueltstd-lt.woff"), url("../fonts/helvetica/helveticaneueltstd-lt.eot");
+}
+@font-face {
+  font-family: helveticaNBold;
+  src: url("../fonts/helvetica/HelveticaNeueLTStd-Md.otf");
+}
+/* line 46, globalsass/sass/global.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 50, globalsass/sass/global.scss */
+h1 {
+  font-family: helveticaN;
+  font-size: 23px;
+  color: white;
+}
+
+/* line 57, globalsass/sass/global.scss */
+h2 {
+  font-family: helveticaN;
+  font-size: 17px;
+}
+
+/* line 62, globalsass/sass/global.scss */
+h3 {
+  font-family: helvetica;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* line 70, globalsass/sass/global.scss */
+#mainHeader {
+  width: 100%;
+  height: 23px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #242021;
+  border-bottom: 1px solid black;
+  padding-top: 7px;
+  color: #dadada;
+  min-width: 700px;
+  z-index: 1;
+}
+
+/* line 83, globalsass/sass/global.scss */
+#secondHeader {
+  position: fixed;
+  top: 31px;
+  left: 241px;
+  width: 100%;
+  height: 20px;
+  background-color: #242021;
+  margin-top: 0.2px;
+  padding-top: 6px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid #353133;
+  color: #dadada;
+  z-index: 1;
+}
+
+/* line 98, globalsass/sass/global.scss */
+#cerrarSesionButton {
+  width: 120px;
+  float: right;
+  margin-right: 10px;
+  padding: 0 5px;
+}
+
+/* line 106, globalsass/sass/global.scss */
+#cerrarSesionButton:hover {
+  background-color: #72030b;
+}
+
+/* line 110, globalsass/sass/global.scss */
+a#cerrarButtonLink {
+  font-family: helveticaNBold;
+  font-size: 14px;
+  color: white;
+  text-shadow: 1px 1px 0px black;
+  height: 27px;
+  margin-top: 9px;
+  float: left;
+}
+
+/* line 121, globalsass/sass/global.scss */
+#sideBar {
+  background-color: #242021;
+  position: fixed;
+  z-index: 2;
+  top: 31px;
+  left: 0;
+  width: 210px;
+  height: 100%;
+  float: left;
+  border-right: 1px solid black;
+  border-top: 1px solid #353133;
+  padding-left: 33px;
+}
+/* line 134, globalsass/sass/global.scss */
+#sideBar h1#userName {
+  position: absolute;
+  top: 30px;
+}
+/* line 140, globalsass/sass/global.scss */
+#sideBar h2#userRole {
+  position: absolute;
+  top: 60px;
+  color: #dadada;
+}
+/* line 147, globalsass/sass/global.scss */
+#sideBar #imgContainer {
+  position: absolute;
+  top: 100px;
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  border: none;
+  border: 1px solid #dadada;
+}
+/* line 157, globalsass/sass/global.scss */
+#sideBar #imgContainer img {
+  position: absolute;
+  top: -4px;
+}
+
+/*sideBar */
+/* line 165, globalsass/sass/global.scss */
+#menu {
+  position: absolute;
+  top: 270px;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
+/* line 172, globalsass/sass/global.scss */
+#menu a {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid black;
+  color: white;
+  float: left;
+  padding: 5px 0;
+  box-shadow: 0px 1px 1px #353133;
+}
+/* line 182, globalsass/sass/global.scss */
+#menu a:first-child {
+  border-top: 1px solid black;
+}
+/* line 185, globalsass/sass/global.scss */
+#menu a:hover {
+  background-color: #72030b;
+}
+/* line 188, globalsass/sass/global.scss */
+#menu h3 {
+  float: left;
+  margin-top: 11px;
+  text-shadow: 1px 1px 1px black;
+}
+/* line 193, globalsass/sass/global.scss */
+#menu img {
+  width: 35px;
+  height: 35px;
+  float: left;
+  margin-left: 25px;
+  margin-right: 7px;
+}
+/* line 200, globalsass/sass/global.scss */
+#menu .unable {
+  color: #3f3a3c;
+  box-shadow: none !important;
+  text-shadow: none  !important;
+}
+/* line 205, globalsass/sass/global.scss */
+#menu .unable:hover {
+  cursor: default;
+  background-color: #242021;
+  pointer-events: none !important;
+}
+/* line 211, globalsass/sass/global.scss */
+#menu .active {
+  background-color: black;
+}
+
+/* line 216, globalsass/sass/global.scss */
+#content {
+  width: 100%;
+  border: 1px solid #000;
+  position: absolute;
+  top: 60px;
+  left: 245px;
+  padding-left: 10px;
+  overflow: hidden;
+}

@@ -2,32 +2,58 @@
 
 {% block title %} Panel Principal::: Práctica Profesional UAO{% endblock %}
 
+
+
 {% block stylesheets %}
-	{{ parent() }}	
-	
+{{ parent() }}	
+
 {% endblock %}
 
-{% block javascripts %}
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
-	<script src="{{ asset('script/FitText.js-master/jquery.fittext.js') }}"></script>
-{% endblock %}
+
 
 
 
 {% block body %}
-    	<div id="wrapper">
-    		<div id="header">
-    			<img src="{{ asset('img/headerLogo.png') }}" >
-    			<div id="headerTitle">
-	    			<h1>Práctica Profesional [31C204]</h1>
-	    			<h2>Facultad de Comunicación Social</h2>
-					<h3>Programa de Comunicación Social-Periodismo</h3>
-	    			<a href="{{ path('cituao_coord_homepage') }}" id="homeButton">Panel Principal</a>
-    			</div>
-    			<a href="{{ path('logout') }}" id="cerrarButton">Cerrar Sesión [Usuario:{{ app.user.username }}]</a>
-    		</div>
-			{% block infowrapper  %}
-			{% endblock %}
-		</div> 
+{{ parent() }}
+
+
 {% endblock %}
+
+
+{% block sideBarMenu %}
+<div id="menu">	
+	<a href="{{ path('cituao_coord_practicantes') }}" class="button" id="practicantes"> 
+		<img id="practicanteIcon" src="{{ asset('img/practicanteIcon.png') }}">
+		<h3>Practicantes</h3>
+		
+	</a>
+	<!--<a href="{{ path('cituao_coord_cargar_estudiantes') }}" class="button"  id="anadir">
+		<img id="anadirIcon" src="{{ asset('img/anadirIcon.png') }}">
+		<h3>Añadir practicantes</h3>
+		
+	</a>-->
+	<a href="{{ path('cituao_coord_asesores') }}" class="button"  id="asesoresExternos">
+		<img id="externoIcon" src="{{ asset('img/externoIcon.png') }}">
+		<h3>Asesores externos</h3>
+		
+	</a>
+	<a href="{{ path('cituao_coord_academicos') }}" class="button"  id="asesoresInternos">
+		<img id="internoIcon" src="{{ asset('img/internoIcon.png') }}">
+		<h3>Asesores internos</h3>
+		
+	</a>
+	<a href="{{ path('cituao_coord_centros') }}" class="button"  id="centroPractica">
+		<img id="centroIcon" src="{{ asset('img/centroIcon.png') }}">
+		<h3>Centros de práctica</h3>	
+	</a>
+	<a href="{{ path('cituao_coord_configuracion') }}" class="button unable"  id="configuracion">
+		<img id="configIcon" src="{{ asset('img/configIcon.png') }}">
+		<h3 class="unable">Configuración</h3>
+		
+	</a>
+	
+</div>
+
+
+{% endblock  %}
 
