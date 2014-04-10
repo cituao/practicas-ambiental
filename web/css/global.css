@@ -74,6 +74,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 12, globalsass/sass/global.scss */
 html, body {
   overflow-x: hidden;
+  overflow-y: hidden;
   text-rendering: optimizeLegibility !important;
   font-smoothing: antialiased !important;
   -webkit-font-smoothing: antialiased !important;
@@ -89,33 +90,33 @@ html, body {
   font-family: helveticaNBold;
   src: url("../fonts/helvetica/HelveticaNeueLTStd-Md.otf");
 }
-/* line 43, globalsass/sass/global.scss */
+/* line 44, globalsass/sass/global.scss */
 a {
   text-decoration: none;
 }
 
-/* line 47, globalsass/sass/global.scss */
+/* line 48, globalsass/sass/global.scss */
 h1 {
   font-family: helveticaN;
   font-size: 23px;
   color: white;
 }
 
-/* line 54, globalsass/sass/global.scss */
+/* line 55, globalsass/sass/global.scss */
 h2 {
   color: white;
   font-family: helveticaN;
   font-size: 17px;
 }
 
-/* line 59, globalsass/sass/global.scss */
+/* line 60, globalsass/sass/global.scss */
 h3 {
   font-family: helvetica;
   font-size: 13px;
   margin-top: 2px;
 }
 
-/* line 65, globalsass/sass/global.scss */
+/* line 66, globalsass/sass/global.scss */
 h4 {
   font-family: helvetica;
   font-size: 13px;
@@ -123,12 +124,12 @@ h4 {
   font-weight: bold;
 }
 
-/* line 72, globalsass/sass/global.scss */
+/* line 73, globalsass/sass/global.scss */
 span {
   font-weight: bold;
 }
 
-/* line 75, globalsass/sass/global.scss */
+/* line 76, globalsass/sass/global.scss */
 #mainHeader {
   width: 100%;
   height: 23px;
@@ -143,7 +144,7 @@ span {
   z-index: 10;
 }
 
-/* line 88, globalsass/sass/global.scss */
+/* line 89, globalsass/sass/global.scss */
 #secondHeader {
   position: fixed;
   top: 31px;
@@ -159,7 +160,7 @@ span {
   z-index: 10;
 }
 
-/* line 103, globalsass/sass/global.scss */
+/* line 104, globalsass/sass/global.scss */
 #cerrarSesionButton {
   width: 120px;
   float: right;
@@ -167,12 +168,12 @@ span {
   padding: 0 5px;
 }
 
-/* line 111, globalsass/sass/global.scss */
+/* line 112, globalsass/sass/global.scss */
 #cerrarSesionButton:hover {
   background-color: #72030b;
 }
 
-/* line 115, globalsass/sass/global.scss */
+/* line 116, globalsass/sass/global.scss */
 a#cerrarButtonLink {
   font-family: helveticaNBold;
   font-size: 14px;
@@ -183,7 +184,7 @@ a#cerrarButtonLink {
   float: left;
 }
 
-/* line 126, globalsass/sass/global.scss */
+/* line 127, globalsass/sass/global.scss */
 #sideBar {
   background-color: #242021;
   position: fixed;
@@ -197,18 +198,18 @@ a#cerrarButtonLink {
   border-top: 1px solid #353133;
   padding-left: 33px;
 }
-/* line 139, globalsass/sass/global.scss */
+/* line 140, globalsass/sass/global.scss */
 #sideBar h1#userName {
   position: absolute;
   top: 30px;
 }
-/* line 145, globalsass/sass/global.scss */
+/* line 146, globalsass/sass/global.scss */
 #sideBar h2#userRole {
   position: absolute;
   top: 60px;
   color: #b5b5b5;
 }
-/* line 152, globalsass/sass/global.scss */
+/* line 153, globalsass/sass/global.scss */
 #sideBar #imgContainer {
   position: absolute;
   top: 100px;
@@ -222,14 +223,14 @@ a#cerrarButtonLink {
   border: none;
   border: 1px solid #b5b5b5;
 }
-/* line 162, globalsass/sass/global.scss */
+/* line 163, globalsass/sass/global.scss */
 #sideBar #imgContainer img {
   position: absolute;
   top: -4px;
 }
 
 /*sideBar */
-/* line 170, globalsass/sass/global.scss */
+/* line 171, globalsass/sass/global.scss */
 #menu {
   position: absolute;
   top: 270px;
@@ -237,7 +238,7 @@ a#cerrarButtonLink {
   width: 100%;
   z-index: 3;
 }
-/* line 177, globalsass/sass/global.scss */
+/* line 178, globalsass/sass/global.scss */
 #menu a {
   width: 100%;
   height: 40px;
@@ -247,21 +248,21 @@ a#cerrarButtonLink {
   padding: 5px 0;
   box-shadow: 0px 1px 1px #353133;
 }
-/* line 187, globalsass/sass/global.scss */
+/* line 188, globalsass/sass/global.scss */
 #menu a:first-child {
   border-top: 1px solid black;
 }
-/* line 190, globalsass/sass/global.scss */
+/* line 191, globalsass/sass/global.scss */
 #menu a:hover {
   background-color: #72030b;
 }
-/* line 193, globalsass/sass/global.scss */
+/* line 194, globalsass/sass/global.scss */
 #menu h3 {
   float: left;
   margin-top: 11px;
   text-shadow: 1px 1px 1px black;
 }
-/* line 198, globalsass/sass/global.scss */
+/* line 199, globalsass/sass/global.scss */
 #menu img {
   width: 35px;
   height: 35px;
@@ -269,24 +270,24 @@ a#cerrarButtonLink {
   margin-left: 25px;
   margin-right: 7px;
 }
-/* line 205, globalsass/sass/global.scss */
+/* line 206, globalsass/sass/global.scss */
 #menu .unable {
   color: #3f3a3c;
   box-shadow: none !important;
   text-shadow: none  !important;
 }
-/* line 210, globalsass/sass/global.scss */
+/* line 211, globalsass/sass/global.scss */
 #menu .unable:hover {
   cursor: default;
   background-color: #242021;
   pointer-events: none !important;
 }
-/* line 216, globalsass/sass/global.scss */
+/* line 217, globalsass/sass/global.scss */
 #menu .active {
   background-color: black;
 }
 
-/* line 221, globalsass/sass/global.scss */
+/* line 223, globalsass/sass/global.scss */
 #content {
   width: 84.5%;
   /*border:1px solid #000;*/
@@ -296,7 +297,7 @@ a#cerrarButtonLink {
   overflow: hidden;
 }
 
-/* line 230, globalsass/sass/global.scss */
+/* line 234, globalsass/sass/global.scss */
 .button {
   background-color: #242021;
   -webkit-border-radius: 5px;
@@ -310,7 +311,7 @@ a#cerrarButtonLink {
   margin: 0 8px;
 }
 
-/* line 243, globalsass/sass/global.scss */
+/* line 247, globalsass/sass/global.scss */
 .button:hover {
   background-color: #ec1c24;
 }
@@ -321,12 +322,16 @@ a#cerrarButtonLink {
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 11, globalsass/sass/contentStyle.scss */
 #upSection {
-  width: 100%;
+  width: 85%;
   height: 70px;
   /*border:1px solid #000;*/
+  position: fixed;
+  top: 57px;
   padding-top: 25px;
+  background-color: white;
+  z-index: 3;
 }
-/* line 17, globalsass/sass/contentStyle.scss */
+/* line 22, globalsass/sass/contentStyle.scss */
 #upSection h1 {
   width: 150px;
   background-color: #ec1c24;
@@ -334,50 +339,79 @@ a#cerrarButtonLink {
   padding-left: 30px;
   float: left;
 }
-/* line 27, globalsass/sass/contentStyle.scss */
+/* line 32, globalsass/sass/contentStyle.scss */
 #upSection a {
   float: right;
+  margin-right: 1%;
 }
-/* line 30, globalsass/sass/contentStyle.scss */
+/* line 36, globalsass/sass/contentStyle.scss */
 #upSection a img {
   margin-right: 7px;
   float: left;
 }
-/* line 34, globalsass/sass/contentStyle.scss */
+/* line 40, globalsass/sass/contentStyle.scss */
 #upSection a h4 {
   float: left;
   margin-top: 7px;
 }
 
-/* line 43, globalsass/sass/contentStyle.scss */
+/* line 49, globalsass/sass/contentStyle.scss */
 #downSection {
   width: 100%;
+  margin-top: 92px;
+  padding-bottom: 80px;
   /*border:1px solid #000;*/
 }
 
-/* line 51, globalsass/sass/contentStyle.scss */
-#practicantesTable {
+/* line 58, globalsass/sass/contentStyle.scss */
+.practicantesTableHead {
   width: 100%;
   padding-left: 30px;
 }
-/* line 55, globalsass/sass/contentStyle.scss */
-#practicantesTable .tableHead {
+/* line 63, globalsass/sass/contentStyle.scss */
+.practicantesTableHead .tableHead {
+  background-color: #b5b5b5;
+  height: 38px;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 5px;
+  z-index: 3;
+}
+
+/* line 75, globalsass/sass/contentStyle.scss */
+.practicantesTable {
+  width: 100%;
+  padding-left: 30px;
+  height: auto;
+  table-border: colapse;
+}
+/* line 82, globalsass/sass/contentStyle.scss */
+.practicantesTable .tableHead {
   background-color: #b5b5b5;
   height: 35px;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 5px;
+  z-index: 3;
 }
-/* line 60, globalsass/sass/contentStyle.scss */
-#practicantesTable .tableItem {
+/* line 93, globalsass/sass/contentStyle.scss */
+.practicantesTable .tableItem {
   margin: 10px 0px;
   /*border:2px solid $darkGray;*/
   height: 20px;
   color: black;
+  position: relative;
 }
-/* line 68, globalsass/sass/contentStyle.scss */
-#practicantesTable .tableItem:hover {
+/* line 104, globalsass/sass/contentStyle.scss */
+.practicantesTable .tableItem:hover {
   color: white !important;
 }
-/* line 75, globalsass/sass/contentStyle.scss */
-#practicantesTable #w {
+/* line 113, globalsass/sass/contentStyle.scss */
+.practicantesTable #hoverDiv {
   height: 55px;
   width: 100%;
   position: absolute;
@@ -385,41 +419,70 @@ a#cerrarButtonLink {
   border-top: 1px solid #b5b5b5;
   border-bottom: 1px solid #b5b5b5;
   z-index: 2;
-  pointer-events: none;
 }
-/* line 85, globalsass/sass/contentStyle.scss */
-#practicantesTable #w:hover {
-  background-color: #ec1c24;
+/* line 124, globalsass/sass/contentStyle.scss */
+.practicantesTable #opciones {
+  position: absolute;
+  opacity: 0;
+  float: right;
+  padding: 5px 10px;
+  background-color: #242021;
+  top: 26;
+  right: 36%;
   z-index: 10;
+  overflow: hidden;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
 }
-/* line 91, globalsass/sass/contentStyle.scss */
-#practicantesTable .spacer {
-  height: 20px;
+/* line 138, globalsass/sass/contentStyle.scss */
+.practicantesTable #opciones td {
+  padding: 1px 6px;
 }
-/* line 95, globalsass/sass/contentStyle.scss */
-#practicantesTable img {
+/* line 142, globalsass/sass/contentStyle.scss */
+.practicantesTable #opciones td:hover {
+  background-color: #72030b;
+}
+/* line 145, globalsass/sass/contentStyle.scss */
+.practicantesTable #opciones img {
+  float: left;
+}
+/* line 149, globalsass/sass/contentStyle.scss */
+.practicantesTable #opciones h3 {
+  color: white;
+  float: left;
+  margin-top: 9px;
+  margin-left: 5px;
+}
+/* line 162, globalsass/sass/contentStyle.scss */
+.practicantesTable .spacer {
+  height: 40px;
+}
+/* line 166, globalsass/sass/contentStyle.scss */
+.practicantesTable img {
   position: relative;
   margin: 0 auto;
 }
-/* line 100, globalsass/sass/contentStyle.scss */
-#practicantesTable #foto {
+/* line 171, globalsass/sass/contentStyle.scss */
+.practicantesTable #foto {
   top: -10px;
 }
-/* line 104, globalsass/sass/contentStyle.scss */
-#practicantesTable td {
+/* line 175, globalsass/sass/contentStyle.scss */
+.practicantesTable td {
   position: relative;
   font-family: helvetica;
   font-size: 14px;
   z-index: 2;
 }
-/* line 115, globalsass/sass/contentStyle.scss */
-#practicantesTable h2 {
+/* line 186, globalsass/sass/contentStyle.scss */
+.practicantesTable h2 {
   color: #b5b5b5;
   margin-left: 30px;
   font-weight: bold;
 }
-/* line 121, globalsass/sass/contentStyle.scss */
-#practicantesTable #itemImgContainer {
+/* line 192, globalsass/sass/contentStyle.scss */
+.practicantesTable #itemImgContainer {
   width: 100px;
   height: 100px;
   border: 3px solid #242021;

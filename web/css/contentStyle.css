@@ -1,11 +1,11 @@
 /*
 Syntax error: Undefined mixin 'border-radius'.
-        on line 125 of C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss, in `border-radius'
-        from line 125 of C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss
+        on line 136 of C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss, in `border-radius'
+        from line 136 of C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss
 
 Backtrace:
-C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss:125:in `border-radius'
-C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss:125
+C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss:136:in `border-radius'
+C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss:136
 C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:320:in `block in visit_mixin'
 C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.4/lib/sass/stack.rb:98:in `block in with_mixin'
 C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.4/lib/sass/stack.rb:121:in `with_frame'
@@ -87,4 +87,4 @@ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/listen-1.1.6/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'border-radius'.\A         on line 125 of C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss, in `border-radius'\A         from line 125 of C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss"; }
+  content: "Syntax error: Undefined mixin 'border-radius'.\A         on line 136 of C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss, in `border-radius'\A         from line 136 of C:/xampp/htdocs/practicas/web/css/globalsass/sass/contentStyle.scss"; }
