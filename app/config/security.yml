@@ -14,7 +14,7 @@ security:
                 login_path: usuario_login
                 check_path: usuario_login_check
             logout:
-                path:       usuario_logout
+                path:       /logout
             
             provider:       usuarios
 
