@@ -14,7 +14,7 @@ security:
                 login_path: usuario_login
                 check_path: usuario_login_check
             logout:
-                path:       usuario_logout
+                path:       /logout
             
             provider:       usuarios
 
@@ -27,13 +27,6 @@ security:
         - { path: ^/academico/*, roles: ROLE_ASESOR_ACA } 
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    coordinador:  { password: 1234, roles: 'ROLE_COORDINADOR' }
-                    admin: { password: 12, roles: 'ROLE_ADMIN' }
-                    1113036709: { password: 1234, roles: 'ROLE_PRACTICANTE' }
-
         usuarios:
             entity: { class: Cituao\UsuarioBundle\Entity\Usuario, property: username }
 
