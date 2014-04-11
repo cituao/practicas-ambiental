@@ -353,7 +353,7 @@ class DefaultController extends Controller
 				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
                 $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 				$usuario->setPassword($passwordCodificado);
-				$usuario->setEmail($listaEstudiantes[$i]['emailInstitucional']);
+				
 				
 				 $em->persist($usuario);
 
@@ -380,7 +380,9 @@ class DefaultController extends Controller
 				$em->flush();
 				$i++;
 			}
+
 			return $this->render('CituaoCoordBundle:Default:practicantes.html.twig');
+
 		} 
 		
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
