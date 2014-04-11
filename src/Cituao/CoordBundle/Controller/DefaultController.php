@@ -35,6 +35,11 @@ class DefaultController extends Controller
 	/********************************************************/	
     public function indexAction()
     {
+    	$document = new Document();
+		$form = $this->createFormBuilder($document)
+		    ->add('file')
+			->add('name')
+		    ->getForm();
     	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$listaPracticantes = $repository->findAll();
 		
@@ -43,13 +48,18 @@ class DefaultController extends Controller
 	    }else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
     }
 	
 	/********************************************************/
 	//Listar los practicantes registrados en la base de datos
 	/********************************************************/	
 	public function practicantesAction(){
+		$document = new Document();
+		$form = $this->createFormBuilder($document)
+		    ->add('file')
+			->add('name')
+		    ->getForm();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$listaPracticantes = $repository->findAll();
 		
@@ -58,7 +68,9 @@ class DefaultController extends Controller
 	    }else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView(), 'listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
+		//return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr  ));
+
 	}
 
 	/***************************************************************************/
@@ -368,12 +380,12 @@ class DefaultController extends Controller
 				$em->flush();
 				$i++;
 			}
-			return $this->render('CituaoCoordBundle:Default:coord.html.twig');
+			return $this->render('CituaoCoordBundle:Default:practicantes.html.twig');
 		} 
 		
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
 		
-		return $this->render('CituaoCoordBundle:Default:cargar_estudiantes.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr  ));
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr  ));
 	}
 
 	/*************************************/

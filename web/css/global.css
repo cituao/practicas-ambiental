@@ -309,18 +309,42 @@ a#cerrarButtonLink {
   font-family: helveticaNBold;
   font-size: 14px;
   margin: 0 8px;
+  border: none;
 }
 
-/* line 247, globalsass/sass/global.scss */
+/* line 248, globalsass/sass/global.scss */
 .button:hover {
   background-color: #ec1c24;
+  cursor: pointer;
+}
+
+/* line 257, globalsass/sass/global.scss */
+input[type="text"], input[type="password"] {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  width: 190px;
+  height: 30px;
+  border: #242021 solid 1px;
+  background-color: #fff;
+  color: #242424;
+  font-size: 1.12em;
+  padding-left: 5%;
+  margin-right: 50px;
+}
+
+/* line 271, globalsass/sass/global.scss */
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: none;
+  border: #af0000 solid 1px;
 }
 
 /* Welcome to Compass.
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 11, globalsass/sass/contentStyle.scss */
+/* line 17, globalsass/sass/contentStyle.scss */
 #upSection {
   width: 85%;
   height: 70px;
@@ -331,7 +355,7 @@ a#cerrarButtonLink {
   background-color: white;
   z-index: 3;
 }
-/* line 22, globalsass/sass/contentStyle.scss */
+/* line 28, globalsass/sass/contentStyle.scss */
 #upSection h1 {
   width: 150px;
   background-color: #ec1c24;
@@ -339,23 +363,44 @@ a#cerrarButtonLink {
   padding-left: 30px;
   float: left;
 }
-/* line 32, globalsass/sass/contentStyle.scss */
+/* line 38, globalsass/sass/contentStyle.scss */
 #upSection a {
   float: right;
   margin-right: 1%;
 }
-/* line 36, globalsass/sass/contentStyle.scss */
+/* line 42, globalsass/sass/contentStyle.scss */
 #upSection a img {
   margin-right: 7px;
   float: left;
 }
-/* line 40, globalsass/sass/contentStyle.scss */
+/* line 46, globalsass/sass/contentStyle.scss */
 #upSection a h4 {
   float: left;
   margin-top: 7px;
 }
+/* line 53, globalsass/sass/contentStyle.scss */
+#upSection form {
+  position: absolute;
+  top: 60px;
+  left: 43%;
+  float: right;
+  color: #fff;
+  opacity: 0;
+}
+/* line 61, globalsass/sass/contentStyle.scss */
+#upSection form label {
+  display: none;
+}
+/* line 64, globalsass/sass/contentStyle.scss */
+#upSection form input[type="file"] {
+  width: 130px;
+}
+/* line 73, globalsass/sass/contentStyle.scss */
+#upSection #form div {
+  float: right !important;
+}
 
-/* line 49, globalsass/sass/contentStyle.scss */
+/* line 80, globalsass/sass/contentStyle.scss */
 #downSection {
   width: 100%;
   margin-top: 92px;
@@ -363,12 +408,12 @@ a#cerrarButtonLink {
   /*border:1px solid #000;*/
 }
 
-/* line 58, globalsass/sass/contentStyle.scss */
+/* line 89, globalsass/sass/contentStyle.scss */
 .practicantesTableHead {
   width: 100%;
   padding-left: 30px;
 }
-/* line 63, globalsass/sass/contentStyle.scss */
+/* line 94, globalsass/sass/contentStyle.scss */
 .practicantesTableHead .tableHead {
   background-color: #b5b5b5;
   height: 38px;
@@ -380,14 +425,14 @@ a#cerrarButtonLink {
   z-index: 3;
 }
 
-/* line 75, globalsass/sass/contentStyle.scss */
+/* line 106, globalsass/sass/contentStyle.scss */
 .practicantesTable {
   width: 100%;
   padding-left: 30px;
   height: auto;
   table-border: colapse;
 }
-/* line 82, globalsass/sass/contentStyle.scss */
+/* line 113, globalsass/sass/contentStyle.scss */
 .practicantesTable .tableHead {
   background-color: #b5b5b5;
   height: 35px;
@@ -398,7 +443,7 @@ a#cerrarButtonLink {
   padding-top: 5px;
   z-index: 3;
 }
-/* line 93, globalsass/sass/contentStyle.scss */
+/* line 124, globalsass/sass/contentStyle.scss */
 .practicantesTable .tableItem {
   margin: 10px 0px;
   /*border:2px solid $darkGray;*/
@@ -406,11 +451,11 @@ a#cerrarButtonLink {
   color: black;
   position: relative;
 }
-/* line 104, globalsass/sass/contentStyle.scss */
+/* line 135, globalsass/sass/contentStyle.scss */
 .practicantesTable .tableItem:hover {
   color: white !important;
 }
-/* line 113, globalsass/sass/contentStyle.scss */
+/* line 144, globalsass/sass/contentStyle.scss */
 .practicantesTable #hoverDiv {
   height: 55px;
   width: 100%;
@@ -420,7 +465,7 @@ a#cerrarButtonLink {
   border-bottom: 1px solid #b5b5b5;
   z-index: 2;
 }
-/* line 124, globalsass/sass/contentStyle.scss */
+/* line 155, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones {
   position: absolute;
   opacity: 0;
@@ -436,52 +481,52 @@ a#cerrarButtonLink {
   -ms-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 138, globalsass/sass/contentStyle.scss */
+/* line 170, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones td {
   padding: 1px 6px;
 }
-/* line 142, globalsass/sass/contentStyle.scss */
+/* line 174, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones td:hover {
   background-color: #72030b;
 }
-/* line 145, globalsass/sass/contentStyle.scss */
+/* line 177, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones img {
   float: left;
 }
-/* line 149, globalsass/sass/contentStyle.scss */
+/* line 181, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones h3 {
   color: white;
   float: left;
   margin-top: 9px;
   margin-left: 5px;
 }
-/* line 162, globalsass/sass/contentStyle.scss */
+/* line 194, globalsass/sass/contentStyle.scss */
 .practicantesTable .spacer {
   height: 40px;
 }
-/* line 166, globalsass/sass/contentStyle.scss */
+/* line 198, globalsass/sass/contentStyle.scss */
 .practicantesTable img {
   position: relative;
   margin: 0 auto;
 }
-/* line 171, globalsass/sass/contentStyle.scss */
+/* line 203, globalsass/sass/contentStyle.scss */
 .practicantesTable #foto {
   top: -10px;
 }
-/* line 175, globalsass/sass/contentStyle.scss */
+/* line 207, globalsass/sass/contentStyle.scss */
 .practicantesTable td {
   position: relative;
   font-family: helvetica;
   font-size: 14px;
   z-index: 2;
 }
-/* line 186, globalsass/sass/contentStyle.scss */
+/* line 218, globalsass/sass/contentStyle.scss */
 .practicantesTable h2 {
   color: #b5b5b5;
   margin-left: 30px;
   font-weight: bold;
 }
-/* line 192, globalsass/sass/contentStyle.scss */
+/* line 224, globalsass/sass/contentStyle.scss */
 .practicantesTable #itemImgContainer {
   width: 100px;
   height: 100px;
