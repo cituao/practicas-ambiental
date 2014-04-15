@@ -42,9 +42,22 @@ class DefaultController extends Controller
 	//Listar los practicantes registrados en la base de datos
 	/********************************************************/	
 	public function practicantesAction(){
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$listaPracticantes = $repository->findAll();
-		
+		//buscamos el area o coordinacion al que pertenece segun el coordinador logueado
+		$user = $this->getUser();
+		if ($user->getUsername() == 'jamarquez') $id_area = 1;
+			elseif ($user->getUsername() == 'coordinador') $id_area = 2;
+				else $id_area = 3;
+
+
+		$em = $this->getDoctrine()->getManager();
+		//solicitamos solo los practicantes asociados al cooridinador logueado
+		$query = $em->createQuery(
+	            'SELECT c FROM CituaoCoordBundle:Practicante c WHERE c.area =:id_area');
+		$query->setParameter('id_area',$id_area);
+
+		$listaPracticantes = $query->getResult();//getSingleResult();
+
+
 		if (!$listaPracticantes) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
 	    }else{
