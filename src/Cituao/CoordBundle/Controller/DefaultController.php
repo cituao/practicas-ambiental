@@ -321,9 +321,20 @@ class DefaultController extends Controller
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
 				$role = $repository->findOneBy(array('id' => $codigo));
 
+				//buscamos el area o coordinacion al que pertenece segun el coordinador logueado
+				$user = $this->getUser();
+				if ($user->getUsername() == 'jamarquez') $id_area = 1;
+					elseif ($user->getUsername() == 'coordinador') $id_area = 2;
+						else $id_area = 3;
+						
+				$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Area');
+				$area = $repository->findOneById($id_area);
+				
+
 				//procesamos la matriz  fila a fila creando practicantes y usuarios
 				$i=0;				
 				$sad = "";	
+
 				while($i <= $numero_fila -1){
 					//creamos una instancia Practicante para descargar datos del CSV y guardar en la base de datos
 					$practicante = new Practicante();
@@ -365,8 +376,10 @@ class DefaultController extends Controller
 
 					//cargamos los demas datos
 					//$practicante->setTelefonoMovil($sad);
-					$area = new Area();
+
 					$practicante->setArea($area);
+
+
 					$practicante->setEstado(false);
 
 					$practicante->setPath('user.jpeg');
