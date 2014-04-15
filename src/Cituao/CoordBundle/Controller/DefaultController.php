@@ -291,74 +291,89 @@ class DefaultController extends Controller
 			$i=0;
 			$numero_fila= count($filas);	
 
+			//para buscar si ya se encuentra en la base de datos
+			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+
+			$nohay = true;			
 			//procesamos la matriz separando los campos por medio del separador putno y coma
-			while($i < $numero_fila -1){
+			while($i <= $numero_fila -1){
 				$row = $filas[$i];
 				$sql = explode(";",$row);
+
+				$e = $repository->findOneBy(array('ci' => $sql[3]));
+				//Si esta en la base de datos lo ignoramos				
+				if ($e != NULL){
+					$i++;						
+					continue;
+				}
+
 				$listaEstudiantes[$i] =  array("codigo"=> $sql[0], "apellidos"=>$sql[1], "nombres"=>$sql[2], "ci" => $sql[3], 	
 														"fecha" => $sql[4], "emailInstitucional" => $sql[5] );
 				$i++;
+				$nohay = false;
 			}
 		
-
-			//los roles fueron cargados de forma manual en la base de datos
-			//buscamos una instancia role tipo practicante 
-			$codigo = 2; //1 corresponde a practicantes		
-			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
-			$role = $repository->findOneBy(array('id' => $codigo));
-
-			//procesamos la matriz  fila a fila creando practicantes y usuarios
-			$i=0;				
-			$sad = "";	
-			while($i < $numero_fila -1){
-				//creamos una instancia Practicante para descargar datos del CSV y guardar en la base de datos
-				$practicante = new Practicante();
-				//creamos una instancia de usuario para darle entrada a los practicantes como usuarios en el sistema
-				$usuario = new Usuario();
+			if (!$nohay){
 				
-				//viene del archivo .csv	
-				//cargamos todos los atributos al practicante
-				$practicante->setCodigo($listaEstudiantes[$i]['codigo']);
-				$practicante->setNombres($listaEstudiantes[$i]['nombres']);
-				$practicante->setApellidos($listaEstudiantes[$i]['apellidos']);
-				$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
-				$practicante->setCi($listaEstudiantes[$i]['ci']);
+				//los roles fueron cargados de forma manual en la base de datos
+				//buscamos una instancia role tipo practicante 
+				$codigo = 2; //1 corresponde a practicantes		
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
+				$role = $repository->findOneBy(array('id' => $codigo));
 
-				//cargamos todos los atributos al usuario
-				$usuario->setUsername($listaEstudiantes[$i]['codigo']) ;
-				$usuario->setPassword($listaEstudiantes[$i]['ci']);
-				$usuario->setSalt(md5(time()));
-				$usuario->addRole($role); //cargamos el rol al coordinador
+				//procesamos la matriz  fila a fila creando practicantes y usuarios
+				$i=0;				
+				$sad = "";	
+				while($i <= $numero_fila -1){
+					//creamos una instancia Practicante para descargar datos del CSV y guardar en la base de datos
+					$practicante = new Practicante();
+					//creamos una instancia de usuario para darle entrada a los practicantes como usuarios en el sistema
+					$usuario = new Usuario();
+				
+					//viene del archivo .csv	
+					//cargamos todos los atributos al practicante
+					$practicante->setCodigo($listaEstudiantes[$i]['codigo']);
+					$practicante->setNombres($listaEstudiantes[$i]['nombres']);
+					$practicante->setApellidos($listaEstudiantes[$i]['apellidos']);
+					$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
+					$practicante->setCi($listaEstudiantes[$i]['ci']);
 
-				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-                $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
-				$usuario->setPassword($passwordCodificado);
+					//cargamos todos los atributos al usuario
+					$usuario->setUsername($listaEstudiantes[$i]['codigo']) ;
+					$usuario->setPassword($listaEstudiantes[$i]['ci']);
+					$usuario->setSalt(md5(time()));
+					$usuario->addRole($role); //cargamos el rol al coordinador
+
+					$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+		            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+					$usuario->setPassword($passwordCodificado);
 				
 				
-				 $em->persist($usuario);
+					 $em->persist($usuario);
 
-				 //convertimos la fecha de matricula a un objeto Date				
-				$fecha = $listaEstudiantes[$i]['fecha'];
-				$separa = explode("/",$fecha);
-				$dia = $separa[0];
-				$mes = $separa[1];
-				$ano = $separa[2];
+					 //convertimos la fecha de matricula a un objeto Date				
+					$fecha = $listaEstudiantes[$i]['fecha'];
+					$separa = explode("/",$fecha);
+					$dia = $separa[0];
+					$mes = $separa[1];
+					$ano = $separa[2];
 				
-				$f = new \DateTime();
-				$f->setDate($ano,$mes,$dia);
+					$f = new \DateTime();
+					$f->setDate($ano,$mes,$dia);
 
-				$practicante->setFechaMatriculacion($f);
+					$practicante->setFechaMatriculacion($f);
 
-				//cargamos los demas datos
-				//$practicante->setTelefonoMovil($sad);
-				$area = new Area();
-				$practicante->setArea($area);
-				$practicante->setEstado(false);
+					//cargamos los demas datos
+					//$practicante->setTelefonoMovil($sad);
+					$area = new Area();
+					$practicante->setArea($area);
+					$practicante->setEstado(false);
 
-				$practicante->setPath('user.jpeg');
-				$em->persist($practicante);
-				$em->flush();
-				$i++;
+					$practicante->setPath('user.jpeg');
+					$em->persist($practicante);
+					$em->flush();
+					$i++;
+				}
 			}
 			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
 			//return $this->render('CituaoCoordBundle:Default:coord.html.twig');
