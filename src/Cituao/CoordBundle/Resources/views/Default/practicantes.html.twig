@@ -10,20 +10,22 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 {% block content  %}
 {{ parent() }}
-<div id="content">
+<div class="content">
 	{% block upSection  %}
 
-	<div id="upSection">
+	<div class="upSection">
 		<h1 id ="sectionTitle">Practicantes</h1>
 
 
 		<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/anadirPracticantes.png') }}"/><h4>Añadir Practicantes</h4></a>
 		<a id="nuevoPracticante"href="{{ path('cituao_coord_registrar_practicante') }}" class = "button"><img src="{{ asset('img/nuevoPracticante.png') }}"/><h4>Nuevo Practicante</h4></a>
 		<form name="anadirP" action= {{ path('cituao_coord_cargar_estudiantes') }} method="post" {{ form_enctype(form) }}>
+			<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="button" value="Cancelar" id="cancelar" name="cancelar" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/cancelar.png') }}"/></div>
 			<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="submit" value="Listo" id="listo" name="listo" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/listo.png') }}"/></div>
 
+
 			<div style="float:right;">{{ form_widget(form) }}</div>
-			<h2 style="float:right; color:#000; margin-right:15px; margin-top:8px;">Nombre</h2>
+			<h2 style="float:right; color:#000; margin-right:15px; margin-top:8px;">Nombre de archivo</h2>
 
 			
 		</form>
@@ -40,7 +42,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 
 	{% block downSection  %}
-	<div id = "downSection">
+	<div class = "downSection">
 
 		<table class="practicantesTableHead">
 			<tbody>
@@ -77,7 +79,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 
 						<td><h2>{{ id }}</h2></td>
-						<td height="20px"><div id="itemImgContainer"><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="100%" /></div></td>
+						<td height="20px"><div class="itemImgContainer"><img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="100%" /></div></td>
 						<td><span>{{ practicante.apellidos }}</span></td>
 						<td><span>{{ practicante.nombres }}</span></td>
 						<td>{{ practicante.codigo }}</td>
@@ -140,7 +142,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 	$( ".tableItem" ).mouseenter(function() {
 		var hoverDiv = $('#hoverDiv', this);
 		var opciones = $('#opciones', this);
-		var itemPicture = $('#itemImgContainer', this);
+		var itemPicture = $('.itemImgContainer', this);
 		$(hoverDiv).css("background-color","#ec1c24");
 		$(itemPicture).css("border-color","#ec1c24");
 
@@ -154,7 +156,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 	$( ".tableItem" ).mouseleave(function() {
 		var hoverDiv = $('#hoverDiv', this);
-		var itemPicture = $('#itemImgContainer', this);
+		var itemPicture = $('.itemImgContainer', this);
 		var opciones = $('#opciones', this);
 		$(hoverDiv).css("background-color","#fff");
 		$(itemPicture).css("border-color","#242021");
@@ -196,14 +198,28 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 				$( form).animate({
 					opacity: 0,
-					top: "60px",
+					top: "100px",
 				}, 300);
 			});
 	}// validate form
 
+
+
 });
 
+$( "#cancelar" ).click(function() {
 
+		
+			$(nuevoPracticante).fadeIn(300);
+			$(anadirPracticantes).fadeIn(80,function(){
+
+				$( form).animate({
+					opacity: 0,
+					top: "100px",
+				}, 100);
+			});
+
+});
 
 
 

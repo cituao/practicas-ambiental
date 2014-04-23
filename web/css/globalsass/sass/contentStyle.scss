@@ -1,0 +1,280 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+
+ @import "variables";
+
+ @mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+
+.upSection{
+	width:85%;
+	height:70px;
+	/*border:1px solid #000;*/
+	overflow:hidden;
+	position:fixed;
+	top:57px;
+	padding-top:25px;
+	background-color:white;
+	z-index: 3;
+
+	h1{
+
+		/*width: 150px;*/
+
+		background-color: $redColor;
+		padding: 3px 0px;
+		padding-right:15px;
+		padding-left: $contentLeftMargin;
+		float: left;
+
+	}
+
+	a{
+		float: right;
+		margin-right: 1%;
+
+		img{
+			margin-right:7px;
+			float: left;
+		}
+		h4{
+			float: left;
+			margin-top: 7px;
+		
+		}
+	}
+
+	form{
+		position: absolute;
+
+		top: 100px;
+		right: 4%;
+		float: right;
+		
+		opacity: 0;
+		label{
+			display: none;
+		}
+		 input[type="file"] {
+			width:300px;
+		}
+
+
+	}
+	#form{
+
+
+		div{
+			float: right !important;
+		}
+	}
+
+}
+
+
+.downSection{
+	width:100%;
+	margin-top:92px;
+	padding-bottom:80px;
+	/*border:1px solid #000;*/
+
+
+
+}
+.practicantesTableHead{
+
+	width: 100%;
+	padding-left: $contentLeftMargin;
+
+	.tableHead{
+		background-color: $softGray;
+		height: 38px;
+		position:relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		padding-top:5px;
+		z-index: 3;
+
+	}
+}
+.practicantesTable{
+
+	width: 100%;
+	padding-left: $contentLeftMargin;
+	height:auto;
+	table-border:colapse;
+
+	.tableHead{
+		background-color: $softGray;
+		height: 35px;
+		position:relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		padding-top:5px;
+		z-index: 3;
+
+	}
+	.tableItem{
+		margin: 10px 0px;
+		/*border:2px solid $darkGray;*/
+		height: 20px;
+		color: black;
+		position:relative;
+		
+
+	}
+
+
+	.tableItem:hover{
+		color:white !important;
+	}
+
+
+
+
+	
+
+	#hoverDiv{
+		height: 55px;
+		width: 100%;
+		position: absolute;
+		margin-top: 25px;
+		border-top:1px solid $softGray;
+		border-bottom:1px solid $softGray;
+		z-index: 2;
+		
+	}
+
+	#opciones{
+		
+		position:absolute;
+		opacity: 0;
+
+		float: right;
+		padding:5px 10px;
+		background-color: $darkGray;
+		top:26;
+		right: 36%;
+		z-index:10;
+		overflow: hidden;
+
+		@include border-radius(3px);
+		
+		td{
+			padding: 1px 6px;
+		}
+
+		td:hover{
+			background-color: $darkRed;
+		}
+		img{
+			float: left;
+		}
+
+		h3{
+			color: white;
+			float: left;
+			margin-top: 9px;
+			margin-left: 5px;
+		}
+	
+
+	}
+
+
+	
+	
+	.spacer{
+		height: 40px;
+	}
+	
+	img{
+		position:relative;
+		margin:0 auto;
+		
+	}
+	.foto{
+		top: -10px;
+	}
+
+	td{
+		position:relative;
+		font-family:  helvetica;
+		font-size: 14px;
+		
+		
+		z-index: 2;
+		
+	}
+
+
+	h2{
+		color: $softGray;
+		margin-left: $contentLeftMargin;
+		font-weight: bold;
+	}
+
+	.itemImgContainer{
+		width: 100px;
+		height: 100px;
+		border:3px solid $darkGray;
+		@include border-radius(50%);
+		overflow: hidden;
+	}
+}
+
+.imgContainer{
+		width: 150px;
+		height: 150px;
+		border:3px solid $darkGray;
+		@include border-radius(50%);
+		overflow: hidden;
+		margin: 0 auto;
+	}
+	.profileContainer{
+		padding-left: 30px;
+	}
+	.profilePictureContainer{
+		width: 400px;
+		float: left;
+		/*border: 1px solid #000;*/
+	}
+	.profileFormContainer{
+		width: 800px;
+		float: left;
+		/*border: 1px solid #000;*/
+	}
+
+	.inputContainer{
+		float: left;
+		margin-bottom: 20px;
+
+		h2{
+		color: black;
+ 		font-family:helveticaNBold;
+ 		font-size:17px;
+ 		float: left;
+ 		margin-top: 8px;
+ 		margin-right: 15px;
+ 		width: 120px;
+		}
+		.input{
+			float: left;
+		}
+	}
+.selFile{
+	width:300px;
+}
+	.selFile label{
+		display: none;
+	}

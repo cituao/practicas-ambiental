@@ -33,23 +33,23 @@ class DefaultController extends Controller
 	/********************************************************/
 	//home del coordinador
 	/********************************************************/	
-    public function indexAction()
-    {
-    	$document = new Document();
+	public function indexAction()
+	{
+		$document = new Document();
 		$form = $this->createFormBuilder($document)
-		    ->add('file')
-			->add('name')
-		    ->getForm();
-    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		->add('file')
+		->add('name')
+		->getForm();
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$listaPracticantes = $repository->findAll();
 		
 		if (!$listaPracticantes) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
-	    }else{
+		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
-    }
+	}
 	
 	/********************************************************/
 	//Listar los practicantes registrados en la base de datos
@@ -57,15 +57,15 @@ class DefaultController extends Controller
 	public function practicantesAction(){
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
-		    ->add('file')
-			->add('name')
-		    ->getForm();
+		->add('file')
+		->add('name')
+		->getForm();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$listaPracticantes = $repository->findAll();
 		
 		if (!$listaPracticantes) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
-	    }else{
+		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView(), 'listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
@@ -80,13 +80,13 @@ class DefaultController extends Controller
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		$practicante = new Practicante();
-        $formulario = $this->createForm(new PracticanteType(), $practicante);
+		$formulario = $this->createForm(new PracticanteType(), $practicante);
 		$formulario->handleRequest($peticion);
-	
+
 		//validamos que no existe la cédula y el código
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$p = $repository->findOneBy(array('codigo' => $practicante->getCodigo()));
-	
+
 		if ($p != NULL){
 			throw $this->createNotFoundException('¡El código ingresado ya existe!');
 		}else{
@@ -94,16 +94,16 @@ class DefaultController extends Controller
 			if ($p != NULL)  throw $this->createNotFoundException('¡La cédula de identidad ya existe!');
 		}
 		
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
 			//si subio no subio foto  le asignamos una foto generica
 			if ($practicante->getFile() == NULL) 	$practicante->setPath('user.jpeg');
 			//subimos la foto al servidor
 			$practicante->upload();
 
 			$practicante->setEstado("0");  //es practicante sin cronograma
-		
+
 			// Completar las propiedades que el usuario no rellena en el formulario
-            $em->persist($practicante);
+			$em->persist($practicante);
 
 
 			//los roles fueron cargados de forma manual en la base de datos
@@ -121,16 +121,16 @@ class DefaultController extends Controller
 
 			//codificamos el password			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
 			//guardamos usuario
-     		 $em->persist($usuario);
+			$em->persist($usuario);
 
-            $em->flush();
+			$em->flush();
 
-            return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
-        }
-        return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView()));
+			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
+		}
+		return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView()));
 	}
 
 
@@ -148,10 +148,10 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 		$usuario = $repository->findOneBy(array('username' => $codigo));
 		
-        $formulario = $this->createForm(new PracticanteType(), $practicante);
+		$formulario = $this->createForm(new PracticanteType(), $practicante);
 		$formulario->handleRequest($peticion);
 
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
 			$practicante->upload();				
             // Completar las propiedades que el usuario no rellena en el formulario
 			$usuario->setUsername($practicante->getCodigo());
@@ -159,17 +159,17 @@ class DefaultController extends Controller
 			$usuario->setSalt(md5(time()));
 			//codificamos el password			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
-	
-	
-            $em->persist($practicante);
-			$em->persist($usuario);
-            $em->flush();
 
-            return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
-        }
-        return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
+
+			$em->persist($practicante);
+			$em->persist($usuario);
+			$em->flush();
+
+			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
+		}
+		return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
 	}
 
 	/********************************************************/
@@ -203,7 +203,7 @@ class DefaultController extends Controller
 		//base de datos
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
-				
+
         //creamos instacia formulario para el conograma
 		$formulario = $this->createForm(new CronogramaType(), $practicante);
 		$formulario->handleRequest($peticion);
@@ -217,14 +217,14 @@ class DefaultController extends Controller
 			// Completar las propiedades que el usuario no rellena en el formulario
 			$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
 
-            $em->persist($practicante);
+			$em->persist($practicante);
 
 			//buscamos al academico para cargarle el cronograma
 			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Cronograma');
 			$cronograma = $repository->find($practicante->getAcademico()->getId());
 
 			$query = $em->createQuery(
-		            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+				'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
 			$query->setParameter('id_aca',$practicante->getAcademico()->getId());
 			$query->setParameter('id_pra',$practicante->getId());
 			//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
@@ -257,7 +257,7 @@ class DefaultController extends Controller
 			//$cronogramaexterno = $repository->findByOne(array('practicante' => $practicante->getId())) ;
 			
 			$query = $em->createQuery(
-		            'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra');
+				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra');
 			$query->setParameter('id_pra',$practicante->getId());
 			//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
 			$cronogramaexterno = $query->getOneOrNullResult();//getSingleResult();			
@@ -276,9 +276,9 @@ class DefaultController extends Controller
 			
 			$em->persist($cronogramaexterno);
 			$em->flush();
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
-        }
-        return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
+			return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+		}
+		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
 	}
 
 
@@ -289,9 +289,9 @@ class DefaultController extends Controller
 	{
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
-		    ->add('file')
-			->add('name')
-		    ->getForm();
+		->add('file')
+		->add('name')
+		->getForm();
 
 		$form->handleRequest($request);
 
@@ -302,7 +302,7 @@ class DefaultController extends Controller
 			//se copia el archivo al directorio del servidor			
 			$document->upload();
 
-		    $em->persist($document);
+			$em->persist($document);
 		    //$em->flush();
 
 			$archivo= $document->getAbsolutePath();		
@@ -316,10 +316,10 @@ class DefaultController extends Controller
 				$row = $filas[$i];
 				$sql = explode(";",$row);
 				$listaEstudiantes[$i] =  array("codigo"=> $sql[0], "apellidos"=>$sql[1], "nombres"=>$sql[2], "ci" => $sql[3], 	
-														"fecha" => $sql[4], "emailInstitucional" => $sql[5] );
+					"fecha" => $sql[4], "emailInstitucional" => $sql[5] );
 				$i++;
 			}
-		
+
 
 			//los roles fueron cargados de forma manual en la base de datos
 			//buscamos una instancia role tipo practicante 
@@ -351,11 +351,11 @@ class DefaultController extends Controller
 				$usuario->addRole($role); //cargamos el rol al coordinador
 
 				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-                $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+				$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 				$usuario->setPassword($passwordCodificado);
 				
 				
-				 $em->persist($usuario);
+				$em->persist($usuario);
 
 				 //convertimos la fecha de matricula a un objeto Date				
 				$fecha = $listaEstudiantes[$i]['fecha'];
@@ -381,8 +381,7 @@ class DefaultController extends Controller
 				$i++;
 			}
 
-			return $this->render('CituaoCoordBundle:Default:practicantes.html.twig');
-
+			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
 		} 
 		
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
@@ -399,7 +398,7 @@ class DefaultController extends Controller
 		
 		if (!$listaAsesores) {
 			$msgerr = array('descripcion'=>'No hay asesores externos registrados!','id'=>'1');
-	    }else{
+		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 
@@ -419,24 +418,24 @@ class DefaultController extends Controller
 			throw $this->createNotFoundException('Para crear un nuevo asesor externo debe haber centros de práctica registrados!');
 		}
 
-    	$peticion = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
 		$externo = new Externo();
-        $formulario = $this->createForm(new ExternoType(), $externo);
-        $formulario->handleRequest($peticion);
+		$formulario = $this->createForm(new ExternoType(), $externo);
+		$formulario->handleRequest($peticion);
 
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
 			//validamos que no existe la cédula y el código
 			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 			$e = $repository->findOneBy(array('ci' => $externo->getCi()));
-		
+
 			if ($e != NULL){
 				throw $this->createNotFoundException('¡La cédula ingresada ya existe!');
 			}
-   
+
 		   // Completar las propiedades que el usuario no rellena en el formulario
 			
-            $em->persist($externo);
+			$em->persist($externo);
 
 			//los roles fueron cargados de forma manual en la base de datos
 			//buscamos una instancia role tipo coordinador 
@@ -456,18 +455,18 @@ class DefaultController extends Controller
 
 			//codificamos el password			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
-     		 $em->persist($usuario);
+			$em->persist($usuario);
 
 
-            $em->flush();
-            return $this->redirect($this->generateUrl('cituao_coord_asesores'));
-        }
+			$em->flush();
+			return $this->redirect($this->generateUrl('cituao_coord_asesores'));
+		}
 
-        return $this->render('CituaoCoordBundle:Default:registrarexterno.html.twig', array(
-            'formulario' => $formulario->createView()
-        ));
+		return $this->render('CituaoCoordBundle:Default:registrarexterno.html.twig', array(
+			'formulario' => $formulario->createView()
+			));
 	}
 
 
@@ -480,23 +479,23 @@ class DefaultController extends Controller
 		
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externo = $repository->findOneBy(array('ci' => $ci));
-        $formulario = $this->createForm(new ExternoType(), $externo);
-        
+		$formulario = $this->createForm(new ExternoType(), $externo);
+
 		$formulario->handleRequest($peticion);
 
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
 			
             // Completar las propiedades que el usuario no rellena en el formulario
-            $em->persist($externo);
-            $em->flush();
+			$em->persist($externo);
+			$em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
-            return $this->redirect($this->generateUrl('cituao_coord_asesores'));
-        }
-        return $this->render('CituaoCoordBundle:Default:externo.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+				);
+			return $this->redirect($this->generateUrl('cituao_coord_asesores'));
+		}
+		return $this->render('CituaoCoordBundle:Default:externo.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
 		
 	}
 
@@ -509,7 +508,7 @@ class DefaultController extends Controller
 		
 		if (!$listaAcademicos) {
 			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
-	    }else{
+		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		$c=0;
@@ -527,17 +526,17 @@ class DefaultController extends Controller
 	public function registraracademicoAction()
 	{
 		$peticion = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
+		$em = $this->getDoctrine()->getManager();
 		$academico = new Academico();
-        $formulario = $this->createForm(new AcademicoType(), $academico);
-        $formulario->handleRequest($peticion);
+		$formulario = $this->createForm(new AcademicoType(), $academico);
+		$formulario->handleRequest($peticion);
 		
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
 
 			//validamos que no existe la cédula y el código
 			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 			$a = $repository->findOneBy(array('ci' => $academico->getCi()));
-		
+
 			if ($a != NULL){
 				throw $this->createNotFoundException('¡La cédula ingresada ya existe!');
 			}
@@ -546,7 +545,7 @@ class DefaultController extends Controller
 			$academico->upload();	
 			
             // Completar las propiedades que el usuario no rellena en el formulario
-            $em->persist($academico);
+			$em->persist($academico);
 
 			//los roles fueron cargados de forma manual en la base de datos
 			//buscamos una instancia role tipo coordinador 
@@ -563,22 +562,22 @@ class DefaultController extends Controller
 
 			//codificamos el password			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
-     		 $em->persist($usuario);
+			$em->persist($usuario);
 
-            $em->flush();
+			$em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
-            return $this->redirect($this->generateUrl('cituao_coord_academicos'));
-        }
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+				);
+			return $this->redirect($this->generateUrl('cituao_coord_academicos'));
+		}
 
-        return $this->render('CituaoCoordBundle:Default:registraracademico.html.twig', array(
-            'formulario' => $formulario->createView()
-        ));
+		return $this->render('CituaoCoordBundle:Default:registraracademico.html.twig', array(
+			'formulario' => $formulario->createView()
+			));
 	}
 
 	/********************************************************/
@@ -591,24 +590,24 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 		
-        $formulario = $this->createForm(new AcademicoType(), $academico);
+		$formulario = $this->createForm(new AcademicoType(), $academico);
 		$formulario->handleRequest($peticion);
 
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
 			$academico->upload();
             // Completar las propiedades que el usuario no rellena en el formulario
 			//if ($academico->getFile() == NULL)  $academico->setPath('user.jpeg');
-            $em->persist($academico);
-            $em->flush();
+			$em->persist($academico);
+			$em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
-            return $this->redirect($this->generateUrl('cituao_coord_academicos'));
-        }
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+				);
+			return $this->redirect($this->generateUrl('cituao_coord_academicos'));
+		}
 		
-        return $this->render('CituaoCoordBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico ));
+		return $this->render('CituaoCoordBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico ));
 		
 	}
 
@@ -621,7 +620,7 @@ class DefaultController extends Controller
 		
 		if (!$listaCentros) {
 			$msgerr = array('descripcion'=>'No hay centros de prácticas registrados!','id'=>'1');
-	    }else{
+		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		return $this->render('CituaoCoordBundle:Default:centros.html.twig', array('listaCentros' => $listaCentros, 'msgerr' => $msgerr));
@@ -634,21 +633,21 @@ class DefaultController extends Controller
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		$centro = new Centro();
-        $formulario = $this->createForm(new CentroType(), $centro);
+		$formulario = $this->createForm(new CentroType(), $centro);
 		$formulario->handleRequest($peticion);
-        if ($formulario->isValid()) {
-		
+		if ($formulario->isValid()) {
+
 			// Completar las propiedades que el usuario no rellena en el formulario
-            $em->persist($centro);
-            $em->flush();
+			$em->persist($centro);
+			$em->flush();
 
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-            $this->get('session')->getFlashBag()->add('info',
-                '¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-            );
-            return $this->redirect($this->generateUrl('cituao_coord_centros'));
-        }
-        return $this->render('CituaoCoordBundle:Default:registrarcentro.html.twig', array('formulario' => $formulario->createView()));
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+				);
+			return $this->redirect($this->generateUrl('cituao_coord_centros'));
+		}
+		return $this->render('CituaoCoordBundle:Default:registrarcentro.html.twig', array('formulario' => $formulario->createView()));
 	}
 
 	/********************************************************/
@@ -664,16 +663,16 @@ class DefaultController extends Controller
 		$formulario = $this->createForm(new CentroType(), $centro);
 		$formulario->handleRequest($peticion);
 		
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
 			
             // Completar las propiedades que el usuario no rellena en el formulario
-            $em->persist($centro);
-            $em->flush();
+			$em->persist($centro);
+			$em->flush();
 
-            return $this->redirect($this->generateUrl('cituao_coord_centros'));
-        }
+			return $this->redirect($this->generateUrl('cituao_coord_centros'));
+		}
 		
-        return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro ));
+		return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro ));
 	}
 	
 	/*************************************************
@@ -699,11 +698,11 @@ class DefaultController extends Controller
 		//return $this->render('CituaoCoordBundle:Default:prueba.html.twig', array('externos' => $externos, 'exception' => $exception ));
 		
 		$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
-		JsonEncoder()));
+			JsonEncoder()));
 		$json = $serializer->serialize($externos, 'json');
-				
+
 		return new Response($json);
-	
+
 	}
 
 	/****************************************************
@@ -719,10 +718,10 @@ class DefaultController extends Controller
 	******************************************************/
 	public function registrarcoordinadorAction(){
 		$peticion = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
+		$em = $this->getDoctrine()->getManager();
 		$usuario = new Usuario();
-        $formulario = $this->createForm(new CoordinadorType(), $usuario);
-        $formulario->handleRequest($peticion);
+		$formulario = $this->createForm(new CoordinadorType(), $usuario);
+		$formulario->handleRequest($peticion);
 		
 		//los roles fueron cargados de forma manual en la base de datos
 		//buscamos una instancia role tipo coordinador 
@@ -730,264 +729,264 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
 		$role = $repository->findOneBy(array('id' => $codigo));
 
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
 			
 			$usuario->setSalt(md5(time()));
 			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
 			
     		$usuario->addRole($role); //cargamos el rol al coordinador
-        
+
 			// Completar las propiedades que el usuario no rellena en el formulario
-            $em->persist($usuario);
-            $em->flush();
+    		$em->persist($usuario);
+    		$em->flush();
 
-            
-            return $this->redirect($this->generateUrl('cituao_coord_homepage'));
-        }
 
-        return $this->render('CituaoCoordBundle:Default:registrarcoordinador.html.twig', array(
-            'formulario' => $formulario->createView()
-        ));
+    		return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+    	}
 
-	}
-	
+    	return $this->render('CituaoCoordBundle:Default:registrarcoordinador.html.twig', array(
+    		'formulario' => $formulario->createView()
+    		));
+
+    }
+
 	//*****************************************************************/
 	//Mostrar el cronograma comun entre practicante y academico
-	/******************************************************************/	
-	public function cronogramapracticanteAction($id){
+    /******************************************************************/	
+    public function cronogramapracticanteAction($id){
 		//busco al practicante
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('id' => $id));
-		
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('id' => $id));
+
 		//busco al academico
-		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
-		$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
+    	$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+    	$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
 
 		//buscamos el cronograma del asesor academico
-		$em = $this->getDoctrine()->getManager();
-		$query = $em->createQuery(
-	            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
-		$query->setParameter('id_aca',$academico->getId());
-		$query->setParameter('id_pra',$id);
-		$cronograma = $query->getOneOrNullResult();
+    	$em = $this->getDoctrine()->getManager();
+    	$query = $em->createQuery(
+    		'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+    	$query->setParameter('id_aca',$academico->getId());
+    	$query->setParameter('id_pra',$id);
+    	$cronograma = $query->getOneOrNullResult();
 
 		//buscamos el cronograma del asesor externo
-		$query = $em->createQuery(
-	            'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.externo =:id_ext AND c.practicante =:id_pra');
-		$query->setParameter('id_ext',$practicante->getExterno()->getId());
-		$query->setParameter('id_pra',$id);
-		$cronogramaexterno = $query->getOneOrNullResult();
+    	$query = $em->createQuery(
+    		'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.externo =:id_ext AND c.practicante =:id_pra');
+    	$query->setParameter('id_ext',$practicante->getExterno()->getId());
+    	$query->setParameter('id_pra',$id);
+    	$cronogramaexterno = $query->getOneOrNullResult();
 
-		
-		return $this->render('CituaoCoordBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante, 'e' => $cronogramaexterno));
-	}
-	
+
+    	return $this->render('CituaoCoordBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante, 'e' => $cronogramaexterno));
+    }
+
 		//***************************************************************
 	//mostrar la asesoria solicitada
 	//***************************************************************
-	public function consultarAsesoriaAction($id, $numase) {
-		$peticion = $this->getRequest();
-		$em = $this->getDoctrine()->getManager();
+    public function consultarAsesoriaAction($id, $numase) {
+    	$peticion = $this->getRequest();
+    	$em = $this->getDoctrine()->getManager();
 
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('id' => $id));
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('id' => $id));
 
 		//buscamos la asesoría
-		$query = $em->createQuery(
-				'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
-		$query->setParameter('id_aca',$practicante->getAcademico()->getId());
-		$query->setParameter('id_pra',$id);
-		
-		$asesoria = $query->getOneOrNullResult();	
+    	$query = $em->createQuery(
+    		'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
+    	$query->setParameter('id_aca',$practicante->getAcademico()->getId());
+    	$query->setParameter('id_pra',$id);
+
+    	$asesoria = $query->getOneOrNullResult();	
 
 		//nos traemos la documentacion
-		switch($numase){
-			case 1: 
-				$docase = $asesoria->getDocAsesor1();
-				$docpra = $asesoria->getDocPracticante1();
-				break;
-			case 2: 
-				$docase = $asesoria->getDocAsesor2();
-				$docpra = $asesoria->getDocPracticante2();
-				break;
-			case 3: 
-				$docase = $asesoria->getDocAsesor3();
-				$docpra = $asesoria->getDocPracticante3();
-				break;
-			case 4: 
-				$docase = $asesoria->getDocAsesor4();
-				$docpra = $asesoria->getDocPracticante4();
-				break;
-			case 5: 
-				$docase = $asesoria->getDocAsesor5();
-				$docpra = $asesoria->getDocPracticante5();
-				break;
-			case 6: 
-				$docase = $asesoria->getDocAsesor6();
-				$docpra = $asesoria->getDocPracticante6();
-				break;
-			case 7: 
-				$docase = $asesoria->getDocAsesor7();
-				$docpra = $asesoria->getDocPracticante7();
-				break;
-		}
+    	switch($numase){
+    		case 1: 
+    		$docase = $asesoria->getDocAsesor1();
+    		$docpra = $asesoria->getDocPracticante1();
+    		break;
+    		case 2: 
+    		$docase = $asesoria->getDocAsesor2();
+    		$docpra = $asesoria->getDocPracticante2();
+    		break;
+    		case 3: 
+    		$docase = $asesoria->getDocAsesor3();
+    		$docpra = $asesoria->getDocPracticante3();
+    		break;
+    		case 4: 
+    		$docase = $asesoria->getDocAsesor4();
+    		$docpra = $asesoria->getDocPracticante4();
+    		break;
+    		case 5: 
+    		$docase = $asesoria->getDocAsesor5();
+    		$docpra = $asesoria->getDocPracticante5();
+    		break;
+    		case 6: 
+    		$docase = $asesoria->getDocAsesor6();
+    		$docpra = $asesoria->getDocPracticante6();
+    		break;
+    		case 7: 
+    		$docase = $asesoria->getDocAsesor7();
+    		$docpra = $asesoria->getDocPracticante7();
+    		break;
+    	}
 
-		$datos = array('id' => $id, 'numase' => $numase, 'docase' => $docase, 'docpra' => $docpra);
-		return $this->render('CituaoCoordBundle:Default:asesoria.html.twig', array('datos' => $datos));
-	}
-	
-	
+    	$datos = array('id' => $id, 'numase' => $numase, 'docase' => $docase, 'docpra' => $docpra);
+    	return $this->render('CituaoCoordBundle:Default:asesoria.html.twig', array('datos' => $datos));
+    }
+
+
 	//*********************************************
 	//Muestra el comentario de la visita de presentación
 	//******************************************************
-	public function consultarVisitapAction($id){
-		$em = $this->getDoctrine()->getManager();
-	
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('id' => $id));
-		
+    public function consultarVisitapAction($id){
+    	$em = $this->getDoctrine()->getManager();
+
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('id' => $id));
+
 		//buscamos la asesoría
-		$query = $em->createQuery(
-				'SELECT a FROM CituaoAcademicoBundle:Cronograma a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
-		$query->setParameter('id_aca',$practicante->getAcademico()->getId());
-		$query->setParameter('id_pra',$id);
-		
-		$cronograma = $query->getOneOrNullResult();	
-		
-		$datos = array('id' => $id, 'comentario' => $cronograma->getComentario());
-		return $this->render('CituaoCoordBundle:Default:visita.html.twig', array('datos' => $datos));
-	}
+    	$query = $em->createQuery(
+    		'SELECT a FROM CituaoAcademicoBundle:Cronograma a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
+    	$query->setParameter('id_aca',$practicante->getAcademico()->getId());
+    	$query->setParameter('id_pra',$id);
+
+    	$cronograma = $query->getOneOrNullResult();	
+
+    	$datos = array('id' => $id, 'comentario' => $cronograma->getComentario());
+    	return $this->render('CituaoCoordBundle:Default:visita.html.twig', array('datos' => $datos));
+    }
 
 		//*************************************************************
 	//Registrar comentario a la evaluacion 1 efectuada por el asesor externo
 	//*************************************************************
-	public function consultarEvaluacionAction($id, $numeva){
-		
-		$peticion = $this->getRequest();
-		$em = $this->getDoctrine()->getManager();
+    public function consultarEvaluacionAction($id, $numeva){
+
+    	$peticion = $this->getRequest();
+    	$em = $this->getDoctrine()->getManager();
 
 		//buscamos el practicante oara accesar el id del asesor externo
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('id' => $id));
-		
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('id' => $id));
+
 
 		//buscamos la evaluacion
-		if ($numeva == 1){
-			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
-			$evaluacion = $repository->findOneBy(array('practicante' => $id));
-		}else{
-			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion2');
-			$evaluacion = $repository->findOneBy(array('practicante' => $id));
-		}
+    	if ($numeva == 1){
+    		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
+    		$evaluacion = $repository->findOneBy(array('practicante' => $id));
+    	}else{
+    		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion2');
+    		$evaluacion = $repository->findOneBy(array('practicante' => $id));
+    	}
 
 
-		$datos = array('id' => $id, 'numeva' => $numeva);
-		if ($numeva == 1)
-			return $this->render('CituaoCoordBundle:Default:evaluacion.html.twig', array('datos' => $datos, 'e' => $evaluacion));
-		else
-			return $this->render('CituaoCoordBundle:Default:evaluacion2.html.twig', array('datos' => $datos, 'e' => $evaluacion));
-	}
+    	$datos = array('id' => $id, 'numeva' => $numeva);
+    	if ($numeva == 1)
+    		return $this->render('CituaoCoordBundle:Default:evaluacion.html.twig', array('datos' => $datos, 'e' => $evaluacion));
+    	else
+    		return $this->render('CituaoCoordBundle:Default:evaluacion2.html.twig', array('datos' => $datos, 'e' => $evaluacion));
+    }
 
 	//******************************************************
 	//Mostrar el informe de gestión cuali cuanti sea 1,2,3
 	//******************************************************	
-	public function consultarGestionAction($id, $numges){
-		$peticion = $this->getRequest();
-		$em = $this->getDoctrine()->getManager();
+    public function consultarGestionAction($id, $numges){
+    	$peticion = $this->getRequest();
+    	$em = $this->getDoctrine()->getManager();
 
 		// buscamos el practicante
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('id' => $id));
-		
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('id' => $id));
+
 		//determinamos si ya fue registrado el informe en la base de datos si es positivo es una actualizacion
-		$sw = false;
-		switch($numges){
-			case 1:
-				if($practicante->getlistoGestion1()) $sw=true;
-			break;
-			case 2:
-				if($practicante->getlistoGestion2()) $sw=true;
-			break;
-			case 3:
-				if($practicante->getlistoGestion3()) $sw=true;
-			break;
-		}
+    	$sw = false;
+    	switch($numges){
+    		case 1:
+    		if($practicante->getlistoGestion1()) $sw=true;
+    		break;
+    		case 2:
+    		if($practicante->getlistoGestion2()) $sw=true;
+    		break;
+    		case 3:
+    		if($practicante->getlistoGestion3()) $sw=true;
+    		break;
+    	}
 
 		//si ya fue registrado hacemos una instancia del informe cualicuanti para mostrar en formulario
-		if ($sw) {
-			$query = $em->createQuery(
-					'SELECT a FROM CituaoAcademicoBundle:Cualicuanti a WHERE a.practicante =:id_pra  AND a.cualicuanti =:numcua');
-			$query->setParameter('id_pra',$id);
-			$query->setParameter('numcua',$numges);
-			$cualicuanti = $query->getOneOrNullResult();
-		}
-		
-		$datos = array('id' => $id, 'numges' => $numges);
-			return $this->render('CituaoCoordBundle:Default:cualicuanti.html.twig', array('gestion' => $cualicuanti, 'datos' => $datos));
-	}	
-	
+    	if ($sw) {
+    		$query = $em->createQuery(
+    			'SELECT a FROM CituaoAcademicoBundle:Cualicuanti a WHERE a.practicante =:id_pra  AND a.cualicuanti =:numcua');
+    		$query->setParameter('id_pra',$id);
+    		$query->setParameter('numcua',$numges);
+    		$cualicuanti = $query->getOneOrNullResult();
+    	}
+
+    	$datos = array('id' => $id, 'numges' => $numges);
+    	return $this->render('CituaoCoordBundle:Default:cualicuanti.html.twig', array('gestion' => $cualicuanti, 'datos' => $datos));
+    }	
+
 	//**************************************************************
 	//Mostrar el informe final del asesor académico
 	//**************************************************************
-	public function consultarInformefinalacademicoAction($id){
-        $em = $this->getDoctrine()->getManager();
-        $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('id' => $id));
+    public function consultarInformefinalacademicoAction($id){
+    	$em = $this->getDoctrine()->getManager();
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('id' => $id));
 		//buscamos el informe  para actualizar 
-		$query = $em->createQuery(
-				'SELECT i FROM CituaoAcademicoBundle:Informefinalacademico i WHERE i.practicante =:id_pra ');
-		$query->setParameter('id_pra',$id);
-		
-		$informe = $query->getOneOrNullResult();
+    	$query = $em->createQuery(
+    		'SELECT i FROM CituaoAcademicoBundle:Informefinalacademico i WHERE i.practicante =:id_pra ');
+    	$query->setParameter('id_pra',$id);
+
+    	$informe = $query->getOneOrNullResult();
 		//si no hay informes creamos una instancia de informe final
-	
-		$datos = array('id' => $id);
-        return $this->render('CituaoCoordBundle:Default:informefinalacademico.html.twig', array(
-            'informe' => $informe, 'datos' => $datos
-        ));
-	}
-	
-	public function consultarActaAction($id){
-        $em = $this->getDoctrine()->getManager();
-        $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('id' => $id));
+
+    	$datos = array('id' => $id);
+    	return $this->render('CituaoCoordBundle:Default:informefinalacademico.html.twig', array(
+    		'informe' => $informe, 'datos' => $datos
+    		));
+    }
+
+    public function consultarActaAction($id){
+    	$em = $this->getDoctrine()->getManager();
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('id' => $id));
 		//buscamos el informe  para actualizar 
-		$query = $em->createQuery(
-				'SELECT i FROM CituaoExternoBundle:Acta i WHERE i.practicante =:id_pra ');
-		$query->setParameter('id_pra',$id);
-		
-		$acta = $query->getOneOrNullResult();
+    	$query = $em->createQuery(
+    		'SELECT i FROM CituaoExternoBundle:Acta i WHERE i.practicante =:id_pra ');
+    	$query->setParameter('id_pra',$id);
+
+    	$acta = $query->getOneOrNullResult();
 		//si no hay informes creamos una instancia de informe final
-	
-		$datos = array('id' => $id);
-        return $this->render('CituaoCoordBundle:Default:acta.html.twig', array(
-            'e' => $acta, 'datos' => $datos
-        ));
-	}
-	
+
+    	$datos = array('id' => $id);
+    	return $this->render('CituaoCoordBundle:Default:acta.html.twig', array(
+    		'e' => $acta, 'datos' => $datos
+    		));
+    }
+
 	//**************************************************************
 	//Mostrar el informe final del practicante
 	//**************************************************************
-	public function consultarInformefinalpracticanteAction($id){
-        $em = $this->getDoctrine()->getManager();
-        $repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('id' => $id));
+    public function consultarInformefinalpracticanteAction($id){
+    	$em = $this->getDoctrine()->getManager();
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('id' => $id));
 		//buscamos el informe  para actualizar 
-		$query = $em->createQuery(
-				'SELECT i FROM CituaoPracticanteBundle:Informefinalpracticante i WHERE i.practicante =:id_pra ');
-		$query->setParameter('id_pra',$id);
-		
-		$informe = $query->getOneOrNullResult();
+    	$query = $em->createQuery(
+    		'SELECT i FROM CituaoPracticanteBundle:Informefinalpracticante i WHERE i.practicante =:id_pra ');
+    	$query->setParameter('id_pra',$id);
+
+    	$informe = $query->getOneOrNullResult();
 		//si no hay informes creamos una instancia de informe final
-	
-		$datos = array('id' => $id);
-        return $this->render('CituaoCoordBundle:Default:informefinalpracticante.html.twig', array(
-            'informe' => $informe, 'datos' => $datos
-        ));
-	}
+
+    	$datos = array('id' => $id);
+    	return $this->render('CituaoCoordBundle:Default:informefinalpracticante.html.twig', array(
+    		'informe' => $informe, 'datos' => $datos
+    		));
+    }
 }
 
 

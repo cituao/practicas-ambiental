@@ -288,7 +288,7 @@ a#cerrarButtonLink {
 }
 
 /* line 223, globalsass/sass/global.scss */
-#content {
+.content {
   width: 84.5%;
   /*border:1px solid #000;*/
   position: absolute;
@@ -319,7 +319,7 @@ a#cerrarButtonLink {
 }
 
 /* line 257, globalsass/sass/global.scss */
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="password"] {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -334,8 +334,34 @@ input[type="text"], input[type="password"] {
   margin-right: 50px;
 }
 
-/* line 271, globalsass/sass/global.scss */
-input[type="text"]:focus, input[type="password"]:focus {
+/* line 270, globalsass/sass/global.scss */
+select {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  appearance: none;
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
+  width: 205px;
+  height: 30px;
+  border: #242021 solid 1px;
+  background-color: #242021;
+  border: #b5b5b5 1px solid;
+  padding-left: 5%;
+  color: #b5b5b5;
+  background: url("../img/arrow.png") #242021 no-repeat;
+}
+
+/* line 285, globalsass/sass/global.scss */
+select:hover {
+  background: url("../img/arrow.png") #ec1c24 no-repeat;
+}
+
+/* line 290, globalsass/sass/global.scss */
+input[type="text"]:focus, input[type="password"]:focus, select:focus, input[type="email"]:focus {
   outline: none;
   border: #af0000 solid 1px;
 }
@@ -345,10 +371,11 @@ input[type="text"]:focus, input[type="password"]:focus {
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 17, globalsass/sass/contentStyle.scss */
-#upSection {
+.upSection {
   width: 85%;
   height: 70px;
   /*border:1px solid #000;*/
+  overflow: hidden;
   position: fixed;
   top: 57px;
   padding-top: 25px;
@@ -356,64 +383,64 @@ input[type="text"]:focus, input[type="password"]:focus {
   z-index: 3;
 }
 /* line 28, globalsass/sass/contentStyle.scss */
-#upSection h1 {
-  width: 150px;
+.upSection h1 {
+  /*width: 150px;*/
   background-color: #ec1c24;
   padding: 3px 0px;
+  padding-right: 15px;
   padding-left: 30px;
   float: left;
 }
-/* line 38, globalsass/sass/contentStyle.scss */
-#upSection a {
+/* line 40, globalsass/sass/contentStyle.scss */
+.upSection a {
   float: right;
   margin-right: 1%;
 }
-/* line 42, globalsass/sass/contentStyle.scss */
-#upSection a img {
+/* line 44, globalsass/sass/contentStyle.scss */
+.upSection a img {
   margin-right: 7px;
   float: left;
 }
-/* line 46, globalsass/sass/contentStyle.scss */
-#upSection a h4 {
+/* line 48, globalsass/sass/contentStyle.scss */
+.upSection a h4 {
   float: left;
   margin-top: 7px;
 }
-/* line 53, globalsass/sass/contentStyle.scss */
-#upSection form {
+/* line 55, globalsass/sass/contentStyle.scss */
+.upSection form {
   position: absolute;
-  top: 60px;
-  left: 43%;
+  top: 100px;
+  right: 4%;
   float: right;
-  color: #fff;
   opacity: 0;
 }
-/* line 61, globalsass/sass/contentStyle.scss */
-#upSection form label {
+/* line 63, globalsass/sass/contentStyle.scss */
+.upSection form label {
   display: none;
 }
-/* line 64, globalsass/sass/contentStyle.scss */
-#upSection form input[type="file"] {
-  width: 130px;
+/* line 66, globalsass/sass/contentStyle.scss */
+.upSection form input[type="file"] {
+  width: 300px;
 }
-/* line 73, globalsass/sass/contentStyle.scss */
-#upSection #form div {
+/* line 75, globalsass/sass/contentStyle.scss */
+.upSection #form div {
   float: right !important;
 }
 
-/* line 80, globalsass/sass/contentStyle.scss */
-#downSection {
+/* line 83, globalsass/sass/contentStyle.scss */
+.downSection {
   width: 100%;
   margin-top: 92px;
   padding-bottom: 80px;
   /*border:1px solid #000;*/
 }
 
-/* line 89, globalsass/sass/contentStyle.scss */
+/* line 92, globalsass/sass/contentStyle.scss */
 .practicantesTableHead {
   width: 100%;
   padding-left: 30px;
 }
-/* line 94, globalsass/sass/contentStyle.scss */
+/* line 97, globalsass/sass/contentStyle.scss */
 .practicantesTableHead .tableHead {
   background-color: #b5b5b5;
   height: 38px;
@@ -425,14 +452,14 @@ input[type="text"]:focus, input[type="password"]:focus {
   z-index: 3;
 }
 
-/* line 106, globalsass/sass/contentStyle.scss */
+/* line 109, globalsass/sass/contentStyle.scss */
 .practicantesTable {
   width: 100%;
   padding-left: 30px;
   height: auto;
   table-border: colapse;
 }
-/* line 113, globalsass/sass/contentStyle.scss */
+/* line 116, globalsass/sass/contentStyle.scss */
 .practicantesTable .tableHead {
   background-color: #b5b5b5;
   height: 35px;
@@ -443,7 +470,7 @@ input[type="text"]:focus, input[type="password"]:focus {
   padding-top: 5px;
   z-index: 3;
 }
-/* line 124, globalsass/sass/contentStyle.scss */
+/* line 127, globalsass/sass/contentStyle.scss */
 .practicantesTable .tableItem {
   margin: 10px 0px;
   /*border:2px solid $darkGray;*/
@@ -451,11 +478,11 @@ input[type="text"]:focus, input[type="password"]:focus {
   color: black;
   position: relative;
 }
-/* line 135, globalsass/sass/contentStyle.scss */
+/* line 138, globalsass/sass/contentStyle.scss */
 .practicantesTable .tableItem:hover {
   color: white !important;
 }
-/* line 144, globalsass/sass/contentStyle.scss */
+/* line 147, globalsass/sass/contentStyle.scss */
 .practicantesTable #hoverDiv {
   height: 55px;
   width: 100%;
@@ -465,7 +492,7 @@ input[type="text"]:focus, input[type="password"]:focus {
   border-bottom: 1px solid #b5b5b5;
   z-index: 2;
 }
-/* line 155, globalsass/sass/contentStyle.scss */
+/* line 158, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones {
   position: absolute;
   opacity: 0;
@@ -481,53 +508,53 @@ input[type="text"]:focus, input[type="password"]:focus {
   -ms-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 170, globalsass/sass/contentStyle.scss */
+/* line 173, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones td {
   padding: 1px 6px;
 }
-/* line 174, globalsass/sass/contentStyle.scss */
+/* line 177, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones td:hover {
   background-color: #72030b;
 }
-/* line 177, globalsass/sass/contentStyle.scss */
+/* line 180, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones img {
   float: left;
 }
-/* line 181, globalsass/sass/contentStyle.scss */
+/* line 184, globalsass/sass/contentStyle.scss */
 .practicantesTable #opciones h3 {
   color: white;
   float: left;
   margin-top: 9px;
   margin-left: 5px;
 }
-/* line 194, globalsass/sass/contentStyle.scss */
+/* line 197, globalsass/sass/contentStyle.scss */
 .practicantesTable .spacer {
   height: 40px;
 }
-/* line 198, globalsass/sass/contentStyle.scss */
+/* line 201, globalsass/sass/contentStyle.scss */
 .practicantesTable img {
   position: relative;
   margin: 0 auto;
 }
-/* line 203, globalsass/sass/contentStyle.scss */
-.practicantesTable #foto {
+/* line 206, globalsass/sass/contentStyle.scss */
+.practicantesTable .foto {
   top: -10px;
 }
-/* line 207, globalsass/sass/contentStyle.scss */
+/* line 210, globalsass/sass/contentStyle.scss */
 .practicantesTable td {
   position: relative;
   font-family: helvetica;
   font-size: 14px;
   z-index: 2;
 }
-/* line 218, globalsass/sass/contentStyle.scss */
+/* line 221, globalsass/sass/contentStyle.scss */
 .practicantesTable h2 {
   color: #b5b5b5;
   margin-left: 30px;
   font-weight: bold;
 }
-/* line 224, globalsass/sass/contentStyle.scss */
-.practicantesTable #itemImgContainer {
+/* line 227, globalsass/sass/contentStyle.scss */
+.practicantesTable .itemImgContainer {
   width: 100px;
   height: 100px;
   border: 3px solid #242021;
@@ -536,4 +563,66 @@ input[type="text"]:focus, input[type="password"]:focus {
   -ms-border-radius: 50%;
   border-radius: 50%;
   overflow: hidden;
+}
+
+/* line 236, globalsass/sass/contentStyle.scss */
+.imgContainer {
+  width: 150px;
+  height: 150px;
+  border: 3px solid #242021;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+/* line 244, globalsass/sass/contentStyle.scss */
+.profileContainer {
+  padding-left: 30px;
+}
+
+/* line 247, globalsass/sass/contentStyle.scss */
+.profilePictureContainer {
+  width: 400px;
+  float: left;
+  /*border: 1px solid #000;*/
+}
+
+/* line 252, globalsass/sass/contentStyle.scss */
+.profileFormContainer {
+  width: 800px;
+  float: left;
+  /*border: 1px solid #000;*/
+}
+
+/* line 258, globalsass/sass/contentStyle.scss */
+.inputContainer {
+  float: left;
+  margin-bottom: 20px;
+}
+/* line 262, globalsass/sass/contentStyle.scss */
+.inputContainer h2 {
+  color: black;
+  font-family: helveticaNBold;
+  font-size: 17px;
+  float: left;
+  margin-top: 8px;
+  margin-right: 15px;
+  width: 120px;
+}
+/* line 271, globalsass/sass/contentStyle.scss */
+.inputContainer .input {
+  float: left;
+}
+
+/* line 275, globalsass/sass/contentStyle.scss */
+.selFile {
+  width: 300px;
+}
+
+/* line 278, globalsass/sass/contentStyle.scss */
+.selFile label {
+  display: none;
 }
