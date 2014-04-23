@@ -55,7 +55,13 @@ class DefaultController extends Controller
 	//Listar los practicantes registrados en la base de datos
 	/********************************************************/	
 	public function practicantesAction(){
-		//buscamos el area o coordinacion al que pertenece segun el coordinador logueado
+		$document = new Document();
+	 		$form = $this->createFormBuilder($document)
+	 		->add('file')
+	 		->add('name')
+	 		->getForm();
+
+			//buscamos el area o coordinacion al que pertenece segun el coordinador logueado
 		$user = $this->getUser();
 		if ($user->getUsername() == 'jamarquez') $id_area = 1;
 			elseif ($user->getUsername() == 'coordinador') $id_area = 2;
