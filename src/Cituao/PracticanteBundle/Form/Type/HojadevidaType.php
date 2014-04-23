@@ -18,7 +18,7 @@ class HojadevidaType extends AbstractType
 		
 		
         ->add('emailInstitucional', 'email',  array('label' => 'Email institucional', 'read_only' => 'true'))
-        ->add('emailPersonal', 'email',  array('label' => 'Email personal', 'attr' => array('placeholder' => 'usuario@servidor')))
+        ->add('emailPersonal', 'email',  array('label' => 'Email personal'))
 		->add('telefonoMovil','text', array('label' => 'Teléfono móvil'));
 		
 		//->add('modalidad','choice', array('label' => 'Modalidad', 'choices'=> array('aud'=>'Audio', 'vis'=>'Visual', 'imp'=>'Impreso'),'multiple'=>true))
