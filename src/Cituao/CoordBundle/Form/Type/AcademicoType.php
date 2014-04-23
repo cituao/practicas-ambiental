@@ -15,11 +15,11 @@ class AcademicoType extends AbstractType
 		->add('ci','text', array('label' => 'Cédula de identidad:','required' => true))	    
 		->add('nombres','text', array('label' => 'Nombres:', 'required' => true))
         ->add('apellidos','text', array('label' => 'Apellidos:', 'required' => true))
- 		->add('emailInstitucional', 'email',  array('required' => false, 'label' => 'Email institucional:',  'attr' => array('placeholder' => 'usuario@servidor')))
-        ->add('email', 'email',  array('required' => false, 'label' => 'Email personal:',  'attr' => array('placeholder' => 'usuario@servidor')))
+ 		->add('emailInstitucional', 'email',  array('required' => false, 'label' => 'Email institucional:'))
+        ->add('email', 'email',  array('required' => false, 'label' => 'Email personal:'))
 		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil:'))
 		->add('telefonoFijo','text', array('required' => false, 'label' => 'Teléfono fijo:'))
-		->add('perfil','textarea', array('required' => false, 'label' => 'Perfil', 'max_length' => '5500' ,  'attr' => array('placeholder' => 'Ingrese el perfil del asesor', 'cols' => '80', 'rows' => '5')))
+		->add('perfil','textarea', array('required' => false, 'label' => 'Perfil', 'max_length' => '5500' ,  'attr' => array('cols' => '80', 'rows' => '5')))
 		->add('categoria', 'choice', array('required' => false, 'label' => 'Categoría', 'choices'=> array('a' => 'A', 'b' => 'B', 'c' => 'C', 'd' => 'D')))	
 		->add('declaracion', 'checkbox', array('required' => false, 'label' => 'Declaración de Renta', 'required' => false));
 		}
