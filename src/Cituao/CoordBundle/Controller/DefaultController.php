@@ -51,9 +51,9 @@ class DefaultController extends Controller
 
 		$em = $this->getDoctrine()->getManager();
 		//solicitamos solo los practicantes asociados al cooridinador logueado
-		$query = $em->createQuery(
-	            'SELECT c FROM CituaoCoordBundle:Practicante c WHERE c.area =:id_area');
-		$query->setParameter('id_area',$id_area);
+		//$query = $em->createQuery('SELECT c FROM CituaoCoordBundle:Practicante c WHERE c.area =:id_area');
+		$query = $em->createQuery('SELECT c FROM CituaoCoordBundle:Practicante c');
+		//$query->setParameter('id_area',$id_area);
 
 		$listaPracticantes = $query->getResult();//getSingleResult();
 
