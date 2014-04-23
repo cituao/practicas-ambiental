@@ -14,7 +14,7 @@ class ExternoType extends AbstractType
 		->add('ci','text', array('label' => 'Cédula de identidad:','read_only' => true))	    
 		->add('nombres','text', array('label' => 'Nombres:', 'read_only' => true))
         ->add('apellidos','text', array('label' => 'Apellidos:', 'read_only' => true))
-        ->add('email', 'email',  array('required' => false, 'label' => 'Email:',  'attr' => array('placeholder' => 'usuario@servidor'), 'required' => true ))
+        ->add('email', 'email',  array('required' => false, 'label' => 'Email:', 'required' => true ))
 		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil:', 'required' => true))
 		->add('telefonoFijo','text', array('required' => false, 'label' => 'Teléfono fijo:'))
 		->add('centro','entity', array('required' => false, 'label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'disabled' => true ))		
