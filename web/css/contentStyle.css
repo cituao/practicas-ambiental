@@ -9,7 +9,7 @@
 /* line 17, globalsass/sass/contentStyle.scss */
 .upSection {
   width: 85%;
-  height: 70px;
+  height: 45px;
   /*border:1px solid #000;*/
   overflow: hidden;
   position: fixed;
@@ -66,18 +66,18 @@
 /* line 83, globalsass/sass/contentStyle.scss */
 .downSection {
   width: 100%;
-  margin-top: 92px;
+  margin-top: 83px;
   padding-bottom: 80px;
   /*border:1px solid #000;*/
 }
 
 /* line 92, globalsass/sass/contentStyle.scss */
-.practicantesTableHead {
+.practicantesTableHead, .generalTableHead {
   width: 100%;
   padding-left: 30px;
 }
 /* line 97, globalsass/sass/contentStyle.scss */
-.practicantesTableHead .tableHead {
+.practicantesTableHead .tableHead, .generalTableHead .tableHead {
   background-color: #b5b5b5;
   height: 38px;
   position: relative;
@@ -94,6 +94,7 @@
   padding-left: 30px;
   height: auto;
   table-border: colapse;
+  /* practicantesTable */
 }
 /* line 116, globalsass/sass/contentStyle.scss */
 .practicantesTable .tableHead {
@@ -129,7 +130,7 @@
   z-index: 2;
 }
 /* line 158, globalsass/sass/contentStyle.scss */
-.practicantesTable #opciones {
+.practicantesTable .opciones {
   position: absolute;
   opacity: 0;
   float: right;
@@ -145,19 +146,19 @@
   border-radius: 3px;
 }
 /* line 173, globalsass/sass/contentStyle.scss */
-.practicantesTable #opciones td {
+.practicantesTable .opciones td {
   padding: 1px 6px;
 }
 /* line 177, globalsass/sass/contentStyle.scss */
-.practicantesTable #opciones td:hover {
+.practicantesTable .opciones td:hover {
   background-color: #72030b;
 }
 /* line 180, globalsass/sass/contentStyle.scss */
-.practicantesTable #opciones img {
+.practicantesTable .opciones img {
   float: left;
 }
 /* line 184, globalsass/sass/contentStyle.scss */
-.practicantesTable #opciones h3 {
+.practicantesTable .opciones h3 {
   color: white;
   float: left;
   margin-top: 9px;
@@ -172,24 +173,20 @@
   position: relative;
   margin: 0 auto;
 }
-/* line 206, globalsass/sass/contentStyle.scss */
-.practicantesTable .foto {
-  top: -10px;
-}
-/* line 210, globalsass/sass/contentStyle.scss */
+/* line 208, globalsass/sass/contentStyle.scss */
 .practicantesTable td {
   position: relative;
   font-family: helvetica;
   font-size: 14px;
   z-index: 2;
 }
-/* line 221, globalsass/sass/contentStyle.scss */
+/* line 219, globalsass/sass/contentStyle.scss */
 .practicantesTable h2 {
   color: #b5b5b5;
   margin-left: 30px;
   font-weight: bold;
 }
-/* line 227, globalsass/sass/contentStyle.scss */
+/* line 225, globalsass/sass/contentStyle.scss */
 .practicantesTable .itemImgContainer {
   width: 100px;
   height: 100px;
@@ -200,8 +197,13 @@
   border-radius: 50%;
   overflow: hidden;
 }
+/* line 231, globalsass/sass/contentStyle.scss */
+.practicantesTable .itemImgContainer .foto {
+  top: -5px;
+}
 
-/* line 236, globalsass/sass/contentStyle.scss */
+/* practicantes Table style */
+/* line 238, globalsass/sass/contentStyle.scss */
 .imgContainer {
   width: 150px;
   height: 150px;
@@ -211,54 +213,252 @@
   -ms-border-radius: 50%;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto;
+}
+/* line 245, globalsass/sass/contentStyle.scss */
+.imgContainer .foto {
+  position: relative;
+  top: -5px;
 }
 
-/* line 244, globalsass/sass/contentStyle.scss */
+/* line 250, globalsass/sass/contentStyle.scss */
 .profileContainer {
   padding-left: 30px;
+  padding-top: 42px;
 }
 
-/* line 247, globalsass/sass/contentStyle.scss */
+/* line 254, globalsass/sass/contentStyle.scss */
 .profilePictureContainer {
   width: 400px;
   float: left;
   /*border: 1px solid #000;*/
 }
 
-/* line 252, globalsass/sass/contentStyle.scss */
+/* line 259, globalsass/sass/contentStyle.scss */
 .profileFormContainer {
   width: 800px;
   float: left;
   /*border: 1px solid #000;*/
 }
 
-/* line 258, globalsass/sass/contentStyle.scss */
+/* line 265, globalsass/sass/contentStyle.scss */
 .inputContainer {
-  float: left;
+  display: inline-block;
   margin-bottom: 20px;
+  width: 390px;
+  height: 40px;
 }
-/* line 262, globalsass/sass/contentStyle.scss */
-.inputContainer h2 {
+/* line 271, globalsass/sass/contentStyle.scss */
+.inputContainer h2, .inputContainer label {
   color: black;
   font-family: helveticaNBold;
   font-size: 17px;
   float: left;
-  margin-top: 8px;
+  margin-top: 5px;
   margin-right: 15px;
   width: 120px;
 }
-/* line 271, globalsass/sass/contentStyle.scss */
+/* line 280, globalsass/sass/contentStyle.scss */
 .inputContainer .input {
   float: left;
 }
 
-/* line 275, globalsass/sass/contentStyle.scss */
+/* line 284, globalsass/sass/contentStyle.scss */
 .selFile {
   width: 300px;
 }
 
-/* line 278, globalsass/sass/contentStyle.scss */
+/* line 287, globalsass/sass/contentStyle.scss */
 .selFile label {
   display: none;
 }
+
+/* line 291, globalsass/sass/contentStyle.scss */
+.profileData {
+  /*border:1px solid #000;*/
+  height: 85px;
+  margin-bottom: 14px;
+}
+/* line 296, globalsass/sass/contentStyle.scss */
+.profileData h1, .profileData h2 {
+  color: #242021;
+  margin-left: 125px;
+  margin-top: 5px;
+}
+/* line 302, globalsass/sass/contentStyle.scss */
+.profileData .imgContainer {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+}
+
+/* line 309, globalsass/sass/contentStyle.scss */
+.tabla {
+  width: 100%;
+  /*border:1px solid #000;*/
+  overflow: auto;
+}
+/* line 314, globalsass/sass/contentStyle.scss */
+.tabla .tableHeader, .tabla .tableHeader:hover {
+  color: #fff;
+  background-color: #b5b5b5;
+  font-family: helvetica;
+  font-size: 18px;
+  z-index: 2;
+  height: 30px;
+}
+/* line 322, globalsass/sass/contentStyle.scss */
+.tabla td {
+  position: relative;
+  font-family: helvetica;
+  font-size: 15px;
+  z-index: 2;
+  padding: 5px 0;
+  padding-top: 10px;
+  width: 120px;
+}
+/* line 331, globalsass/sass/contentStyle.scss */
+.tabla tr {
+  margin-top: 10px;
+}
+/* line 335, globalsass/sass/contentStyle.scss */
+.tabla tr:hover {
+  background-color: #ec1c24;
+  color: #fff;
+}
+/* line 339, globalsass/sass/contentStyle.scss */
+.tabla tr:hover td:first-child {
+  color: #fff;
+}
+/* line 343, globalsass/sass/contentStyle.scss */
+.tabla th:first-child {
+  padding-left: 30px;
+}
+/* line 346, globalsass/sass/contentStyle.scss */
+.tabla tr td:first-child {
+  padding-left: 30px;
+  width: 285px;
+  font-weight: bold;
+  color: #242021;
+}
+
+/* line 354, globalsass/sass/contentStyle.scss */
+.generalTable {
+  width: 100%;
+  padding-left: 30px;
+  height: auto;
+  table-border: colapse;
+  /* practicantesTable */
+}
+/* line 361, globalsass/sass/contentStyle.scss */
+.generalTable .tableHead {
+  background-color: #b5b5b5;
+  height: 35px;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 5px;
+  z-index: 3;
+}
+/* line 372, globalsass/sass/contentStyle.scss */
+.generalTable .tableItem {
+  margin: 10px 0px;
+  /*border:2px solid $darkGray;*/
+  padding-top: 20px;
+  height: 40px;
+  color: black;
+  position: relative;
+}
+/* line 384, globalsass/sass/contentStyle.scss */
+.generalTable .tableItem:hover {
+  color: white !important;
+  background-color: #ec1c24;
+}
+/* line 394, globalsass/sass/contentStyle.scss */
+.generalTable #hoverDiv {
+  height: 65px;
+  width: 100%;
+  position: absolute;
+  margin-top: -30px;
+  z-index: 2;
+}
+/* line 403, globalsass/sass/contentStyle.scss */
+.generalTable .opciones {
+  position: absolute;
+  opacity: 0;
+  float: right;
+  padding: 5px 10px;
+  background-color: #242021;
+  top: 0;
+  right: 160px;
+  z-index: 10;
+  overflow: hidden;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 418, globalsass/sass/contentStyle.scss */
+.generalTable .opciones td {
+  padding: 1px 6px !important;
+  float: left;
+  width: 80px;
+}
+/* line 423, globalsass/sass/contentStyle.scss */
+.generalTable .opciones td:first-child {
+  padding: 1px 6px !important;
+}
+/* line 428, globalsass/sass/contentStyle.scss */
+.generalTable .opciones td:hover {
+  background-color: #72030b;
+}
+/* line 431, globalsass/sass/contentStyle.scss */
+.generalTable .opciones img {
+  float: left;
+}
+/* line 435, globalsass/sass/contentStyle.scss */
+.generalTable .opciones h3 {
+  color: white;
+  float: left;
+  margin-top: 9px;
+  margin-left: 5px;
+}
+/* line 448, globalsass/sass/contentStyle.scss */
+.generalTable .spacer {
+  height: 40px;
+}
+/* line 452, globalsass/sass/contentStyle.scss */
+.generalTable img {
+  position: relative;
+  margin: 0 auto;
+}
+/* line 459, globalsass/sass/contentStyle.scss */
+.generalTable td {
+  position: relative;
+  font-family: helvetica;
+  font-size: 14px;
+  z-index: 2;
+}
+/* line 471, globalsass/sass/contentStyle.scss */
+.generalTable h2 {
+  color: #b5b5b5;
+  margin-left: 30px;
+  font-weight: bold;
+}
+/* line 477, globalsass/sass/contentStyle.scss */
+.generalTable .itemImgContainer {
+  width: 100px;
+  height: 100px;
+  border: 3px solid #242021;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+/* line 483, globalsass/sass/contentStyle.scss */
+.generalTable .itemImgContainer .foto {
+  top: -5px;
+}
+
+/* general Table style */

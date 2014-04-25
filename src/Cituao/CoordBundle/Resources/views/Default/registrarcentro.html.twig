@@ -1,58 +1,93 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id = "titlee">Registrando un nuevo centro de práctica</h2>
-		<div id = "menuop">
-			<ul>
-			<li><a href="" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
+{% block js  %}
+<script>
+$( "#centroPractica" ).css("background-color","#000");
+$( "#centroPractica img" ).css("opacity","0.4");
+$( "#centroPractica h3" ).css("opacity","0.4");
+</script>
 
-		<form action="{{ path('cituao_coord_registrarcentro') }}" method="post" {{ form_enctype(formulario) }}>
-			<div>{{ form_errors(formulario) }}</div>	
-				
-			<div>
-				{{ form_label(formulario.nombre) }}
-				{{ form_errors(formulario.nombre) }}
-				{{ form_widget(formulario.nombre, {'attr': {'class':'largo'}} ) }}
-			</div>
+{% endblock %}
 
-			<div>
-				{{ form_label(formulario.direccion) }}
-				{{ form_errors(formulario.direccion) }}
-				{{ form_widget(formulario.direccion, {'attr': {'class':'largo'}} ) }}
-			</div>
+{% block content  %}
+{{ parent() }}
+	<div class="content">
+		{% block upSection  %}
+		<div class="upSection">
+			<h1 class ="sectionTitle">Registrando un nuevo centro de práctica</h1>
+			<a href="{{ path('cituao_coord_centros') }}" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+		</div><!--upSection -->
+		{% endblock  %}
 
-			<div>
-				{{ form_label(formulario.telefono) }}
-				{{ form_errors(formulario.telefono) }}
-				{{ form_widget(formulario.telefono, {'attr': {'class':'mediano'}} ) }}
-			</div>
-
-			<div>
-				{{ form_label(formulario.extension) }}
-				{{ form_errors(formulario.extension) }}
-				{{ form_widget(formulario.extension, {'attr': {'class':'corto'}} ) }}
-			</div>
-
-			<div>
-				{{ form_label(formulario.email) }}
-				{{ form_errors(formulario.email) }}
-				{{ form_widget(formulario.email, {'attr': {'class':'largo'}} ) }}
-			</div>
-
-			<div>
-				{{ form_label(formulario.url) }}
-				{{ form_errors(formulario.url) }}
-				{{ form_widget(formulario.url, {'attr': {'class':'largo'}} ) }}
-			</div>
+		{% block downSection  %}
+		<div class="downSection">
+			<div class="profileContainer">
+			<div class="profileFormContainer">
+			<form action="{{ path('cituao_coord_registrarcentro') }}" method="post" {{ form_enctype(formulario) }}>
+				<div>{{ form_errors(formulario) }}</div>	
+					
+				<div class="inputContainer">	
+					<h2>{{ form_label(formulario.nombre) }}</h2>
+					<div class="input"> 
+					{{ form_errors(formulario.nombre) }}
+					{{ form_widget(formulario.nombre, {'attr': {'class':'largo'}} ) }}
+					</div>
+				</div>
 
 			
-			{{ form_rest(formulario) }}
 
-			<input class="boton" type="submit" value="Guardar" />
-		</form>
-	</div> <!-- cierra infoWrapper -->
+				<div class="inputContainer">	
+					<h2>{{ form_label(formulario.telefono) }}</h2>
+					<div class="input"> 
+					{{ form_errors(formulario.telefono) }}
+					{{ form_widget(formulario.telefono, {'attr': {'class':'mediano'}} ) }}
+					</div>
+				</div>
+
+				<div class="inputContainer">	
+					<h2>{{ form_label(formulario.extension) }}</h2>
+					<div class="input"> 
+					{{ form_errors(formulario.extension) }}
+					{{ form_widget(formulario.extension, {'attr': {'class':'corto'}} ) }}
+					</div>
+				</div>
+
+				<div class="inputContainer">	
+					<h2>{{ form_label(formulario.email) }}</h2>
+					<div class="input"> 
+					{{ form_errors(formulario.email) }}
+					{{ form_widget(formulario.email, {'attr': {'class':'largo'}} ) }}
+					</div>
+				</div>
+
+				<div class="inputContainer">	
+					<h2>{{ form_label(formulario.url) }}</h2>
+					<div class="input"> 
+					{{ form_errors(formulario.url) }}
+					{{ form_widget(formulario.url, {'attr': {'class':'largo'}} ) }}
+					</div>
+				</div>
+
+					<div class="inputContainer">	
+					<h2>{{ form_label(formulario.direccion) }}</h2>
+					<div class="input"> 
+					{{ form_errors(formulario.direccion) }}
+					{{ form_widget(formulario.direccion, {'attr': {'class':'largo'}} ) }}
+					</div>
+				</div>
+
+				
+				{{ form_rest(formulario) }}
+				<div class="inputContainer" style="margin-top:20px; margin-left:-10px; width:auto !important">
+					<div style="position:relative; float:right">
+					<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
+				<input style="padding-left:38px" class="button" type="submit" value="Guardar" /></div>
+				</div>
+			</form>
+		</div> <!-- profileFormContainer-->
+		</div><!-- profileCont -->
+	</div> <!-- downSection -->
+		{% endblock  %}
+	</div> <!-- content -->
 {% endblock %}
 
