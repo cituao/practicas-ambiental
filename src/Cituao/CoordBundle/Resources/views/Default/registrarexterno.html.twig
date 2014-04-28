@@ -26,13 +26,7 @@ $( "#asesoresExternos h3" ).css("opacity","0.4");
 			<form action="{{ path('cituao_coord_registrarexterno') }}" method="post" {{ form_enctype(formulario) }}>
 				<div>	{{ form_errors(formulario) }}	</div>
 
-				<div class="inputContainer">
-					<h2>{{ form_label(formulario.ci) }}</h2>
-					<div class="input"> 
-					{{ form_errors(formulario.ci) }}
-					{{ form_widget(formulario.ci, {'attr': {'class':'corto'}} ) }}
-					</div>
-				</div>
+			
 
 				<div class="inputContainer">
 					<h2>{{ form_label(formulario.nombres) }}</h2>
@@ -66,6 +60,14 @@ $( "#asesoresExternos h3" ).css("opacity","0.4");
 					</div>
 				</div>
 
+					<div class="inputContainer">
+					<h2>{{ form_label(formulario.ci) }}</h2>
+					<div class="input"> 
+					{{ form_errors(formulario.ci) }}
+					{{ form_widget(formulario.ci, {'attr': {'class':'corto'}} ) }}
+					</div>
+				</div>
+				
 				<div class="inputContainer">
 					<h2>{{ form_label(formulario.email) }}</h2>
 					<div class="input"> 
@@ -75,10 +77,8 @@ $( "#asesoresExternos h3" ).css("opacity","0.4");
 				</div>
 
 				<div class="inputContainer">
-					
-					<div class="input"> 
-					{{ form_row(formulario.cargo) }}   
-					</div>
+
+					{{ form_row(formulario.cargo) }}  
 				</div>
 
 				<div class="inputContainer">	

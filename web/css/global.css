@@ -295,10 +295,11 @@ a#cerrarButtonLink {
   position: absolute;
   top: 60px;
   left: 245px;
+  min-width: 680px;
   overflow: hidden;
 }
 
-/* line 234, globalsass/sass/global.scss */
+/* line 235, globalsass/sass/global.scss */
 .button {
   background-color: #242021;
   -webkit-border-radius: 5px;
@@ -313,14 +314,14 @@ a#cerrarButtonLink {
   border: none;
 }
 
-/* line 249, globalsass/sass/global.scss */
+/* line 250, globalsass/sass/global.scss */
 .button:hover {
   background-color: #ec1c24;
   cursor: pointer;
 }
 
-/* line 258, globalsass/sass/global.scss */
-input[type="text"], input[type="password"], #centro_direccion, input[type="email"], input[type="password"] {
+/* line 259, globalsass/sass/global.scss */
+input[type="text"], input[type="password"], #academico_perfil, #centro_direccion, input[type="email"], input[type="password"] {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -333,14 +334,23 @@ input[type="text"], input[type="password"], #centro_direccion, input[type="email
   font-size: 0.8em;
   padding-left: 5%;
   margin-right: 50px;
+  font-family: helvetica;
 }
 
-/* line 271, globalsass/sass/global.scss */
+/* line 273, globalsass/sass/global.scss */
 #centro_direccion {
   max-height: 50px;
 }
 
-/* line 274, globalsass/sass/global.scss */
+/* line 276, globalsass/sass/global.scss */
+#academico_perfil {
+  height: 150px;
+  width: 100%;
+  max-height: 300px;
+  padding-top: 15px;
+}
+
+/* line 282, globalsass/sass/global.scss */
 select {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -361,13 +371,13 @@ select {
   background: url("../img/arrow.png") #242021 no-repeat;
 }
 
-/* line 289, globalsass/sass/global.scss */
+/* line 297, globalsass/sass/global.scss */
 select:hover {
   background: url("../img/arrow.png") #ec1c24 no-repeat;
 }
 
-/* line 294, globalsass/sass/global.scss */
-input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus, select:focus, input[type="email"]:focus {
+/* line 302, globalsass/sass/global.scss */
+input[type="text"]:focus, #academico_perfil:focus, #centro_direccion:focus, input[type="password"]:focus, select:focus, input[type="email"]:focus {
   outline: none;
   border: #af0000 solid 1px;
 }
@@ -503,10 +513,9 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
 .practicantesTable .opciones {
   position: absolute;
   opacity: 0;
-  float: right;
   padding: 5px 10px;
   background-color: #242021;
-  top: 26;
+  top: 26px;
   right: 36%;
   z-index: 10;
   overflow: hidden;
@@ -600,24 +609,25 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
 .profilePictureContainer {
   width: 400px;
   float: left;
+  margin-bottom: 10px;
   /*border: 1px solid #000;*/
 }
 
-/* line 259, globalsass/sass/contentStyle.scss */
+/* line 260, globalsass/sass/contentStyle.scss */
 .profileFormContainer {
   width: 800px;
   float: left;
   /*border: 1px solid #000;*/
 }
 
-/* line 265, globalsass/sass/contentStyle.scss */
+/* line 266, globalsass/sass/contentStyle.scss */
 .inputContainer {
   display: inline-block;
   margin-bottom: 20px;
   width: 390px;
   height: 40px;
 }
-/* line 271, globalsass/sass/contentStyle.scss */
+/* line 272, globalsass/sass/contentStyle.scss */
 .inputContainer h2, .inputContainer label {
   color: black;
   font-family: helveticaNBold;
@@ -627,47 +637,47 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   margin-right: 15px;
   width: 120px;
 }
-/* line 280, globalsass/sass/contentStyle.scss */
+/* line 281, globalsass/sass/contentStyle.scss */
 .inputContainer .input {
   float: left;
 }
 
-/* line 284, globalsass/sass/contentStyle.scss */
+/* line 285, globalsass/sass/contentStyle.scss */
 .selFile {
   width: 300px;
 }
 
-/* line 287, globalsass/sass/contentStyle.scss */
+/* line 288, globalsass/sass/contentStyle.scss */
 .selFile label {
   display: none;
 }
 
-/* line 291, globalsass/sass/contentStyle.scss */
+/* line 292, globalsass/sass/contentStyle.scss */
 .profileData {
   /*border:1px solid #000;*/
   height: 85px;
   margin-bottom: 14px;
 }
-/* line 296, globalsass/sass/contentStyle.scss */
+/* line 297, globalsass/sass/contentStyle.scss */
 .profileData h1, .profileData h2 {
   color: #242021;
   margin-left: 125px;
   margin-top: 5px;
 }
-/* line 302, globalsass/sass/contentStyle.scss */
+/* line 303, globalsass/sass/contentStyle.scss */
 .profileData .imgContainer {
   width: 80px;
   height: 80px;
   position: absolute;
 }
 
-/* line 309, globalsass/sass/contentStyle.scss */
+/* line 310, globalsass/sass/contentStyle.scss */
 .tabla {
   width: 100%;
   /*border:1px solid #000;*/
   overflow: auto;
 }
-/* line 314, globalsass/sass/contentStyle.scss */
+/* line 315, globalsass/sass/contentStyle.scss */
 .tabla .tableHeader, .tabla .tableHeader:hover {
   color: #fff;
   background-color: #b5b5b5;
@@ -676,7 +686,7 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   z-index: 2;
   height: 30px;
 }
-/* line 322, globalsass/sass/contentStyle.scss */
+/* line 323, globalsass/sass/contentStyle.scss */
 .tabla td {
   position: relative;
   font-family: helvetica;
@@ -686,24 +696,24 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   padding-top: 10px;
   width: 120px;
 }
-/* line 331, globalsass/sass/contentStyle.scss */
+/* line 332, globalsass/sass/contentStyle.scss */
 .tabla tr {
   margin-top: 10px;
 }
-/* line 335, globalsass/sass/contentStyle.scss */
+/* line 336, globalsass/sass/contentStyle.scss */
 .tabla tr:hover {
   background-color: #ec1c24;
   color: #fff;
 }
-/* line 339, globalsass/sass/contentStyle.scss */
+/* line 340, globalsass/sass/contentStyle.scss */
 .tabla tr:hover td:first-child {
   color: #fff;
 }
-/* line 343, globalsass/sass/contentStyle.scss */
+/* line 344, globalsass/sass/contentStyle.scss */
 .tabla th:first-child {
   padding-left: 30px;
 }
-/* line 346, globalsass/sass/contentStyle.scss */
+/* line 347, globalsass/sass/contentStyle.scss */
 .tabla tr td:first-child {
   padding-left: 30px;
   width: 285px;
@@ -711,7 +721,7 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   color: #242021;
 }
 
-/* line 354, globalsass/sass/contentStyle.scss */
+/* line 355, globalsass/sass/contentStyle.scss */
 .generalTable {
   width: 100%;
   padding-left: 30px;
@@ -719,7 +729,7 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   table-border: colapse;
   /* practicantesTable */
 }
-/* line 361, globalsass/sass/contentStyle.scss */
+/* line 362, globalsass/sass/contentStyle.scss */
 .generalTable .tableHead {
   background-color: #b5b5b5;
   height: 35px;
@@ -730,7 +740,7 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   padding-top: 5px;
   z-index: 3;
 }
-/* line 372, globalsass/sass/contentStyle.scss */
+/* line 373, globalsass/sass/contentStyle.scss */
 .generalTable .tableItem {
   margin: 10px 0px;
   /*border:2px solid $darkGray;*/
@@ -739,12 +749,12 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   color: black;
   position: relative;
 }
-/* line 384, globalsass/sass/contentStyle.scss */
+/* line 385, globalsass/sass/contentStyle.scss */
 .generalTable .tableItem:hover {
   color: white !important;
   background-color: #ec1c24;
 }
-/* line 394, globalsass/sass/contentStyle.scss */
+/* line 395, globalsass/sass/contentStyle.scss */
 .generalTable #hoverDiv {
   height: 65px;
   width: 100%;
@@ -752,7 +762,7 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   margin-top: -30px;
   z-index: 2;
 }
-/* line 403, globalsass/sass/contentStyle.scss */
+/* line 404, globalsass/sass/contentStyle.scss */
 .generalTable .opciones {
   position: absolute;
   opacity: 0;
@@ -768,54 +778,54 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   -ms-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 418, globalsass/sass/contentStyle.scss */
+/* line 419, globalsass/sass/contentStyle.scss */
 .generalTable .opciones td {
   padding: 1px 6px !important;
   float: left;
   width: 80px;
 }
-/* line 423, globalsass/sass/contentStyle.scss */
+/* line 424, globalsass/sass/contentStyle.scss */
 .generalTable .opciones td:first-child {
   padding: 1px 6px !important;
 }
-/* line 428, globalsass/sass/contentStyle.scss */
+/* line 429, globalsass/sass/contentStyle.scss */
 .generalTable .opciones td:hover {
   background-color: #72030b;
 }
-/* line 431, globalsass/sass/contentStyle.scss */
+/* line 432, globalsass/sass/contentStyle.scss */
 .generalTable .opciones img {
   float: left;
 }
-/* line 435, globalsass/sass/contentStyle.scss */
+/* line 436, globalsass/sass/contentStyle.scss */
 .generalTable .opciones h3 {
   color: white;
   float: left;
   margin-top: 9px;
   margin-left: 5px;
 }
-/* line 448, globalsass/sass/contentStyle.scss */
+/* line 449, globalsass/sass/contentStyle.scss */
 .generalTable .spacer {
   height: 40px;
 }
-/* line 452, globalsass/sass/contentStyle.scss */
+/* line 453, globalsass/sass/contentStyle.scss */
 .generalTable img {
   position: relative;
   margin: 0 auto;
 }
-/* line 459, globalsass/sass/contentStyle.scss */
+/* line 460, globalsass/sass/contentStyle.scss */
 .generalTable td {
   position: relative;
   font-family: helvetica;
   font-size: 14px;
   z-index: 2;
 }
-/* line 471, globalsass/sass/contentStyle.scss */
+/* line 472, globalsass/sass/contentStyle.scss */
 .generalTable h2 {
   color: #b5b5b5;
   margin-left: 30px;
   font-weight: bold;
 }
-/* line 477, globalsass/sass/contentStyle.scss */
+/* line 478, globalsass/sass/contentStyle.scss */
 .generalTable .itemImgContainer {
   width: 100px;
   height: 100px;
@@ -826,9 +836,20 @@ input[type="text"]:focus, #centro_direccion:focus, input[type="password"]:focus,
   border-radius: 50%;
   overflow: hidden;
 }
-/* line 483, globalsass/sass/contentStyle.scss */
+/* line 484, globalsass/sass/contentStyle.scss */
 .generalTable .itemImgContainer .foto {
   top: -5px;
 }
 
 /* general Table style */
+/* line 491, globalsass/sass/contentStyle.scss */
+#centro_direccion {
+  width: 170px;
+  font-family: helvetica;
+  font-family: 12px;
+}
+
+/* line 497, globalsass/sass/contentStyle.scss */
+#externo_cargo {
+  width: 170px;
+}

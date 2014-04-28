@@ -160,10 +160,10 @@
 		position:absolute;
 		opacity: 0;
 
-		float: right;
+		
 		padding:5px 10px;
 		background-color: $darkGray;
-		top:26;
+		top:26px;
 		right: 36%;
 		z-index:10;
 		overflow: hidden;
@@ -254,6 +254,7 @@
 	.profilePictureContainer{
 		width: 400px;
 		float: left;
+		margin-bottom: 10px;
 		/*border: 1px solid #000;*/
 	}
 	.profileFormContainer{
@@ -487,3 +488,12 @@
 	}
 } /* general Table style */
 
+#centro_direccion{
+	width:170px;
+	font-family: helvetica;
+	font-family:12px;
+}
+
+#externo_cargo{
+	width:170px;
+}

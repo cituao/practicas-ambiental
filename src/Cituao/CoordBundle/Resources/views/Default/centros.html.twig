@@ -68,7 +68,7 @@ $( "#centroPractica h3" ).css("opacity","0.4");
 					
 				
 					<tr class="tableItem">
-						<td id="hoverDiv">
+					<td id="hoverDiv">
 						<td ><h2>{{ id }}</h2></td>
 						<td style=" width:20%"><span style="margin-left:20px; ">{{ centro.nombre }}</span></td>
 						<td>{{ centro.direccion }}</td>
@@ -78,7 +78,7 @@ $( "#centroPractica h3" ).css("opacity","0.4");
 						<td><a href =centro.url target="_blank">{{ centro.url }}</a></td>
 						<td>
 							<div>
-							<table class="opciones">
+							<table class="opciones" >
 								<td>
 								<a href="{{ path('cituao_coord_centro', { 'codigo': centro.id}) }}"><img src="{{ asset('img/editar.png') }}" ><h3> Editar </h3></a>
 								</td>

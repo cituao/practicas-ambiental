@@ -9,54 +9,117 @@ $( "#asesoresExternos h3" ).css("opacity","0.4");
 
 {% endblock %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id = "titlee">Mis asesores externos</h2>
-		<div id = "menuop">
-			<ul>
-			<li><a href="{{ path('cituao_coord_registrarexterno') }}"  class = "baropcion">Nuevo</a></li>
-			</ul>
+
+
+{% block content  %}
+{{ parent() }}
+	<div class="content">
+		{% block upSection  %}
+		<div class = "upSection">
+			<h1 class ="sectionTitle">Mis asesores externos</h1>
+			<a href="{{ path('cituao_coord_registrarexterno') }}"  class = "button"><img src="{{ asset('img/externosBoton.png') }}"/><h4>Nuevo asesor</h4></a>
 		</div>
+		{% endblock  %}
+
+		{% block downSection  %}
+		<div class = "downSection">
 
 		{% if msgerr.id == '1' %}
 			<div id = "error">{{ msgerr.descripcion }}</div>		
 		{% else %}
-			<div id = "subinfowrapper">
-			<table id = "customers">
-			<tbody>
-				<tr>
-				<th>#</th> <th>CEDULA</th> <th>NOMBRES</th> <th>APELLIDOS</th> <th>CENTRO DE PRACTICA</th> <th>CARGO</th><th>TELEFONO FIJO</th><th>TELEFONO MOVIL</th><th>EMAIL</th><th>ACCION</th>
-				</tr>
+			
+			<table class = "generalTableHead">
+				<tbody>
+					<tr class="tableHead">
+						<th style=" width:15%"></th> 
+						<th style=" width:15%"></th> 
+						<th></th> 
+						<th style=" width:10%"><img src="{{ asset('img/idLabel.png') }}"/></th> 
+						<th><h3><span>Centro</span></h3></th>
+						<th><h3><span>Cargo</span></h3></th>
+						<th><img src="{{ asset('img/telefono.png') }}"/></th>
+						<th><img src="{{ asset('img/telefonoLabel.png') }}"/></th>
+						<th></th>
+						<th><img src="{{ asset('img/mailLabel.png') }}"/></th>
+					</tr> <!--tablehead -->
+				</tbody>
+			</table><!-- practicantes tableHead -->
+
+			<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">
 		
-				{% set id = 1 %}
-				{% set sw = false %}
-				{% for asesor in listaAsesores %}
-					{% if sw == false %}
-						<tr>
-						{% set sw = true %}
-					{% else %}
-						<tr class = "alt">
-						{% set sw = false %}
-					{% endif %}
+				<table class = "generalTable">
+				<tbody>
+			
+					{% set id = 1 %}
+					<tr class="spacer"></tr>
+					{% for asesor in listaAsesores %}
+					<tr class="tableItem">
+						<td id="hoverDiv">
+						
+							<td><h2>{{ id }}</h2></td>
+							
+							<td style=" width:15%"><span style="margin-left:20px; ">{{ asesor.nombres }}</span></td>
+							<td style=" width:12%"><span>{{ asesor.apellidos }}</span></td>
+							<td style=" width:8%">{{ asesor.ci }}</td>
+							<td>{{ asesor.centro.nombre }}</td>
+							<td>{{ asesor.cargo }} </td>
+							<td style=" width:8%">{{ asesor.telefonoFijo }}</td>
+							<td style=" width:8%"> {{ asesor.telefonoMovil }}</td>
+							<td>{{ asesor.email }}</td>
 
-						<td>{{ id }}</th>
-						<td>{{ asesor.ci }}</td>
-						<td>{{ asesor.nombres }}</td>
-						<td>{{ asesor.apellidos }}</td>
-						<td>{{ asesor.centro.nombre }}</td>
-						<td>{{ asesor.cargo }} </td>
-						<td>{{ asesor.telefonoFijo }}</td>
-						<td>{{ asesor.telefonoMovil }}</td>
-						<td>{{ asesor.email }}</td>
+							<td>
+								<table class="opciones" style="right:129px">
+									<td>
+									<a href="{{ path('cituao_coord_externo', { 'ci': asesor.ci}) }}"><img src="{{ asset('img/editar.png') }}" ><h3> Editar </h3></a>
+									</td>
+								</table>
+							</td>
 
-						<td><a href="{{ path('cituao_coord_externo', { 'ci': asesor.ci}) }}">Ver y modificar </a></td>
-						</tr>
+						</td> <!-- hoverDiv -->
+
+					</tr>
 					{% set id = id + 1 %}
-				{% endfor %}
-			</tbody>
-			</table>
-			</div>
+					<tr class="spacer"></tr>
+					{% endfor %}
+					<tr class="spacer"></tr>
+					<tr class="spacer"></tr>
+					<tr class="spacer"></tr>
+					<tr class="spacer"></tr>
+					<tr class="spacer"></tr>
+				</tbody>
+				</table><!-- generalTable -->
+			</div><!-- scrollDiv -->
+			</div><!-- downSection -->
 		{% endif %}
+		{% endblock %}
+
 </div>
+
+<script>
+$( ".tableItem" ).mouseenter(function() {
+		var opciones = $('.opciones', this);
+		var itemPicture = $('.itemImgContainer', this);
+		$(itemPicture).css("border-color","#ec1c24");
+
+		$( opciones).animate({
+			opacity: 1,
+			top: "-30px",
+		}, 300, function() {
+	    // Animation complete.
+	});
+	});
+
+	$( ".tableItem" ).mouseleave(function() {
+		var itemPicture = $('.itemImgContainer', this);
+		var opciones = $('.opciones', this);
+		$(itemPicture).css("border-color","#242021");
+		$( opciones).animate({
+			opacity: 0,
+			top: "0px",
+		}, 300, function() {
+	    // Animation complete.
+	});
+	});
+</script>
 {% endblock %}
 
