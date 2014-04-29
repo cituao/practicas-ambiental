@@ -15,11 +15,34 @@ use Cituao\ExternoBundle\Form\Type\ActaType;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
-    {
-		return $this->render('CituaoExternoBundle:Default:index.html.twig');        
+	public function indexAction()
+	{
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+
+		//buscamos por cedula y recuperamos el indice
+		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
+		$externo = $repository->findOneByci($ci);
+		$em = $this->getDoctrine()->getManager();
 		
-    }
+			//contamos cuentos practicantes tiene el asesor externo 
+		$query = $em->createQuery(
+			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id'
+			)->setParameter('id',$externo->getId());
+		
+		$numeroPracticantes=$query->getSingleScalarResult();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$listaPracticantes = $repository->findByexterno($externo->getId());
+		$datos = array('numeroPracticantes' => $numeroPracticantes); 
+		
+		if (!$listaPracticantes) {
+			$msgerr = array('descripcion'=>'Aun no tiene asignado practicante!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		return $this->render('CituaoExternoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'datos' => $datos));		
+	}
 
 	
 	//*********************************************
@@ -34,22 +57,22 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externo = $repository->findOneBy(array('ci' => $ci));
 		
-        $formulario = $this->createForm(new ExternoType(), $externo);
+		$formulario = $this->createForm(new ExternoType(), $externo);
 		$formulario->handleRequest($peticion);
 
-        if ($formulario->isValid()) {
+		if ($formulario->isValid()) {
             // Completar las propiedades que el usuario no rellena en el formulario
 			//if ($academico->getFile() == NULL)  $academico->setPath('user.jpeg');
-            $em->persist($externo);
-            $em->flush();
-            return $this->redirect($this->generateUrl('cituao_externo_homepage'));
-        }
+			$em->persist($externo);
+			$em->flush();
+			return $this->redirect($this->generateUrl('cituao_externo_homepage'));
+		}
 		
-        return $this->render('CituaoExternoBundle:Default:formexterno.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
+		return $this->render('CituaoExternoBundle:Default:formexterno.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
 	}		
 	
 	//*******************************************************/
-	//Listar los practicantes del asesor academico
+	//Listar los practicantes del asesor externo
 	/********************************************************/	
 	public function practicantesAction(){
 		$user = $this->get('security.context')->getToken()->getUser();
@@ -59,13 +82,13 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externo = $repository->findOneByci($ci);
 		$em = $this->getDoctrine()->getManager();
-			
+		
 			//contamos cuentos practicantes tiene el asesor externo 
-			$query = $em->createQuery(
-                'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id'
-            )->setParameter('id',$externo->getId());
-			
-        $numeroPracticantes=$query->getSingleScalarResult();
+		$query = $em->createQuery(
+			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id'
+			)->setParameter('id',$externo->getId());
+		
+		$numeroPracticantes=$query->getSingleScalarResult();
 
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$listaPracticantes = $repository->findByexterno($externo->getId());
@@ -73,7 +96,7 @@ class DefaultController extends Controller
 		
 		if (!$listaPracticantes) {
 			$msgerr = array('descripcion'=>'Aun no tiene asignado practicante!','id'=>'1');
-	    }else{
+		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		return $this->render('CituaoExternoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'datos' => $datos));
@@ -95,7 +118,7 @@ class DefaultController extends Controller
 		//buscamos cronograma entre el asesor externo y el practicante
 		$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery(
-	            'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.externo =:id_ext AND c.practicante =:id_pra');
+			'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.externo =:id_ext AND c.practicante =:id_pra');
 		$query->setParameter('id_ext',$externo->getId());
 		$query->setParameter('id_pra',$id);
 		$cronograma = $query->getOneOrNullResult();
@@ -122,7 +145,7 @@ class DefaultController extends Controller
 		if ($numeva == 1){
 			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
 			$evaluacion = $repository->findOneBy(array('practicante' => $id));
-		    if ($evaluacion == NULL) $evaluacion = new Evaluacion1();
+			if ($evaluacion == NULL) $evaluacion = new Evaluacion1();
 			
 			$formulario = $this->createForm(new Evaluacion1Type(), $evaluacion);		
 		}else{
@@ -136,10 +159,10 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-		
+			
 			//asignamos como entregada la evaluación del academico 
 			$query = $em->createQuery(
-					'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra AND c.externo =:id_ext');
+				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra AND c.externo =:id_ext');
 			$query->setParameter('id_pra',$id);
 			$query->setParameter('id_ext',$externo->getId());
 			$cronograma = $query->getOneOrNullResult();
@@ -171,8 +194,8 @@ class DefaultController extends Controller
 			return $this->render('CituaoExternoBundle:Default:formevaluacion1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
 		else
 			return $this->render('CituaoExternoBundle:Default:formevaluacion2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
-			
-}
+		
+	}
 
 	//************************************************************
 	//Muestra la informacion del asesor academico del practicante
@@ -183,7 +206,7 @@ class DefaultController extends Controller
 		return $this->render('CituaoExternoBundle:Default:academico.html.twig', array('academico' => $academico));
 	}
 
-		
+	
 	//*******************************************************************
 	//Muestra formulario para registrar el acta de conformidad
 	//*******************************************************************
@@ -197,13 +220,13 @@ class DefaultController extends Controller
 		
 		//buscamos el informe  para actualizar 
 		$query = $em->createQuery(
-				'SELECT i FROM CituaoExternoBundle:Acta i WHERE i.practicante =:id_pra ');
+			'SELECT i FROM CituaoExternoBundle:Acta i WHERE i.practicante =:id_pra ');
 		$query->setParameter('id_pra',$id);
 		
 		$acta = $query->getOneOrNullResult();
 		//si no hay informes creamos una instancia de informe final
 		if ($acta == NULL) $acta = new Acta();
-	
+		
 		$formulario = $this->createForm(new ActaType(), $acta);
 		$formulario->handleRequest($peticion);
 
@@ -214,7 +237,7 @@ class DefaultController extends Controller
 			$em->persist($acta);
 
 			$query = $em->createQuery(
-					'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
+				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
 			$query->setParameter('id_pra',$id);
 			$cronograma = $query->getOneOrNullResult();
 			
@@ -228,7 +251,7 @@ class DefaultController extends Controller
 		$datos = array('id' => $id);
 		return $this->render('CituaoExternoBundle:Default:formacta.html.twig', array(
 			'formulario' => $formulario->createView(), 'datos' => $datos
-		));
+			));
 
 	}		
 }

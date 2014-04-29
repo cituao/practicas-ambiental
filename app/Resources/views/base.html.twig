@@ -44,7 +44,14 @@
         {% if is_granted('ROLE_ASESOR_ACA') %} Asesor Académico{% endif %}
     </h2> {% block foto %} {% endblock %}
     <div id="imgContainer">
-    <img  width="100%" src="{{ asset('img/1.png') }}" onerror="this.src='{{ asset('img/defaultPicture.png') }}'"/>
+
+     {% if is_granted('ROLE_ASESOR_EXT') %}<img  width="100%" src="{{ asset('uploads/fotos/externoPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
+
+     {% if is_granted('ROLE_COORDINADOR') %}<img  width="100%" src="{{ asset('uploads/fotos/coordinadorPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
+
+        {% if is_granted('ROLE_PRACTICANTE') %} <img  width="100%" src="{{ asset('uploads/fotos/defaultPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
+
+        {% if is_granted('ROLE_ASESOR_ACA') %} <img  width="100%" src="{{ asset('uploads/fotos/defaultPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/> {% endif %}
     </div>
     {% block sideBarMenu %} 
     {% endblock %}
