@@ -7,27 +7,52 @@
 	
 {% endblock %}
 
-{% block javascripts %}
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
-	<script src="{{ asset('script/FitText.js-master/jquery.fittext.js') }}"></script>
-{% endblock %}
-
 
 
 {% block body %}
-    	<div id="wrapper">
-    		<div id="header">
-    			<img src="{{ asset('img/headerLogo.png') }}" >
-    			<div id="headerTitle">
-	    			<h1>Práctica Profesional [31C204]</h1>
-	    			<h2>Facultad de Comunicación Social</h2>
-					<h3>Programa de Comunicación Social-Periodismo</h3>
-					
-	    			<a href="{{ path('cituao_practicante_homepage') }}" id="homeButton">Panel Principal Practicante</a>
-    			</div>
-    			<a href="{{ path('logout') }}" id="cerrarButton">Cerrar Sesión [Usuario:{{ app.user.username }}]</a>
-    		</div>
-			{% block infowrapper  %}
-			{% endblock %}
-		</div> 
+	{{ parent() }}	
+
+    	
 {% endblock %}
+
+{% block sideBarMenu %}
+<div id="menu">	
+	<a href="{{ path('cituao_coord_practicantes') }}" class="menubutton unable" id="practicantes"> 
+		<img id="practicanteIcon" src="{{ asset('img/practicanteIcon.png') }}">
+		<h3>Hoja de Vida</h3>
+		
+	</a>
+	<a href="{{ path('cituao_practicante_ver_asesorexterno') }}" class="menubutton"  id="asesoresExternos">
+		<img id="externoIcon" src="{{ asset('img/externoIcon.png') }}">
+		<h3>Mi asesor externo</h3>
+		
+	</a>
+	<a href="{{ path('cituao_practicante_cronograma') }}" class="menubutton"  id="asesoresExternos">
+		<img id="externoIcon" src="{{ asset('img/cronograma.png') }}">
+		<h3>Mi Cronograma</h3>
+		
+	</a>
+	<a href="{{ path('cituao_practicante_ver_asesoracademico') }}" class="menubutton"  id="asesoresInternos">
+		<img id="internoIcon" src="{{ asset('img/internoIcon.png') }}">
+		<h3>Mi asesor académico</h3>
+		
+	</a>
+	<a href="{{ path('cituao_practicante_ver_centro') }}" class="menubutton"  id="centroPractica">
+		<img id="centroIcon" src="{{ asset('img/centroIcon.png') }}">
+		<h3>Mi Centro de práctica</h3>	
+	</a>
+	
+	
+	
+</div>
+
+
+{% endblock  %}
+
+{% block upSection %} 
+    {% endblock %}
+
+    {% block downSection %} 
+    {% endblock %}
+
+
