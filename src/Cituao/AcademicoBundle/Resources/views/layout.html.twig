@@ -7,26 +7,36 @@
 	
 {% endblock %}
 
-{% block javascripts %}
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
-	<script src="{{ asset('script/FitText.js-master/jquery.fittext.js') }}"></script>
-{% endblock %}
 
 
 
 {% block body %}
-    	<div id="wrapper">
-    		<div id="header">
-    			<img src="{{ asset('img/headerLogo.png') }}" >
-    			<div id="headerTitle">
-	    			<h1>Práctica Profesional [31C204]</h1>
-	    			<h2>Facultad de Comunicación Social</h2>
-					<h3>Programa de Comunicación Social-Periodismo</h3>
-	    			<a href="{{ path('cituao_academico_homepage') }}" id="homeButton">Panel Principal Asesor académico</a>
-    			</div>
-    			<a href="{{ path('logout') }}" id="cerrarButton">Cerrar Sesión [Usuario:{{ app.user.username }}]</a>
-    		</div>
-			{% block infowrapper  %}
-			{% endblock %}
-		</div> 
+{{ parent() }}
+    	
 {% endblock %}
+
+{% block sideBarMenu %}
+<div id="menu">	
+	<a href="{{ path('cituao_academico_practicantes') }}" class="menubutton" id="practicantes"> 
+		<img id="practicanteIcon" src="{{ asset('img/practicanteIcon.png') }}">
+		<h3>Practicantes</h3>
+		
+	</a>
+
+	<a href="{{ path('cituao_academico_actualizar') }}" class="menubutton"  id="asesoresInternos">
+		<img id="internoIcon" src="{{ asset('img/internoIcon.png') }}">
+		<h3>Mis Datos</h3>
+		
+	</a>
+	
+	
+</div>
+
+
+{% endblock  %}
+
+{% block upSection %} 
+    {% endblock %}
+
+    {% block downSection %} 
+    {% endblock %}

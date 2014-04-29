@@ -23,7 +23,30 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CituaoAcademicoBundle:Default:index.html.twig');
+       $user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneByci($ci);
+		$em = $this->getDoctrine()->getManager();
+	
+			
+		$query = $em->createQuery(
+                'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.academico= :id'
+            )->setParameter('id',$academico->getId())
+;
+        $numeroPracticantes=$query->getSingleScalarResult();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$listaPracticantes = $repository->findByacademico($academico->getId());
+		$datos = array('numeroPracticantes' => $numeroPracticantes); 
+		
+		if (!$listaPracticantes) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+	    }else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'datos' => $datos));
     }
 	
 	/********************************************************/
