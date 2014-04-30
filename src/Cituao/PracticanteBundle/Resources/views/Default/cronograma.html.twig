@@ -1,5 +1,12 @@
 {% extends 'CituaoPracticanteBundle::layout.html.twig' %}
+{% block js  %}
+<script>
+$( "#cronograma" ).css("background-color","#000");
+$( "#cronograma img" ).css("opacity","0.4");
+$( "#cronograma h3" ).css("opacity","0.4");
+</script>
 
+{% endblock %}
 {% block javascripts %}
 	<meta charset="utf-8">
 	 <title>jQuery UI Datepicker - Default functionality</title>
@@ -10,25 +17,27 @@
 {% endblock %}
 
 
-{% block infowrapper  %}
+{% block content  %}
+	{{ parent() }}
 	
-	
-	<div id="infoWrapper">
-		<h2 id = "titlee">Mi cronograma</h2>
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
+	<div class="content">
+		{% block upSection  %}
+		<div class = "upSection">
+				<h1 class ="sectionTitle">Mi cronograma</h1>
+				<!--<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>-->
 		</div>
-		<div id = "subinfowrapper"> 
-			<table id = "tablaCronograma">
-			  <tr>
-				<th>ACTIVIDAD</th>
-				<th>FECHA</th>
-				<th>ESTADO</th>
-				<th>ACCION</th>
+		{% endblock  %}
+
+		{% block downSection  %}
+		<div class = "downSection"> 
+			<table class = "tabla">
+			  <tr class="tableHeader">
+				<th>Actividad</th>
+				<th>Fecja</th>
+				<th>Estado</th>
+				<th>Acción</th>
 			  </tr>
-			
+			<tr style="height:8px;"></tr>
 			  <tr>
 				<td  class = "colActividad">Asesoría #1</td>
 				<td  class = "colFecha">{{ p.fechaAsesoria1|date("d/m/Y") }}</td>
@@ -278,7 +287,8 @@
 				{% endif %}
 
 			</table>
-	</div>	
-	</div>
+	</div>	<!-- down section -->
+	{% endblock  %}
+	</div><!-- content -->
 {% endblock %}
 

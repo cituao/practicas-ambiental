@@ -19,9 +19,9 @@ class DefaultController extends Controller
 	public function indexAction()
 	{
 		$user = $this->get('security.context')->getToken()->getUser();
-		$codigo =  $user->getUsername();
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('codigo' => $codigo));
+    	$codigo =  $user->getUsername();
+    	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+    	$practicante = $repository->findOneBy(array('codigo' => $codigo));
 
 		/*$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery(
@@ -31,7 +31,8 @@ class DefaultController extends Controller
 		$cronograma = $query->getOneOrNullResult();*/
 
 		
-		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante));			
+		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante));				
+
 	}
 
 	public function hojadevidaAction()

@@ -1,45 +1,81 @@
 {% extends 'CituaoPracticanteBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Tu centro de práctica</h2>
+{% block js  %}
+<script>
+$( "#centroPractica" ).css("background-color","#000");
+$( "#centroPractica img" ).css("opacity","0.4");
+$( "#centroPractica h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
-	<form action="" method="post">
-		<div>
-		<label>Nombre</label>
-		<input type="text" value = "{{ centro.getNombre }}" readonly class = "largo" >
-		</div>
-		
-		<div>	
-		<label>Dirección:</label>
-		<textarea cols="100" rows="5" readonly>{{ centro.direccion }}</textarea>
-		</div>
-		
-		<div>	
-		<label>Teléfono:</label>
-		<input type="text" value = "{{ centro.telefono }}" readonly>
-		</div>
-
-		<div>	
-		<label>Teléfono fijo:</label>
-		<input type="text" value = "{{ centro.extension }}" readonly>
-		</div>
-
-		<div>	
-		<label>Email:</label>
-		<input type="text" value = "{{ centro.email }}" readonly>
-		</div>
-
-		<div>	
-		<label>Sitio web:</label>
-		<a href=  "{{ centro.url }}" >{{ centro.url }}</a>
-		</div>
-		
-	</form>	
-	</div>
 {% endblock %}
+
+{% block content  %}
+{{ parent() }}
+<div class="content">
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Tu centro de Práctica</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection"> 
+		<div class="profileContainer">
+		<form action="" method="post">
+			<div class="inputContainer">
+				<h2>Nombre</h2>
+				<div class="input nomodificable">
+				<input type="text" value = "{{ centro.getNombre }}" readonly class = "largo" >
+				</div>
+
+			</div>
+
+
+			<div class="inputContainer">	
+				<h2>Teléfono</h2>
+				<div class="input nomodificable">
+				<input type="text" value = "{{ centro.telefono }}" readonly>
+				</div>
+
+			</div>
+
+			<div class="inputContainer">	
+				<h2>Teléfono fijo</h2>
+				<div class="input nomodificable">
+				<input type="text" value = "{{ centro.extension }}" readonly>
+				</div>
+
+			</div>
+
+			<div class="inputContainer">	
+				<h2>Email</h2>
+				<div class="input nomodificable">
+				<input type="text" value = "{{ centro.email }}" readonly>
+				</div>
+
+			</div>
+
+			<div class="inputContainer">	
+				<h2>Sitio web</h2>
+				<div class="input nomodificable">
+				<a href=  "{{ centro.url }}" >{{ centro.url }}</a>
+				</div>
+
+			</div>
+
+
+			<div class="inputContainer">
+				<h2>Dirección</h2>
+				<div class="input nomodificable" >
+				<textarea style="border:none !important; font-family:helvetica; margin-top:15px;" cols="40" rows="5" readonly>{{ centro.direccion }}</textarea>
+				</div>
+
+			</div>
+
+		</form>	
+	</div> <!--profileContainer -->
+	</div><!-- downSection -->
+	{% endblock  %}
+	</div><!-- content -->
+	{% endblock %}

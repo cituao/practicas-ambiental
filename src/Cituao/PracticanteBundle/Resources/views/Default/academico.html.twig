@@ -1,45 +1,80 @@
 {% extends 'CituaoPracticanteBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Tu asesor académico</h2>
+{% block js  %}
+<script>
+$( "#asesoresInternos" ).css("background-color","#000");
+$( "#asesoresInternos img" ).css("opacity","0.4");
+$( "#asesoresInternos h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
-	<form action="" method="post">
-		<div><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  academico.path) }}" alt="Pulpit rock" width="114" height="144"></div>
-		<div>	
-		<label>Asesor:</label>
-		<input type="text" value = "{{ academico.getNombreCompleto }}" readonly class = "largo">
-		</div>
-		
-		<div>	
-		<label>Teléfono movil:</label>
-		<input type="text" value = "{{ academico.telefonoMovil }}" readonly>
-		</div>
+{% endblock %}
 
-		<div>	
-		<label>Teléfono fijo:</label>
-		<input type="text" value = "{{ academico.telefonoFijo }}" readonly>
-		</div>
-
-		<div>	
-		<label>Email institucional:</label>
-		<input type="text" value = "{{ academico.emailInstitucional }}" readonly>
-		</div>
-
-		<div>	
-		<label>Email personal:</label>
-		<input type="text" value = "{{ academico.email }}" readonly>
-		</div>
-
-		<div>	
-		<label>Perfil:</label>
-		<textarea cols="100" rows="5" readonly>{{ academico.perfil }}</textarea>
-		</div>
-	</form>	
+{% block content  %}
+{{ parent() }}
+<div class="content">
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Tu asesor académico</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
 	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection"> 
+		<div class="profileContainer">
+			
+				<div class="profilePictureContainer" >
+				<div class="imgContainer" style="margin: 0 auto;">
+					<img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  academico.path) }}" alt="Pulpit rock" width="100%" >
+				</div>
+				</div>	<!-- profile pictureContainer -->
+			<div class="profileFormContainer" style="height:580px;">
+			<form action="" method="post">
+				<div class="inputContainer">
+					<h2>Asesor</h2>
+					<div class="input nomodificable">
+					<input type="text" value = "{{ academico.getNombreCompleto }}" readonly class = "largo">
+					</div>
+				</div>
+
+				<div class="inputContainer">	
+					<h2>Teléfono movil</h2>
+					<div class="input nomodificable">
+					<input type="text" value = "{{ academico.telefonoMovil }}" readonly>
+					</div>
+				</div>
+
+				<div class="inputContainer">	
+					<h2>Teléfono fijo</h2>
+					<div class="input nomodificable">
+					<input type="text" value = "{{ academico.telefonoFijo }}" readonly>
+					</div>
+				</div>
+
+				<div class="inputContainer">	
+					<h2>Email institucional</h2>
+					<div class="input nomodificable">
+					<input type="text" value = "{{ academico.emailInstitucional }}" readonly>
+					</div>
+				</div>
+
+				<div class="inputContainer">
+					<h2>Email personal</h2>
+					<div class="input nomodificable">
+					<input type="text" value = "{{ academico.email }}" readonly>
+					</div>
+				</div>
+
+				<div class="inputContainer">
+					<h2>Perfil</h2>
+					<div class="input nomodificable">
+					<textarea style="border:none !important; font-family:helvetica; margin-top:15px;" cols="60" rows="20" readonly>{{ academico.perfil }}</textarea>
+					</div>
+				</div>
+			</form>
+		</div><!--profileFormContainer -->	
+		</div><!--profileContainer -->	
+	</div><!--donwsection -->
+	{% endblock %}
+</div><!-- content -->
 {% endblock %}
