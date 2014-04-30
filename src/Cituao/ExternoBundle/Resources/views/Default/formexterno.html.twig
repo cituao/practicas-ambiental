@@ -1,54 +1,113 @@
 {% extends 'CituaoExternoBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Mis datos</h2>
+{% block js  %}
+<script>
+$( "#asesoresExternos" ).css("background-color","#000");
+$( "#asesoresExternos img" ).css("opacity","0.4");
+$( "#asesoresExternos h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
+{% endblock %}
 
-	
-	<form action="{{ path('cituao_externo_actualizar'  , { 'ci': externo.ci }) }}" method="post" {{ form_enctype(formulario) }}>
-	    
-			{{ form_errors(formulario) }}
-			<div>	
-				{{ form_label(formulario.ci) }}
-				{{ form_widget(formulario.ci, {'attr': {'class':'corto'}} ) }}
-				{{ form_errors(formulario.ci) }}
-			</div>
-			<div>   
-				{{ form_label(formulario.nombres) }}
-				{{ form_widget(formulario.nombres, {'attr': {'class':'mediano'}} ) }}
-				{{ form_errors(formulario.nombres) }}
-			</div>
-			<div>	
-				{{ form_label(formulario.apellidos) }}
-				{{ form_widget(formulario.apellidos, {'attr': {'class':'mediano'}} ) }}
-				{{ form_errors(formulario.apellidos) }}
-			</div>
-			<div>	
-				{{ form_label(formulario.telefonoMovil) }}
-				{{ form_widget(formulario.telefonoMovil, {'attr': {'class':'corto'}} ) }}
-				{{ form_errors(formulario.telefonoMovil) }}
-			</div>
-			<div>	
-				{{ form_label(formulario.telefonoFijo) }}
-				{{ form_widget(formulario.telefonoFijo, {'attr': {'class':'corto'}} ) }}
-				{{ form_errors(formulario.telefonoFijo) }}
-			</div>
-			<div>
-				{{ form_label(formulario.email) }}
-				{{ form_widget(formulario.email, {'attr': {'class':'mediano'}} ) }}
-				{{ form_errors(formulario.email) }}
-			</div>
+{% block content  %}
+	{{ parent() }}
+	<div class="content">
 
-			{{ form_rest(formulario) }}
+			{% block upSection  %}
+				<div class = "upSection">
+				<h1 class ="sectionTitle">Mis datos</h1>
+				<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+				</div>
+			{% endblock  %}
 
-			<input class="boton" type="submit" value="Guardar" />
-	    
-	</form>	
-	</div>
+	{% block downSection  %}
+	<div class = "downSection"> 
+		<div class="profileContainer">
+			<div class="profileFormContainer" style="height:580px;">
+				<form action="{{ path('cituao_externo_actualizar'  , { 'ci': externo.ci }) }}" method="post" {{ form_enctype(formulario) }}>
+				    
+					{{ form_errors(formulario) }}
+					
+
+					<div class="inputContainer">   
+						<h2>{{ form_label(formulario.nombres) }}</h2>
+						<div class="input nomodificable">
+						{{ form_widget(formulario.nombres, {'attr': {'class':'mediano'}} ) }}
+						{{ form_errors(formulario.nombres) }}
+						</div>
+					</div>
+
+					<div class="inputContainer">	
+						<h2>{{ form_label(formulario.apellidos) }}</h2>
+						<div class="input nomodificable">
+						{{ form_widget(formulario.apellidos, {'attr': {'class':'mediano'}} ) }}
+						{{ form_errors(formulario.apellidos) }}
+						</div>
+					</div>
+
+					<div class="inputContainer">	
+						<h2>{{ form_label(formulario.ci) }}</h2>
+						<div class="input nomodificable">
+						{{ form_widget(formulario.ci, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.ci) }}
+						</div>
+					</div>
+					
+					<div class="inputContainer">	
+						<h2>{{ form_label(formulario.telefonoMovil) }}</h2>
+						<div class="input nomodificable">
+						{{ form_widget(formulario.telefonoMovil, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.telefonoMovil) }}
+						</div>
+					</div>
+
+					<div class="inputContainer">	
+						<h2>{{ form_label(formulario.telefonoFijo) }}</h2>
+						<div class="input nomodificable">
+						{{ form_widget(formulario.telefonoFijo, {'attr': {'class':'corto'}} ) }}
+						{{ form_errors(formulario.telefonoFijo) }}
+						</div>
+					</div>
+
+					<div class="inputContainer">
+						<h2>{{ form_label(formulario.email) }}</h2>
+						<div class="input nomodificable">
+						{{ form_widget(formulario.email, {'attr': {'class':'mediano'}} ) }}
+						{{ form_errors(formulario.email) }}
+						</div>
+					</div>
+
+								<div class="inputContainer">
+						<h2>{{ form_label(formulario.centro) }}</h2>
+						<div class="input nomodificable" >
+						{{ form_widget(formulario.centro) }}
+						</div>
+					</div>
+
+						<div class="inputContainer nomodificable">
+						<h2>{{ form_label(formulario.cargo) }}</h2>
+						<div class="input nomodificable"  >
+						{{ form_widget(formulario.cargo) }}
+					</div>
+					</div>
+
+
+						{{ form_rest(formulario) }}
+					
+
+			
+
+					 <div class="inputContainer" style="margin-top:80px; margin-left:-10px; width:auto !important">
+			<div style="position:relative; float:right">
+				<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
+					<input style="padding-left:38px" class="button" type="submit" value="Guardar" />
+			    </div>
+			</div>
+				</form>	
+			</div><!-- profileFormContainer -->
+		</div><!-- profileContainer -->
+	</div><!-- downSection -->
+		{% endblock  %}
+	</div><!-- content -->
+
 {% endblock %}

@@ -256,7 +256,7 @@ span{
 
 }
 
-input[type="text"], input[type="password"],#academico_perfil, #centro_direccion, input[type="email"], input[type="password"]
+input[type="text"], input[type="password"],#academico_perfil, #centro_direccion, input[type="email"], input[type="textarea"], input[type="password"]
 {
 
 	@include border-radius(3px);
@@ -270,6 +270,12 @@ padding-left: 5%;
 margin-right:50px;
 font-family: helvetica;
 }
+.nomodificable{
+	border: none !important;
+}
+.nomodificable input{
+	border: none !important;
+}
  #centro_direccion{
  	max-height: 50px;
  }
@@ -279,6 +285,7 @@ font-family: helvetica;
  	max-height: 300px;
  	padding-top:15px;
  }
+
 select{
 	@include border-radius(3px);
 	appearance:none;

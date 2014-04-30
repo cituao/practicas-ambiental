@@ -1,5 +1,14 @@
 {% extends 'CituaoExternoBundle::layout.html.twig' %}
 
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
+
+{% endblock %}
+
 {% block infowrapper  %}
 			<div id="infoWrapper">
     			<h2 id="titlee">

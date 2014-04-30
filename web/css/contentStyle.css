@@ -473,3 +473,18 @@
 #externo_cargo {
   width: 170px;
 }
+
+/* line 500, globalsass/sass/contentStyle.scss */
+#cargo div {
+  float: left;
+}
+
+/* line 504, globalsass/sass/contentStyle.scss */
+#cargo div:last-child {
+  margin-left: 53px;
+}
+
+/* line 507, globalsass/sass/contentStyle.scss */
+.nomodificable {
+  border: none !important;
+}

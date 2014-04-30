@@ -497,3 +497,13 @@
 #externo_cargo{
 	width:170px;
 }
+#cargo div{
+	float:left;
+}
+
+#cargo div:last-child{
+	margin-left:53px;
+}
+.nomodificable{
+	border: none !important;
+}

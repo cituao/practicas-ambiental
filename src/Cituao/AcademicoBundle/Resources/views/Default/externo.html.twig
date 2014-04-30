@@ -1,40 +1,72 @@
 {% extends 'CituaoAcademicoBundle::layout.html.twig' %}
+{% block js  %}
+<script>
+$( "#asesoresInternos" ).css("background-color","#000");
+$( "#asesoresInternos img" ).css("opacity","0.4");
+$( "#asesoresInternos h3" ).css("opacity","0.4");
+</script>
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Consulta de asesor externo</h2>
-
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
-	<form action="" method="post">
-		<div>
-		<label>Asesor:</label>
-		<input type="text" value = "{{ externo.getNombreCompleto }}" readonly class = "largo">
-		</div>
-		
-		<div>	
-		<label>Teléfono movil:</label>
-		<input type="text" value = "{{ externo.telefonoMovil }}" readonly>
-		</div>
-
-		<div>	
-		<label>Teléfono fijo:</label>
-		<input type="text" value = "{{ externo.telefonoFijo }}" readonly>
-		</div>
-
-		<div>	
-		<label>Email:</label>
-		<input type="text" value = "{{ externo.email }}" readonly>
-		</div>
-
-		<div>	
-		<label>Cargo:</label>
-		<input type="text" value = "{{ externo.cargo }}" readonly>
-		</div>
-		
-	</form>	
-	</div>
 {% endblock %}
+
+{% block content  %}
+{{ parent() }}
+<div class="content">
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class ="sectionTitle">Consulta de Asesor externo</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection"> 
+		<div class="profileContainer">
+			<div class="profileFormContainer" style="height:580px;">
+				<form action="" method="post">
+					<div class="inputContainer">  
+						<h2>Asesor:</h2>
+						<div class="input nomodificable">
+						<input type="text" value = "{{ externo.getNombreCompleto }}" readonly class = "largo">
+						</div>
+
+					</div>
+
+					<div class="inputContainer">  	
+						<h2>Teléfono movil:</h2>
+						<div class="input nomodificable">
+						<input type="text" value = "{{ externo.telefonoMovil }}" readonly>
+						</div>
+
+					</div>
+
+					<div class="inputContainer">  	
+						<h2>Teléfono fijo:</h2>
+						<div class="input nomodificable">
+						<input type="text" value = "{{ externo.telefonoFijo }}" readonly>
+						</div>
+
+					</div>
+
+					<div class="inputContainer">  	
+						<h2>Email:</h2>
+						<div class="input nomodificable">
+						<input type="text" value = "{{ externo.email }}" readonly>
+						</div>
+
+					</div>
+
+					<div class="inputContainer">  	
+						<h2>Cargo:</h2>
+						<div class="input nomodificable">
+						<input type="text" value = "{{ externo.cargo }}" readonly>
+						</div>
+
+					</div>
+
+				</form>	
+				</div > <!-- profileFormContainer -->
+			</div ><!-- profileContainer -->
+			</div><!-- downSection -->
+			{% endblock %}
+			</div><!--content -->
+			{% endblock %}

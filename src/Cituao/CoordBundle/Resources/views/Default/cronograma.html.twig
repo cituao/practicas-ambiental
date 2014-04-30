@@ -79,10 +79,10 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					{{ form_errors(formulario.fechaIniciacion) }}
 					</div>
 				</div>
-				<!--
+				<!-- sdfsdfdsfs-->
 
-				<div class="titulo">CRONOGRAMA PRACTICANTE</div>
-				<div class="contenedor_fecha">
+				<div class="titulo" style="display:none;">CRONOGRAMA PRACTICANTE</div>
+				<div class="contenedor_fecha" style="display:none;">
 					<div class = "fecha">
 						{{ form_label(formulario.fechaAsesoria1) }}
 						{{ form_widget(formulario.fechaAsesoria1, {'attr': {'class':'corto'}} ) }}
@@ -125,7 +125,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					</div>
 				</div>
 				
-				<div class="contenedor_fecha1">
+				<div class="contenedor_fecha1" style="display:none;">
 					<div class = "fecha">
 						{{ form_label(formulario.fechaVisitaP) }}
 						{{ form_widget(formulario.fechaVisitaP, {'attr': {'class':'corto'}} ) }}
@@ -143,7 +143,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					</div>
 				</div>
 				
-				<div class="contenedor_fecha1">
+				<div class="contenedor_fecha1" style="display:none;">
 					<div  class = "fecha">
 						{{ form_label(formulario.fechaInformeGestion1) }}
 						{{ form_widget(formulario.fechaInformeGestion1, {'attr': {'class':'corto'}} ) }}
@@ -163,7 +163,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					</div>
 				</div>
 				
-				<div class = "contenedor_fecha1">
+				<div class = "contenedor_fecha1" style="display:none;">
 					<div  class = "fecha">
 						{{ form_label(formulario.fechaInformeFinal) }}
 						{{ form_widget(formulario.fechaInformeFinal, {'attr': {'class':'corto'}} ) }}
@@ -177,10 +177,10 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					{% endif %}
 				</div>
 				
-				<div class="titulo">CRONOGRAMA ASESOR ACADEMICO</div>
+				<div class="titulo" style="display:none;">CRONOGRAMA ASESOR ACADEMICO</div>
 
 
-				<div class = "contenedor_fecha">
+				<div class = "contenedor_fecha" style="display:none;">
 					<div  class = "fecha">
 						<label>Asesoría #1</label>
 						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria1" value = "{{ practicante.fechaAsesoria1 is empty ? "" : practicante.fechaAsesoria1|date('d-m-Y') }}">
@@ -217,7 +217,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				</div>
 
 
-				<div class = "contenedor_fecha1">
+				<div class = "contenedor_fecha1" style="display:none;">
 					<div  class = "fecha">
 						<label>Informe de gestión #1</label>
 						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_gestion1" value = "{{ practicante.fechaInformeGestion1 is empty ? "" : practicante.fechaInformeGestion1|date('d-m-Y') }}">
@@ -235,7 +235,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 				</div>
 
-				<div class = "contenedor_fecha1">
+				<div class = "contenedor_fecha1" style="display:none;">
 					<div  class = "fecha">
 						<label>Evaluación #1</label>
 						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion1" value = "{{ practicante.fechaVisita1 is empty ? "" : practicante.fechaVisita1|date('d-m-Y') }}">
@@ -252,8 +252,8 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					</div>
 				</div>
 
-				<div class="titulo">CRONOGRAMA ASESOR EXTERNO</div>
-				<div class = "contenedor_fecha1">
+				<div class="titulo" style="display:none;">CRONOGRAMA ASESOR EXTERNO</div>
+				<div class = "contenedor_fecha1" style="display:none;">
 					<div  class = "fecha">
 						<label>Evaluación #1</label>
 						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion1" value = "{{ practicante.fechaVisita1 is empty ? "" : practicante.fechaVisita1|date('d-m-Y') }}">
@@ -269,7 +269,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_acta" value = "{{ practicante.fechaInformeFinal is empty ? "" : practicante.fechaInformeFinal|date('d-m-Y') }}">
 					</div>
 
-				</div> -->
+				</div> 
 
 				{{ form_rest(formulario) }}
 				<div class="inputContainer" style="position:relative; margin-top:20px;">

@@ -1,40 +1,47 @@
 {% extends 'CituaoAcademicoBundle::layout.html.twig' %}
 
-{% block javascripts %}
-	<meta charset="utf-8">
-	 <title>jQuery UI Datepicker - Default functionality</title>
-	 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-	 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-	 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-	 <script src="{{ asset('js/date.js') }}"></script>
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
+
 {% endblock %}
 
 
-{% block infowrapper  %}
+{% block content  %}
+	{{ parent() }}
 	
-	
-	<div id="infoWrapper">
-		<h2 id = "titlee">Mi Cronograma de actividades</h2>
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
-		<div id = "subinfowrapper"> 
-			<div class = "datos">
-				<div><img id = "foto" border="0" src="{{ asset('uploads/fotos/' ~  p.path) }}" alt="Pulpit rock" width="68" height="68"></div>
-			<h3>Practicante:  {{ p.nombres }}  {{ p.apellidos }}</h3>
-			<h3>Centro de práctica: {{ p.centro.nombre }}</h3>
-			<h3>Asesor externo: {{ p.externo.nombres }} {{ p.externo.apellidos }}</h3>
+	<div class="content">
+		{% block upSection  %}
+			<div class = "upSection">
+				<h1 class ="sectionTitle">Mi Cronograma de actividades</h1>		
+				<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
 			</div>
-			<table id = "tablaCronograma">
-			  <tr>
-				<th>Mis actividades</th>
-				<th>Fechas</th>
-				<th>Estado de la actividad</th>
-				<th>Acción</th>
-			  </tr>
-			
+		{% endblock  %}
+
+		{% block downSection  %}
+		<div class = "downSection"> 
+			<div class = "profileData" style="padding-left:30px;">
+				<div class="imgContainer">
+					<img style="position:absolute;"  class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  p.path) }}" alt="Pulpit rock"  width="100%">
+				</div>
+				<h1 style="margin-top:25px; padding-top:10px;">{{ p.nombres }}  {{ p.apellidos }}</h1>
+				<h2> {{ p.centro.nombre }}</h2>
+				<h2>Asesor externo: <span>{{ p.externo.nombres }} {{ p.externo.apellidos }}</span></h2>
+			</div><!-- profileData -->
+
+			<table class="tabla">
+			  <tbody>
+				<tr class="tableHeader">
+					<th>Mis actividades</th>
+					<th>Fechas</th>
+					<th>Estado de la actividad</th>
+					<th>Acción</th>
+			  	</tr> <!--tablehead -->
+
+				<tr style="height:8px;"></tr>
 			  <tr>
 				<td  class = "colActividad">Asesoría #1</td>
 				<td  class = "colFecha">{{ c.fechaAsesoria1|date("d/m/Y") }}</td>
@@ -302,11 +309,13 @@
 				
 			  </tr>
 
-
+			    </tbody>
 			</table>
-	</div>	
+			</div><!-- downSection -->
+			{% endblock  %} 
 		
-	</div>
+		
+	</div><!-- content -->
 
 {% endblock %}
 
