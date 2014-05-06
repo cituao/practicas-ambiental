@@ -1,133 +1,135 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Consultando Informe de Gestión Cualicuanti # {{ datos.numges }}</h2>
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
+{% endblock %}
 
-		<div id = "subinfowrapper">
-	<form action="" method="post">
+{% block content  %}
+<div class="content">
+	{{ parent() }}
+	{% block upSection  %}
+	<div class = "upSection">
 
-
-					<div class = "datos">
-					<h2 class = "datos">ACTIVIDAD</h2>
-					</div>
-
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ gestion.actividad1 }}</textarea>
-					</div>
-				
-					<div class = "datos">
-					<h2 class = "datos">DESCRIPCION</h2>
-					</div>
-
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ gestion.descripcion1 }}</textarea>
-					</div>
-
-					<div>
-					<label>Indicador</label>
-					<input type="text" value="{{ gestion.indicador1 }}" readonly>
-					</div>
-
-
-					<div>
-					<label>Porcentaje</label>
-					<input type="text" value="{{ gestion.porcentaje1 }}" readonly>
-					</div>
-
-
-
-
-
-					<div class = "datos">
-					<h2 class = "datos">ACTIVIDAD</h2>
-					</div>
-
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ gestion.actividad2 }}</textarea>
-					</div>
-				
-					<div class = "datos">
-					<h2 class = "datos">DESCRIPCION</h2>
-					</div>
-
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ gestion.descripcion2 }}</textarea>
-					</div>
-
-					<div>
-					<label>Indicador</label>
-					<input type="text" value="{{ gestion.indicador2 }}" readonly>
-					</div>
-
-
-					<div>
-					<label>Porcentaje</label>
-					<input type="text" value="{{ gestion.porcentaje2 }}" readonly>
-					</div>
-
-
-
-
-					<div class = "datos">
-					<h2 class = "datos">ACTIVIDAD</h2>
-					</div>
-
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ gestion.actividad3 }}</textarea>
-					</div>
-				
-					<div class = "datos">
-					<h2 class = "datos">DESCRIPCION</h2>
-					</div>
-
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ gestion.descripcion3 }}</textarea>
-					</div>
-
-					<div>
-					<label>Indicador</label>
-					<input type="text" value="{{ gestion.indicador3 }}" readonly>
-					</div>
-
-
-					<div>
-					<label>Porcentaje</label>
-					<input type="text" value="{{ gestion.porcentaje3 }}" readonly>
-					</div>
-
-
-
-
-
-
-					<div class = "datos">
-					<h2 class = "datos">APRECIACIONES ADICIONALES</h2>
-					</div>
-
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ gestion.apreciacion }}</textarea>
-					</div>
-
-
-
-					<div class = "datos">
-					<h2 class = "datos">COMENTARIOS ASESOR ACADÉMICO</h2>
-					</div>
-
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ gestion.comentarios }}</textarea>
-					</div>
-
-
-
-	</form>	
+		<h1 class="sectionTitle">Consultando Informe de Gestión Cualicuanti # {{ datos.numges }}</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
 	</div>
-	</div>
+	{% endblock  %}
+	{% block downSection  %}
+	<div class = "downSection">
+		<div class="inform">
+			<form action="" method="post">
+
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2>Actividad</h2>
+							<textarea class="input nomodificable"cols="125" rows="10" readonly>{{ gestion.actividad1 }}</textarea>
+					</div>
+
+					<div class="inputContainer">
+						<h2>Descripción</h2>
+							<textarea class="input nomodificable" cols="125" rows="10" readonly>{{ gestion.descripcion1 }}</textarea>
+					</div>
+
+					<div class="indicadores" >
+						<div class="inputContainer" >
+							<h2>Indicador</h2>
+							<input class="input nomodificable bold" type="text" value="{{ gestion.indicador1 }}" readonly>
+						</div>
+
+						<div class="inputContainer" >
+							<h2>Porcentaje</h2>
+							<input class="input nomodificable bold" type="text" value="{{ gestion.porcentaje1 }}" readonly>
+						</div>
+
+					</div><!-- indicadores -->
+				</div><!-- activity -->
+
+
+
+
+				<div class="activity">
+					<div class="inputContainer" >
+						<h2>Actividad</h2>
+						<textarea class="input nomodificable" cols="125" rows="10" readonly>{{ gestion.actividad2 }}</textarea>
+					</div>
+
+					<div class="inputContainer" >
+						<h2>Descripción</h2>
+						<textarea class="input nomodificable "  cols="125" rows="10" readonly>{{ gestion.descripcion2 }}</textarea>
+					</div>
+
+					<div class="indicadores" >
+						<div class="inputContainer" >
+							<h2>Indicador</h2>
+							<input class="input nomodificable bold"  type="text" value="{{ gestion.indicador2 }}" readonly>
+						</div>
+
+
+						<div class="inputContainer" >
+							<h2>Porcentaje</h2>
+							<input class="input nomodificable bold"  type="text" value="{{ gestion.porcentaje2 }}" readonly>
+							
+						</div>
+					</div><!-- indicadores -->
+				</div><!-- activity -->
+
+
+
+				<div class="activity">
+					<div class="inputContainer" >
+						<h2 >Actividad</h2>
+						<textarea class="input nomodificable" cols="125" rows="10" readonly>{{ gestion.actividad3 }}</textarea>
+					</div>
+
+					<div class="inputContainer" >
+						<h2>Descripción</h2>
+						<textarea class="input nomodificable" cols="125" rows="10" readonly>{{ gestion.descripcion3 }}</textarea>
+					</div>
+
+					<div class="indicadores" >
+
+						<div class="inputContainer" >
+							<h2>Indicador</h2>
+							<input class="input nomodificable bold" type="text" value="{{ gestion.indicador3 }}" readonly>
+						</div>
+
+
+						<div class="inputContainer" >
+							<h2>Porcentaje</h2>
+							<input class="input nomodificable bold" type="text" value="{{ gestion.porcentaje3 }}" readonly>
+						</div>
+					</div>
+				</div><!-- activity -->
+
+
+
+
+
+				<div class="activity">
+					<div class="inputContainer" >
+						<h2 >Apreciaciones adicionales</h2>
+						<textarea class="input nomodificable" cols="125" rows="10" readonly>{{ gestion.apreciacion }}</textarea>
+					</div>
+
+
+
+					<div class="inputContainer" >
+						<h2>Comentarios asesor académico</h2>
+						<textarea class="input nomodificable" cols="125" rows="10" readonly>{{ gestion.comentarios }}</textarea>
+					</div>
+				</div><!-- activity -->
+
+
+
+			</form>	
+		</div><!-- inform -->
+	</div><!-- down section -->
+	{% endblock %}
+</div>
 {% endblock %}

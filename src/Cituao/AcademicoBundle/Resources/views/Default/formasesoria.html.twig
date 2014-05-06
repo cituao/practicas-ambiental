@@ -1,59 +1,170 @@
 {% extends 'CituaoAcademicoBundle::layout.html.twig' %}
 
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Registrando asesoría # {{ datos.numase }}</h2>
+{% endblock %}
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
-
-	
-	<form action="{{ path('cituao_academico_registrar_asesoria'  , { 'id': datos.id, 'numase': datos.numase }) }}" method="post" {{ form_enctype(formulario) }}>
-	    
-			{{ form_errors(formulario) }}
-				<div>
-				{% if datos.numase == 1 %}
-					{{ form_label(formulario.docAsesor1) }}
-					{{ form_widget(formulario.docAsesor1) }}
-					{{ form_errors(formulario.docAsesor1) }}
-				{% endif %}
-				{% if datos.numase == 2 %}
-					{{ form_label(formulario.docAsesor2) }}
-					{{ form_widget(formulario.docAsesor2) }}
-					{{ form_errors(formulario.docAsesor2) }}
-				{% endif %}
-				{% if datos.numase == 3 %}
-					{{ form_label(formulario.docAsesor3) }}
-					{{ form_widget(formulario.docAsesor3) }}
-					{{ form_errors(formulario.docAsesor3) }}
-				{% endif %}
-				{% if datos.numase == 4 %}
-					{{ form_label(formulario.docAsesor4) }}
-					{{ form_widget(formulario.docAsesor4) }}
-					{{ form_errors(formulario.docAsesor4) }}
-				{% endif %}
-				{% if datos.numase == 5 %}
-					{{ form_label(formulario.docAsesor5) }}
-					{{ form_widget(formulario.docAsesor5) }}
-					{{ form_errors(formulario.docAsesor5) }}
-				{% endif %}
-				{% if datos.numase == 6 %}
-					{{ form_label(formulario.docAsesor6) }}
-					{{ form_widget(formulario.docAsesor6) }}
-					{{ form_errors(formulario.docAsesor6) }}
-				{% endif %}
-				{% if datos.numase == 7 %}
-					{{ form_label(formulario.docAsesor7) }}
-					{{ form_widget(formulario.docAsesor7) }}
-					{{ form_errors(formulario.docAsesor7) }}
-				{% endif %}
-				</div>
-			{{ form_rest(formulario) }}
-			<input class="boton" type="submit" value="Guardar" />
-	</form>	
+{% block content  %}
+<div class="content">
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Registrando asesoría #{{ datos.numase }}</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+		
 	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection">
+		<div class="inform">
+			<form action="{{ path('cituao_academico_registrar_asesoria'  , { 'id': datos.id, 'numase': datos.numase }) }}" method="post" {{ form_enctype(formulario) }}>
+
+				{{ form_errors(formulario) }}
+				<div class="activity">
+				{% if datos.numase == 1 %}
+				<div class="inputContainer">
+					
+					<h2>{{ form_label(formulario.docAsesor1) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docAsesor1) }}
+						{{ form_errors(formulario.docAsesor1) }}
+					</div>
+				</div>
+				<div class="inputContainer">
+					
+					<h2>{{ form_label(formulario.docPracticante1) }}</h2>
+					<div class="input nomodificable">
+						{{ form_widget(formulario.docPracticante1) }}
+						{{ form_errors(formulario.docPracticante1) }}
+					</div>
+				</div>
+				{% endif %}
+
+				{% if datos.numase == 2 %}
+				<div class="inputContainer">
+					<h2>{{ form_label(formulario.docAsesor2) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docAsesor2) }}
+						{{ form_errors(formulario.docAsesor2) }}
+					</div>
+				</div>
+				<div class="inputContainer">
+				
+					<h2>{{ form_label(formulario.docPracticante2) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docPracticante2) }}
+						{{ form_errors(formulario.docPracticante2) }}
+					</div>
+				</div>
+				{% endif %}
+
+				{% if datos.numase == 3 %}
+				<div class="inputContainer">
+					<h2>{{ form_label(formulario.docAsesor3) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docAsesor3) }}
+						{{ form_errors(formulario.docAsesor3) }}
+					</div>
+				</div>
+				<div class="inputContainer">
+					
+					<h2>{{ form_label(formulario.docPracticante3) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docPracticante3) }}
+						{{ form_errors(formulario.docPracticante3) }}
+					</div>
+				</div>
+				{% endif %}
+
+				{% if datos.numase == 4 %}
+				<div class="inputContainer">
+					<h2>{{ form_label(formulario.docAsesor4) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docAsesor4) }}
+						{{ form_errors(formulario.docAsesor4) }}
+					</div>
+				</div>
+				<div class="inputContainer">
+					
+					<h2>{{ form_label(formulario.docPracticante4) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docPracticante4) }}
+						{{ form_errors(formulario.docPracticante4) }}
+					</div>
+				</div>
+				{% endif %}
+
+
+				{% if datos.numase == 5 %}
+				<div class="inputContainer">
+					<h2>{{ form_label(formulario.docAsesor5) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docAsesor5) }}
+						{{ form_errors(formulario.docAsesor5) }}
+					</div>
+				</div>
+				<div class="inputContainer">
+				
+					<h2>{{ form_label(formulario.docPracticante5) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docPracticante5) }}
+						{{ form_errors(formulario.docPracticante5) }}
+					</div>
+				</div>
+				{% endif %}
+
+				{% if datos.numase == 6 %}
+				<div class="inputContainer">
+					<h2>{{ form_label(formulario.docAsesor6) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docAsesor6) }}
+						{{ form_errors(formulario.docAsesor6) }}
+					</div>
+				</div>
+				<div class="inputContainer">
+			
+					<h2>{{ form_label(formulario.docPracticante6) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docPracticante6) }}
+						{{ form_errors(formulario.docPracticante6) }}
+					</div>
+				</div>
+				{% endif %}
+
+				{% if datos.numase == 7 %}
+				<div class="inputContainer">
+					<h2>{{ form_label(formulario.docAsesor7) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docAsesor7) }}
+						{{ form_errors(formulario.docAsesor7) }}
+					</div>
+				</div>
+				<div class="inputContainer">
+					
+					<h2>{{ form_label(formulario.docPracticante7) }}</h2>
+					<div class="input">
+						{{ form_widget(formulario.docPracticante7) }}
+						{{ form_errors(formulario.docPracticante7) }}
+					</div>
+				</div>
+				{% endif %}
+				
+				{{ form_rest(formulario) }}
+</div>
+
+
+				<div class="inputContainer" style="position:relative; margin-top:20px; margin-left:25px;">
+					<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
+					<input style="padding-left:40px;" class="button" type="submit" value="Guardar" />
+				</div>
+			</form>	
+		</div><!-- inform -->
+	</div><!-- downSection -->
+	{% endblock  %}
+</div><!-- content -->
 {% endblock %}

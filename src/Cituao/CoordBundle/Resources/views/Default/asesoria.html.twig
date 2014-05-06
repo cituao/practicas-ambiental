@@ -1,27 +1,51 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Consultando la Asesoría # {{ datos.numase }}</h2>
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
+{% endblock %}
 
-	
-	<form action="" method="post">
-		<div>	
-		<label>Asesor:</label>
-		<textarea cols="125" rows="10" readonly>{{ datos.docase }}</textarea>
-		</div>
-		
-		<div>	
-		<label>Practicante:</label>
-		<textarea cols="125" rows="10" readonly>{{ datos.docpra }}</textarea>
-		</div>
 
-	</form>	
+{% block content  %}
+<div class="content">
+	{{ parent() }}
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Consultando la Asesoría # {{ datos.numase }}</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
 	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection">
+		<div class="inform">
+			<form action="" method="post">
+				<div class="activity">	
+					<div class="inputContainer">
+						<label>Asesor:</label>
+						<div class="input nomodificable">
+							<textarea cols="125" rows="10" readonly>{{ datos.docase }}</textarea>
+						</div>
+					</div>
+
+
+
+
+					<div class="inputContainer">
+						<label>Practicante:</label>
+						<div class="input nomodificable">
+							<textarea cols="125" rows="10" readonly>{{ datos.docpra }}</textarea>
+						</div>
+					</div>
+				</div><!--activity -->
+
+			</form>	
+		</div><!--inform-->
+	</div><!--downSection-->
+	{% endblock %}
+</div>
 {% endblock %}

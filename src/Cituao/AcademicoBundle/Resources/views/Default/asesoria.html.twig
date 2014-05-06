@@ -1,7 +1,16 @@
 {% extends 'CituaoAcademicoBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
+
+{% endblock %}
+
+{% block content  %}
+	<div class="content">
 		<h2 id="titlee">Consultando la Asesoría # {{ datos.numase }}</h2>
 
 		<div id = "menuop">
