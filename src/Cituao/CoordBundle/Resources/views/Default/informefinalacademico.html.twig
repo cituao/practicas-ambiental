@@ -1,53 +1,61 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Consultando Informe final del Asesor Académico</h2>
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
-
-		<div id = "subinfowrapper">
-	<form action="" method="post">
-		<div class = "tituloform">
-		<h2 class = "datos">INFORME FINAL</h2>
-		</div>
-
-		<div class = "subtituloform">
-		<h3 class = "datos">1. ¿Qué tipo de asesoría requirió el estudiante del Asesor Académico y de   la Universidad? ¿Cómo fue el  proceso de acompañamiento académico? (explique la metodología que utilizó)</h3>
-		</div>
+{% endblock %}
 
 
-		<div>
-		<textarea cols="125" rows="10" readonly>{{ informe.metodologia }}</textarea>
-		</div>
-				
+{% block content  %}
+<div class="content">
+	{{ parent() }}
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Consultando Informe final del Asesor Académico</h1>
 
-		
-		<div class = "subtituloform">
-		<h3  class = "datos">
-		2. ¿Considera que el estudiante tiene o no las competencias necesarias para  el trabajo requerido por la 		organización?  Explique el perfil requerido, debilidades y fortalezas del estudiante en relación con las necesidades de la empresa.
-		</h3>
-		</div>
-
-		<div>
-		<textarea cols="125" rows="10" readonly>{{ informe.competencia }}</textarea>
-		</div>
-
-	     <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		Recomendaciones generales y comentarios  a la Facultad y al Programa de Práctica (metodología, formatos, evaluación, 			seguimiento, otros)
-		 </h3></div>	
-
-		<div>
-		<textarea cols="125" rows="10" readonly>{{ informe.recomendaciones }}</textarea>
-		</div>
-
-
-	</form>	
+		<a href="javascript:history.back()"  class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
 	</div>
-	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection">
+
+		<div class="inform">
+			<form action="" method="post">
+
+				<h1><span>Informe final</span></h1>
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">1. ¿Qué tipo de asesoría requirió el estudiante del Asesor Académico y de   la Universidad? ¿Cómo fue el  proceso de acompañamiento académico? (explique la metodología que utilizó)</h2>
+						<textarea class="input" cols="125" rows="10" readonly>{{ informe.metodologia }}</textarea>
+					</div>
+
+				</div><!-- activity -->
+
+
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">2. ¿Considera que el estudiante tiene o no las competencias necesarias para  el trabajo requerido por la 		organización?  Explique el perfil requerido, debilidades y fortalezas del estudiante en relación con las necesidades de la empresa.</h2>
+						<textarea class="input" cols="125" rows="10" readonly>{{ informe.competencia }}</textarea>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">Recomendaciones generales y comentarios  a la Facultad y al Programa de Práctica (metodología, formatos, evaluación, seguimiento, otros)</h2>
+						<textarea class="input" cols="125" rows="10" readonly>{{ informe.recomendaciones }}</textarea>
+					</div>
+				</div><!-- activity -->
+
+			</form>	
+		</div><!-- inform -->
+	</div><!-- downSection -->
+	{% endblock %}
+</div><!-- content -->
 {% endblock %}

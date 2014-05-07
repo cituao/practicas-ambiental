@@ -1,104 +1,119 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Consultando Acta de conformidad del Asesor Externo</h2>
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
+{% endblock %}
 
-		<div id = "subinfowrapper">
-	<form action="" method="post">
-		<div class = "tituloform">
-		<h2 class = "datos">ACTA DE CONFORMIDAD</h2>
-		</div>
-
-
-		<div class = "subtituloform">
-		<h3 class = "datos">1. Considera que las actividades –funciones desarrolladas durante el semestre- corresponden a las descritas inicialmente en la carta de compromiso en un:</h3>
-		</div>
-
-		<div>
-		<label>Resultado:</label>
-		<input type="text" value="{{ e.actfun }} " readonly>
-		</div>
-
-		<div class = "subtituloform">
-		<h3  class = "datos">
-		Para evaluar el proceso de práctica y/o pasantía, marque en la escala de 1 a 5, según corresponda a cada ítem:
-		</h3>
-		<h3  class = "datos">
-		2. De las actividades o funciones nuevas o adicionales que se realizaron, el cumplimiento del estudiante fue (marque de 1 a 5): 
-		</h3>
-		</div>
-		<div>		
-		
-		<div>
-		<label>Resultado:</label>
-		<input type="text" value="{{ e.actfunueva }} " readonly>
-		</div>
-	
-		<div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		3. El proceso de acompañamiento y seguimiento, desde el aporte académico y cumplimiento por parte del asesor académico fue (marque de 1 a 5):
-		 </h3></div>	
-		<div>
-		
-		<div>
-		<label>Resultado:</label>
-		<input type="text" value="{{ e.acompana }} " readonly>
-		</div>
-
-	     <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		4. ¿Qué calificación le da al trabajo desarrollado por el estudiante y el aporte que éste le dio a la organización?:
-		 </h3></div>		
-		<div>
-		<label>Resultado en trabajo:</label>
-		<input type="text" value="{{ e.trabajo }} " readonly>
-		</div>	
-		
-		<div>
-		<label>Resultado en aporte:</label>
-		<input type="text" value="{{ e.aporte }} " readonly>
-		</div>	
-		
-		 <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		5. Observaciones y sugerencias del centro de práctica (empresa) 
-		 </h3></div>		
-		<div>
-
-		<div>
-		<textarea cols="80" rows="5" readonly>{{ e.observaciones }}</textarea>
-		</div>
-	
-		<div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		6. Como asesor externo o jefe inmediato, ¿Recibe a satisfacción la práctica y/o pasantía del estudiante?:
-		 </h3></div>	
-
-		<div>
-		<label>Resultado:</label>
-		{% if e.satisfaccion == true %}
-		<input type="text" value="APROBADO" readonly>
-		{% else %}
-		<input type="text" value="NO APROBADO" readonly>
-		{% endif %}
-		</div>	
-
-	     <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		En caso negativo ¿qué está pendiente?:
-		 </h3></div>	
-		<div>
-		<textarea cols="80" rows="5" readonly>{{ e.negativo }}</textarea>
-		</div>
-
-	</form>	
+{% block content  %}
+<div class="content">
+	{{ parent() }}
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Consultando Acta de conformidad del Asesor Externo</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
 	</div>
-	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection">
+
+		<div class="inform">
+
+			<form action="" method="post">
+
+				<h1><span>Acta de conformidad</span></h1>
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">1. Considera que las actividades –funciones desarrolladas durante el semestre- corresponden a las descritas inicialmente en la carta de compromiso en un:</h2>
+						<div class="input">
+							<h2>Resultado:</h2>
+							<input type="text" value="{{ e.actfun }} " readonly>
+						</div>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					<h1><span>Para evaluar el proceso de práctica y/o pasantía, marque en la escala de 1 a 5, según corresponda a cada ítem:</span></h1>
+					<div class="inputContainer">
+						<h2 class="largeh2">
+							2. De las actividades o funciones nuevas o adicionales que se realizaron, el cumplimiento del estudiante fue (marque de 1 a 5):
+						</h2>
+						<div class = "input">
+							<h2>Resultado:</h2>
+							<input type="text" value="{{ e.actfunueva }} " readonly>
+						</div>
+					</div>
+
+				</div><!-- activity -->
+
+				<div class="activity">
+
+					<div class="inputContainer">
+						<h2 class="largeh2">
+							3. El proceso de acompañamiento y seguimiento, desde el aporte académico y cumplimiento por parte del asesor académico fue (marque de 1 a 5):
+						</h2>
+						<div class = "input">
+							<h2>Resultado:</h2>
+							<input type="text" value="{{ e.acompana }} " readonly>
+						</div>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">4. ¿Qué calificación le da al trabajo desarrollado por el estudiante y el aporte que éste le dio a la organización?:</h2>
+
+						<div class = "input">
+							<h2>Resultado en trabajo:</h2>
+							<input type="text" value="{{ e.trabajo }} " readonly>
+						</div>
+
+
+						<div class = "input">
+							<h2>Resultado en aporte:</h2>
+							<input type="text" value="{{ e.aporte }} " readonly>
+						</div>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">5. Observaciones y sugerencias del centro de práctica (empresa) </h2>		
+						<textarea class="input" cols="80" rows="5" readonly>{{ e.observaciones }}</textarea>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">6. Como asesor externo o jefe inmediato, ¿Recibe a satisfacción la práctica y/o pasantía del estudiante</h2>				
+						<div class = "input">
+							<h2>Resultado:</h2>
+							{% if e.satisfaccion == true %}
+							<input type="text" value="APROBADO" readonly>
+							{% else %}
+							<input type="text" value="NO APROBADO" readonly>
+							{% endif %}
+						</div>
+
+
+						<div class = "input">
+							<h2 class="largeh2">
+								En caso negativo ¿qué está pendiente?:
+							</h2>	
+							<textarea cols="80" rows="5" readonly>{{ e.negativo }}</textarea>
+						</div>
+					</div>	<!-- inputContainer -->		
+				</div><!-- activity -->
+
+			</form>	
+		</div><!-- inform -->
+	</div><!-- downSection -->
+	{% endblock %}
+</div><!-- content -->
 {% endblock %}

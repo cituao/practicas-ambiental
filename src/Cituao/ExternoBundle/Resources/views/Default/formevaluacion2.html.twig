@@ -1,102 +1,214 @@
 {% extends 'CituaoExternoBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Registrando Evaluacion # {{ datos.numeva }}</h2>
-	
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "subinfowrapper">
-	<form action="{{ path('cituao_externo_registrar_evaluacion'  , { 'id': datos.id, 'numeva': datos.numeva }) }}" method="post" {{ form_enctype(formulario) }}>
-	    
-					{{ form_errors(formulario) }}
-					<div>
-					<h2>A continuación se le solicita evaluar  el proceso del practicante de acuerdo con los siguientes puntos.</h2>
-					</div>									
+{% endblock %}
 
-					<div class = "datos">
-					<h3 class = "datos">¿En qué medida se han cumplido los objetivos y expectativas propuestos para el trabajo del practicante? Explique por qué</h3>
-					</div>
+{% block content  %}
+<div class="content">
 
-					{{ form_label(formulario.cumplido) }}
-					{{ form_widget(formulario.cumplido) }}
-					{{ form_errors(formulario.cumplido) }}
-					<div class = "datos">
-					<h3  class = "datos">2. En relación con la Evaluación No. 1 mencione si se han presentado cambios o si hay continuidad en las variables relacionadas con el desempeño laboral.</h3>
-					</div>
-					{{ form_row(formulario.dl21) }}
-					{{ form_row(formulario.dl22) }}
-					{{ form_row(formulario.dl23) }}
-					{{ form_row(formulario.dl24) }}
-					{{ form_row(formulario.dl25) }}
-					{{ form_row(formulario.dl26) }}
-					{{ form_row(formulario.dl27) }}
-					{{ form_row(formulario.dl28) }}
-					{{ form_row(formulario.dl29) }}
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Registrando Evaluacion # {{ datos.numeva }}</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+	</div>
+	{% endblock  %}
+
+
+	{% block downSection  %}
+	<div class = "downSection">
+
+		<div class="inform">
+			<form action="{{ path('cituao_externo_registrar_evaluacion'  , { 'id': datos.id, 'numeva': datos.numeva }) }}" method="post" {{ form_enctype(formulario) }}>
+
+				{{ form_errors(formulario) }}
+
 				
-					<div class = "datos">
-					<h3 class = "datos">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h3>
-					</div>
-					{{ form_row(formulario.va31) }}
-					{{ form_row(formulario.va32) }}
-					{{ form_row(formulario.va33) }}
-					{{ form_row(formulario.va34) }}
-					{{ form_row(formulario.va35) }}
-					{{ form_row(formulario.va36) }}
-					{{ form_row(formulario.va37) }}
-					{{ form_row(formulario.va38) }}
-					{{ form_row(formulario.va39) }}
+				<h1><span>A continuación se le solicita evaluar  el proceso del practicante de acuerdo con los siguientes puntos.</span><h1>									
+					<div class="activity">
+						<div class="inputContainer">
+							<h2 class="largeh2">¿En qué medida se han cumplido los objetivos y expectativas propuestos para el trabajo del practicante? Explique por qué</h2>
 
-					<div class = "datos"> <h2 class = "datos">Logros y dificultades. Comentarios adicionales del Asesor Externo o Jefe Inmediato:</h2></div>
-					{{ form_label(formulario.comentarioExterno) }}
-					{{ form_widget(formulario.comentarioExterno) }}
-					{{ form_errors(formulario.comentarioExterno) }}
-
-
-					<div class = "datos">
-					<h2 class = "datos">4. ¿Qué aportes o beneficios le trae a la organización la presencia y trabajo  del practicante?</h2>
-					</div>
-					{{ form_row(formulario.aportes) }}
-
-					<div class = "datos">
-					<h2 class = "datos">5. ¿Qué proyección tiene para el cargo del practicante?</h2>
-					</div>
-					{{ form_row(formulario.proyeccion) }}
-
-
-					<div class = "datos">
-					<h2 class = "datos">6. ¿Cuál ha sido el compromiso, disposición y apoyo de la organización al trabajo del practicante?</h2>
-					</div>
-					{{ form_row(formulario.compromiso) }}
+							<div class="input">
+								{{ form_label(formulario.cumplido) }}
+								{{ form_widget(formulario.cumplido) }}
+								{{ form_errors(formulario.cumplido) }}
+							</div>
+						</div>
+					</div><!-- activity -->
 
 
 
-					<div class = "datos">
-					<h2 class = "datos">7. ¿Qué apreciación tiene del Programa de Práctica Profesional desde la Gestión Administrativa y Académica?</h2>
-					</div>
-					{{ form_row(formulario.apreciacion) }}
+					<div class="activity">
+						<div class="inputContainer">
+							<h2 class="largeh2">2. En relación con la Evaluación No. 1 mencione si se han presentado cambios o si hay continuidad en las variables relacionadas con el desempeño laboral.</h2>
 
-					{{ form_row(formulario.aprobado) }}
+							<div class="input">
+								{{ form_row(formulario.dl21) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.dl22) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.dl23) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.dl24) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.dl25) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.dl26) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.dl27) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.dl28) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.dl29) }}
+							</div>
+						</div>
+					</div><!-- activity -->
 
-					<div class = "datos"> <h2 class = "datos">Comentarios del Asesor Académico:</h2></div>
-					{{ form_label(formulario.comentarioAcademico) }}
-					{{ form_widget(formulario.comentarioAcademico) }}
-					{{ form_errors(formulario.comentarioAcademico) }}
+					<div class="activity">
+						<div class="inputContainer">
+							<h2 class="largeh2">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h2>
+							<div class="input">
+								{{ form_row(formulario.va31) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.va32) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.va33) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.va34) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.va35) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.va36) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.va37) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.va38) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.va39) }}
+							</div>
+						</div>
+					</div><!-- activity -->
 
-					<div class = "datos"> <h2 class = "datos">Compromiso del practicante:</h2></div>
-					{{ form_label(formulario.compromisop) }}
-					{{ form_widget(formulario.compromisop) }}
-					{{ form_errors(formulario.compromisop) }}
+					<div class="activity">
+						<div class="inputContainer">
 
+							<h2 class="largeh2">Logros y dificultades. Comentarios adicionales del Asesor Externo o Jefe Inmediato:</h2>
+							<div class="input">
+								{{ form_label(formulario.comentarioExterno) }}
+								{{ form_widget(formulario.comentarioExterno) }}
+								{{ form_errors(formulario.comentarioExterno) }}
+							</div>
+						</div>
+
+					</div><!-- activity -->
+
+
+					<div class="activity">
+						<div class="inputContainer">
+							<h2 class="largeh2">4. ¿Qué aportes o beneficios le trae a la organización la presencia y trabajo  del practicante?</h2>
+							<div class="input">
+								{{ form_row(formulario.aportes) }}
+							</div>
+						</div>
+					</div><!-- activity -->
+
+
+
+					<div class="activity">
+						<div class="inputContainer">
+							<h2 class="largeh2">5. ¿Qué proyección tiene para el cargo del practicante?</h2>
+							<div class="input">
+								{{ form_row(formulario.proyeccion) }}
+							</div>
+						</div>
+					</div><!-- activity -->
+
+
+					<div class="activity">
+						<div class="inputContainer">
+							<h2 class="largeh2">6. ¿Cuál ha sido el compromiso, disposición y apoyo de la organización al trabajo del practicante?</h2>
+							<div class="input">
+								{{ form_row(formulario.compromiso) }}
+							</div>
+						</div>
+					</div><!-- activity -->
+
+
+
+					<div class="activity">
+						<div class="inputContainer">
+							<h2 class="largeh2">7. ¿Qué apreciación tiene del Programa de Práctica Profesional desde la Gestión Administrativa y Académica?</h2>
+							<div class="input">
+								{{ form_row(formulario.apreciacion) }}
+							</div>
+							<div class="input">
+								{{ form_row(formulario.aprobado) }}
+							</div>
+							
+						</div>
+					</div><!-- activity -->
+
+
+					<div class="activity">
+						<div class="inputContainer">
+							<h2 class="largeh2">Comentarios del Asesor Académico:</h2>
+							{{ form_label(formulario.comentarioAcademico) }}
+							<div class="input nomodificable">
+								{{ form_widget(formulario.comentarioAcademico) }}
+								{{ form_errors(formulario.comentarioAcademico) }}
+							</div>
+						</div>
+					</div><!-- activity -->
+
+					<div class="activity">
+
+						<div class="inputContainer"> 
+							<h2 class="largeh2">Compromiso del practicante:</h2>
+							{{ form_label(formulario.compromisop) }}
+							<div class="input nomodificable">
+								{{ form_widget(formulario.compromisop) }}
+								{{ form_errors(formulario.compromisop) }}
+
+							</div>
+						</div>
+					</div><!-- activity -->
+
+					
+					
 
 					{{ form_rest(formulario) }}
-			<input class="boton" type="submit" value="Guardar" />
-	</form>	
-	</div>
-	</div>
-{% endblock %}
+					
+					<div class="inputContainer" style="position:relative; margin-top:20px; margin-left:20px;">
+						<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
+						<input style="padding-left:40px;" class="button"  type="submit" value="Guardar" />
+					</div>
+
+				</form>	
+			</div><!--inform -->
+		</div><!--downSection -->
+		{% endblock  %}
+	</div><!--content -->
+	{% endblock %}

@@ -533,6 +533,7 @@
 
  							.inputContainer{
  								width: 200px !important;
+ 								
  							}
  						}
 
@@ -546,8 +547,15 @@
  							}
 
  							.input{
- 							margin-top: 20px;
- 						}
+ 								margin-top: 20px;
+ 							}
+
+ 							.radio{
+ 								width: 380px;
+ 								label{
+ 									width: auto;
+ 								}
+ 							}
 
 
  						}
@@ -556,60 +564,74 @@
  							width: 243px;
  							margin-bottom: 10px;
  						}
- 				
- 					} /*activity*/
+
+ 						} /*activity*/
 
 
- 					h1{
- 						font-family: helvetica;
- 						font-size: 24px;
- 						color: $darkGray;
- 						margin-left: 30px;
- 					}
+ 						h1{
+ 							font-family: helvetica;
+ 							font-size: 24px;
+ 							color: $darkGray;
+ 							margin-left: 30px;
+ 						}
 
- 					textarea
- 					{
+ 						textarea
+ 						{
 
- 						@include border-radius(3px);
- 						width:400px;
- 						height: 150px;
- 						border: #242021 solid 1px;
- 						color:#242424;
- 						font-size: 0.8em;
- 						padding-left: 5%;
- 						padding-top:20px;
- 						/*margin-right:50px;*/
- 						font-family: helvetica;
- 					}
+ 							@include border-radius(3px);
+ 							width:400px;
+ 							height: 150px;
+ 							border: #242021 solid 1px;
+ 							color:#242424;
+ 							font-size: 0.8em;
+ 							padding-left: 5%;
+ 							padding-top:20px;
+ 							/*margin-right:50px;*/
+ 							font-family: helvetica;
+ 						}
 
- 					textarea:hover{
- 						border-color:$redColor;
- 					}
- 					textarea:focus{
- 						border-color:$redColor;
- 					}
+ 						textarea:hover{
+ 							border-color:$redColor;
+ 						}
+ 						textarea:focus{
+ 							border-color:$redColor;
+ 						}
+
+ 						.nomodificable{
+ 							background-color:#ececec;
+ 							textarea{
+ 								border: none !important;
+ 								line-height: 150%;
+ 								height: 300px;
+ 								background-color:#ececec;
+ 							}
+ 							.input{
+ 								background-color:#ececec;
+ 							}
+ 						}
+
+ 						}/*inform*/
 
 
- 				}/*inform*/
+ 						.bold{
+ 							font-weight: bold;
+ 							font-size: 19px;
+ 							color: #7b7b7b !important;
+ 						}
 
- 				.nomodificable{
- 					background-color:#ececec;
- 					textarea{
- 					border: none !important;
- 					line-height: 150%;
- 					height: 300px;
- 					background-color:#ececec;
-	 				}
-	 				.input{
-	 					background-color:#ececec;
-	 				}
- 				}
- 				.bold{
- 					font-weight: bold;
- 					font-size: 19px;
- 					color: #7b7b7b !important;
- 				}
+ 						.largeh2{
+ 							width: 400px !important;
+ 						}
 
- 				.largeh2{
- 					width: 400px !important;
- 				}
+ 						#warning{
+ 							width: 90%;
+ 							border-top:none;
+ 							background-color:$redColor;
+ 							padding:10px;
+ 							margin-left: 30px;
+ 							
+ 							font-weight:bold;
+ 							color: #fff;
+ 							line-height: 130%;
+
+ 						}

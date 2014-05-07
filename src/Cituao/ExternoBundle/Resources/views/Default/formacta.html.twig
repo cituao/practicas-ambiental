@@ -1,109 +1,161 @@
 {% extends 'CituaoExternoBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Registrando Acta de confirmación</h2>
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
 
-		<div id = "subinfowrapper">
-	<form action="{{ path('cituao_externo_registrar_acta'  , { 'id': datos.id}) }}" method="post" {{ form_enctype(formulario) }}>
-	    
-		{{ form_errors(formulario) }}
-		<div class = "tituloform">
-		<h2 class = "datos">ACTA DE CONFORMIDAD</h2>
-		</div>
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
 
-		<div class = "subtituloform">
-		<h3 class = "datos">1. Considera que las actividades –funciones desarrolladas durante el semestre- corresponden a las descritas inicialmente en la carta de compromiso en un:</h3>
-		</div>
-		
-		<div>
-		{{ form_label(formulario.actfun) }}
-		{{ form_widget(formulario.actfun) }}
-		{{ form_errors(formulario.actfun) }}
-		</div>
+{% endblock %}
 
-		
-		<div class = "subtituloform">
-		<h3  class = "datos">
-		Para evaluar el proceso de práctica y/o pasantía, marque en la escala de 1 a 5, según corresponda a cada ítem:
-		</h3>
-		<h3  class = "datos">
-		2. De las actividades o funciones nuevas o adicionales que se realizaron, el cumplimiento del estudiante fue (marque de 1 a 5): 
-		</h3>
-		</div>
-		<div>
-		{{ form_label(formulario.actfunueva) }}
-		{{ form_widget(formulario.actfunueva) }}
-		{{ form_errors(formulario.actfunueva) }}
-		</div>
-	     <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		3. El proceso de acompañamiento y seguimiento, desde el aporte académico y cumplimiento por parte del asesor académico fue (marque de 1 a 5):
-		 </h3></div>	
-		<div>
-		{{ form_label(formulario.acompana) }}
-		{{ form_widget(formulario.acompana) }}
-		{{ form_errors(formulario.acompana) }}
-		</div>
-	     <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		4. ¿Qué calificación le da al trabajo desarrollado por el estudiante y el aporte que éste le dio a la organización?:
-		 </h3></div>	
-		 <div>
-		{{ form_label(formulario.trabajo) }}
-		{{ form_widget(formulario.trabajo) }}
-		{{ form_errors(formulario.trabajo) }}
-		</div>
-		<div>
-		{{ form_label(formulario.aporte) }}
-		{{ form_widget(formulario.aporte) }}
-		{{ form_errors(formulario.aporte) }}
-		</div>
-		
-	     <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		5. Observaciones y sugerencias del centro de práctica (empresa) 
-		 </h3></div>	
-		 <div>
-		{{ form_label(formulario.observaciones) }}
-		{{ form_widget(formulario.observaciones) }}
-		{{ form_errors(formulario.observaciones) }}
-		</div>
-	     <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		6. Como asesor externo o jefe inmediato, ¿Recibe a satisfacción la práctica y/o pasantía del estudiante?:
-		 </h3></div>	
-		<div>
-		{{ form_label(formulario.satisfaccion) }}
-		{{ form_widget(formulario.satisfaccion) }}
-		{{ form_errors(formulario.satisfaccion) }}
-		</div>
-	     <div class = "subtituloform" style ="height:60px">
-		<h3  class = "datos">
-		En caso negativo ¿qué está pendiente?:
-		 </h3></div>	
-		 <div>
-		{{ form_label(formulario.negativo) }}
-		{{ form_widget(formulario.negativo) }}
-		{{ form_errors(formulario.negativo) }}
-		</div>
-		
-		<div class = "subtituloform">
-		<h4  class = "datos">
-		El asesor externo recibe a satisfacción todos los archivos, documentos, fotografías, videos, multimedia y en general todos los insumos que el estudiante manejo en el ejercicio de su práctica profesional y todos los productos (Gráficos, Publicitarios o de Comunicación Social – Periodismo) que realizó en el centro de práctica y que son de uso exclusivo de éste (empresa u organización).
-		</h4>
-		
-		
-		
-		{{ form_rest(formulario) }}
 
-		<input class="boton" type="submit" value="Guardar" />
-	</form>	
+{% block content  %}
+<div class="content">
+	{{ parent() }}
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Registrando Acta de confirmación</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
 	</div>
-	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection">
+		<div class="inform">
+			<form action="{{ path('cituao_externo_registrar_acta'  , { 'id': datos.id}) }}" method="post" {{ form_enctype(formulario) }}>
+
+				{{ form_errors(formulario) }}
+
+				<h1><span>Acta de conformidad</span></h1>
+				
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">1. Considera que las actividades –funciones desarrolladas durante el semestre- corresponden a las descritas inicialmente en la carta de compromiso en un:</h2>
+
+
+
+						<div class="input">
+							{{ form_label(formulario.actfun) }}
+							{{ form_widget(formulario.actfun) }}
+							{{ form_errors(formulario.actfun) }}
+						</div>
+					</div>
+				</div><!-- activity -->
+
+
+				<div class="activity">
+					<h2  class="largeh2">
+						Para evaluar el proceso de práctica y/o pasantía, marque en la escala de 1 a 5, según corresponda a cada ítem:
+					</h2>
+					<div class="inputContainer">
+
+						<h2  class="largeh2">
+							2. De las actividades o funciones nuevas o adicionales que se realizaron, el cumplimiento del estudiante fue (marque de 1 a 5): 
+						</h2>
+						<div class="input radio">
+							{{ form_label(formulario.actfunueva) }}
+							{{ form_widget(formulario.actfunueva) }}
+							{{ form_errors(formulario.actfunueva) }}
+						</div>
+					</div>
+				</div><!-- activity -->
+
+
+				<div class="activity">
+					<div class="inputContainer">
+
+						<h2  class="largeh2">
+							3. El proceso de acompañamiento y seguimiento, desde el aporte académico y cumplimiento por parte del asesor académico fue (marque de 1 a 5):
+						</h2>
+						<div class="input radio">
+							{{ form_label(formulario.acompana) }}
+							{{ form_widget(formulario.acompana) }}
+							{{ form_errors(formulario.acompana) }}
+						</div>
+					</div>
+				</div><!-- activity -->
+
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2  class="largeh2">
+							4. ¿Qué calificación le da al trabajo desarrollado por el estudiante y el aporte que éste le dio a la organización?:
+						</h2>
+					
+					<div class="input radio">
+						{{ form_label(formulario.trabajo) }}
+						{{ form_widget(formulario.trabajo) }}
+						{{ form_errors(formulario.trabajo) }}
+					</div>
+					<div class="input radio">
+						{{ form_label(formulario.aporte) }}
+						{{ form_widget(formulario.aporte) }}
+						{{ form_errors(formulario.aporte) }}
+					</div>
+				</div>
+			</div><!-- activity -->
+
+			<div class="activity">
+				<div class="inputContainer">
+					<h2  class="largeh2">
+						5. Observaciones y sugerencias del centro de práctica (empresa) 
+					</h2>
+					<div class="input">
+						{{ form_label(formulario.observaciones) }}
+						{{ form_widget(formulario.observaciones) }}
+						{{ form_errors(formulario.observaciones) }}
+					</div>
+				</div>
+			</div><!-- activity -->
+
+
+			<div class="activity">
+				<div class="inputContainer">
+					<h2  class="largeh2">
+						6. Como asesor externo o jefe inmediato, ¿Recibe a satisfacción la práctica y/o pasantía del estudiante?:
+					</h2>
+					<div class="input">
+						{{ form_label(formulario.satisfaccion) }}
+						{{ form_widget(formulario.satisfaccion) }}
+						{{ form_errors(formulario.satisfaccion) }}
+					</div>
+				</div>
+			</div><!-- activity -->
+
+			<div class="activity">
+				<div class="inputContainer">
+					<h2  class="largeh2">
+						En caso negativo ¿qué está pendiente?:
+					</h2>
+
+					<div class="input">
+						{{ form_label(formulario.negativo) }}
+						{{ form_widget(formulario.negativo) }}
+						{{ form_errors(formulario.negativo) }}
+					</div>
+				</div>
+			</div><!-- activity -->
+
+			<div class="activity" style="border-top:none">
+			
+				<h2  id="warning">
+					El asesor externo recibe a satisfacción todos los archivos, documentos, fotografías, videos, multimedia y en general todos los insumos que el estudiante manejo en el ejercicio de su práctica profesional y todos los productos (Gráficos, Publicitarios o de Comunicación Social – Periodismo) que realizó en el centro de práctica y que son de uso exclusivo de éste (empresa u organización).
+				</h2>
+			
+			</div><!-- activity -->
+
+
+
+			{{ form_rest(formulario) }}
+			<div class="inputContainer" style="position:relative; margin-top:20px; margin-left:20px;">
+				<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
+				<input style="padding-left:40px;" class="button"  type="submit" value="Guardar" />
+			</div>
+		</form>	
+	</div><!--inform -->
+</div><!--downSection -->
+{% endblock  %}
+</div>
 {% endblock %}

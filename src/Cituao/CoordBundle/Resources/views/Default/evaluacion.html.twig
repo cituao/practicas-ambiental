@@ -1,155 +1,167 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block infowrapper  %}
-	<div id="infoWrapper">
-		<h2 id="titlee">Consulltando evaluacion # 1</h2>
+{% block js  %}
+<script>
+$( "#practicantes" ).css("background-color","#000");
+$( "#practicantes img" ).css("opacity","0.4");
+$( "#practicantes h3" ).css("opacity","0.4");
+</script>
 
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
+{% endblock %}
 
-		<div id = "subinfowrapper">
-	<form action="" method="post">
-					<div class = "datos">
-					<h2 class = "datos">CARGO Y PLAN DE TRABAJO DE COMUNICACIÓN</h2>
-					<h3 class = "datos">1.1. ¿Cuál es el proceso adelantado por el estudiante para el desarrollo de sus compromisos o actividades?</h3>
-					</div>
 
-					<div>
-					<textarea cols="125" rows="10" readonly>{{ e.proceso }}</textarea>
-					</div>
-					
-					<div class = "datos">
-					<h3  class = "datos">1.2  ¿Cuáles son las herramientas  y recursos con que cuenta el practicante para el normal desarrollo de sus actividades?</h3>
-					</div>
-					
-					<div>	
-					<textarea cols="125" rows="10" readonly>{{ e.herramientas }}</textarea>
-					</div>
-
-					<div class = "datos">
-					<h3 class = "datos">2. ¿Cómo evalúa las variables relacionadas con el desempeño laboral?</h3>
-					</div>
-					<div>
-					<label>2.1 Capacidad de gestión</label>
-					<input type="text" value="{{ e.dl21 }}" readonly>
-					</div>
-
-					<div>
-					<label>2.2 Capacidad de negociación</label>
-					<input type="text" value="{{ e.dl22 }}" readonly>
-					</div>
-
-					<div>
-					<label>2.3 Creatividad</label>
-					<input type="text" value="{{ e.dl23 }}" readonly>
-					</div>
-
-					<div>
-					<label>2.4 Dominio Conceptual</label>
-					<input type="text" value="{{ e.dl24 }}" readonly>
-					</div>
-
-					<div>
-					<label>2.5 Iniciativa  </label>
-					<input type="text" value="{{ e.dl25 }}" readonly>
-					</div>
-
-					<div>
-					<label>2.6 Organización- Planeación</label>
-					<input type="text" value="{{ e.dl26 }}" readonly>
-					</div>
-
-					<div>
-					<label>2.7 Proactividad</label>
-					<input type="text" value="{{ e.dl27 }}" readonly>
-					</div>
-
-					<div>
-					<label>2.8 Recursividad</label>
-					<input type="text" value="{{ e.dl28 }}" readonly>
-					</div>
-
-					<div>
-					<label>2.9 Responsabilidad</label>
-					<input type="text" value="{{ e.dl29 }}" readonly>
-					</div>
-					
-
-					<div class = "datos">
-					<h3 class = "datos">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h3>
-					</div>
-
-					<div>
-					<label>3.1 Adaptación al rol profesional</label>
-					<input type="text" value="{{ e.va31 }}" readonly>
-					</div>
-
-					<div>
-					<label>3.2 Capacidad para recibir sugerencias</label>
-					<input type="text" value="{{ e.va32 }}" readonly>
-					</div>
-
-					<div>
-					<label>3.3 Capacidad para trabajar bajo presión</label>
-					<input type="text" value="{{ e.va33 }}" readonly>
-					</div>
-
-					<div>
-					<label>3.4 Capacidad para trabajar en equipo</label>
-					<input type="text" value="{{ e.va34 }}" readonly>
-					</div>
-
-					<div>
-					<label>3.5 Comportamiento ético</label>
-					<input type="text" value="{{ e.va35 }}" readonly>
-					</div>
-
-					<div>
-					<label>3.6 Compromiso</label>
-					<input type="text" value="{{ e.va36 }}" readonly>
-					</div>
-
-					<div>
-					<label>3.7 Presentación personal </label>
-					<input type="text" value="{{ e.va37 }}" readonly>
-					</div>
-
-					<div>
-					<label>3.8 Puntualidad</label>
-					<input type="text" value="{{ e.va38 }}" readonly>
-					</div>
-
-					<div>
-					<label>3.9 Relaciones interpersonales </label>
-					<input type="text" value="{{ e.va39 }}" readonly>
-					</div>
-
-					<div class = "datos">
-					<h2 class = "datos">Logros y dificultades. Comentarios adicionales del asesor externo o jefe inmediato:</h2>
-					</div>
-					<div>	
-					<textarea cols="125" rows="10" readonly>{{ e.comentarioExterno }}</textarea>
-					</div>
-					
-					<div class = "datos">
-					<h2 class = "datos">Comentarios del Asesor Académico:</h2>
-					</div>
-
-					<div>	
-					<textarea cols="125" rows="10" readonly>{{ e.comentarioAcademico }}</textarea>
-					</div>
-
-					<div class = "datos">
-					<h2 class = "datos">Compromisos del practicante:</h2>
-					</div>
-
-					<div>	
-					<textarea cols="125" rows="10" readonly>{{ e.compromiso }}</textarea>
-					</div>
-	</form>	
+{% block content  %}
+{{ parent() }}
+<div class="content">
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Consulltando evaluacion # 1</h1>
+		<a href="javascript:history.back()"  class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
 	</div>
-	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection">
+
+		<div class="inform">
+			<form action="" method="post">
+
+				<h1><span>Cargo y plan de trabajo de comunicación</span></h1>
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">1.1. ¿Cuál es el proceso adelantado por el estudiante para el desarrollo de sus compromisos o actividades?</h2>
+						<textarea class= "input" cols="125" rows="10" readonly>{{ e.proceso }}</textarea>
+						
+					</div>
+
+					<div class="inputContainer">
+						<h2 class="largeh2">1.2  ¿Cuáles son las herramientas  y recursos con que cuenta el practicante para el normal desarrollo de sus actividades?</h2>
+
+						<div class="input">
+							<textarea cols="125" rows="10" readonly>{{ e.herramientas }}</textarea>
+						</div>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					<h2 class="largeh2">2. ¿Cómo evalúa las variables relacionadas con el desempeño laboral?</h2>
+					<div class="inputContainer">
+						
+						<h2>2.1 Capacidad de gestión</h2>
+						<input class="input" type="text" value="{{ e.dl21 }}" readonly>
+					</div>
+
+					<div class="inputContainer">>
+						<h2>2.2 Capacidad de negociación</h2>
+						<input class="input" type="text" value="{{ e.dl22 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>2.3 Creatividad</h2>
+						<input class="input" type="text" value="{{ e.dl23 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>2.4 Dominio Conceptual</h2>
+						<input class="input" type="text" value="{{ e.dl24 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>2.5 Iniciativa  </h2>
+						<input class="input" type="text" value="{{ e.dl25 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>2.6 Organización- Planeación</h2>
+						<input class="input" type="text" value="{{ e.dl26 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>2.7 Proactividad</h2>
+						<input class="input" type="text" value="{{ e.dl27 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>2.8 Recursividad</h2>
+						<input class="input" type="text" value="{{ e.dl28 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>2.9 Responsabilidad</h2>
+						<input class="input" type="text" value="{{ e.dl29 }}" readonly>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					
+					<h2 class="largeh2">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h2>
+					
+
+					<div class="inputContainer">
+						<h2>3.1 Adaptación al rol profesional</h2>
+						<input  class="input" type="text" value="{{ e.va31 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>3.2 Capacidad para recibir sugerencias</h2>
+						<input class="input" type="text" value="{{ e.va32 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>3.3 Capacidad para trabajar bajo presión</h2>
+						<input class="input" type="text" value="{{ e.va33 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>3.4 Capacidad para trabajar en equipo</h2>
+						<input class="input" type="text" value="{{ e.va34 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>3.5 Comportamiento ético</h2>
+						<input class="input" type="text" value="{{ e.va35 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>3.6 Compromiso</h2>
+						<input class="input" type="text" value="{{ e.va36 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>3.7 Presentación personal </h2>
+						<input class="input" type="text" value="{{ e.va37 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>3.8 Puntualidad</h2>
+						<input class="input" type="text" value="{{ e.va38 }}" readonly>
+					</div>
+
+					<div class="inputContainer">
+						<h2>3.9 Relaciones interpersonales </h2>
+						<input class="input" type="text" value="{{ e.va39 }}" readonly>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					<div class="inputContainer">	
+						<h2 class="largeh2">Logros y dificultades. Comentarios adicionales del asesor externo o jefe inmediato:</h2>
+						<textarea class="input" cols="125" rows="10" readonly>{{ e.comentarioExterno }}</textarea>
+					</div>
+
+					<div class="inputContainer">
+						<h2>Comentarios del Asesor Académico:</h2>	
+						<textarea class="input" cols="125" rows="10" readonly>{{ e.comentarioAcademico }}</textarea>
+					</div>
+
+					<div class="inputContainer">
+						<h2>Compromisos del practicante:</h2>	
+						<textarea class="input" cols="125" rows="10" readonly>{{ e.compromiso }}</textarea>
+					</div>
+				</div><!-- activity -->
+			</form>	
+		</div><!-- inform -->
+	</div><!-- downSection -->
+	{% endblock %}
+</div><!-- content -->
 {% endblock %}
