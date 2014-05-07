@@ -548,6 +548,8 @@
 
  							.input{
  								margin-top: 20px;
+ 								width: 350px;
+ 								margin-left: 10px;
  							}
 
  							.radio{
@@ -598,7 +600,8 @@
  						}
 
  						.nomodificable{
- 							background-color:#ececec;
+ 							pointer-events:none;
+ 							/*background-color:#ececec;*/
  							textarea{
  								border: none !important;
  								line-height: 150%;
@@ -606,6 +609,9 @@
  								background-color:#ececec;
  							}
  							.input{
+ 								background-color:#ececec;
+ 							}
+ 							input{
  								background-color:#ececec;
  							}
  						}

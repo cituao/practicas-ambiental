@@ -529,28 +529,30 @@
 /* line 549, globalsass/sass/contentStyle.scss */
 .inform .activity .inputContainer .input {
   margin-top: 20px;
+  width: 350px;
+  margin-left: 10px;
 }
-/* line 553, globalsass/sass/contentStyle.scss */
+/* line 555, globalsass/sass/contentStyle.scss */
 .inform .activity .inputContainer .radio {
   width: 380px;
 }
-/* line 555, globalsass/sass/contentStyle.scss */
+/* line 557, globalsass/sass/contentStyle.scss */
 .inform .activity .inputContainer .radio label {
   width: auto;
 }
-/* line 563, globalsass/sass/contentStyle.scss */
+/* line 565, globalsass/sass/contentStyle.scss */
 .inform .activity h1 label {
   width: 243px;
   margin-bottom: 10px;
 }
-/* line 571, globalsass/sass/contentStyle.scss */
+/* line 573, globalsass/sass/contentStyle.scss */
 .inform h1 {
   font-family: helvetica;
   font-size: 24px;
   color: #242021;
   margin-left: 30px;
 }
-/* line 578, globalsass/sass/contentStyle.scss */
+/* line 580, globalsass/sass/contentStyle.scss */
 .inform textarea {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -566,44 +568,49 @@
   /*margin-right:50px;*/
   font-family: helvetica;
 }
-/* line 593, globalsass/sass/contentStyle.scss */
+/* line 595, globalsass/sass/contentStyle.scss */
 .inform textarea:hover {
   border-color: #ec1c24;
 }
-/* line 596, globalsass/sass/contentStyle.scss */
+/* line 598, globalsass/sass/contentStyle.scss */
 .inform textarea:focus {
   border-color: #ec1c24;
 }
-/* line 600, globalsass/sass/contentStyle.scss */
-.inform .nomodificable {
-  background-color: #ececec;
-}
 /* line 602, globalsass/sass/contentStyle.scss */
+.inform .nomodificable {
+  pointer-events: none;
+  /*background-color:#ececec;*/
+}
+/* line 605, globalsass/sass/contentStyle.scss */
 .inform .nomodificable textarea {
   border: none !important;
   line-height: 150%;
   height: 300px;
   background-color: #ececec;
 }
-/* line 608, globalsass/sass/contentStyle.scss */
+/* line 611, globalsass/sass/contentStyle.scss */
 .inform .nomodificable .input {
+  background-color: #ececec;
+}
+/* line 614, globalsass/sass/contentStyle.scss */
+.inform .nomodificable input {
   background-color: #ececec;
 }
 
 /*inform*/
-/* line 616, globalsass/sass/contentStyle.scss */
+/* line 622, globalsass/sass/contentStyle.scss */
 .bold {
   font-weight: bold;
   font-size: 19px;
   color: #7b7b7b !important;
 }
 
-/* line 622, globalsass/sass/contentStyle.scss */
+/* line 628, globalsass/sass/contentStyle.scss */
 .largeh2 {
   width: 400px !important;
 }
 
-/* line 626, globalsass/sass/contentStyle.scss */
+/* line 632, globalsass/sass/contentStyle.scss */
 #warning {
   width: 90%;
   border-top: none;

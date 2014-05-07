@@ -10,8 +10,8 @@ class Evaluacion2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-		        ->add('required' => false, 'cumplido','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
+        $builder 
+		        ->add('cumplido','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'read_only' => true, 'attr' => array('cols' => '130', 'rows' => '10')))
 				->add('dl21', 'text', array('required' => false, 'label' => 'Capacidad de gestión', 'read_only' => true))
 				->add('dl22', 'text', array('required' => false, 'label' => 'Capacidad de negociacion', 'read_only' => true))	
 				->add('dl23', 'text', array('required' => false, 'label' => 'Creatividad', 'read_only' => true))	
