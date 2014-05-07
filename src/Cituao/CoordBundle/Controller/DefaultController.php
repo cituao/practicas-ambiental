@@ -108,7 +108,7 @@ class DefaultController extends Controller
 		
 		if ($formulario->isValid()) {
 			//si subio no subio foto  le asignamos una foto generica
-			if ($practicante->getFile() == NULL) 	$practicante->setPath('user.jpeg');
+			if ($practicante->getFile() == NULL) 	$practicante->setPath('defaultPicture.png');
 			//subimos la foto al servidor
 			$practicante->upload();
 
@@ -414,7 +414,7 @@ class DefaultController extends Controller
 
 					$practicante->setEstado(false);
 
-					$practicante->setPath('user.jpeg');
+					$practicante->setPath('defaultPicture.png');
 					$em->persist($practicante);
 					$em->flush();
 					$i++;
@@ -581,7 +581,7 @@ class DefaultController extends Controller
 				throw $this->createNotFoundException('¡La cédula ingresada ya existe!');
 			}
 
-			if ($academico->getFile() == NULL) 	$academico->setPath('user.jpeg');
+			if ($academico->getFile() == NULL) 	$academico->setPath('defaultPicture.png');
 			$academico->upload();	
 			
             // Completar las propiedades que el usuario no rellena en el formulario
