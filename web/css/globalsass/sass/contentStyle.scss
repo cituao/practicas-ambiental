@@ -544,7 +544,7 @@
 
  							h2{
  								margin-bottom: 10px;
- 								width: auto !important;
+ 								width: 100% !important;
  							}
 
  							.input{
@@ -636,6 +636,10 @@
 
  						.largeh2{
  							width: 400px !important;
+ 							font-family: helvetica !important;
+ 						}
+ 						.extraLarge{
+ 							width: 80% !important;
  						}
 
  						#warning{

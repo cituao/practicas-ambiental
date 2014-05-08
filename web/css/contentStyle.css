@@ -525,7 +525,7 @@
 /* line 545, globalsass/sass/contentStyle.scss */
 .inform .activity .inputContainer h2 {
   margin-bottom: 10px;
-  width: auto !important;
+  width: 100% !important;
 }
 /* line 550, globalsass/sass/contentStyle.scss */
 .inform .activity .inputContainer .input {
@@ -616,9 +616,15 @@
 /* line 637, globalsass/sass/contentStyle.scss */
 .largeh2 {
   width: 400px !important;
+  font-family: helvetica !important;
 }
 
 /* line 641, globalsass/sass/contentStyle.scss */
+.extraLarge {
+  width: 80% !important;
+}
+
+/* line 645, globalsass/sass/contentStyle.scss */
 #warning {
   width: 90%;
   border-top: none;
