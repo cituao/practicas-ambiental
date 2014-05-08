@@ -539,11 +539,12 @@
 
  						.inputContainer{
  							float: left;
- 							width: 450px;
+ 							width: 435px;
  							margin-left: 30px;
 
  							h2{
  								margin-bottom: 10px;
+ 								width: auto !important;
  							}
 
  							.input{
@@ -567,7 +568,7 @@
  							margin-bottom: 10px;
  						}
 
- 						} /*activity*/
+ 					} /*activity*/
 
 
  						h1{
@@ -599,9 +600,17 @@
  							border-color:$redColor;
  						}
 
+ 						textarea.nomodificable{
+ 								
+ 								background-color:#ececec;
+ 							}
+ 						input.nomodificable{
+ 								
+ 								background-color:#ececec;
+ 							}
  						.nomodificable{
  							pointer-events:none;
- 							/*background-color:#ececec;*/
+ 							
  							textarea{
  								border: none !important;
  								line-height: 150%;
@@ -616,7 +625,7 @@
  							}
  						}
 
- 						}/*inform*/
+ 				}/*inform*/
 
 
  						.bold{

@@ -31,7 +31,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<div class="activity">
 					<div class="inputContainer">
 						<h2 class="largeh2">1. Considera que las actividades –funciones desarrolladas durante el semestre- corresponden a las descritas inicialmente en la carta de compromiso en un:</h2>
-						<div class="input">
+						<div class="input nomodificable">
 							<h2>Resultado:</h2>
 							<input type="text" value="{{ e.actfun }} " readonly>
 						</div>
@@ -44,7 +44,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<h2 class="largeh2">
 							2. De las actividades o funciones nuevas o adicionales que se realizaron, el cumplimiento del estudiante fue (marque de 1 a 5):
 						</h2>
-						<div class = "input">
+						<div class = "input nomodificable">
 							<h2>Resultado:</h2>
 							<input type="text" value="{{ e.actfunueva }} " readonly>
 						</div>
@@ -58,7 +58,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<h2 class="largeh2">
 							3. El proceso de acompañamiento y seguimiento, desde el aporte académico y cumplimiento por parte del asesor académico fue (marque de 1 a 5):
 						</h2>
-						<div class = "input">
+						<div class = "input nomodificable">
 							<h2>Resultado:</h2>
 							<input type="text" value="{{ e.acompana }} " readonly>
 						</div>
@@ -69,13 +69,13 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					<div class="inputContainer">
 						<h2 class="largeh2">4. ¿Qué calificación le da al trabajo desarrollado por el estudiante y el aporte que éste le dio a la organización?:</h2>
 
-						<div class = "input">
+						<div class = "input nomodificable">
 							<h2>Resultado en trabajo:</h2>
 							<input type="text" value="{{ e.trabajo }} " readonly>
 						</div>
 
 
-						<div class = "input">
+						<div class = "input nomodificable">
 							<h2>Resultado en aporte:</h2>
 							<input type="text" value="{{ e.aporte }} " readonly>
 						</div>
@@ -85,14 +85,14 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<div class="activity">
 					<div class="inputContainer">
 						<h2 class="largeh2">5. Observaciones y sugerencias del centro de práctica (empresa) </h2>		
-						<textarea class="input" cols="80" rows="5" readonly>{{ e.observaciones }}</textarea>
+						<textarea class="input nomodificable" cols="80" rows="5" readonly>{{ e.observaciones }}</textarea>
 					</div>
 				</div><!-- activity -->
 
 				<div class="activity">
 					<div class="inputContainer">
 						<h2 class="largeh2">6. Como asesor externo o jefe inmediato, ¿Recibe a satisfacción la práctica y/o pasantía del estudiante</h2>				
-						<div class = "input">
+						<div class = "input nomodificable">
 							<h2>Resultado:</h2>
 							{% if e.satisfaccion == true %}
 							<input type="text" value="APROBADO" readonly>
@@ -102,7 +102,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						</div>
 
 
-						<div class = "input">
+						<div class = "input nomodificable">
 							<h2 class="largeh2">
 								En caso negativo ¿qué está pendiente?:
 							</h2>	
