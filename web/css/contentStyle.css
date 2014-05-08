@@ -615,16 +615,18 @@
 
 /* line 637, globalsass/sass/contentStyle.scss */
 .largeh2 {
+  color: #242021;
   width: 400px !important;
   font-family: helvetica !important;
 }
 
-/* line 641, globalsass/sass/contentStyle.scss */
+/* line 642, globalsass/sass/contentStyle.scss */
 .extraLarge {
+  color: #242021;
   width: 80% !important;
 }
 
-/* line 645, globalsass/sass/contentStyle.scss */
+/* line 647, globalsass/sass/contentStyle.scss */
 #warning {
   width: 90%;
   border-top: none;

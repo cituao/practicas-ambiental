@@ -29,171 +29,175 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 				
 
-				
 				<h1><span>A continuación se le solicita evaluar  el proceso del practicante de acuerdo con los siguientes puntos.</span></h1>									
-					<div class="activity">
-						<div class="inputContainer">
-							<h2 class="largeh2">¿En qué medida se han cumplido los objetivos y expectativas propuestos para el trabajo del practicante? Explique por qué</h2>
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">1. ¿En qué medida se han cumplido los objetivos y expectativas propuestos para el trabajo del practicante? Explique por qué</h2>
 
-							<div class="input">
-								{{ formulario.cumplido }}
-							</div>
-						</div>
-					</div><!-- activity -->
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.cumplido }}</textarea>
+					</div>
+				</div><!-- activity -->
 
 
 
-					<div class="activity">
-						<div class="inputContainer">
-							<h2 class="largeh2">2. En relación con la Evaluación No. 1 mencione si se han presentado cambios o si hay continuidad en las variables relacionadas con el desempeño laboral.</h2>
+				<div class="activity">
 
-							<div class="input">
-								{{ formulario.dl21 }}
-							</div>
-							<div class="input">
-								{{ formulario.dl22 }}
-							</div>
-							<div class="input">
-								{{ formulario.dl23 }}
-							</div>
-							<div class="input">
-								{{ formulario.dl24 }}
-							</div>
-							<div class="input">
-								{{ formulario.dl25 }}
-							</div>
-							<div class="input">
-								{{ formulario.dl26 }}
-							</div>
-							<div class="input">
-								{{ formulario.dl27 }}
-							</div>
-							<div class="input">
-								{{ formulario.dl28 }}
-							</div>
-							<div class="input">
-								{{ formulario.dl29 }}
-							</div>
-						</div>
-					</div><!-- activity -->
-
-					<div class="activity">
-						<div class="inputContainer">
-							<h2 class="largeh2">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h2>
-							<div class="input">
-								{{ formulario.va31 }}
-							</div>
-							<div class="input">
-								{{ formulario.va32 }}
-							</div>
-							<div class="input">
-								{{ formulario.va33 }}
-							</div>
-							<div class="input">
-								{{ formulario.va34 }}
-							</div>
-							<div class="input">
-								{{ formulario.va35 }}
-							</div>
-							<div class="input">
-								{{ formulario.va36 }}
-							</div>
-							<div class="input">
-								{{ formulario.va37 }}
-							</div>
-							<div class="input">
-								{{ formulario.va38 }}
-							</div>
-							<div class="input">
-								{{ formulario.va39 }}
-							</div>
-						</div>
-					</div><!-- activity -->
-
-					<div class="activity">
-						<div class="inputContainer">
-
-							<h2 class="largeh2">Logros y dificultades. Comentarios adicionales del Asesor Externo o Jefe Inmediato:</h2>
-							<div class="input">
-								{{ formulario.comentarioExterno }}
-							</div>
-						</div>
-
-					</div><!-- activity -->
+					<h2 style="margin-left:30px;" class="extraLarge">2. En relación con la Evaluación No. 1 mencione si se han presentado cambios o si hay continuidad en las variables relacionadas con el desempeño laboral.</h2>
 
 
-					<div class="activity">
-						<div class="inputContainer">
-							<h2 class="largeh2">4. ¿Qué aportes o beneficios le trae a la organización la presencia y trabajo  del practicante?</h2>
-							<div class="input">
-								{{ formulario.aportes }}
-							</div>
-						</div>
-					</div><!-- activity -->
+					<div class="inputContainer">
+						<h2>Capacidad de gestión</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl21 }}" readonly>
+					</div>
 
 
 
-					<div class="activity">
-						<div class="inputContainer">
-							<h2 class="largeh2">5. ¿Qué proyección tiene para el cargo del practicante?</h2>
-							<div class="input">
-								{{ formulario.proyeccion }}
-							</div>
-						</div>
-					</div><!-- activity -->
+					<div class="inputContainer">
+						<h2>Capacidad de negociacion</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl22 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Creatividad</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl23 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Dominio conceptual</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl24 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Iniciativa</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl25 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Organización - Planeación</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl26 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Proactividad</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl27 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Proactividad</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl28 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Proactividad</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.dl29 }}" readonly>
+					</div>
+					
+
+				</div><!-- activity -->
+
+				<div class="activity">
+
+					<h2 style="margin-left:30px;" class="extraLarge">3. En relación con las variables actitudinales y relaciones interpersonales ¿cuál es su apreciación?</h2>
+					<div class="inputContainer">
+						<h2>Adáptación al rol profesional</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va31 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Capacidad para recibir sugerencias</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va32 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Capacidad para trabajar bajo presión</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va33 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Capacidad para trabajar en equipo</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va34 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Comportamiento ético</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va35 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Compromiso</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va36 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Presentación personal</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va37 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Puntualidad</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va38 }}" readonly>
+					</div>
+					<div class="inputContainer">
+						<h2>Relaciones interpersonales</h2>
+						<input class="input nomodificable" type="text" value="{{ formulario.va39 }}" readonly>
+					</div>
+
+				</div><!-- activity -->
+
+				<div class="activity">
+					<div class="inputContainer">
+
+						<h2 class="largeh2">Logros y dificultades. Comentarios adicionales del Asesor Externo o Jefe Inmediato:</h2>
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.comentarioExterno }} </textarea>
+
+					</div>
+
+				</div><!-- activity -->
 
 
-					<div class="activity">
-						<div class="inputContainer">
-							<h2 class="largeh2">6. ¿Cuál ha sido el compromiso, disposición y apoyo de la organización al trabajo del practicante?</h2>
-							<div class="input">
-								{{ formulario.compromiso }}
-							</div>
-						</div>
-					</div><!-- activity -->
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">4. ¿Qué aportes o beneficios le trae a la organización la presencia y trabajo  del practicante?</h2>
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.aportes }}</textarea>
+					</div>
+				</div><!-- activity -->
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">5. ¿Qué proyección tiene para el cargo del practicante?</h2>
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.proyeccion }}</textarea>
+					</div>
+				</div><!-- activity -->
+
+
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">6. ¿Cuál ha sido el compromiso, disposición y apoyo de la organización al trabajo del practicante?</h2>
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.compromiso }}</textarea>
+					</div>
+				</div><!-- activity -->
 
 
 
-					<div class="activity">
-						<div class="inputContainer">
-							<h2 class="largeh2">7. ¿Qué apreciación tiene del Programa de Práctica Profesional desde la Gestión Administrativa y Académica?</h2>
-							<div class="input">
-								{{ formulario.apreciacion }}
-							</div>
-							<div class="input">
-								{{ formulario.aprobado }}
-							</div>
-							
-						</div>
-					</div><!-- activity -->
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">7. ¿Qué apreciación tiene del Programa de Práctica Profesional desde la Gestión Administrativa y Académica?</h2>
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.apreciacion }}
+						</textarea>
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.aprobado }}</textarea>
 
 
-					<div class="activity">
-						<div class="inputContainer">
-							<h2 class="largeh2">Comentarios del Asesor Académico:</h2>
-							
-							<div class="input nomodificable">
-								{{ formulario.comentarioAcademico }}
-							</div>
-						</div>
-					</div><!-- activity -->
+					</div>
+				</div><!-- activity -->
 
-					<div class="activity">
+				<div class="activity">
+					<div class="inputContainer">
+						<h2 class="largeh2">Comentarios del Asesor Académico:</h2>
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.comentarioAcademico }}</textarea>
+					</div>
+				</div><!-- activity -->
 
-						<div class="inputContainer"> 
-							<h2 class="largeh2">Compromiso del practicante:</h2>
-														<div class="input nomodificable">
-								{{ formulario.compromisop }}
-								{{ formulario.compromisop }}
+				<div class="activity">
 
-							</div>
-						</div>
-					</div><!-- activity -->
+					<div class="inputContainer"> 
+						<h2 class="largeh2">Compromiso del practicante:</h2>
+						<textarea class="input nomodificable" cols="125" rows="10"  readonly>{{ formulario.compromisop }}</textarea>
+					</div>
+				</div><!-- activity -->
 
 
-				</form>	
-			</div><!--inform -->
-		</div><!--downSection -->
-		{% endblock  %}
-	</div><!--content -->
-	{% endblock %}
+
+
+
+			</form>	
+		</div><!--inform -->
+	</div><!--downSection -->
+	{% endblock  %}
+</div><!--content -->
+{% endblock %}
