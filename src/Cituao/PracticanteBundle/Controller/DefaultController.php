@@ -148,7 +148,7 @@ class DefaultController extends Controller
 
 		//si no hay asesoria registrada creamos una instancia
 		if ($sw == false) {
-			throw $this->createNotFoundException('El asesor academico aun no ha registrado la asesoría!');
+			throw $this->createNotFoundException('100');
 		}
 
 		
