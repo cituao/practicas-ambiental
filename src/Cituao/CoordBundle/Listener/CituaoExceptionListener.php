@@ -32,8 +32,7 @@ class CituaoExceptionListener
 				
 			if (!strcmp($exception->getMessage(), '100')){
 										
-				$message = sprintf('El asesor aun no ha realizado la asesoria! $s %s', $exception->getMessage(), $exception->getCode());
-
+				$message = sprintf('El asesor aun no ha realizado la asesoria!');
 				$error = array('message' => $message);
 
 				// set response content
