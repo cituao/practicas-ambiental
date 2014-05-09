@@ -1,24 +1,37 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
 
-{% block title %}Error en Prácticas profesionales{% endblock %}
+{% block js  %}
+<script>
+$( "#cronograma" ).css("background-color","#000");
+$( "#cronograma img" ).css("opacity","0.4");
+$( "#cronograma h3" ).css("opacity","0.4");
+</script>
 
-{% block infowrapper  %} 
-	<div id="infoWrapper">
-		<h2 id = "titlee">Requisitos</h2>
-		<div id = "menuop">
-			<ul>
-			<li><a href="javascript:history.back()" class = "baropcion">Regresar</a></li>
-			</ul>
-		</div>
-		<div id = "subinfowrapper">
-			<div>
-				 <h3 id = "title"> {{ exception.codigo}} </h3>
-				 <h3 id = "title"> {{ exception.message }} </h3>
+{% endblock %}
 
 
-				 
-			</div>
+{% block content  %}
+
+<div class="content">
+{{ parent() }}
+
+	{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Error en Prácticas profesionales</h1>
+		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+	</div>
+	{% endblock  %}
+
+</div>
+
+{% block downSection  %}
+	<div class = "downSection">
+		<div class="inform">
+		 <h3 id = "title"> {{ exception.codigo}} </h3>
+		 <h3 id = "title"> {{ exception.message }} </h3>
+
+	
 		</div>
 	</div>
 {% endblock %}
-
+{% endblock %}
