@@ -64,7 +64,11 @@ $( "#cronograma h3" ).css("opacity","0.4");
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin realizar!</td>
+					{% if p.listoAsesoria1 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 2}) }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado"></td>
+					{% endif %}
 				{% endif %}
 
 			  </tr>
@@ -77,10 +81,14 @@ $( "#cronograma h3" ).css("opacity","0.4");
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 3}) }}">Ver</a></td>
 				{% elseif p.fechaAsesoria3 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
-					<td>-</td>
+					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin realizar!</td>
+					{% if p.listoAsesoria2 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 3}) }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado"></td>
+					{% endif %}
 				{% endif %}
 			  </tr>
 
@@ -92,10 +100,14 @@ $( "#cronograma h3" ).css("opacity","0.4");
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 4}) }}">Ver</a></td>
 				{% elseif p.fechaAsesoria4 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
-					<td class = "colEstado">-</td>
+					<td class = "colEstado"></td>
 				{% else %}
 					<td class = "colEstado">Sin realizar!</td>
+					{% if p.listoAsesoria3 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 4}) }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado"></td>
+					{% endif %}
 				{% endif %}
 			  </tr>
 			  <tr>
@@ -109,7 +121,11 @@ $( "#cronograma h3" ).css("opacity","0.4");
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin realizar!</td>
+					{% if p.listoAsesoria4 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 5}) }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado"></td>
+					{% endif %}
 				{% endif %}
 			  </tr>
 
@@ -124,7 +140,11 @@ $( "#cronograma h3" ).css("opacity","0.4");
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin realizar!</td>
+					{% if p.listoAsesoria5 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 6}) }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado"></td>
+					{% endif %}
 				{% endif %}
 				
 			  </tr>
@@ -140,7 +160,11 @@ $( "#cronograma h3" ).css("opacity","0.4");
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin realizar!</td>
+					{% if p.listoAsesoria6 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 7}) }}">Entregar</a></td>
+					{% else %}
+					<td class = "colEstado"></td>
+					{% endif %}
 				{% endif %}
 				
 			  </tr>
