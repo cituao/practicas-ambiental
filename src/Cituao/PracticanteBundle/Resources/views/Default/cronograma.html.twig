@@ -288,7 +288,11 @@ $( "#cronograma h3" ).css("opacity","0.4");
 					<td class = "colEstado">-</td>
 				{% else %}
 					<td class = "colEstado">Sin entregar!</td>
+					{% if p.listoGestion3 == true %}
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_informefinal', { 'id': p.id}) }}">Entregar</a></td>
+					{% else %}
+						<td class = "colEstado"></td>
+					{% endif %}	
 				{% endif %}
 			  </tr>
 			{% if p.area == 1 %}
@@ -308,7 +312,7 @@ $( "#cronograma h3" ).css("opacity","0.4");
 					{% if p.listoInformeFinal == true %}					
 					<td class = "colEstado"><a href="{{ path('cituao_practicante_subir_proyecto') }}">Entregar</a></td>
 					{% else %}
-					<td class = "colEstado"><a href="{{ path('cituao_practicante_subir_proyecto') }}">Entregar</a></td>
+					<td class = "colEstado"></td>
 					{% endif %}
 				{% endif %}
 			  </tr>
