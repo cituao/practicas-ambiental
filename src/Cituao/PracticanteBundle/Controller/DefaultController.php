@@ -148,7 +148,7 @@ class DefaultController extends Controller
 
 		//si no hay asesoria registrada creamos una instancia
 		if ($sw == false) {
-			throw $this->createNotFoundException('100');
+			throw $this->createNotFoundException('ERR_ASESORIA_NO_INICIADA');
 		}
 
 		

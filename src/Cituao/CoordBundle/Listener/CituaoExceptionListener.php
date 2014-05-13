@@ -30,34 +30,27 @@ class CituaoExceptionListener
 			// new Response object
 			$response = new Response();
 				
-			if (!strcmp($exception->getMessage(), '100')){
-										
-				$message = sprintf('El asesor aun no ha realizado la asesoria!');
-				$error = array('message' => $message);
-
-				// set response content
-				$response->setContent(
-					// create you custom template AcmeFooBundle:Exception:exception.html.twig
-					$this->templating->render(
-						'CituaoPracticanteBundle:Default:error.html.twig',
-						array('exception' => $error)
-					)
-				);
-			} else{
-				$message = sprintf('Mi error dice: $s con el código: %s', $exception->getMessage(), $exception->getCode());
-				$message = array ('codigo' => $exception->getCode(), 'message' => $exception->getMessage());
-
-				// set response content
-				$response->setContent(
-					// create you custom template AcmeFooBundle:Exception:exception.html.twig
-					$this->templating->render(
-						'CituaoCoordBundle:Default:error.html.twig',
-						array('exception' => $message)
-					)
-				);
-
+			switch ($exception->getMessage()){
+				case "ERR_ASESORIA_NO_INICIADA":
+					$message = sprintf('El asesor aun no ha realizado la asesoria!');
+					break;
+				default:
+					$message = sprintf('Error no identificado!');
+					break;
+				
 			}
-
+			
+			$error = array('message' => $message);
+			// set response content
+			$response->setContent(
+				// create you custom template AcmeFooBundle:Exception:exception.html.twig
+				$this->templating->render(
+					'CituaoPracticanteBundle:Default:error.html.twig',
+					array('exception' => $error)
+				)
+			);
+			
+			
 			// HttpExceptionInterface is a special type of exception
 			// that holds status code and header details
 			if ($exception instanceof HttpExceptionInterface) {
