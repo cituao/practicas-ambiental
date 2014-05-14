@@ -421,10 +421,10 @@ class DefaultController extends Controller
 		if (($numeva == 1 AND $cronograma->getListoEvaluacion1() == false) OR ($numeva == 2 AND $cronograma->getListoEvaluacion2() == false)){
 			
 			if ($numeva == 1)			
-				throw $this->createNotFoundException('El asesor externo no ha registrado la evaluación #1!');
+				throw $this->createNotFoundException('ERR_EVALUACION_NO_INICIADA');
 			else
-				throw $this->createNotFoundException('El asesor externo no ha registrado la evaluación #2!');
-			//return $this->render('CituaoAcademicoBundle:Default:index.html.twig');			
+				throw $this->createNotFoundException('ERR_EVALUACION_NO_INICIADA');
+					
 		}
 
 		//buscamos la evaluacion
