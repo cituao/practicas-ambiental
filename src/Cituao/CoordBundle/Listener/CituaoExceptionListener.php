@@ -32,7 +32,7 @@ class CituaoExceptionListener
 				
 			switch ($exception->getMessage()){
 				case "ERR_ASESORIA_NO_INICIADA":
-					$message = sprintf('El asesor aun no ha realizado la asesoria!');
+					$message = sprintf('El asesor académico aun no ha realizado la asesoria!');
 					break;
 				case "ERR_EVALUACION_NO_INICIADA":
 					$message = sprintf('El asesor externo no ha registrado la evaluación aun!'); 
