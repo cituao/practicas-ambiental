@@ -111,7 +111,7 @@
  	width: 100%;
  	padding-left: $contentLeftMargin;
  	height:auto;
- 	table-border:colapse;
+ 	table-border:collapse;
 
  	.tableHead{
  		background-color: $softGray;
@@ -172,6 +172,8 @@
 
  		td{
  			padding: 1px 6px;
+ 			min-width: 120px;
+ 			float: left;
  		}
 
  		td:hover{
@@ -256,6 +258,8 @@
  			float: left;
  			margin-bottom: 10px;
  			/*border: 1px solid #000;*/
+
+
  		}
  		.profileFormContainer{
  			width: 800px;
@@ -282,6 +286,8 @@
  			.input{
  				float: left;
  			}
+
+
  		}
  		.selFile{
  			width:300px;
@@ -442,7 +448,7 @@
  				}
 
 
- 				} /* practicantesTable */
+ 				} /* generalTable */
 
 
 
@@ -627,6 +633,7 @@
 
  				}/*inform*/
 
+ 					
 
  						.bold{
  							font-weight: bold;
