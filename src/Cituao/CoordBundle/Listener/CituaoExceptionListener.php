@@ -34,6 +34,9 @@ class CituaoExceptionListener
 				case "ERR_ASESORIA_NO_INICIADA":
 					$message = sprintf('El asesor aun no ha realizado la asesoria!');
 					break;
+				case "ERR_EVALUACION_NO_INICIADA":
+					$message = sprintf('El asesor externo no ha registrado la evaluación aun!'); 
+					break;				
 				default:
 					$message = sprintf('Error no identificado!');
 					break;
