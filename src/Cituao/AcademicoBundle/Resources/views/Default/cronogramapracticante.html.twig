@@ -224,7 +224,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					<td class = "colEstado">
 					{% if c.listoEvaluacion1 == true %}					
 					<a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>					{% else %}
-					Aun falta por evaluación 1!</td>
+					</td>
 					{% endif %}	
 					
 				{% endif %}
@@ -261,7 +261,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					<td class = "colEstado">
 					{% if c.listoGestion1 == true %}
 					<a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>					{% else %}
-					Aun falta por Inf.Gestión #1!</td>
+					</td>
 					{% endif %}
 				{% endif %}
 
@@ -281,7 +281,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					<td class = "colEstado">
 					{% if c.listoGestion2 == true %}
 					<a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>					{% else %}
-					Aun falta por Inf.Gestión #2!</td>
+					</td>
 					{% endif %}
 					
 				{% endif %}
@@ -303,7 +303,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					{% if c.listoGestion3 == true %}					
 					<a href="{{ path('cituao_academico_registrar_informefinal', { 'id': p.id}) }}">Entregar</a></td>
 					{% else %}
-					Aun falta por Inf. Gestion #3!</td>	
+					</td>	
 					{% endif %}
 				{% endif %}
 				
