@@ -367,7 +367,7 @@ class DefaultController extends Controller
 		if ($practicante->getListoGestion3() == false && $numcua == 3) $sw=true;
 
 		if ($sw == true){
-			throw $this->createNotFoundException('El practicante no ha registrado el informe de Gestión!');
+			throw $this->createNotFoundException('ERR_GESTION_NO_REGISTRADA');
 		}
 
 

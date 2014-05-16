@@ -36,7 +36,10 @@ class CituaoExceptionListener
 					break;
 				case "ERR_EVALUACION_NO_INICIADA":
 					$message = sprintf('El asesor externo no ha registrado la evaluación aun!'); 
-					break;				
+					break;			
+				case "ERR_GESTION_NO_REGISTRADA":
+					$message = sprintf('El practicante no ha registrado el informe de Gestión!'); 
+					break;
 				default:
 					$message = sprintf('Error no identificado!');
 					break;
