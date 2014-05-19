@@ -94,20 +94,34 @@ class DefaultController extends Controller
 	// Muestra el cronograma del practicante
 	//*********************************************
     public function cronogramaAction(){
-    	$user = $this->get('security.context')->getToken()->getUser();
+ 		$user = $this->get('security.context')->getToken()->getUser();
     	$codigo =  $user->getUsername();
     	$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
     	$practicante = $repository->findOneBy(array('codigo' => $codigo));
 
-		/*$em = $this->getDoctrine()->getManager();
-		$query = $em->createQuery(
-	            'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
-		$query->setParameter('id_aca',$academico->getId());
-		$query->setParameter('id_pra',$id);
-		$cronograma = $query->getOneOrNullResult();*/
+		//busco al academico
+    	$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+    	$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
+
+		//buscamos el cronograma del asesor academico
+    	$em = $this->getDoctrine()->getManager();
+    	$query = $em->createQuery(
+    		'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+    	$query->setParameter('id_aca',$academico->getId());
+    	$query->setParameter('id_pra',$practicante->getId());
+    	$cronograma = $query->getOneOrNullResult();
+
+		//buscamos el cronograma del asesor externo
+    	$query = $em->createQuery(
+    		'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.externo =:id_ext AND c.practicante =:id_pra');
+    	$query->setParameter('id_ext',$practicante->getExterno()->getId());
+    	$query->setParameter('id_pra',$practicante->getId());
+    	$cronogramaexterno = $query->getOneOrNullResult();
 
 		
-		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante));				
+		
+		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante, 'e' => $cronogramaexterno, 'a' => $cronograma ));				
+			
 
 	}
 

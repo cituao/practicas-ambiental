@@ -41,7 +41,8 @@ class CituaoExceptionListener
 					$message = sprintf('El practicante no ha registrado el informe de Gestión!'); 
 					break;
 				default:
-					$message = sprintf('Error no identificado!');
+					//$message = sprintf('Error no identificado!');
+					$message = $exception->getMessage();
 					break;
 				
 			}
