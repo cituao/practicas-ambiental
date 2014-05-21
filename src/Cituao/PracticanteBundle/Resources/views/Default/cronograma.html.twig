@@ -43,22 +43,30 @@ $( "#cronograma h3" ).css("opacity","0.4");
 			  <tr>
 				<td  class = "colActividad">Asesoría #1</td>
 				<td  class = "colFecha">{{ p.fechaAsesoria1|date("d/m/Y") }}</td>
-				{% if p.listoAsesoria1 == true %}
-					<td  class = "colEstado">Realizada</td>
-					<td class = "colEstado">*</td>
-					<td class = "colEstado">*</td>
-					<td  class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
-				{% elseif p.fechaAsesoria1 > date() %}
-					<td  class = "colEstado">Aun no es fecha!</td>
-					<td class = "colEstado">*</td>
-					<td class = "colEstado">*</td>
-					<td>-</td>
+				{% if p.fechaAsesoria1 > date() %}
+					<td class = "colEstado">Aun no es fecha!</td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
 				{% else %}
-					<td  class = "colEstado">Sin realizar!</td>
-					<td class = "colEstado">*</td>
-					<td class = "colEstado">*</td>
-
-					<td  class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+					{% if a.listoAsesoria1 == false %}
+						<td  class = "colEstado">Asesor no ha entregado!</td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+					{% else %}
+						{% if p.listoAsesoria1 == true %}
+							<td  class = "colEstado">Realizada</td>
+							<td class = "colEstado"></td>
+							<td class = "colEstado"></td>
+							<td  class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Ver</a></td>
+						{% else %}
+							<td  class = "colEstado">Debe entregar!</td>
+							<td class = "colEstado">Entrego!</td>
+							<td class = "colEstado"></td>
+							<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_asesoria', { 'id': p.id, 'numase': 1}) }}">Entregar</a></td>
+						{% endif %}
+					{% endif %}
 				{% endif %}
 
 			  </tr>
