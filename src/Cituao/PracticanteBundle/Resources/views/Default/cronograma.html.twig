@@ -377,9 +377,9 @@ $( "#cronograma h3" ).css("opacity","0.4");
 				<td>{{ p.fechaInformeGestion2|date("d/m/Y") }}</td>
 				{% if  p.fechaInformeGestion2 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
-					<td class = "colEstado">-</td>
-					<td class = "colEstado">-</td>
-					<td class = "colEstado">-</td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
 				{% else %}
 					{% if p.listoGestion2 == true %}
 						<td class = "colEstado">Entregado</td>
@@ -394,7 +394,11 @@ $( "#cronograma h3" ).css("opacity","0.4");
 						<td class = "colEstado">Sin entregar!</td>
 						<td class = "colEstado"></td>
 						<td class = "colEstado"></td>
+						{% if p.ListoGestion1 == true %}
 						<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>
+						{% else %}
+						<td class = "colEstado"></td>
+						{% endif %}
 					{% endif %}
 				{% endif %}
 				
@@ -405,9 +409,9 @@ $( "#cronograma h3" ).css("opacity","0.4");
 				<td>{{ p.fechaInformeGestion3|date("d/m/Y") }}</td>
 				{% if  p.fechaInformeGestion3 > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
-					<td class = "colEstado">-</td>
-					<td class = "colEstado">-</td>
-					<td class = "colEstado">-</td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
 				{% else %}
 					{% if p.listoGestion3 == true %}
 						<td class = "colEstado">Entregado</td>
@@ -422,7 +426,11 @@ $( "#cronograma h3" ).css("opacity","0.4");
 						<td class = "colEstado">Sin entregar!</td>
 						<td class = "colEstado"></td>
 						<td class = "colEstado"></td>
+						{% if p.ListoGestion2 == true %}
 						<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>
+						{% else %}
+						<td class = "colEstado"></td>
+						{% endif %}
 					{% endif %}
 				{% endif %}
 				
