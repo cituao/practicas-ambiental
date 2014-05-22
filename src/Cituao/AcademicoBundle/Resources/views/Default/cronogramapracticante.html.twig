@@ -365,12 +365,12 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado"></td>
-						<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver o actualizar</a></td>		
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Ver o actualizar</a></td>		
 						{% else %}
 						<td class = "colEstado">Sin entregar!</td>
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado"></td>
-						<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Entregar</a></td>		
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 1}) }}">Entregar</a></td>		
 						{% endif %}
 					{% else %}
 						<td class = "colEstado">Sin entregar!</td>
@@ -395,12 +395,12 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado"></td>
-						<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Ver o actualizar</a></td>		
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Ver o actualizar</a></td>		
 						{% else %}
 						<td class = "colEstado">Sin entregar!</td>
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado"></td>
-						<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>		
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 2}) }}">Entregar</a></td>		
 						{% endif %}
 					{% else %}
 						<td class = "colEstado">Sin entregar!</td>
@@ -426,12 +426,12 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado"></td>
-						<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Ver o actualizar</a></td>		
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Ver o actualizar</a></td>		
 						{% else %}
 						<td class = "colEstado">Sin entregar!</td>
 						<td class = "colEstado">Entregado</td>
 						<td class = "colEstado"></td>
-						<td class = "colEstado"><a href="{{ path('cituao_practicante_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>		
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_cualicuanti', { 'id': p.id, 'numcua': 3}) }}">Entregar</a></td>		
 						{% endif %}
 					{% else %}
 						<td class = "colEstado">Sin entregar!</td>
@@ -448,16 +448,23 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td>{{ c.fechaEvaluacionFinal|date("d/m/Y") }}</td>
 				{% if c.listoEvaluacionFinal == true %}
 					<td class = "colEstado">Entregado</td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
 					<td><a href="{{ path('cituao_academico_registrar_informefinal', { 'id': p.id}) }}">Ver o Actualizar</a></td>
 				{% elseif c.fechaEvaluacionFinal > date() %}
 					<td class = "colEstado">Aun falta!</td>
-					<td class = "colEstado">-</td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
 				{% else %}
 					<td class = "colEstado">Sin entregar</td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
 					<td class = "colEstado">
-					{% if c.listoGestion3 == true %}					
+					{% if c.listoGestion3 == true and c.listoAsesoria7 == true %}					
 					<a href="{{ path('cituao_academico_registrar_informefinal', { 'id': p.id}) }}">Entregar</a></td>
 					{% else %}
+					Aun falta por entregar actividades!
 					</td>	
 					{% endif %}
 				{% endif %}
