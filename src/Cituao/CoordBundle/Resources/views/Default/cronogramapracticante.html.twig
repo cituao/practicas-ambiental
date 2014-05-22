@@ -38,8 +38,8 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<img style="position:absolute;" class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  p.path) }}" alt="Pulpit rock" width="100%" />
 			</div>
 			<h2 style="display:none">Practicante:</h2> <h1 style="margin-top:30px; padding-top:20px;"> {{ p.nombres }}  {{ p.apellidos }}</h1>
-			<h2 style="display:none">Centro de práctica:</h2> <h2>{{ p.centro.nombre }}</h2>
-
+			<h2 style="display:none">Centro de práctica:</h2> <h2>Centro de práctica: {{ p.centro.nombre }}</h2>
+			<h2 style="display:none">Asesor académico:</h2> <h2>Asesor académico: {{ p.academico.nombres }} {{ p.academico.apellidos }}  Asesor externo: {{ p.externo.nombres }} {{ p.externo.apellidos }}</h2>
 		</div>
 		<table class ="tabla">
 			<tr class="tableHeader">
