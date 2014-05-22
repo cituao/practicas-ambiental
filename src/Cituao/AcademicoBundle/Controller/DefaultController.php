@@ -128,8 +128,14 @@ class DefaultController extends Controller
 		$query->setParameter('id_pra',$id);
 		$cronograma = $query->getOneOrNullResult();
 
+		//buscamos el cronograma del asesor externo
+    	$query = $em->createQuery(
+    		'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.externo =:id_ext AND c.practicante =:id_pra');
+    	$query->setParameter('id_ext',$practicante->getExterno()->getId());
+    	$query->setParameter('id_pra',$practicante->getId());
+    	$cronogramaexterno = $query->getOneOrNullResult();
 		
-		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante ));
+		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante, 'e' => $cronogramaexterno ));
 	}
 
 	//******************************************************************************
