@@ -1,17 +1,13 @@
 {% extends '::frontend.html.twig' %}
 
-
-
 {% block stylesheets %}
 <?php include '{{ asset('userNameIcon.svg') }}'; ?>
-
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
 <script type="text/javascript"></script>
-
 
 <style>
 @font-face{
@@ -29,11 +25,7 @@
 
 
 {% block body %}
-
-
-
 <div id="wrapper">
-
 	<div id="header">
 		<div class="logoContainer">
 			<img id="uaoLogo" src="{{ asset('img/headerLogo.png') }}">
@@ -44,8 +36,6 @@
 			<h3>Programa de Comunicación Social-Periodismo[31C204]</h3>
 
 			<div id="formWrapper">
-
-
 				<form action="{{ path('usuario_login_check') }}" method="post">
 					{% if error.message  != '' %}
 					<div id="headerError"> <h3>{{ error.message }}</h3></div>
@@ -61,10 +51,7 @@
 				</form>
 			</div>
 		</div><!-- side -->
-
 	</div><!-- cierra header -->
-
-
 
     	<!--<div id="loginWrapper">
 			
@@ -72,10 +59,6 @@
     			
 			</div>
 		</div> --><!-- login wrapper -->
-
-
-
-
 	</div><!-- wrapper -->
 	{% endblock %}
 
@@ -92,9 +75,6 @@
 
 		/*$("#titlee").fitText(1.1, { minFontSize: '30px', maxFontSize: '31px' });
 		$("#loginTitle").fitText(0.1, { minFontSize: '15px', maxFontSize: '30px' });*/
-
-		
-
 
 		$( "#playB" ).click(function() {
 			video.play();
@@ -123,11 +103,9 @@
 			if(id=="passwordField"){
 				passwordIcon.setAttribute("style", "fill: #000");
 			}
-
 		}
-
 		</script>
-		{% endblock %}
+{% endblock %}
 
 
 
