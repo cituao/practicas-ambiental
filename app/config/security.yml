@@ -11,7 +11,7 @@ security:
             logout:
                 path:       /logout
             
-            provider:       usuarios
+            provider:       chain_provider
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
@@ -22,12 +22,23 @@ security:
         - { path: ^/academico/*, roles: ROLE_ASESOR_ACA } 
 
     providers:
+        chain_provider:
+            chain:
+                    providers: [in_memory, usuarios]
+        in_memory:
+             memory:
+                    users:
+                          admin: { password: d0be2dc421be4fcd0172e5afceea3970e2f3d940, roles: 'ROLE_ADMIN' }
         usuarios:
             entity: { class: Cituao\UsuarioBundle\Entity\Usuario, property: username }
 
     encoders:
-        #Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User: 
+            algorithm: sha1
+            encode_as_base64: false
+            iterations:         1
+
         Cituao\UsuarioBundle\Entity\Usuario:
             algorithm:        sha1
             encode_as_base64: false
-            iterations:       1
+            iterations:         1
