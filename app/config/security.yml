@@ -7,6 +7,7 @@ security:
             form_login:
                 login_path: usuario_login
                 check_path: usuario_login_check
+                csrf_provider: form.csrf_provider
             logout:
                 path:       /logout
             

@@ -48,6 +48,8 @@
 							<div style="position:relative;"><input id="passwordField" onfocus="activateTextField(this.id)" onblur="disableTextField(this.id)" type="password" name="_password">
 								<img id="passwordIcon" src=" {{ asset('img/passwordIcon.png') }}" />
 							</div>
+							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+							
 							<input type="submit" value="Ingresar"></input>
 						</form>
 					</div>
