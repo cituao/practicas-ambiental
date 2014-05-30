@@ -30,5 +30,20 @@ class DefaultController extends Controller
         );
     }
 
+	public function admAction() 
+	{
+		//$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		//$programas = $repository->findAll();
+
+		$programas = null;
+		
+		//si no hay asesoria registrada creamos una instancia
+		if (!$programas) {
+			//throw $this->createNotFoundException('ERR_NO_HAY_PROGRAMA');
+			$msgerr = array('id'=>1, 'descripcion' => 'No hay programas registrados en el sistema');
+		}
+
+		return $this->render('CituaoUsuarioBundle:Default:programas.html.twig',  array('listaProgramas' => $programas, 'msgerr' => $msgerr));
+  	}
 
 }

@@ -21,13 +21,15 @@ class DefaultController extends Controller
 				}else {
 				if ($this->get('security.context')->isGranted('ROLE_ASESOR_ACA')) {
 					return $this->redirect($this->generateUrl('cituao_academico_homepage'));
-
+				}else {
+					if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+						return $this->redirect($this->generateUrl('usuario_adm_homepage'));
 				}
 			}
 		}			
 		}
-
-        return $this->render('CituaoPortalBundle:Default:portal.html.twig', array("error"=>array("message"=>"")));
+	}
+     return $this->render('CituaoPortalBundle:Default:portal.html.twig', array("error"=>array("message"=>"")));
     }
 
     public function palla()

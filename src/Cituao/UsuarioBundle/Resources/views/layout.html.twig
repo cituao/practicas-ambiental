@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} Panel Principal::: Práctica Profesional UAO{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}	
+{% endblock %}
+
+
+{% block body %}
+{{ parent() }}
+{% endblock %}
+
+
+{% block sideBarMenu %}
+		<div id="menu">	
+
+			<a href="{{ path('usuario_adm_homepage') }}" class="menubutton"  id="programas">
+				<img id="externoIcon" src="{{ asset('img/externoIcon.png') }}">
+				<h3>Programas</h3>
+
+			</a>
+			<a href="{{ path('usuario_adm_configuracion') }}" class="menubutton"  id="configuraciones">
+				<img id="centroIcon" src="{{ asset('img/centroIcon.png') }}">
+				<h3>Configuraciones</h3>	
+			</a>
+
+		</div>
+{% endblock  %}
+
+{% block upSection %} 
+{% endblock %}
+
+{% block downSection %} 
+{% endblock %}

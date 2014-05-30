@@ -14,7 +14,7 @@ security:
             provider:       chain_provider
 
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/adm, roles: ROLE_ADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/coordinador/*, roles: ROLE_COORDINADOR }
         - { path: ^/practicante/*, roles: ROLE_PRACTICANTE }
@@ -28,7 +28,7 @@ security:
         in_memory:
              memory:
                     users:
-                          admin: { password: d0be2dc421be4fcd0172e5afceea3970e2f3d940, roles: 'ROLE_ADMIN' }
+                          AdmUAO: { password: d0be2dc421be4fcd0172e5afceea3970e2f3d940, roles: 'ROLE_ADMIN' }
         usuarios:
             entity: { class: Cituao\UsuarioBundle\Entity\Usuario, property: username }
 
