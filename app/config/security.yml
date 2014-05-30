@@ -1,13 +1,5 @@
 # app/config/security.yml
 security:
-
-    #role_hierarchy:
-     #   ROLE_COORDINADOR:    ROLE_USER
-      #  ROLE_PRACTICANTE:      ROLE_USER
-       # ROLE_ADMIN:                  ROLE_USER
-       # ROLE_ASESOR_EXT:       ROLE_USER
-       # ROLE_ASESOR_ACA:      ROLE_USER  
-        
     firewalls:
         secured_area:
             pattern:   ^/*
