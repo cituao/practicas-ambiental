@@ -1,71 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-    <title>{% block title %}Login ::: Práctica Profesional UAO{% endblock %}</title>
-    {% block stylesheets %} 
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/global.css') }}" />
-       <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/mainPanel.css') }}" />
-       <link href="{{ asset('css/comun.css') }}" rel="stylesheet" />-->
-       <link rel="agregar-participante" href="{{ asset('images/agregar_participante.png') }}" />
-       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
-     
-
-       <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-
-       {% endblock %}
-
+	<head>
+		<title>{% block title %}Login ::: Práctica Profesional UAO{% endblock %}</title>
+		{% block stylesheets %} 
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+			<link rel="stylesheet" type="text/css" href="{{ asset('css/global.css') }}" />
+			   <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/mainPanel.css') }}" />
+			   <link href="{{ asset('css/comun.css') }}" rel="stylesheet" />-->
+			   <link rel="agregar-participante" href="{{ asset('images/agregar_participante.png') }}" />
+			   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
+			   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		{% endblock %}
    </head>
+
    <body>
-
       {% block body %} 	
+			 <div id="mainHeader">
+				<h2 style="float:left; margin-right:78px; margin-left:35px;">Práctica Profesional</h2>
+				<h3 style="float:left;">Facultad de Comunicación Social</h3>
 
-      <div id="mainHeader">
-        <h2 style="float:left; margin-right:78px; margin-left:35px;">Práctica Profesional</h2>
-        <h3 style="float:left;">Facultad de Comunicación Social</h3>
+				<div style="margin-top:-6px" id="cerrarSesionButton">
+					<img style="float:left;" src="{{ asset('img/cerrarSesionButton.png') }}"/>
+					<a href="{{ path('logout') }}" id="cerrarButtonLink">Cerrar Sesión </a>
+				</div>
+			</div><!-- mainHeader -->
 
-        <div style="margin-top:-6px" id="cerrarSesionButton">
-            <img style="float:left;" src="{{ asset('img/cerrarSesionButton.png') }}"/>
-            <a href="{{ path('logout') }}" id="cerrarButtonLink">Cerrar Sesión </a>
-        </div>
-    </div><!-- mainHeader -->
-    <div id="secondHeader">
-       <h3 style="margin-left:15px" >Programa de Comunicación Social-Periodismo[31C204]</h3>
-   </div><!-- secondHeader -->
+			<div id="secondHeader">
+			   <h3 style="margin-left:15px" >Programa de Comunicación Social-Periodismo[31C204]</h3>
+		    </div><!-- secondHeader -->
 
-   <div id="sideBar">
-    <h1 id="userName"> {{ app.user.username }}</h1>
-    <h2 id="userRole">{% if is_granted('ROLE_COORDINADOR') %} Coordinador{% endif %}
-        {% if is_granted('ROLE_ASESOR_EXT') %} Asesor Externo{% endif %}
-        {% if is_granted('ROLE_PRACTICANTE') %} Practicante{% endif %}
-        {% if is_granted('ROLE_ASESOR_ACA') %} Asesor Académico{% endif %}
-    </h2> {% block foto %} {% endblock %}
-    <div id="imgContainer">
+		   <div id="sideBar">
+				<h1 id="userName"> {{ app.user.username }}</h1>
+				<h2 id="userRole">{% if is_granted('ROLE_COORDINADOR') %} Coordinador{% endif %}
+					{% if is_granted('ROLE_ASESOR_EXT') %} Asesor Externo{% endif %}
+					{% if is_granted('ROLE_PRACTICANTE') %} Practicante{% endif %}
+					{% if is_granted('ROLE_ASESOR_ACA') %} Asesor Académico{% endif %}
+				</h2> {% block foto %} {% endblock %}
+				<div id="imgContainer">
+				 {% if is_granted('ROLE_ASESOR_EXT') %}<img  width="100%" src="{{ asset('uploads/fotos/externoPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
+				 {% if is_granted('ROLE_COORDINADOR') %}<img  width="100%" src="{{ asset('uploads/fotos/coordinadorPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
+				 {% if is_granted('ROLE_PRACTICANTE') %} <img  width="100%" src="{{ asset('uploads/fotos/defaultPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
+				 {% if is_granted('ROLE_ASESOR_ACA') %} <img  width="100%" src="{{ asset('uploads/fotos/defaultPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/> {% endif %}
+				</div>
 
-     {% if is_granted('ROLE_ASESOR_EXT') %}<img  width="100%" src="{{ asset('uploads/fotos/externoPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
-
-     {% if is_granted('ROLE_COORDINADOR') %}<img  width="100%" src="{{ asset('uploads/fotos/coordinadorPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
-
-        {% if is_granted('ROLE_PRACTICANTE') %} <img  width="100%" src="{{ asset('uploads/fotos/defaultPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/>{% endif %}
-
-        {% if is_granted('ROLE_ASESOR_ACA') %} <img  width="100%" src="{{ asset('uploads/fotos/defaultPicture.png') }}" onerror="this.src='{{ asset('uploads/fotos/defaultPicture.png') }}'"/> {% endif %}
-    </div>
-    {% block sideBarMenu %} 
-    {% endblock %}
-    
-    
-</div><!-- sideBar -->
-{% block content %} 
-    {% endblock %}
-{% endblock %}
-{% block js %}
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-
-{% endblock %}
+				{% block sideBarMenu %} 
+				{% endblock %}
+			</div><!-- sideBar -->
+			
+			
+		{% block content %} 
+		{% endblock %}
+	{% endblock %}
+	{% block js %}
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+	{% endblock %}
 </body>
 
 </html>

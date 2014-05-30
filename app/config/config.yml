@@ -66,7 +66,7 @@ swiftmailer:
     spool:     { type: memory }
 
 services:
-    kernel.listener.CituaoExcepcionListener:
+   kernel.listener.CituaoExcepcionListener:
          class: Cituao\CoordBundle\Listener\CituaoExceptionListener
          arguments: [@templating, @kernel]
          tags:

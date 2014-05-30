@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Error::Práctica Profesional UAO</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/global.css') }}" />
+		<link rel="agregar-participante" href="{{ asset('images/agregar_participante.png') }}" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script> 
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	</head>
+   <body>
+		<div id="mainHeader">
+				<h2 style="float:left; margin-right:78px; margin-left:35px;">Práctica Profesional</h2>
+				<h3 style="float:left;">Facultad de Comunicación Social</h3>
+
+				<div style="margin-top:-6px" id="cerrarSesionButton">
+					<img style="float:left;" src="{{ asset('img/cerrarSesionButton.png') }}"/>
+					<a href="{{ path('logout') }}" id="cerrarButtonLink">Cerrar Sesión </a>
+				</div>
+		</div><!-- mainHeader -->
+
+		<div id="secondHeader">
+			   <h3 style="margin-left:15px" >Error de sistema::Unidad de producción y desarrollo CIT</h3>
+		</div>
+
+		<div id="sideBar">
+				<h1 id="userName">Soporte</h1>
+				<h2 id="userRole">Gector TIC</h2>
+				<div id="imgContainer">
+				<img  width="100%" src="{{ asset('uploads/fotos/defaultPicture.png') }}"/>
+				</div>
+
+				{% block sideBarMenu %} 
+				{% endblock %}
+				
+				
+				<div id="menu">	
+					<!--<a href="{{ path('cituao_coord_configuracion') }}" class="menubutton unable"  id="configuracion">
+					<img id="configIcon" src="{{ asset('img/configIcon.png') }}">
+					<h3>Configuración</h3>
+					</a> -->
+				</div>
+		</div><!-- sideBar -->
+		
+		<div class="content">
+			<div class = "upSection">
+				<h1 class="sectionTitle">Notificación!</h1>
+				<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+			</div>
+
+				<div class = "downSection">
+					<div class="activity">
+					<div class="inputContainer">
+					 <h2 class="largeh2"> {{ exception.message }} </h2>
+					</div>
+					</div>
+				</div>
+		</div> <!-- content -->
+
+	</body>
+</html>

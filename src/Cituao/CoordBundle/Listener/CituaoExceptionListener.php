@@ -29,20 +29,25 @@ class CituaoExceptionListener
 			$exception = $event->getException();
 			// new Response object
 			$response = new Response();
-				
+			
+			
 			switch ($exception->getMessage()){
 				case "ERR_ASESORIA_NO_INICIADA":
 					$message = sprintf('El asesor académico aun no ha realizado la asesoria!');
+					$tmperror = 'CituaoPracticanteBundle:Default:error.html.twig';
 					break;
 				case "ERR_EVALUACION_NO_INICIADA":
-					$message = sprintf('El asesor externo no ha registrado la evaluación aun!'); 
+					$message = sprintf('El asesor externo no ha registrado la evaluación aun!');
+					$tmperror = 'CituaoPracticanteBundle:Default:error.html.twig';
 					break;			
 				case "ERR_GESTION_NO_REGISTRADA":
-					$message = sprintf('El practicante no ha registrado el informe de Gestión!'); 
+					$message = sprintf('El practicante no ha registrado el informe de Gestión!');
+					$tmperror = 'CituaoPracticanteBundle:Default:error.html.twig';
 					break;
 				default:
 					//$message = sprintf('Error no identificado!');
 					$message = $exception->getMessage();
+					$tmperror = 'CituaoPortalBundle:Default:error.html.twig';
 					break;
 				
 			}
@@ -52,7 +57,7 @@ class CituaoExceptionListener
 			$response->setContent(
 				// create you custom template AcmeFooBundle:Exception:exception.html.twig
 				$this->templating->render(
-					'CituaoPracticanteBundle:Default:error.html.twig',
+					$tmperror,
 					array('exception' => $error)
 				)
 			);
