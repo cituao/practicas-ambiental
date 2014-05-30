@@ -25,3 +25,7 @@ usuario_adm_homepage:
 usuario_adm_configuracion:
     pattern:  /adm/configuracion
     defaults:  {_controller: CituaoUsuarioBundle:Default:configuracion }    
+
+usuario_registrar_programa:
+    pattern:   /adm/registrar-programa
+    defaults:  { _controller: CituaoUsuarioBundle:Default:registrarPrograma }

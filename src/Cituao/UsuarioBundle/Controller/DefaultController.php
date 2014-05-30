@@ -45,5 +45,12 @@ class DefaultController extends Controller
 
 		return $this->render('CituaoUsuarioBundle:Default:programas.html.twig',  array('listaProgramas' => $programas, 'msgerr' => $msgerr));
   	}
+	
+	/********************************************************/
+	// Registra y modifica un programa academico
+	/********************************************************/		
+	public function registrarProgramaAction(){
+		return $this->render('CituaoUsuarioBundle:Default:programas.html.twig',  array('listaProgramas' => $programas, 'msgerr' => $msgerr));
+	}
 
 }
