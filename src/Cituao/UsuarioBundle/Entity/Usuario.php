@@ -5,9 +5,6 @@ namespace Cituao\UsuarioBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-/**
- * Usuario
- */
 
 /**
  * Cituao\UsuarioBundle\Entity\Usuario
@@ -42,18 +39,18 @@ class Usuario implements AdvancedUserInterface, \Serializable
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $isActive;
+    private $is_active;
 
     /**
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
-     *
+     * @JoinTable(name=usuario_role
      */
     private $roles;
 
     public function __construct()
     {
         $this->roles = new ArrayCollection();
-		$this->isActive = true;
+		$this->is_active = true;
     }
 
     /**
@@ -233,7 +230,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
 
     public function isEnabled()
     {
-        return $this->isActive;
+        return $this->is_active;
     }
 
     /**

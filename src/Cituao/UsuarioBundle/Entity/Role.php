@@ -6,9 +6,6 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Role
- */
 
 /**
  * @ORM\Table(name="roles")
@@ -35,6 +32,7 @@ class Role implements RoleInterface
 
     /**
      * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="roles")
+	 * 
      */
     private $users;
 

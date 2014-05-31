@@ -1,0 +1,20 @@
+Cituao\UsuarioBundle\Entity\Programa:
+    type: entity
+    table: null
+    repositoryClass: Cituao\UsuarioBundle\Entity\ProgramaRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: '100'
+        coordinador:
+            type: string
+            length: '25'
+        email:
+            type: string
+            length: '50'
+    lifecycleCallbacks: {  }
