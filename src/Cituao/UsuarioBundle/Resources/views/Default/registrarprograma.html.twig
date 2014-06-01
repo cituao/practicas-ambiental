@@ -1,0 +1,142 @@
+{% extends 'CituaoUsuarioBundle::layout.html.twig' %}
+
+{% block js  %}
+{{ parent() }}
+
+<script>
+$( "#programas" ).css("background-color","#000");
+$( "#programas img" ).css("opacity","0.4");
+$( "#programas h3" ).css("opacity","0.4");
+</script>
+<script type = "text/javascript">
+$(document).ready(function() {
+	var password1 		= $('#programa_password'); //id of first password field
+	var password2		= $('#programa_passwordr'); //id of second password field
+	var passwordsInfo 	= $('#pass-info'); //id of indicator element
+	
+	passwordStrengthCheck(password1,password2,passwordsInfo); //call password check function
+	
+});
+
+function passwordStrengthCheck(password1, password2, passwordsInfo)
+{
+	//Must contain 5 characters or more
+	var WeakPass = /(?=.{5,}).*/; 
+	//Must contain lower case letters and at least one digit.
+	var MediumPass = /^(?=\S*?[a-z])(?=\S*?[0-9])\S{5,}$/; 
+	//Must contain at least one upper case letter, one lower case letter and one digit.
+	var StrongPass = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])\S{5,}$/; 
+	//Must contain at least one upper case letter, one lower case letter and one digit.
+	var VryStrongPass = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{5,}$/; 
+	
+	$(password1).on('keyup', function(e) {
+		if(VryStrongPass.test(password1.val()))
+		{
+			passwordsInfo.removeClass().addClass('vrystrongpass').html("Very Strong! (Awesome, please don't forget your pass now!)");
+		}	
+		else if(StrongPass.test(password1.val()))
+		{
+			passwordsInfo.removeClass().addClass('strongpass').html("Strong! (Enter special chars to make even stronger");
+		}	
+		else if(MediumPass.test(password1.val()))
+		{
+			passwordsInfo.removeClass().addClass('goodpass').html("Good! (Enter uppercase letter to make strong)");
+		}
+		else if(WeakPass.test(password1.val()))
+    	{
+			passwordsInfo.removeClass().addClass('stillweakpass').html("Still Weak! (Enter digits to make good password)");
+    	}
+		else
+		{
+			passwordsInfo.removeClass().addClass('weakpass').html("Very Weak! (Must be 5 or more chars)");
+		}
+	});
+	
+	$(password2).on('keyup', function(e) {
+		
+		if(password1.val() !== password2.val())
+		{
+			passwordsInfo.removeClass().addClass('weakpass').html("Passwords do not match!");	
+		}else{
+			passwordsInfo.removeClass().addClass('goodpass').html("Passwords match!");	
+		}
+			
+	});
+}
+</script>
+
+{% endblock %}
+
+{% block content  %}
+{{ parent() }}
+	<div class="content">
+		{% block upSection  %}
+		<div class = "upSection">
+			<h1 class ="sectionTitle">Nuevo programa académico</h1>
+			<a href="{{ path('usuario_adm_homepage') }}" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+		</div>
+		{% endblock  %}
+
+		{% block downSection  %}
+			<div class = "downSection">
+				<div class="profileContainer">
+				<form  style="height:580px;" action="{{ path('usuario_registrar_programa') }}" method="post" {{ form_enctype(formulario) }}>
+					<div>	{{ form_errors(formulario) }}	</div>
+
+					<div class="profileFormContainer" style="height:600px;">	
+						<div class="inputContainer">	
+							<h2>{{ form_label(formulario.nombre) }}</h2>
+							<div class="input"> 
+								{{ form_errors(formulario.nombre) }}
+								{{ form_widget(formulario.nombre, {'attr': {'class':'corto'}} ) }}
+							</div>
+						</div>
+
+						<div class="inputContainer">	
+							<h2>{{ form_label(formulario.coordinador) }}</h2>
+							<div class="input"> 
+							{{ form_errors(formulario.coordinador) }}
+							{{ form_widget(formulario.coordinador, {'attr': {'class':'corto'}} ) }}
+							</div>
+						</div>
+
+						<div class="inputContainer">	
+							<h2>{{ form_label(formulario.password) }}</h2>
+							<div class="input"> 
+							{{ form_errors(formulario.password) }}
+							{{ form_widget(formulario.password, {'attr': {'class':'corto'}} ) }}
+							</div>
+						</div>
+						<div class="inputContainer">	
+							<h2>{{ form_label(formulario.passwordr) }}</h2>
+							<div class="input"> 
+							{{ form_errors(formulario.passwordr) }}
+							{{ form_widget(formulario.passwordr, {'attr': {'class':'corto'}} ) }}
+							</div>
+							
+						</div>
+
+						<div class="inputContainer">	
+							<h2>{{ form_label(formulario.email) }}</h2>
+							<div class="input"> 
+							{{ form_errors(formulario.email) }}
+							{{ form_widget(formulario.email, {'attr': {'class':'mediano'}} ) }}
+							</div>
+						</div>
+						
+						<div id="pass-info">Fortaleza</div>
+						{{ form_rest(formulario) }}
+						<div class="inputContainer" style="position:relative; width:auto; margin-top:20px; top:70px !important; left:-405px;">
+							<div style="position:relative; float:right">
+								<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
+								<input style="padding-left:38px" class="button" type="submit" value="Guardar" />
+							</div>
+						</div>
+					</div><!-- profileFormContainer -->
+				</form>	
+
+			</div><!-- profileContainer -->
+			</div>	<!-- downSection -->
+		{% endblock  %}
+	</div><!-- content -->
+{% endblock %}

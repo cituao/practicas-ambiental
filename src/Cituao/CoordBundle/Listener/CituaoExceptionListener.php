@@ -44,6 +44,18 @@ class CituaoExceptionListener
 					$message = sprintf('El practicante no ha registrado el informe de Gestión!');
 					$tmperror = 'CituaoPracticanteBundle:Default:error.html.twig';
 					break;
+				case "ERR_NO_HAY_PROGRAMA":
+					$message = sprintf('No hay programas académicos registrados en el sistema!');
+					$tmperror = 'CituaoUsuarioBundle:Default:error.html.twig';
+					break;
+				case "ERR_PROGRAMA_REGISTRADO":
+					$message = sprintf('Programa académico ya esta registrado en el sistema!');
+					$tmperror = 'CituaoUsuarioBundle:Default:error.html.twig';
+					
+				case "ERR_ROLE_NO_ENCONTRADO":
+					$message = sprintf('Role no encontrado!');
+					$tmperror = 'CituaoPortalBundle:Default:error.html.twig';
+				
 				default:
 					//$message = sprintf('Error no identificado!');
 					$message = $exception->getMessage();
