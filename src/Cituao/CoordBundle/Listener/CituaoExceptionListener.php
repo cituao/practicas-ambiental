@@ -51,11 +51,15 @@ class CituaoExceptionListener
 				case "ERR_PROGRAMA_REGISTRADO":
 					$message = sprintf('Programa académico ya esta registrado en el sistema!');
 					$tmperror = 'CituaoUsuarioBundle:Default:error.html.twig';
-					
+					break;
 				case "ERR_ROLE_NO_ENCONTRADO":
 					$message = sprintf('Role no encontrado!');
 					$tmperror = 'CituaoPortalBundle:Default:error.html.twig';
-				
+					break;
+				case "ERR_COORDINADOR_EXISTE":
+					$message = sprintf('Coordinador (nombre de usuario) ya esta registrado en el sistema!');
+					$tmperror = 'CituaoUsuarioBundle:Default:error.html.twig';
+					break;
 				default:
 					//$message = sprintf('Error no identificado!');
 					$message = $exception->getMessage();

@@ -62,13 +62,22 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-			//validamos que no existe la cédula y el código
+			//validamos que no existe el programa
 			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 			$p = $repository->findOneBy(array('nombre' => $programa->getNombre()));
 
 			if ($p != NULL){
 				throw $this->createNotFoundException('ERR_PROGRAMA_REGISTRADO');
 			}
+
+			//validamos que no existe ese nombre de usuario			
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+			$p = $repository->findOneBy(array('username' => $programa->getCoordinador()));
+
+			if ($p != NULL){
+				throw $this->createNotFoundException('ERR_COORDINADOR_EXISTE');
+			}
+
 
 		   // Completar las propiedades que el usuario no rellena en el formulario
 

@@ -57,10 +57,16 @@ $( "#programas h3" ).css("opacity","0.4");
 													<td width="15%">{{ programa.coordinador }}</td>>
 													<td width="5%"></td>
 													<td>{{ programa.email }}</td>
-													<td><table class="opciones"><td>
+													<td>
+													<table class="opciones">
+													<td>
 					<a href="{{ path('usuario_actualizar_programa', { 'id': programa.id}) }}"><img src="{{ asset('img/editar.png') }}"><h3> Editar </h3></a>
-															</td>
-													</table> <!-- opciones --></td>
+													</td>
+													<td>
+					<a href="{{ path('usuario_actualizar_programa', { 'id': programa.id}) }}"><img src="{{ asset('img/editar.png') }}"><h3> Eliminar </h3></a>
+													</td>
+													</table> <!-- opciones -->
+													</td>
 													<td style=" width:8%"></td>
 												</td><!-- hover -->
 											</tr><!-- tableItem -->
@@ -82,7 +88,7 @@ $( "#programas h3" ).css("opacity","0.4");
 		{% endblock  %}
 	</div><!-- content -->
 
-	<script>
+<script>
 	$( ".tableItem" ).mouseenter(function() {
 		var hoverDiv = $('#hoverDiv', this);
 		var opciones = $('.opciones', this);
@@ -112,6 +118,6 @@ $( "#programas h3" ).css("opacity","0.4");
 	});
 	});
 
-	</script>
+</script>
 
 	{% endblock %}
