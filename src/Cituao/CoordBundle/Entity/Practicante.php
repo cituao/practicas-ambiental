@@ -218,6 +218,11 @@ class Practicante
 	**/	
 	protected $externo;
 
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\UsuarioBundle\Entity\Programa", inversedBy="practicantes")
+	* @ORM\JoinColumn(name="programa", referencedColumnName = "id") 
+	**/	
+	protected $programa;
 
     /**
      * Sets file.
@@ -1438,5 +1443,28 @@ public function getAbsolutePath()
     public function getPathPdf()
     {
         return $this->pathPdf;
+    }
+
+    /**
+     * Set programa
+     *
+     * @param \Cituao\UsuarioBundle\Entity\Programa $programa
+     * @return Practicante
+     */
+    public function setPrograma(\Cituao\UsuarioBundle\Entity\Programa $programa = null)
+    {
+        $this->programa = $programa;
+    
+        return $this;
+    }
+
+    /**
+     * Get programa
+     *
+     * @return \Cituao\UsuarioBundle\Entity\Programa 
+     */
+    public function getPrograma()
+    {
+        return $this->programa;
     }
 }

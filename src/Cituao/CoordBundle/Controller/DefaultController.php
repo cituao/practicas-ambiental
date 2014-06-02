@@ -40,13 +40,24 @@ class DefaultController extends Controller
 		->add('file')
 		->add('name')
 		->getForm();
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$listaPracticantes = $repository->findAll();
+
+		//$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		
-		if (!$listaPracticantes) {
-			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
-		}else{
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		$listaPracticantes = $programa->getPracticantes();
+
+		foreach($listaPracticantes as $p){
+			var_dump($p);
+		}
+		if ($listaPracticantes != NULL) {
 			$msgerr = array('descripcion'=>'','id'=>'0');
+		}else{
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
 		}
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
 	}
