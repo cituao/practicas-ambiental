@@ -100,6 +100,12 @@ class DefaultController extends Controller
 		$formulario = $this->createForm(new PracticanteType(), $practicante);
 		$formulario->handleRequest($peticion);
 
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
 		//validamos que no existe la cédula y el código
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$p = $repository->findOneBy(array('codigo' => $practicante->getCodigo()));
@@ -155,7 +161,7 @@ class DefaultController extends Controller
 
 			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
 		}
-		return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView()));
+		return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView(), 'programa' => $programa ));
 	}
 
 
@@ -194,7 +200,14 @@ class DefaultController extends Controller
 
 			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
 		}
-		return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
+		
+		//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:practicante.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante, 'programa' => $programa ));
 	}
 
 	/********************************************************/
@@ -303,7 +316,14 @@ class DefaultController extends Controller
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_coord_homepage'));
 		}
-		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante ));
+		
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:cronograma.html.twig', array('formulario' => $formulario->createView(), 'practicante' => $practicante , 'programa' => $programa));
 	}
 
 
@@ -440,7 +460,13 @@ class DefaultController extends Controller
 		
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
 		
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr  ));
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr , 'programa' => $programa));
 	}
 
 	/*************************************/
@@ -456,7 +482,13 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 
-		return $this->render('CituaoCoordBundle:Default:externos.html.twig', array('listaAsesores' => $listaAsesores, 'msgerr' => $msgerr));
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:externos.html.twig', array('listaAsesores' => $listaAsesores, 'msgerr' => $msgerr, 'programa' => $programa));
 	} 
 
 
@@ -518,9 +550,13 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('cituao_coord_asesores'));
 		}
 
-		return $this->render('CituaoCoordBundle:Default:registrarexterno.html.twig', array(
-			'formulario' => $formulario->createView()
-			));
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:registrarexterno.html.twig', array('formulario' => $formulario->createView(), 'programa' => $programa));
 	}
 
 
@@ -549,7 +585,14 @@ class DefaultController extends Controller
 				);
 			return $this->redirect($this->generateUrl('cituao_coord_asesores'));
 		}
-		return $this->render('CituaoCoordBundle:Default:externo.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo ));
+		
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:externo.html.twig', array('formulario' => $formulario->createView(), 'externo' => $externo, 'programa' => $programa ));
 		
 	}
 
@@ -576,7 +619,14 @@ class DefaultController extends Controller
 			$p = $aca->getPracticantes();
 			$c = $c + $p->count();
 		}
-		return $this->render('CituaoCoordBundle:Default:academicos.html.twig', array('listaAcademicos' => $listaAcademicos, 'msgerr' => $msgerr));
+		
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:academicos.html.twig', array('listaAcademicos' => $listaAcademicos, 'msgerr' => $msgerr, 'programa' => $programa ));
 	} 
 
 
@@ -642,8 +692,14 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('cituao_coord_academicos'));
 		}
 
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
 		return $this->render('CituaoCoordBundle:Default:registraracademico.html.twig', array(
-			'formulario' => $formulario->createView()
+			'formulario' => $formulario->createView(), 'programa' => $programa
 			));
 	}
 
@@ -674,7 +730,7 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('cituao_coord_academicos'));
 		}
 		
-		return $this->render('CituaoCoordBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico ));
+		return $this->render('CituaoCoordBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico, 'programa' => $programa ));
 		
 	}
 
@@ -690,7 +746,14 @@ class DefaultController extends Controller
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		return $this->render('CituaoCoordBundle:Default:centros.html.twig', array('listaCentros' => $listaCentros, 'msgerr' => $msgerr));
+		
+		//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:centros.html.twig', array('listaCentros' => $listaCentros, 'msgerr' => $msgerr, 'programa' => $programa));
 	}
 
 	/***************************************************************************/
@@ -714,7 +777,13 @@ class DefaultController extends Controller
 				);
 			return $this->redirect($this->generateUrl('cituao_coord_centros'));
 		}
-		return $this->render('CituaoCoordBundle:Default:registrarcentro.html.twig', array('formulario' => $formulario->createView()));
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:registrarcentro.html.twig', array('formulario' => $formulario->createView(), 'programa' => $programa));
 	}
 
 	/********************************************************/
@@ -739,7 +808,13 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('cituao_coord_centros'));
 		}
 		
-		return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro ));
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+		return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro, 'programa' => $programa ));
 	}
 	
 	/*************************************************
@@ -770,14 +845,6 @@ class DefaultController extends Controller
 
 		return new Response($json);
 
-	}
-
-	/****************************************************
-	/ Presenta una interfaz para crear cuentas de coordinador
-	*****************************************************/
-	public function configuracionAction(){
-		$msgerr = array('descripcion'=>'','id'=>'0');
-		return $this->render('CituaoCoordBundle:Default:configuracion.html.twig', array('msgerr' => $msgerr));	
 	}
 
 	/*****************************************************
@@ -815,7 +882,7 @@ class DefaultController extends Controller
     	}
 
     	return $this->render('CituaoCoordBundle:Default:registrarcoordinador.html.twig', array(
-    		'formulario' => $formulario->createView()
+    		'formulario' => $formulario->createView(), 'programa' => $programa
     		));
 
     }
@@ -847,8 +914,13 @@ class DefaultController extends Controller
     	$query->setParameter('id_pra',$id);
     	$cronogramaexterno = $query->getOneOrNullResult();
 
-
-    	return $this->render('CituaoCoordBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante, 'e' => $cronogramaexterno));
+		//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+    	return $this->render('CituaoCoordBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante, 'e' => $cronogramaexterno, 'programa' => $programa ));
     }
 
 		//***************************************************************
@@ -902,7 +974,14 @@ class DefaultController extends Controller
     	}
 
     	$datos = array('id' => $id, 'numase' => $numase, 'docase' => $docase, 'docpra' => $docpra);
-    	return $this->render('CituaoCoordBundle:Default:asesoria.html.twig', array('datos' => $datos));
+		
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+    	return $this->render('CituaoCoordBundle:Default:asesoria.html.twig', array('datos' => $datos, 'programa' => $programa));
     }
 
 
@@ -924,7 +1003,14 @@ class DefaultController extends Controller
     	$cronograma = $query->getOneOrNullResult();	
 
     	$datos = array('id' => $id, 'comentario' => $cronograma->getComentario());
-    	return $this->render('CituaoCoordBundle:Default:visita.html.twig', array('datos' => $datos));
+		
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+    	return $this->render('CituaoCoordBundle:Default:visita.html.twig', array('datos' => $datos, 'programa' => $programa));
     }
 
 		//*************************************************************
@@ -949,12 +1035,17 @@ class DefaultController extends Controller
     		$evaluacion = $repository->findOneBy(array('practicante' => $id));
     	}
 
-
+		//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
     	$datos = array('id' => $id, 'numeva' => $numeva);
     	if ($numeva == 1)
-    		return $this->render('CituaoCoordBundle:Default:evaluacion.html.twig', array('datos' => $datos, 'formulario' => $evaluacion));
+    		return $this->render('CituaoCoordBundle:Default:evaluacion.html.twig', array('datos' => $datos, 'formulario' => $evaluacion, 'programa' => $programa));
     	else
-    		return $this->render('CituaoCoordBundle:Default:evaluacion2.html.twig', array('datos' => $datos, 'formulario' => $evaluacion));
+    		return $this->render('CituaoCoordBundle:Default:evaluacion2.html.twig', array('datos' => $datos, 'formulario' => $evaluacion, 'programa' => $programa));
     }
 
 	//******************************************************
@@ -992,7 +1083,14 @@ class DefaultController extends Controller
     	}
 
     	$datos = array('id' => $id, 'numges' => $numges);
-    	return $this->render('CituaoCoordBundle:Default:cualicuanti.html.twig', array('gestion' => $cualicuanti, 'datos' => $datos));
+		
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
+    	return $this->render('CituaoCoordBundle:Default:cualicuanti.html.twig', array('gestion' => $cualicuanti, 'datos' => $datos, 'programa' => $programa ));
     }	
 
 	//**************************************************************
@@ -1011,8 +1109,14 @@ class DefaultController extends Controller
 		//si no hay informes creamos una instancia de informe final
 
     	$datos = array('id' => $id);
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
     	return $this->render('CituaoCoordBundle:Default:informefinalacademico.html.twig', array(
-    		'informe' => $informe, 'datos' => $datos
+    		'informe' => $informe, 'datos' => $datos, 'programa' => $programa
     		));
     }
 
@@ -1029,8 +1133,14 @@ class DefaultController extends Controller
 		//si no hay informes creamos una instancia de informe final
 
     	$datos = array('id' => $id);
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
     	return $this->render('CituaoCoordBundle:Default:acta.html.twig', array(
-    		'e' => $acta, 'datos' => $datos
+    		'e' => $acta, 'datos' => $datos, 'programa' => $programa
     		));
     }
 
@@ -1050,8 +1160,14 @@ class DefaultController extends Controller
 		//si no hay informes creamos una instancia de informe final
 
     	$datos = array('id' => $id);
+				//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+		
     	return $this->render('CituaoCoordBundle:Default:informefinalpracticante.html.twig', array(
-    		'informe' => $informe, 'datos' => $datos
+    		'informe' => $informe, 'datos' => $datos, 'programa' => $programa
     		));
     }
 }
