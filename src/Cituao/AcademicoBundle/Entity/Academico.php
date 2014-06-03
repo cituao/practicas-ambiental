@@ -507,4 +507,27 @@ public function getAbsolutePath()
         return $this->practicantes;
     }
 
+
+    /**
+     * Set programa
+     *
+     * @param \Cituao\UsuarioBundle\Entity\Programa $programa
+     * @return Academico
+     */
+    public function setPrograma(\Cituao\UsuarioBundle\Entity\Programa $programa = null)
+    {
+        $this->programa = $programa;
+    
+        return $this;
+    }
+
+    /**
+     * Get programa
+     *
+     * @return \Cituao\UsuarioBundle\Entity\Programa 
+     */
+    public function getPrograma()
+    {
+        return $this->programa;
+    }
 }

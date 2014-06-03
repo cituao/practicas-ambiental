@@ -556,10 +556,16 @@ class DefaultController extends Controller
 	/*************************************/
 	//Listar todos los asesores ACADEMICOS		
 	/*************************************/
-	public function academicosAction(){
-		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
-		$listaAcademicos = $repository->findAll();
-		
+	public function academicosAction()
+	{
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		$listaAcademicos = $programa->getAcademicos();
+
 		if (!$listaAcademicos) {
 			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
 		}else{
@@ -586,7 +592,6 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 		
 		if ($formulario->isValid()) {
-
 			//validamos que no existe la cédula y el código
 			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 			$a = $repository->findOneBy(array('ci' => $academico->getCi()));
@@ -594,9 +599,17 @@ class DefaultController extends Controller
 			if ($a != NULL){
 				throw $this->createNotFoundException('¡La cédula ingresada ya existe!');
 			}
-
+			
+			// buscamos el programa para asignarlo al programa academico
+			$user = $this->get('security.context')->getToken()->getUser();
+			$coordinador =  $user->getUsername();
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+			$programa = $repository->findOneByCoordinador($coordinador);
+			$academico->setPrograma($programa);
+			
 			if ($academico->getFile() == NULL) 	$academico->setPath('defaultPicture.png');
 			$academico->upload();	
+			
 			
             // Completar las propiedades que el usuario no rellena en el formulario
 			$em->persist($academico);

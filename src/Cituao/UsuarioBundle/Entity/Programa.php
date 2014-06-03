@@ -124,6 +124,7 @@ class Programa
     public function __construct()
     {
         $this->practicantes = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->academicos = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -157,5 +158,38 @@ class Programa
     public function getPracticantes()
     {
         return $this->practicantes;
+    }
+
+    /**
+     * Add academicos
+     *
+     * @param \Cituao\AcademicoBundle\Entity\Academico $academicos
+     * @return Programa
+     */
+    public function addAcademico(\Cituao\AcademicoBundle\Entity\Academico $academicos)
+    {
+        $this->academicos[] = $academicos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove academicos
+     *
+     * @param \Cituao\AcademicoBundle\Entity\Academico $academicos
+     */
+    public function removeAcademico(\Cituao\AcademicoBundle\Entity\Academico $academicos)
+    {
+        $this->academicos->removeElement($academicos);
+    }
+
+    /**
+     * Get academicos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAcademicos()
+    {
+        return $this->academicos;
     }
 }
