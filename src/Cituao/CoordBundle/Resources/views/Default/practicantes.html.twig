@@ -75,8 +75,8 @@ $( "#practicantes h3" ).css("opacity","0.4");
 												{% else %}
 												<td><img src="{{ asset('img/nocrono.png') }}" /></td>
 												{% endif %}
-
 												<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Editar</h3></a></td>
+												<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Eliminar</h3></a></td>
 											</table> <!-- opciones -->
 										</div>
 										{{ practicante.emailInstitucional }} <br> {{ practicante.emailPersonal }}</td>

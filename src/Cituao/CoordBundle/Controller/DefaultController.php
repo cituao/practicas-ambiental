@@ -366,11 +366,11 @@ class DefaultController extends Controller
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
 				$role = $repository->findOneBy(array('id' => $codigo));
 
-				//buscamos el area o coordinacion al que pertenece segun el coordinador logueado
-				$user = $this->getUser();
-				if ($user->getUsername() == 'jamarquez') $id_area = 1;
-					elseif ($user->getUsername() == 'coordinador') $id_area = 2;
-						else $id_area = 3;
+					//buscamos el programa
+				$user = $this->get('security.context')->getToken()->getUser();
+				$coordinador =  $user->getUsername();
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+				$programa = $repository->findOneByCoordinador($coordinador);
 						
 				$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Area');
 				$area = $repository->findOneById($id_area);
@@ -393,7 +393,8 @@ class DefaultController extends Controller
 					$practicante->setApellidos($listaEstudiantes[$i]['apellidos']);
 					$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
 					$practicante->setCi($listaEstudiantes[$i]['ci']);
-
+					$practicante->setPrograma($programa);
+					
 					//cargamos todos los atributos al usuario
 					$usuario->setUsername($listaEstudiantes[$i]['codigo']) ;
 					$usuario->setPassword($listaEstudiantes[$i]['ci']);
