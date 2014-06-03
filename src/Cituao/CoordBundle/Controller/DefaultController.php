@@ -41,19 +41,15 @@ class DefaultController extends Controller
 		->add('name')
 		->getForm();
 
-		//$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		
+		//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();
-
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
 
+		//obtenemos los practicantes
 		$listaPracticantes = $programa->getPracticantes();
 
-		/*foreach($listaPracticantes as $p){
-			var_dump($p);
-		}*/
 		if ($listaPracticantes != NULL) {
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}else{
@@ -116,12 +112,20 @@ class DefaultController extends Controller
 		}
 		
 		if ($formulario->isValid()) {
+			//buscamos el programa
+			$user = $this->get('security.context')->getToken()->getUser();
+			$coordinador =  $user->getUsername();
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+			$programa = $repository->findOneByCoordinador($coordinador);
+
+			
+
 			//si subio no subio foto  le asignamos una foto generica
 			if ($practicante->getFile() == NULL) 	$practicante->setPath('defaultPicture.png');
 			//subimos la foto al servidor
 			$practicante->upload();
-
 			$practicante->setEstado("0");  //es practicante sin cronograma
+			$practicante->setPrograma($programa); //le asignamos el programa
 
 			// Completar las propiedades que el usuario no rellena en el formulario
 			$em->persist($practicante);
