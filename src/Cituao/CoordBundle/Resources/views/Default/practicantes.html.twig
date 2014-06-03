@@ -1,231 +1,180 @@
 {% extends 'CituaoCoordBundle::layout.html.twig' %}
+
+{% block programa %}
+{{ programa.nombre }}
+{% endblock %}
+
 {% block js  %}
 <script>
 $( "#practicantes" ).css("background-color","#000");
 $( "#practicantes img" ).css("opacity","0.4");
 $( "#practicantes h3" ).css("opacity","0.4");
 </script>
-
 {% endblock %}
 
 {% block content  %}
-{{ parent() }}
-<div class="content">
-	{% block upSection  %}
-
-	<div class="upSection">
-		<h1 class ="sectionTitle">Practicantes</h1>
-
-
-		<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/anadirPracticantes.png') }}"/><h4>Añadir Practicantes</h4></a>
-		<a id="nuevoPracticante"href="{{ path('cituao_coord_registrar_practicante') }}" class = "button"><img src="{{ asset('img/nuevoPracticante.png') }}"/><h4>Nuevo Practicante</h4></a>
-		<form name="anadirP" action= {{ path('cituao_coord_cargar_estudiantes') }} method="post" {{ form_enctype(form) }}>
-			<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="button" value="Cancelar" id="cancelar" name="cancelar" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/cancelar.png') }}"/></div>
-			<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="submit" value="Listo" id="listo" name="listo" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/listo.png') }}"/></div>
-
-
-			<div style="float:right;">{{ form_widget(form) }}</div>
-			<h2 style="float:right; color:#000; margin-right:15px; margin-top:8px;">Nombre de archivo</h2>
-
-			
-		</form>
-
-		
-
-	</div><!--up section -->
-
-	{% endblock  %}
-
-	{% if msgerr.id == '1' %}
-	<div id = "error">{{ msgerr.descripcion }} </div>		
-	{% else %}
-
-
-	{% block downSection  %}
-	<div class = "downSection">
-
-		<table class="practicantesTableHead">
-			<tbody>
-				<tr class="tableHead">
-					<th width="5%"></th>
-					<th width="10%"></th>
-					<th width="18%"></th>
-					<th width="16%"></th>
-					<th width="8%"><img src="{{ asset('img/codigoLabel.png') }}"/></th>
-					<th width="9%"><img style="margin-left:11px;" src="{{ asset('img/idLabel.png') }}"/></th>
-
-					
-					<th><img style="margin-left:20px;" src="{{ asset('img/telefonoLabel.png') }}"/></th>
-					<th><img style="margin-left:70px;" src="{{ asset('img/mailLabel.png') }}"/></th>
-					<th></th>
-					<th></th>
-				</tr> <!--tablehead -->
-			</tbody>
-		</table><!-- practicantes tableHead -->
-
-		{% set id = 1 %}
-		<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">	
-
-			<table class="practicantesTable">
-				
-				{% for practicante in listaPracticantes %}
-
-
-				<tr class="spacer"></tr>
-				<tr height="20px" class="tableItem">
-
-
-					<td id="hoverDiv" >
-
-
-						<td><h2>{{ id }}</h2></td>
-						<td height="20px"><div class="itemImgContainer"><img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="100%" /></div></td>
-						<td><span>{{ practicante.apellidos }}</span></td>
-						<td><span>{{ practicante.nombres }}</span></td>
-						<td>{{ practicante.codigo }}</td>
-						<td>{{ practicante.ci }}</td>
-						<td>{{ practicante.telefonoMovil }}</td>
-
-						<td>
-
-							<div>
-								<table class="opciones">
-
-									{% if practicante.estado == 1 %}
-									<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" /><h3>Cronograma</h3></a></td>
-									{% else %}
-									<td><img src="{{ asset('img/nocrono.png') }}" /></td>
-									{% endif %}
-
-									<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Editar</h3></a></td>
-
-								</table> <!-- opciones -->
-							</div>
-
-
-
-							{{ practicante.emailInstitucional }} <br> {{ practicante.emailPersonal }}</td>
-
-
-
-
-						</td> <!-- hoverDiv -->
-
-					</tr>
-
-
-					{% set id = id + 1 %}
-					{% endfor %}
-					<tr class="spacer"></tr>
-					<tr class="spacer"></tr>
-					<tr class="spacer"></tr>
-					<tr class="spacer"></tr>
-					<tr class="spacer"></tr>
-					<tr class="spacer"></tr>
-				</table>
-			</div>
-
-		</div> <!-- cierra downSection-->
+	{{ parent() }}
+	<div class="content">
+		{% block upSection  %}
+			<div class="upSection">
+				<h1 class ="sectionTitle">Practicantes</h1>
+				<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/anadirPracticantes.png') }}"/><h4>Añadir Practicantes</h4></a>
+				<a id="nuevoPracticante"href="{{ path('cituao_coord_registrar_practicante') }}" class = "button"><img src="{{ asset('img/nuevoPracticante.png') }}"/><h4>Nuevo Practicante</h4></a>
+				<form name="anadirP" action= {{ path('cituao_coord_cargar_estudiantes') }} method="post" {{ form_enctype(form) }}>
+					<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="button" value="Cancelar" id="cancelar" name="cancelar" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/cancelar.png') }}"/></div>
+					<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="submit" value="Listo" id="listo" name="listo" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/listo.png') }}"/></div>
+					<div style="float:right;">{{ form_widget(form) }}</div>
+					<h2 style="float:right; color:#000; margin-right:15px; margin-top:8px;">Nombre de archivo</h2>
+				</form>
+			</div><!--up section -->
 		{% endblock  %}
 
+		{% if msgerr.id == '1' %}
+			<div id = "error">{{ msgerr.descripcion }} </div>		
+		{% else %}
+			{% block downSection  %}
+				<div class = "downSection">
+					<table class="practicantesTableHead">
+						<tbody>
+							<tr class="tableHead">
+								<th width="5%"></th>
+								<th width="10%"></th>
+								<th width="18%"></th>
+								<th width="16%"></th>
+								<th width="8%"><img src="{{ asset('img/codigoLabel.png') }}"/></th>
+								<th width="9%"><img style="margin-left:11px;" src="{{ asset('img/idLabel.png') }}"/></th>
+								<th><img style="margin-left:20px;" src="{{ asset('img/telefonoLabel.png') }}"/></th>
+								<th><img style="margin-left:70px;" src="{{ asset('img/mailLabel.png') }}"/></th>
+								<th></th>
+								<th></th>
+							</tr> <!--tablehead -->
+						</tbody>
+					</table><!-- practicantes tableHead -->
+
+					{% set id = 1 %}
+					<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">	
+
+						<table class="practicantesTable">
+						
+							{% for practicante in listaPracticantes %}
+							<tr class="spacer"></tr>
+							<tr height="20px" class="tableItem">
+								<td id="hoverDiv" >
+									<td><h2>{{ id }}</h2></td>
+									<td height="20px"><div class="itemImgContainer"><img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="100%" /></div></td>
+									<td><span>{{ practicante.apellidos }}</span></td>
+									<td><span>{{ practicante.nombres }}</span></td>
+									<td>{{ practicante.codigo }}</td>
+									<td>{{ practicante.ci }}</td>
+									<td>{{ practicante.telefonoMovil }}</td>
+									<td>
+										<div>
+											<table class="opciones">
+												{% if practicante.estado == 1 %}
+												<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" /><h3>Cronograma</h3></a></td>
+												{% else %}
+												<td><img src="{{ asset('img/nocrono.png') }}" /></td>
+												{% endif %}
+
+												<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Editar</h3></a></td>
+											</table> <!-- opciones -->
+										</div>
+										{{ practicante.emailInstitucional }} <br> {{ practicante.emailPersonal }}</td>
+									</td> <!-- hoverDiv -->
+								</tr>
+								{% set id = id + 1 %}
+								{% endfor %}
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+							</table>
+						</div>
+
+					</div> <!-- cierra downSection-->
+			{% endblock  %}
 		{% endif %}
-	</div> <!-- cierra content-->
+		</div> <!-- cierra content-->
 
+		<script>
+			var form = $('form');
+			var nuevoPracticante =  $('#nuevoPracticante');
+			var anadirPracticantes =  $('#anadirPracticantes');
 
+			$( ".tableItem" ).mouseenter(function() {
+				var hoverDiv = $('#hoverDiv', this);
+				var opciones = $('.opciones', this);
+				var itemPicture = $('.itemImgContainer', this);
+				$(hoverDiv).css("background-color","#ec1c24");
+				$(itemPicture).css("border-color","#ec1c24");
 
-	<script>
-
-	var form = $('form');
-	var nuevoPracticante =  $('#nuevoPracticante');
-	var anadirPracticantes =  $('#anadirPracticantes');
-
-	$( ".tableItem" ).mouseenter(function() {
-		var hoverDiv = $('#hoverDiv', this);
-		var opciones = $('.opciones', this);
-		var itemPicture = $('.itemImgContainer', this);
-		$(hoverDiv).css("background-color","#ec1c24");
-		$(itemPicture).css("border-color","#ec1c24");
-
-		$( opciones).animate({
-			opacity: 1,
-			top: "-4px",
-		}, 300, function() {
-	    // Animation complete.
-	});
-	});
-
-	$( ".tableItem" ).mouseleave(function() {
-		var hoverDiv = $('#hoverDiv', this);
-		var itemPicture = $('.itemImgContainer', this);
-		var opciones = $('.opciones', this);
-		$(hoverDiv).css("background-color","#fff");
-		$(itemPicture).css("border-color","#242021");
-		$( opciones).animate({
-			opacity: 0,
-			top: "26px",
-		}, 300, function() {
-	    // Animation complete.
-	});
-	});
-
-	$( "#anadirPracticantes" ).click(function() {
-		
-		$(nuevoPracticante).fadeOut(300);
-		$(this).fadeOut(300,function(){
-
-			$( form).animate({
-				opacity: 1,
-				top: "21px",
-			}, 300);
-		});
-
-	});
-		function validateForm()
-	{
-		var x=document.forms["anadirP"]["listo"].value;
-		if (x==null || x=="")
-		{
-			window.alert("you");
-			return false;
-		}
-	}
-
-	$( "#listo" ).click(function() {
-
-		if(validateForm()){
-			$(nuevoPracticante).fadeIn(300);
-			$(anadirPracticantes).fadeIn(300,function(){
-
-				$( form).animate({
-					opacity: 0,
-					top: "100px",
-				}, 300);
+				$( opciones).animate({
+					opacity: 1,
+					top: "-4px",
+				}, 300, function() {
+				// Animation complete.
 			});
-	}// validate form
-
-
-
-});
-
-$( "#cancelar" ).click(function() {
-
-		
-			$(nuevoPracticante).fadeIn(300);
-			$(anadirPracticantes).fadeIn(80,function(){
-
-				$( form).animate({
-					opacity: 0,
-					top: "100px",
-				}, 100);
 			});
 
-});
+			$( ".tableItem" ).mouseleave(function() {
+				var hoverDiv = $('#hoverDiv', this);
+				var itemPicture = $('.itemImgContainer', this);
+				var opciones = $('.opciones', this);
+				$(hoverDiv).css("background-color","#fff");
+				$(itemPicture).css("border-color","#242021");
+				$( opciones).animate({
+					opacity: 0,
+					top: "26px",
+				}, 300, function() {
+				// Animation complete.
+			});
+			});
 
+			$( "#anadirPracticantes" ).click(function() {
+				$(nuevoPracticante).fadeOut(300);
+				$(this).fadeOut(300,function(){
 
+					$( form).animate({
+						opacity: 1,
+						top: "21px",
+					}, 300);
+				});
 
-	</script>
+			});
+			function validateForm()
+			{
+				var x=document.forms["anadirP"]["listo"].value;
+				if (x==null || x=="")
+				{
+					window.alert("you");
+					return false;
+				}
+			}
 
+			$( "#listo" ).click(function() {
+				if(validateForm()){
+					$(nuevoPracticante).fadeIn(300);
+					$(anadirPracticantes).fadeIn(300,function(){
 
+						$( form).animate({
+							opacity: 0,
+							top: "100px",
+						}, 300);
+					});
+			}// validate form
+			});
 
-	{% endblock %}
+			$( "#cancelar" ).click(function() {
+					$(nuevoPracticante).fadeIn(300);
+						$(anadirPracticantes).fadeIn(80,function(){
+							$( form).animate({
+								opacity: 0,
+								top: "100px",
+							}, 100);
+						});
+			});
+		</script>
+{% endblock %}
 

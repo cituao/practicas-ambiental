@@ -51,15 +51,15 @@ class DefaultController extends Controller
 
 		$listaPracticantes = $programa->getPracticantes();
 
-		foreach($listaPracticantes as $p){
+		/*foreach($listaPracticantes as $p){
 			var_dump($p);
-		}
+		}*/
 		if ($listaPracticantes != NULL) {
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}else{
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
 		}
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
 	
 	/********************************************************/
@@ -67,33 +67,31 @@ class DefaultController extends Controller
 	/********************************************************/	
 	public function practicantesAction(){
 		$document = new Document();
-	 		$form = $this->createFormBuilder($document)
-	 		->add('file')
-	 		->add('name')
-	 		->getForm();
+		$form = $this->createFormBuilder($document)
+		->add('file')
+		->add('name')
+		->getForm();
 
-			//buscamos el area o coordinacion al que pertenece segun el coordinador logueado
-		$user = $this->getUser();
-		if ($user->getUsername() == 'jamarquez') $id_area = 1;
-			elseif ($user->getUsername() == 'coordinador') $id_area = 2;
-				else $id_area = 3;
+		//$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
 
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
 
-		$em = $this->getDoctrine()->getManager();
-		//solicitamos solo los practicantes asociados al cooridinador logueado
-		//$query = $em->createQuery('SELECT c FROM CituaoCoordBundle:Practicante c WHERE c.area =:id_area');
-		$query = $em->createQuery('SELECT c FROM CituaoCoordBundle:Practicante c');
-		//$query->setParameter('id_area',$id_area);
+		$listaPracticantes = $programa->getPracticantes();
 
-		$listaPracticantes = $query->getResult();//getSingleResult();
-
-		if (!$listaPracticantes) {
-			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
-		}else{
+		/*foreach($listaPracticantes as $p){
+			var_dump($p);
+		}*/
+		if ($listaPracticantes != NULL) {
 			$msgerr = array('descripcion'=>'','id'=>'0');
+		}else{
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
 		}
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView(), 'listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr));
-
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+	
 	}
 
 	/***************************************************************************/
