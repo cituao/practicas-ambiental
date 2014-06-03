@@ -21,4 +21,7 @@ Cituao\UsuarioBundle\Entity\Programa:
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
             mappedBy: programa
+        academicos:
+            targetEntity: Cituao\AcademicoBundle\Entity\Academico
+            mappedBy: programa            
     lifecycleCallbacks: {  }

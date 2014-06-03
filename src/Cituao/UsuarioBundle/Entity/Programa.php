@@ -35,6 +35,10 @@ class Programa
 	**/
 	protected $practicantes;
 
+	/**
+	* @ORM\OneToMany(targetEntity="Cituao\AcademicoBundle\Academico", mappedBy = "programa")	
+	**/
+	protected $academicos;
 
     /**
      * Get id

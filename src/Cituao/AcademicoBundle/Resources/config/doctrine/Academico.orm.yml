@@ -52,4 +52,11 @@ Cituao\AcademicoBundle\Entity\Academico:
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
             mappedBy: academico
+    manyToOne:
+        programa:
+            targetEntity: Cituao\UsuarioBundle\Entity\Programa
+            inversedBy: academicos
+            joinColumn:
+                name: programa
+                referencedColumnName: id
     lifecycleCallbacks: {  }

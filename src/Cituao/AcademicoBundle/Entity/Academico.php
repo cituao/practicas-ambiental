@@ -97,6 +97,13 @@ class Academico
 	**/
 	protected $practicantes;
 
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\UsuarioBundle\Entity\Programa", inversedBy="academicos")
+	* @ORM\JoinColumn(name="programa", referencedColumnName = "id") 
+	**/	
+	protected $programa;
+
+	
 	public function __construct()
     {
         
