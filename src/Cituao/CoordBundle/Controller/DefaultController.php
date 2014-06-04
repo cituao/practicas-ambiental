@@ -641,8 +641,17 @@ class DefaultController extends Controller
 			$a = $repository->findOneBy(array('ci' => $academico->getCi()));
 
 			if ($a != NULL){
-				throw $this->createNotFoundException('¡La cédula ingresada ya existe!');
+				throw $this->createNotFoundException('ERR_ACADEMICO_YA_EXISTE');
 			}
+			
+			//validamos que la cedula no este ya registrada como username
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+			$a = $repository->findOneBy(array('username' => $academico->getCi()));
+			
+			if ($a != NULL){
+				throw $this->createNotFoundException('ERR_USUARIO_YA_EXISTE');
+			}
+
 			
 			// buscamos el programa para asignarlo al programa academico
 			$user = $this->get('security.context')->getToken()->getUser();
@@ -723,6 +732,12 @@ class DefaultController extends Controller
 				);
 			return $this->redirect($this->generateUrl('cituao_coord_academicos'));
 		}
+		
+						//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
 		
 		return $this->render('CituaoCoordBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico, 'programa' => $programa ));
 		
