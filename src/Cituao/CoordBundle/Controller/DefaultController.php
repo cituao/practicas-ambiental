@@ -50,10 +50,10 @@ class DefaultController extends Controller
 		//obtenemos los practicantes
 		$listaPracticantes = $programa->getPracticantes();
 
-		if ($listaPracticantes != NULL) {
-			$msgerr = array('descripcion'=>'','id'=>'0');
-		}else{
+		if ($listaPracticantes->count() == 0) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
@@ -68,26 +68,21 @@ class DefaultController extends Controller
 		->add('name')
 		->getForm();
 
-		//$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		
+		//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();
-
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
 
+		//obtenemos los practicantes
 		$listaPracticantes = $programa->getPracticantes();
 
-		/*foreach($listaPracticantes as $p){
-			var_dump($p);
-		}*/
-		if ($listaPracticantes != NULL) {
-			$msgerr = array('descripcion'=>'','id'=>'0');
-		}else{
+		if ($listaPracticantes->count() == 0) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
-	
 	}
 
 	/***************************************************************************/
@@ -609,23 +604,22 @@ class DefaultController extends Controller
 
 		$listaAcademicos = $programa->getAcademicos();
 
-		if (!$listaAcademicos) {
+		if ($listaAcademicos->count() == 0) {
 			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		$c=0;
+	
 		foreach ($listaAcademicos as $aca){
 			$p = $aca->getPracticantes();
 			$c = $c + $p->count();
 		}
-		
-				//buscamos el programa
+		//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
-		
 		return $this->render('CituaoCoordBundle:Default:academicos.html.twig', array('listaAcademicos' => $listaAcademicos, 'msgerr' => $msgerr, 'programa' => $programa ));
 	} 
 

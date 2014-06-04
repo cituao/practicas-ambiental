@@ -5,137 +5,119 @@
 {% endblock %}
 
 {% block js  %}
-<script>
-$( "#asesoresInternos" ).css("background-color","#000");
-$( "#asesoresInternos img" ).css("opacity","0.4");
-$( "#asesoresInternos h3" ).css("opacity","0.4");
-</script>
-
+	<script>
+	$( "#asesoresInternos" ).css("background-color","#000");
+	$( "#asesoresInternos img" ).css("opacity","0.4");
+	$( "#asesoresInternos h3" ).css("opacity","0.4");
+	</script>
 {% endblock %}
 
 {% block content  %}
-{{ parent() }}
-<div class="content">
-	{% block upSection  %}
-	
-	<div class = "upSection">
+	{{ parent() }}
+	<div class="content">
+		{% block upSection  %}
+		<div class = "upSection">
 		<h1 class ="sectionTitle">Mis asesores académicos</h2>
-			
-			<a href="{{ path('cituao_coord_registraracademico') }}" class = "button"><img src="{{ asset('img/academicosBoton.png') }}"/><h4>Nuevo asesor</h4></a>
+		<a href="{{ path('cituao_coord_registraracademico') }}" class = "button"><img src="{{ asset('img/academicosBoton.png') }}"/><h4>Nuevo asesor</h4></a>
 		</div>
 		{% endblock  %}
 
 		{% block downSection  %}
-
-		{% if msgerr.id == '1' %}
-		<div id = "error">{{ msgerr.descripcion }}</div>		
-		{% else %}
-		<div class = "downSection">
-			
-			
-			<table class="practicantesTableHead">
-				<tbody>
-					<tr class="tableHead">
-						<th width="5%"></th> 
-						<th width="6%"></th> 
-						<th width="7%"></th>	
-						<th width="12%"></th>	
-						<th width="18%"></th>
-						<th width="16%"><img style="margin-left:28%;" src="{{ asset('img/idLabel.png') }}"/></th>	
-						<th><img src="{{ asset('img/telefono.png') }}"/></th> 
-						<th><img style="margin-left:38px;" src="{{ asset('img/mailLabel.png') }}"/></th> 
-						<th><h3><span>Practicantes</span></h3></th>
-					</tr><!--tablehead -->
-				</tbody>
-			</table><!-- practicantes tableHead -->
-			
-			
-			{% set id = 1 %}
-			<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">
-				<table class = "practicantesTable">
-					<tbody>
-						
-						<tr class="spacer"></tr>
-						{% for asesor in listaAcademicos %}
-
-						
-
-						<tr height="20px"  class="tableItem">
-							<td id="hoverDiv">
-								<td ><h2>{{ id }}</h2></td>
-								<td height="20px">
-									<div class="itemImgContainer">
-										<img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  asesor.path) }}" alt="Foto" width="100%">
-									</div>
-								</td>
-								
-								<td style=" width:15%"><span style="margin-left:20px; ">{{ asesor.nombres }}</span></td>
-
-								<td width="20%">{{ asesor.apellidos }}</td>
-								<td>{{ asesor.ci }}</td>
-								<td >{{ asesor.telefonoMovil }}</td>				
-								<td style=" width:19%">{{ asesor.email }}</td>	
-								<td>{{ asesor.practicantes.count }}</td>
-								<td>
-									
-									<table class="opciones">
-										<td>
-											<a href="{{ path('cituao_coord_academico', { 'ci': asesor.ci}) }}"><img src="{{ asset('img/editar.png') }}" /><h3> Editar </h3></a>
+			<div class = "downSection">
+				{% if msgerr.id == '1' %}
+					<div id = "error">{{ msgerr.descripcion }}</div>		
+				{% else %}
+					<table class="practicantesTableHead">
+						<tbody>
+							<tr class="tableHead">
+								<th width="5%"></th> 
+								<th width="6%"></th> 
+								<th width="7%"></th>	
+								<th width="12%"></th>	
+								<th width="18%"></th>
+								<th width="16%"><img style="margin-left:28%;" src="{{ asset('img/idLabel.png') }}"/></th>	
+								<th><img src="{{ asset('img/telefono.png') }}"/></th> 
+								<th><img style="margin-left:38px;" src="{{ asset('img/mailLabel.png') }}"/></th> 
+								<th><h3><span>Practicantes</span></h3></th>
+							</tr><!--tablehead -->
+						</tbody>
+					</table><!-- practicantes tableHead -->
+					
+					{% set id = 1 %}
+					<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">
+						<table class = "practicantesTable">
+							<tbody>
+								<tr class="spacer"></tr>
+								{% for asesor in listaAcademicos %}
+								<tr height="20px"  class="tableItem">
+									<td id="hoverDiv">
+										<td ><h2>{{ id }}</h2></td>
+										<td height="20px">
+											<div class="itemImgContainer">
+												<img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  asesor.path) }}" alt="Foto" width="100%">
+											</div>
 										</td>
-									</table> <!-- opciones -->
-									
-								</td>
-								<td style=" width:8%"></td>
-							</td><!-- hover -->
-						</tr><!-- tableItem -->
-						{% set id = id + 1 %}
-						<tr class="spacer"></tr>
-						{% endfor %}
-						<tr class="spacer"></tr>
-						<tr class="spacer"></tr>
-						<tr class="spacer"></tr>
-						<tr class="spacer"></tr>
-						<tr class="spacer"></tr>
-					</tbody>
-				</table>
-			</div><!-- scroll div-->
-		</div><!--downsection -->
-
-		{% endif %}
+										<td style=" width:15%"><span style="margin-left:20px; ">{{ asesor.nombres }}</span></td>
+										<td width="20%">{{ asesor.apellidos }}</td>
+										<td>{{ asesor.ci }}</td>
+										<td >{{ asesor.telefonoMovil }}</td>				
+										<td style=" width:19%">{{ asesor.email }}</td>	
+										<td>{{ asesor.practicantes.count }}</td>
+										<td>
+											<table class="opciones">
+												<td>
+													<a href="{{ path('cituao_coord_academico', { 'ci': asesor.ci}) }}"><img src="{{ asset('img/editar.png') }}" /><h3> Editar </h3></a>
+												</td>
+											</table> <!-- opciones -->
+										</td>
+										<td style=" width:8%"></td>
+									</td><!-- hover -->
+								</tr><!-- tableItem -->
+								{% set id = id + 1 %}
+								<tr class="spacer"></tr>
+								{% endfor %}
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+							</tbody>
+						</table>
+					</div><!-- scroll div-->
+				{% endif %}
+			</div><!--downsection -->
 		{% endblock  %}
 	</div><!-- content -->
 
 	<script>
-	$( ".tableItem" ).mouseenter(function() {
-		var hoverDiv = $('#hoverDiv', this);
-		var opciones = $('.opciones', this);
-		var itemPicture = $('.itemImgContainer', this);
-		$(hoverDiv).css("background-color","#ec1c24");
-		$(itemPicture).css("border-color","#ec1c24");
+		$( ".tableItem" ).mouseenter(function() {
+			var hoverDiv = $('#hoverDiv', this);
+			var opciones = $('.opciones', this);
+			var itemPicture = $('.itemImgContainer', this);
+			$(hoverDiv).css("background-color","#ec1c24");
+			$(itemPicture).css("border-color","#ec1c24");
 
-		$( opciones).animate({
-			opacity: 1,
-			top: "-4px",
-		}, 300, function() {
-	    // Animation complete.
-	});
-	});
+			$( opciones).animate({
+				opacity: 1,
+				top: "-4px",
+			}, 300, function() {
+			// Animation complete.
+		});
+		});
 
-	$( ".tableItem" ).mouseleave(function() {
-		var hoverDiv = $('#hoverDiv', this);
-		var itemPicture = $('.itemImgContainer', this);
-		var opciones = $('.opciones', this);
-		$(hoverDiv).css("background-color","#fff");
-		$(itemPicture).css("border-color","#242021");
-		$( opciones).animate({
-			opacity: 0,
-			top: "26px",
-		}, 300, function() {
-	    // Animation complete.
-	});
-	});
-
+		$( ".tableItem" ).mouseleave(function() {
+			var hoverDiv = $('#hoverDiv', this);
+			var itemPicture = $('.itemImgContainer', this);
+			var opciones = $('.opciones', this);
+			$(hoverDiv).css("background-color","#fff");
+			$(itemPicture).css("border-color","#242021");
+			$( opciones).animate({
+				opacity: 0,
+				top: "26px",
+			}, 300, function() {
+			// Animation complete.
+		});
+		});
 	</script>
-
-	{% endblock %}
+{% endblock %}
 

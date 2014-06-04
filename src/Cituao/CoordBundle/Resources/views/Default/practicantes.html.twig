@@ -29,11 +29,12 @@ $( "#practicantes h3" ).css("opacity","0.4");
 			</div><!--up section -->
 		{% endblock  %}
 
-		{% if msgerr.id == '1' %}
-			<div id = "error">{{ msgerr.descripcion }} </div>		
-		{% else %}
-			{% block downSection  %}
-				<div class = "downSection">
+		
+		{% block downSection  %}
+			<div class = "downSection">
+				{% if msgerr.id == '1' %}
+					<div id = "error">{{ msgerr.descripcion }} </div>		
+				{% else %}
 					<table class="practicantesTableHead">
 						<tbody>
 							<tr class="tableHead">
@@ -50,52 +51,52 @@ $( "#practicantes h3" ).css("opacity","0.4");
 							</tr> <!--tablehead -->
 						</tbody>
 					</table><!-- practicantes tableHead -->
-
-					{% set id = 1 %}
-					<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">	
-
-						<table class="practicantesTable">
-						
-							{% for practicante in listaPracticantes %}
-							<tr class="spacer"></tr>
-							<tr height="20px" class="tableItem">
-								<td id="hoverDiv" >
-									<td><h2>{{ id }}</h2></td>
-									<td height="20px"><div class="itemImgContainer"><img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="100%" /></div></td>
-									<td><span>{{ practicante.apellidos }}</span></td>
-									<td><span>{{ practicante.nombres }}</span></td>
-									<td>{{ practicante.codigo }}</td>
-									<td>{{ practicante.ci }}</td>
-									<td>{{ practicante.telefonoMovil }}</td>
-									<td>
-										<div>
-											<table class="opciones">
-												{% if practicante.estado == 1 %}
-												<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" /><h3>Cronograma</h3></a></td>
-												{% else %}
-												<td><img src="{{ asset('img/nocrono.png') }}" /></td>
-												{% endif %}
-												<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Editar</h3></a></td>
-												<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Eliminar</h3></a></td>
-											</table> <!-- opciones -->
-										</div>
-										{{ practicante.emailInstitucional }} <br> {{ practicante.emailPersonal }}</td>
-									</td> <!-- hoverDiv -->
-								</tr>
-								{% set id = id + 1 %}
-								{% endfor %}
+			
+						{% set id = 1 %}
+						<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;"> 
+							<table class="practicantesTable">
+							
+								{% for practicante in listaPracticantes %}
 								<tr class="spacer"></tr>
-								<tr class="spacer"></tr>
-								<tr class="spacer"></tr>
-								<tr class="spacer"></tr>
-								<tr class="spacer"></tr>
-								<tr class="spacer"></tr>
-							</table>
-						</div>
-
-					</div> <!-- cierra downSection-->
-			{% endblock  %}
-		{% endif %}
+								<tr height="20px" class="tableItem">
+									<td id="hoverDiv" >
+										<td><h2>{{ id }}</h2></td>
+										<td height="20px"><div class="itemImgContainer"><img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Pulpit rock" width="100%" /></div></td>
+										<td><span>{{ practicante.apellidos }}</span></td>
+										<td><span>{{ practicante.nombres }}</span></td>
+										<td>{{ practicante.codigo }}</td>
+										<td>{{ practicante.ci }}</td>
+										<td>{{ practicante.telefonoMovil }}</td>
+										<td>
+											<div>
+												<table class="opciones">
+													{% if practicante.estado == 1 %}
+													<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" /><h3>Cronograma</h3></a></td>
+													{% else %}
+													<td><img src="{{ asset('img/nocrono.png') }}" /></td>
+													{% endif %}
+													<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Editar</h3></a></td>
+													<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Eliminar</h3></a></td>
+												</table> <!-- opciones -->
+											</div>
+											{{ practicante.emailInstitucional }} <br> {{ practicante.emailPersonal }}</td>
+										</td> <!-- hoverDiv -->
+									</tr>
+									{% set id = id + 1 %}
+									{% endfor %}
+									<tr class="spacer"></tr>
+									<tr class="spacer"></tr>
+									<tr class="spacer"></tr>
+									<tr class="spacer"></tr>
+									<tr class="spacer"></tr>
+									<tr class="spacer"></tr>
+								</table>
+						</div> <!-- tabla con items
+					{% endif %}
+			</div> <!-- cierra downSection-->
+				
+		{% endblock  %}
+		
 		</div> <!-- cierra content-->
 
 		<script>

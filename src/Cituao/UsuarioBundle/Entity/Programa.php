@@ -125,6 +125,8 @@ class Programa
     {
         $this->practicantes = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->academicos = new \Doctrine\Common\Collections\ArrayCollection();
+		
+		
     }
     
     /**
