@@ -188,7 +188,7 @@ class DefaultController extends Controller
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
 			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
-
+			$usuario->setIsActive(false);
 
 			$em->persist($practicante);
 			$em->persist($usuario);
@@ -251,13 +251,9 @@ class DefaultController extends Controller
 			
 			// Completar las propiedades que el usuario no rellena en el formulario
 			$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
-
 			$em->persist($practicante);
 
-			//buscamos al academico para cargarle el cronograma
-			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Cronograma');
-			$cronograma = $repository->find($practicante->getAcademico()->getId());
-
+			//cronograma para los asesores 
 			$query = $em->createQuery(
 				'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
 			$query->setParameter('id_aca',$practicante->getAcademico()->getId());
@@ -288,10 +284,8 @@ class DefaultController extends Controller
 			
 			$em->persist($cronograma);			
 			
-			//$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Cronogramaexterno');
-			//$cronogramaexterno = $repository->findByOne(array('practicante' => $practicante->getId())) ;
-			
-			$query = $em->createQuery(
+			//crear coronograma al asesor externo
+     		$query = $em->createQuery(
 				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra');
 			$query->setParameter('id_pra',$practicante->getId());
 			//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
@@ -312,8 +306,6 @@ class DefaultController extends Controller
 
 			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 			$usuario = $repository->findOneBy(array('username' => $practicante->getCodigo()));
-			/*if ($usuario != NULL)
-			throw $this->createNotFoundException('ERR_NO_HAY_ACADEMICOS');*/
 			$usuario->setIsActive(true);
 			
 			$em->persist($usuario);
@@ -1159,6 +1151,73 @@ class DefaultController extends Controller
     		'informe' => $informe, 'datos' => $datos, 'programa' => $programa
     		));
     }
+	
+	//**************************************************************************
+	//Elimina el cornograma asignado a un practicante
+	//**************************************************************************
+	public function cronogramaEliminarAction($id){
+	
+		//borramos el cronograma asignado al asesor academico
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery(
+				'DELETE CituaoAcademicoBundle:Cronograma c
+				WHERE c.practicante = :id')
+				->setParameter('id', $id);
+		$query->execute();
+		
+		//borramos el cronograma asignado al asesor externo
+		$query = $em->createQuery(
+				'DELETE CituaoExternoBundle:Cronogramaexterno c
+				WHERE c.practicante = :id')
+				->setParameter('id', $id);
+		$query->execute();
+		
+		//colocamos null en los campos externo, academico y centro del registro del practicante
+		$query = $em->createQuery(
+				'UPDATE CituaoCoordBundle:Practicante c
+				SET c.academico = NULL, c.externo = NULL, c.centro = NULL, c.fechaIniciacion = NULL
+				WHERE c.id = :id')
+				->setParameter('id', $id);
+		$query->execute();
+		
+		
+		//le colocamos estado false no tiene cronograma
+		$repository=$this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante=$repository->findOneBy(array('id'=>$id));
+		$practicante->setEstado(FALSE);
+		$em->persist($practicante);
+		$em->flush();
+		
+		//inactivamos el usuario
+		$repository=$this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+		$usuario=$repository->findOneBy(array('username'=>$practicante->getCodigo()));
+		$usuario->setIsActive(false);
+		
+		//muestra la lista de practicantes
+		$document = new Document();
+		$form = $this->createFormBuilder($document)
+		->add('file')
+		->add('name')
+		->getForm();
+
+		//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		//obtenemos los practicantes
+		$listaPracticantes = $programa->getPracticantes();
+
+		if ($listaPracticantes->count() == 0) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+	
+	}
+	
 }
 
 
