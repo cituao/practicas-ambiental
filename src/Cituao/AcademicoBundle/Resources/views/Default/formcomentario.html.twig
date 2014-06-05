@@ -1,5 +1,9 @@
 {% extends 'CituaoAcademicoBundle::layout.html.twig' %}
 
+{% block programa %}
+{{ programa.nombre }}
+{% endblock %}
+
 {% block infowrapper  %}
 	<div id="infoWrapper">
 		<h2 id="titlee">Registrando comentarios Evaluacion # {{ datos.numase }}</h2>

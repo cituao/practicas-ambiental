@@ -30,7 +30,7 @@ class DefaultController extends Controller
 		$academico = $repository->findOneByci($ci);
 		$em = $this->getDoctrine()->getManager();
 	
-			
+		//buscamos todos los practicantes del asesor academico
 		$query = $em->createQuery(
                 'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.academico= :id'
             )->setParameter('id',$academico->getId())
@@ -46,7 +46,8 @@ class DefaultController extends Controller
 	    }else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'datos' => $datos));
+		$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr, 'datos' => $datos));
     }
 	
 	/********************************************************/
@@ -73,9 +74,8 @@ class DefaultController extends Controller
             
             return $this->redirect($this->generateUrl('cituao_academico_homepage'));
         }
-		
-        return $this->render('CituaoAcademicoBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(), 'academico' => $academico ));
-		
+		$programa=$academico->getPrograma();
+        return $this->render('CituaoAcademicoBundle:Default:academico.html.twig', array('formulario' => $formulario->createView(),  'programa' => $programa, 'academico' => $academico ));
 	}	
 	
 	//*******************************************************/
@@ -88,14 +88,12 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneByci($ci);
 		$em = $this->getDoctrine()->getManager();
-	
 			
 		$query = $em->createQuery(
                 'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.academico= :id'
             )->setParameter('id',$academico->getId())
 ;
         $numeroPracticantes=$query->getSingleScalarResult();
-
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$listaPracticantes = $repository->findByacademico($academico->getId());
 		$datos = array('numeroPracticantes' => $numeroPracticantes); 
@@ -105,7 +103,8 @@ class DefaultController extends Controller
 	    }else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'datos' => $datos));
+		$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes,  'programa' => $programa,  'msgerr' => $msgerr, 'datos' => $datos));
 	}
 	
 
@@ -135,7 +134,8 @@ class DefaultController extends Controller
     	$query->setParameter('id_pra',$practicante->getId());
     	$cronogramaexterno = $query->getOneOrNullResult();
 		
-		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante, 'e' => $cronogramaexterno ));
+		$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma,  'programa' => $programa,  'p' => $practicante, 'e' => $cronogramaexterno ));
 	}
 
 	//******************************************************************************
@@ -205,7 +205,9 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
 		$datos = array('id' => $id, 'numase' => $numase);
-		return $this->render('CituaoAcademicoBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+		
+		$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(),  'programa' => $programa,  'datos' => $datos));
 	}
 	
 	
@@ -263,30 +265,26 @@ class DefaultController extends Controller
 		}
 
 		$datos = array('id' => $id, 'numase' => $numase, 'docase' => $docase, 'docpra' => $docpra);
-		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('datos' => $datos));
+		$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:asesoria.html.twig', array('datos' => $datos ,  'programa' => $programa));
 	}
 
 	//*************************************************************
 	//Registrar comentario a la evaluacion 1 efectuada por el asesor externo
 	//*************************************************************
 	public function registrarComentarioAction($id, $numeva){
-		
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
-
 		// buscamos el ID del asesor academico
 		$user = $this->get('security.context')->getToken()->getUser();
 		$ci =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
-		
 		//buscamos el practicante oara accesar el id del asesor externo
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('id' => $id));
 		
 		$externo = $practicante->getExterno();
-		
-		
 		//buscamos si ya evaluo el asesor externo
 		$query = $em->createQuery(
 				'SELECT a FROM CituaoExternoBundle:Cronogramaexterno a WHERE a.practicante =:id_pra AND a.externo =:id_ext');
@@ -295,14 +293,12 @@ class DefaultController extends Controller
 		
 		$cronograma = $query->getOneOrNullResult();
 		//DEBE HABER UNA INSTANCIA si no hay ERROR
-
 		if (($numeva == 1 AND $cronograma->getListoEvaluacion1() == false) OR ($numeva == 2 AND $cronograma->getListoEvaluacion2() == false)){
 			
 			if ($numeva == 1)			
 				throw $this->createNotFoundException('ERR_EVALUACION_NO_INICIADA');
 			else
 				throw $this->createNotFoundException('ERR_EVALUACION_NO_INICIADA');
-					
 		}
 
 		//buscamos la evaluacion
@@ -315,36 +311,28 @@ class DefaultController extends Controller
 			$evaluacion = $repository->findOneBy(array('practicante' => $id));
 			$formulario = $this->createForm(new Evaluacion2Type(), $evaluacion);
 		}
-				
-		
 		$formulario->handleRequest($peticion);
-
 		if ($formulario->isValid()) {
-		
 			//asignamos como entregada la evaluación del academico 
 			$query = $em->createQuery(
 					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
 			$query->setParameter('id_pra',$id);
 			$cronograma = $query->getOneOrNullResult();
-		
 			if ($numeva == 1) 			
 				$cronograma->setListoEvaluacion1(true);
 			else
 				$cronograma->setListoEvaluacion2(true);
-			
 			$em->persist($evaluacion);
 			$em->persist($cronograma);
-			
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
-
+		$programa=$academico->getPrograma();
 		$datos = array('id' => $id, 'numeva' => $numeva);
 		if ($numeva == 1) 
-			return $this->render('CituaoAcademicoBundle:Default:formcomentario1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+			return $this->render('CituaoAcademicoBundle:Default:formcomentario1.html.twig', array('formulario' => $formulario->createView(),  'programa' => $programa, 'datos' => $datos));
 		else
-			return $this->render('CituaoAcademicoBundle:Default:formcomentario2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
-			
+			return $this->render('CituaoAcademicoBundle:Default:formcomentario2.html.twig', array('formulario' => $formulario->createView(),  'programa' => $programa,  'datos' => $datos));
 }
 
 
@@ -352,21 +340,16 @@ class DefaultController extends Controller
 	//Registrar informe cualicuanti 1,2,3  efectuada por el asesor externo
 	//*************************************************************
 	public function registrarCualicuantiAction($id, $numcua){
-		
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
-
 		// buscamos el ID del asesor academico
 		$user = $this->get('security.context')->getToken()->getUser();
 		$ci =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
-		
-
 		//buscamos si ya fue registrado por el practicante para que el asesor academico comente
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneById($id);
-
 		$sw = false;
 		if ($practicante->getListoGestion1() == false && $numcua == 1) $sw=true;
 		if ($practicante->getListoGestion2() == false && $numcua == 2) $sw=true;
@@ -375,18 +358,13 @@ class DefaultController extends Controller
 		if ($sw == true){
 			throw $this->createNotFoundException('ERR_GESTION_NO_REGISTRADA');
 		}
-
-
 		$query = $em->createQuery(
 				'SELECT a FROM CituaoAcademicoBundle:Cualicuanti a WHERE a.practicante =:id_pra AND a.academico =:id_aca AND a.cualicuanti =:numcua');
 		$query->setParameter('id_pra',$id);
 		$query->setParameter('id_aca',$academico->getId());
 		$query->setParameter('numcua',$numcua);
-		
 		$cualicuanti = $query->getOneOrNullResult();
-
 		if (!$cualicuanti) $cualicuanti = new Cualicuanti();
-
 		$formulario = $this->createForm(new CualicuantiType(), $cualicuanti);		
 		$formulario->handleRequest($peticion);
 		if ($formulario->isValid()) {
@@ -396,8 +374,6 @@ class DefaultController extends Controller
 					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
 			$query->setParameter('id_pra',$id);
 			$cronograma = $query->getOneOrNullResult();
-		
-
 			if ($numcua == 1) 			
 				$cronograma->setListoGestion1(true);
 			elseif ($numcua == 2)
@@ -415,9 +391,9 @@ class DefaultController extends Controller
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
-
+		$programa=$academico->getPrograma();
 		$datos = array('id' => $id, 'numcua' => $numcua);
-			return $this->render('CituaoAcademicoBundle:Default:formcualicuanti.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
+		return $this->render('CituaoAcademicoBundle:Default:formcualicuanti.html.twig', array('formulario' => $formulario->createView(),  'programa' => $programa,  'datos' => $datos));
 }
 
 
@@ -425,7 +401,6 @@ class DefaultController extends Controller
 	//Asignamos como realizada la primera visita presentacion
 	//************************************************
 	public function registrarVisitapAction($id){
-		
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		// buscamos el ID del asesor academico
@@ -436,18 +411,14 @@ class DefaultController extends Controller
 
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('id' => $id));
-		
-		
 		//actualizamos el estado para el academico
 		$query = $em->createQuery(
 					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
 			$query->setParameter('id_pra',$id);
 		$cronograma = $query->getOneOrNullResult();
 
-		
 		$formulario = $this->createForm(new VisitapType(), $cronograma);		
 		$formulario->handleRequest($peticion);
-
 		
 		if ($formulario->isValid()) {
 			$cronograma->setListoVisitaP(true);
@@ -458,29 +429,9 @@ class DefaultController extends Controller
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
+		$programa=$academico->getPrograma();
 		$datos = array('id' => $id);
-		return $this->render('CituaoAcademicoBundle:Default:formvisitap.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
-		/*
-		$q = $query->update('CituaoAcademicoBundle:Cronograma', 'c')
-					->set('c.listoVisitaP', true)	
-					->where('c.practicante = ?1 AND c.academico = ?2')
-					->setParameter(1, $id)
-					->setParameter(2, $academico->getId())
-					->getQuery();
-
-		$ejecsql = $q->execute();
-		
-		//actualizamos el estado para el practicante
-		$q = $query->update('CituaoCoordBundle:Practicante', 'c')
-					->set('c.listoVisitaP', true)	
-					->where('c.practicante = ?1')
-					->setParameter(1, $id)
-					->getQuery();
-
-		$ejecsql = $q->execute();
-	*/
-
-		
+		return $this->render('CituaoAcademicoBundle:Default:formvisitap.html.twig', array('formulario' => $formulario->createView(), 'programa' => $programa,  'datos' => $datos));
 	}
 
 	//*********************************************************************************************
@@ -524,34 +475,46 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('cituao_academico_homepage'));
         }
 		$datos = array('id' => $id);
+		$programa=$academico->getPrograma();
         return $this->render('CituaoAcademicoBundle:Default:forminformefinal.html.twig', array(
-            'formulario' => $formulario->createView(), 'datos' => $datos
+            'formulario' => $formulario->createView(),  'programa' => $programa,  'datos' => $datos
         ));
-	
 	}	
 
 	//************************************************************
 	//Muestra la informacion del asesor externo al practicnate
 	//*************************************************************
 	public function verasesorExternoAction($id){
-		
+		$usuario = $this->get('security.context')->getToken()->getUser();
+		$peticion = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $usuario->getUsername()));
+
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externo = $repository->findOneById($id);
 	
-		
-		return $this->render('CituaoAcademicoBundle:Default:externo.html.twig', array('externo' => $externo));
+		$programa=$academico->getPrograma();	
+		return $this->render('CituaoAcademicoBundle:Default:externo.html.twig', array('externo' => $externo ,  'programa' => $programa));
 	}
 	
 	//************************************************************
 	//Muestra la informacion del asesor externo al practicnate
 	//*************************************************************
 	public function vercentroAction($id){
-		
+		$usuario = $this->get('security.context')->getToken()->getUser();
+		$peticion = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $usuario->getUsername()));
+
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 		$centro = $repository->findOneById($id);
 	
-		
-		return $this->render('CituaoAcademicoBundle:Default:centro.html.twig', array('centro' => $centro));
+		$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:centro.html.twig', array('centro' => $centro , 'programa' => $programa ));
 	}
 	
 }
