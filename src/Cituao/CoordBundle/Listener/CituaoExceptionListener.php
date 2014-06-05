@@ -68,6 +68,28 @@ class CituaoExceptionListener
 					$message = sprintf('Usuario ya esta registrado en el sistema!');
 					$tmperror = 'CituaoPortalBundle:Default:error.html.twig';
 					break;
+				case "ERR_NO_HAY_CENTROS":
+					$message = sprintf('Para crear un cronograma debe haber centros de práctica registrados!');
+					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
+					break;
+				case "ERR_NO_HAY_EXTERNOS":
+					$message = sprintf('Para operar con un cronograma debe haber un asesor externo registrado! Registre el asesor externo!');
+					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
+					break;	
+				case "ERR_NO_HAY_ACADEMICOS":
+					$message = sprintf('Para operar con un cronograma debe haber un asesor académico registrado! Registre el asesor académico!');
+					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
+					break;	
+				case "ERR_MAX_PRACTICANTES":
+					$message = sprintf('El asesor academico seleccionado ya tiene el máximo de participantes!');
+					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
+					break;	
+				case "ERR_EXTERNO_YA_EXISTE":
+					$message = sprintf('Asesor académico ya esta registrado en el sistema!');
+					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
+					break;	
+
+					
 				default:
 					//$message = sprintf('Error no identificado!');
 					$message = $exception->getMessage();

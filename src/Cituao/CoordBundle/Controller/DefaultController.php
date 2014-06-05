@@ -216,21 +216,21 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 		$centros = $repository->findAll();
 		if (!$centros) {
-			throw $this->createNotFoundException('Para crear un cronograma debe haber centros de práctica registrados!');
+			throw $this->createNotFoundException('ERR_NO_HAY_CENTROS');
 		}
 
 		//prerequisitos para establecer un cronograma debe existir asesores externos
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externos = $repository->findAll();
 		if (!$externos) {
-			throw $this->createNotFoundException('Para operar con un cronograma debe haber un asesor externo registrado! Registre el asesor externo!');
+			throw $this->createNotFoundException('ERR_NO_HAY_EXTERNOS');
 		}
 		
 		//prerequisitos para establecer un cronograma debe existir asesores académicos
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academicos = $repository->findAll();
 		if (!$academicos) {
-			throw $this->createNotFoundException('Para operar con un cronograma debe haber un asesor académico registrado! Registre el asesor académico!');
+			throw $this->createNotFoundException('ERR_NO_HAY_ACADEMICOS');
 		}
 		
 		//base de datos
@@ -245,7 +245,7 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 			$academico = $practicante->getAcademico();
 			if ($academico->getPracticantes()->count() == 4)
-				throw $this->createNotFoundException('El asesor academico seleccionado ya tiene el máximo de participantes!');
+				throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
 			
 			// Completar las propiedades que el usuario no rellena en el formulario
 			$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
@@ -511,7 +511,15 @@ class DefaultController extends Controller
 			$e = $repository->findOneBy(array('ci' => $externo->getCi()));
 
 			if ($e != NULL){
-				throw $this->createNotFoundException('¡La cédula ingresada ya existe!');
+				throw $this->createNotFoundException('ERR_EXTERNO_YA_EXISTE');
+			}
+
+			//validamos que la cedula no este ya registrada como username
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+			$a = $repository->findOneBy(array('username' => $externo->getCi()));
+			
+			if ($a != NULL){
+				throw $this->createNotFoundException('ERR_USUARIO_YA_EXISTE');
 			}
 
 		   // Completar las propiedades que el usuario no rellena en el formulario
@@ -525,7 +533,7 @@ class DefaultController extends Controller
 			$role = $repository->findOneBy(array('id' => $codigo));
 
 			if ($role == NULL){
-				throw $this->createNotFoundException('Error: El codigo 3 roles no fue encontrado en la tabla ROLE!');
+				throw $this->createNotFoundException('ERR_ROLE_NO_ENCONTRADO');
 			}
 			$usuario = new Usuario();
 			//cargamos todos los atributos al usuario
@@ -855,46 +863,6 @@ class DefaultController extends Controller
 		return new Response($json);
 
 	}
-
-	/*****************************************************
-	* Para guardar los datos de un coordinador
-	******************************************************/
-	public function registrarcoordinadorAction(){
-		$peticion = $this->getRequest();
-		$em = $this->getDoctrine()->getManager();
-		$usuario = new Usuario();
-		$formulario = $this->createForm(new CoordinadorType(), $usuario);
-		$formulario->handleRequest($peticion);
-		
-		//los roles fueron cargados de forma manual en la base de datos
-		//buscamos una instancia role tipo coordinador 
-		$codigo = 1; //codigo corresponde a coordinador		
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
-		$role = $repository->findOneBy(array('id' => $codigo));
-
-		if ($formulario->isValid()) {
-			
-			$usuario->setSalt(md5(time()));
-			
-			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
-			$usuario->setPassword($passwordCodificado);
-			
-    		$usuario->addRole($role); //cargamos el rol al coordinador
-
-			// Completar las propiedades que el usuario no rellena en el formulario
-    		$em->persist($usuario);
-    		$em->flush();
-
-
-    		return $this->redirect($this->generateUrl('cituao_coord_homepage'));
-    	}
-
-    	return $this->render('CituaoCoordBundle:Default:registrarcoordinador.html.twig', array(
-    		'formulario' => $formulario->createView(), 'programa' => $programa
-    		));
-
-    }
 
 	//*****************************************************************/
 	//Mostrar el cronograma comun entre practicante y academico
