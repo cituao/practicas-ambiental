@@ -141,7 +141,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
      */
     public function setIsActive($isActive)
     {
-        $this->isActive = $isActive;
+        $this->is_active = $isActive;
     
         return $this;
     }
@@ -153,7 +153,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
      */
     public function getIsActive()
     {
-        return $this->isActive;
+        return $this->is_active;
     }
 
 /**

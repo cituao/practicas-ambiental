@@ -144,6 +144,7 @@ class DefaultController extends Controller
 			$usuario->setPassword($practicante->getCi());
 			$usuario->setSalt(md5(time()));
 			$usuario->addRole($role); //cargamos el rol al coordinador
+			$usuario->setIsActive(false); //no puede tener acceso 
 
 			//codificamos el password			
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
@@ -243,6 +244,7 @@ class DefaultController extends Controller
 
 		// si los datos son validos guardamos cronograma para los actores        
 		if ($formulario->isValid()) {
+			
 			$academico = $practicante->getAcademico();
 			if ($academico->getPracticantes()->count() == 4)
 				throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
@@ -306,8 +308,17 @@ class DefaultController extends Controller
 			$cronogramaexterno->setFechaEvaluacion1($practicante->getFechaVisita1());
 			$cronogramaexterno->setFechaEvaluacion2($practicante->getFechaVisita2());
 			$cronogramaexterno->setFechaActa($practicante->getFechaInformeFinal());
-			
 			$em->persist($cronogramaexterno);
+
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+			$usuario = $repository->findOneBy(array('username' => $practicante->getCodigo()));
+			/*if ($usuario != NULL)
+			throw $this->createNotFoundException('ERR_NO_HAY_ACADEMICOS');*/
+			$usuario->setIsActive(true);
+			
+			$em->persist($usuario);
+			
+			
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_coord_homepage'));
 		}
@@ -415,6 +426,7 @@ class DefaultController extends Controller
 					$usuario->setPassword($listaEstudiantes[$i]['ci']);
 					$usuario->setSalt(md5(time()));
 					$usuario->addRole($role); //cargamos el rol al coordinador
+					$usuario->setIsActive(false); //no puede tener acceso 
 
 					$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
 		            $passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());

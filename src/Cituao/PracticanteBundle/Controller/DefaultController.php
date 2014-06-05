@@ -27,6 +27,8 @@ class DefaultController extends Controller
     	$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
     	$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
 
+		$academico = $practicante->getAcademico();
+		
 		//buscamos el cronograma del asesor academico
     	$em = $this->getDoctrine()->getManager();
     	$query = $em->createQuery(
@@ -41,11 +43,9 @@ class DefaultController extends Controller
     	$query->setParameter('id_ext',$practicante->getExterno()->getId());
     	$query->setParameter('id_pra',$practicante->getId());
     	$cronogramaexterno = $query->getOneOrNullResult();
-
-		
+	
 		
 		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante, 'e' => $cronogramaexterno, 'a' => $cronograma ));				
-
 	}
 
 	public function hojadevidaAction()
