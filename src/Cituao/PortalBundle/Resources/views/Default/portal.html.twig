@@ -33,13 +33,15 @@
 				<div class="side">
 					<h1>Prácticas Profesionales</h1>
 					<h2>Facultad de Comunicación Social</h2>
-					<h3>Programa de Comunicación Social-Periodismo[31C204]</h3>
+					<h3>Aplicación Web para la gestión del proceso</h3>
 
 					<div id="formWrapper">
 						<form action="{{ path('usuario_login_check') }}" method="post">
 							{% if error %}
 								{% if error.message != '' %}
-									<div id="headerError"> <h3>{{ error.message }}</h3></div>
+									<div id="headerError"> <h3>
+									{{ error.message | replace ({"Bad credentials":"Usuario o contraseña inválida"})}}
+									</h3></div>
 								{% endif %}
 							{% endif %} 
 							<div style="position:relative;"><input onfocus="activateTextField(this.id)" onblur="disableTextField(this.id)" id="usernameField" type="text" name="_username">
