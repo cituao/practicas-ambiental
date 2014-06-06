@@ -1,5 +1,9 @@
 {% extends 'CituaoPracticanteBundle::layout.html.twig' %}
 
+{% block programa %}
+{{ programa.nombre }}
+{% endblock %}
+
 
 {% block seccion %}
 	<form action="{{ path('cituao_practicante_mihojadevida') }}" method="post" {{ form_enctype(formulario) }}>

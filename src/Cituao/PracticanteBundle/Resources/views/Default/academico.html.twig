@@ -1,5 +1,9 @@
 {% extends 'CituaoPracticanteBundle::layout.html.twig' %}
 
+{% block programa %}
+{{ programa.nombre }}
+{% endblock %}
+
 {% block js  %}
 <script>
 $( "#asesoresInternos" ).css("background-color","#000");
