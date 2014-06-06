@@ -158,5 +158,11 @@ class DefaultController extends Controller
 			'formulario' => $formulario->createView(), 'programa' => $programa, 'usuario' => $usuario
 			));		
 	}
+	
+	public function configuracionAction(){
+	
+		return $this->render('CituaoUsuarioBundle:Default:configuracion.html.twig');
+		
+	}
 
 }
