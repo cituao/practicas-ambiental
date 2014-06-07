@@ -224,6 +224,12 @@ class Practicante
 	**/	
 	protected $programa;
 
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\UsuarioBundle\Entity\Periodo", inversedBy="practicantes")
+	* @ORM\JoinColumn(name="periodo", referencedColumnName = "id") 
+	**/	
+	protected $periodo;
+
     /**
      * Sets file.
      *

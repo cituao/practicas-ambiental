@@ -620,13 +620,13 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
+			$c=0;	
+			foreach ($listaAcademicos as $aca){
+				$p = $aca->getPracticantes();
+				$c = $c + $p->count();
+			}
 		}
-		$c=0;
-	
-		foreach ($listaAcademicos as $aca){
-			$p = $aca->getPracticantes();
-			$c = $c + $p->count();
-		}
+		
 		//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();

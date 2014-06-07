@@ -167,4 +167,11 @@ Cituao\CoordBundle\Entity\Practicante:
             joinColumn:
                 name: programa
                 referencedColumnName: id
+        periodo:
+            targetEntity: Cituao\UsuarioBundle\Entity\Periodo
+            inversedBy: practicantes
+            joinColumn:
+                name: periodo
+                referencedColumnName: id
+
     lifecycleCallbacks: {  }

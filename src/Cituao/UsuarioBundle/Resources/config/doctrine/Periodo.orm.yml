@@ -1,0 +1,18 @@
+Cituao\UsuarioBundle\Entity\Periodo:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: '6'
+    oneToMany:
+        practicantes:
+            targetEntity: Cituao\CoordBundle\Entity\Practicante
+            mappedBy: periodo
+
+    lifecycleCallbacks: {  }
