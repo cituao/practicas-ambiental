@@ -1473,4 +1473,27 @@ public function getAbsolutePath()
     {
         return $this->programa;
     }
+
+    /**
+     * Set periodo
+     *
+     * @param \Cituao\UsuarioBundle\Entity\Periodo $periodo
+     * @return Practicante
+     */
+    public function setPeriodo(\Cituao\UsuarioBundle\Entity\Periodo $periodo = null)
+    {
+        $this->periodo = $periodo;
+    
+        return $this;
+    }
+
+    /**
+     * Get periodo
+     *
+     * @return \Cituao\UsuarioBundle\Entity\Periodo 
+     */
+    public function getPeriodo()
+    {
+        return $this->periodo;
+    }
 }

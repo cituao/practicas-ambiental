@@ -19,19 +19,33 @@ $( "#practicantes h3" ).css("opacity","0.4");
 			<div class="upSection">
 				<h1 class ="sectionTitle">Practicantes</h1>
 				<div id="periodo" style="width: 150px;height: 40px; float: left; padding: 5px;">
+			
 					<select style="width: 90px; height: 25px; float: right;">
-							<option value ="2013-2">2013-2</option>
-							<option value ="2014-1">2014-1</option>
+						{% for p in periodos %}
+							<option value ="{{ p.id }}">{{ p.nombre }}</option>
+						{% endfor %}
 					</select>
 				</div>
 				<div id="estadoPracticante" style="width: 350px;height: 40px; float: left; padding: 5px;font-size: 12px;">
-					<a id = "listarProceso" class = "button" style = "font-size: 11px; opacity: 0.4; ">En proceso</a>
-					<a id = "listarProceso" class = "button" style = "font-size: 11px; ">Sin iniciar</a>
-					<a id = "listarProceso" class = "button" style = "font-size: 11px; ">Culminado</a>
+					{% if filtro.estado == '1' %}
+						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 1}) }}" class = "button" style = "font-size: 14px; opacity: 0.4; ">En proceso</a>
+					{% else %}
+						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 1}) }}" class = "button" style = "font-size: 14px; ">En proceso</a>
+					{% endif %}
+					{% if filtro.estado == '0' %}
+						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 0}) }}" class = "button" style = "font-size: 14px; opacity: 0.4;  ">Sin iniciar</a>
+					{% else %}
+						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 0}) }}" class = "button" style = "font-size: 14px; ">Sin iniciar</a>
+					{% endif %}
+					{% if filtro.estado == '2' %}
+						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 2}) }}" class = "button" style = "font-size: 14px; opacity: 0.4; ">Culminado</a>
+					{% else %}
+						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 2}) }}" class = "button" style = "font-size: 14px; ">Culminado</a>
+					{% endif %}
 				</div>
 
 				<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/anadirPracticantes.png') }}"/><h4>Añadir Practicantes</h4></a>
-				<a id="nuevoPracticante"href="{{ path('cituao_coord_registrar_practicante') }}" class = "button"><img src="{{ asset('img/nuevoPracticante.png') }}"/><h4>Nuevo Practicante</h4></a>
+				<a id="nuevoPracticante" href="{{ path('cituao_coord_registrar_practicante') }}" class = "button"><img src="{{ asset('img/nuevoPracticante.png') }}"/><h4>Nuevo Practicante</h4></a>
 
 				<form name="anadirP" action= {{ path('cituao_coord_cargar_estudiantes') }} method="post" {{ form_enctype(form) }}>
 					<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="button" value="Cancelar" id="cancelar" name="cancelar" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/cancelar.png') }}"/></div>
@@ -48,9 +62,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				
 				{% if msgerr.id == '1' %}
 					<div id = "error" style = "height: 200px;">{{ msgerr.descripcion }} 
-
 					</div>		
-					
 				{% else %}
 					<table class="practicantesTableHead">
 						<tbody>
@@ -200,4 +212,3 @@ $( "#practicantes h3" ).css("opacity","0.4");
 			});
 		</script>
 {% endblock %}
-

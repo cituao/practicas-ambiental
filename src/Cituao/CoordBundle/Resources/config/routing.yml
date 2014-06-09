@@ -106,4 +106,9 @@ cituao_coord_consultar_informefinalpracticante:
     path:  /coordinador/consultar-informefinal-practicante/practicante={id}
     defaults: { _controller: CituaoCoordBundle:Default:consultarInformefinalpracticante }
 
+cituao_coord_consultar_practicantes:
+    path:  /coordinador/practicantes/periodo={p}&estado={e}
+    defaults: { _controller: CituaoCoordBundle:Default:consultarPracticantes }
+
+
 

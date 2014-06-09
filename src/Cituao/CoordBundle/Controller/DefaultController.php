@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Cituao\CoordBundle\Entity\Practicante;
 use Cituao\UsuarioBundle\Entity\Usuario;
 use Cituao\UsuarioBundle\Entity\Role;
+use Cituao\UsuarioBundle\Entity\Periodo;
 use Cituao\ExternoBundle\Entity\Externo;
 use Cituao\CoordBundle\Form\Type\PracticanteType;
 use Cituao\CoordBundle\Form\Type\CoordinadorType;
@@ -47,15 +48,37 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
 
+		//buscamos los periodos y el periodo actual
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
+		$query = $repository->createQueryBuilder('p')
+				->orderBy('p.id','DESC')
+				->getQuery();
+		$periodos = $query->getResult();
+		foreach ($periodos as $periodoActual){
+			break;
+		}
+		
 		//obtenemos los practicantes
-		$listaPracticantes = $programa->getPracticantes();
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$query = $repository->createQueryBuilder('p')
+				->where('p.programa = :id_programa')
+				->andWhere('p.periodo = :id_periodo')
+				->andWhere('p.estado = 1')
+				->setParameter('id_programa', $programa->getId())
+				->setParameter('id_periodo', $periodoActual->getId())
+				->getQuery();
+				
+		//->setParameter('id_programa', $programa->getId())
+				$listaPracticantes = $query->getResult();
 
-		if ($listaPracticantes->count() == 0) {
+		if ($listaPracticantes == NULL) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+		
+		$filtro = array('periodo' => $periodoActual->getId(), 'estado' => '1');
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
 	
 	/********************************************************/
@@ -74,15 +97,37 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
 
+		//buscamos los periodos y el periodo actual
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
+		$query = $repository->createQueryBuilder('p')
+				->orderBy('p.id','DESC')
+				->getQuery();
+		$periodos = $query->getResult();
+		foreach ($periodos as $periodoActual){
+			break;
+		}
+		
 		//obtenemos los practicantes
-		$listaPracticantes = $programa->getPracticantes();
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$query = $repository->createQueryBuilder('p')
+				->where('p.programa = :id_programa')
+				->andWhere('p.periodo = :id_periodo')
+				->andWhere('p.estado = 1')
+				->setParameter('id_programa', $programa->getId())
+				->setParameter('id_periodo', $periodoActual->getId())
+				->getQuery();
+				
+		//->setParameter('id_programa', $programa->getId())
+				$listaPracticantes = $query->getResult();
 
-		if ($listaPracticantes->count() == 0) {
+		if ($listaPracticantes == NULL) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+		
+		$filtro = array('periodo' => $periodoActual->getId(), 'estado' => '1');
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
 
 	/***************************************************************************/
@@ -119,14 +164,23 @@ class DefaultController extends Controller
 			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 			$programa = $repository->findOneByCoordinador($coordinador);
 
-			
+			//buscamos los periodos y el periodo actual
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
+			$query = $repository->createQueryBuilder('p')
+					->orderBy('p.id','DESC')
+					->getQuery();
+			$periodos = $query->getResult();
+			foreach ($periodos as $periodoActual){
+				break;
+			}
 
 			//si subio no subio foto  le asignamos una foto generica
-			if ($practicante->getFile() == NULL) 	$practicante->setPath('defaultPicture.png');
+			if ($practicante->getFile() == NULL) $practicante->setPath('defaultPicture.png');
 			//subimos la foto al servidor
 			$practicante->upload();
 			$practicante->setEstado("0");  //es practicante sin cronograma
 			$practicante->setPrograma($programa); //le asignamos el programa
+			$practicante->setPeriodo($periodoActual); //le asignamos el periodo actual
 
 			// Completar las propiedades que el usuario no rellena en el formulario
 			$em->persist($practicante);
@@ -393,7 +447,17 @@ class DefaultController extends Controller
 				$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Area');
 				$area = $repository->findOneById($id_area);
 				
+				//buscamos los periodos y el periodo actual
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
+				$query = $repository->createQueryBuilder('p')
+						->orderBy('p.id','DESC')
+						->getQuery();
+				$periodos = $query->getResult();
+				foreach ($periodos as $periodoActual){
+					break;
+				}
 
+				
 				//procesamos la matriz  fila a fila creando practicantes y usuarios
 				$i=0;				
 				$sad = "";	
@@ -412,6 +476,7 @@ class DefaultController extends Controller
 					$practicante->setEmailInstitucional($listaEstudiantes[$i]['emailInstitucional']);
 					$practicante->setCi($listaEstudiantes[$i]['ci']);
 					$practicante->setPrograma($programa);
+					$practicante->setPeriodo($periodoActual);
 					
 					//cargamos todos los atributos al usuario
 					$usuario->setUsername($listaEstudiantes[$i]['codigo']) ;
@@ -1218,6 +1283,49 @@ class DefaultController extends Controller
 	
 	}
 	
+	//listar estudiantes segun filtro aplicado por periodo academico y estado del practicante
+	public function consultarPracticantesAction($p, $e) 
+	{
+		$document = new Document();
+		$form = $this->createFormBuilder($document)
+		->add('file')
+		->add('name')
+		->getForm();
+
+		//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		//buscamos los periodos y el periodo actual
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
+		$query = $repository->createQueryBuilder('p')
+				->orderBy('p.id','DESC')
+				->getQuery();
+		$periodos = $query->getResult();
+
+		
+		//obtenemos los practicantes
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$query = $repository->createQueryBuilder('p')
+				->where('p.programa = :id_programa')
+				->andWhere('p.periodo = :id_periodo')
+				->andWhere('p.estado = :estado')
+				->setParameter('id_programa', $programa->getId())
+				->setParameter('id_periodo', $p)
+				->setParameter('estado',$e)
+				->getQuery();
+				
+		//->setParameter('id_programa', $programa->getId())
+				$listaPracticantes = $query->getResult();
+
+		if ($listaPracticantes == NULL) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		$filtro = array('periodo'=> $p, 'estado'=> $e);
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+	}
 }
-
-
