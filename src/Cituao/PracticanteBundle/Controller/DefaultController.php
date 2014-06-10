@@ -44,11 +44,8 @@ class DefaultController extends Controller
     	$query->setParameter('id_pra',$practicante->getId());
     	$cronogramaexterno = $query->getOneOrNullResult();
 	
-		//buscamos el programa
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
 		
-		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante, 'e' => $cronogramaexterno, 'a' => $cronograma, 'programa' => $programa ));				
+		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante, 'e' => $cronogramaexterno, 'a' => $cronograma, 'practicante' => $practicante ));				
 	}
 
 	public function hojadevidaAction()
@@ -120,10 +117,7 @@ class DefaultController extends Controller
     	$query->setParameter('id_ext',$practicante->getExterno()->getId());
     	$query->setParameter('id_pra',$practicante->getId());
     	$cronogramaexterno = $query->getOneOrNullResult();
-
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
-		
+	
 		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante, 'e' => $cronogramaexterno, 'a' => $cronograma, 'programa' => $programa));				
 			
 
@@ -229,10 +223,7 @@ class DefaultController extends Controller
 		}
 		$datos = array('id' => $id, 'numase' => $numase);
 		
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-		$programa = $repository->findOneById($practicante->getPrograma());
-		
-		return $this->render('CituaoPracticanteBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'programa' => $programa));
+		return $this->render('CituaoPracticanteBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'practicante' => $practicante));
 	}
 	
 	//*************************************************************
@@ -299,10 +290,8 @@ class DefaultController extends Controller
 		}
 
 		$datos = array('id' => $id, 'numcua' => $numcua);
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
-		
-		return $this->render('CituaoPracticanteBundle:Default:formcualicuanti.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'programa' => $programa ));
+				
+		return $this->render('CituaoPracticanteBundle:Default:formcualicuanti.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'practicante' => $practicante ));
 	}
 	
 	//******************************************************************
@@ -316,11 +305,8 @@ class DefaultController extends Controller
 		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
-		
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
-		
-		return $this->render('CituaoPracticanteBundle:Default:academico.html.twig', array('academico' => $practicante->getAcademico(), 'programa' => $programa));
+	
+		return $this->render('CituaoPracticanteBundle:Default:academico.html.twig', array('academico' => $practicante->getAcademico(),  'practicante' => $practicante));
 	}
 
 	//************************************************************
@@ -334,11 +320,8 @@ class DefaultController extends Controller
 		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
-		
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
-		
-		return $this->render('CituaoPracticanteBundle:Default:externo.html.twig', array('externo' => $practicante->getExterno(), 'programa' => $programa));
+	
+		return $this->render('CituaoPracticanteBundle:Default:externo.html.twig', array('externo' => $practicante->getExterno(), 'programa' => $programa, 'practicante' => $practicante));
 	}
 
 	//**************************************************************
@@ -352,11 +335,8 @@ class DefaultController extends Controller
 		$codigo =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
-		
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
-		
-		return $this->render('CituaoPracticanteBundle:Default:centro.html.twig', array('centro' => $practicante->getCentro(), 'programa' => $programa));
+
+		return $this->render('CituaoPracticanteBundle:Default:centro.html.twig', array('centro' => $practicante->getCentro(), 'practicante' => $practicante));
 	}
 	
 	//****************************************************
@@ -392,11 +372,8 @@ class DefaultController extends Controller
 		}
 		$datos = array('id' => $id);
 		
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
-		
 		return $this->render('CituaoPracticanteBundle:Default:forminformefinal.html.twig', array(
-			'formulario' => $formulario->createView(), 'datos' => $datos, 'programa' => $programa
+			'formulario' => $formulario->createView(), 'datos' => $datos, 'practicante' => $practicante
 			));
 	}
 	
@@ -439,8 +416,6 @@ class DefaultController extends Controller
 		
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
 		
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
 		return $this->render('CituaoPracticanteBundle:Default:formsubirproyecto.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr , 'practicante' => $practicante ));
 	}
 	
@@ -508,14 +483,11 @@ class DefaultController extends Controller
 		}
 
 	
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneById($practicante->getPrograma());
-		
 		$datos = array('id' => $id, 'numeva' => $numeva);
 		if ($numeva == 1) 
-			return $this->render('CituaoPracticanteBundle:Default:formcompromiso1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'programa' => $programa));
+			return $this->render('CituaoPracticanteBundle:Default:formcompromiso1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'practicante' => $practicante));
 		else
-			return $this->render('CituaoPracticanteBundle:Default:formcompromiso2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'programa' => $programa));
+			return $this->render('CituaoPracticanteBundle:Default:formcompromiso2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'practicante' => $practicante));
 	}	
 	
 }
