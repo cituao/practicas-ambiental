@@ -48,9 +48,44 @@ class AsesoriaType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Cituao\CoordBundle\Entity\Asesoria', 'cascade_validation' => true
-        ));
+		switch ($numase){
+			case 1:
+				$resolver->setDefaults(array(
+				'data_class' => 'Cituao\CoordBundle\Entity\Asesoria', 'cascade_validation' => true
+				));
+				break;
+			case 2:
+				$resolver->setDefaults(array(
+				'data_class' => 'Cituao\CoordBundle\Entity\Asesoria2', 'cascade_validation' => true
+				));
+				break;
+			case 3:
+				$resolver->setDefaults(array(
+				'data_class' => 'Cituao\CoordBundle\Entity\Asesoria3', 'cascade_validation' => true
+				));
+				break;
+			case 4:
+				$resolver->setDefaults(array(
+				'data_class' => 'Cituao\CoordBundle\Entity\Asesoria4', 'cascade_validation' => true
+				));
+				break;
+			case 5:
+				$resolver->setDefaults(array(
+				'data_class' => 'Cituao\CoordBundle\Entity\Asesoria5', 'cascade_validation' => true
+				));
+				break;
+			case 6:
+				$resolver->setDefaults(array(
+				'data_class' => 'Cituao\CoordBundle\Entity\Asesoria6', 'cascade_validation' => true
+				));
+				break;
+			case 7:
+				$resolver->setDefaults(array(
+				'data_class' => 'Cituao\CoordBundle\Entity\Asesoria7', 'cascade_validation' => true
+				));
+				break;
+		}
+        
     }
 
     public function getName()
