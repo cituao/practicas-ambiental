@@ -980,8 +980,31 @@ class DefaultController extends Controller
     	$practicante = $repository->findOneBy(array('id' => $id));
 
 		//buscamos la asesoría
-    	$query = $em->createQuery(
-    		'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra');
+		switch($numase){
+			case 1:
+				$qString = 'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra';
+				break;
+			case 2:
+				$qString = 'SELECT a FROM CituaoCoordBundle:Asesoria2 a WHERE a.academico =:id_aca AND a.practicante =:id_pra';
+				break;
+			case 3:
+				$qString = 'SELECT a FROM CituaoCoordBundle:Asesoria3 a WHERE a.academico =:id_aca AND a.practicante =:id_pra';
+				break;
+			case 4:
+				$qString = 'SELECT a FROM CituaoCoordBundle:Asesoria4 a WHERE a.academico =:id_aca AND a.practicante =:id_pra';
+				break;
+			case 5:
+				$qString = 'SELECT a FROM CituaoCoordBundle:Asesoria5 a WHERE a.academico =:id_aca AND a.practicante =:id_pra';
+				break;
+			case 6:
+				$qString = 'SELECT a FROM CituaoCoordBundle:Asesoria6 a WHERE a.academico =:id_aca AND a.practicante =:id_pra';
+				break;
+			case 7:
+				$qString = 'SELECT a FROM CituaoCoordBundle:Asesoria7 a WHERE a.academico =:id_aca AND a.practicante =:id_pra';
+				break;
+		}
+		
+		$query = $em->createQuery($qString);
     	$query->setParameter('id_aca',$practicante->getAcademico()->getId());
     	$query->setParameter('id_pra',$id);
 
