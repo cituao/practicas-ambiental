@@ -5,9 +5,9 @@ namespace Cituao\CoordBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Asesoria
+ * Asesoria7
  */
-class Asesoria
+class Asesoria7
 {
     /**
      * @var integer
@@ -27,12 +27,12 @@ class Asesoria
     /**
      * @var string
      */
-    private $docAsesor1;
+    private $docAsesor7;
 
     /**
      * @var string
      */
-    private $docPracticante1;
+    private $docPracticante7;
 
 
     /**
@@ -49,7 +49,7 @@ class Asesoria
      * Set practicante
      *
      * @param integer $practicante
-     * @return Asesoria
+     * @return Asesoria7
      */
     public function setPracticante($practicante)
     {
@@ -72,7 +72,7 @@ class Asesoria
      * Set academico
      *
      * @param integer $academico
-     * @return Asesoria
+     * @return Asesoria7
      */
     public function setAcademico($academico)
     {
@@ -92,48 +92,48 @@ class Asesoria
     }
 
     /**
-     * Set docAsesor1
+     * Set docAsesor7
      *
-     * @param string $docAsesor1
-     * @return Asesoria
+     * @param string $docAsesor7
+     * @return Asesoria7
      */
-    public function setDocAsesor1($docAsesor1)
+    public function setDocAsesor7($docAsesor7)
     {
-        $this->docAsesor1 = $docAsesor1;
+        $this->docAsesor7 = $docAsesor7;
     
         return $this;
     }
 
     /**
-     * Get docAsesor1
+     * Get docAsesor7
      *
      * @return string 
      */
-    public function getDocAsesor1()
+    public function getDocAsesor7()
     {
-        return $this->docAsesor1;
+        return $this->docAsesor7;
     }
 
     /**
-     * Set docPracticante1
+     * Set docPracticante7
      *
-     * @param string $docPracticante1
-     * @return Asesoria
+     * @param string $docPracticante7
+     * @return Asesoria7
      */
-    public function setDocPracticante1($docPracticante1)
+    public function setDocPracticante7($docPracticante7)
     {
-        $this->docPracticante1 = $docPracticante1;
+        $this->docPracticante7 = $docPracticante7;
     
         return $this;
     }
 
     /**
-     * Get docPracticante1
+     * Get docPracticante7
      *
      * @return string 
      */
-    public function getDocPracticante1()
+    public function getDocPracticante7()
     {
-        return $this->docPracticante1;
+        return $this->docPracticante7;
     }
 }

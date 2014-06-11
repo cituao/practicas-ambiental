@@ -1,4 +1,4 @@
-Cituao\CoordBundle\Entity\Asesoria:
+Cituao\CoordBundle\Entity\Asesoria4:
     type: entity
     table: null
     fields:
@@ -12,12 +12,10 @@ Cituao\CoordBundle\Entity\Asesoria:
             unique: true
         academico:
             type: integer
-        docAsesor1:
+        docAsesor4:
             type: text
-            length: '1000'
             nullable: true
-        docPracticante1:
+        docPracticante4:
             type: text
-            length: '1000'
             nullable: true
     lifecycleCallbacks: {  }
