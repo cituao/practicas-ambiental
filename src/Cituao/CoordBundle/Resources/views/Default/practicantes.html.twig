@@ -19,8 +19,9 @@ $( "#practicantes h3" ).css("opacity","0.4");
 			<div class="upSection">
 				<h1 class ="sectionTitle">Practicantes</h1>
 				<div id="periodo" style="width: 150px;height: 40px; float: left; padding: 5px;">
-			
-					<select style="width: 90px; height: 25px; float: right;">
+					
+					<select id="speriodo"  style="width: 90px; height: 25px; float: right;" data-path = "{{ path('cituao_coord_practicantes_periodo' , { 'p': 1}) }}" >
+						<option value ="0">Seleccione...</option>
 						{% for p in periodos %}
 							<option value ="{{ p.id }}">{{ p.nombre }}</option>
 						{% endfor %}
@@ -28,19 +29,19 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				</div>
 				<div id="estadoPracticante" style="width: 350px;height: 40px; float: left; padding: 5px;font-size: 12px;">
 					{% if filtro.estado == '1' %}
-						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 1}) }}" class = "button" style = "font-size: 14px; opacity: 0.4; ">En proceso</a>
+						<a id = "filtrarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 1}) }}" class = "button" style = "font-size: 14px; opacity: 0.4; ">En proceso</a>
 					{% else %}
-						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 1}) }}" class = "button" style = "font-size: 14px; ">En proceso</a>
+						<a id = "filtrarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 1}) }}" class = "button" style = "font-size: 14px; ">En proceso</a>
 					{% endif %}
 					{% if filtro.estado == '0' %}
-						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 0}) }}" class = "button" style = "font-size: 14px; opacity: 0.4;  ">Sin iniciar</a>
+						<a id = "filtrarSin" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 0}) }}" class = "button" style = "font-size: 14px; opacity: 0.4;  ">Sin iniciar</a>
 					{% else %}
-						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 0}) }}" class = "button" style = "font-size: 14px; ">Sin iniciar</a>
+						<a id = "filtrarSin" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 0}) }}" class = "button" style = "font-size: 14px; ">Sin iniciar</a>
 					{% endif %}
 					{% if filtro.estado == '2' %}
-						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 2}) }}" class = "button" style = "font-size: 14px; opacity: 0.4; ">Culminado</a>
+						<a id = "filtrarCulminado" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 2}) }}" class = "button" style = "font-size: 14px; opacity: 0.4; ">Culminado</a>
 					{% else %}
-						<a id = "listarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 2}) }}" class = "button" style = "font-size: 14px; ">Culminado</a>
+						<a id = "filtrarCulminado" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 2}) }}" class = "button" style = "font-size: 14px; ">Culminado</a>
 					{% endif %}
 				</div>
 
@@ -210,5 +211,14 @@ $( "#practicantes h3" ).css("opacity","0.4");
 							}, 100);
 						});
 			});
+			
+			$( "#speriodo" ).change(function() {
+				var ruta = $("#speriodo").attr("data-path");
+				var valor = $(this).val();
+				var longitud = ruta.length;
+				var nueva_ruta = ruta.substr(0,longitud-1)+valor;
+			
+				window.location.href = nueva_ruta;
+			});		
 		</script>
 {% endblock %}

@@ -110,5 +110,7 @@ cituao_coord_consultar_practicantes:
     path:  /coordinador/practicantes/periodo={p}&estado={e}
     defaults: { _controller: CituaoCoordBundle:Default:consultarPracticantes }
 
-
+cituao_coord_practicantes_periodo:
+    pattern:  /coordinador/practicantes-por-periodo/{p}
+    defaults: { _controller: CituaoCoordBundle:Default:practicantesPeriodo }
 

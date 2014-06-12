@@ -1351,4 +1351,52 @@ class DefaultController extends Controller
 		$filtro = array('periodo'=> $p, 'estado'=> $e);
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
+	
+	//listar practicantes por periodo
+	public function practicantesPeriodoAction($p)
+	{
+			$document = new Document();
+		$form = $this->createFormBuilder($document)
+		->add('file')
+		->add('name')
+		->getForm();
+
+		//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		//buscamos los periodos y el periodo actual
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
+		$query = $repository->createQueryBuilder('p')
+				->orderBy('p.id','DESC')
+				->getQuery();
+		$periodos = $query->getResult();
+		
+		$e = 1; //buscamos por defecto los que estan en proceso
+		
+		//obtenemos los practicantes
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$query = $repository->createQueryBuilder('p')
+				->where('p.programa = :id_programa')
+				->andWhere('p.periodo = :id_periodo')
+				->andWhere('p.estado = :estado')
+				->setParameter('id_programa', $programa->getId())
+				->setParameter('id_periodo', $p)
+				->setParameter('estado',$e)
+				->getQuery();
+				
+		//->setParameter('id_programa', $programa->getId())
+				$listaPracticantes = $query->getResult();
+
+		if ($listaPracticantes == NULL) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		$filtro = array('periodo'=> $p, 'estado'=> $e);
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+	}
+	
 }
