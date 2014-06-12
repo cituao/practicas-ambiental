@@ -48,7 +48,7 @@ class AsesoriaType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-		switch ($numase){
+		switch ($this->numase){
 			case 1:
 				$resolver->setDefaults(array(
 				'data_class' => 'Cituao\CoordBundle\Entity\Asesoria', 'cascade_validation' => true
