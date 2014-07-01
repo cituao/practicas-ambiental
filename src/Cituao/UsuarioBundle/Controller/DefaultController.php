@@ -164,5 +164,30 @@ class DefaultController extends Controller
 		return $this->render('CituaoUsuarioBundle:Default:configuracion.html.twig');
 		
 	}
+	
+	public function enviarCorreoAction(){
+		
+		$message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('jesmqz@gmail.com')
+        ->setTo('jesmarquez@hotmail.com')
+        ->setBody('saludos!')
+    ;
+    $this->get('mailer')->send($message);
+		
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programas = $repository->findAll();
+		
+		//si no hay asesoria registrada creamos una instancia
+		if (!$programas) {
+			//throw $this->createNotFoundException('ERR_NO_HAY_PROGRAMA');
+			$msgerr = array('id'=>1, 'descripcion' => 'No hay programas registrados en el sistema');
+		}else{
+			$msgerr = array('id'=>0, 'descripcion' => 'Ok');
+		}
+
+		return $this->render('CituaoUsuarioBundle:Default:programas.html.twig',  array('listaProgramas' => $programas, 'msgerr' => $msgerr));
+	}
 
 }

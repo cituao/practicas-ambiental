@@ -33,3 +33,7 @@ usuario_registrar_programa:
 usuario_actualizar_programa:
     path:  /adm/actualizar-programa/programa={id}
     defaults: { _controller: CituaoUsuarioBundle:Default:actualizarPrograma }
+    
+usuario_enviar_correo:
+    path:  /adm/enviar-correo
+    defaults: { _controller: CituaoUsuarioBundle:Default:enviarCorreo }
