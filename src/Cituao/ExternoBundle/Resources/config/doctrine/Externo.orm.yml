@@ -40,6 +40,12 @@ Cituao\ExternoBundle\Entity\Externo:
             joinColumn:
                 name: centro
                 referencedColumnName: id
+        programa:
+            targetEntity: Cituao\UsuarioBundle\Entity\Programa
+            inversedBy: externos
+            joinColumn:
+                name: programa
+                referencedColumnName: id
     oneToMany:
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante

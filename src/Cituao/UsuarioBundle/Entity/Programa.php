@@ -39,6 +39,16 @@ class Programa
 	* @ORM\OneToMany(targetEntity="Cituao\AcademicoBundle\Academico", mappedBy = "programa")	
 	**/
 	protected $academicos;
+	
+	/**
+	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Centro", mappedBy = "programa")	
+	**/
+	protected $centros;
+	
+	/**
+	* @ORM\OneToMany(targetEntity="Cituao\ExternoBundle\Externo", mappedBy = "programa")	
+	**/
+	protected $externos;
 
     /**
      * Get id
@@ -193,5 +203,71 @@ class Programa
     public function getAcademicos()
     {
         return $this->academicos;
+    }
+
+    /**
+     * Add centros
+     *
+     * @param \Cituao\CoordBundle\Entity\Centro $centros
+     * @return Programa
+     */
+    public function addCentro(\Cituao\CoordBundle\Entity\Centro $centros)
+    {
+        $this->centros[] = $centros;
+    
+        return $this;
+    }
+
+    /**
+     * Remove centros
+     *
+     * @param \Cituao\CoordBundle\Entity\Centro $centros
+     */
+    public function removeCentro(\Cituao\CoordBundle\Entity\Centro $centros)
+    {
+        $this->centros->removeElement($centros);
+    }
+
+    /**
+     * Get centros
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCentros()
+    {
+        return $this->centros;
+    }
+
+    /**
+     * Add externos
+     *
+     * @param \Cituao\ExternoBundle\Entity\Externo $externos
+     * @return Programa
+     */
+    public function addExterno(\Cituao\ExternoBundle\Entity\Externo $externos)
+    {
+        $this->externos[] = $externos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove externos
+     *
+     * @param \Cituao\ExternoBundle\Entity\Externo $externos
+     */
+    public function removeExterno(\Cituao\ExternoBundle\Entity\Externo $externos)
+    {
+        $this->externos->removeElement($externos);
+    }
+
+    /**
+     * Get externos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExternos()
+    {
+        return $this->externos;
     }
 }

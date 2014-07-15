@@ -23,5 +23,12 @@ Cituao\UsuarioBundle\Entity\Programa:
             mappedBy: programa
         academicos:
             targetEntity: Cituao\AcademicoBundle\Entity\Academico
-            mappedBy: programa            
+            mappedBy: programa
+        centros:
+            targetEntity: Cituao\CoordBundle\Entity\Centro
+            mappedBy: programa               
+        externos:
+            targetEntity: Cituao\ExternoBundle\Entity\Externo
+            mappedBy: programa               
+
     lifecycleCallbacks: {  }

@@ -66,6 +66,11 @@ class Centro
 	**/
 	protected $externos;
 	
+	/**
+	* @ORM\ManyToOne(targetEntity="Cituao\UsuarioBundle\Entity\Programa", inversedBy="centros")
+	* @ORM\JoinColumn(name="programa", referencedColumnName = "id") 
+	**/	
+	protected $programa;
 	
 	public function __construct()
     {
@@ -285,5 +290,28 @@ class Centro
     public function getPracticantes()
     {
         return $this->practicantes;
+    }
+
+    /**
+     * Set programa
+     *
+     * @param \Cituao\UsuarioBundle\Entity\Programa $programa
+     * @return Centro
+     */
+    public function setPrograma(\Cituao\UsuarioBundle\Entity\Programa $programa = null)
+    {
+        $this->programa = $programa;
+    
+        return $this;
+    }
+
+    /**
+     * Get programa
+     *
+     * @return \Cituao\UsuarioBundle\Entity\Programa 
+     */
+    public function getPrograma()
+    {
+        return $this->programa;
     }
 }

@@ -537,21 +537,21 @@ class DefaultController extends Controller
 	//Listar todos los asesores externos		
 	/*************************************/
 	public function asesoresAction(){
-		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
-		$listaAsesores = $repository->findAll();
-		
-		if (!$listaAsesores) {
-			$msgerr = array('descripcion'=>'No hay asesores externos registrados!','id'=>'1');
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		$listaAsesores = $programa->getExternos();
+
+		if ($listaAsesores->count() == 0) {
+			$msgerr = array('descripcion'=>'No hay centros de práctica registrados!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-
-				//buscamos el programa
-		$user = $this->get('security.context')->getToken()->getUser();
-		$coordinador =  $user->getUsername();
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneByCoordinador($coordinador);
 		
+		//buscamos el programa
 		return $this->render('CituaoCoordBundle:Default:externos.html.twig', array('listaAsesores' => $listaAsesores, 'msgerr' => $msgerr, 'programa' => $programa));
 	} 
 
@@ -821,24 +821,24 @@ class DefaultController extends Controller
 	}
 
 	/********************************************************/
-	//Listar los centros de practicas registrados en la base de datos
+	//Listar los centros de practicas registrados en la base de datos segun la coordinacion
 	/********************************************************/	
 	public function centrosAction(){
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
-		$listaCentros = $repository->findAll();
-		
-		if (!$listaCentros) {
-			$msgerr = array('descripcion'=>'No hay centros de prácticas registrados!','id'=>'1');
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		$listaCentros = $programa->getCentros();
+
+		if ($listaCentros->count() == 0) {
+			$msgerr = array('descripcion'=>'No hay centros de práctica registrados!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		
 		//buscamos el programa
-		$user = $this->get('security.context')->getToken()->getUser();
-		$coordinador =  $user->getUsername();
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneByCoordinador($coordinador);
-		
 		return $this->render('CituaoCoordBundle:Default:centros.html.twig', array('listaCentros' => $listaCentros, 'msgerr' => $msgerr, 'programa' => $programa));
 	}
 
