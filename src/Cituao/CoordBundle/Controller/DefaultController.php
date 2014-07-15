@@ -1355,7 +1355,7 @@ class DefaultController extends Controller
 	//listar practicantes por periodo
 	public function practicantesPeriodoAction($p)
 	{
-			$document = new Document();
+		$document = new Document();
 		$form = $this->createFormBuilder($document)
 		->add('file')
 		->add('name')
@@ -1397,6 +1397,80 @@ class DefaultController extends Controller
 		}
 		$filtro = array('periodo'=> $p, 'estado'=> $e);
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+	}
+
+	public function practicantesRetrasoAction(){
+		//buscamos el programa
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		//buscamos los periodos y el periodo actual
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
+		$query = $repository->createQueryBuilder('p')
+				->orderBy('p.id','DESC')
+				->getQuery();
+		$periodos = $query->getResult();
+		foreach ($periodos as $periodoActual){
+			break;
+		}
+		
+		//obtenemos los practicantes
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$query = $repository->createQueryBuilder('p')
+				->where('p.programa = :id_programa')
+				->andWhere('p.periodo = :id_periodo')
+				->andWhere('p.estado = 1')
+				->setParameter('id_programa', $programa->getId())
+				->setParameter('id_periodo', $periodoActual->getId())
+				->getQuery();
+				
+		//->setParameter('id_programa', $programa->getId())
+				$listaPracticantes = $query->getResult();
+
+		if ($listaPracticantes == NULL) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		
+		$filtro = array('periodo' => $periodoActual->getId(), 'estado' => '1');
+
+
+		//filtramos los practicantes que estan en retraso en la entrega de actividades
+
+		$hoy = new DateTime();
+		$retrasos = 0;
+		$filtro = array();
+		$i=0;
+		foreach ($listaPracticantes as $p){
+			$fecha = $p->getFechaAsesoria1();
+			$entrego = $p->getListoAsesoria1();
+			if ($p->getFechaAsesoria1() < $hoy && $p->getListoAsesoria1( == false) $retraso++;
+			if ($p->getFechaAsesoria2() < $hoy && $p->getListoAsesoria2( == false) $retraso++;
+			if ($p->getFechaAsesoria3() < $hoy && $p->getListoAsesoria3( == false) $retraso++;
+			if ($p->getFechaAsesoria4() < $hoy && $p->getListoAsesoria4( == false) $retraso++;
+			if ($p->getFechaAsesoria5() < $hoy && $p->getListoAsesoria5( == false) $retraso++;
+			if ($p->getFechaAsesoria6() < $hoy && $p->getListoAsesoria6( == false) $retraso++;
+			if ($p->getFechaAsesoria7() < $hoy && $p->getListoAsesoria7( == false) $retraso++;
+			if ($p->getFechaInformeGestion1() < $hoy && $p->getListoGestion1( == false) $retraso++;
+			if ($p->getFechaInformeGestion2() < $hoy && $p->getListoGestion2( == false) $retraso++;
+			if ($p->getFechaInformeGestion3() < $hoy && $p->getListoGestion3( == false) $retraso++;
+			
+			if ($retraso > 0){
+				$filtro[$i] = array('ci' => $p->getCi(), 'nombres' => $p->getNombres(), 'apellidos' => $p->getApellidos(), 'path' => $p->getPath(), 'retrasos' => $retrasos);
+			}
+
+
+			$i++;
+		}
+		//$retrasos = $listaPracticantes->count();
+		$aretrasos = array('retrasos'=> $retrasos);
+
+		return $this->render('CituaoCoordBundle:Default:practicantesenretraso.html.twig', array('aretrasos' => $aretrasos, 'periodos' => $periodos, 'listaPracticantes' => $filtro, 'programa' => $programa, 'msgerr' => $msgerr, 'lista' => $filtro));
+		
+
 	}
 	
 }

@@ -114,3 +114,8 @@ cituao_coord_practicantes_periodo:
     pattern:  /coordinador/practicantes-por-periodo/{p}
     defaults: { _controller: CituaoCoordBundle:Default:practicantesPeriodo }
 
+cituao_coord_retrasos_practicante:
+    pattern:  /coordinador/practicantes-en-retraso
+    defaults: { _controller: CituaoCoordBundle:Default:practicantesRetraso }
+
+
