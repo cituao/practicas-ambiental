@@ -1467,8 +1467,13 @@ class DefaultController extends Controller
 			if ($p->getFechaInformeGestion1() < $hoy && $p->getListoGestion1() == false) $retrasos++;
 			if ($p->getFechaInformeGestion2() < $hoy && $p->getListoGestion2() == false) $retrasos++;
 			if ($p->getFechaInformeGestion3() < $hoy && $p->getListoGestion3() == false) $retrasos++;
+			if ($p->getFechaInformeFinal() < $hoy && $p->getListoInformeFinal() == false) $retrasos++;
+			//solo para practicantes del area organizacional
+			$area = $p->getArea();
+			if($area == 1){
+				if ($p->getFechaInformeFinal() < $hoy && $p->getListoProyecto() == false) $retrasos++;
+			}
 			//creamos el registro 
-			
 			if ($retrasos > 0){
 				$retrasados[$i] = array('id' => $p->getId() ,'ci' => $p->getCi(), 'nombres' => $p->getNombres(), 'apellidos' => $p->getApellidos(), 'path' => $p->getPath(), 'emailInstitucional' => $p->getEmailInstitucional(), 'emailPersonal' => $p->getEmailPersonal(), 'retrasos' => $retrasos);
 			}
