@@ -593,6 +593,13 @@ class DefaultController extends Controller
 
 		   // Completar las propiedades que el usuario no rellena en el formulario
 			
+			// buscamos el programa para asignarlo al programa academico
+			$user = $this->get('security.context')->getToken()->getUser();
+			$coordinador =  $user->getUsername();
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+			$programa = $repository->findOneByCoordinador($coordinador);
+			$externo->setPrograma($programa);
+			
 			$em->persist($externo);
 
 			//los roles fueron cargados de forma manual en la base de datos
@@ -854,6 +861,13 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 
 			// Completar las propiedades que el usuario no rellena en el formulario
+						// buscamos el programa para asignarlo al programa academico
+			$user = $this->get('security.context')->getToken()->getUser();
+			$coordinador =  $user->getUsername();
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+			$programa = $repository->findOneByCoordinador($coordinador);
+			$centro->setPrograma($programa);
+			
 			$em->persist($centro);
 			$em->flush();
 
