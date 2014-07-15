@@ -118,4 +118,7 @@ cituao_coord_retrasos_practicante:
     pattern:  /coordinador/practicantes-en-retraso
     defaults: { _controller: CituaoCoordBundle:Default:practicantesRetraso }
 
+cituao_coord_email_practicantes:
+    pattern:  /coordinador/notificacion-email-practicantes
+    defaults: { _controller: CituaoCoordBundle:Default:enviarCorreosPracticantes }
 

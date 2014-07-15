@@ -1399,6 +1399,9 @@ class DefaultController extends Controller
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
 
+	//*********************************************************************************
+	//Mostrar los practicantes con retrasos en la entrega 
+	//*********************************************************************************
 	public function practicantesRetrasoAction(){
 		//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
@@ -1416,14 +1419,13 @@ class DefaultController extends Controller
 			break;
 		}
 		
-		//obtenemos los practicantes
+		//obtenemos los practicantes sin importar el periodo
+		//->andWhere('p.periodo = :id_periodo') ->setParameter('id_periodo', $periodoActual->getId())
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$query = $repository->createQueryBuilder('p')
 				->where('p.programa = :id_programa')
-				->andWhere('p.periodo = :id_periodo')
 				->andWhere('p.estado = 1')
 				->setParameter('id_programa', $programa->getId())
-				->setParameter('id_periodo', $periodoActual->getId())
 				->getQuery();
 				
 		//->setParameter('id_programa', $programa->getId())
@@ -1434,43 +1436,32 @@ class DefaultController extends Controller
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		
 		$filtro = array('periodo' => $periodoActual->getId(), 'estado' => '1');
-
-
 		//filtramos los practicantes que estan en retraso en la entrega de actividades
-
 		$hoy = new DateTime();
 		$retrasos = 0;
-		$filtro = array();
 		$i=0;
+		$retrasados = array();
 		foreach ($listaPracticantes as $p){
-			$fecha = $p->getFechaAsesoria1();
-			$entrego = $p->getListoAsesoria1();
-			if ($p->getFechaAsesoria1() < $hoy && $p->getListoAsesoria1( == false) $retraso++;
-			if ($p->getFechaAsesoria2() < $hoy && $p->getListoAsesoria2( == false) $retraso++;
-			if ($p->getFechaAsesoria3() < $hoy && $p->getListoAsesoria3( == false) $retraso++;
-			if ($p->getFechaAsesoria4() < $hoy && $p->getListoAsesoria4( == false) $retraso++;
-			if ($p->getFechaAsesoria5() < $hoy && $p->getListoAsesoria5( == false) $retraso++;
-			if ($p->getFechaAsesoria6() < $hoy && $p->getListoAsesoria6( == false) $retraso++;
-			if ($p->getFechaAsesoria7() < $hoy && $p->getListoAsesoria7( == false) $retraso++;
-			if ($p->getFechaInformeGestion1() < $hoy && $p->getListoGestion1( == false) $retraso++;
-			if ($p->getFechaInformeGestion2() < $hoy && $p->getListoGestion2( == false) $retraso++;
-			if ($p->getFechaInformeGestion3() < $hoy && $p->getListoGestion3( == false) $retraso++;
+			if ($p->getFechaAsesoria1() < $hoy && $p->getListoAsesoria1()  == false) $retrasos++;
+			if ($p->getFechaAsesoria2() < $hoy && $p->getListoAsesoria2() == false) $retrasos++;
+			if ($p->getFechaAsesoria3() < $hoy && $p->getListoAsesoria3() == false) $retrasos++;
+			if ($p->getFechaAsesoria4() < $hoy && $p->getListoAsesoria4() == false) $retrasos++;
+			if ($p->getFechaAsesoria5() < $hoy && $p->getListoAsesoria5() == false) $retrasos++;
+			if ($p->getFechaAsesoria6() < $hoy && $p->getListoAsesoria6() == false) $retrasos++;
+			if ($p->getFechaAsesoria7() < $hoy && $p->getListoAsesoria7() == false) $retrasos++;
+			if ($p->getFechaInformeGestion1() < $hoy && $p->getListoGestion1() == false) $retrasos++;
+			if ($p->getFechaInformeGestion2() < $hoy && $p->getListoGestion2() == false) $retrasos++;
+			if ($p->getFechaInformeGestion3() < $hoy && $p->getListoGestion3() == false) $retrasos++;
+			//creamos el registro 
 			
-			if ($retraso > 0){
-				$filtro[$i] = array('ci' => $p->getCi(), 'nombres' => $p->getNombres(), 'apellidos' => $p->getApellidos(), 'path' => $p->getPath(), 'retrasos' => $retrasos);
+			if ($retrasos > 0){
+				$retrasados[$i] = array('id' => $p->getId() ,'ci' => $p->getCi(), 'nombres' => $p->getNombres(), 'apellidos' => $p->getApellidos(), 'path' => $p->getPath(), 'emailInstitucional' => $p->getEmailInstitucional(), 'emailPersonal' => $p->getEmailPersonal(), 'retrasos' => $retrasos);
 			}
-
-
+			$retrasos=0;
 			$i++;
 		}
-		//$retrasos = $listaPracticantes->count();
-		$aretrasos = array('retrasos'=> $retrasos);
 
-		return $this->render('CituaoCoordBundle:Default:practicantesenretraso.html.twig', array('aretrasos' => $aretrasos, 'periodos' => $periodos, 'listaPracticantes' => $filtro, 'programa' => $programa, 'msgerr' => $msgerr, 'lista' => $filtro));
-		
-
+		return $this->render('CituaoCoordBundle:Default:practicantesenretraso.html.twig', array('periodos' => $periodos, 'listaPracticantes' => $retrasados, 'programa' => $programa, 'msgerr' => $msgerr, 'lista' => $filtro));
 	}
-	
 }
