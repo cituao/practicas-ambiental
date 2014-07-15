@@ -28,7 +28,7 @@ security:
         in_memory:
              memory:
                     users:
-                          AdmUAO: { password: d0be2dc421be4fcd0172e5afceea3970e2f3d940, roles: 'ROLE_ADMIN' }
+                          AdmUAO: { password: 5a1a939fa30f7b5358e2ff9b0aa62585c5aa61a1, roles: 'ROLE_ADMIN' }
         usuarios:
             entity: { class: Cituao\UsuarioBundle\Entity\Usuario, property: username }
 
