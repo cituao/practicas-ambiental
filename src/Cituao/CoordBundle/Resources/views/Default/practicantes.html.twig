@@ -18,7 +18,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 		{% block upSection  %}
 			<div class="upSection">
 				<h1 class ="sectionTitle">Practicantes</h1>
-				<div id="periodo" style="width: 150px;height: 40px; float: left; padding: 5px;">
+				<div id="periodo" style="width: 100px;height: 40px; float: left; padding: 5px;">
 					
 					<select id="speriodo"  style="width: 90px; height: 25px; float: right;" data-path = "{{ path('cituao_coord_practicantes_periodo' , { 'p': 1}) }}" >
 						<option value ="0">Seleccione...</option>
@@ -27,7 +27,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						{% endfor %}
 					</select>
 				</div>
-				<div id="estadoPracticante" style="width: 350px;height: 40px; float: left; padding: 5px;font-size: 12px;">
+				<div id="estadoPracticante" style="width: 350px;height: 40px; float: left; padding: 1px;font-size: 12px;">
 					{% if filtro.estado == '1' %}
 						<a id = "filtrarProceso" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 1}) }}" class = "button" style = "font-size: 14px; opacity: 0.4; ">En proceso</a>
 					{% else %}
@@ -44,7 +44,10 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<a id = "filtrarCulminado" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 2}) }}" class = "button" style = "font-size: 14px; ">Culminado</a>
 					{% endif %}
 				</div>
-
+				<div id="alerta" style="width: 100px;height: 40px; float: left; padding: 1px;font-size: 12px;">
+				<a id="retrasos" href="{{ path('cituao_coord_registrar_practicante') }}" class = "button" style = "font-size: 10px;"><h4>¡R!</h4></a>
+				</div>				
+				
 				<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/anadirPracticantes.png') }}"/><h4>Añadir Practicantes</h4></a>
 				<a id="nuevoPracticante" href="{{ path('cituao_coord_registrar_practicante') }}" class = "button"><img src="{{ asset('img/nuevoPracticante.png') }}"/><h4>Nuevo Practicante</h4></a>
 
