@@ -19,6 +19,11 @@
 		<div class = "upSection">
 		<h1 class ="sectionTitle">Mis asesores académicos</h2>
 		<a href="{{ path('cituao_coord_registraracademico') }}" class = "button"><img src="{{ asset('img/academicosBoton.png') }}"/><h4>Nuevo asesor</h4></a>
+		
+		<div id="alerta" style="width: 300px;height: 40px; float: right; padding: 5px;font-size: 12px;">
+				<a id="retrasos" href="{{ path('cituao_coord_retrasos_academico') }}" class = "button" style = "font-size: 10px;"><h4>Retrasos</h4></a>
+		</div>		
+
 		</div>
 		{% endblock  %}
 

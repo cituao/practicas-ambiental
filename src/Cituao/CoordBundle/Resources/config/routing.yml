@@ -122,3 +122,6 @@ cituao_coord_email_practicantes:
     pattern:  /coordinador/notificacion-email-practicantes
     defaults: { _controller: CituaoCoordBundle:Default:enviarCorreosPracticantes }
 
+cituao_coord_retrasos_academico:
+    pattern:  /coordinador/academicos-en-retraso
+    defaults: { _controller: CituaoCoordBundle:Default:academicosRetraso }

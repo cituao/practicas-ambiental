@@ -1483,4 +1483,52 @@ class DefaultController extends Controller
 
 		return $this->render('CituaoCoordBundle:Default:practicantesenretraso.html.twig', array('periodos' => $periodos, 'listaPracticantes' => $retrasados, 'programa' => $programa, 'msgerr' => $msgerr, 'lista' => $filtro));
 	}
+	
+	//******************************************************************
+	//Muestra los asesores academicos que presentan retraso
+	//*******************************************************************
+	public function academicosRetrasoAction(){
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		$listaAcademicos = $programa->getAcademicos();
+		$em = $this->getDoctrine()->getManager();
+			
+		if ($listaAcademicos->count() == 0) {
+			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+
+			foreach($listaAcademicos as $academico) {
+				$id = $academico->getId();
+				$nombre = $academico->getNombres();
+				$listaPracticantes = $academico->getPracticantes();
+				if ($listaPracticantes->count() != 0){
+					foreach($listaPracticantes as $practicante) {
+						//buscamos el cronograma del asesor academico
+						$query = $em->createQuery(
+							'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
+						$query->setParameter('id_aca',$academico->getId());
+						$query->setParameter('id_pra',$practicante->getId());
+						$cronograma = $query->getOneOrNullResult();
+
+						$hoy = new DateTime();
+						$retrasos = 0;
+						$i=0;
+						$retrasados = array();
+						
+						if ($cronograma->getFechaAsesoria1() < $hoy && $cronograma->getListoAsesoria1()  == false) $retrasos++;
+						
+						
+					}
+				}
+			}
+		}
+		
+		return $this->render('CituaoCoordBundle:Default:academicos.html.twig', array('listaAcademicos' => $listaAcademicos, 'msgerr' => $msgerr, 'programa' => $programa ));
+	}
+
 }
