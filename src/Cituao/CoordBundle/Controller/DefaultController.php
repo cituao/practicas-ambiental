@@ -1542,7 +1542,7 @@ class DefaultController extends Controller
 						$i=0;
 						$retrasados = array();
 						
-						if ($cronograma->getFechaAsesoria1() < $hoy && $cronograma->getListoAsesoria1()  == false) $retrasos++;
+						//if ($cronograma->getFechaAsesoria1() < $hoy && $cronograma->getListoAsesoria1()  == false) $retrasos++;
 						
 						
 					}
