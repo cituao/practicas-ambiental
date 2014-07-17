@@ -419,7 +419,8 @@ class DefaultController extends Controller
 			//para buscar si ya se encuentra en la base de datos
 			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 
-			$nohay = true;			
+			$nohay = true;
+			$numero_registrados=0;
 			//procesamos la matriz separando los campos por medio del separador putno y coma
 			while($i <= $numero_fila -1){
 				$row = $filas[$i];
@@ -428,6 +429,7 @@ class DefaultController extends Controller
 				$e = $repository->findOneBy(array('ci' => $sql[3]));
 				//Si esta en la base de datos lo ignoramos				
 				if ($e != NULL){
+					$numero_registrados++;
 					$i++;						
 					continue;
 				}
@@ -451,10 +453,7 @@ class DefaultController extends Controller
 				$coordinador =  $user->getUsername();
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 				$programa = $repository->findOneByCoordinador($coordinador);
-						
-				$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Area');
-				$area = $repository->findOneById($id_area);
-				
+			
 				//buscamos los periodos y el periodo actual
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
 				$query = $repository->createQueryBuilder('p')
@@ -469,8 +468,8 @@ class DefaultController extends Controller
 				//procesamos la matriz  fila a fila creando practicantes y usuarios
 				$i=0;				
 				$sad = "";	
-
-				while($i <= $numero_fila -1){
+				
+				while($i <= $numero_fila - $numero_registrados){
 					//creamos una instancia Practicante para descargar datos del CSV y guardar en la base de datos
 					$practicante = new Practicante();
 					//creamos una instancia de usuario para darle entrada a los practicantes como usuarios en el sistema
@@ -485,6 +484,7 @@ class DefaultController extends Controller
 					$practicante->setCi($listaEstudiantes[$i]['ci']);
 					$practicante->setPrograma($programa);
 					$practicante->setPeriodo($periodoActual);
+			
 					
 					//cargamos todos los atributos al usuario
 					$usuario->setUsername($listaEstudiantes[$i]['codigo']) ;
@@ -515,9 +515,6 @@ class DefaultController extends Controller
 					//cargamos los demas datos
 					//$practicante->setTelefonoMovil($sad);
 
-					$practicante->setArea($area);
-
-
 					$practicante->setEstado(false);
 
 					$practicante->setPath('defaultPicture.png');
@@ -525,9 +522,14 @@ class DefaultController extends Controller
 					$em->flush();
 					$i++;
 				}
+				$msgerr = array('id'=>'0', 'descripcion'=>' ');
+			} else {
+				$msgerr = array('id'=>'1', 'descripcion'=>'No fue registrado ningun practicante!');
 			}
-
-			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
+			
+			
+			$msgerr = array('id'=>'0', 'descripcion'=>' ');
+			return $this->render('CituaoCoordBundle:Default:practicantessubidos.html.twig', array('listaEstudiantes' => $listaEstudiantes, 'msgerr' => $msgerr , 'programa' => $programa));
 		} 
 		
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
