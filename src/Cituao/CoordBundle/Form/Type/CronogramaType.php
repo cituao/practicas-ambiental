@@ -5,15 +5,34 @@ namespace Cituao\CoordBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class CronogramaType extends AbstractType
 {
+	protected $programa;
+
+	public function __construct($programa){
+		$this->programa = $programa;
+
+	}
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+		$prg = $this->programa;	
+
+
         $builder
 	    ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))
-		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'empty_value' => 'Seleccione un centro de prácticas'))
+		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' ,
+										'query_builder' => function(EntityRepository $er) use ($prg){
+      									return $er->createQueryBuilder('c')
+										->where('c.programa = :id_programa')                						
+										->setParameter('id_programa', $prg);										
+      										},
+ 'property'=>'nombre', 'empty_value' => 'Seleccione?'))
+
+
 		->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo' , 'property'=>'NombreCompleto', 'empty_value' => 'Seleccione un asesor externo'))
 		->add('academico','entity', array('label' => 'Asesor académico','class' => 'CituaoAcademicoBundle:Academico' , 'property'=>'NombreCompleto', 'empty_value' => 'Seleccione un asesor académico'))
 		

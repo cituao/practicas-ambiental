@@ -269,24 +269,30 @@ class DefaultController extends Controller
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		
+
 		//prerequisitos para establecer un cronograma dede existir centros de prácticas registrados
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
-		$centros = $repository->findAll();
-		if (!$centros) {
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		$listaCentros = $programa->getCentros();
+		if ($listaCentros->count() == 0) {
 			throw $this->createNotFoundException('ERR_NO_HAY_CENTROS');
 		}
 
 		//prerequisitos para establecer un cronograma debe existir asesores externos
-		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
-		$externos = $repository->findAll();
-		if (!$externos) {
+		$listaAsesores = $programa->getExternos();
+
+		if ($listaAsesores->count() == 0) {
 			throw $this->createNotFoundException('ERR_NO_HAY_EXTERNOS');
 		}
 		
 		//prerequisitos para establecer un cronograma debe existir asesores académicos
-		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
-		$academicos = $repository->findAll();
-		if (!$academicos) {
+		$listaAcademicos = $programa->getAcademicos();
+
+		if ($listaAcademicos->count() == 0) {
 			throw $this->createNotFoundException('ERR_NO_HAY_ACADEMICOS');
 		}
 		
@@ -295,7 +301,7 @@ class DefaultController extends Controller
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 
         //creamos instacia formulario para el conograma
-		$formulario = $this->createForm(new CronogramaType(), $practicante);
+		$formulario = $this->createForm(new CronogramaType($programa->getId()), $practicante);
 		$formulario->handleRequest($peticion);
 
 		// si los datos son validos guardamos cronograma para los actores        

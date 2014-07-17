@@ -21,7 +21,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<div id="periodo" style="width: 100px;height: 40px; float: left; padding: 5px;">
 					
 					<select id="speriodo"  style="width: 90px; height: 25px; float: right;" data-path = "{{ path('cituao_coord_practicantes_periodo' , { 'p': 1}) }}" >
-						<option value ="0">Seleccione...</option>
+						<option value ="0">¿Período?</option>
 						{% for p in periodos %}
 							<option value ="{{ p.id }}">{{ p.nombre }}</option>
 						{% endfor %}
