@@ -55,6 +55,7 @@ class DefaultController extends Controller
 				->getQuery();
 		$periodos = $query->getResult();
 		foreach ($periodos as $periodoActual){
+			$dataperiodo = array('id' => $periodoActual->getId(), 'nombre' => $periodoActual->getNombre());
 			break;
 		}
 		
@@ -78,7 +79,7 @@ class DefaultController extends Controller
 		}
 		
 		$filtro = array('periodo' => $periodoActual->getId(), 'estado' => '1');
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr, 'dataperiodo' => $dataperiodo));
 	}
 	
 	/********************************************************/
