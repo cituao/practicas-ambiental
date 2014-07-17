@@ -17,7 +17,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 	<div class="content">
 		{% block upSection  %}
 			<div class="upSection">
-				<h1 class ="sectionTitle">Practicantes</h1>
+				<h1 class ="sectionTitle">Practicantes {{ dataperiodo.nombre }}</h1>
 				<div id="periodo" style="width: 100px;height: 40px; float: left; padding: 5px;">
 					
 					<select id="speriodo"  style="width: 90px; height: 25px; float: right;" data-path = "{{ path('cituao_coord_practicantes_periodo' , { 'p': 1}) }}" >

@@ -104,6 +104,7 @@ class DefaultController extends Controller
 				->getQuery();
 		$periodos = $query->getResult();
 		foreach ($periodos as $periodoActual){
+			$dataperiodo = array('id' => $periodoActual->getId(), 'nombre' => $periodoActual->getNombre());
 			break;
 		}
 		
@@ -127,7 +128,7 @@ class DefaultController extends Controller
 		}
 		
 		$filtro = array('periodo' => $periodoActual->getId(), 'estado' => '1');
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr, 'dataperiodo' => $dataperiodo));
 	}
 
 	/***************************************************************************/
@@ -1342,7 +1343,13 @@ class DefaultController extends Controller
 				->getQuery();
 		$periodos = $query->getResult();
 
-		
+		foreach($periodos as $pdo){
+			if ($pdo->getId() == $p){
+				$dataperiodo = array('id' => $pdo->getId(), 'nombre'=> $pdo->getNombre());
+				break;
+			}
+		} 		
+
 		//obtenemos los practicantes
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$query = $repository->createQueryBuilder('p')
@@ -1363,7 +1370,7 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		$filtro = array('periodo'=> $p, 'estado'=> $e);
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('dataperiodo'=> $dataperiodo, 'filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
 	
 	//listar practicantes por periodo
@@ -1387,6 +1394,14 @@ class DefaultController extends Controller
 				->orderBy('p.id','DESC')
 				->getQuery();
 		$periodos = $query->getResult();
+
+		foreach($periodos as $pdo){
+			if ($pdo->getId() == $p){
+				$dataperiodo = array('id' => $pdo->getId(), 'nombre' => $pdo->getNombre());
+				break;
+			}
+		}	
+
 		
 		$e = 1; //buscamos por defecto los que estan en proceso
 		
@@ -1410,7 +1425,7 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		$filtro = array('periodo'=> $p, 'estado'=> $e);
-		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
+		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr, 'dataperiodo' => $dataperiodo ));
 	}
 
 	//*********************************************************************************
