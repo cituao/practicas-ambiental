@@ -1523,7 +1523,8 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
-
+			$retrasados = array();
+			$hayRetraso=false;
 			foreach($listaAcademicos as $academico) {
 				$id = $academico->getId();
 				$nombre = $academico->getNombres();
@@ -1540,17 +1541,36 @@ class DefaultController extends Controller
 						$hoy = new DateTime();
 						$retrasos = 0;
 						$i=0;
-						$retrasados = array();
 						
-						//if ($cronograma->getFechaAsesoria1() < $hoy && $cronograma->getListoAsesoria1()  == false) $retrasos++;
-						
-						
+						if ($cronograma->getFechaAsesoria1() < $hoy && $cronograma->getListoAsesoria1()  == false) $retrasos++;
+						if ($cronograma->getFechaAsesoria2() < $hoy && $cronograma->getListoAsesoria2()  == false) $retrasos++;
+						if ($cronograma->getFechaAsesoria3() < $hoy && $cronograma->getListoAsesoria3()  == false) $retrasos++;
+						if ($cronograma->getFechaAsesoria4() < $hoy && $cronograma->getListoAsesoria4()  == false) $retrasos++;
+						if ($cronograma->getFechaAsesoria5() < $hoy && $cronograma->getListoAsesoria5()  == false) $retrasos++;
+						if ($cronograma->getFechaAsesoria6() < $hoy && $cronograma->getListoAsesoria6()  == false) $retrasos++;
+						if ($cronograma->getFechaAsesoria7() < $hoy && $cronograma->getListoAsesoria7()  == false) $retrasos++;
+						if ($cronograma->getFechaVisitaP() < $hoy && $cronograma->getListoVisitaP()  == false) $retrasos++;
+						if ($cronograma->getFechaInformeGestion1() < $hoy && $cronograma->getListoGestion1() == false) $retrasos++;
+						if ($cronograma->getFechaInformeGestion2() < $hoy && $cronograma->getListoGestion2() == false) $retrasos++;
+						if ($cronograma->getFechaInformeGestion3() < $hoy && $cronograma->getListoGestion3() == false) $retrasos++;
+						if ($cronograma->getFechaEvaluacion1() < $hoy && $cronograma->getListoEvaluacion1() == false) $retrasos++;
+						if ($cronograma->getFechaEvaluacion2() < $hoy && $cronograma->getListoEvaluacion2() == false) $retrasos++;
+						if ($cronograma->getFechaEvaluacionFinal() < $hoy && $cronograma->getListoEvaluacionFinal() == false) $retrasos++;
+
+						if ($retrasos > 0){
+							$retrasados[$i] = array('id' => $practicante->getId() ,'ci' => $practicante->getCi(), 'nombres' => $practicante->getNombres(), 'apellidos' => $practicante->getApellidos(), 'path' => $practicante->getPath(), 'emailInstitucional' => $practicante->getEmailInstitucional(), 'emailPersonal' => $practicante->getEmailPersonal(), 'retrasos' => $retrasos);
+							$hayRetraso = true;
+						}
+						$retrasos=0;
 					}
 				}
 			}
+			if (!$hayRetraso){
+				$msgerr = array('descripcion'=>'¡Asesores académicos no presentan demoras!','id'=>'1');
+			}else{
+				$msgerr = array('descripcion'=>'','id'=>'0');
+			}
 		}
-		
-		return $this->render('CituaoCoordBundle:Default:academicos.html.twig', array('listaAcademicos' => $listaAcademicos, 'msgerr' => $msgerr, 'programa' => $programa ));
+		return $this->render('CituaoCoordBundle:Default:academicosenretraso.html.twig', array('listaPracticantes' => $retrasados, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
-
 }
