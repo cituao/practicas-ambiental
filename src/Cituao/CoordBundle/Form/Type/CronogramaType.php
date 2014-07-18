@@ -20,7 +20,6 @@ class CronogramaType extends AbstractType
     {
 		$prg = $this->programa;	
 
-
         $builder
 	    ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))

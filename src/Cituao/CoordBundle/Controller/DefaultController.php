@@ -581,8 +581,14 @@ class DefaultController extends Controller
 	/*********************************************/	
 	public function registrarexternoAction()
 	{
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
-		$centros = $repository->findAll();
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		$centros = $programa->getCentros();
+
 		
 		if (!$centros) {
 			throw $this->createNotFoundException('Para crear un nuevo asesor externo debe haber centros de práctica registrados!');
@@ -591,7 +597,8 @@ class DefaultController extends Controller
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		$externo = new Externo();
-		$formulario = $this->createForm(new ExternoType(), $externo);
+
+		$formulario = $this->createForm(new ExternoType($programa->getId()), $externo);
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
