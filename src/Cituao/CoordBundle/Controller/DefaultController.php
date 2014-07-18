@@ -1540,6 +1540,8 @@ class DefaultController extends Controller
 			
 		if ($listaAcademicos->count() == 0) {
 			$msgerr = array('descripcion'=>'No hay asesores académicos registrados!','id'=>'1');
+			$retrasados = array();
+
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 			$retrasados = array();

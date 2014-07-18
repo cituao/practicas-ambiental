@@ -26,7 +26,7 @@ $( "#asesoresInternos h3" ).css("opacity","0.4");
 		{% block downSection  %}
 			<div class = "downSection">
 				{% if msgerr.id == '1' %}
-					<div id = "error" style = "height: 200px;">¡No hay practicantes con retrasos de entregas!
+					<div id = "error" style = "height: 200px;">{{ msgerr.descripcion }}
 					</div>		
 				{% else %}
 					<table class="practicantesTableHead">
