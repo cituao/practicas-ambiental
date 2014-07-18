@@ -439,7 +439,13 @@ class DefaultController extends Controller
 				$i++;
 				$nohay = false;
 			}
+				//buscamos el programa
+			$user = $this->get('security.context')->getToken()->getUser();
+			$coordinador =  $user->getUsername();
+			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+			$programa = $repository->findOneByCoordinador($coordinador);
 		
+
 			if (!$nohay){
 				
 				//los roles fueron cargados de forma manual en la base de datos
@@ -522,13 +528,17 @@ class DefaultController extends Controller
 					$em->flush();
 					$i++;
 				}
-				$msgerr = array('id'=>'0', 'descripcion'=>' ');
+				
+				$total_registrados = $numero_fila - $numero_registrados;
+				$descrip = 'Se registraron '.$total_registrados.' practicantes!';
+				$msgerr = array('id'=>'0', 'descripcion'=> $descrip);
 			} else {
-				$msgerr = array('id'=>'1', 'descripcion'=>'No fue registrado ningun practicante!');
+				$msgerr = array('id'=>'1', 'descripcion'=>'No fue registrado ningún practicante ya existen en el sistema!');
+				$listaEstudiantes = array();
 			}
 			
 			
-			$msgerr = array('id'=>'0', 'descripcion'=>' ');
+			
 			return $this->render('CituaoCoordBundle:Default:practicantessubidos.html.twig', array('listaEstudiantes' => $listaEstudiantes, 'msgerr' => $msgerr , 'programa' => $programa));
 		} 
 		
