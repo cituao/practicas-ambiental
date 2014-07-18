@@ -566,7 +566,7 @@ class DefaultController extends Controller
 		$listaAsesores = $programa->getExternos();
 
 		if ($listaAsesores->count() == 0) {
-			$msgerr = array('descripcion'=>'No hay centros de práctica registrados!','id'=>'1');
+			$msgerr = array('descripcion'=>'No hay asesores externos registrados!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
