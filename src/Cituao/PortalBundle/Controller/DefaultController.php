@@ -29,7 +29,10 @@ class DefaultController extends Controller
 		}			
 		}
 	}
-     return $this->render('CituaoPortalBundle:Default:portal.html.twig', array("error"=>array("message"=>"")));
+	//para colocar en mantenimiento $msg = "M"  vacío para produccion $msg=""
+	$msg = "";
+	
+     return $this->render('CituaoPortalBundle:Default:portal.html.twig', array("error"=>array("message"=>$msg)));
     }
 
     public function palla()
