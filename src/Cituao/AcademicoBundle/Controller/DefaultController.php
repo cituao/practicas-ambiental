@@ -159,6 +159,7 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneBy(array('ci' => $ci));
 
+		//asignamos el sql segun tipo de asesoria
 		switch($numase){
 			case 1:
 				$qString = 'SELECT a FROM CituaoCoordBundle:Asesoria a WHERE a.academico =:id_aca AND a.practicante =:id_pra';
@@ -188,9 +189,33 @@ class DefaultController extends Controller
 		$query->setParameter('id_pra',$id);
 		
 		$asesoria = $query->getOneOrNullResult();
-		//si no hay asesoria registrada creamos una instancia
-		if ($asesoria == NULL) $asesoria = new Asesoria();
-
+		//si no hay asesoria registrada creamos una instancia segun el tipo de asesoria 1,2,..7
+		if ($asesoria == NULL) {
+			switch($numase){
+				case 1:
+					$asesoria = new Asesoria();
+					break;
+				case 2:
+					$asesoria = new Asesoria2();
+					break;
+				case 3:
+					$asesoria = new Asesoria3();
+					break;
+				case 4:
+					$asesoria = new Asesoria4();
+					break;
+				case 5:
+					$asesoria = new Asesoria5();
+					break;
+				case 6:
+					$asesoria = new Asesoria6();
+					break;
+				case 7:
+					$asesoria = new Asesoria7();
+					break;
+			}
+		}
+		
 		$formularioTipoAsesoria = new AsesoriaType();
 		//se definio una propiedad para determinar que asesoria se esta registrando ver AsesoriaType
 		$formularioTipoAsesoria->setNumeroAsesoria($numase);
