@@ -11,10 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Informefinalpracticante
 {
-    /**
-     * @var integer
-     */
-    private $id;
+	 /**
+	 * @ORM\Id
+	 * @ORM\Column(type="integer")
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
 
     /**
      * @var integer
