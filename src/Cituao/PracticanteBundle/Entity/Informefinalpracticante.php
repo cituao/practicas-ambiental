@@ -24,32 +24,32 @@ class Informefinalpracticante
     private $practicante;
 
      /**
-     * @ORM\Column(type="text", nullable="true")
+     * @ORM\Column(type="text", nullable=true)
 	 */
     private $comunicacion;
 
      /**
-     * @ORM\Column(type="text" , nullable="true")
+     * @ORM\Column(type="text" , nullable=true)
 	 */
     private $asesor;
 
      /**
-     * @ORM\Column(type="text" , nullable="true")
+     * @ORM\Column(type="text" , nullable=true)
 	 */
     private $coordinacion;
 
      /**
-     * @ORM\Column(type="text" , nullable="true")
+     * @ORM\Column(type="text" , nullable=true)
 	 */
     private $universidad;
 
      /**
-     * @ORM\Column(type="text" , nullable="true")
+     * @ORM\Column(type="text" , nullable=true)
 	 */
     private $autoreflexion;
 
      /**
-     * @ORM\Column(type="text" , nullable="true")
+     * @ORM\Column(type="text" , nullable=true)
 	 */
     private $recomendaciones;
 
