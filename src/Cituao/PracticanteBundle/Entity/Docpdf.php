@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 
  /**
- *  
+ * @ORM\Entity
  * @ORM\Table(name="Docpdf")
  *
  */
