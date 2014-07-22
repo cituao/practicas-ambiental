@@ -377,7 +377,7 @@ class DefaultController extends Controller
 		$practicante = $repository->findOneBy(array('codigo' => $usuario->getUsername()));
 		//buscamos el informe  para actualizar 
 		$query = $em->createQuery(
-			'SELECT i FROM CituaoPracticanteBundle:Informefinalpracticante i WHERE i.practicante =:id_pra ');
+			'SELECT i FROM CituaoPracticanteBundle:Informefinalpracticante i WHERE i.practicante = :id_pra ');
 		$query->setParameter('id_pra',$practicante->getId());
 		
 		$informe = $query->getOneOrNullResult();
