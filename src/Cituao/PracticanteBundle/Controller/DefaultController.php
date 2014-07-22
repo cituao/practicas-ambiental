@@ -381,6 +381,7 @@ class DefaultController extends Controller
 		$query->setParameter('id_pra',$practicante->getId());
 		
 		$informe = $query->getOneOrNullResult();
+		
 		//si no hay informes creamos una instancia de informe final
 		if ($informe == NULL) $informe = new Informefinalpracticante();
 		

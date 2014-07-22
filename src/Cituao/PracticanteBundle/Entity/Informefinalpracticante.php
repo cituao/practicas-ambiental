@@ -18,39 +18,39 @@ class Informefinalpracticante
 	 */
 	private $id;
 
-    /**
-     * @var integer
-     */
+     /**
+     * @ORM\Column(type="integer")
+	 */
     private $practicante;
 
-    /**
-     * @var string
-     */
+     /**
+     * @ORM\Column(type="text")
+	 */
     private $comunicacion;
 
-    /**
-     * @var string
-     */
+     /**
+     * @ORM\Column(type="text")
+	 */
     private $asesor;
 
-    /**
-     * @var string
-     */
+     /**
+     * @ORM\Column(type="text")
+	 */
     private $coordinacion;
 
-    /**
-     * @var string
-     */
+     /**
+     * @ORM\Column(type="text")
+	 */
     private $universidad;
 
-    /**
-     * @var string
-     */
+     /**
+     * @ORM\Column(type="text")
+	 */
     private $autoreflexion;
 
-    /**
-     * @var string
-     */
+     /**
+     * @ORM\Column(type="text")
+	 */
     private $recomendaciones;
 
 
