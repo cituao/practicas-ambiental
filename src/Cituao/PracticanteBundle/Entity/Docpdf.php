@@ -13,19 +13,21 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Docpdf
 {
-    /**
-     * @var integer
-     */
+	 /**
+	 * @ORM\Id
+	 * @ORM\Column(type="integer")
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
     private $id;
 
-    /**
-     * @var string
-     */
+     /**
+     * @ORM\Column(type="string", length=50)
+	 */
     private $name;
 
-    /**
-     * @var string
-     */
+     /**
+     * @ORM\Column(type="string", length=50)
+	 */
     private $path;
 
   
