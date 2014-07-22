@@ -4,8 +4,10 @@ namespace Cituao\PracticanteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Informefinalpracticante
+ /**
+ *  
+ * @ORM\Table(name="Informefinalpracticante")
+ *
  */
 class Informefinalpracticante
 {
