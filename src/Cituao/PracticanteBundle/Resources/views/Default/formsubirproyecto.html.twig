@@ -4,17 +4,34 @@
 {{ practicante.programa.nombre }}
 {% endblock %}
 
-{% block infowrapper  %}
-			<div id="infoWrapper">
-		{% if msgerr.id == '1' %}
-			<div>{{ msgerr.descripcion }} </div>		
-		{% else %}
+{% block js  %}
+{% endblock %}
 
+{% block content  %}
+	{{ parent() }}
+		<div class="content">
+			{% block upSection  %}
+			<div class = "upSection">
+				<h1 class="sectionTitle">Subir proyecto PDF</h1>
+				<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+			</div>
+			{% endblock  %}
 
-			<form action= {{ path('cituao_practicante_subir_proyecto') }} method="post" {{ form_enctype(form) }}>
-				{{ form_widget(form) }}
+			{% block downSection  %}
+				<div class = "downSection"> 
+					<div class="profileContainer">
+						{% if msgerr.id == '1' %}
+							<div>{{ msgerr.descripcion }} </div>		
+						{% else %}
+						<form action= {{ path('cituao_practicante_subir_proyecto') }} method="post" {{ form_enctype(form) }}>
+							{{ form_widget(form) }}
 
-				<input type="submit" value="Subir proyecto (PDF)" />
-			</form>
-		{% endif %}
+							<input type="submit" value="Subir proyecto (PDF)" />
+						</form>
+						{% endif %}
+
+					</div> <!--profileContainer -->
+				</div><!-- downSection -->
+			{% endblock  %} <!-- down section -->
+		</div><!-- content -->
 {% endblock %}

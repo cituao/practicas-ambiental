@@ -16,6 +16,9 @@ use Cituao\PracticanteBundle\Entity\Docpdf;
 
 class DefaultController extends Controller
 {
+	//*********************************************************************
+	// Muestra el cronograma del practicante al inicio de session
+	//*********************************************************************
 	public function indexAction()
 	{
 		$user = $this->get('security.context')->getToken()->getUser();
@@ -43,7 +46,6 @@ class DefaultController extends Controller
     	$query->setParameter('id_ext',$practicante->getExterno()->getId());
     	$query->setParameter('id_pra',$practicante->getId());
     	$cronogramaexterno = $query->getOneOrNullResult();
-	
 		
 		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante, 'e' => $cronogramaexterno, 'a' => $cronograma, 'practicante' => $practicante ));				
 	}
@@ -408,7 +410,6 @@ class DefaultController extends Controller
 	//Muestra un formulario para subir el proyecto en formato PDF
 	//*******************************************************************
 	public function subirProyectoAction(){
-		
 		$request = $this->getRequest();
 
 		$usuario = $this->get('security.context')->getToken()->getUser();
@@ -420,7 +421,7 @@ class DefaultController extends Controller
 		
 		$document = new Docpdf();
 		$form = $this->createFormBuilder($document)
-		->add('file')
+		->add('file','file',array( 'label' => 'Documento (solo tipo pdf):') )
 			//->add('name')
 		->getForm();
 
@@ -433,16 +434,11 @@ class DefaultController extends Controller
 			
 			//se copia el archivo al directorio del servidor			
 			$document->upload();
-
-			
 			$em->persist($practicante);
-
 			$em->flush();
-			return $this->render('CituaoPracticanteBundle:Default:index.html.twig');
+			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}		
-		
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
-		
 		return $this->render('CituaoPracticanteBundle:Default:formsubirproyecto.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr , 'practicante' => $practicante ));
 	}
 	
@@ -490,13 +486,9 @@ class DefaultController extends Controller
 			$evaluacion = $repository->findOneBy(array('practicante' => $id));
 			$formulario = $this->createForm(new Evaluacion2Type(), $evaluacion);
 		}
-		
-		
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-			
-			
 			if ($numeva == 1) 			
 				$practicante->setListoVisita1(true);
 			else
@@ -509,12 +501,10 @@ class DefaultController extends Controller
 			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}
 
-	
 		$datos = array('id' => $id, 'numeva' => $numeva);
 		if ($numeva == 1) 
 			return $this->render('CituaoPracticanteBundle:Default:formcompromiso1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'practicante' => $practicante));
 		else
 			return $this->render('CituaoPracticanteBundle:Default:formcompromiso2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos, 'practicante' => $practicante));
 	}	
-	
 }
