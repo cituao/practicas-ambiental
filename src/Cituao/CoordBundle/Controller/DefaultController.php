@@ -313,8 +313,9 @@ class DefaultController extends Controller
 			
 			// Completar las propiedades que el usuario no rellena en el formulario
 			$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
-			$em->persist($practicante);
+			
 
+			
 			//cronograma para los asesores 
 			$query = $em->createQuery(
 				'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
@@ -327,6 +328,20 @@ class DefaultController extends Controller
 				$cronograma = new Cronograma();
 				$cronograma->setPracticante($practicante->getId());
 				$cronograma->setAcademico($practicante->getAcademico()->getId());
+				
+				//verifico que si hay un cronograma del practicante en los cronogramas de asesores academicos si es asi lo eliminamos
+				$query = $em->createQuery(
+				'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
+				$query->setParameter('id_pra',$practicante->getId());
+				//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
+				$cronoanterior = $query->getOneOrNullResult();//getSingleResult();
+				if ($cronoanterior){
+						$query = $em->createQuery(
+							'DELETE CituaoAcademicoBundle:Cronograma c 
+							WHERE c.practicante = :id')
+						->setParameter('id', $id);
+						$query->execute();
+				}
 			}
 			//cargamos las fechas	
 			$cronograma->setFechaAsesoria1($practicante->getFechaAsesoria1());
@@ -344,7 +359,7 @@ class DefaultController extends Controller
 			$cronograma->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
 			$cronograma->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
 			
-			$em->persist($cronograma);			
+						
 			
 			//crear coronograma al asesor externo
      		$query = $em->createQuery(
@@ -371,7 +386,8 @@ class DefaultController extends Controller
 			$usuario->setIsActive(true);
 			
 			$em->persist($usuario);
-			
+			$em->persist($practicante);
+			$em->persist($cronograma);
 			
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_coord_homepage'));
@@ -1315,13 +1331,15 @@ class DefaultController extends Controller
 		$practicante=$repository->findOneBy(array('id'=>$id));
 		$practicante->setEstado(FALSE);
 		$em->persist($practicante);
-		$em->flush();
+		
 		
 		//inactivamos el usuario
 		$repository=$this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 		$usuario=$repository->findOneBy(array('username'=>$practicante->getCodigo()));
 		$usuario->setIsActive(false);
 		
+		
+		/*
 		//muestra la lista de practicantes
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
@@ -1344,7 +1362,8 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
-	
+		*/
+		return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
 	}
 	
 	//listar estudiantes segun filtro aplicado por periodo academico y estado del practicante
