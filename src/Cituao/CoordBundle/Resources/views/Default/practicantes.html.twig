@@ -44,9 +44,11 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<a id = "filtrarCulminado" href="{{ path('cituao_coord_consultar_practicantes', { 'p': filtro.periodo, 'e': 2}) }}" class = "button" style = "font-size: 14px; ">Culminado</a>
 					{% endif %}
 				</div>
-				<div id="alerta" style="width: 100px;height: 40px; float: left; padding: 1px;font-size: 12px;">
-				<a id="retrasos" href="{{ path('cituao_coord_retrasos_practicante') }}" class = "button" style = "font-size: 10px;"><h4>Retraso</h4></a>
+				
+				<div id="alerta" style="width: 150px;height: 40px; float: left; padding-left: 25px;font-size: 12px;">
+				<a id="retrasos" href="{{ path('cituao_coord_retrasos_practicante') }}" class = "button" style = "font-size: 10px;"><img src="{{ asset('img/reloj.png') }}"><h4>Morosos</h4></a>
 				</div>				
+				
 				
 				<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/anadirPracticantes.png') }}"/><h4>Añadir Practicantes</h4></a>
 				<a id="nuevoPracticante" href="{{ path('cituao_coord_registrar_practicante') }}" class = "button"><img src="{{ asset('img/nuevoPracticante.png') }}"/><h4>Nuevo Practicante</h4></a>
