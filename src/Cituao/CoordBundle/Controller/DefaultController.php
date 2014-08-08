@@ -1366,7 +1366,9 @@ class DefaultController extends Controller
 		return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
 	}
 	
+	//*************************************************************************************************************
 	//listar estudiantes segun filtro aplicado por periodo academico y estado del practicante
+	//*************************************************************************************************************
 	public function consultarPracticantesAction($p, $e) 
 	{
 		$document = new Document();
