@@ -688,10 +688,16 @@ class DefaultController extends Controller
 	public function externoAction($ci){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
+
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
 		
+
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externo = $repository->findOneBy(array('ci' => $ci));
-		$formulario = $this->createForm(new ExternoType(), $externo);
+		$formulario = $this->createForm(new ExternoType($programa), $externo);
 
 		$formulario->handleRequest($peticion);
 
