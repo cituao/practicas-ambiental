@@ -308,7 +308,7 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 			
 			$academico = $practicante->getAcademico();
-			if ($academico->getPracticantes()->count() == 4)
+			if ($academico->getPracticantes()->count() == 5)
 				throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
 			
 			// Completar las propiedades que el usuario no rellena en el formulario
