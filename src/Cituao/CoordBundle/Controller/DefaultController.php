@@ -67,6 +67,7 @@ class DefaultController extends Controller
 				->andWhere('p.estado = 1')
 				->setParameter('id_programa', $programa->getId())
 				->setParameter('id_periodo', $periodoActual->getId())
+				->orderBy('p.apellidos', 'ASC')
 				->getQuery();
 				
 		//->setParameter('id_programa', $programa->getId())
@@ -117,6 +118,7 @@ class DefaultController extends Controller
 				->andWhere('p.estado = 1')
 				->setParameter('id_programa', $programa->getId())
 				->setParameter('id_periodo', $periodoActual->getId())
+				->orderBy('p.apellidos', 'ASC')
 				->getQuery();
 				
 		//->setParameter('id_programa', $programa->getId())
