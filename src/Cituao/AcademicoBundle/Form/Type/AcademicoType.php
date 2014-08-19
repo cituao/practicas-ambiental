@@ -18,7 +18,7 @@ class AcademicoType extends AbstractType
         ->add('email', 'email',  array('required' => false, 'label' => 'Email personal:'))
 		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil:'))
 		->add('telefonoFijo','text', array('required' => false, 'label' => 'Teléfono fijo:'))
-		->add('perfil','textarea', array('required' => false, 'label' => 'Perfil', 'max_length' => '500' , 'read_only' => true, 'attr' => array('cols' => '60', 'rows' => '10')));
+		->add('perfil','textarea', array('required' => false, 'label' => 'Perfil', 'max_length' => '500' , 'attr' => array('cols' => '60', 'rows' => '10')));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
