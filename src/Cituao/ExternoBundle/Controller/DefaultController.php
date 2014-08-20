@@ -244,6 +244,7 @@ class DefaultController extends Controller
 			$acta->setExterno($externo->getId());
 			$em->persist($acta);
 
+			//actualizamos el estado de entrega en el cronograma del asesor externo
 			$query = $em->createQuery(
 				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
 			$query->setParameter('id_pra',$id);
@@ -251,6 +252,12 @@ class DefaultController extends Controller
 			
 			$cronograma->setListoActa(true);
 			$em->persist($cronograma);
+
+			//cambiamos el estado del practicante a 2 de BAJA
+			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+			$practicante = $repository->findOneBy(array('id' => $id));
+			$practicante->setEstado('2');
+			$em->persist($practicante);
 
 			$em->flush();
 
