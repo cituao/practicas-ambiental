@@ -1,52 +1,88 @@
 {% extends 'CituaoPracticanteBundle::layout.html.twig' %}
 
 {% block programa %}
-{{ programa.nombre }}
+{{ p.programa.nombre }}
 {% endblock %}
 
 
-{% block seccion %}
-	<form action="{{ path('cituao_practicante_mihojadevida') }}" method="post" {{ form_enctype(formulario) }}>
-	    <div>
-	    {{ form_errors(formulario) }}
+{% block content  %}
+	{{ parent() }}
+	<div class="content">
+		{% block upSection  %}
+			<div class="upSection">
+				<h1 class ="sectionTitle">Mi hoja de vida</h1>
 
-	    <div>
-		{{ form_row(formulario.codigo) }}
-	    </div>
+				
+				<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/anadirPracticantes.png') }}"/><h4>Subir HV</h4></a>
 
-	    <div>
-		{{ form_row(formulario.apellidos) }}
-	    </div>
+				<form name="anadirP" action= {{ path('cituao_practicante_mihojadevida') }} method="post" {{ form_enctype(form) }}>
+					<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="button" value="Cancelar" id="cancelar" name="cancelar" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/cancelar.png') }}"/></div>
+					<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="submit" value="Listo" id="listo" name="listo" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/listo.png') }}"/></div>
+					<div style="float:right;">{{ form_widget(form) }}</div>
+					<h2 style="float:right; color:#000; margin-right:15px; margin-top:8px;">Nombre de archivo</h2>
+				</form>
+			</div><!--up section -->
+		{% endblock  %}
 
+		
+		{% block downSection  %}
+			<div class = "downSection">
+				
+				{% if msgerr.id == '1' %}
+					<div id = "error" style = "height: 200px;">{{ msgerr.descripcion }} 
+					</div>		
+				{% else %}
+					{% endif %}
+			</div> <!-- cierra downSection-->
+				
+		{% endblock  %}
+		
+		</div> <!-- cierra content-->
 
-	    <div>
-		{{ form_row(formulario.nombres) }}
-	    </div>
+		<script>
+			var form = $('form');
+			var anadirPracticantes =  $('#anadirPracticantes');
 
+			$( "#anadirPracticantes" ).click(function() {
+				$(this).fadeOut(300,function(){
 
-	    <div>
-		{{ form_row(formulario.ci) }}
-	    </div>
+					$( form).animate({
+						opacity: 1,
+						top: "21px",
+					}, 300);
+				});
 
-	    <div>
-		{{ form_row(formulario.emailInstitucional) }}
-	    </div>
+			});
+			function validateForm()
+			{
+				var x=document.forms["anadirP"]["listo"].value;
+				if (x==null || x=="")
+				{
+					window.alert("you");
+					return false;
+				}
+			}
 
+			$( "#listo" ).click(function() {
+				if(validateForm()){
+					$(anadirPracticantes).fadeIn(300,function(){
 
-	    <div>
-		{{ form_row(formulario.emailPersonal) }}
-	    </div>
+						$( form).animate({
+							opacity: 0,
+							top: "100px",
+						}, 300);
+					});
+			}// validate form
+			});
 
-
-	    <div>
-		{{ form_row(formulario.telefonoMovil) }}
-	    </div>
-
-
-	    {{ form_rest(formulario) }}
-
-	    <input class="boton" type="submit" value="Guardar" />
-
-	    </div>
-	</form>	
+			$( "#cancelar" ).click(function() {
+				$(anadirPracticantes).fadeIn(80,function(){
+					$( form).animate({
+						opacity: 0,
+						top: "100px",
+					}, 100);
+				});
+			});
+			
+		</script>
 {% endblock %}
