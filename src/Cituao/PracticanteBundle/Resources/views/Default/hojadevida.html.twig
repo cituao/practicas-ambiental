@@ -4,6 +4,13 @@
 {{ p.programa.nombre }}
 {% endblock %}
 
+{% block js  %}
+<script>
+$( "#hojaDeVida" ).css("background-color","#000");
+$( "#hojaDeVida img" ).css("opacity","0.4");
+$( "#hojaDeVida h3" ).css("opacity","0.4");
+</script>
+{% endblock %}
 
 {% block content  %}
 	{{ parent() }}
@@ -11,10 +18,7 @@
 		{% block upSection  %}
 			<div class="upSection">
 				<h1 class ="sectionTitle">Mi hoja de vida</h1>
-
-				
-				<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/anadirPracticantes.png') }}"/><h4>Subir HV</h4></a>
-
+				<a id="anadirPracticantes" class = "button"><img src="{{ asset('img/guardar.png') }}"/><h4>Subir HV</h4></a>
 				<form name="anadirP" action= {{ path('cituao_practicante_mihojadevida') }} method="post" {{ form_enctype(form) }}>
 					<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="button" value="Cancelar" id="cancelar" name="cancelar" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/cancelar.png') }}"/></div>
 					<div style="position:relative; float:right"><input style="padding-left:38px;" class="button" type="submit" value="Listo" id="listo" name="listo" /><img style="position:absolute; top:0px; left:13px; pointer-events:none" src="{{ asset('img/listo.png') }}"/></div>
@@ -27,14 +31,13 @@
 		
 		{% block downSection  %}
 			<div class = "downSection">
-				
 				{% if msgerr.id == '1' %}
-					<div id = "error" style = "height: 200px;">{{ msgerr.descripcion }} 
-					</div>		
+					<div id = "error" style = "height: 200px;">{{ msgerr.descripcion }}  </div>	
 				{% else %}
-					{% endif %}
+					<!-- <a href="{{ asset('uploads/documents/' ~ msgerr.descripcion) }}">Tu hoja de vida...</a> -->
+					<embed src="{{ asset('uploads/documents/' ~ msgerr.descripcion) }}" width="900" height="600" href="{{ asset('uploads/documents/' ~ msgerr.descripcion) }}"></embed>
+				{% endif %}
 			</div> <!-- cierra downSection-->
-				
 		{% endblock  %}
 		
 		</div> <!-- cierra content-->
@@ -42,7 +45,6 @@
 		<script>
 			var form = $('form');
 			var anadirPracticantes =  $('#anadirPracticantes');
-
 			$( "#anadirPracticantes" ).click(function() {
 				$(this).fadeOut(300,function(){
 
@@ -51,7 +53,6 @@
 						top: "21px",
 					}, 300);
 				});
-
 			});
 			function validateForm()
 			{

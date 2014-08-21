@@ -50,9 +50,9 @@ class DefaultController extends Controller
 		return $this->render('CituaoPracticanteBundle:Default:cronograma.html.twig', array('p' => $practicante, 'e' => $cronogramaexterno, 'a' => $cronograma, 'practicante' => $practicante ));				
 	}
 
-	//**********************************************************
-	//muestra la hoja de vida
-	//**********************************************************
+	//****************************************************************************
+	//permite subir  hoja de vida en formato pdf y muestra la hoja de vida
+	//****************************************************************************
 	public function hojadevidaAction()
 	{
 		$usuario = $this->get('security.context')->getToken()->getUser();
@@ -63,35 +63,32 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('codigo' => $usuario->getUsername()));
 		
-
+		if (file_exists(__DIR__.'/../../../../web/uploads/documents/'.$practicante->getCodigo().'hv.pdf')){
+			$hvpdf=$practicante->getCodigo().'hv.pdf';
+			$msgerr = array('descripcion'=>$hvpdf,'id'=>'0');
+		}
+		else {
+			$msgerr = array('descripcion'=>'No hay hoja de vida!','id'=>'1');
+		}
+		
 		$document = new Docpdf();
 		$formulario = $this->createFormBuilder($document)
 		->add('file','file',array( 'label' => 'Documento (solo tipo pdf):') )
-			//->add('name')
 		->getForm();
 
 		$formulario->handleRequest($peticion);
 
-
 		if ($formulario->isValid()) {
+			//borramos en caso de subir nuevamente un pdf
+			if (file_exists(__DIR__.'/../../../../web/uploads/documents/'.$practicante->getCodigo().'hv.pdf')){
+				unlink(__DIR__.'/../../../../web/uploads/documents/'.$practicante->getCodigo().'hv.pdf');
+			}
+			//se copia el archivo al directorio del servidor	
 			$document->setPath($practicante->getCodigo().'hv.pdf' );
-			
-			//se copia el archivo al directorio del servidor			
 			$document->upload();
-			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-			$this->get('session')->getFlashBag()->add('info',
-				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-				);
 
-            return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+            return $this->redirect($this->generateUrl('cituao_practicante_mihojadevida'));
         }
-
-		if ($practicante == NULL) {
-			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
-		}else{
-			$msgerr = array('descripcion'=>'','id'=>'0');
-		}
 
         return $this->render('CituaoPracticanteBundle:Default:hojadevida.html.twig', array('p'=> $practicante,	
         	'form' => $formulario->createView(), 'msgerr' => $msgerr
