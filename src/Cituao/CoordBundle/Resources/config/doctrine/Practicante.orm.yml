@@ -41,7 +41,7 @@ Cituao\CoordBundle\Entity\Practicante:
             length: '15'
             nullable: true
         estado:
-            type: boolean
+            type: smallint
         fechaMatriculacion:
             type: date
         fechaIniciacion:

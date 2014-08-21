@@ -25,23 +25,31 @@ class DefaultController extends Controller
 		$externo = $repository->findOneByci($ci);
 		$em = $this->getDoctrine()->getManager();
 		
-			//contamos cuentos practicantes tiene el asesor externo 
+		$estado=1;
+		//contamos cuentos practicantes tiene el asesor externo 
 		$query = $em->createQuery(
-			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id'
-			)->setParameter('id',$externo->getId());
-		
+			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id  AND p.estado= :estado'
+			)->setParameter('id',$externo->getId())
+			->setParameter('estado', $estado);
 		$numeroPracticantes=$query->getSingleScalarResult();
 
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$listaPracticantes = $repository->findByexterno($externo->getId());
-		$datos = array('numeroPracticantes' => $numeroPracticantes); 
+		$query = $repository->createQueryBuilder('p')
+				->where('p.externo = :id_ext')
+				->andWhere('p.estado = :estado')
+				->setParameter('id_ext', $externo->getId())
+				->setParameter('estado', $estado)
+				->getQuery();
 		
-		if (!$listaPracticantes) {
+		$datos = array('numeroPracticantes' => $numeroPracticantes); 
+		$listaPracticantes = $query->getResult();
+		
+		if ($listaPracticantes == NULL) {
 			$msgerr = array('descripcion'=>'Aun no tiene asignado practicante!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		return $this->render('CituaoExternoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'datos' => $datos));		
+		return $this->render('CituaoExternoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'datos' => $datos));
 	}
 
 	
@@ -83,18 +91,26 @@ class DefaultController extends Controller
 		$externo = $repository->findOneByci($ci);
 		$em = $this->getDoctrine()->getManager();
 		
-			//contamos cuentos practicantes tiene el asesor externo 
+		$estado=1;
+		//contamos cuentos practicantes tiene el asesor externo 
 		$query = $em->createQuery(
-			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id'
-			)->setParameter('id',$externo->getId());
-		
+			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id  AND p.estado= :estado'
+			)->setParameter('id',$externo->getId())
+			->setParameter('estado', $estado);
 		$numeroPracticantes=$query->getSingleScalarResult();
 
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$listaPracticantes = $repository->findByexterno($externo->getId());
-		$datos = array('numeroPracticantes' => $numeroPracticantes); 
+		$query = $repository->createQueryBuilder('p')
+				->where('p.externo = :id_ext')
+				->andWhere('p.estado = :estado')
+				->setParameter('id_ext', $externo->getId())
+				->setParameter('estado', $estado)
+				->getQuery();
 		
-		if (!$listaPracticantes) {
+		$datos = array('numeroPracticantes' => $numeroPracticantes); 
+		$listaPracticantes = $query->getResult();
+		
+		if ($listaPracticantes == NULL) {
 			$msgerr = array('descripcion'=>'Aun no tiene asignado practicante!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');

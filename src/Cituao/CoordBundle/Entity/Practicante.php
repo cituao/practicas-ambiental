@@ -90,7 +90,7 @@ class Practicante
     private $modalidad;
 
      /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="smallint")
      */
     private $estado;
 
@@ -466,7 +466,7 @@ class Practicante
     /**
      * Get estado
      *
-     * @return string 
+     * @return smallint 
      */
     public function getEstado()
     {

@@ -125,7 +125,7 @@ class DefaultController extends Controller
 				$listaPracticantes = $query->getResult();
 
 		if ($listaPracticantes == NULL) {
-			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'0');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
@@ -310,7 +310,7 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 			
 			$academico = $practicante->getAcademico();
-			if ($academico->getPracticantes()->count() == 5)
+			if ($academico->getActivos() == 5)
 				throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
 			
 			// Completar las propiedades que el usuario no rellena en el formulario
@@ -745,8 +745,7 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'','id'=>'0');
 			$c=0;	
 			foreach ($listaAcademicos as $aca){
-				$p = $aca->getPracticantes();
-				$c = $c + $p->count();
+				$c=$aca->getActivos();
 			}
 		}
 		

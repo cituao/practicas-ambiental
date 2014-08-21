@@ -27,25 +27,37 @@ use Cituao\AcademicoBundle\Form\Type\VisitapType;
 
 class DefaultController extends Controller
 {
+	//*********************************************************************************************
+	//muestra el home de inicio del asesor academico es igual al método practicantes
+	//**********************************************************************************************
     public function indexAction()
-    {
-       $user = $this->get('security.context')->getToken()->getUser();
+	{
+		$user = $this->get('security.context')->getToken()->getUser();
 		$ci =  $user->getUsername();
 
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneByci($ci);
 		$em = $this->getDoctrine()->getManager();
-	
-		//buscamos todos los practicantes del asesor academico
-		$query = $em->createQuery(
-                'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.academico= :id'
-            )->setParameter('id',$academico->getId())
-;
-        $numeroPracticantes=$query->getSingleScalarResult();
 
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$listaPracticantes = $repository->findByacademico($academico->getId());
+		$estado = 1; //estado en proceso
+		//contamos cuentos practicantes tiene el asesor externo 
+		$query = $em->createQuery(
+			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.academico= :id  AND p.estado= :estado'
+			)->setParameter('id',$academico->getId())
+			->setParameter('estado', $estado);
+		$numeroPracticantes=$query->getSingleScalarResult();
+        
 		$datos = array('numeroPracticantes' => $numeroPracticantes); 
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$query = $repository->createQueryBuilder('p')
+				->where('p.academico = :id_aca')
+				->andWhere('p.estado = :estado')
+				->setParameter('id_aca', $academico->getId())
+				->setParameter('estado', $estado)
+				->getQuery();
+		
+		$listaPracticantes = $query->getResult();
 		
 		if (!$listaPracticantes) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
@@ -53,9 +65,10 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
 		$programa=$academico->getPrograma();
-		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr, 'datos' => $datos));
-    }
+		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes,  'programa' => $programa,  'msgerr' => $msgerr, 'datos' => $datos));
+	}
 	
+
 	/********************************************************/
 	//Muestra y modifica un asesor academico registrado en la base de datos
 	/********************************************************/		
@@ -94,15 +107,26 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 		$academico = $repository->findOneByci($ci);
 		$em = $this->getDoctrine()->getManager();
-			
+
+		$estado = 1; //estado en proceso
+		//contamos cuentos practicantes tiene el asesor externo 
 		$query = $em->createQuery(
-                'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.academico= :id'
-            )->setParameter('id',$academico->getId())
-;
-        $numeroPracticantes=$query->getSingleScalarResult();
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$listaPracticantes = $repository->findByacademico($academico->getId());
+			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.academico= :id  AND p.estado= :estado'
+			)->setParameter('id',$academico->getId())
+			->setParameter('estado', $estado);
+		$numeroPracticantes=$query->getSingleScalarResult();
+        
 		$datos = array('numeroPracticantes' => $numeroPracticantes); 
+		
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$query = $repository->createQueryBuilder('p')
+				->where('p.academico = :id_aca')
+				->andWhere('p.estado = :estado')
+				->setParameter('id_aca', $academico->getId())
+				->setParameter('estado', $estado)
+				->getQuery();
+		
+		$listaPracticantes = $query->getResult();
 		
 		if (!$listaPracticantes) {
 			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');

@@ -103,6 +103,7 @@ class Academico
 	**/	
 	protected $programa;
 
+	private $activos;
 	
 	public function __construct()
     {
@@ -530,4 +531,21 @@ public function getAbsolutePath()
     {
         return $this->programa;
     }
+	
+	public function getActivos(){
+		//calculamos los practicante activos del asesor 
+		$culminado=0;
+		$total=0;
+		$listaPracticantes= $this->getPracticantes();
+		foreach($listaPracticantes as $practicante){
+			if ($practicante->getEstado() == 2) $culminado = $culminado+1;
+			$total = $total + 1;
+		}
+		
+		$this->activos=$listaPracticantes->count()-$culminado;
+		
+		return $this->activos;
+	}
+	
+	
 }

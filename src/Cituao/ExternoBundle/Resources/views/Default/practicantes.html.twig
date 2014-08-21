@@ -6,90 +6,83 @@ $( "#practicantes" ).css("background-color","#000");
 $( "#practicantes img" ).css("opacity","0.4");
 $( "#practicantes h3" ).css("opacity","0.4");
 </script>
-
 {% endblock %}
-
 
 {% block content  %}
 {{ parent() }}
-
 <div class="content">
 	{% block upSection  %}
 	<div class = "upSection">
 		<h1 class ="sectionTitle">Mis Practicantes ( {{ datos.numeroPracticantes }} ) </h1>
-		
 		<!-- <a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a> -->
-
 	</div>
 	{% endblock  %}
 
 	{% block downSection  %}
-	{% if msgerr.id == '1' %}
-	<div id = "error">{{ msgerr.descripcion }} </div>		
-	{% else %}
-
-	<div class="downSection">
-
-		<table class="practicantesTableHead">
-			<tbody>
-				<tr class="tableHead">
-					<th width="5%"></th>
-					<th width="6%"></th>
-					<th width="19%"></th>
-					<th width="10%"></th>
-					<th width="28%"><img style="margin-left:70px;" src="{{ asset('img/mailLabel.png') }}"/></th>
-					<th width="11%"><img style="margin-left:20px;" src="{{ asset('img/telefonoLabel.png') }}"/></th>
-					<th><h3><span>Asesor académico</span></h3></th>
-					<th></th>
-				</tr> <!--tablehead -->
-			</tbody>
-		</table><!-- practicantes tableHead -->
-		
-		{% set id = 1 %}
-		<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">
-			<table class = "practicantesTable">
-				<tbody>
-					<tr class="spacer"></tr>
-					{% for practicante in listaPracticantes %}
-					<tr height="20px"  class="tableItem">
-						<td id="hoverDiv">
-
-							<td><h2>{{ id }}</h2></th>
-								<td height="20px">
-									<div class="itemImgContainer">
-										<img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Foto" width="100%" >
-									</div>
-								</td>
-								<td><span style="margin-left:20px; ">{{ practicante.nombres }}</span></td>						
-								<td><span>{{ practicante.apellidos }}</span></td>
-								<td>{{ practicante.emailInstitucional }}<br>
-								{{ practicante.emailPersonal }}</td>
-								<td>{{ practicante.telefonoMovil }}</td>
-								<td><a href="{{ path('cituao_externo_verasesoracademico', { 'id': practicante.academico.id}) }}"><span>{{ practicante.academico.nombreCompleto }}</span></a></td>
-								<td>
-									
-									<table class="opciones">
-										<td>
-										<a href="{{ path('cituao_externo_cronograma', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" ><h3> Cronograma </h3></a>
-										</td>
-									</table> <!-- opciones -->
-								
-								</td>
-							</td><!-- hoverDiv -->
-						</tr>
-						{% set id = id + 1 %}
-						<tr class="spacer"></tr>
-						{% endfor %}
-						<tr class="spacer"></tr>
-						<tr class="spacer"></tr>
-						<tr class="spacer"></tr>
-						<tr class="spacer"></tr>
-						<tr class="spacer"></tr>
+		<div class="downSection">
+			{% if msgerr.id == '1' %}
+				<div id = "error">{{ msgerr.descripcion }} </div>		
+			{% else %}
+				<table class="practicantesTableHead">
+					<tbody>
+						<tr class="tableHead">
+							<th width="5%"></th>
+							<th width="6%"></th>
+							<th width="19%"></th>
+							<th width="10%"></th>
+							<th width="28%"><img style="margin-left:70px;" src="{{ asset('img/mailLabel.png') }}"/></th>
+							<th width="11%"><img style="margin-left:20px;" src="{{ asset('img/telefonoLabel.png') }}"/></th>
+							<th><h3><span>Asesor académico</span></h3></th>
+							<th></th>
+						</tr> <!--tablehead -->
 					</tbody>
-				</table>
-			</div><!-- scroll Div-->
-		</div><!-- downSection -->
-		{% endif %}
+				</table><!-- practicantes tableHead -->
+				
+				{% set id = 1 %}
+				<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">
+					<table class = "practicantesTable">
+						<tbody>
+							<tr class="spacer"></tr>
+							{% for practicante in listaPracticantes %}
+							<tr height="20px"  class="tableItem">
+								<td id="hoverDiv">
+
+									<td><h2>{{ id }}</h2></th>
+										<td height="20px">
+											<div class="itemImgContainer">
+												<img class = "foto" border="0" src="{{ asset('uploads/fotos/' ~  practicante.path) }}" alt="Foto" width="100%" >
+											</div>
+										</td>
+										<td><span style="margin-left:20px; ">{{ practicante.nombres }}</span></td>						
+										<td><span>{{ practicante.apellidos }}</span></td>
+										<td>{{ practicante.emailInstitucional }}<br>
+										{{ practicante.emailPersonal }}</td>
+										<td>{{ practicante.telefonoMovil }}</td>
+										<td><a href="{{ path('cituao_externo_verasesoracademico', { 'id': practicante.academico.id}) }}"><span>{{ practicante.academico.nombreCompleto }}</span></a></td>
+										<td>
+											
+											<table class="opciones">
+												<td>
+												<a href="{{ path('cituao_externo_cronograma', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" ><h3> Cronograma </h3></a>
+												</td>
+											</table> <!-- opciones -->
+										
+										</td>
+									</td><!-- hoverDiv -->
+								</tr>
+								{% set id = id + 1 %}
+								<tr class="spacer"></tr>
+								{% endfor %}
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+								<tr class="spacer"></tr>
+							</tbody>
+						</table>
+					</div><!-- scroll Div-->
+			{% endif %}
+			</div><!-- downSection -->
 		{% endblock  %}
 	</div> <!-- cierra content-->
 
