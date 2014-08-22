@@ -4,6 +4,7 @@ namespace Cituao\UsuarioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Annotations;
 
 /**
  * Programa
@@ -36,7 +37,7 @@ class Programa
 	protected $practicantes;
 
 	/**
-	* @ORM\OneToMany(targetEntity="Cituao\AcademicoBundle\Academico", mappedBy = "programa")	
+	* @ORM\OneToMany(targetEntity="Cituao\AcademicoBundle\Academico", mappedBy = "programa")
 	**/
 	protected $academicos;
 	
@@ -46,7 +47,7 @@ class Programa
 	protected $centros;
 	
 	/**
-	* @ORM\OneToMany(targetEntity="Cituao\ExternoBundle\Externo", mappedBy = "programa")	
+	* @ORM\OneToMany(targetEntity="Cituao\ExternoBundle\Externo", mappedBy = "programa")
 	**/
 	protected $externos;
 
