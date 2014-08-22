@@ -30,7 +30,7 @@ Cituao\UsuarioBundle\Entity\Programa:
             targetEntity: Cituao\CoordBundle\Entity\Centro
             mappedBy: programa
             orderBy:
-                nombres: ASC                
+                nombre: ASC                
         externos:
             targetEntity: Cituao\ExternoBundle\Entity\Externo
             mappedBy: programa
