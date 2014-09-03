@@ -707,8 +707,23 @@ class DefaultController extends Controller
 			
             // Completar las propiedades que el usuario no rellena en el formulario
 			$em->persist($externo);
-			$em->flush();
 
+			//si el usuario cambio la cédula modificamos el username y password 
+			if ($ci != $externo->getCi()){
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+				$usuario = $repository->findOneBy(array('username' => $ci));
+				
+				$usuario->setUsername($externo->getCi());
+				$usuario->setPassword($externo->getCi());
+				$usuario->setSalt(md5(time()));
+
+				//codificamos el password			
+				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+				$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+				$usuario->setPassword($passwordCodificado);
+				$em->persist($usuario);
+			}
+			$em->flush();
             // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
 			$this->get('session')->getFlashBag()->add('info',
 				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
