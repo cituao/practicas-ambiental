@@ -21,11 +21,6 @@ Cituao\UsuarioBundle\Entity\Programa:
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
             mappedBy: programa
-        academicos:
-            targetEntity: Cituao\AcademicoBundle\Entity\Academico
-            mappedBy: programa
-            orderBy:
-                nombres: ASC
         centros:
             targetEntity: Cituao\CoordBundle\Entity\Centro
             mappedBy: programa
@@ -35,6 +30,9 @@ Cituao\UsuarioBundle\Entity\Programa:
             targetEntity: Cituao\ExternoBundle\Entity\Externo
             mappedBy: programa
             orderBy:
-                nombres: ASC               
-
+                nombres: ASC
+    manyToMany:
+        academicos:
+            targetEntity: Cituao\AcademicoBundle\Entity\Academico                
+            mappedBy: programas
     lifecycleCallbacks: {  }
