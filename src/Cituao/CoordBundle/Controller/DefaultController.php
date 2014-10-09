@@ -785,66 +785,83 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 		
 		if ($formulario->isValid()) {
-			//validamos que no existe la cédula y el código
-			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
-			$a = $repository->findOneBy(array('ci' => $academico->getCi()));
-
-			if ($a != NULL){
-				throw $this->createNotFoundException('ERR_ACADEMICO_YA_EXISTE');
-			}
-			
-			//validamos que la cedula no este ya registrada como username
-			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-			$a = $repository->findOneBy(array('username' => $academico->getCi()));
-			
-			if ($a != NULL){
-				throw $this->createNotFoundException('ERR_USUARIO_YA_EXISTE');
-			}
-
-			
-			// buscamos el programa para asignarlo al programa academico
+			// buscamos el programa del coordinador
 			$user = $this->get('security.context')->getToken()->getUser();
 			$coordinador =  $user->getUsername();
 			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 			$programa = $repository->findOneByCoordinador($coordinador);
-			$academico->setPrograma($programa);
+
+
+			//buscamos si ya existe este asesor academico en la base de datos
+			$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+			$a = $repository->findOneBy(array('ci' => $academico->getCi()));
+
+			if ($a != NULL){
+				//el asesor ya existe determinamos si ya esta registrado en el programa del coordinador
+				$sw=false;
+				$programas_asesor_academico = $a->getProgramas();
+				foreach ($programas_asesor_academico as $p) {
+					if ($p->getId() == $programa->getId()) {
+						$sw=true;
+						break;
+					}
+				}
+				if (!$sw){
+					//lo agregamos al programa				
+					$a->addPrograma($programa);
+					$em->flush();
+					return $this->redirect($this->generateUrl('cituao_coord_academicos'));
+				}
+				else{
+					throw $this->createNotFoundException('ERR_ACADEMICO_YA_EXISTE');
+				}
+			}
+			else{
+				//validamos que la cedula no este ya registrada como username
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+				$u = $repository->findOneBy(array('username' => $academico->getCi()));
 			
-			if ($academico->getFile() == NULL) 	$academico->setPath('defaultPicture.png');
-			$academico->upload();	
+				if ($u != NULL){
+					throw $this->createNotFoundException('ERR_USUARIO_YA_EXISTE');
+				}
+				$academico->addPrograma($programa);
+	
+				if ($academico->getFile() == NULL) 	$academico->setPath('defaultPicture.png');
+				$academico->upload();	
 			
-			
-            // Completar las propiedades que el usuario no rellena en el formulario
-			$em->persist($academico);
+		        // Completar las propiedades que el usuario no rellena en el formulario
+				$em->persist($academico);
 
-			//los roles fueron cargados de forma manual en la base de datos
-			//buscamos una instancia role tipo coordinador 
-			$codigo = 4; //4 codigo corresponde a coordinador		
-			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
-			$role = $repository->findOneBy(array('id' => $codigo));
+				//los roles fueron cargados de forma manual en la base de datos
+				//buscamos una instancia role tipo coordinador 
+				$codigo = 4; //4 codigo corresponde a coordinador		
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
+				$role = $repository->findOneBy(array('id' => $codigo));
 
-			$usuario = new Usuario();
-			//cargamos todos los atributos al usuario
-			$usuario->setUsername($academico->getCi());
-			$usuario->setPassword($academico->getCi());
-			$usuario->setSalt(md5(time()));
-			$usuario->addRole($role); //cargamos el rol al coordinador
+				$usuario = new Usuario();
+				//cargamos todos los atributos al usuario
+				$usuario->setUsername($academico->getCi());
+				$usuario->setPassword($academico->getCi());
+				$usuario->setSalt(md5(time()));
+				$usuario->addRole($role); //cargamos el rol al coordinador
 
-			//codificamos el password			
-			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
-			$usuario->setPassword($passwordCodificado);
-			$em->persist($usuario);
+				//codificamos el password			
+				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+				$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+				$usuario->setPassword($passwordCodificado);
+				$em->persist($usuario);
 
-			$em->flush();
+				$em->flush();
 
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
-			$this->get('session')->getFlashBag()->add('info',
-				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-				);
-			return $this->redirect($this->generateUrl('cituao_coord_academicos'));
+		        // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+				$this->get('session')->getFlashBag()->add('info',
+					'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+					);
+				return $this->redirect($this->generateUrl('cituao_coord_academicos'));
+			}
 		}
 
-				//buscamos el programa
+		//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
