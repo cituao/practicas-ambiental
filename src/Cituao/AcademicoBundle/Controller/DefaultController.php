@@ -64,8 +64,8 @@ class DefaultController extends Controller
 	    }else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
 		}
-		$programa=$academico->getPrograma();
-		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes,  'programa' => $programa,  'msgerr' => $msgerr, 'datos' => $datos));
+		//$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:practicantes.html.twig', array('listaPracticantes' => $listaPracticantes,  'msgerr' => $msgerr, 'datos' => $datos));
 	}
 	
 
