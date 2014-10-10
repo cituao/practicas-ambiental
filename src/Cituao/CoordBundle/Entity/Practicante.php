@@ -222,7 +222,7 @@ class Practicante
 	* @ORM\ManyToOne(targetEntity="Cituao\UsuarioBundle\Entity\Programa", inversedBy="practicantes")
 	* @ORM\JoinColumn(name="programa", referencedColumnName = "id") 
 	**/	
-	protected $programa;
+	public $programa;
 
 	/**
 	* @ORM\ManyToOne(targetEntity="Cituao\UsuarioBundle\Entity\Periodo", inversedBy="practicantes")

@@ -760,15 +760,10 @@ class DefaultController extends Controller
 			$msgerr = array('descripcion'=>'','id'=>'0');
 			$c=0;	
 			foreach ($listaAcademicos as $aca){
-				$c=$aca->getActivos();
+				$c=$aca->getActivos($programa);
 			}
 		}
 		
-		//buscamos el programa
-		$user = $this->get('security.context')->getToken()->getUser();
-		$coordinador =  $user->getUsername();
-		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-		$programa = $repository->findOneByCoordinador($coordinador);
 		return $this->render('CituaoCoordBundle:Default:academicos.html.twig', array('listaAcademicos' => $listaAcademicos, 'msgerr' => $msgerr, 'programa' => $programa ));
 	} 
 
