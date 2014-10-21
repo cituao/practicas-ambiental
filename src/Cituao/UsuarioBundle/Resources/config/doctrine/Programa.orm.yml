@@ -21,6 +21,8 @@ Cituao\UsuarioBundle\Entity\Programa:
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
             mappedBy: programa
+            orderBy:
+                apellido: ASC
         centros:
             targetEntity: Cituao\CoordBundle\Entity\Centro
             mappedBy: programa

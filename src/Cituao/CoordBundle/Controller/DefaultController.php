@@ -1473,6 +1473,7 @@ class DefaultController extends Controller
 				->setParameter('id_programa', $programa->getId())
 				->setParameter('id_periodo', $p)
 				->setParameter('estado',$e)
+				->orderBy('p.apellidos', 'ASC')
 				->getQuery();
 				
 		//->setParameter('id_programa', $programa->getId())
@@ -1487,7 +1488,9 @@ class DefaultController extends Controller
 		return $this->render('CituaoCoordBundle:Default:practicantes.html.twig', array('dataperiodo'=> $dataperiodo, 'filtro' => $filtro, 'periodos' => $periodos, 'form' => $form->createView() , 'listaPracticantes' => $listaPracticantes, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
 	
+	//****************************************************
 	//listar practicantes por periodo
+	//****************************************************
 	public function practicantesPeriodoAction($p)
 	{
 		$document = new Document();
@@ -1528,6 +1531,7 @@ class DefaultController extends Controller
 				->setParameter('id_programa', $programa->getId())
 				->setParameter('id_periodo', $p)
 				->setParameter('estado',$e)
+				->orderBy('p.apellidos', 'ASC')
 				->getQuery();
 				
 		//->setParameter('id_programa', $programa->getId())
