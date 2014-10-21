@@ -599,19 +599,19 @@ class DefaultController extends Controller
 	/*********************************************/	
 	public function registrarexternoAction()
 	{
+		//verificamos los centros del programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();
-
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
-
 		$centros = $programa->getCentros();
-
 		
+		//sino hay centros es una exception
 		if (!$centros) {
 			throw $this->createNotFoundException('Para crear un nuevo asesor externo debe haber centros de práctica registrados!');
 		}
 
+		//bajamos los datos de la peticion
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		$externo = new Externo();
@@ -620,60 +620,76 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-			//validamos que no existe la cédula y el código
+
+			//buscamos si ya existe este asesor externo en la base de datos
 			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 			$e = $repository->findOneBy(array('ci' => $externo->getCi()));
 
 			if ($e != NULL){
-				throw $this->createNotFoundException('ERR_EXTERNO_YA_EXISTE');
+				//el asesor ya existe determinamos si ya esta registrado en el programa del coordinador
+				$sw=false;
+				$programas_asesor_externo = $e->getProgramas();
+				foreach ($programas_asesor_externo as $p) {
+					if ($p->getId() == $programa->getId()) {
+						$sw=true;
+						break;
+					}
+				}
+				if (!$sw){
+					//lo agregamos al programa				
+					$e->addPrograma($programa);
+					$em->flush();
+					return $this->redirect($this->generateUrl('cituao_coord_asesores'));
+				}
+				else{
+					throw $this->createNotFoundException('ERR_EXTERNO_YA_EXISTE');
+				}
+
 			}
+			else{
 
-			//validamos que la cedula no este ya registrada como username
-			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-			$a = $repository->findOneBy(array('username' => $externo->getCi()));
+				//validamos que la cedula no este ya registrada como username
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+				$u = $repository->findOneBy(array('username' => $externo->getCi()));
 			
-			if ($a != NULL){
-				throw $this->createNotFoundException('ERR_USUARIO_YA_EXISTE');
+				if ($u != NULL){
+					throw $this->createNotFoundException('ERR_USUARIO_YA_EXISTE');
+				}
+
+			   // Completar las propiedades que el usuario no rellena en el formulario
+				
+				//agregamos el programa			
+
+			    $externo->addPrograma($programa);
+				$em->persist($externo);
+
+				//los roles fueron cargados de forma manual en la base de datos
+				//buscamos una instancia role tipo coordinador 
+				$codigo = 3; //3 codigo corresponde a coordinador		
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
+				$role = $repository->findOneBy(array('id' => $codigo));
+
+				if ($role == NULL){
+					throw $this->createNotFoundException('ERR_ROLE_NO_ENCONTRADO');
+				}
+				$usuario = new Usuario();
+				//cargamos todos los atributos al usuario
+				$usuario->setUsername($externo->getCi());
+				$usuario->setPassword($externo->getCi());
+				$usuario->setSalt(md5(time()));
+				$usuario->addRole($role);  //cargamos el rol al coordinador
+
+				//codificamos el password			
+				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+				$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
+				$usuario->setPassword($passwordCodificado);
+				$em->persist($usuario);
+
+
+				$em->flush();
+				return $this->redirect($this->generateUrl('cituao_coord_asesores'));
 			}
-
-		   // Completar las propiedades que el usuario no rellena en el formulario
-			
-			// buscamos el programa para asignarlo al programa academico
-			$user = $this->get('security.context')->getToken()->getUser();
-			$coordinador =  $user->getUsername();
-			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-			$programa = $repository->findOneByCoordinador($coordinador);
-			$externo->setPrograma($programa);
-			
-			$em->persist($externo);
-
-			//los roles fueron cargados de forma manual en la base de datos
-			//buscamos una instancia role tipo coordinador 
-			$codigo = 3; //3 codigo corresponde a coordinador		
-			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Role');
-			$role = $repository->findOneBy(array('id' => $codigo));
-
-			if ($role == NULL){
-				throw $this->createNotFoundException('ERR_ROLE_NO_ENCONTRADO');
-			}
-			$usuario = new Usuario();
-			//cargamos todos los atributos al usuario
-			$usuario->setUsername($externo->getCi());
-			$usuario->setPassword($externo->getCi());
-			$usuario->setSalt(md5(time()));
-			$usuario->addRole($role);  //cargamos el rol al coordinador
-
-			//codificamos el password			
-			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
-			$usuario->setPassword($passwordCodificado);
-			$em->persist($usuario);
-
-
-			$em->flush();
-			return $this->redirect($this->generateUrl('cituao_coord_asesores'));
 		}
-
 				//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();

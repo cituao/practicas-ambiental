@@ -40,14 +40,21 @@ Cituao\ExternoBundle\Entity\Externo:
             joinColumn:
                 name: centro
                 referencedColumnName: id
-        programa:
-            targetEntity: Cituao\UsuarioBundle\Entity\Programa
-            inversedBy: externos
-            joinColumn:
-                name: programa
-                referencedColumnName: id
     oneToMany:
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
             mappedBy: externo
+
+    manyToMany:
+        programas:
+            targetEntity: Cituao\UsuarioBundle\Entity\Programa
+            inversedBy: externos
+            joinTable:
+                name: programa_externos
+                joinColumns:
+                  externo_id:
+                    referencedColumnName: id
+                inverseJoinColumns:
+                  programa_id:	
+                    referencedColumnName: id     
 lifecycleCallbacks: {  }

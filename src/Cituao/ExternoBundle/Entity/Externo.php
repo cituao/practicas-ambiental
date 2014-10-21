@@ -76,20 +76,17 @@ class Externo
 	**/
 	protected $practicantes;
 
-	/**
-	* @ORM\ManyToOne(targetEntity="Cituao\UsuarioBundle\Entity\Programa", inversedBy="externos")
-	* @ORM\JoinColumn(name="programa", referencedColumnName = "id") 
-	**/	
-	protected $programa;
+	protected $programas;
 	
 	private $activos;
 	
 	public function __construct()
     {
         $this->practicantes = new ArrayCollection();
+		$this->programas = new ArrayCollection();
     }
 	
-
+	
 	public function __toString(){
 
 		return sprintf('%s %s',$this->nombres, $this->apellidos);
@@ -334,26 +331,36 @@ class Externo
     }
 
     /**
-     * Set programa
+     * Add programas
      *
-     * @param \Cituao\UsuarioBundle\Entity\Programa $programa
+     * @param \Cituao\UsuarioBundle\Entity\Programa $programas
      * @return Externo
      */
-    public function setPrograma(\Cituao\UsuarioBundle\Entity\Programa $programa = null)
+    public function addPrograma(\Cituao\UsuarioBundle\Entity\Programa $programa)
     {
-        $this->programa = $programa;
+        $this->programas[] = $programa;
     
         return $this;
     }
 
     /**
-     * Get programa
+     * Remove programas
      *
-     * @return \Cituao\UsuarioBundle\Entity\Programa 
+     * @param \Cituao\UsuarioBundle\Entity\Programa $programas
      */
-    public function getPrograma()
+    public function removePrograma(\Cituao\UsuarioBundle\Entity\Programa $programa)
     {
-        return $this->programa;
+        $this->programas->removeElement($programa);
+    }
+
+    /**
+     * Get programas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProgramas()
+    {
+        return $this->programas;
     }
 	
 	public function getActivos(){

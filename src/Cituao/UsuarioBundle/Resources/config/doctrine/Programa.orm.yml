@@ -26,13 +26,14 @@ Cituao\UsuarioBundle\Entity\Programa:
             mappedBy: programa
             orderBy:
                 nombre: ASC                
-        externos:
-            targetEntity: Cituao\ExternoBundle\Entity\Externo
-            mappedBy: programa
-            orderBy:
-                nombres: ASC
     manyToMany:
         academicos:
             targetEntity: Cituao\AcademicoBundle\Entity\Academico                
             mappedBy: programas
+
+        externos:
+            targetEntity: Cituao\ExternoBundle\Entity\Externo                
+            mappedBy: programas
+            orderBy:
+                nombres: ASC
     lifecycleCallbacks: {  }

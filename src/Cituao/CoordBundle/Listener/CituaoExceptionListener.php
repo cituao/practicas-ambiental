@@ -64,6 +64,10 @@ class CituaoExceptionListener
 					$message = sprintf('Asesor académico ya esta registrado en el sistema!');
 					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
 					break;
+				case "ERR_EXTERNO_YA_EXISTE":
+					$message = sprintf('Asesor externo ya esta registrado en el sistema!');
+					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
+					break;
 				case "ERR_USUARIO_YA_EXISTE":
 					$message = sprintf('Usuario ya esta registrado en el sistema!');
 					$tmperror = 'CituaoPortalBundle:Default:error.html.twig';
