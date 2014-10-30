@@ -33,13 +33,7 @@ Cituao\ExternoBundle\Entity\Externo:
             type: string
             length: '30'
             nullable: true
-    manyToOne:
-        centro:
-            targetEntity: Cituao\CoordBundle\Entity\Centro
-            inversedBy: externos
-            joinColumn:
-                name: centro
-                referencedColumnName: id
+
     oneToMany:
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
@@ -56,5 +50,18 @@ Cituao\ExternoBundle\Entity\Externo:
                     referencedColumnName: id
                 inverseJoinColumns:
                   programa_id:	
+                    referencedColumnName: id
+
+        centros:
+            targetEntity: Cituao\CoordBundle\Entity\Centro
+            inversedBy: externos
+            joinTable:
+                name: centro_externos
+                joinColumns:
+                  externo_id:
+                    referencedColumnName: id
+                inverseJoinColumns:
+                  centro_id:	
                     referencedColumnName: id     
+     
 lifecycleCallbacks: {  }

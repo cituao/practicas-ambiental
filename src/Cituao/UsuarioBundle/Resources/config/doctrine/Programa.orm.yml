@@ -22,7 +22,7 @@ Cituao\UsuarioBundle\Entity\Programa:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
             mappedBy: programa
             orderBy:
-                apellido: ASC
+                apellidos: ASC
         centros:
             targetEntity: Cituao\CoordBundle\Entity\Centro
             mappedBy: programa

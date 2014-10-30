@@ -26,13 +26,14 @@ class ExternoType extends AbstractType
         ->add('email', 'email',  array('required' => false, 'label' => 'Email:'))
 		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil:'))
 		->add('telefonoFijo','text', array('required' => false, 'label' => 'Teléfono fijo:'))
-		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' ,
-										'query_builder' => function(EntityRepository $er) use ($prg){
-      									return $er->createQueryBuilder('c')
-										->where('c.programa = :id_programa')                						
-										->setParameter('id_programa', $prg);										
-      										},
- 'property'=>'nombre', 'empty_value' => 'Seleccione?'))
+		->add('centro','entity', array('label' => 'Centro de prácticas',
+										 'class' => 'CituaoCoordBundle:Centro',
+										 'query_builder' => function(EntityRepository $er) use ($prg){
+      																return $er->createQueryBuilder('c')
+																		->where('c.programa = :id_programa')                																		->setParameter('id_programa',$prg);},  
+										 'property'=>'nombre', 
+										 'empty_value' => 'Seleccione?',
+										 'mapped' => false))
 		->add('cargo','text', array('required' => false, 'label' => 'Cargo:'));
 		
 		}

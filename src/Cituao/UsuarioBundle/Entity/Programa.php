@@ -36,9 +36,6 @@ class Programa
 	**/
 	protected $practicantes;
 
-	/**
-	* @ORM\OneToMany(targetEntity="Cituao\AcademicoBundle\Academico", mappedBy = "programa")
-	**/
 	protected $academicos;
 	
 	/**
@@ -46,9 +43,6 @@ class Programa
 	**/
 	protected $centros;
 	
-	/**
-	* @ORM\OneToMany(targetEntity="Cituao\ExternoBundle\Externo", mappedBy = "programa")
-	**/
 	protected $externos;
 
     /**
@@ -136,7 +130,7 @@ class Programa
     {
         $this->practicantes = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->academicos = new \Doctrine\Common\Collections\ArrayCollection();
-		
+		$this->externos = new \Doctrine\Common\Collections\ArrayCollection();
 		
     }
     

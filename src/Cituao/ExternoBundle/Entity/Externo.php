@@ -64,12 +64,7 @@ class Externo
      */
     private $cargo;
 
-     /**
-     * @ORM\ManyToOne(targetEntity="Cituao\CoordBundle\Centro", inversedBy="externos")
-	 * JoinColumn(name="centro", referencedColumnName="id")
-	 * @Assert\NotBlank(message="El centro es obligatorio")
-     */
-    private $centro;
+    
 
     /**
 	* @ORM\OneToMany(targetEntity="Cituao\CoordBundle\Practicante", mappedBy = "externo")	
@@ -77,6 +72,8 @@ class Externo
 	protected $practicantes;
 
 	protected $programas;
+
+	protected $centros;
 	
 	private $activos;
 	
@@ -84,6 +81,7 @@ class Externo
     {
         $this->practicantes = new ArrayCollection();
 		$this->programas = new ArrayCollection();
+		$this->centros = new ArrayCollection();
     }
 	
 	
@@ -242,29 +240,6 @@ class Externo
     }
 
     /**
-     * Set centro
-     *
-     * @param string $centro
-     * @return Externo
-     */
-    public function setCentro($centro)
-    {
-        $this->centro = $centro;
-    
-        return;
-    }
-
-    /**
-     * Get centro
-     *
-     * @return string 
-     */
-    public function getCentro()
-    {
-        return $this->centro;
-    }
-
-    /**
      * Set cargo
      *
      * @param string $cargo
@@ -377,5 +352,39 @@ class Externo
 		
 		return $this->activos;
 	}
+
+    /**
+     * Add centros
+     *
+     * @param \Cituao\CoordBundle\Entity\Centro $centros
+     * @return Externo
+     */
+    public function addCentro(\Cituao\CoordBundle\Entity\Centro $centro)
+    {
+        $this->centros[] = $centro;
+    
+        return $this;
+    }
+
+    /**
+     * Remove centros
+     *
+     * @param \Cituao\CoordBundle\Entity\Centro $centro
+     */
+    public function removeCentro(\Cituao\CoordBundle\Entity\Centro $centro)
+    {
+        $this->programas->removeElement($centro);
+    }
+
+    /**
+     * Get centros
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCentros()
+    {
+        return $this->centros;
+    }
+
 	
 }

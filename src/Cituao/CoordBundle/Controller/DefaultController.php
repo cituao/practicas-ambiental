@@ -303,7 +303,7 @@ class DefaultController extends Controller
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 
         //creamos instacia formulario para el conograma
-		$formulario = $this->createForm(new CronogramaType($programa->getId()), $practicante);
+		$formulario = $this->createForm(new CronogramaType($programa), $practicante);
 		$formulario->handleRequest($peticion);
 
 		// si los datos son validos guardamos cronograma para los actores        
@@ -647,19 +647,23 @@ class DefaultController extends Controller
 
 			}
 			else{
-
-				//validamos que la cedula no este ya registrada como username
+				//como no se encuentra registrado en el sistema 
+				//validamos que la cedula no este ya registrada como otro usuariousername
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 				$u = $repository->findOneBy(array('username' => $externo->getCi()));
-			
 				if ($u != NULL){
 					throw $this->createNotFoundException('ERR_USUARIO_YA_EXISTE');
 				}
 
 			   // Completar las propiedades que el usuario no rellena en el formulario
 				
-				//agregamos el programa			
+				//creamos un objeto con el centro selecionado por el coordinador				
+				$idCentro = $formulario->get('centro')->getData();				
+				$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+				$centro = $repository->find($idCentro);
+				$externo->addCentro($centro);
 
+				//agregamos el programa			
 			    $externo->addPrograma($programa);
 				$em->persist($externo);
 
@@ -722,6 +726,11 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 			
             // Completar las propiedades que el usuario no rellena en el formulario
+			$idCentro = $formulario->get('centro')->getData();
+			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+			$centro = $repository->find($idCentro);
+			$externo->addCentro($centro);
+		
 			$em->persist($externo);
 
 			//si el usuario cambio la cédula modificamos el username y password 

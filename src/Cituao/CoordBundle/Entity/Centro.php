@@ -61,9 +61,6 @@ class Centro
 	**/
 	protected $practicantes;
 
-    /**
-	* @ORM\OneToMany(targetEntity="Cituao\ExternoBundle\Externo", mappedBy = "centro")	
-	**/
 	protected $externos;
 	
 	/**

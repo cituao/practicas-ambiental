@@ -97,6 +97,9 @@ class Academico
 	**/
 	protected $practicantes;
 
+    /**
+	* @ORM\ManyToMany(targetEntity="Cituao\UsuarioBundle\Programa", inversedBy = "academicos")	
+	**/
 	protected $programas;
 
 	public $activos;
@@ -107,6 +110,12 @@ class Academico
 		$this->practicantes = new ArrayCollection();
 		$this->programas = new ArrayCollection();
     }
+
+	public function __toString(){
+
+		return sprintf('%s %s',$this->nombres, $this->apellidos);
+
+	}
 	
     /**
      * Get id
@@ -547,8 +556,9 @@ public function getAbsolutePath()
 		$total=0;
 		$listaPracticantes= $this->getPracticantes();
 		foreach($listaPracticantes as $practicante){
-			//no evaluamos si el practicante no es del programa			
-			if ($practicante->programa->getId() == $programa->getId()){
+			//no evaluamos si el practicante no es del programa
+			$prg_practicante = $practicante->getPrograma();
+ 			if ($prg_practicante->getId() == $programa->getId()){
 				if ($practicante->getEstado() == 2) $culminado = $culminado+1;
 				$total = $total + 1;
 			}

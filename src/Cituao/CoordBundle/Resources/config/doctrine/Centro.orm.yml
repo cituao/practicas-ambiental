@@ -29,9 +29,6 @@ Cituao\CoordBundle\Entity\Centro:
             length: '50'
             nullable: true
     oneToMany:
-        externos:
-            targetEntity: Cituao\ExternoBundle\Entity\Externo
-            mappedBy: centro
         practicantes:
             targetEntity: Cituao\CoordBundle\Entity\Practicante
             mappedBy: centro
@@ -42,5 +39,10 @@ Cituao\CoordBundle\Entity\Centro:
             joinColumn:
                 name: programa
                 referencedColumnName: id
-            
+    manyToMany:
+        externos:
+            targetEntity: Cituao\ExternoBundle\Entity\Externo                
+            mappedBy: centros
+            orderBy:
+                nombres: ASC           
     lifecycleCallbacks: {  }

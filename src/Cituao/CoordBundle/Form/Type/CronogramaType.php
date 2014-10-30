@@ -33,13 +33,7 @@ class CronogramaType extends AbstractType
 
 
 		->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo' , 'property'=>'NombreCompleto', 'empty_value' => 'Seleccione un asesor externo'))
-		->add('academico','entity', array('label' => 'Asesor académico','class' => 'CituaoAcademicoBundle:Academico' ,
-												'query_builder' => function(EntityRepository $er) use ($prg){
-												return $er->createQueryBuilder('a')
-												->where('a.programa = :id_programa')  
-												->setParameter('id_programa', $prg);		
-												},
- 'property'=>'NombreCompleto', 'empty_value' => '¿Seleccione?'))
+		->add('academico','entity', array('label' => 'Asesor académico', 'class' => 'CituaoAcademicoBundle:Academico', 'choices' => $prg->getAcademicos(), 'empty_value' => '¿Seleccione?'))
 		
 		->add('fechaIniciacion', 'date', array('label' => 'Fecha de iniciación','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))				
 		
