@@ -30,13 +30,11 @@ class CronogramaType extends AbstractType
 										->setParameter('id_programa', $prg);										
       										},
  'property'=>'nombre', 'empty_value' => 'Seleccione?'))
-
-
-		->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo' , 'property'=>'NombreCompleto', 'empty_value' => 'Seleccione un asesor externo'))
+	
+		->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo', 'choices' => $prg->getExternos(), 'empty_value' => '¿Seleccione?'))
 		->add('academico','entity', array('label' => 'Asesor académico', 'class' => 'CituaoAcademicoBundle:Academico', 'choices' => $prg->getAcademicos(), 'empty_value' => '¿Seleccione?'))
 		
 		->add('fechaIniciacion', 'date', array('label' => 'Fecha de iniciación','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))				
-		
 		->add('fechaAsesoria1', 'date', array('label' => 'Asesoría #1','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		->add('fechaAsesoria2', 'date', array('label' => 'Asesoría #2','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		->add('fechaAsesoria3', 'date', array('label' => 'Asesoría #3','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
