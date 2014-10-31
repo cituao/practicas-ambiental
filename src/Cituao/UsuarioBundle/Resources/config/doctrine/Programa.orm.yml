@@ -30,6 +30,7 @@ Cituao\UsuarioBundle\Entity\Programa:
                 nombre: ASC                
     manyToMany:
         academicos:
+            orderBy: { 'nombres': 'ASC' } 
             targetEntity: Cituao\AcademicoBundle\Entity\Academico                
             mappedBy: programas
 
