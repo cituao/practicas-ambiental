@@ -270,7 +270,6 @@ class DefaultController extends Controller
 	public function cronogramaAction($codigo){
 		$peticion = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
-		
 
 		//prerequisitos para establecer un cronograma dede existir centros de prácticas registrados
 		$user = $this->get('security.context')->getToken()->getUser();
@@ -286,14 +285,12 @@ class DefaultController extends Controller
 
 		//prerequisitos para establecer un cronograma debe existir asesores externos
 		$listaAsesores = $programa->getExternos();
-
 		if ($listaAsesores->count() == 0) {
 			throw $this->createNotFoundException('ERR_NO_HAY_EXTERNOS');
 		}
 		
 		//prerequisitos para establecer un cronograma debe existir asesores académicos
 		$listaAcademicos = $programa->getAcademicos();
-
 		if ($listaAcademicos->count() == 0) {
 			throw $this->createNotFoundException('ERR_NO_HAY_ACADEMICOS');
 		}
@@ -310,13 +307,12 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 			
 			$academico = $practicante->getAcademico();
-			if ($academico->getActivos() == 5)
-				throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
 			
+			if ($academico->getActivos($programa)  == 5)
+				throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
+		
 			// Completar las propiedades que el usuario no rellena en el formulario
 			$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
-			
-
 			
 			//cronograma para los asesores 
 			$query = $em->createQuery(
@@ -326,6 +322,7 @@ class DefaultController extends Controller
 			//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
 			$cronograma = $query->getOneOrNullResult();//getSingleResult();
 
+			//
 			if (!$cronograma){
 				$cronograma = new Cronograma();
 				$cronograma->setPracticante($practicante->getId());
@@ -361,7 +358,6 @@ class DefaultController extends Controller
 			$cronograma->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
 			$cronograma->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
 			
-						
 			
 			//crear coronograma al asesor externo
      		$query = $em->createQuery(
