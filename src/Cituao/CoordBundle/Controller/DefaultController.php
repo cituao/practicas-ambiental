@@ -950,6 +950,7 @@ class DefaultController extends Controller
 	//Listar los centros de practicas registrados en la base de datos segun la coordinacion
 	/********************************************************/	
 	public function centrosAction(){
+	
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();
 
@@ -1043,13 +1044,13 @@ class DefaultController extends Controller
 	**************************************************/
 	public function obtenerexternosporcentroAction(){
 		$request = $this->getRequest();
-		$codigo_id = $request->request->get('cod_centro');
-		
-		//$codigo_id = 2;
+		$id_centro = $request->request->get('cod_centro');
+
 		$em = $this->getDoctrine()->getManager();
-		$query = $em->createQuery('SELECT e.id, e.nombres, e.apellidos FROM CituaoExternoBundle:Externo e WHERE e.centro = :cod_id ORDER BY e.nombres')->setParameter('cod_id',$codigo_id); 
-		
-		$externos = $query->getResult();
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+		$centro = $repository->findOneBy(array('id' => $id_centro));
+		$externos = $centro->getExternos();
+
 		if(!$externos){
 			$exception = array('codigo' => '999', 'message' => 'no hay registros');
 		}
@@ -1058,9 +1059,13 @@ class DefaultController extends Controller
 		}
 		//return $this->render('CituaoCoordBundle:Default:prueba.html.twig', array('externos' => $externos, 'exception' => $exception ));
 		
+		foreach ($externos as $e){
+			$fexternos[] = array("id" => $e->getId(), "nombres" => $e->getNombres(), "apellidos" => $e->getApellidos());
+		}
+
 		$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
 			JsonEncoder()));
-		$json = $serializer->serialize($externos, 'json');
+		$json = $serializer->serialize($fexternos, 'json');
 
 		return new Response($json);
 

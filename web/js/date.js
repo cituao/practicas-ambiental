@@ -165,7 +165,7 @@ $(function() {
 							for (var i = 0; i< len; i++) {
 								html += '<option value="' + obj[i].id + '">' + obj[i].nombres + ' ' + obj[i].apellidos + '</option>';
 							}
-							//alert(html);
+							alert(html);
 							$('#cronograma_externo')
 								.find('option')
 								.remove()
