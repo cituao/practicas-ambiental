@@ -307,88 +307,103 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 			
 			$academico = $practicante->getAcademico();
-			
-			if ($academico->getActivos($programa)  == 5)
-				throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
+			if ($academico->getActivos($programa)  == 5)	throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
 		
-			// Completar las propiedades que el usuario no rellena en el formulario
-			$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
-			
-			//cronograma para los asesores 
-			$query = $em->createQuery(
-				'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
-			$query->setParameter('id_aca',$practicante->getAcademico()->getId());
-			$query->setParameter('id_pra',$practicante->getId());
-			//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
-			$cronograma = $query->getOneOrNullResult();//getSingleResult();
-
-			//
-			if (!$cronograma){
-				$cronograma = new Cronograma();
-				$cronograma->setPracticante($practicante->getId());
-				$cronograma->setAcademico($practicante->getAcademico()->getId());
+			if ($practicante->getEstado() == 1) {
+				//ya tiene cronograma estado = 1
+				$practicante_actual = $repository->findOneBy(array('codigo' => $codigo));
+				//verificamos que cambios hubo
+				//en asesor academico
+	
+				$academico = $practicante->getAcademico(); 
 				
-				//verifico que si hay un cronograma del practicante en los cronogramas de asesores academicos si es asi lo eliminamos
+				//cambio el asesor academico 
+				//actuaizamos el id en el cronograma del asesor academico
 				$query = $em->createQuery(
 				'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
 				$query->setParameter('id_pra',$practicante->getId());
 				//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
-				$cronoanterior = $query->getOneOrNullResult();//getSingleResult();
-				if ($cronoanterior){
-						$query = $em->createQuery(
-							'DELETE CituaoAcademicoBundle:Cronograma c 
-							WHERE c.practicante = :id')
-						->setParameter('id', $id);
-						$query->execute();
-				}
-			}
-			//cargamos las fechas	
-			$cronograma->setFechaAsesoria1($practicante->getFechaAsesoria1());
-			$cronograma->setFechaAsesoria2($practicante->getFechaAsesoria2());
-			$cronograma->setFechaAsesoria3($practicante->getFechaAsesoria3());
-			$cronograma->setFechaAsesoria4($practicante->getFechaAsesoria4());
-			$cronograma->setFechaAsesoria5($practicante->getFechaAsesoria5());
-			$cronograma->setFechaAsesoria6($practicante->getFechaAsesoria6());
-			$cronograma->setFechaAsesoria7($practicante->getFechaAsesoria7());
-			$cronograma->setFechaVisitaP($practicante->getFechaVisitaP());
-			$cronograma->setFechaEvaluacion1($practicante->getFechaVisita1());
-			$cronograma->setFechaEvaluacion2($practicante->getFechaVisita2());
-			$cronograma->setFechaInformeGestion1($practicante->getFechaInformeGestion1());
-			$cronograma->setFechaInformeGestion2($practicante->getFechaInformeGestion2());
-			$cronograma->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
-			$cronograma->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
+				$cronograma_academico = $query->getOneOrNullResult();//getSingleResult();
+				$cronograma_academico->setAcademico($academico->getId()); 
+				$cronograma_academico->setFechaAsesoria1($practicante->getFechaAsesoria1());
+				$cronograma_academico->setFechaAsesoria2($practicante->getFechaAsesoria2());
+				$cronograma_academico->setFechaAsesoria3($practicante->getFechaAsesoria3());
+				$cronograma_academico->setFechaAsesoria4($practicante->getFechaAsesoria4());
+				$cronograma_academico->setFechaAsesoria5($practicante->getFechaAsesoria5());
+				$cronograma_academico->setFechaAsesoria6($practicante->getFechaAsesoria6());
+				$cronograma_academico->setFechaAsesoria7($practicante->getFechaAsesoria7());
+				$cronograma_academico->setFechaVisitaP($practicante->getFechaVisitaP());
+				$cronograma_academico->setFechaEvaluacion1($practicante->getFechaVisita1());
+				$cronograma_academico->setFechaEvaluacion2($practicante->getFechaVisita2());
+				$cronograma_academico->setFechaInformeGestion1($practicante->getFechaInformeGestion1());
+				$cronograma_academico->setFechaInformeGestion2($practicante->getFechaInformeGestion2());
+				$cronograma_academico->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
+				$cronograma_academico->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
+				$em->persist($cronograma_academico);
+				
+				$externo = $practicante->getExterno();
+				//cambio el asesor externo 
+				//actuaizamos el id en el cronograma del asesor academico
+				$query = $em->createQuery(
+				'SELECT c FROM CituaoExternoBundle:CronogramaExterno c WHERE c.practicante =:id_pra');
+				$query->setParameter('id_pra',$practicante->getId());
+				//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
+				$cronograma_externo = $query->getOneOrNullResult();//getSingleResult();
+				$cronograma_externo->setExterno($externo->getId()); 
+				$cronograma_externo->setFechaEvaluacion1($practicante->getFechaVisita1());
+				$cronograma_externo->setFechaEvaluacion2($practicante->getFechaVisita2());
+				$cronograma_externo->setFechaActa($practicante->getFechaInformeFinal());
+				$em->persist($cronograma_externo);
 			
+				$em->persist($practicante);
+				$em->flush();
+				return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+			}	
 			
-			//crear coronograma al asesor externo
-     		$query = $em->createQuery(
-				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra');
-			$query->setParameter('id_pra',$practicante->getId());
-			//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
-			$cronogramaexterno = $query->getOneOrNullResult();//getSingleResult();			
+			else{
+				// Completar las propiedades que el usuario no rellena en el formulario
+				$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
 			
-			//si es la primera vez que se asigna cronograma creamos uns instancia 
-			//y le cargamos los datos indices de practicante y asesor externo relaciones y entidades
-			if ($cronogramaexterno == NULL){
+				//creamos 
+				$cronograma = new Cronograma();
+				$cronograma->setPracticante($practicante->getId());
+				$cronograma->setAcademico($practicante->getAcademico()->getId());
+				//cargamos las fechas	
+				$cronograma->setFechaAsesoria1($practicante->getFechaAsesoria1());
+				$cronograma->setFechaAsesoria2($practicante->getFechaAsesoria2());
+				$cronograma->setFechaAsesoria3($practicante->getFechaAsesoria3());
+				$cronograma->setFechaAsesoria4($practicante->getFechaAsesoria4());
+				$cronograma->setFechaAsesoria5($practicante->getFechaAsesoria5());
+				$cronograma->setFechaAsesoria6($practicante->getFechaAsesoria6());
+				$cronograma->setFechaAsesoria7($practicante->getFechaAsesoria7());
+				$cronograma->setFechaVisitaP($practicante->getFechaVisitaP());
+				$cronograma->setFechaEvaluacion1($practicante->getFechaVisita1());
+				$cronograma->setFechaEvaluacion2($practicante->getFechaVisita2());
+				$cronograma->setFechaInformeGestion1($practicante->getFechaInformeGestion1());
+				$cronograma->setFechaInformeGestion2($practicante->getFechaInformeGestion2());
+				$cronograma->setFechaInformeGestion3($practicante->getFechaInformeGestion3());
+				$cronograma->setFechaEvaluacionFinal($practicante->getFechaInformeFinal());	
+			
 				$cronogramaexterno = new Cronogramaexterno();
 				$cronogramaexterno->setPracticante($practicante->getId());
 				$cronogramaexterno->setExterno($practicante->getExterno()->getId());
-			}
-			//asignamos las fechas correspondientes al asesor externo
-			$cronogramaexterno->setFechaEvaluacion1($practicante->getFechaVisita1());
-			$cronogramaexterno->setFechaEvaluacion2($practicante->getFechaVisita2());
-			$cronogramaexterno->setFechaActa($practicante->getFechaInformeFinal());
-			$em->persist($cronogramaexterno);
+				//asignamos las fechas correspondientes al asesor externo
+				$cronogramaexterno->setFechaEvaluacion1($practicante->getFechaVisita1());
+				$cronogramaexterno->setFechaEvaluacion2($practicante->getFechaVisita2());
+				$cronogramaexterno->setFechaActa($practicante->getFechaInformeFinal());
 
-			$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-			$usuario = $repository->findOneBy(array('username' => $practicante->getCodigo()));
-			$usuario->setIsActive(true);
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+				$usuario = $repository->findOneBy(array('username' => $practicante->getCodigo()));
+				$usuario->setIsActive(true);
 			
-			$em->persist($usuario);
-			$em->persist($practicante);
-			$em->persist($cronograma);
+				$em->persist($cronogramaexterno);
+				$em->persist($usuario);
+				$em->persist($practicante);
+				$em->persist($cronograma);
 			
-			$em->flush();
-			return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+				$em->flush();
+				return $this->redirect($this->generateUrl('cituao_coord_homepage'));
+			}
 		}
 		
 				//buscamos el programa
