@@ -164,7 +164,7 @@ class DefaultController extends Controller
     	$query->setParameter('id_pra',$practicante->getId());
     	$cronogramaexterno = $query->getOneOrNullResult();
 		
-		$programa=$academico->getPrograma();
+		$programa=$practicante->getPrograma();
 		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma,  'programa' => $programa,  'p' => $practicante, 'e' => $cronogramaexterno ));
 	}
 
