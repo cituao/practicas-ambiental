@@ -601,7 +601,7 @@ class DefaultController extends Controller
 	}
 	
 	//************************************************************
-	//Muestra la informacion del asesor externo al practicnate
+	//Muestra la informacion del centro de practicas del practicnate
 	//*************************************************************
 	public function vercentroAction($id){
 		$usuario = $this->get('security.context')->getToken()->getUser();
@@ -614,8 +614,8 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 		$centro = $repository->findOneById($id);
 	
-		$programa=$academico->getPrograma();
-		return $this->render('CituaoAcademicoBundle:Default:centro.html.twig', array('centro' => $centro , 'programa' => $programa ));
+		//$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:centro.html.twig', array('centro' => $centro));
 	}
 	
 }
