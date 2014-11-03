@@ -596,8 +596,8 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externo = $repository->findOneById($id);
 	
-		$programa=$academico->getPrograma();	
-		return $this->render('CituaoAcademicoBundle:Default:externo.html.twig', array('externo' => $externo ,  'programa' => $programa));
+		//$programa=$academico->getPrograma();	
+		return $this->render('CituaoAcademicoBundle:Default:externo.html.twig', array('externo' => $externo));
 	}
 	
 	//************************************************************
