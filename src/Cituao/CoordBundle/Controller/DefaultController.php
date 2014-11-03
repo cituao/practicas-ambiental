@@ -649,6 +649,14 @@ class DefaultController extends Controller
 				if (!$sw){
 					//lo agregamos al programa				
 					$e->addPrograma($programa);
+
+					//creamos un objeto con el centro selecionado por el coordinador				
+					$idCentro = $formulario->get('centro')->getData();				
+					$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
+					$centro = $repository->find($idCentro);
+					$e->addCentro($centro);
+					$em->persist($e);
+			
 					$em->flush();
 					return $this->redirect($this->generateUrl('cituao_coord_asesores'));
 				}
