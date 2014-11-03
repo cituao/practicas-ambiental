@@ -65,7 +65,7 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 		$externo = $repository->findOneBy(array('ci' => $ci));
 		
-		$formulario = $this->createForm(new ExternoType(), $externo);
+		$formulario = $this->createForm(new ExternoType($externo), $externo);
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {

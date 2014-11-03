@@ -8,6 +8,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ExternoType extends AbstractType
 {
+	protected $externo;
+
+	public function __construct($e){
+		$this->externo = $e;
+	}
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -17,7 +22,11 @@ class ExternoType extends AbstractType
         ->add('email', 'email',  array('required' => false, 'label' => 'Email:', 'required' => true ))
 		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil:', 'required' => true))
 		->add('telefonoFijo','text', array('required' => false, 'label' => 'Teléfono fijo:'))
-		->add('centro','entity', array('required' => false, 'label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' , 'property'=>'nombre', 'disabled' => true ))		
+		->add('centro','entity', array('required' => false, 'label' => 'Centro de prácticas', 
+										'class' => 'CituaoExternoBundle:Externo' , 
+										'property'=>'nombre', 
+										'choices' => $this->externo->getCentros(),
+										 'disabled' => false, 'mapped' => false))		
 		->add('cargo','text', array('required' => false, 'label' => 'Cargo:', 'required' => true));
 		
 		}
