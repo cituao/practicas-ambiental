@@ -345,7 +345,7 @@ class DefaultController extends Controller
 				//cambio el asesor externo 
 				//actuaizamos el id en el cronograma del asesor academico
 				$query = $em->createQuery(
-				'SELECT c FROM CituaoExternoBundle:CronogramaExterno c WHERE c.practicante =:id_pra');
+				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra');
 				$query->setParameter('id_pra',$practicante->getId());
 				//como obtengo un solo object entonces necesito solo esa instancia no una array de instancias 			
 				$cronograma_externo = $query->getOneOrNullResult();//getSingleResult();
