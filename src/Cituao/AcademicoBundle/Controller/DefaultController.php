@@ -577,9 +577,9 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('cituao_academico_homepage'));
         }
 		$datos = array('id' => $id);
-		$programa=$academico->getPrograma();
+		//$programa=$academico->getPrograma();
         return $this->render('CituaoAcademicoBundle:Default:forminformefinal.html.twig', array(
-            'formulario' => $formulario->createView(),  'programa' => $programa,  'datos' => $datos
+            'formulario' => $formulario->createView(), 'datos' => $datos
         ));
 	}	
 
