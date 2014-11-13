@@ -748,7 +748,20 @@ class DefaultController extends Controller
 			$idCentro = $formulario->get('centro')->getData();
 			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 			$centro = $repository->find($idCentro);
-			$externo->addCentro($centro);
+			$centros = $externo->getCentros();
+			
+			$sw = false;
+			foreach ($centros as $c){
+				$id_current = $c->getId(); 
+				if ($id_current == $idCentro->getId()) {
+					$sw=true;
+					break;
+				}
+			}			
+			
+			if(!$sw){
+				$externo->addCentro($centro);
+			}
 		
 			$em->persist($externo);
 

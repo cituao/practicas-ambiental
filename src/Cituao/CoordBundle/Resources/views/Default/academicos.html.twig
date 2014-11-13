@@ -68,7 +68,8 @@
 										<td >{{ asesor.telefonoMovil }}</td>				
 										<td style=" width:19%">{{ asesor.email }}</td>	
 										<!-- <td>{{ asesor.practicantes.count }}</td> -->
-										<td>{{ asesor.activos }}</td>
+										<td><a href="{{ path('cituao_coord_practicantes_asesor', { 'ci': asesor.ci}) }}">{{ asesor.activos }}</a>
+</td>
 										<td>
 											<table class="opciones">
 												<td>
