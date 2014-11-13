@@ -283,8 +283,8 @@ class DefaultController extends Controller
 		}
 		$datos = array('id' => $id, 'numase' => $numase);
 		
-		$programa=$academico->getPrograma();
-		return $this->render('CituaoAcademicoBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(),  'programa' => $programa,  'datos' => $datos));
+		//$programa=$academico->getPrograma();
+		return $this->render('CituaoAcademicoBundle:Default:formasesoria.html.twig', array('formulario' => $formulario->createView(),  'datos' => $datos));
 	}
 	
 	
