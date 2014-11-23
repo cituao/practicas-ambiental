@@ -7,7 +7,7 @@ cituao_coord_practicantes:
     defaults: { _controller: CituaoCoordBundle:Default:practicantes }
 
 cituao_coord_practicantes_asesor:
-    pattern:  /coordinador/practicantes-asesor
+    path:  /coordinador/practicantes-asesor={ci}
     defaults: { _controller: CituaoCoordBundle:Default:practicantesAsesor }
 
 cituao_coord_practicante:

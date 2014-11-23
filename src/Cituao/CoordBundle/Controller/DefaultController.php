@@ -1732,4 +1732,29 @@ class DefaultController extends Controller
 		}
 		return $this->render('CituaoCoordBundle:Default:academicosenretraso.html.twig', array('listaPracticantes' => $retrasados, 'programa' => $programa, 'msgerr' => $msgerr));
 	}
+
+	//******************************************************************
+	//Muestra los asesores academicos que presentan retraso
+	//*******************************************************************
+	public function practicantesAsesorAction($ci){
+		$em = $this->getDoctrine()->getManager();
+		
+		$user = $this->get('security.context')->getToken()->getUser();
+
+		$coordinador =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $ci));
+
+		$listaPracticantes = $academico->getPracticantes();
+		
+		$msgerr = array('descripcion'=>'No tiene practicantes','id'=>'0');	
+
+		return $this->render('CituaoCoordBundle:Default:practicantesasesor.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'programa' => $programa, 'academico' => $academico));
+		
+	}
+
 }
