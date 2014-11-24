@@ -62,10 +62,10 @@
 										<td>
 											<div>
 												<table class="opciones">
-													{% if practicante.estado == 1 %}
-													<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" /><h3>Cronograma</h3></a></td>
-													{% else %}
+													{% if practicante.estado == 0 %}
 													<td><img src="{{ asset('img/nocrono.png') }}" /></td>
+													{% else %}
+													<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" /><h3>Cronograma</h3></a></td>
 													{% endif %}
 													<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Editar</h3></a></td>
 												</table> <!-- opciones -->
@@ -89,6 +89,39 @@
 		{% endblock  %}
 		
 		</div> <!-- cierra content-->
+
+			<script>
+
+			$( ".tableItem" ).mouseenter(function() {
+				var hoverDiv = $('#hoverDiv', this);
+				var opciones = $('.opciones', this);
+				var itemPicture = $('.itemImgContainer', this);
+				$(hoverDiv).css("background-color","#ec1c24");
+				$(itemPicture).css("border-color","#ec1c24");
+
+				$( opciones).animate({
+					opacity: 1,
+					top: "-4px",
+				}, 300, function() {
+				// Animation complete.
+			});
+			});
+
+			$( ".tableItem" ).mouseleave(function() {
+				var hoverDiv = $('#hoverDiv', this);
+				var itemPicture = $('.itemImgContainer', this);
+				var opciones = $('.opciones', this);
+				$(hoverDiv).css("background-color","#fff");
+				$(itemPicture).css("border-color","#242021");
+				$( opciones).animate({
+					opacity: 0,
+					top: "26px",
+				}, 300, function() {
+				// Animation complete.
+			});
+			});
+
+		</script>
 
 
 {% endblock %}
