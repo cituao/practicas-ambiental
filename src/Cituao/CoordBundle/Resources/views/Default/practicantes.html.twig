@@ -105,10 +105,10 @@ $( "#practicantes h3" ).css("opacity","0.4");
 										<td>
 											<div>
 												<table class="opciones">
-													{% if practicante.estado == 1 %}
-													<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" /><h3>Cronograma</h3></a></td>
-													{% else %}
+													{% if practicante.estado == 0 %}
 													<td><img src="{{ asset('img/nocrono.png') }}" /></td>
+													{% else %}
+													<td><a href="{{ path('cituao_coord_cronograma_practicante', { 'id': practicante.id}) }}"><img src="{{ asset('img/cronograma.png') }}" /><h3>Cronograma</h3></a></td>
 													{% endif %}
 													<td><a href="{{ path('cituao_coord_practicante', { 'codigo': practicante.codigo}) }}"><img src="{{ asset('img/editar.png') }}" ><h3>Editar</h3></a></td>
 												</table> <!-- opciones -->
