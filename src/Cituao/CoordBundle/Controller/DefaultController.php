@@ -1751,10 +1751,15 @@ class DefaultController extends Controller
 
 		$listaPracticantes = $academico->getPracticantes();
 		
+		//filtramos los practicantes que han culminado
+		$i=0;
+		foreach ($listaPracticantes as $p) {
+			if ($p->getEstado() == 2) {
+				$listaPracticantes->remove($i);
+			}
+			$i++;
+		}
 		$msgerr = array('descripcion'=>'No tiene practicantes','id'=>'0');	
-
 		return $this->render('CituaoCoordBundle:Default:practicantesasesor.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'programa' => $programa, 'academico' => $academico));
-		
 	}
-
 }
