@@ -272,11 +272,20 @@ class DefaultController extends Controller
 			//cambiamos el estado del practicante a 2 de BAJA
 			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 			$practicante = $repository->findOneBy(array('id' => $id));
-			$practicante->setEstado('2');
-			$em->persist($practicante);
-
+			
+			//evaluar las entregas por parte de los asesor académico y practicante
+			$query = $em->createQuery(
+					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$practicante->getId());
+			$cronogramacademico = $query->getOneOrNullResult();
+			
+			// si cumple con los requisitos lo pasamos a culminado
+			if ( $cronogramacademico->getListoEvaluacionFinal() == true && $practicante->getListoInformeFinal() == true) {
+				$practicante->setEstado('2');
+				$em->persist($practicante);
+			}
+			
 			$em->flush();
-
 			return $this->redirect($this->generateUrl('cituao_externo_homepage'));
 		}
 		$datos = array('id' => $id);

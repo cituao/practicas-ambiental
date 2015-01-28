@@ -572,8 +572,21 @@ class DefaultController extends Controller
 			$cronograma->setListoEvaluacionFinal(true);
 			$em->persist($cronograma);
 
+			//buscar registro de cronograma del practicante y asesor externo y evaluar 
+			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+			$practicante = $repository->findOneBy(array('id' => $id));
+			
+			//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
+			$query = $em->createQuery(
+				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$id);
+			$cronogramaexterno = $query->getOneOrNullResult();
+			
+			if ($cronogramaexterno->getListoActa() == true && $practicante->getListoInformeFinal() == true) {
+				$practicante->setEstado('2');
+				$em->persist($practicante);
+			}
             $em->flush();
-
             return $this->redirect($this->generateUrl('cituao_academico_homepage'));
         }
 		$datos = array('id' => $id);
