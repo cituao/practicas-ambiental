@@ -1433,6 +1433,7 @@
         },
         {
             "name": "twig/twig",
+<<<<<<< HEAD
             "version": "v1.17.0",
             "source": {
                 "type": "git",
@@ -1443,6 +1444,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/twigphp/Twig/zipball/2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
                 "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
+=======
+            "version": "v1.18.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4cf7464348e7f9893a93f7096a90b73722be99cf",
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf",
+>>>>>>> 038a3ad7f86ed760f0595351ab0a1b6ed7ed59f8
                 "shasum": ""
             },
             "require": {
@@ -1451,7 +1464,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-master": "1.17-dev"
+=======
+                    "dev-master": "1.18-dev"
+>>>>>>> 038a3ad7f86ed760f0595351ab0a1b6ed7ed59f8
                 }
             },
             "autoload": {
@@ -1486,7 +1503,11 @@
             "keywords": [
                 "templating"
             ],
+<<<<<<< HEAD
             "time": "2015-01-14 10:15:49"
+=======
+            "time": "2015-01-25 17:32:08"
+>>>>>>> 038a3ad7f86ed760f0595351ab0a1b6ed7ed59f8
         }
     ],
     "packages-dev": [],
