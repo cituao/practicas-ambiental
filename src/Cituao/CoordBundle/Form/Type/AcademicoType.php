@@ -20,7 +20,7 @@ class AcademicoType extends AbstractType
 		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil:'))
 		->add('telefonoFijo','text', array('required' => false, 'label' => 'Teléfono fijo:'))
 		->add('perfil','textarea', array('required' => false, 'label' => 'Perfil', 'max_length' => '5500' ,  'attr' => array('cols' => '80', 'rows' => '5')))
-		->add('categoria', 'choice', array('required' => false, 'label' => 'Categoría', 'choices'=> array('a' => 'A', 'b' => 'B', 'c' => 'C', 'd' => 'D', 'e' => 'E', 'f' => 'F')))	
+		->add('categoria', 'choice', array('required' => false, 'label' => 'Categoría', 'choices'=> array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6')))	
 		->add('declaracion', 'checkbox', array('required' => false, 'label' => 'Declaración de Renta', 'required' => false));
 		}
 

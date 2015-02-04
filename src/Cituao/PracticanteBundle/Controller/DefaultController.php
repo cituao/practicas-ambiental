@@ -399,8 +399,27 @@ class DefaultController extends Controller
 			$informe->setPracticante($practicante->getId());
 			$practicante->setListoInformefinal(true);
 			$em->persist($informe);
+			
+			
+			//buscamos los registros de los cronogramas y determinar si se ha entregado todo
+			$query = $em->createQuery(
+					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$practicante->getId());
+			$cronogramacademico = $query->getOneOrNullResult();
+			
+			//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
+			$query = $em->createQuery(
+				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$practicante->getId());
+			$cronogramaexterno = $query->getOneOrNullResult();
+			
+			//si entrego todo entonces pasa al estado culminado
+			if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
+				$practicante->setEstado('2');
+				$em->persist($practicante);
+			}
+			
 			$em->flush();
-
 			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}
 		$datos = array('id' => $id);
