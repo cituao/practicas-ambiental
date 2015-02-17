@@ -5,3 +5,11 @@ services:
 #    cituao_coord.example:
 #        class: %cituao_coord.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+services:
+    my.handler.session_idle:
+        class: Cituao\CoordBundle\Listener\SessionIdleHandler
+        arguments: ["@session", "@security.context", "@router", %session_max_idle_time%]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
