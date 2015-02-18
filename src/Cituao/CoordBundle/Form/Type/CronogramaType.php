@@ -26,7 +26,8 @@ class CronogramaType extends AbstractType
 		->add('centro','entity', array('label' => 'Centro de prácticas', 'class' => 'CituaoCoordBundle:Centro' ,
 										'query_builder' => function(EntityRepository $er) use ($prg){
       									return $er->createQueryBuilder('c')
-										->where('c.programa = :id_programa')                						
+										->where('c.programa = :id_programa')   
+										->orderBy('c.nombre', 'ASC')
 										->setParameter('id_programa', $prg);										
       										},
  'property'=>'nombre', 'empty_value' => 'Seleccione?'))
