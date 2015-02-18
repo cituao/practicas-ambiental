@@ -210,9 +210,12 @@ class DefaultController extends Controller
 			$usuario->setPassword($passwordCodificado);
 			//guardamos usuario
 			$em->persist($usuario);
-
 			$em->flush();
 
+            // Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo practicante registrado correctamente!'
+				);
 			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
 		}
 		return $this->render('CituaoCoordBundle:Default:registrarpracticante.html.twig', array('formulario' => $formulario->createView(), 'programa' => $programa ));
@@ -252,6 +255,10 @@ class DefaultController extends Controller
 			$em->persist($usuario);
 			$em->flush();
 
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo practicante modificado!'
+				);
 			return $this->redirect($this->generateUrl('cituao_coord_practicantes'));
 		}
 		
@@ -907,7 +914,7 @@ class DefaultController extends Controller
 
 		        // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
 				$this->get('session')->getFlashBag()->add('info',
-					'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+					'¡Listo, se registro el asesor académico!'
 					);
 				return $this->redirect($this->generateUrl('cituao_coord_academicos'));
 			}
@@ -925,7 +932,7 @@ class DefaultController extends Controller
 	}
 
 	/********************************************************/
-	//Muestra y modifica un asesor externo registrado en la base de datos
+	//Muestra y modifica un asesor academico registrado en la base de datos
 	/********************************************************/		
 	public function academicoAction($ci){
 		$peticion = $this->getRequest();
@@ -961,9 +968,9 @@ class DefaultController extends Controller
 
 			$em->flush();
 
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+            // Crear un mensaje flash para notificar al usuario que se ha modificado correctamente
 			$this->get('session')->getFlashBag()->add('info',
-				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
+				'¡Listo!, se ha modificado los datos del asesor académico.'
 				);
 			return $this->redirect($this->generateUrl('cituao_coord_academicos'));
 		}
