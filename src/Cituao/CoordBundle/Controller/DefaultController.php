@@ -364,6 +364,11 @@ class DefaultController extends Controller
 			
 				$em->persist($practicante);
 				$em->flush();
+				
+				// Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+				$this->get('session')->getFlashBag()->add('info',
+					'¡Listo, cronograma modificado satisfactoriamente!'
+					);
 				return $this->redirect($this->generateUrl('cituao_coord_homepage'));
 			}	
 			
@@ -409,6 +414,11 @@ class DefaultController extends Controller
 				$em->persist($cronograma);
 			
 				$em->flush();
+				
+				// Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+				$this->get('session')->getFlashBag()->add('info',
+					'¡Listo, cronograma asignado satisfactoriamente!'
+					);
 				return $this->redirect($this->generateUrl('cituao_coord_homepage'));
 			}
 		}
