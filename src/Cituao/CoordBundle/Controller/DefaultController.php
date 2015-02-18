@@ -665,12 +665,16 @@ class DefaultController extends Controller
 					$em->persist($e);
 			
 					$em->flush();
+					
+					// Crear un mensaje flash para notificar al usuario
+					$this->get('session')->getFlashBag()->add('info',
+						'¡Listo se registro el asesor externo!'
+					);
 					return $this->redirect($this->generateUrl('cituao_coord_asesores'));
 				}
 				else{
 					throw $this->createNotFoundException('ERR_EXTERNO_YA_EXISTE');
 				}
-
 			}
 			else{
 				//como no se encuentra registrado en el sistema 
@@ -715,6 +719,10 @@ class DefaultController extends Controller
 				$usuario->setPassword($passwordCodificado);
 				$em->persist($usuario);
 
+				// Crear un mensaje flash para notificar al usuario
+				$this->get('session')->getFlashBag()->add('info',
+					'¡Listo asesor externo registrado!'
+				);
 
 				$em->flush();
 				return $this->redirect($this->generateUrl('cituao_coord_asesores'));
@@ -788,10 +796,11 @@ class DefaultController extends Controller
 				$em->persist($usuario);
 			}
 			$em->flush();
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+
+			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
-				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-				);
+				'¡Listo se modificó el asesor externo!'
+			);
 			return $this->redirect($this->generateUrl('cituao_coord_asesores'));
 		}
 		
@@ -970,7 +979,7 @@ class DefaultController extends Controller
 
             // Crear un mensaje flash para notificar al usuario que se ha modificado correctamente
 			$this->get('session')->getFlashBag()->add('info',
-				'¡Listo!, se ha modificado los datos del asesor académico.'
+				'¡Listo, se ha modificado el asesor académico!'
 				);
 			return $this->redirect($this->generateUrl('cituao_coord_academicos'));
 		}
@@ -1030,10 +1039,10 @@ class DefaultController extends Controller
 			$em->persist($centro);
 			$em->flush();
 
-            // Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
+			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
-				'¡Enhorabuena! Te has registrado correctamente en Practicas profesionales'
-				);
+				'¡Listo centro de práctica registrado!'
+			);
 			return $this->redirect($this->generateUrl('cituao_coord_centros'));
 		}
 				//buscamos el programa
@@ -1059,20 +1068,23 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 		
 		if ($formulario->isValid()) {
-			
             // Completar las propiedades que el usuario no rellena en el formulario
 			$em->persist($centro);
 			$em->flush();
 
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo centro de práctica modificado!'
+			);
 			return $this->redirect($this->generateUrl('cituao_coord_centros'));
 		}
 		
-				//buscamos el programa
+		//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
-		
+	
 		return $this->render('CituaoCoordBundle:Default:centro.html.twig', array('formulario' => $formulario->createView(), 'centro' => $centro, 'programa' => $programa ));
 	}
 	
