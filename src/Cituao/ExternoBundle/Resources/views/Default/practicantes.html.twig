@@ -2,9 +2,14 @@
 
 {% block js  %}
 <script>
-$( "#practicantes" ).css("background-color","#000");
-$( "#practicantes img" ).css("opacity","0.4");
-$( "#practicantes h3" ).css("opacity","0.4");
+	$( "#practicantes" ).css("background-color","#000");
+	$( "#practicantes img" ).css("opacity","0.4");
+	$( "#practicantes h3" ).css("opacity","0.4");
+	$(document).ready(function() {
+		setTimeout(function() {
+			$("#info").fadeOut(1500);
+		},3000);
+	});
 </script>
 {% endblock %}
 
@@ -31,7 +36,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 							<th width="19%"></th>
 							<th width="10%"></th>
 							<th width="28%"><img style="margin-left:70px;" src="{{ asset('img/mailLabel.png') }}"/></th>
-							<th width="11%"><img style="margin-left:20px;" src="{{ asset('img/telefonoLabel.png') }}"/></th>
+							
 							<th><h3><span>Asesor académico</span></h3></th>
 							<th></th>
 						</tr> <!--tablehead -->
@@ -40,6 +45,14 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				
 				{% set id = 1 %}
 				<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">
+					<div style="width: 100%; height: 25px; overflow: auto; position:relative">
+					<div id = "info" style="width: 100%; height: 20px; overflow: auto; position:relative; color:#2E8B57">
+					{% for flashMessage in app.session.flashbag.get('info') %}
+						<h4 id="msginfo">{{ flashMessage }}</h4>
+					{% endfor %}
+					</div> <!-- div flash bag -->
+					</div>
+			
 					<table class = "practicantesTable">
 						<tbody>
 							<tr class="spacer"></tr>

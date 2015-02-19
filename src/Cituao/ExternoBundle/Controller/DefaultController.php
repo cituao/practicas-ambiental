@@ -183,7 +183,6 @@ class DefaultController extends Controller
 		$formulario->handleRequest($peticion);
 
 		if ($formulario->isValid()) {
-			
 			//asignamos como entregada la evaluación del academico 
 			$query = $em->createQuery(
 				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra AND c.externo =:id_ext');
@@ -208,8 +207,11 @@ class DefaultController extends Controller
 			
 			$em->persist($evaluacion);
 			$em->persist($cronograma);
-			
 			$em->flush();
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo evaluación registrada!'
+			);
 			return $this->redirect($this->generateUrl('cituao_externo_homepage'));
 		}
 
@@ -218,7 +220,6 @@ class DefaultController extends Controller
 			return $this->render('CituaoExternoBundle:Default:formevaluacion1.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
 		else
 			return $this->render('CituaoExternoBundle:Default:formevaluacion2.html.twig', array('formulario' => $formulario->createView(), 'datos' => $datos));
-		
 	}
 
 	//************************************************************
@@ -286,6 +287,11 @@ class DefaultController extends Controller
 			}
 			
 			$em->flush();
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo acta de conformidad registrada!'
+			);			
+			
 			return $this->redirect($this->generateUrl('cituao_externo_homepage'));
 		}
 		$datos = array('id' => $id);

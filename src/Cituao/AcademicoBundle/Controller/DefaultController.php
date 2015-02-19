@@ -279,16 +279,13 @@ class DefaultController extends Controller
 				case 7: $cronograma->setListoAsesoria7(true);
 					break;
 			}
-		
 			$em->persist($cronograma);
 			$em->persist($asesoria);
 			$em->flush();
-
 			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
 				'¡Listo asesoría registrada!'
 			);
-
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
 		$datos = array('id' => $id, 'numase' => $numase);
@@ -436,6 +433,10 @@ class DefaultController extends Controller
 			$em->persist($evaluacion);
 			$em->persist($cronograma);
 			$em->flush();
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo ha sido registrado el comentario evaluación!'
+			);
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
 		//$programa=$academico->getPrograma();
@@ -495,11 +496,14 @@ class DefaultController extends Controller
 			$cualicuanti->setPracticante($id);
 			$cualicuanti->setAcademico($academico->getId());
 			$cualicuanti->setCualicuanti($numcua);						
-			
+
 			$em->persist($cualicuanti);
 			$em->persist($cronograma);
-			
 			$em->flush();
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo ha sido registrado el comentario gestión cualicuanti!'
+			);
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
 		
@@ -597,6 +601,11 @@ class DefaultController extends Controller
 				$em->persist($practicante);
 			}
             $em->flush();
+			
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo ha sido registrado la evaluación final!'
+			);
             return $this->redirect($this->generateUrl('cituao_academico_homepage'));
         }
 		$datos = array('id' => $id);

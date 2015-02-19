@@ -430,6 +430,11 @@ class DefaultController extends Controller
 			}
 			
 			$em->flush();
+			
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo informe final registrado!'
+			);
 			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}
 		$datos = array('id' => $id);
