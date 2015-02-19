@@ -251,6 +251,11 @@ class DefaultController extends Controller
 			$em->persist($practicante);
 			$em->persist($asesoria);
 			$em->flush();
+
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo comentario registrado!'
+			);
 			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}
 		$datos = array('id' => $id, 'numase' => $numase);
@@ -318,6 +323,11 @@ class DefaultController extends Controller
 			$em->persist($cualicuanti); //guardamos o actualizamos el informe cuallcuanti
 			$em->persist($practicante); //actualizamos el listo
 			$em->flush();
+
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo informe de gestión cualicuanti registrado!'
+			);
 			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}
 

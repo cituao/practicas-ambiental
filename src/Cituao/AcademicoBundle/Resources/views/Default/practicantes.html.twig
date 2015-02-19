@@ -8,6 +8,12 @@
 	$( "#practicantes" ).css("background-color","#000");
 	$( "#practicantes img" ).css("opacity","0.4");
 	$( "#practicantes h3" ).css("opacity","0.4");
+
+	$(document).ready(function() {
+		setTimeout(function() {
+			$("#info").fadeOut(1500);
+		},3000);
+	});
 	</script>
 {% endblock %}
 
@@ -43,6 +49,11 @@
 					
 					{% set id = 1 %}
 					<div style="width: 100%; height: 750px; overflow: auto; position:relative; padding-bottom:30px;">
+						<div id = "info" style="width: 100%; height: 20px; overflow: auto; position:relative; color:#2E8B57">
+						{% for flashMessage in app.session.flashbag.get('info') %}
+						    {{ flashMessage }}
+						{% endfor %}
+						</div> <!-- div flash bag -->
 						<table class = "practicantesTable">
 							<tbody>
 								<tr class="spacer"></tr>

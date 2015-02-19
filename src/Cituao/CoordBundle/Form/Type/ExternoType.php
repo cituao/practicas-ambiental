@@ -30,7 +30,9 @@ class ExternoType extends AbstractType
 										 'class' => 'CituaoCoordBundle:Centro',
 										 'query_builder' => function(EntityRepository $er) use ($prg){
       																return $er->createQueryBuilder('c')
-																		->where('c.programa = :id_programa')                																		->setParameter('id_programa',$prg);},  
+																		->where('c.programa = :id_programa')
+																		->orderBy('c.nombre', 'ASC')
+                														->setParameter('id_programa',$prg);},  
 										 'property'=>'nombre', 
 										 'empty_value' => 'Seleccione?',
 										 'mapped' => false))

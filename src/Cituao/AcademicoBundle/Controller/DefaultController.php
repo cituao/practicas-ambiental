@@ -165,6 +165,10 @@ class DefaultController extends Controller
     	$cronogramaexterno = $query->getOneOrNullResult();
 		
 		$programa=$practicante->getPrograma();
+
+		// Limpiar
+		$this->get('session')->getFlashBag()->add('info','');
+
 		return $this->render('CituaoAcademicoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma,  'programa' => $programa,  'p' => $practicante, 'e' => $cronogramaexterno ));
 	}
 
@@ -279,6 +283,12 @@ class DefaultController extends Controller
 			$em->persist($cronograma);
 			$em->persist($asesoria);
 			$em->flush();
+
+			// Crear un mensaje flash para notificar al usuario
+			$this->get('session')->getFlashBag()->add('info',
+				'¡Listo asesoría registrada!'
+			);
+
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
 		$datos = array('id' => $id, 'numase' => $numase);

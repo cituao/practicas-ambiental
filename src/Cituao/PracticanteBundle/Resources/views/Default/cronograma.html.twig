@@ -9,6 +9,12 @@
 $( "#cronograma" ).css("background-color","#000");
 $( "#cronograma img" ).css("opacity","0.4");
 $( "#cronograma h3" ).css("opacity","0.4");
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $("#info").fadeOut(1500);
+    },3000);
+});
 </script>
 
 {% endblock %}
@@ -35,6 +41,12 @@ $( "#cronograma h3" ).css("opacity","0.4");
 
 		{% block downSection  %}
 		<div class = "downSection"> 
+			<div id = "info" style="width: 100%; height: 20px; overflow: auto; position:relative; color:#2E8B57">
+			{% for flashMessage in app.session.flashbag.get('info') %}
+				{{ flashMessage }}
+			{% endfor %}
+			</div> <!-- div flash bag -->
+
 			<table class = "tabla">
 			  <tr class="tableHeader">
 				<th>Actividad</th>
