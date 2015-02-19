@@ -75,6 +75,11 @@ $(document).ready(function() {
 							<td style=" width:8%">{{ asesor.telefonoFijo }}</td>
 							<td style=" width:8%"> {{ asesor.telefonoMovil }}</td>
 							<td>{{ asesor.email }}</td>
+							<td>
+							{% for centro in asesor.centros %}
+								{{ centro.nombre }}
+							{% endfor %}
+							</td>
 
 							<td>
 								<table class="opciones" style="right:129px">
