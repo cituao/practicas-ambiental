@@ -11,4 +11,5 @@
 /composer.phar
 /web/uploads/*
 composer.lock
+/web/css/globalsass/.sass-cache
 *~
