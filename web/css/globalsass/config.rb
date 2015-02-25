@@ -4,7 +4,7 @@ require 'compass/import-once/activate'
 # Set this to the root of your project when deployed:
 http_path = "/"
 css_dir = "stylesheets"
-css_path = "C:/wamp/www/practicas/web/css/globalsass/stylesheets"
+css_path = "C:/wamp/www/practicas/web/css"
 sass_dir = "sass"
 images_dir = "images"
 images_path = "C:/wamp/www/practicas/web/img"

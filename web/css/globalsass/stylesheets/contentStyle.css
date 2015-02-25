@@ -587,10 +587,6 @@
 .inform input.nomodificable {
   background-color: #ececec;
 }
-/* line 617, ../sass/contentStyle.scss */
-.inform .nomodificable {
-  pointer-events: none;
-}
 /* line 620, ../sass/contentStyle.scss */
 .inform .nomodificable textarea {
   border: none !important;

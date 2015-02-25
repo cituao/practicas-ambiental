@@ -218,7 +218,7 @@
  			}
  		}
  		.unable:hover{
- 			cursor:default;
+ 			cursor:default; 
  			background-color:$darkGray;
  			pointer-events: none !important;
 
@@ -280,6 +280,8 @@
  		line-height: 150%;
  		font-family: helvetica;
  	}
+	
+	
  	input[type="radio"]{
  		float:left;
  	}
