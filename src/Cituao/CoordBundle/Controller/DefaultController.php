@@ -1794,4 +1794,27 @@ class DefaultController extends Controller
 		$msgerr = array('descripcion'=>'No tiene practicantes','id'=>'0');	
 		return $this->render('CituaoCoordBundle:Default:practicantesasesor.html.twig', array('listaPracticantes' => $listaPracticantes, 'msgerr' => $msgerr, 'programa' => $programa, 'academico' => $academico));
 	}
+	
+	//******************************************************************
+	//Muestra los asesores academicos que presentan retraso
+	//*******************************************************************
+	public function enviarCorreosPracticantesAction(){
+		$request = $this->container->get('request'); 
+		
+		 $response = array("code" => 100, "success" => true);
+		 
+		 
+		$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
+		JsonEncoder()));
+		$json = $serializer->serialize($response, 'json');
+
+		
+		//return new Response($json,200,array('Content-Type'=>'application/json'));
+		return new Response();
+		
+		 //return new Response(json_encode($response)); 
+		 
+		
+	}
+	
 }
