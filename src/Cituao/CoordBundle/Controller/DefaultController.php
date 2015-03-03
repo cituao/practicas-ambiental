@@ -1784,6 +1784,7 @@ class DefaultController extends Controller
 		$listaPracticantes = $academico->getPracticantes();
 		
 		//filtramos los practicantes que han culminado
+		
 		$i=0;
 		foreach ($listaPracticantes as $p) {
 			if ($p->getEstado() == 2) {
@@ -1810,11 +1811,8 @@ class DefaultController extends Controller
 
 		
 		//return new Response($json,200,array('Content-Type'=>'application/json'));
-		return new Response();
-		
-		 //return new Response(json_encode($response)); 
-		 
-		
+		//return new Response();
+		 return new Response(json_encode($response)); 
 	}
 	
 }

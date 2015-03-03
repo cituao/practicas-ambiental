@@ -10,22 +10,14 @@ $( "#practicantes" ).css("background-color","#000");
 $( "#practicantes img" ).css("opacity","0.4");
 $( "#practicantes h3" ).css("opacity","0.4");
 
-function aButtonPressed(){
-	$.post('{{path('cituao_coord_email_practicantes')}}',
-		{data1: 'mydata1', data2:'mydata2'},
-			function(response){
-				if(response.code == 100 && response.success){//dummy check
-						alert("Ok");
-						//do something
-                    }
-				}, "json");   	
-}
-
-
-$(document).ready(function() {
-	$('btn_email').on('click',function(){aButtonPressed();});
-});
-
+$( "#btn_email" ).click(function() {
+	$.ajax({url: '{{path('cituao_coord_email_practicantes')}}',
+				type: "POST",
+				success:function(data){
+					//alert(data);
+					//console.log(data);
+			}}); // close ajax
+}); //close click
 </script>
 {% endblock %}
 
@@ -36,7 +28,7 @@ $(document).ready(function() {
 			<div class="upSection">
 				<h1 class ="sectionTitle">Practicantes en retraso</h1>
 				<a href="{{ path('cituao_coord_practicantes') }}" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
-				<a id="btn_email" href="{{ path('cituao_coord_email_practicantes') }}" class = "button"><img src="{{ asset('img/mailLabel.png') }}"/><h4>Notificar</h4></a>						
+				<a id="btn_email" class = "button"><img src="{{ asset('img/mailLabel.png') }}"/><h4>Notificar</h4></a>						
 			</div><!--up section -->
 		{% endblock  %}
 
