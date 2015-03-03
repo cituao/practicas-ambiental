@@ -1802,9 +1802,26 @@ class DefaultController extends Controller
 	public function enviarCorreosPracticantesAction(){
 		$request = $this->container->get('request'); 
 		
-		 $response = array("code" => 100, "success" => true);
-		 
-		 
+		//buscamos el nombre de usuario
+		$user = $this->get('security.context')->getToken()->getUser();
+		$coordinador =  $user->getUsername();
+		//buscamos que programa tiene  asociado ese nombre de usuario 
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+		$programa = $repository->findOneByCoordinador($coordinador);
+
+		
+		$programa->getEmail();
+		$message = \Swift_Message::newInstance()
+			->setSubject('Notificación - Práctica profesional')
+			->setFrom(array($programa->getEmail()=>'Coord. de Práctica profesional'))
+			->setTo(array('jesmarquez@hotmail.com' => 'Jesus', 'jamarquez@uao.edu.co' => 'Jesus Marquez Gestor Tic', 'jesmqz@gmail.com' => 'Ing Jesus Marquez'))
+			->setContentType("text/html");
+
+		$message->setBody($this->renderView('CituaoCoordBundle:Default:email.html.twig'),'text/html');
+		
+		$this->get('mailer')->send($message);
+		
+     	 $response = array("code" => 100, "success" => true);
 		$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
 		JsonEncoder()));
 		$json = $serializer->serialize($response, 'json');
