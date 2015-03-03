@@ -1810,10 +1810,10 @@ class DefaultController extends Controller
 		$programa = $repository->findOneByCoordinador($coordinador);
 
 		
-		$programa->getEmail();
+		$email_from=$programa->getEmail();
 		$message = \Swift_Message::newInstance()
 			->setSubject('Notificación - Práctica profesional')
-			->setFrom(array($programa->getEmail()=>'Coord. de Práctica profesional'))
+			->setFrom(array($email_from=>'Coord. de Práctica profesional'))
 			->setTo(array('jesmarquez@hotmail.com' => 'Jesus', 'jamarquez@uao.edu.co' => 'Jesus Marquez Gestor Tic', 'jesmqz@gmail.com' => 'Ing Jesus Marquez'))
 			->setContentType("text/html");
 
