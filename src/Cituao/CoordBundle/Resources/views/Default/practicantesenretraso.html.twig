@@ -105,16 +105,9 @@ $( "#btn_email" ).click(function() {
 			</div> <!-- cierra downSection-->
 				
 		{% endblock  %}
-		
 		</div> <!-- cierra content-->
 
 		<script>
-			var form = $('form');
-			var nuevoPracticante =  $('#nuevoPracticante');
-			var anadirPracticantes =  $('#anadirPracticantes');
-			var periodo = $('#periodo');
-			var estadoPracticante = $('#estadoPracticante');
-
 			$( ".tableItem" ).mouseenter(function() {
 				var hoverDiv = $('#hoverDiv', this);
 				var opciones = $('.opciones', this);
@@ -128,7 +121,7 @@ $( "#btn_email" ).click(function() {
 				}, 300, function() {
 				// Animation complete.
 			});
-			});
+			}); //close mouseenter
 
 			$( ".tableItem" ).mouseleave(function() {
 				var hoverDiv = $('#hoverDiv', this);
@@ -142,63 +135,6 @@ $( "#btn_email" ).click(function() {
 				}, 300, function() {
 				// Animation complete.
 			});
-			});
-
-			$( "#anadirPracticantes" ).click(function() {
-				$(nuevoPracticante).fadeOut(300);
-				$(periodo).fadeOut(300);
-				$(estadoPracticante).fadeOut(300);
-				$(this).fadeOut(300,function(){
-
-					$( form).animate({
-						opacity: 1,
-						top: "21px",
-					}, 300);
-				});
-
-			});
-			function validateForm()
-			{
-				var x=document.forms["anadirP"]["listo"].value;
-				if (x==null || x=="")
-				{
-					window.alert("you");
-					return false;
-				}
-			}
-
-			$( "#listo" ).click(function() {
-				if(validateForm()){
-					$(nuevoPracticante).fadeIn(300);
-					$(anadirPracticantes).fadeIn(300,function(){
-
-						$( form).animate({
-							opacity: 0,
-							top: "100px",
-						}, 300);
-					});
-			}// validate form
-			});
-
-			$( "#cancelar" ).click(function() {
-					$(nuevoPracticante).fadeIn(300);
-					$(estadoPracticante).fadeIn(300);
-					$(periodo).fadeIn(300);
-						$(anadirPracticantes).fadeIn(80,function(){
-							$( form).animate({
-								opacity: 0,
-								top: "100px",
-							}, 100);
-						});
-			});
-			
-			$( "#speriodo" ).change(function() {
-				var ruta = $("#speriodo").attr("data-path");
-				var valor = $(this).val();
-				var longitud = ruta.length;
-				var nueva_ruta = ruta.substr(0,longitud-1)+valor;
-			
-				window.location.href = nueva_ruta;
-			});		
+			}); //close mouseleave 
 		</script>
 {% endblock %}
