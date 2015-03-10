@@ -596,12 +596,22 @@ class DefaultController extends Controller
 			$query->setParameter('id_pra',$id);
 			$cronogramaexterno = $query->getOneOrNullResult();
 			
-			if ($cronogramaexterno->getListoActa() == true && $practicante->getListoInformeFinal() == true) {
-				$practicante->setEstado('2');
-				$em->persist($practicante);
+			//verificamos si el practicante entrego todo
+			$practicante_entrego= false;
+			// si el area del practicante es 2 y 3 no suben PDF
+			if ($practicante->getArea() == 2 || $practicante->getArea() == 3){
+				if ($practicante->getListoInformeFinal() == true) $practicante_entrego = true;
+			}else {
+				if ($practicante->getListoProyecto()) $practicante_entrego = true;
 			}
-            $em->flush();
 			
+			//determinamos si practicante pasa al estado de CULMINADO
+			if ($cronogramaexterno->getListoActa() == true && $practicante_entrego == true) {
+				$practicante->setEstado('2');
+			}
+			
+			$em->persist($practicante);
+            $em->flush();
 			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
 				'¡Listo ha sido registrado la evaluación final!'

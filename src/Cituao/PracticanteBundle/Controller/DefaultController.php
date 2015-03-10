@@ -410,7 +410,6 @@ class DefaultController extends Controller
 			$practicante->setListoInformefinal(true);
 			$em->persist($informe);
 			
-			
 			//buscamos los registros de los cronogramas y determinar si se ha entregado todo
 			$query = $em->createQuery(
 					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
@@ -423,12 +422,17 @@ class DefaultController extends Controller
 			$query->setParameter('id_pra',$practicante->getId());
 			$cronogramaexterno = $query->getOneOrNullResult();
 			
-			//si entrego todo entonces pasa al estado culminado
-			if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
-				$practicante->setEstado('2');
-				$em->persist($practicante);
+			//si el area del practicante es 2 y 3 evaluamos entregas para cambiar su estado a CULMINADO
+			if ($practicante->getArea() == 2 || $practicante->getArea() == 3){
+				//verificamos si el asesor externo y academico entregaron
+				if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
+					$practicante->setEstado('2');
+				}
 			}
 			
+			//guardamos cambios en estudiante
+			$em->persist($practicante);
+			//efectuamos todos los cambios en base de datos
 			$em->flush();
 			
 			// Crear un mensaje flash para notificar al usuario
@@ -472,6 +476,24 @@ class DefaultController extends Controller
 			
 			//se copia el archivo al directorio del servidor			
 			$document->upload();
+			
+			//buscamos los registros de los cronogramas y determinar si se ha entregado todo
+			$query = $em->createQuery(
+					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$practicante->getId());
+			$cronogramacademico = $query->getOneOrNullResult();
+			
+			//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
+			$query = $em->createQuery(
+				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$practicante->getId());
+			$cronogramaexterno = $query->getOneOrNullResult();
+			
+			//cambiamos estado del practicante
+			if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
+					$practicante->setEstado('2');
+			}
+		
 			$em->persist($practicante);
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));

@@ -270,7 +270,7 @@ class DefaultController extends Controller
 			$cronograma->setListoActa(true);
 			$em->persist($cronograma);
 
-			//cambiamos el estado del practicante a 2 de BAJA
+			//cambiamos el estado del practicante a 2 de CULMINADO
 			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 			$practicante = $repository->findOneBy(array('id' => $id));
 			
@@ -280,18 +280,25 @@ class DefaultController extends Controller
 			$query->setParameter('id_pra',$practicante->getId());
 			$cronogramacademico = $query->getOneOrNullResult();
 			
-			// si cumple con los requisitos lo pasamos a culminado
-			if ( $cronogramacademico->getListoEvaluacionFinal() == true && $practicante->getListoInformeFinal() == true) {
-				$practicante->setEstado('2');
-				$em->persist($practicante);
+			//verificamos si el practicante entrego todo 
+			$practicante_entrego= false;
+			if ($practicante->getArea() == 2 || $practicante->getArea() == 3){
+				if ($practicante->getListoInformeFinal() == true) $practicante_entrego = true;
+			}else {
+				if ($practicante->getListoProyecto()) $practicante_entrego = true;
 			}
 			
+			// si cumple con los requisitos lo pasamos a culminado
+			if ( $cronogramacademico->getListoEvaluacionFinal() == true && $practicante_entrego == true) {
+				$practicante->setEstado('2');
+			}
+			
+			$em->persist($practicante);
 			$em->flush();
 			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
 				'¡Listo acta de conformidad registrada!'
 			);			
-			
 			return $this->redirect($this->generateUrl('cituao_externo_homepage'));
 		}
 		$datos = array('id' => $id);
