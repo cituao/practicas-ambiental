@@ -14,7 +14,8 @@ Cituao\AcademicoBundle\Entity\Cualicuanti:
         cualicuanti:
             type: integer
         actividad1:
-            type: text
+            type: string
+            length: '255'
             nullable: true
         descripcion1:
             type: text
@@ -28,7 +29,8 @@ Cituao\AcademicoBundle\Entity\Cualicuanti:
             length: '3'
             nullable: true
         actividad2:
-            type: text
+            type: string
+            lenght: '255'
             nullable: true
         descripcion2:
             type: text
@@ -42,7 +44,8 @@ Cituao\AcademicoBundle\Entity\Cualicuanti:
             length: '3'
             nullable: true
         actividad3:
-            type: text
+            type: string
+            lenght: '255'
             nullable: true
         descripcion3:
             type: text
@@ -56,9 +59,11 @@ Cituao\AcademicoBundle\Entity\Cualicuanti:
             length: '3'
             nullable: true
         apreciacion:
-            type: text
+            type: string
+            lenght: '255'
             nullable: true
         comentarios:
-            type: text
+            type: string
+            length: '255'
             nullable: true
     lifecycleCallbacks: {  }
