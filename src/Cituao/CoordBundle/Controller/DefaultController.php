@@ -1688,7 +1688,6 @@ class DefaultController extends Controller
 			$retrasos=0;
 			$i++;
 		}
-
 		return $this->render('CituaoCoordBundle:Default:practicantesenretraso.html.twig', array('periodos' => $periodos, 'listaPracticantes' => $retrasados, 'programa' => $programa, 'msgerr' => $msgerr, 'lista' => $filtro));
 	}
 	
