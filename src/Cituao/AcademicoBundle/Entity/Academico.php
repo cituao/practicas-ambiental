@@ -569,4 +569,17 @@ public function getAbsolutePath()
 		return $this->activos;
 	}
 
+	public function getActivos(){
+		$activo=false;
+		$listaPracticantes= $this->getPracticantes();
+		foreach($listaPracticantes as $practicante){
+			if ($practicante->getEstado() == 1){
+				$activo=true;
+				break;
+			}
+		}
+
+		return ($activo);
+	}
+
 }
