@@ -14,125 +14,112 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 
 {% block content  %}
-<div class="content">
-	{% block upSection  %}
-	<div class = "upSection">
-		<h1 class="sectionTitle">Informe final</h1>
-		<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+	{% if practicante.programa.id == 1 %}{% set profesion = 'Comunicador Social' %}{% endif %}
+	{% if practicante.programa.id == 3 %}{% set profesion = 'Publicista' %}{% endif %}
+	{% if practicante.programa.id == 2 %}{% set profesion = 'Diseñador Gráfico' %}{% endif %}
+
+	<div class="content">
+		{% block upSection  %}
+		<div class = "upSection">
+			<h1 class="sectionTitle">Informe final</h1>
+			<a href="javascript:history.back()" class = "button"><img src="{{ asset('img/regresar.png') }}"/><h4>Regresar</h4></a>
+		</div>
+		{% endblock  %}
+
+		{% block downSection  %}
+		<div class = "downSection">
+			<div class="inform">
+				<form action="{{ path('cituao_practicante_registrar_informefinal'  , { 'id': datos.id}) }}" method="post" {{ form_enctype(formulario) }}>
+
+					{{ form_errors(formulario) }}
+					<h1><span>Informe final</span></h1>
+					<div class="activity">
+						<div class="inputContainer">
+							<h2>1. {{ practicante.programa.nombre }}</h2>
+							<h2 class="largeh2">Realice una reflexión corta y concreta de la carrera que va a terminar teniendo en cuenta el pensum académico en relación con el desarrollo de su práctica.</h2>
+
+							<div class="input">
+								{{ form_label(formulario.comunicacion) }}
+								{{ form_widget(formulario.comunicacion) }}
+								{{ form_errors(formulario.comunicacion) }}
+							</div>
+						</div>
+					</div>
+
+					<div class="activity">
+						<div class="inputContainer extraLarge">
+							<h2>2. PROGRAMA DE PRACTICA PROFESIONAL</h2>
+							<h2>2.1 Asesor académico</h2>
+							<h2 class="largeh2 extraLarge">De forma analítica haga una reflexión concreta  acerca del rol que desempeñó su asesor académico en este proceso. Tenga en cuenta la metodología que utilizó, la organización y el trabajo en equipo entre asesor externo, académico y practicante, bibliografía y aporte conceptual,  compromiso con el desarrollo de asesorías y visitas. </h2>
+							<h2 class="largeh2 extraLarge"><span>Compromisos del Asesor Académico</span></h2>
+							<h2 class="largeh2 extraLarge">Lidera y realiza una gestión con calidad, tipificada por el cumplimiento oportuno de los objetivos y metas institucionales y del Programa de Práctica.</h2>
+							<h2 class="largeh2 extraLarge">Presenta al Asesor Externo el perfil profesional del {{ profesion }} y su potencial  de desempeño  en la organización.</h2>
+							<h2 class="largeh2 extraLarge">Guía al estudiante en su posicionamiento profesional dentro de la organización y en el planteamiento de las estrategias comunicativas.</h2>
+							<h2 class="largeh2 extraLarge">Para practicantes fuera de Cali y Colombia se comunica vía e-mail, teléfono y fax con el Asesor Externo.</h2>
+							<h2 class="largeh2 extraLarge">Para practicantes de Cali, del Valle y de algunas ciudades de Colombia visita al Asesor Externo  para evaluar  el desempeño profesional del estudiante. </h2>
+							<h2 class="largeh2 extraLarge">Retroalimenta al estudiante de acuerdo con los resultados de la evaluación  hecha por el Asesor Externo.</h2>
+							<h2 class="largeh2 extraLarge">Presenta al Coordinador informes escritos correspondientes a las asesorías realizadas a cada uno de  sus practicantes. Igualmente, si es necesario entrega informes  de casos difíciles para dar soluciones conjuntas por parte del Comité  de Casos.</h2>
+
+							<div class="input">
+								{{ form_label(formulario.asesor) }}
+								{{ form_widget(formulario.asesor) }}
+								{{ form_errors(formulario.asesor) }}
+							</div>
+						</div>
+
+						<div class="inputContainer">
+							<h2>2.2 Coordinación de Práctica</h2>
+							<h2 class="largeh2">De forma analítica haga una reflexión concreta acerca del rol que desempeñó la coordinación de práctica en el proceso. </br></br>Tenga en cuenta tanto la  gestión administrativa  como la académica del Programa de Práctica y de la coordinadora.</h2>
+							<div class="input">
+								{{ form_label(formulario.coordinacion) }}
+								{{ form_widget(formulario.coordinacion) }}
+								{{ form_errors(formulario.coordinacion) }}
+							</div>
+						</div>
+					</div>
+
+					<div class="activity">
+						<div class="inputContainer">
+							<h2>3.	¿Cómo evalúa el papel que desempeña  la universidad en la etapa de transición hacia la vida laboral? y ¿Cómo se imagina o le gustaría que fuera este acompañamiento por parte de la  universidad en esta etapa?</h2>
+							<div class="input">
+								{{ form_label(formulario.universidad) }}
+								{{ form_widget(formulario.universidad) }}
+								{{ form_errors(formulario.universidad) }}
+							</div>
+						</div>
+					</div>
+
+					<div class="activity">
+						<div class="inputContainer">
+							<h2>{{ practicante.programa.nombre }} (Autorreflexión)</h2>
+							<h2 class="largeh2">Desde su vivencia analicé sus fortalezas y debilidades en términos de competencias profesionales  para desarrollar el cargo que le correspondió.</h2>
+							<div class="input">
+								{{ form_label(formulario.autoreflexion) }}
+								{{ form_widget(formulario.autoreflexion) }}
+								{{ form_errors(formulario.autoreflexion) }}
+							</div>
+						</div>
+					</div>
+
+					<div class="activity">
+						<div class="inputContainer">
+							<h2>Recomendaciones</h2>
+							<h2 class="largeh2">El estudiante realizará recomendaciones a los nuevos practicantes en relación con su experiencia de práctica. Si tiene algo más para aportar, éste es el espacio para  hacerlo. Gracias.</h2>
+							<div class="input">
+								{{ form_label(formulario.recomendaciones) }}
+								{{ form_widget(formulario.recomendaciones) }}
+								{{ form_errors(formulario.recomendaciones) }}
+							</div>
+						</div>
+					</div>
+					{{ form_rest(formulario) }}
+					<div class="inputContainer" style="position:relative; margin-top:20px; margin-left:20px;">
+						<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
+						<input style="padding-left:40px;" class="button"  type="submit" value="Guardar" />
+					</div>
+				</form>	
+			</div><!-- inform -->
+		</div><!-- downSection -->
+		{% endblock  %}
 	</div>
-	{% endblock  %}
-
-	{% block downSection  %}
-	<div class = "downSection">
-		<div class="inform">
-			<form action="{{ path('cituao_practicante_registrar_informefinal'  , { 'id': datos.id}) }}" method="post" {{ form_enctype(formulario) }}>
-
-				{{ form_errors(formulario) }}
-				<h1><span>Informe final</span></h1>
-
-
-				<div class="activity">
-					<div class="inputContainer">
-						<h2 >1. Comunicación publicitaria</h2>
-						<h2 class="largeh2">Realice una reflexión corta y concreta de la carrera que va a terminar teniendo en cuenta el pensum académico en relación con el desarrollo de su práctica.</h2>
-
-						<div class="input">
-							{{ form_label(formulario.comunicacion) }}
-							{{ form_widget(formulario.comunicacion) }}
-							{{ form_errors(formulario.comunicacion) }}
-						</div>
-
-					</div>
-
-				</div>
-
-				<div class="activity">
-					<div class="inputContainer extraLarge">
-						<h2>2. Programa de práctica profesional</h2>
-
-
-						<h2>2.1 Asesor académico</h2>
-						<h2 class="largeh2 extraLarge">De forma analítica haga una reflexión concreta  acerca del rol que desempeñó su asesor académico en este proceso. Tenga en cuenta la metodología que utilizó, la organización y el trabajo en equipo entre asesor externo, académico y practicante, bibliografía y aporte conceptual,  compromiso con el desarrollo de asesorías y visitas. </h2>
-						<h2 class="largeh2 extraLarge"><span>Compromisos del Asesor Académico</span></h2>
-						<h2 class="largeh2 extraLarge">Lidera y realiza una gestión con calidad, tipificada por el cumplimiento oportuno de los objetivos y metas institucionales y del Programa de Práctica.</h2>
-						<h2 class="largeh2 extraLarge">Presenta al Asesor Externo el perfil profesional del Publicista y su potencial  de desempeño  en la organización.</h2>
-						<h2 class="largeh2 extraLarge">Guía al estudiante en su posicionamiento profesional dentro de la organización y en el planteamiento de las estrategias comunicativas.</h2>
-						<h2 class="largeh2 extraLarge">Para practicantes fuera de Cali y Colombia se comunica vía e-mail, teléfono y fax con el Asesor Externo.</h2>
-						<h2 class="largeh2 extraLarge">Para practicantes de Cali, del Valle y de algunas ciudades de Colombia visita al Asesor Externo  para evaluar  el desempeño profesional del estudiante. </h2>
-						<h2 class="largeh2 extraLarge">Retroalimenta al estudiante de acuerdo con los resultados de la evaluación  hecha por el Asesor Externo.</h2>
-						<h2 class="largeh2 extraLarge">Presenta al Coordinador informes escritos correspondientes a las asesorías realizadas a cada uno de  sus practicantes. Igualmente, si es necesario entrega informes  de casos difíciles para dar soluciones conjuntas por parte del Comité  de Casos.</h2>
-
-						<div class="input">
-							{{ form_label(formulario.asesor) }}
-							{{ form_widget(formulario.asesor) }}
-							{{ form_errors(formulario.asesor) }}
-						</div>
-					</div>
-
-					<div class="inputContainer">
-
-						<h2>2.2 Coordinación de Práctica</h2>
-						<h2 class="largeh2">De forma analítica haga una reflexión concreta acerca del rol que desempeñó la coordinación de práctica en el proceso. </br></br>Tenga en cuenta tanto la  gestión administrativa  como la académica del Programa de Práctica y de la coordinadora.</h2>
-
-						<div class="input">
-							{{ form_label(formulario.coordinacion) }}
-							{{ form_widget(formulario.coordinacion) }}
-							{{ form_errors(formulario.coordinacion) }}
-						</div>
-
-					</div>
-				</div>
-
-				
-
-				<div class="activity">
-					<div class="inputContainer">
-						<h2>3.	¿Cómo evalúa el papel que desempeña  la universidad en la etapa de transición hacia la vida laboral? y ¿Cómo se imagina o le gustaría que fuera este acompañamiento por parte de la  universidad en esta etapa?</h2>
-
-						<div class="input">
-							{{ form_label(formulario.universidad) }}
-							{{ form_widget(formulario.universidad) }}
-							{{ form_errors(formulario.universidad) }}
-						</div>
-
-					</div>
-				</div>
-
-
-				<div class="activity">
-					<div class="inputContainer">
-
-						<h2>Comunicación publicitaria (Autorreflexión)</h2>
-						
-						<h2 class="largeh2">Desde su vivencia analicé sus fortalezas y debilidades en términos de competencias profesionales  para desarrollar el cargo que le correspondió.</h2>
-						<div class="input">
-							{{ form_label(formulario.autoreflexion) }}
-							{{ form_widget(formulario.autoreflexion) }}
-							{{ form_errors(formulario.autoreflexion) }}
-						</div>
-					</div>
-				</div>
-
-				<div class="activity">
-					<div class="inputContainer">
-						<h2>Recomendaciones</h2>
-						<h2 class="largeh2">El estudiante realizará recomendaciones a los nuevos practicantes en relación con su experiencia de práctica. Si tiene algo más para aportar, éste es el espacio para  hacerlo. Gracias.</h2>
-						<div class="input">
-							{{ form_label(formulario.recomendaciones) }}
-							{{ form_widget(formulario.recomendaciones) }}
-							{{ form_errors(formulario.recomendaciones) }}
-						</div>
-					</div>
-				</div>
-				{{ form_rest(formulario) }}
-				<div class="inputContainer" style="position:relative; margin-top:20px; margin-left:20px;">
-					<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
-					<input style="padding-left:40px;" class="button"  type="submit" value="Guardar" />
-				</div>
-			</form>	
-
-		</div><!-- inform -->
-	</div><!-- downSection -->
-	{% endblock  %}
-</div>
 {% endblock %}
