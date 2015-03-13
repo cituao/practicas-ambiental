@@ -604,12 +604,19 @@ class DefaultController extends Controller
 			}else {
 				if ($practicante->getListoProyecto()) $practicante_entrego = true;
 			}
-			
+			//obtenemos numero de practicantes activos			
+			$numero_practicantes_activos = $academico->getActivos();			
+
 			//determinamos si practicante pasa al estado de CULMINADO
 			if ($cronogramaexterno->getListoActa() == true && $practicante_entrego == true) {
 				$practicante->setEstado('2');
+				//si ya no tiene practicantes en proceso lo colocamos como usuario inactivo 				
+				if ($numero_practicantes_activos = 1){
+					$usuario->setIsActive(false);
+					$em->persist($usuario);
+				}
 			}
-			
+
 			$em->persist($practicante);
             $em->flush();
 			// Crear un mensaje flash para notificar al usuario
