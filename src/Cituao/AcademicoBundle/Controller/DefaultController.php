@@ -610,10 +610,18 @@ class DefaultController extends Controller
 			//determinamos si practicante pasa al estado de CULMINADO
 			if ($cronogramaexterno->getListoActa() == true && $practicante_entrego == true) {
 				$practicante->setEstado('2');
-				//si ya no tiene practicantes en proceso lo colocamos como usuario inactivo 				
+				//si el asesor academico ya no tiene practicantes en proceso lo colocamos como usuario inactivo 				
 				if ($numero_practicantes_activos = 1){
 					$usuario->setIsActive(false);
 					$em->persist($usuario);
+				}
+				//verificamos si el asesor externo pasa a usuario inactivo
+				$externo = $repository->findOneBy(array('id' => $practicante->getExterno()->getId()));
+				$numero_practicantes_activos = $externo->getActivos();
+				if ($numero_practicantes_activos = 1){
+					$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
+					$usuario_externo->setIsActive(false);
+					$em->persist($usuario_externo);
 				}
 			}
 
