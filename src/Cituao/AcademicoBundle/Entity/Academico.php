@@ -570,16 +570,17 @@ public function getAbsolutePath()
 	}
 
 	public function getActivos(){
-		$activo=false;
+		$c=0;
+		//contar practicantes activos del asesor		
 		$listaPracticantes= $this->getPracticantes();
 		foreach($listaPracticantes as $practicante){
 			if ($practicante->getEstado() == 1){
-				$activo=true;
-				break;
+				$c++;
+				
 			}
 		}
 
-		return ($activo);
+		return ($c);
 	}
 
 }
