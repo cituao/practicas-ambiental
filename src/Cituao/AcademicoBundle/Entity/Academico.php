@@ -569,7 +569,7 @@ public function getAbsolutePath()
 		return $this->activos;
 	}
 
-	public function getActivos(){
+	public function getActivosGeneral(){
 		$c=0;
 		//contar practicantes activos del asesor		
 		$listaPracticantes= $this->getPracticantes();

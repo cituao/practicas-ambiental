@@ -605,7 +605,7 @@ class DefaultController extends Controller
 				if ($practicante->getListoProyecto()) $practicante_entrego = true;
 			}
 			//obtenemos numero de practicantes activos			
-			$numero_practicantes_activos = $academico->getActivos();			
+			$numero_practicantes_activos = $academico->getActivosGeneral();			
 
 			//determinamos si practicante pasa al estado de CULMINADO
 			if ($cronogramaexterno->getListoActa() == true && $practicante_entrego == true) {

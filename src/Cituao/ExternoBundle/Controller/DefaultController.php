@@ -300,7 +300,7 @@ class DefaultController extends Controller
 
 				//verificamos si el asesor académico pasa a usuario inactivo
 				$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
-				$numero_practicantes_activos = $academico->getActivos();
+				$numero_practicantes_activos = $academico->getActivosGeneral();
 				if ($numero_practicantes_activos = 1){
 					$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
 					$usuario_academico->setIsActive(false);
