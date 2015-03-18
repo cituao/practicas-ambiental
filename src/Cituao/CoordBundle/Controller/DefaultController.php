@@ -727,6 +727,7 @@ class DefaultController extends Controller
 				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
 				$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 				$usuario->setPassword($passwordCodificado);
+				$usuario->setIsActive(false);
 				$em->persist($usuario);
 
 				// Crear un mensaje flash para notificar al usuario
@@ -927,6 +928,7 @@ class DefaultController extends Controller
 				$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
 				$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 				$usuario->setPassword($passwordCodificado);
+				$usuario->setIsActive(false);
 				$em->persist($usuario);
 
 				$em->flush();
