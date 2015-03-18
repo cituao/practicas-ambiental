@@ -491,7 +491,27 @@ class DefaultController extends Controller
 			
 			//cambiamos estado del practicante
 			if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
-					$practicante->setEstado('2');
+				$practicante->setEstado('2');
+				$usuario->setIsActive(false);
+				$em->persist($usuario);
+
+				//verificamos si el asesor externo pasa a usuario inactivo
+				$externo = $repository->findOneBy(array('id' => $practicante->getExterno()->getId()));
+				$numero_practicantes_activos = $externo->getActivos();
+				if ($numero_practicantes_activos = 1){
+					$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
+					$usuario_externo->setIsActive(false);
+					$em->persist($usuario_externo);
+				}
+
+				//verificamos si el asesor académico pasa a usuario inactivo
+				$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
+				$numero_practicantes_activos = $academico->getActivos();
+				if ($numero_practicantes_activos = 1){
+					$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
+					$usuario_academico->setIsActive(false);
+					$em->persist($usuario_academico);
+				}
 			}
 		
 			$em->persist($practicante);
