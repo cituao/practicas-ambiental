@@ -404,12 +404,25 @@ class DefaultController extends Controller
 				$cronogramaexterno->setFechaEvaluacion2($practicante->getFechaVisita2());
 				$cronogramaexterno->setFechaActa($practicante->getFechaInformeFinal());
 
+				//activamos el usuario del practicante
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 				$usuario = $repository->findOneBy(array('username' => $practicante->getCodigo()));
 				$usuario->setIsActive(true);
-			
+				
+				//activamos el usuario del externo
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+				$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
+				$usuario_externo->setIsActive(true);
+				
+				//activamos el usuario del academico
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+				$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
+				$usuario_academico->setIsActive(true);
+				
 				$em->persist($cronogramaexterno);
 				$em->persist($usuario);
+				$em->persist($usuario_externo);
+				$em->persist($usuario_academico);
 				$em->persist($practicante);
 				$em->persist($cronograma);
 			
