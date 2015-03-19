@@ -288,9 +288,8 @@ class DefaultController extends Controller
 				if ($practicante->getListoProyecto()) $practicante_entrego = true;
 			}
 			
-			// si cumple con los requisitos lo pasamos a culminado
+			// si cumple con los requisitos lo pasamos a culminado e inactivamos academico y externo 
 			if ( $cronogramacademico->getListoEvaluacionFinal() == true && $practicante_entrego == true) {
-				$practicante->setEstado('2');
 				//evaluamos si el asesor externo solo tiene este practicante activo
 				$numero_practicantes_activos = $externo->getActivos();
 				if ($numero_practicantes_activos = 1){
@@ -299,13 +298,22 @@ class DefaultController extends Controller
 				}
 
 				//verificamos si el asesor académico pasa a usuario inactivo
+				$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 				$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
 				$numero_practicantes_activos = $academico->getActivosGeneral();
 				if ($numero_practicantes_activos = 1){
+					$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 					$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
 					$usuario_academico->setIsActive(false);
 					$em->persist($usuario_academico);
 				}
+				//inactivamos el estudiante
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+				$usuario_practicante = $repository->findOneBy(array('id' => $practicante->getICi()));
+				$usuario_practicante->setIsActive(false);
+				$em->persist($usuario_practicante);
+				
+				$practicante->setEstado('2');
 			}
 			
 			$em->persist($practicante);
