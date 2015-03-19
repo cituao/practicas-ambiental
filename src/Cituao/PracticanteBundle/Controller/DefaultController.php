@@ -410,42 +410,51 @@ class DefaultController extends Controller
 			$practicante->setListoInformefinal(true);
 			$em->persist($informe);
 			
-			//buscamos los registros de los cronogramas y determinar si se ha entregado todo
-			$query = $em->createQuery(
-					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
-			$query->setParameter('id_pra',$practicante->getId());
-			$cronogramacademico = $query->getOneOrNullResult();
-			
-			//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
-			$query = $em->createQuery(
-				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
-			$query->setParameter('id_pra',$practicante->getId());
-			$cronogramaexterno = $query->getOneOrNullResult();
 			
 			//si el area del practicante es 2 y 3 evaluamos entregas para cambiar su estado a CULMINADO
 			if ($practicante->getArea() == 2 || $practicante->getArea() == 3){
+				
+				//buscamos los registros de los cronogramas y determinar si se ha entregado todo
+				$query = $em->createQuery(
+						'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
+				$query->setParameter('id_pra',$practicante->getId());
+				$cronogramacademico = $query->getOneOrNullResult();
+				
+				//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
+				$query = $em->createQuery(
+					'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
+				$query->setParameter('id_pra',$practicante->getId());
+				$cronogramaexterno = $query->getOneOrNullResult();
+				
 				//verificamos si el asesor externo y academico entregaron
 				if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
-					$practicante->setEstado('2');
-				}
-				
-				//verificamos si el asesor externo pasa a usuario inactivo
-				$externo = $repository->findOneBy(array('id' => $practicante->getExterno()->getId()));
-				$numero_practicantes_activos = $externo->getActivos();
-				if ($numero_practicantes_activos = 1){
-					$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
-					$usuario_externo->setIsActive(false);
-					$em->persist($usuario_externo);
-				}
+					//verificamos si el asesor externo pasa a usuario inactivo
+					$externo = $repository->findOneBy(array('id' => $practicante->getExterno()->getId()));
+					$numero_practicantes_activos = $externo->getActivos();
+					if ($numero_practicantes_activos == 1){
+						$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+						$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
+						$usuario_externo->setIsActive(false);
+						$em->persist($usuario_externo);
+					}
 
-				//verificamos si el asesor académico pasa a usuario inactivo
-				$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
-				$numero_practicantes_activos = $academico->getActivosGeneral();
-				if ($numero_practicantes_activos = 1){
-					$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
-					$usuario_academico->setIsActive(false);
-					$em->persist($usuario_academico);
-				}				
+					//verificamos si el asesor académico pasa a usuario inactivo
+					$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
+					$numero_practicantes_activos = $academico->getActivosGeneral();
+					if ($numero_practicantes_activos == 1){
+						$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+						$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
+						$usuario_academico->setIsActive(false);
+						$em->persist($usuario_academico);
+					}				
+					
+					//lo colocamos como CULMINADO
+					$practicante->setEstado('2');
+					//le damos de baja
+					$usuario->setIsActive(false);
+					$em->persist($usuario);
+					
+				}
 			}
 			
 			//guardamos cambios en estudiante
@@ -509,27 +518,31 @@ class DefaultController extends Controller
 			
 			//cambiamos estado del practicante
 			if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
-				$practicante->setEstado('2');
-				$usuario->setIsActive(false);
-				$em->persist($usuario);
-
 				//verificamos si el asesor externo pasa a usuario inactivo
+				$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
 				$externo = $repository->findOneBy(array('id' => $practicante->getExterno()->getId()));
 				$numero_practicantes_activos = $externo->getActivos();
-				if ($numero_practicantes_activos = 1){
+				if ($numero_practicantes_activos == 1){
+					$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 					$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
 					$usuario_externo->setIsActive(false);
 					$em->persist($usuario_externo);
 				}
 
 				//verificamos si el asesor académico pasa a usuario inactivo
+				$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 				$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
 				$numero_practicantes_activos = $academico->getActivosGeneral();
-				if ($numero_practicantes_activos = 1){
+				if ($numero_practicantes_activos == 1){
+					$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 					$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
 					$usuario_academico->setIsActive(false);
 					$em->persist($usuario_academico);
 				}
+				
+				$practicante->setEstado('2');
+				$usuario->setIsActive(false);
+				$em->persist($usuario);
 			}
 		
 			$em->persist($practicante);

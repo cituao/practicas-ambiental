@@ -292,7 +292,7 @@ class DefaultController extends Controller
 			if ( $cronogramacademico->getListoEvaluacionFinal() == true && $practicante_entrego == true) {
 				//evaluamos si el asesor externo solo tiene este practicante activo
 				$numero_practicantes_activos = $externo->getActivos();
-				if ($numero_practicantes_activos = 1){
+				if ($numero_practicantes_activos == 1){
 					$usuario->setIsActive(false);
 					$em->persist($usuario);
 				}
@@ -301,7 +301,7 @@ class DefaultController extends Controller
 				$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 				$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
 				$numero_practicantes_activos = $academico->getActivosGeneral();
-				if ($numero_practicantes_activos = 1){
+				if ($numero_practicantes_activos == 1){
 					$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 					$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
 					$usuario_academico->setIsActive(false);
