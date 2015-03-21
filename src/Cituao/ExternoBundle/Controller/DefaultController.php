@@ -292,8 +292,10 @@ class DefaultController extends Controller
 			if ( $cronogramacademico->getListoEvaluacionFinal() == true && $practicante_entrego == true) {
 				//evaluamos si el asesor externo solo tiene este practicante activo
 				$numero_practicantes_activos = $externo->getActivos();
+				$usuario_es_inactivo = false; 	
 				if ($numero_practicantes_activos == 1){
 					$usuario->setIsActive(false);
+					$usuario_es_inactivo = true; 	
 					$em->persist($usuario);
 				}
 
@@ -309,7 +311,7 @@ class DefaultController extends Controller
 				}
 				//inactivamos el estudiante
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-				$usuario_practicante = $repository->findOneBy(array('id' => $practicante->getICi()));
+				$usuario_practicante = $repository->findOneBy(array('username' => $practicante->getCi()));
 				$usuario_practicante->setIsActive(false);
 				$em->persist($usuario_practicante);
 				
@@ -321,8 +323,11 @@ class DefaultController extends Controller
 			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
 				'¡Listo acta de conformidad registrada!'
-			);			
-			return $this->redirect($this->generateUrl('cituao_externo_homepage'));
+			);		
+			if ($usuario_es_inactivo)	
+				return $this->redirect($this->generateUrl('logout'));
+			else
+				return $this->redirect($this->generateUrl('cituao_externo_homepage'));
 		}
 		$datos = array('id' => $id);
 		return $this->render('CituaoExternoBundle:Default:formacta.html.twig', array(

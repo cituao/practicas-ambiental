@@ -573,7 +573,7 @@ class DefaultController extends Controller
         $formulario->handleRequest($peticion);
 
         if ($formulario->isValid()) {
-            // Completar las propiedades que el usuario no rellena en el formulario
+			// Completar las propiedades que el usuario no rellena en el formulario
 			$informe->setPracticante($id);
 			$informe->setAcademico($academico->getId());
 			$em->persist($informe);
@@ -610,8 +610,10 @@ class DefaultController extends Controller
 				//obtenemos numero de practicantes activos			
 				$numero_practicantes_activos = $academico->getActivosGeneral();			
 
-				//si el asesor academico ya no tiene practicantes en proceso lo colocamos como usuario inactivo 				
+				//si el asesor academico ya no tiene practicantes en proceso lo colocamos como usuario inactivo
+				$usuario_es_inactivo = false; 				
 				if ($numero_practicantes_activos == 1){
+					$usuario_es_inactivo = true;
 					$usuario->setIsActive(false);
 					$em->persist($usuario);
 				}
@@ -628,7 +630,7 @@ class DefaultController extends Controller
 
 				//inactivamos el estudiante
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-				$usuario_practicante = $repository->findOneBy(array('id' => $practicante->getCi()));
+				$usuario_practicante = $repository->findOneBy(array('username' => $practicante->getCi()));
 				$usuario_practicante->setIsActive(false);
 				$em->persist($usuario_practicante);
 				//lo pasamos al estado CULMINADO
@@ -640,8 +642,12 @@ class DefaultController extends Controller
 			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
 				'¡Listo ha sido registrado la evaluación final!'
-			);
-            return $this->redirect($this->generateUrl('cituao_academico_homepage'));
+			);	
+
+			if ($usuario_es_inactivo)
+				return $this->redirect($this->generateUrl('logout'));
+			else
+            	return $this->redirect($this->generateUrl('cituao_academico_homepage'));
         }
 		$datos = array('id' => $id);
 		//$programa=$academico->getPrograma();

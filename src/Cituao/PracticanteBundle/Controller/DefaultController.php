@@ -426,6 +426,7 @@ class DefaultController extends Controller
 				$query->setParameter('id_pra',$practicante->getId());
 				$cronogramaexterno = $query->getOneOrNullResult();
 				
+				$usuario_es_inactivo = false;
 				//verificamos si el asesor externo y academico entregaron
 				if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
 					//verificamos si el asesor externo pasa a usuario inactivo
@@ -453,7 +454,7 @@ class DefaultController extends Controller
 					//le damos de baja
 					$usuario->setIsActive(false);
 					$em->persist($usuario);
-					
+					$usuario_es_inactivo = true;
 				}
 			}
 			
@@ -466,7 +467,11 @@ class DefaultController extends Controller
 			$this->get('session')->getFlashBag()->add('info',
 				'¡Listo informe final registrado!'
 			);
-			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+			
+			if ($usuario_es_inactivo)	
+				return $this->redirect($this->generateUrl('logout'));
+			else
+				return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}
 		$datos = array('id' => $id);
 		
