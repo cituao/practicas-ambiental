@@ -24,7 +24,7 @@ class CualicuantiType extends AbstractType
 				->add('indicador3', 'choice', array('required' => false, 'label' => 'Indicador', 'read_only' => true, 'choices'=> array('completado' => 'Completado', 'proceso' => 'En proceso')))	
 				->add('porcentaje3', 'choice', array('required' => false,'label' => 'Porcentaje', 'read_only' => true, 'choices'=> array('25' => '25%', '50' => '50%' , '75' => '75%' , '100' => '100%')))	
 				->add('apreciacion','textarea', array('required' => false, 'label' => ' ', 'read_only' => true , 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '15')))
-				->add('comentarios','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '15')));
+				->add('comentarios','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '15', 'placeholder' => '¡Escriba aqui es importante y valioso!')));
 
 		}
 
