@@ -11,9 +11,9 @@ class InformefinalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		        ->add('metodologia','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500', 'attr' => array('cols' => '130', 'rows' => '5')))
-		        ->add('competencia','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '10')))
-		        ->add('recomendaciones','textarea', array('required' => false, 'label' => ' ', 'max_length' => '5500', 'attr' => array('cols' => '130', 'rows' => '5')));
+		        ->add('metodologia','textarea', array('required' => true, 'label' => ' ', 'max_length' => '5500', 'attr' => array('cols' => '130', 'rows' => '5', 'placeholder' => 'Escriba aqui...')))
+		        ->add('competencia','textarea', array('required' => true, 'label' => ' ', 'max_length' => '5500' , 'attr' => array('cols' => '130', 'rows' => '10', 'placeholder' => 'Escriba aqui...')))
+		        ->add('recomendaciones','textarea', array('required' => true, 'label' => ' ', 'max_length' => '5500', 'attr' => array('cols' => '130', 'rows' => '5', 'placeholder' => 'Escriba aqui...')));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

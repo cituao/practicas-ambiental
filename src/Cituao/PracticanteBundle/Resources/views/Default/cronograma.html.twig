@@ -517,7 +517,7 @@ $(document).ready(function() {
 					{% endif %}
 				{% endif %}
 			  </tr>
-			{% if p.area == 1 %}
+			{% if p.Area not in [2, 3] %}
 			  <tr>
 				<td>Proyecto</td>
 				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
@@ -527,7 +527,7 @@ $(document).ready(function() {
 					<td class = "colEstado">-</td>
 					<td class = "colEstado">-</td>
 				{% else %}
-					{% if p.listoGestion3 == true and p.listoVisita2 == true and p.listoAsesoria7 == true %}
+					{% if p.listoGestion3 == true and p.listoVisita2 == true and p.listoAsesoria7 == true and p.listoInformeFinal == true %}
 						{% if p.listoProyecto == false %}
 							<td class = "colEstado">Sin entregar!</td>
 							<td class = "colEstado"></td>

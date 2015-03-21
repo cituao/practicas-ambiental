@@ -86,6 +86,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				{% endif %}
 				{% endif %}
 			</tr>
+			
 			<tr>
 				<td>Asesoría #2</td>
 				<td>{{ c.fechaAsesoria2|date("d/m/Y") }}</td>
@@ -96,7 +97,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td  class = "colEstado"></td>
 				<td  class = "colEstado"></td>
 				{% else %}
-
 				{% if c.listoAsesoria2 == true %}
 				<td  class = "colEstado">Realizada</td>
 				{% if p.listoAsesoria2 == false %}
@@ -115,7 +115,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td  class = "colEstado"></td>
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -146,7 +145,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td  class = "colEstado"></td>
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -177,9 +175,8 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td  class = "colEstado"></td>
 				{% endif %}
 				{% endif %}
-
-
 			</tr>
+			
 			<tr>
 				<td>Asesoría #5</td>
 				<td>{{ c.fechaAsesoria5|date("d/m/Y") }}</td>
@@ -206,10 +203,8 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td  class = "colEstado">Sin realizar!</td>
 				<td  class = "colEstado"></td>
 				<td  class = "colEstado"></td>
-
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -238,10 +233,8 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td  class = "colEstado">Sin realizar!</td>
 				<td  class = "colEstado"></td>
 				<td  class = "colEstado"></td>
-
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -270,10 +263,8 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td  class = "colEstado">Sin realizar!</td>
 				<td  class = "colEstado"></td>
 				<td  class = "colEstado"></td>
-
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -300,7 +291,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td  class = "colEstado"></td>
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -371,7 +361,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td class = "colEstado"></td>
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -433,7 +422,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td class = "colEstado"></td>
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -465,7 +453,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td class = "colEstado"></td>
 				{% endif %}
 				{% endif %}
-
 			</tr>
 
 			<tr>
@@ -495,33 +482,32 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				
 			</tr>
 
-			{% if p.area == 1 %}
-			<td>Proyecto final</td>
-			<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
-			{% if p.fechaInformeFinal > date() %}
-			<td  class = "colEstado">Aun falta!</td>
-			<td  class = "colEstado"></td>
-			<td  class = "colEstado"></td>
-			<td  class = "colEstado"></td>
-			<td  class = "colEstado"></td>
-			{% else %}
-			{% if p.listoProyecto == true %}
-			<td class = "colEstado">Entregado</td>
-			<td class = "colEstado">Entregado</td>
-			<td class = "colEstado"></td>
-			<td class = "colEstado"></td>
-			<td class = "colEstado"><a href="{{ asset('uploads/documents/' ~ p.pathPdf) }}">Ver</a></td>
-			{% else %}
-			<td class = "colEstado">Sin entregar</td>
-			<td class = "colEstado">Sin entregar</td>
-			<td class = "colEstado"></td>
-			<td class = "colEstado"></td>
-			<td class = "colEstado"></td>
-			{% endif %}
-			{% endif %}
-
-
-
+			{% if p.Area not in [2, 3] %}
+			<tr>
+				<td>Proyecto final</td>
+				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
+				{% if p.fechaInformeFinal > date() %}
+					<td  class = "colEstado">Aun falta!</td>
+					<td  class = "colEstado"></td>
+					<td  class = "colEstado"></td>
+					<td  class = "colEstado"></td>
+					<td  class = "colEstado"></td>
+				{% else %}
+					{% if p.listoProyecto == true %}
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado">Entregado</td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"><a href="{{ asset('uploads/documents/' ~ p.pathPdf) }}">Ver</a></td>
+					{% else %}
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado">Sin entregar</td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+					{% endif %}
+				{% endif %}
+			</tr>
 			{% endif %}
 
 			<tr>
@@ -540,7 +526,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<td class = "colEstado">Entregado</td>
 				<td class = "colEstado"></td>
 				<td class = "colEstado"><a href="{{ path('cituao_coord_consultar_informefinalacademico', { 'id': p.id}) }}">Ver</a></td>
-
 				{% else %}
 				<td class = "colEstado">Sin entregar</td>
 				<td class = "colEstado"></td>
@@ -576,12 +561,9 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				{% endif %}
 				{% endif %}
 			</tr>
-
-
 		</table>
 	</div>	<!-- downSection -->
 
-	
 	{% endblock %}<!-- downSection -->
 	</div>
 

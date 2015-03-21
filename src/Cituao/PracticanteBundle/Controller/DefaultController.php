@@ -411,31 +411,67 @@ class DefaultController extends Controller
 			$em->persist($informe);
 			
 			
-			//buscamos los registros de los cronogramas y determinar si se ha entregado todo
-			$query = $em->createQuery(
-					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
-			$query->setParameter('id_pra',$practicante->getId());
-			$cronogramacademico = $query->getOneOrNullResult();
-			
-			//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
-			$query = $em->createQuery(
-				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
-			$query->setParameter('id_pra',$practicante->getId());
-			$cronogramaexterno = $query->getOneOrNullResult();
-			
-			//si entrego todo entonces pasa al estado culminado
-			if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
-				$practicante->setEstado('2');
-				$em->persist($practicante);
+			//si el area del practicante es 2 y 3 evaluamos entregas para cambiar su estado a CULMINADO
+			if ($practicante->getArea() == 2 || $practicante->getArea() == 3){
+				
+				//buscamos los registros de los cronogramas y determinar si se ha entregado todo
+				$query = $em->createQuery(
+						'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
+				$query->setParameter('id_pra',$practicante->getId());
+				$cronogramacademico = $query->getOneOrNullResult();
+				
+				//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
+				$query = $em->createQuery(
+					'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
+				$query->setParameter('id_pra',$practicante->getId());
+				$cronogramaexterno = $query->getOneOrNullResult();
+				
+				$usuario_es_inactivo = false;
+				//verificamos si el asesor externo y academico entregaron
+				if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
+					//verificamos si el asesor externo pasa a usuario inactivo
+					$externo = $repository->findOneBy(array('id' => $practicante->getExterno()->getId()));
+					$numero_practicantes_activos = $externo->getActivos();
+					if ($numero_practicantes_activos == 1){
+						$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+						$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
+						$usuario_externo->setIsActive(false);
+						$em->persist($usuario_externo);
+					}
+
+					//verificamos si el asesor académico pasa a usuario inactivo
+					$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
+					$numero_practicantes_activos = $academico->getActivosGeneral();
+					if ($numero_practicantes_activos == 1){
+						$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+						$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
+						$usuario_academico->setIsActive(false);
+						$em->persist($usuario_academico);
+					}				
+					
+					//lo colocamos como CULMINADO
+					$practicante->setEstado('2');
+					//le damos de baja
+					$usuario->setIsActive(false);
+					$em->persist($usuario);
+					$usuario_es_inactivo = true;
+				}
 			}
 			
+			//guardamos cambios en estudiante
+			$em->persist($practicante);
+			//efectuamos todos los cambios en base de datos
 			$em->flush();
 			
 			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
 				'¡Listo informe final registrado!'
 			);
-			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+			
+			if ($usuario_es_inactivo)	
+				return $this->redirect($this->generateUrl('logout'));
+			else
+				return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}
 		$datos = array('id' => $id);
 		
@@ -472,6 +508,48 @@ class DefaultController extends Controller
 			
 			//se copia el archivo al directorio del servidor			
 			$document->upload();
+			
+			//buscamos los registros de los cronogramas y determinar si se ha entregado todo
+			$query = $em->createQuery(
+					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$practicante->getId());
+			$cronogramacademico = $query->getOneOrNullResult();
+			
+			//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
+			$query = $em->createQuery(
+				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
+			$query->setParameter('id_pra',$practicante->getId());
+			$cronogramaexterno = $query->getOneOrNullResult();
+			
+			//cambiamos estado del practicante
+			if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
+				//verificamos si el asesor externo pasa a usuario inactivo
+				$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
+				$externo = $repository->findOneBy(array('id' => $practicante->getExterno()->getId()));
+				$numero_practicantes_activos = $externo->getActivos();
+				if ($numero_practicantes_activos == 1){
+					$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+					$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
+					$usuario_externo->setIsActive(false);
+					$em->persist($usuario_externo);
+				}
+
+				//verificamos si el asesor académico pasa a usuario inactivo
+				$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+				$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
+				$numero_practicantes_activos = $academico->getActivosGeneral();
+				if ($numero_practicantes_activos == 1){
+					$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
+					$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
+					$usuario_academico->setIsActive(false);
+					$em->persist($usuario_academico);
+				}
+				
+				$practicante->setEstado('2');
+				$usuario->setIsActive(false);
+				$em->persist($usuario);
+			}
+		
 			$em->persist($practicante);
 			$em->flush();
 			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
