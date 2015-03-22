@@ -1693,8 +1693,8 @@ class DefaultController extends Controller
 			if ($p->getFechaInformeFinal() < $hoy && $p->getListoInformeFinal() == false) $retrasos++;
 			//solo para practicantes del area organizacional
 			$area = $p->getArea();
-			if($area == 1){
-				if ($p->getFechaInformeFinal() < $hoy && $p->getListoProyecto() == false) $retrasos++;
+			if($area == 2 || $area == 3){
+				if ($p->getListoInformeFinal() && $p->getListoProyecto() == false) $retrasos++;
 			}
 			//creamos el registro 
 			if ($retrasos > 0){
@@ -1814,33 +1814,84 @@ class DefaultController extends Controller
 	//Muestra los asesores academicos que presentan retraso
 	//*******************************************************************
 	public function enviarCorreosPracticantesAction(){
-		$request = $this->container->get('request'); 
-		
-		//buscamos el nombre de usuario
+		//buscamos el programa
 		$user = $this->get('security.context')->getToken()->getUser();
 		$coordinador =  $user->getUsername();
-		//buscamos que programa tiene  asociado ese nombre de usuario 
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
 
-		
 		$email_from=$programa->getEmail();
-		$message = \Swift_Message::newInstance()
-			->setSubject('Notificación - Práctica profesional')
-			->setFrom(array($email_from=>'Coord. de Práctica profesional'))
-			->setTo(array('jesmarquez@hotmail.com' => 'Jesus', 'jamarquez@uao.edu.co' => 'Jesus Marquez Gestor Tic', 'jesmqz@gmail.com' => 'Ing Jesus Marquez'))
-			->setContentType("text/html");
 
+		//buscamos los periodos y el periodo actual
+		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Periodo');
+		$query = $repository->createQueryBuilder('p')
+				->orderBy('p.id','DESC')
+				->getQuery();
+		$periodos = $query->getResult();
+		foreach ($periodos as $periodoActual){
+			break;
+		}
+		
+		//obtenemos los practicantes sin importar el periodo
+		//->andWhere('p.periodo = :id_periodo') ->setParameter('id_periodo', $periodoActual->getId())
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$query = $repository->createQueryBuilder('p')
+				->where('p.programa = :id_programa')
+				->andWhere('p.estado = 1')
+				->setParameter('id_programa', $programa->getId())
+				->getQuery();
+				
+		//->setParameter('id_programa', $programa->getId())
+				$listaPracticantes = $query->getResult();
+
+		if ($listaPracticantes == NULL) {
+			$msgerr = array('descripcion'=>'No hay practicantes registrados!','id'=>'1');
+		}else{
+			$msgerr = array('descripcion'=>'','id'=>'0');
+		}
+		$filtro = array('periodo' => $periodoActual->getId(), 'estado' => '1');
+		//filtramos los practicantes que estan en retraso en la entrega de actividades
+		$hoy = new DateTime();
+		$retrasos = 0;
+		$i=0;
+		
+		$message = \Swift_Message::newInstance();
+		$message->setSubject('Notificación - Práctica profesional');
+		$message->setFrom(array($email_from=>'Coord. de Práctica profesional'));
+		$message->setContentType("text/html");
 		$message->setBody($this->renderView('CituaoCoordBundle:Default:email.html.twig'),'text/html');
-		
-		$this->get('mailer')->send($message);
-		
-     	 $response = array("code" => 100, "success" => true);
+		foreach ($listaPracticantes as $p){
+			if ($p->getFechaAsesoria1() < $hoy && $p->getListoAsesoria1()  == false) $retrasos++;
+			if ($p->getFechaAsesoria2() < $hoy && $p->getListoAsesoria2() == false) $retrasos++;
+			if ($p->getFechaAsesoria3() < $hoy && $p->getListoAsesoria3() == false) $retrasos++;
+			if ($p->getFechaAsesoria4() < $hoy && $p->getListoAsesoria4() == false) $retrasos++;
+			if ($p->getFechaAsesoria5() < $hoy && $p->getListoAsesoria5() == false) $retrasos++;
+			if ($p->getFechaAsesoria6() < $hoy && $p->getListoAsesoria6() == false) $retrasos++;
+			if ($p->getFechaAsesoria7() < $hoy && $p->getListoAsesoria7() == false) $retrasos++;
+			if ($p->getFechaInformeGestion1() < $hoy && $p->getListoGestion1() == false) $retrasos++;
+			if ($p->getFechaInformeGestion2() < $hoy && $p->getListoGestion2() == false) $retrasos++;
+			if ($p->getFechaInformeGestion3() < $hoy && $p->getListoGestion3() == false) $retrasos++;
+			if ($p->getFechaInformeFinal() < $hoy && $p->getListoInformeFinal() == false) $retrasos++;
+			//solo para practicantes del area organizacional
+			$area = $p->getArea();
+			if($area == 2 || $area == 3){
+				if ($p->getListoInformeFinal() && $p->getListoProyecto() == false) $retrasos++;
+			}
+
+			//creamos el registro
+			//$practicante->getEmailInstitucional(), 'emailPersonal' => $practicante->getEmailPersonal() 
+			if ($retrasos > 0){
+				$message->setTo(array($p->getEmailInstitucional() => 'Practicante'));
+				$this->get('mailer')->send($message);
+			}
+			$retrasos=0;
+			$i++;
+		}
+
+		$response = array("code" => 100, "success" => true);
 		$serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new 
 		JsonEncoder()));
 		$json = $serializer->serialize($response, 'json');
-
-		
 		//return new Response($json,200,array('Content-Type'=>'application/json'));
 		//return new Response();
 		 return new Response(json_encode($response)); 
