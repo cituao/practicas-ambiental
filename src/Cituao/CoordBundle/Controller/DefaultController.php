@@ -1861,31 +1861,33 @@ class DefaultController extends Controller
 		$message->setContentType("text/html");
 		$message->setBody($this->renderView('CituaoCoordBundle:Default:email.html.twig'),'text/html');
 		foreach ($listaPracticantes as $p){
-			if ($p->getFechaAsesoria1() < $hoy && $p->getListoAsesoria1()  == false) $retrasos++;
-			if ($p->getFechaAsesoria2() < $hoy && $p->getListoAsesoria2() == false) $retrasos++;
-			if ($p->getFechaAsesoria3() < $hoy && $p->getListoAsesoria3() == false) $retrasos++;
-			if ($p->getFechaAsesoria4() < $hoy && $p->getListoAsesoria4() == false) $retrasos++;
-			if ($p->getFechaAsesoria5() < $hoy && $p->getListoAsesoria5() == false) $retrasos++;
-			if ($p->getFechaAsesoria6() < $hoy && $p->getListoAsesoria6() == false) $retrasos++;
-			if ($p->getFechaAsesoria7() < $hoy && $p->getListoAsesoria7() == false) $retrasos++;
-			if ($p->getFechaInformeGestion1() < $hoy && $p->getListoGestion1() == false) $retrasos++;
-			if ($p->getFechaInformeGestion2() < $hoy && $p->getListoGestion2() == false) $retrasos++;
-			if ($p->getFechaInformeGestion3() < $hoy && $p->getListoGestion3() == false) $retrasos++;
-			if ($p->getFechaInformeFinal() < $hoy && $p->getListoInformeFinal() == false) $retrasos++;
-			//solo para practicantes del area organizacional
-			$area = $p->getArea();
-			if($area == 2 || $area == 3){
-				if ($p->getListoInformeFinal() && $p->getListoProyecto() == false) $retrasos++;
-			}
+			if ($p->getEmailPersonal() != null){
+				if ($p->getFechaAsesoria1() < $hoy && $p->getListoAsesoria1()  == false) $retrasos++;
+				if ($p->getFechaAsesoria2() < $hoy && $p->getListoAsesoria2() == false) $retrasos++;
+				if ($p->getFechaAsesoria3() < $hoy && $p->getListoAsesoria3() == false) $retrasos++;
+				if ($p->getFechaAsesoria4() < $hoy && $p->getListoAsesoria4() == false) $retrasos++;
+				if ($p->getFechaAsesoria5() < $hoy && $p->getListoAsesoria5() == false) $retrasos++;
+				if ($p->getFechaAsesoria6() < $hoy && $p->getListoAsesoria6() == false) $retrasos++;
+				if ($p->getFechaAsesoria7() < $hoy && $p->getListoAsesoria7() == false) $retrasos++;
+				if ($p->getFechaInformeGestion1() < $hoy && $p->getListoGestion1() == false) $retrasos++;
+				if ($p->getFechaInformeGestion2() < $hoy && $p->getListoGestion2() == false) $retrasos++;
+				if ($p->getFechaInformeGestion3() < $hoy && $p->getListoGestion3() == false) $retrasos++;
+				if ($p->getFechaInformeFinal() < $hoy && $p->getListoInformeFinal() == false) $retrasos++;
+				//solo para practicantes del area organizacional
+				$area = $p->getArea();
+				if($area == 2 || $area == 3){
+					if ($p->getListoInformeFinal() && $p->getListoProyecto() == false) $retrasos++;
+				}
 
-			//creamos el registro
-			//$practicante->getEmailInstitucional(), 'emailPersonal' => $practicante->getEmailPersonal() 
-			if ($retrasos > 0){
-				$message->setTo(array($p->getEmailPersonal() => 'Practicante'));
-				$this->get('mailer')->send($message);
+				//creamos el registro
+				//$practicante->getEmailInstitucional(), 'emailPersonal' => $practicante->getEmailPersonal() 
+				if ($retrasos > 0){
+					$message->setTo(array($p->getEmailPersonal() => 'Practicante'));
+					$this->get('mailer')->send($message);
+				}
+				$retrasos=0;
+				$i++;
 			}
-			$retrasos=0;
-			$i++;
 		}
 
 		$response = array("code" => 100, "success" => true);
