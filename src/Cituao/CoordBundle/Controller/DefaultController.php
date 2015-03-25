@@ -1881,7 +1881,7 @@ class DefaultController extends Controller
 			//creamos el registro
 			//$practicante->getEmailInstitucional(), 'emailPersonal' => $practicante->getEmailPersonal() 
 			if ($retrasos > 0){
-				$message->setTo(array($p->getEmailInstitucional() => 'Practicante'));
+				$message->setTo(array($p->getEmailPersonal() => 'Practicante'));
 				$this->get('mailer')->send($message);
 			}
 			$retrasos=0;
