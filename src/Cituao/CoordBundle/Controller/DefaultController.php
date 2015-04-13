@@ -785,10 +785,13 @@ class DefaultController extends Controller
 			
             // Completar las propiedades que el usuario no rellena en el formulario
 			$idCentro = $formulario->get('centro')->getData();
+			$ci = $externo->getCi();
+			
 			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 			$centro = $repository->find($idCentro);
 			$centros = $externo->getCentros();
 			
+			//buscamos si ya tiene el centro asignado
 			$sw = false;
 			foreach ($centros as $c){
 				$id_current = $c->getId(); 
@@ -797,13 +800,13 @@ class DefaultController extends Controller
 					break;
 				}
 			}			
-			
+			//si no tiene el centro asignado se lo asignamos
 			if(!$sw){
 				$externo->addCentro($centro);
 			}
-		
 			$em->persist($externo);
 
+			
 			//si el usuario cambio la cédula modificamos el username y password 
 			if ($ci != $externo->getCi()){
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
