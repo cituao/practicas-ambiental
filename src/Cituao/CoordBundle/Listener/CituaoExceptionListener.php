@@ -92,7 +92,10 @@ class CituaoExceptionListener
 					$message = sprintf('Asesor académico ya esta registrado en el sistema!');
 					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
 					break;	
-
+				case "ERR_CRONO_EXT_NO_EXISTE":
+					$message = sprintf('¡Cronograma externo no existe en base de datos!');
+					$tmperror = 'CituaoCoordBundle:Default:error.html.twig';
+					break;	
 					
 				default:
 					//$message = sprintf('Error no identificado!');

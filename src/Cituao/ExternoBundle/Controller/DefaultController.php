@@ -11,6 +11,7 @@ use Cituao\ExternoBundle\Form\Type\Evaluacion1Type;
 use Cituao\ExternoBundle\Form\Type\Evaluacion2Type;
 use Cituao\ExternoBundle\Form\Type\ExternoType;
 use Cituao\ExternoBundle\Form\Type\ActaType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 class DefaultController extends Controller
@@ -22,29 +23,49 @@ class DefaultController extends Controller
 
 		//buscamos por cedula y recuperamos el indice
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
-		$externo = $repository->findOneByci($ci);
+		$externos = $repository->findByci($ci);
+		
 		$em = $this->getDoctrine()->getManager();
 		
+		
+		//buscamos solo los practicantes que estan en proceso
 		$estado=1;
-		//contamos cuentos practicantes tiene el asesor externo 
-		$query = $em->createQuery(
-			'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id  AND p.estado= :estado'
-			)->setParameter('id',$externo->getId())
-			->setParameter('estado', $estado);
-		$numeroPracticantes=$query->getSingleScalarResult();
+		
+		//creamos un array collection doctrine para unir los practicantes de las diferentes instancias 
+		$listaPracticantes = new \Doctrine\Common\Collections\ArrayCollection();
+		
+		$numeroPracticantes=0;
+		//$listaPracticantes=[];
+		//contamos cuantos practicantes tiene el asesor externo buscando cuantas instancias del asesor externo estan presentes en la tabla Externo
+		foreach($externos as $externo) {
+				$sub_grupo_practicantes=[];
+				$id_externo = $externo->getId();
 
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$query = $repository->createQueryBuilder('p')
-				->where('p.externo = :id_ext')
-				->andWhere('p.estado = :estado')
-				->setParameter('id_ext', $externo->getId())
-				->setParameter('estado', $estado)
-				->getQuery();
-		
+				$query = $em->createQuery(
+					'SELECT COUNT(p.id) FROM CituaoCoordBundle:Practicante p WHERE p.externo= :id  AND p.estado= :estado'
+					)->setParameter('id',$externo->getId())
+					->setParameter('estado', $estado);
+				$numeroPracticantes=$numeroPracticantes + $query->getSingleScalarResult();
+
+				$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+				$query = $repository->createQueryBuilder('p')
+						->where('p.externo = :id_ext')
+						->andWhere('p.estado = :estado')
+						->setParameter('id_ext', $externo->getId())
+						->setParameter('estado', $estado)
+						->getQuery();
+				
+				//$sub_grupo_practicantes = $query->getArrayResult();
+				$sub_grupo_practicantes = $query->getResult();
+				foreach($sub_grupo_practicantes as $practicante){
+					$listaPracticantes->add($practicante);
+				}
+				//$listaPracticantes = array_merge($listaPracticantes, $sub_grupo_practicantes); 
+		}
+
 		$datos = array('numeroPracticantes' => $numeroPracticantes); 
-		$listaPracticantes = $query->getResult();
 		
-		if ($listaPracticantes == NULL) {
+		if ($numeroPracticantes == 0) {
 			$msgerr = array('descripcion'=>'Aun no tiene asignado practicante!','id'=>'1');
 		}else{
 			$msgerr = array('descripcion'=>'','id'=>'0');
@@ -122,16 +143,18 @@ class DefaultController extends Controller
 	//*****************************************************************/
 	//Mostrar el cronograma comun entre practicante y academico
 	/******************************************************************/	
-	public function cronogramaAction($id){
+	public function cronogramaAction($id, $ext){
 		$user = $this->get('security.context')->getToken()->getUser();
 		$ci =  $user->getUsername();
 		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
-		$externo = $repository->findOneBy(array('ci' => $ci));
+		$externo = $repository->findOneBy(array('id' => $ext));
 		
 		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante = $repository->findOneBy(array('id' => $id));
 
 		//buscamos cronograma entre el asesor externo y el practicante
+		$cronograma = null;
+		
 		$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery(
 			'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.externo =:id_ext AND c.practicante =:id_pra');
@@ -139,14 +162,22 @@ class DefaultController extends Controller
 		$query->setParameter('id_pra',$id);
 		$cronograma = $query->getOneOrNullResult();
 		
+		if ($cronograma == null){
+			throw $this->createNotFoundException('ERR_CRONO_EXT_NO_EXISTE');
+		}
+		
 		//buscamos el cronograma del asesor academico
-    	$em = $this->getDoctrine()->getManager();
+    	$academico=null;
+		$em = $this->getDoctrine()->getManager();
     	$query = $em->createQuery(
     		'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.academico =:id_aca AND c.practicante =:id_pra');
     	$query->setParameter('id_aca',$practicante->getAcademico()->getId());
     	$query->setParameter('id_pra',$practicante->getId());
     	$academico = $query->getOneOrNullResult();
-
+		
+		if ($academico == null){
+			throw $this->createNotFoundException('ERR_CRONO_ACA_NO_EXISTE');
+		}
 		
 		return $this->render('CituaoExternoBundle:Default:cronogramapracticante.html.twig', array('c' => $cronograma, 'p' => $practicante, 'a' => $academico ));
 	}

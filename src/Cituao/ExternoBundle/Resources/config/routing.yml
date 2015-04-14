@@ -7,7 +7,7 @@ cituao_externo_practicantes:
     defaults: { _controller: CituaoExternoBundle:Default:practicantes }
 
 cituao_externo_cronograma:
-    path:  /externo/cronograma/{id}
+    path:  /externo/cronograma/{id}/{ext}
     defaults: { _controller: CituaoExternoBundle:Default:cronograma }
 
 cituao_externo_registrar_evaluacion:
