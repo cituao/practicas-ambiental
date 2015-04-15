@@ -774,13 +774,22 @@ class DefaultController extends Controller
 		$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
 		$programa = $repository->findOneByCoordinador($coordinador);
 		
-
-		$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
-		$externo = $repository->findOneBy(array('ci' => $ci));
+		$lista_externos = $programa->getExternos();
+		//buscamos una instancia cualquiera del asesor externo
+		foreach($lista_externos as $externo){
+			if ($externo->getCi() == $ci) break;
+		}
+		
 		$formulario = $this->createForm(new ExternoType($programa), $externo);
-
+		
+		$lista_centros = $externo->getCentros();
+		//buscamos el centro que corresponda con el programa en session
+		foreach($lista_centros as $centro){
+			if ($centro->getPrograma()->getId() == $programa->getId()) break;
+		}
+		//le cargamos el objeto centro al formulario
+		$formulario->get('centros')->setData($centro);
 		$formulario->handleRequest($peticion);
-
 		if ($formulario->isValid()) {
 			
             // Completar las propiedades que el usuario no rellena en el formulario
