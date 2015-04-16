@@ -31,8 +31,6 @@ $( "#asesoresExternos h3" ).css("opacity","0.4");
 				<form action="{{ path('cituao_coord_registrarexterno') }}" method="post" {{ form_enctype(formulario) }}>
 					<div>	{{ form_errors(formulario) }}	</div>
 
-					
-
 					<div class="inputContainer">
 						<h2>{{ form_label(formulario.nombres) }}</h2>
 						<div class="input"> 
@@ -80,24 +78,22 @@ $( "#asesoresExternos h3" ).css("opacity","0.4");
 							{{ form_widget(formulario.email, {'attr': {'class':'largo'}} ) }}
 						</div>
 					</div>
-					<div class="inputContainer">	
-						<h2>{{ form_label(formulario.centro) }} </h2>
+
+					<div class="inputContainer">
+						<h2>{{ form_label(formulario.centros) }}</h2>
 						<div class="input"> 
-							{{ form_widget(formulario.centro) }} 
-							
+							{{ form_widget(formulario.centros, {'attr': {'class':'largo'}} ) }}
+							{{ form_errors(formulario.centros) }}
 						</div>
 					</div>
 
-
 					<div class="inputContainer">
-						<h2>{{ form_label(formulario.cargo) }} </h2>
+						<h2>{{ form_label(formulario.cargo) }}</h2>
 						<div class="input"> 
-							{{ form_widget(formulario.cargo) }} 
-						</div> 
+							{{ form_widget(formulario.cargo, {'attr': {'class':'largo'}} ) }}
+							{{ form_errors(formulario.cargo) }}
+						</div>
 					</div>
-
-
-
 					{{ form_rest(formulario) }}
 					
 				<div class="inputContainer" style="position:relative; margin-top:20px; margin-left:20px;">
