@@ -237,8 +237,14 @@ class DefaultController extends Controller
 		$usuario = $repository->findOneBy(array('username' => $codigo));
 		
 		$formulario = $this->createForm(new PracticanteType(), $practicante);
+		
+		$area = $practicante->getArea();
+		if ($area->getId()==3)
+		$formulario->get('area')->setData($area);
+		
 		$formulario->handleRequest($peticion);
 
+		
 		if ($formulario->isValid()) {
 			$practicante->upload();				
             // Completar las propiedades que el usuario no rellena en el formulario

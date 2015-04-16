@@ -20,7 +20,7 @@ class PracticanteType extends AbstractType
         ->add('emailPersonal', 'email',  array('required' => false, 'label' => 'Email personal'))
 		->add('telefonoMovil','text', array('required' => false, 'label' => 'Teléfono móvil'))
 		->add('fechaMatriculacion', 'date', array('required' => true, 'label' => 'Fecha de matrícula', 'input' => 'datetime', 'widget' => 'choice', 'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día') ))
-		->add('area','entity', array('required' => true, 'class' => 'CituaoCoordBundle:Area' , 'property'=>'area'));
+		->add('area','entity', array('required' => true, 'class' => 'CituaoCoordBundle:Area' , 'property'=>'area', 'mapped' => true));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

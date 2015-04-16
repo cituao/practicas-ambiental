@@ -11,3 +11,10 @@ Cituao\CoordBundle\Entity\Area:
             type: string
             length: '50'
     lifecycleCallbacks: {  }
+
+    oneToMany:
+        practicantes:
+            targetEntity: Cituao\CoordBundle\Entity\Practicante
+            mappedBy: area
+            orderBy:
+                apellidos: ASC
