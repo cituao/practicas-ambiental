@@ -1504,7 +1504,7 @@ class DefaultController extends Controller
 		//le colocamos estado false no tiene cronograma
 		$repository=$this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
 		$practicante=$repository->findOneBy(array('id'=>$id));
-		$practicante->setEstado(FALSE);
+		$practicante->setEstado(0);
 		$em->persist($practicante);
 		
 		
