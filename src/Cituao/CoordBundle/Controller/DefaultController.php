@@ -717,7 +717,7 @@ class DefaultController extends Controller
 			   // Completar las propiedades que el usuario no rellena en el formulario
 				
 				//creamos un objeto con el centro selecionado por el coordinador				
-				$idCentro = $formulario->get('centro')->getData();				
+				$idCentro = $formulario->get('centros')->getData();				
 				$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 				$centro = $repository->find($idCentro);
 				$externo->addCentro($centro);
@@ -799,7 +799,7 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 			
             // Completar las propiedades que el usuario no rellena en el formulario
-			$idCentro = $formulario->get('centro')->getData();
+			$idCentro = $formulario->get('centros')->getData();
 			$ci = $externo->getCi();
 			
 			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');

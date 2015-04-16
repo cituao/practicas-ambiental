@@ -35,7 +35,7 @@ class ExternoType extends AbstractType
                 														->setParameter('id_programa',$prg);},  
 										 'property'=>'nombre', 
 										 'empty_value' => 'Seleccione?',
-										 'mapped' => true))
+										 'mapped' => false))
 		->add('cargo','text', array('required' => false, 'label' => 'Cargo:'));
 		
 		}

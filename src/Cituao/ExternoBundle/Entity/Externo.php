@@ -386,5 +386,4 @@ class Externo
         return $this->centros;
     }
 
-	
 }
