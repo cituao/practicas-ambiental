@@ -318,18 +318,19 @@ class DefaultController extends Controller
 
 		// si los datos son validos guardamos cronograma para los actores        
 		if ($formulario->isValid()) {
+			$p=10;
+			if ($p==10){
 			
-			$academico = $practicante->getAcademico();
-			if ($academico->getActivos($programa)  == 5)	throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
 		
 			if ($practicante->getEstado() == 1) {
 				//ya tiene cronograma estado = 1
-				$practicante_actual = $repository->findOneBy(array('codigo' => $codigo));
+
 				//verificamos que cambios hubo
 				//en asesor academico
 	
 				$academico = $practicante->getAcademico(); 
-				
+			
+				if ($academico->getActivos($programa)  == 5)	throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
 				//cambio el asesor academico 
 				//actuaizamos el id en el cronograma del asesor academico
 				$query = $em->createQuery(
@@ -379,6 +380,8 @@ class DefaultController extends Controller
 			}	
 			
 			else{
+				if ($practicante->$academico->getActivos($programa)  == 5)	throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
+				
 				// Completar las propiedades que el usuario no rellena en el formulario
 				$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
 			
@@ -433,13 +436,16 @@ class DefaultController extends Controller
 				$em->persist($cronograma);
 			
 				$em->flush();
-				
+			
 				// Crear un mensaje flash para notificar al usuario que se ha registrado correctamente
 				$this->get('session')->getFlashBag()->add('info',
 					'¡Listo, cronograma asignado satisfactoriamente!'
 					);
+			}		
+				
+			}	
 				return $this->redirect($this->generateUrl('cituao_coord_homepage'));
-			}
+			
 		}
 		
 				//buscamos el programa
