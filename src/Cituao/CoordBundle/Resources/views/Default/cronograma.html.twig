@@ -86,7 +86,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					</div>
 				</div>
 
-
 				<div class="titulo" style="display:none;">CRONOGRAMA PRACTICANTE</div>
 				<div class="contenedor_fecha" style="display:none;">
 					<div class = "fecha">
@@ -175,12 +174,11 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						{{ form_widget(formulario.fechaInformeFinal, {'attr': {'class':'corto'}} ) }}
 						{{ form_errors(formulario.fechaInformeFinal) }}
 					</div>
-				<div>
-
+				</div>
      			{{ form_rest(formulario) }}
 				<div class="inputContainer" style="position:relative; margin-top:20px;">
 					<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
-				<input style="padding-left:40px;" class="button" type="submit" value="Guardar" />
+					<input style="padding-left:40px;" class="button" type="submit" value="Guardar" />
 				</div>
 		</form>
 		</div><!-- profile formContainer -->
