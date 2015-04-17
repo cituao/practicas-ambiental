@@ -36,7 +36,7 @@ class CronogramaType extends AbstractType
       										},
  'property'=>'nombre', 'empty_value' => 'Seleccione?'))
 	
-		->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo', 'choices' => $centro->getExternos(), 'empty_value' => '¿Seleccione?'))
+		
 		->add('academico','entity', array('label' => 'Asesor académico', 'class' => 'CituaoAcademicoBundle:Academico', 'choices' => $prg->getAcademicos(), 'empty_value' => '¿Seleccione?'))
 		
 		->add('fechaIniciacion', 'date', array('label' => 'Fecha de iniciación','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))				
@@ -57,6 +57,12 @@ class CronogramaType extends AbstractType
 		->add('fechaInformeGestion3', 'date', array('label' => 'Informe de Gestión #3', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))
 		
 		->add('fechaInformeFinal', 'date', array('label' => 'Informe Final', 'widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'));
+		
+		if ($practicante->getEstado() == 1) 
+			$builder->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo', 'choices' => $centro->getExternos(), 'empty_value' => '¿Seleccione?'));
+		else
+			$builder->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo', 'empty_value' => '¿Seleccione?'));
+		
 		
     }
 
