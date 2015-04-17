@@ -313,7 +313,7 @@ class DefaultController extends Controller
 		$practicante = $repository->findOneBy(array('codigo' => $codigo));
 
         //creamos instacia formulario para el conograma
-		$formulario = $this->createForm(new CronogramaType($programa), $practicante);
+		$formulario = $this->createForm(new CronogramaType($programa, $practicante), $practicante);
 		$formulario->handleRequest($peticion);
 
 		// si los datos son validos guardamos cronograma para los actores        

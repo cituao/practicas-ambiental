@@ -10,16 +10,20 @@ use Doctrine\ORM\EntityRepository;
 class CronogramaType extends AbstractType
 {
 	protected $programa;
+	protected $practicante;
 
-	public function __construct($programa){
+	public function __construct($programa, $practicante){
 		$this->programa = $programa;
+		$this->practicante = $practicante;
 
 	}
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		$prg = $this->programa;	
-
+		$prg = $this->programa;
+		$practicante = $this->practicante;
+		$centro = $practicante->getCentro();
+		
         $builder
 	    ->add('apellidos','text', array('label' => 'Apellidos', 'read_only'=>'true'))
 		->add('nombres','text', array('label' => 'Nombres','read_only'=>'true'))
@@ -32,7 +36,7 @@ class CronogramaType extends AbstractType
       										},
  'property'=>'nombre', 'empty_value' => 'Seleccione?'))
 	
-		->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo', 'choices' => $prg->getExternos(), 'empty_value' => '¿Seleccione?'))
+		->add('externo','entity', array('label' => 'Asesor externo', 'class' => 'CituaoExternoBundle:Externo', 'choices' => $centro->getExternos(), 'empty_value' => '¿Seleccione?'))
 		->add('academico','entity', array('label' => 'Asesor académico', 'class' => 'CituaoAcademicoBundle:Academico', 'choices' => $prg->getAcademicos(), 'empty_value' => '¿Seleccione?'))
 		
 		->add('fechaIniciacion', 'date', array('label' => 'Fecha de iniciación','widget' => 'single_text',  'format' => 'dd-MM-yyyy', 'read_only' => 'true'))				
