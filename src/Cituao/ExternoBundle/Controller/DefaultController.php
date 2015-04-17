@@ -216,9 +216,9 @@ class DefaultController extends Controller
 		if ($formulario->isValid()) {
 			//asignamos como entregada la evaluación del academico 
 			$query = $em->createQuery(
-				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra AND c.externo =:id_ext');
+				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra');
 			$query->setParameter('id_pra',$id);
-			$query->setParameter('id_ext',$externo->getId());
+
 			$cronograma = $query->getOneOrNullResult();
 
 			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
