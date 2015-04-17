@@ -19,8 +19,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 	 <script src="{{ asset('js/date.js') }}"></script>
 {% endblock %}
 
-
-
 {% block content  %}
 {{ parent() }}
 	<div class="content">
@@ -62,7 +60,6 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					</div>
 				</div>
 
-
 				<div class="inputContainer" id = "ruta" data-path = "{{ path('cituao_coord_obtener_externos') }}">
 					<div class="input"> 
 					{{ form_row(formulario.centro) }}
@@ -74,6 +71,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					{{ form_row(formulario.externo) }}
 					</div > 
 				</div>
+
 				<div class="inputContainer">
 					<div class="input"> 
 					{{ form_row(formulario.academico) }}
@@ -87,7 +85,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					{{ form_errors(formulario.fechaIniciacion) }}
 					</div>
 				</div>
-				<!-- sdfsdfdsfs-->
+
 
 				<div class="titulo" style="display:none;">CRONOGRAMA PRACTICANTE</div>
 				<div class="contenedor_fecha" style="display:none;">
@@ -177,109 +175,9 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						{{ form_widget(formulario.fechaInformeFinal, {'attr': {'class':'corto'}} ) }}
 						{{ form_errors(formulario.fechaInformeFinal) }}
 					</div>
-					{% if practicante.area == 1 %}					
-						<div  class = "fecha">
-							<label>Entrega de proyecto</label>
-							<input type = "text" class = "corto" readonly = "readonly" id = "crono_pra_proyecto" value = "{{ practicante.fechaInformeFinal is empty ? "" : practicante.fechaInformeFinal|date("d/m/Y") }}">
-						</div>
-					{% endif %}
-				</div>
-				
-				<div class="titulo" style="display:none;">CRONOGRAMA ASESOR ACADEMICO</div>
+				<div>
 
-
-				<div class = "contenedor_fecha" style="display:none;">
-					<div  class = "fecha">
-						<label>Asesoría #1</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria1" value = "{{ practicante.fechaAsesoria1 is empty ? "" : practicante.fechaAsesoria1|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Asesoría #2</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria2" value = "{{ practicante.fechaAsesoria2 is empty ? "" : practicante.fechaAsesoria2|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Asesoría #3</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria3" value = "{{ practicante.fechaAsesoria3 is empty ? "" : practicante.fechaAsesoria3|date('d-m-Y') }}">
-					</div>
-					<div  class = "fecha">
-						<label>Asesoría #4</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria4" value = "{{ practicante.fechaAsesoria4 is empty ? "" : practicante.fechaAsesoria4|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Asesoría #5</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria5" value = "{{ practicante.fechaAsesoria5 is empty ? "" : practicante.fechaAsesoria5|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Asesoría #6</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria6" value = "{{ practicante.fechaAsesoria6 is empty ? "" : practicante.fechaAsesoria6|date('d-m-Y') }}">
-					</div>
-
-					<div  class = "fecha">
-						<label>Asesoría #7</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_asesoria7" value = "{{ practicante.fechaAsesoria7 is empty ? "" : practicante.fechaAsesoria7|date('d-m-Y') }}">
-					</div>
-				</div>
-
-
-				<div class = "contenedor_fecha1" style="display:none;">
-					<div  class = "fecha">
-						<label>Informe de gestión #1</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_gestion1" value = "{{ practicante.fechaInformeGestion1 is empty ? "" : practicante.fechaInformeGestion1|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Informe de gestión #2</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_gestion2" value = "{{ practicante.fechaInformeGestion2 is empty ? "" : practicante.fechaInformeGestion2|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Informe de gestión #3</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_gestion3" value = "{{ practicante.fechaInformeGestion3 is empty ? "" : practicante.fechaInformeGestion3|date('d-m-Y') }}">
-					</div>
-
-				</div>
-
-				<div class = "contenedor_fecha1" style="display:none;">
-					<div  class = "fecha">
-						<label>Evaluación #1</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion1" value = "{{ practicante.fechaVisita1 is empty ? "" : practicante.fechaVisita1|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Evaluación #2</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacion2" value = "{{ practicante.fechaVisita2 is empty ? "" : practicante.fechaVisita2|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Evaluación final</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_aca_evaluacionfinal" value = "{{ practicante.fechaInformeFinal is empty ? "" : practicante.fechaInformeFinal|date('d-m-Y') }}">
-					</div>
-				</div>
-
-				<div class="titulo" style="display:none;">CRONOGRAMA ASESOR EXTERNO</div>
-				<div class = "contenedor_fecha1" style="display:none;">
-					<div  class = "fecha">
-						<label>Evaluación #1</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion1" value = "{{ practicante.fechaVisita1 is empty ? "" : practicante.fechaVisita1|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Evaluación #2</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_evaluacion2" value = "{{ practicante.fechaVisita2 is empty ? "" : practicante.fechaVisita2|date('d-m-Y') }}">
-					</div>
-				
-					<div  class = "fecha">
-						<label>Acta de conformidad</label>
-						<input type = "text" class = "corto" readonly = "readonly" id = "crono_ext_acta" value = "{{ practicante.fechaInformeFinal is empty ? "" : practicante.fechaInformeFinal|date('d-m-Y') }}">
-					</div>
-
-				</div> 
-
-				{{ form_rest(formulario) }}
+     			{{ form_rest(formulario) }}
 				<div class="inputContainer" style="position:relative; margin-top:20px;">
 					<img style="position:absolute; left:15px; float:left; pointer-events:none;" src="{{ asset('img/guardar.png') }}" />
 				<input style="padding-left:40px;" class="button" type="submit" value="Guardar" />
