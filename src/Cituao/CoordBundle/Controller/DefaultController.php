@@ -330,7 +330,7 @@ class DefaultController extends Controller
 	
 				$academico = $practicante->getAcademico(); 
 			
-				if ($academico->getActivos($programa)  == 5)	throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
+				
 				//cambio el asesor academico 
 				//actuaizamos el id en el cronograma del asesor academico
 				$query = $em->createQuery(
