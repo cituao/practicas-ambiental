@@ -811,7 +811,7 @@ class DefaultController extends Controller
 			
             // Completar las propiedades que el usuario no rellena en el formulario
 			$idCentro = $formulario->get('centros')->getData();
-			$ci = $externo->getCi();
+			
 			
 			$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 			$centro = $repository->find($idCentro);
@@ -830,16 +830,16 @@ class DefaultController extends Controller
 			if(!$sw){
 				$externo->addCentro($centro);
 			}
-			$em->persist($externo);
-
 			
+
+			$ci_form = $formulario->get('ci')->getData();
 			//si el usuario cambio la cédula modificamos el username y password 
-			if ($ci != $externo->getCi()){
+			if ($ci_form != $ci){
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
 				$usuario = $repository->findOneBy(array('username' => $ci));
 				
-				$usuario->setUsername($externo->getCi());
-				$usuario->setPassword($externo->getCi());
+				$usuario->setUsername($ci_form);
+				$usuario->setPassword($ci_form);
 				$usuario->setSalt(md5(time()));
 
 				//codificamos el password			
@@ -848,6 +848,7 @@ class DefaultController extends Controller
 				$usuario->setPassword($passwordCodificado);
 				$em->persist($usuario);
 			}
+			$em->persist($externo);
 			$em->flush();
 
 			// Crear un mensaje flash para notificar al usuario
