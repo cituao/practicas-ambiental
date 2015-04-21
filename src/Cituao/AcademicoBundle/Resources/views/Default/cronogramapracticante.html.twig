@@ -290,7 +290,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<td class = "colEstado">Sin entregar!</td>
 						<td class = "colEstado"></td>
 						<td class = "colEstado">No ha entregado!</td>
-						<td class = "colEstado"></td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 1}) }}">Entregar</a></td>
 					{% else %}
 						{% if c.listoEvaluacion1 == false %}
 							<td class = "colEstado">Sin comentar!</td>
@@ -329,7 +329,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<td class = "colEstado">Sin entregar!</td>
 						<td class = "colEstado"></td>
 						<td class = "colEstado">No ha entregado!</td>
-						<td class = "colEstado"></td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_comentario', { 'id': p.id, 'numeva': 2}) }}">Entregar</a></td>
 					{% else %}
 						{% if c.listoEvaluacion2 == false %}
 							<td class = "colEstado">Sin comentar!</td>
@@ -465,7 +465,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					<td class = "colEstado"></td>
 					<td class = "colEstado"></td>
 					<td class = "colEstado">
-					{% if c.listoGestion3 == true and c.listoAsesoria7 == true %}					
+					{% if c.listoGestion3 == true and c.listoAsesoria7 == true and e.listoEvaluacion2 %}					
 					<a href="{{ path('cituao_academico_registrar_informefinal', { 'id': p.id}) }}">Entregar</a></td>
 					{% else %}
 					Aun falta por entregar actividades!
@@ -473,6 +473,33 @@ $( "#practicantes h3" ).css("opacity","0.4");
 					{% endif %}
 				{% endif %}
 				
+			  </tr>
+			  
+			  <tr>
+				<td>Acta de conformidad</td>
+				<td>{{ e.fechaActa|date("d/m/Y") }}</td>
+				{% if e.fechaActa > date() %}
+					<td class = "colEstado">Aun falta!</td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
+				{% else %}
+					{% if e.listoActa == true %}
+						<td class = "colEstado">Entregada</td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_conformidad', { 'id': p.id }) }}">Ver o Actualizar</a></td>
+					{% else %}
+						<td class = "colEstado">Sin entregar!</td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+						{% if e.listoEvaluacion2 == true %}
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_conformidad', { 'id': p.id }) }}">Entregar</a></td>
+						{% else%}
+						<td class = "colEstado">Falta entregar una actividad!</td>
+						{% endif %}
+					{% endif %}
+				{% endif %}
 			  </tr>
 
 			    </tbody>

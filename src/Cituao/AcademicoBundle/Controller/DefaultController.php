@@ -24,6 +24,8 @@ use Cituao\AcademicoBundle\Form\Type\Evaluacion2Type;
 use Cituao\AcademicoBundle\Form\Type\CualicuantiType;
 use Cituao\AcademicoBundle\Form\Type\InformefinalType;
 use Cituao\AcademicoBundle\Form\Type\VisitapType;
+use Cituao\ExternoBundle\Entity\Evaluacion1;
+use Cituao\ExternoBundle\Entity\Evaluacion2;
 
 class DefaultController extends Controller
 {
@@ -400,25 +402,29 @@ class DefaultController extends Controller
 		$query->setParameter('id_ext',$externo->getId());
 		
 		$cronograma = $query->getOneOrNullResult();
-		//DEBE HABER UNA INSTANCIA si no hay ERROR
-		if (($numeva == 1 AND $cronograma->getListoEvaluacion1() == false) OR ($numeva == 2 AND $cronograma->getListoEvaluacion2() == false)){
-			
-			if ($numeva == 1)			
-				throw $this->createNotFoundException('ERR_EVALUACION_NO_INICIADA');
-			else
-				throw $this->createNotFoundException('ERR_EVALUACION_NO_INICIADA');
+		
+		switch ($numeva){
+				case 1:
+					if ($cronograma->getListoEvaluacion1() == false){
+						$evaluacion = new Evaluacion1();
+					} else {
+						$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
+						$evaluacion = $repository->findOneBy(array('practicante' => $id));
+					}
+					$formulario = $this->createForm(new Evaluacion1Type(), $evaluacion);
+				break;
+				
+				case 2;
+					if ($cronograma->getListoEvaluacion2() == false){
+						$evaluacion = new Evaluacion2();
+					} else {
+						$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion2');
+						$evaluacion = $repository->findOneBy(array('practicante' => $id));
+					}
+					$formulario = $this->createForm(new Evaluacion2Type(), $evaluacion);
+				break;
 		}
 
-		//buscamos la evaluacion
-		if ($numeva == 1){
-			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion1');
-			$evaluacion = $repository->findOneBy(array('practicante' => $id));
-			$formulario = $this->createForm(new Evaluacion1Type(), $evaluacion);		
-		}else{
-			$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Evaluacion2');
-			$evaluacion = $repository->findOneBy(array('practicante' => $id));
-			$formulario = $this->createForm(new Evaluacion2Type(), $evaluacion);
-		}
 		$formulario->handleRequest($peticion);
 		if ($formulario->isValid()) {
 			//asignamos como entregada la evaluación del academico 
@@ -426,16 +432,35 @@ class DefaultController extends Controller
 					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
 			$query->setParameter('id_pra',$id);
 			$cronograma = $query->getOneOrNullResult();
-			if ($numeva == 1) 			
+			
+			//asignamos como entregada la evaluación del externo 
+			$query = $em->createQuery(
+				'SELECT c FROM CituaoExternoBundle:Cronogramaexterno c WHERE c.practicante =:id_pra');
+			$query->setParameter('id_pra',$id);
+
+			$cronograma_externo = $query->getOneOrNullResult();
+			
+			if ($numeva == 1) {			
 				$cronograma->setListoEvaluacion1(true);
-			else
+				$cronograma_externo->setListoEvaluacion1(true);
+			}
+			else{
 				$cronograma->setListoEvaluacion2(true);
+				$cronograma_externo->setListoEvaluacion2(true);
+			}
+			
+			$evaluacion->setExterno($externo->getId());
+			$evaluacion->setPracticante($id);
+			
+			
 			$em->persist($evaluacion);
 			$em->persist($cronograma);
+			$em->persist($cronograma_externo);
+			
 			$em->flush();
 			// Crear un mensaje flash para notificar al usuario
 			$this->get('session')->getFlashBag()->add('info',
-				'¡Listo ha sido registrado el comentario evaluación!'
+				'¡Listo ha sido registrado la evaluación!'
 			);
 			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
 		}
