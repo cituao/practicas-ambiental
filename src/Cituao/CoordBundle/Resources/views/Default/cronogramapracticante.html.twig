@@ -481,8 +481,8 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				{% endif %}
 				
 			</tr>
-
-			{% if p.Area not in [2, 3] %}
+	
+			{% if p.Area.id not in [2,3] %}
 			<tr>
 				<td>Proyecto final</td>
 				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>

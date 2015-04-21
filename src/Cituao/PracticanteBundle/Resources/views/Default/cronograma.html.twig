@@ -517,9 +517,9 @@ $(document).ready(function() {
 					{% endif %}
 				{% endif %}
 			  </tr>
-			{% if p.Area not in [2, 3] %}
+			{% if p.Area.id not in [2,3] %}
 			  <tr>
-				<td>Proyecto</td>
+				<td>Proyectou</td>
 				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
 				{% if p.fechaInformeFinal > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
