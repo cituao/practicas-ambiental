@@ -698,7 +698,7 @@ class DefaultController extends Controller
 					$e->addPrograma($programa);
 
 					//creamos un objeto con el centro selecionado por el coordinador				
-					$idCentro = $formulario->get('centro')->getData();				
+					$idCentro = $formulario->get('centros')->getData();				
 					$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Centro');
 					$centro = $repository->find($idCentro);
 					$e->addCentro($centro);
