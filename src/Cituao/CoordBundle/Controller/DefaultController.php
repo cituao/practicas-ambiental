@@ -1507,7 +1507,7 @@ class DefaultController extends Controller
 		//colocamos null en los campos externo, academico y centro del registro del practicante
 		$query = $em->createQuery(
 				'UPDATE CituaoCoordBundle:Practicante c
-				SET c.academico = NULL, c.externo = NULL, c.centro = NULL, c.fechaIniciacion = NULL
+				SET c.academico = NULL, c.externo = NULL, c.centro = NULL, c.fechaIniciacion = NULL, c.estado =0
 				WHERE c.id = :id')
 				->setParameter('id', $id);
 		$query->execute();
