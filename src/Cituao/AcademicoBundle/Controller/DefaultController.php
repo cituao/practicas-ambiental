@@ -662,7 +662,7 @@ class DefaultController extends Controller
 
 				//inactivamos el estudiante
 				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-				$usuario_practicante = $repository->findOneBy(array('username' => $practicante->getCi()));
+				$usuario_practicante = $repository->findOneBy(array('username' => $practicante->getCodigo()));
 				$usuario_practicante->setIsActive(false);
 				$em->persist($usuario_practicante);
 				//lo pasamos al estado CULMINADO
