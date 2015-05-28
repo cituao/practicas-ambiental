@@ -255,7 +255,8 @@ class DefaultController extends Controller
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
 			$passwordCodificado = $encoder->encodePassword($usuario->getPassword(), $usuario->getSalt());
 			$usuario->setPassword($passwordCodificado);
-			$usuario->setIsActive(false);
+			
+			//$usuario->setIsActive(false);
 
 			$em->persist($practicante);
 			$em->persist($usuario);
