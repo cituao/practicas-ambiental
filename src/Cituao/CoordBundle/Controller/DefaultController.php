@@ -386,7 +386,7 @@ class DefaultController extends Controller
 				$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
 				$academico = $repository->findOneById($id_academico);
 				
-				if ($academico->getActivos($programa)  == 5)	throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
+				if ($academico->getActivos($programa)  == 9)	throw $this->createNotFoundException('ERR_MAX_PRACTICANTES');
 				
 				// Completar las propiedades que el usuario no rellena en el formulario
 				$practicante->setEstado(true); //colocamos al practicante como activo ya que tiene calendario
