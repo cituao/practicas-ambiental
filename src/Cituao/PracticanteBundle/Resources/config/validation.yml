@@ -2,7 +2,7 @@ Cituao\PracticanteBundle\Entity\Docpdf:
     properties:
         file:
             - File:
-                maxSize: 2024k
+                maxSize: 8192k
                 mimeTypes: [application/pdf, application/x-pdf]
                 mimeTypesMessage: Por favor suba un PDF!
                 uploadErrorMessage: El archivo no puede ser cargado!
