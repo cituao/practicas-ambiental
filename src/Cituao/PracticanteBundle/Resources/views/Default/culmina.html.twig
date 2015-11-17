@@ -1,0 +1,48 @@
+{% extends 'CituaoPracticanteBundle::layout.html.twig' %}
+
+{% block programa %}
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}	
+<style>
+input[type=text]{
+	border:none;
+}
+</style>
+
+{% endblock %}
+
+{% block js  %}
+<script>
+	$( "#hojaDeVida" ).hide();
+	$( "#asesoresExternos" ).hide();
+	$( "#cronograma" ).hide();
+	$( "#asesoresInternos" ).hide();
+	$( "#centroPractica" ).hide();
+</script>
+
+{% endblock %}
+
+
+{% block content  %}
+{{ parent() }}
+<div class = "content">
+{% block upSection  %}
+	<div class = "upSection">
+		<h1 class="sectionTitle">Proceso finalizado</h1>
+		
+	</div>
+	{% endblock  %}
+
+	{% block downSection  %}
+	<div class = "downSection"> 
+			<h2 style = "color: black">
+				<p>Su proceso ha finalizado y se ha registrado satisfactoriamente en el sistema web. </p>
+				<p>Por seguridad cierre su sesión, gracias!</p>
+			</h2>
+	</div><!-- downSection -->
+	{% endblock %}
+			</div><!-- content -->
+{% endblock %}

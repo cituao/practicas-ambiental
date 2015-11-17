@@ -574,8 +574,28 @@ class DefaultController extends Controller
 			
 			if ($usuario->getIsActive())
 				return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
-			else
-				return $this->redirect($this->generateUrl('logout'));
+			else{
+				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
+				$programa = $repository->findOneBy(array('id' => $practicante->getPrograma()));
+
+				$message = \Swift_Message::newInstance();
+				$message->setSubject('Notificación - Práctica profesional');
+				$message->setFrom(array($programa->getEmail()=>'Coord. de Práctica profesional'));
+				$message->setContentType("text/html");
+				$message->setBody($this->renderView('CituaoPracticanteBundle:Default:email_culmina.html.twig'),'text/html');
+				$message->setTo(array($practicante->getEmailPersonal() => 'Practicante'));
+				$this->get('mailer')->send($message);
+				
+				$message_coo = \Swift_Message::newInstance();
+				$message_coo->setSubject('Notificación - Práctica profesional');
+				$message_coo->setFrom(array($programa->getEmail()=>'Aplicación Web'));
+				$message_coo->setContentType("text/html");
+				$message_coo->setBody($this->renderView('CituaoPracticanteBundle:Default:email_culmina_coordinador.html.twig', array('p' => $practicante)),'text/html');
+				$message_coo->setTo(array($programa->getEmail() => 'Coordinador'));
+				$this->get('mailer')->send($message_coo);
+
+				return $this->render('CituaoPracticanteBundle:Default:culmina.html.twig');
+			}
 		}		
 		$msgerr = array('id'=>'0', 'descripcion'=>' ');
 		return $this->render('CituaoPracticanteBundle:Default:formsubirproyecto.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr , 'practicante' => $practicante ));
