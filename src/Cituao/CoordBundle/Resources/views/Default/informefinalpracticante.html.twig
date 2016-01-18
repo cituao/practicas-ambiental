@@ -15,6 +15,9 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 
 {% block content  %}
+	{% if practicante.programa.id == 1 %}{% set profesion = 'Comunicador Social' %}{% endif %}
+	{% if practicante.programa.id == 3 %}{% set profesion = 'Publicista' %}{% endif %}
+	{% if practicante.programa.id == 2 %}{% set profesion = 'Diseñador Gráfico' %}{% endif %}
 <div class="content">
 	{{ parent() }}
 	{% block upSection  %}
@@ -34,7 +37,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 
 				<div class="activity">
 					<div class="inputContainer">
-						<h2 >1. Comunicación publicitaria</h2>
+						<h2 >1. {{ practicante.programa.nombre }}</h2>
 						<div class="input">
 							<h2 class="largeh2">Realice una reflexión corta y concreta de la carrera que va a terminar teniendo en cuenta el pensum académico en relación con el desarrollo de su práctica.</h2>
 							<textarea class="input nomodificable" cols="125" rows="10" readonly >{{ informe.comunicacion }}</textarea>
@@ -49,7 +52,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<h2 class="largeh2 extraLarge">De forma analítica haga una reflexión concreta  acerca del rol que desempeñó su asesor académico en este proceso. Tenga en cuenta la metodología que utilizó, la organización y el trabajo en equipo entre asesor externo, académico y practicante, bibliografía y aporte conceptual,  compromiso con el desarrollo de asesorías y visitas. </h2>
 						<h2 ><span>Compromisos del Asesor Académico</span></h2>
 						<h2 class="largeh2 extraLarge">   Lidera y realiza una gestión con calidad, tipificada por el cumplimiento oportuno de los objetivos y metas institucionales y del Programa de Práctica.</h2>
-						<h2 class="largeh2 extraLarge">   Presenta al Asesor Externo el perfil profesional del Publicista y su potencial  de desempeño  en la organización.</h2>
+						<h2 class="largeh2 extraLarge">   Presenta al Asesor Externo el perfil profesional del {{ profesion }} y su potencial  de desempeño  en la organización.</h2>
 						<h2 class="largeh2 extraLarge">   Guía al estudiante en su posicionamiento profesional dentro de la organización y en el planteamiento de las estrategias comunicativas.</h2>
 						<h2 class="largeh2 extraLarge">   Para practicantes fuera de Cali y Colombia se comunica vía e-mail, teléfono y fax con el Asesor Externo.</h2>
 						<h2 class="largeh2 extraLarge">   Para practicantes de Cali, del Valle y de algunas ciudades de Colombia visita al Asesor Externo  para evaluar  el desempeño profesional del estudiante. </h2>
@@ -81,7 +84,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				<div class="activity">
 					<div class="inputContainer">
 						<h2 >
-							Comunicación publicitaria  (Autorreflexión)
+							{{ practicante.programa.nombre }} (Autorreflexión)
 						</h2>
 						<div class="input">
 							<h2 class="largeh2">Desde su vivencia analicé sus fortalezas y debilidades en términos de competencias profesionales  para desarrollar el cargo que le correspondió.</h2>

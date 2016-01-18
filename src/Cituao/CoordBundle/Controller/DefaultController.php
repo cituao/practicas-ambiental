@@ -1481,7 +1481,7 @@ class DefaultController extends Controller
 		$programa = $repository->findOneByCoordinador($coordinador);
 		
     	return $this->render('CituaoCoordBundle:Default:informefinalpracticante.html.twig', array(
-    		'informe' => $informe, 'datos' => $datos, 'programa' => $programa
+    		'informe' => $informe, 'datos' => $datos, 'programa' => $programa, 'practicante' => $practicante
     		));
     }
 	
