@@ -12,4 +12,4 @@ parameters:
     mailer_password: null
     locale: es
     secret: ThisTokenIsNotSoSecretChangeIt
-	session_max_idle_time: 180
+    session_max_idle_time: 180
