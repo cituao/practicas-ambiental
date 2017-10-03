@@ -49,3 +49,7 @@ cituao_academico_vercentro:
 cituao_academico_registrar_conformidad:
     path:  /academico/registrarconformidad/practicante={id}
     defaults: { _controller: CituaoAcademicoBundle:Default:registrarConformidad }
+
+cituao_academico_registrar_proyectofinal:
+    path:  /academico/registrarproyectofinal/practicante={id}
+    defaults: { _controller: CituaoAcademicoBundle:Default:registrarProyectoFinal }

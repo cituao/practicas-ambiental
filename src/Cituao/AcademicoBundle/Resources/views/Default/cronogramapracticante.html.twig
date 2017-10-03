@@ -502,6 +502,32 @@ $( "#practicantes h3" ).css("opacity","0.4");
 				{% endif %}
 			  </tr>
 
+			  <tr>
+				<td>Proyecto</td>
+				<td>{{ e.fechaActa|date("d/m/Y") }}</td>
+				{% if e.fechaActa > date() %}
+					<td class = "colEstado">Aun falta!</td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
+					<td class = "colEstado"></td>
+				{% else %}
+					{% if c.listoProyecto == true %}
+						<td class = "colEstado">Entregada</td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_proyectofinal', { 'id': p.id }) }}">Ver o Actualizar</a></td>
+					{% else %}
+						<td class = "colEstado">Sin entregar!</td>
+						<td class = "colEstado"></td>
+						<td class = "colEstado"></td>
+						{% if e.listoActa == true %}
+						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_proyectofinal', { 'id': p.id }) }}">Entregar</a></td>
+						{% else%}
+						<td class = "colEstado">Falta entregar una actividad!</td>
+						{% endif %}
+					{% endif %}
+				{% endif %}
+			  </tr>
 			    </tbody>
 			</table>
 			</div><!-- downSection -->

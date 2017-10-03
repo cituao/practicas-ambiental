@@ -23,6 +23,7 @@ use Cituao\AcademicoBundle\Form\Type\Evaluacion1Type;
 use Cituao\AcademicoBundle\Form\Type\Evaluacion2Type;
 use Cituao\AcademicoBundle\Form\Type\CualicuantiType;
 use Cituao\AcademicoBundle\Form\Type\InformefinalType;
+use Cituao\AcademicoBundle\Form\Type\ProyectoFinalType;
 use Cituao\AcademicoBundle\Form\Type\VisitapType;
 use Cituao\AcademicoBundle\Form\Type\ActaType;
 use Cituao\ExternoBundle\Entity\Evaluacion1;
@@ -724,7 +725,7 @@ class DefaultController extends Controller
 		return $this->render('CituaoAcademicoBundle:Default:centro.html.twig', array('centro' => $centro));
 	}
 	
-		//*******************************************************************
+	//*******************************************************************
 	//Muestra formulario para registrar el acta de conformidad
 	//*******************************************************************
 	public function registrarConformidadAction($id){
@@ -834,5 +835,43 @@ class DefaultController extends Controller
 			'formulario' => $formulario->createView(), 'datos' => $datos
 			));
 
-	}		
+	}
+
+	//************************************************
+	//Muestra formulario para confirmar entrega de proyecto final
+	//************************************************
+	public function registrarProyectoFinalAction($id){
+		$peticion = $this->getRequest();
+		$em = $this->getDoctrine()->getManager();
+		// buscamos el ID del asesor academico
+		$user = $this->get('security.context')->getToken()->getUser();
+		$ci =  $user->getUsername();
+		$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
+		$academico = $repository->findOneBy(array('ci' => $ci));
+
+		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
+		$practicante = $repository->findOneBy(array('id' => $id));
+		//actualizamos el estado para el academico
+		$query = $em->createQuery(
+					'SELECT c FROM CituaoAcademicoBundle:Cronograma c WHERE c.practicante =:id_pra');
+			$query->setParameter('id_pra',$id);
+		$cronograma = $query->getOneOrNullResult();
+
+		$formulario = $this->createForm(new ProyectoFinalType(), $cronograma);		
+		$formulario->handleRequest($peticion);
+		
+		if ($formulario->isValid()) {
+			$cronograma->setListoProyecto(true);
+			$practicante->setListoProyecto(true);
+			$em->persist($cronograma);
+			$em->persist($practicante);
+		
+			$em->flush();
+			return $this->redirect($this->generateUrl('cituao_academico_homepage'));
+		}
+		//$programa=$academico->getPrograma();
+		$datos = array('id' => $id);
+		return $this->render('CituaoAcademicoBundle:Default:formproyectofinal.html.twig', array('formulario' => $formulario->createView(),   'datos' => $datos));
+	}
+	
 }

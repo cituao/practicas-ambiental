@@ -82,6 +82,9 @@ Cituao\AcademicoBundle\Entity\Cronograma:
         listoEvaluacionFinal:
             type: boolean
             nullable: true
+        listoProyecto:
+            type: boolean
+            nullable: true
         comentario:
             type: text
             nullable: true

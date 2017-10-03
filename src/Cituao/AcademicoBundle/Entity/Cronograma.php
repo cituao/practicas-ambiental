@@ -164,6 +164,10 @@ class Cronograma
      */
     private $listoEvaluacionFinal;
 
+	/**
+     * @var boolean
+     */
+    private $listoProyecto;
 
     /**
      * Get id
@@ -891,5 +895,28 @@ class Cronograma
     public function getComentario()
     {
         return $this->comentario;
+    }
+	
+	 /**
+     * Set listoProyecto
+     *
+     * @param boolean $listoProyecto
+     * @return Cronograma
+     */
+    public function setListoProyecto($listoProyecto)
+    {
+        $this->listoProyecto = $listoProyecto;
+    
+        return $this;
+    }
+
+    /**
+     * Get listoProyecto
+     *
+     * @return boolean 
+     */
+    public function getListoProyecto()
+    {
+        return $this->listoProyecto;
     }
 }
