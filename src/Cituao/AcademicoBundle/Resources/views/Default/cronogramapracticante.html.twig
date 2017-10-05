@@ -520,7 +520,7 @@ $( "#practicantes h3" ).css("opacity","0.4");
 						<td class = "colEstado">Sin entregar!</td>
 						<td class = "colEstado"></td>
 						<td class = "colEstado"></td>
-						{% if e.listoActa == true %}
+						{% if e.listoActa == true and c.listoEvaluacionFinal == true and p.listoInformeFinal == true %}
 						<td class = "colEstado"><a href="{{ path('cituao_academico_registrar_proyectofinal', { 'id': p.id }) }}">Entregar</a></td>
 						{% else%}
 						<td class = "colEstado">Falta entregar una actividad!</td>

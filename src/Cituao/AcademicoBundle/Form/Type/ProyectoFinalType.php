@@ -11,7 +11,7 @@ class ProyectoFinalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('listoProyecto', 'checkbox', array('required' => false, 'label' => 'Entregado', 'attr'=>array('oninvalid'=>"setCustomValidity('¡Debe confirmar! o Regresar')")));
+			->add('listoProyecto', 'checkbox', array('required' => true, 'label' => 'Entregado' ));
 		}
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

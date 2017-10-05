@@ -87,7 +87,6 @@ $(document).ready(function() {
 						{% endif %}
 					{% endif %}
 				{% endif %}
-
 			  </tr>
 			  <tr>
 				<td>Asesoría #2</td>
@@ -122,7 +121,6 @@ $(document).ready(function() {
 					{% endif %}
 				{% endif %}
 			  </tr>
-
 			  <tr>
 				<td>Asesoría #3</td>
 				<td>{{ p.fechaAsesoria3|date("d/m/Y") }}</td>
@@ -155,9 +153,7 @@ $(document).ready(function() {
 						{% endif %}
 					{% endif %}
 				{% endif %}
-
 				</tr>
-
 			  <tr>
 				<td>Asesoría #4</td>
 				<td>{{ p.fechaAsesoria4|date("d/m/Y") }}</td>
@@ -190,7 +186,6 @@ $(document).ready(function() {
 						{% endif %}
 					{% endif %}
 				{% endif %}
-				
 			  </tr>
 			  <tr>
 				<td>Asesoría #5</td>
@@ -226,7 +221,6 @@ $(document).ready(function() {
 				{% endif %}
 				
 			  </tr>
-
 			  <tr>
 				<td>Asesoría #6</td>
 				<td>{{ p.fechaAsesoria6|date("d/m/Y") }}</td>
@@ -294,9 +288,7 @@ $(document).ready(function() {
 						{% endif %}
 					{% endif %}
 				{% endif %}
-				
 			  </tr>
-
 			  <tr>
 				<td>Visita presentación</td>
 				<td>{{ p.fechaVisitaP|date("d/m/Y") }}</td>
@@ -356,7 +348,6 @@ $(document).ready(function() {
 					{% endif %}
 				{% endif %}
 			  </tr>
-
 			  <tr>
 				<td>Evaluación #2</td>
 				<td>{{ p.fechaVisita2|date("d/m/Y") }}</td>
@@ -393,9 +384,7 @@ $(document).ready(function() {
 						{% endif %}
 					{% endif %}
 				{% endif %}
-				
 			  </tr>
-
 			  <tr>
 				<td>Informe de gestión #1</td>
 				<td>{{ p.fechaInformeGestion1|date("d/m/Y") }}</td>
@@ -422,7 +411,6 @@ $(document).ready(function() {
 					{% endif %}
 				{% endif %}
 			  </tr>
-
 			  <tr>
 				<td>Informe de gestión #2</td>
 				<td>{{ p.fechaInformeGestion2|date("d/m/Y") }}</td>
@@ -454,7 +442,6 @@ $(document).ready(function() {
 				{% endif %}
 				
 			  </tr>
-
 			  <tr>
 				<td>Informe de gestión #3</td>
 				<td>{{ p.fechaInformeGestion3|date("d/m/Y") }}</td>
@@ -517,9 +504,8 @@ $(document).ready(function() {
 					{% endif %}
 				{% endif %}
 			  </tr>
-			{% if p.Area.id not in [2,3] %}
 			  <tr>
-				<td>Proyectou</td>
+				<td>Proyecto final</td>
 				<td>{{ p.fechaInformeFinal|date("d/m/Y") }}</td>
 				{% if p.fechaInformeFinal > date() %}
 					<td class = "colEstado">Aun no es fecha!</td>
@@ -532,13 +518,12 @@ $(document).ready(function() {
 							<td class = "colEstado">Sin entregar!</td>
 							<td class = "colEstado"></td>
 							<td class = "colEstado"></td>
-							<td class = "colEstado"><a href="{{ path('cituao_practicante_subir_proyecto') }}">Entregar</a></td>
+							<td class = "colEstado">Entregar</td>
 						{% else %}
 							<td class = "colEstado">Entregado</td>
 							<td class = "colEstado"></td>
 							<td class = "colEstado"></td>
-							<td class = "colEstado"><a href="{{ asset('uploads/documents/' ~ p.pathPdf) }}">Ver</a></td>
-						
+							<td class = "colEstado"></td>
 						{% endif %}
 					{% else %}
 						<td class = "colEstado">Falta por entregar una actividad!</td>
@@ -548,7 +533,6 @@ $(document).ready(function() {
 					{% endif %}
 				{% endif %}
 			  </tr>
-			{% endif %}
 			</table>
 	</div>	<!-- down section -->
 	{% endblock  %}

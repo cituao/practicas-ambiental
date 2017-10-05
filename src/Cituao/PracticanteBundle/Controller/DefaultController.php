@@ -409,64 +409,6 @@ class DefaultController extends Controller
 			$informe->setPracticante($practicante->getId());
 			$practicante->setListoInformefinal(true);
 			$em->persist($informe);
-			
-			$usuario_es_inactivo = false;
-			//si el area del practicante es 2 y 3 evaluamos entregas para cambiar su estado a CULMINADO
-			if ($practicante->getArea()->getId() == 2 || $practicante->getArea()->getId() == 3){
-				
-				//buscamos los registros de los cronogramas y determinar si se ha entregado todo
-				$query = $em->createQuery(
-						'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
-				$query->setParameter('id_pra',$practicante->getId());
-				$cronogramacademico = $query->getOneOrNullResult();
-				
-				//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
-				$query = $em->createQuery(
-					'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
-				$query->setParameter('id_pra',$practicante->getId());
-				$cronogramaexterno = $query->getOneOrNullResult();
-				
-				
-				//verificamos si el asesor externo y academico entregaron
-				if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
-					//buscamos el informe  para actualizar 
-					$query = $em->createQuery(
-						'SELECT i FROM CituaoExternoBundle:Acta i WHERE i.practicante =:id_pra ');
-					$query->setParameter('id_pra',$practicante->getId());
-					
-					$acta = $query->getOneOrNullResult();
-					//si no hay informes creamos una instancia de informe final
-					if ($acta->getSatisfaccion()) {					
-						//verificamos si el asesor externo pasa a usuario inactivo
-						$externo = $practicante->getExterno();
-						$numero_practicantes_activos = $externo->getActivos();
-						if ($numero_practicantes_activos == 1){
-							$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-							$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
-							$usuario_externo->setIsActive(false);
-							$em->persist($usuario_externo);
-						}
-
-						//verificamos si el asesor académico pasa a usuario inactivo
-						$academico = $practicante->getAcademico();
-						$numero_practicantes_activos = $academico->getActivosGeneral();
-						if ($numero_practicantes_activos == 1){
-							$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-							$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
-							$usuario_academico->setIsActive(false);
-							$em->persist($usuario_academico);
-						}				
-						
-						//lo colocamos como CULMINADO
-						$practicante->setEstado('2');
-						//le damos de baja
-						$usuario->setIsActive(false);
-						$em->persist($usuario);
-						$usuario_es_inactivo = true;
-					}
-				}
-			}
-			
 			//guardamos cambios en estudiante
 			$em->persist($practicante);
 			//efectuamos todos los cambios en base de datos
@@ -477,128 +419,13 @@ class DefaultController extends Controller
 				'¡Listo informe final registrado!'
 			);
 			
-			if ($usuario_es_inactivo)	
-				return $this->redirect($this->generateUrl('logout'));
-			else
-				return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
+			return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
 		}
 		$datos = array('id' => $id);
 		
 		return $this->render('CituaoPracticanteBundle:Default:forminformefinal.html.twig', array(
 			'formulario' => $formulario->createView(), 'datos' => $datos, 'practicante' => $practicante
 			));
-	}
-	
-	//******************************************************************
-	//Muestra un formulario para subir el proyecto en formato PDF
-	//*******************************************************************
-	public function subirProyectoAction(){
-		$request = $this->getRequest();
-
-		$usuario = $this->get('security.context')->getToken()->getUser();
-		$peticion = $this->getRequest();
-
-		$em = $this->getDoctrine()->getManager();
-		$repository = $this->getDoctrine()->getRepository('CituaoCoordBundle:Practicante');
-		$practicante = $repository->findOneBy(array('codigo' => $usuario->getUsername()));
-		
-		$document = new Docpdf();
-		$form = $this->createFormBuilder($document)
-		->add('file','file',array( 'label' => 'Documento (solo tipo pdf):') )
-			//->add('name')
-		->getForm();
-
-		$form->handleRequest($request);
-
-		if ($form->isValid()) {
-			$document->setPath($practicante->getCodigo().'.pdf' );
-			$practicante->setPathPdf($practicante->getCodigo().'.pdf');
-			$practicante->setListoProyecto(true);
-			
-			//se copia el archivo al directorio del servidor			
-			$document->upload();
-			
-			//buscamos los registros de los cronogramas y determinar si se ha entregado todo
-			$query = $em->createQuery(
-					'SELECT i FROM CituaoAcademicoBundle:Cronograma i WHERE i.practicante =:id_pra ');
-			$query->setParameter('id_pra',$practicante->getId());
-			$cronogramacademico = $query->getOneOrNullResult();
-			
-			//buscamos el registro cronograma del externo y determinar si ya registro el acto de conformidad
-			$query = $em->createQuery(
-				'SELECT i FROM CituaoExternoBundle:Cronogramaexterno i WHERE i.practicante =:id_pra ');
-			$query->setParameter('id_pra',$practicante->getId());
-			$cronogramaexterno = $query->getOneOrNullResult();
-			
-			//cambiamos estado del practicante
-			if ($cronogramaexterno->getListoActa() == true && $cronogramacademico->getListoEvaluacionFinal() == true) {
-				
-				//buscamos el informe  para actualizar 
-				$query = $em->createQuery(
-					'SELECT i FROM CituaoExternoBundle:Acta i WHERE i.practicante =:id_pra ');
-				$query->setParameter('id_pra',$practicante->getId());
-				
-				$acta = $query->getOneOrNullResult();
-				//si no hay informes creamos una instancia de informe final
-				if ($acta->getSatisfaccion()) {
-					//verificamos si el asesor externo pasa a usuario inactivo
-					$repository = $this->getDoctrine()->getRepository('CituaoExternoBundle:Externo');
-					$externo = $repository->findOneBy(array('id' => $practicante->getExterno()->getId()));
-					$numero_practicantes_activos = $externo->getActivos();
-					if ($numero_practicantes_activos == 1){
-						$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-						$usuario_externo = $repository->findOneBy(array('username' => $practicante->getExterno()->getCi()));
-						$usuario_externo->setIsActive(false);
-						$em->persist($usuario_externo);
-					}
-
-					//verificamos si el asesor académico pasa a usuario inactivo
-					$repository = $this->getDoctrine()->getRepository('CituaoAcademicoBundle:Academico');
-					$academico = $repository->findOneBy(array('id' => $practicante->getAcademico()->getId()));
-					$numero_practicantes_activos = $academico->getActivosGeneral();
-					if ($numero_practicantes_activos == 1){
-						$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Usuario');
-						$usuario_academico = $repository->findOneBy(array('username' => $practicante->getAcademico()->getCi()));
-						$usuario_academico->setIsActive(false);
-						$em->persist($usuario_academico);
-					}
-					
-					$practicante->setEstado('2');
-					$usuario->setIsActive(false);
-					$em->persist($usuario);
-				}
-			}
-		
-			$em->persist($practicante);
-			$em->flush();
-			
-			if ($usuario->getIsActive())
-				return $this->redirect($this->generateUrl('cituao_practicante_homepage'));
-			else{
-				$repository = $this->getDoctrine()->getRepository('CituaoUsuarioBundle:Programa');
-				$programa = $repository->findOneBy(array('id' => $practicante->getPrograma()));
-
-				$message = \Swift_Message::newInstance();
-				$message->setSubject('Notificación - Práctica profesional');
-				$message->setFrom(array($programa->getEmail()=>'Coord. de Práctica profesional'));
-				$message->setContentType("text/html");
-				$message->setBody($this->renderView('CituaoPracticanteBundle:Default:email_culmina.html.twig'),'text/html');
-				$message->setTo(array($practicante->getEmailPersonal() => 'Practicante'));
-				$this->get('mailer')->send($message);
-				
-				$message_coo = \Swift_Message::newInstance();
-				$message_coo->setSubject('Notificación - Práctica profesional');
-				$message_coo->setFrom(array($programa->getEmail()=>'Aplicación Web'));
-				$message_coo->setContentType("text/html");
-				$message_coo->setBody($this->renderView('CituaoPracticanteBundle:Default:email_culmina_coordinador.html.twig', array('p' => $practicante)),'text/html');
-				$message_coo->setTo(array($programa->getEmail() => 'Coordinador'));
-				$this->get('mailer')->send($message_coo);
-
-				return $this->render('CituaoPracticanteBundle:Default:culmina.html.twig');
-			}
-		}		
-		$msgerr = array('id'=>'0', 'descripcion'=>' ');
-		return $this->render('CituaoPracticanteBundle:Default:formsubirproyecto.html.twig', array('form' => $form->createView() , 'msgerr' => $msgerr , 'practicante' => $practicante ));
 	}
 	
 	//*************************************************************
